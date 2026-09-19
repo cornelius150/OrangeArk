@@ -77,6 +77,12 @@ void CtActions::file_save_as()
     if (not _is_tree_not_empty_or_error()) {
         return;
     }
+    CtDialogs::CtStorageSelectArgs storageSelArgs{};
+    storageSelArgs.showAutosaveOptions = true;
+    storageSelArgs.mdOnly = true; // OrangeArk: the storage dialog shows only the Markdown option
+    if (not CtDialogs::choose_data_storage_dialog(_pCtMainWin, storageSelArgs)) {
+        return;
+    }
     const fs::path& currDocFilepath = _pCtMainWin->get_ct_storage()->get_file_path();
     CtDialogs::CtFileSelectArgs fileSelArgs{};
     if (not currDocFilepath.empty()) {

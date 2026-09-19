@@ -366,15 +366,16 @@ bool CtTableCommon::_on_grip_button_press_event(GdkEventButton* event)
     if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
     if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
     _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
-    _resize_drag_begin(event->x_root);
+    _resize_drag_begin(event->x_root, event->y_root);
     return true;
 }
 
-void CtTableCommon::_resize_drag_begin(const double xRoot)
+void CtTableCommon::_resize_drag_begin(const double xRoot, const double yRoot)
 {
     _dragResizeActive = true;
     _dragResizeChanged = false;
     _dragStartX = xRoot;
+    _dragStartY = yRoot;
     _dragStartTotalW = get_allocation().get_width();
     _dragStartColWidths = get_col_widths();
     gtk_grab_add(GTK_WIDGET(gobj()));
@@ -383,9 +384,11 @@ void CtTableCommon::_resize_drag_begin(const double xRoot)
     }
 }
 
-void CtTableCommon::_resize_drag_update(const double xRoot)
+void CtTableCommon::_resize_drag_update(const double xRoot, const double yRoot)
 {
     if (not _dragResizeActive) return;
+    // OrangeArk: horizontal drag scales the column widths,
+    // vertical drag changes the row heights
     const double dx = xRoot - _dragStartX;
     const double scale = (_dragStartTotalW + dx) / static_cast<double>(_dragStartTotalW);
     if (scale > 0.05) {
@@ -396,6 +399,14 @@ void CtTableCommon::_resize_drag_update(const double xRoot)
                 set_col_width(newWidth, c);
                 _dragResizeChanged = true;
             }
+        }
+    }
+    const double dy = yRoot - _dragStartY;
+    if (std::abs(dy) > 0.5) {
+        const int rowH = std::max(14, _get_rows_min_height() + static_cast<int>(std::lround(dy)));
+        if (rowH != _get_rows_min_height()) {
+            _set_rows_min_height(rowH);
+            _dragResizeChanged = true;
         }
     }
 }
@@ -419,14 +430,14 @@ bool CtTableCommon::_on_resize_button_press_event(GdkEventButton* event)
                       and event->y >= allocation.get_height() - TABLE_RESIZE_ZONE;
     if (not inCorner) return false;
     if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
-    _resize_drag_begin(event->x_root);
+    _resize_drag_begin(event->x_root, event->y_root);
     return true; // do not propagate while resizing
 }
 
 bool CtTableCommon::_on_resize_motion_notify_event(GdkEventMotion* event)
 {
     if (_dragResizeActive) {
-        _resize_drag_update(event->x_root); // live preview while dragging
+        _resize_drag_update(event->x_root, event->y_root); // live preview while dragging
         return true;
     }
     const Gtk::Allocation allocation = get_allocation();
@@ -903,4 +914,24 @@ void CtTableHeavy::_on_grid_set_focus_child(Gtk::Widget* pWidget)
             }
         }
     }
+}
+
+// OrangeArk: row height control (vertical drag of the resize grip)
+void CtTableHeavy::_set_rows_min_height(const int height)
+{
+    _rowsMinHeight = std::max(0, height);
+    for (size_t r = 0u; r < _tableMatrix.size(); ++r) {
+        for (size_t c = 0u; c < _tableMatrix.at(r).size(); ++c) {
+            CtTextCell* pCell = static_cast<CtTextCell*>(_tableMatrix.at(r).at(c));
+            CtTextView& ctTextView = pCell->get_text_view();
+            ctTextView.mm().set_size_request(get_col_width(c), _rowsMinHeight > 0 ? _rowsMinHeight : -1);
+        }
+    }
+}
+
+int CtTableHeavy::_get_rows_min_height() const
+{
+    if (_rowsMinHeight > 0) return _rowsMinHeight;
+    const int numRows = static_cast<int>(std::max<size_t>(1, get_num_rows()));
+    return std::max(20, get_allocation().get_height() / numRows);
 }

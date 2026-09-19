@@ -20,12 +20,13 @@ namespace CtScreenshot
 // One annotation drawn by the user on top of the selection
 struct CtAnnoShape
 {
-    enum class Type { Pen, Arrow, Rect, Ellipse, Text };
+    enum class Type { Pen, Arrow, Rect, Ellipse, Text, Counter };
     Type                  type{Type::Pen};
     std::vector<Gdk::Point> pts;          // for Pen
     int                   x1{0}, y1{0}, x2{0}, y2{0}; // bounding for others
     Glib::ustring         text;
     int                   fontSize{16};
+    int                   number{0};      // for Counter
 };
 
 // The full-screen overlay where the user drags a rectangle to select the region,
@@ -98,8 +99,8 @@ protected:
         struct ToolDef { const char* label; const char* tip; };
         const std::vector<ToolDef> tools = {
             {"画笔", "自由绘制"}, {"箭头", "绘制箭头"}, {"矩形", "绘制矩形"},
-            {"椭圆", "绘制椭圆"}, {"文字", "插入文字"},
-            {"撤销", "撤销上一个标注"}, {"重做", "重做标注"},
+            {"椭圆", "绘制椭圆"}, {"文字", "插入文字"}, {"序号", "插入自动递增的序号"},
+            {"移动", "拖动已画的标注"}, {"撤销", "撤销上一个标注"}, {"重做", "重做标注"},
         };
         for (const ToolDef& td : tools) {
             auto* pBtn = Gtk::manage(new Gtk::Button(td.label));
@@ -150,6 +151,8 @@ protected:
         if ("矩形" == lab)    { _tool = Tool::Rect; }
         if ("椭圆" == lab)    { _tool = Tool::Ellipse; }
         if ("文字" == lab)    { _tool = Tool::Text; }
+        if ("序号" == lab)    { _tool = Tool::Counter; }
+        if ("移动" == lab)    { _tool = Tool::Move; }
         _pArea->grab_focus();
     }
 
@@ -193,11 +196,78 @@ protected:
     }
 
     // -- drawing --------------------------------------------------------------
+    // OrangeArk: pick a font that renders CJK on Windows (Sans alone shows boxes)
+    static void _apply_font(const Cairo::RefPtr<Cairo::Context>& cr, const double size,
+                            const Cairo::FontWeight weight = Cairo::FontWeight::FONT_WEIGHT_NORMAL)
+    {
+#ifdef _WIN32
+        cr->select_font_face("Microsoft YaHei", Cairo::FontSlant::FONT_SLANT_NORMAL, weight);
+#else
+        cr->select_font_face("Sans", Cairo::FontSlant::FONT_SLANT_NORMAL, weight);
+#endif
+        cr->set_font_size(size);
+    }
+
+    // bounding box of a shape (for hit-testing when moving)
+    void _shape_bbox(const CtAnnoShape& shape, int& bx, int& by, int& bw, int& bh) const
+    {
+        switch (shape.type) {
+            case CtAnnoShape::Type::Pen: {
+                int minX = INT_MAX, minY = INT_MAX, maxX = INT_MIN, maxY = INT_MIN;
+                for (const Gdk::Point& pt : shape.pts) {
+                    minX = std::min(minX, pt.get_x()); minY = std::min(minY, pt.get_y());
+                    maxX = std::max(maxX, pt.get_x()); maxY = std::max(maxY, pt.get_y());
+                }
+                bx = minX; by = minY; bw = maxX - minX; bh = maxY - minY;
+                break;
+            }
+            case CtAnnoShape::Type::Text:
+                bx = shape.x1 - 2;
+                by = shape.y1 - shape.fontSize;
+                bw = static_cast<int>(shape.text.size() * shape.fontSize * 0.6) + 8;
+                bh = shape.fontSize + 6;
+                break;
+            case CtAnnoShape::Type::Counter:
+                bx = shape.x1 - shape.fontSize; by = shape.y1 - shape.fontSize;
+                bw = shape.fontSize * 2; bh = shape.fontSize * 2;
+                break;
+            default:
+                bx = std::min(shape.x1, shape.x2); by = std::min(shape.y1, shape.y2);
+                bw = std::abs(shape.x2 - shape.x1); bh = std::abs(shape.y2 - shape.y1);
+                break;
+        }
+        // generous margin for easier grabbing
+        const int margin = 8;
+        bx -= margin; by -= margin; bw += 2 * margin; bh += 2 * margin;
+    }
+
+    bool _shape_hit(const CtAnnoShape& shape, const int x, const int y) const
+    {
+        int bx = 0, by = 0, bw = 0, bh = 0;
+        _shape_bbox(shape, bx, by, bw, bh);
+        return x >= bx and x <= bx + bw and y >= by and y <= by + bh;
+    }
+
+    static void _translate_shape(CtAnnoShape& shape, const int dx, const int dy)
+    {
+        for (Gdk::Point& pt : shape.pts) {
+            pt.set_x(pt.get_x() + dx);
+            pt.set_y(pt.get_y() + dy);
+        }
+        shape.x1 += dx; shape.y1 += dy; shape.x2 += dx; shape.y2 += dy;
+    }
+
     void _draw_shapes(const Cairo::RefPtr<Cairo::Context>& cr, const double dx, const double dy) const
     {
-        cr->set_source_rgba(1.0, 0.13, 0.1, 0.95); // QQ-like red pen
         for (const CtAnnoShape& shape : _shapes) {
-            cr->set_line_width(3.0);
+            _draw_one_shape(cr, dx, dy, shape);
+        }
+    }
+
+    void _draw_one_shape(const Cairo::RefPtr<Cairo::Context>& cr, const double dx, const double dy, const CtAnnoShape& shape) const
+    {
+        cr->set_source_rgba(1.0, 0.13, 0.1, 0.95); // QQ-like red pen
+        cr->set_line_width(3.0);
             cr->set_line_cap(Cairo::LINE_CAP_ROUND);
             cr->set_line_join(Cairo::LINE_JOIN_ROUND);
             switch (shape.type) {
@@ -236,22 +306,37 @@ protected:
                     const double ry = std::abs(shape.y2 - shape.y1) / 2.0;
                     cr->save();
                     cr->translate(std::min(shape.x1, shape.x2) + dx + rx, std::min(shape.y1, shape.y2) + dy + ry);
-                    cr->scale(rx, ry);
+                    cr->scale(std::max(rx, 1.0), std::max(ry, 1.0));
                     cr->arc(0.0, 0.0, 1.0, 0.0, 2.0 * M_PI);
                     cr->restore();
                     cr->stroke();
                     break;
                 }
                 case CtAnnoShape::Type::Text: {
-                    cr->select_font_face("Sans", Cairo::FontSlant::FONT_SLANT_NORMAL, Cairo::FontWeight::FONT_WEIGHT_NORMAL);
-                    cr->set_font_size(shape.fontSize);
+                    _apply_font(cr, shape.fontSize);
                     cr->move_to(shape.x1 + dx, shape.y1 + dy);
                     cr->show_text(shape.text.c_str());
                     cr->stroke();
                     break;
                 }
+                case CtAnnoShape::Type::Counter: {
+                    // QQ-style auto-increment numbered badge: red circle + white number
+                    const double cx = shape.x1 + dx, cy = shape.y1 + dy;
+                    const double r = std::max(10.0, shape.fontSize * 0.9);
+                    cr->set_source_rgba(1.0, 0.13, 0.1, 0.95);
+                    cr->arc(cx, cy, r, 0.0, 2.0 * M_PI);
+                    cr->fill();
+                    const std::string label = std::to_string(shape.number);
+                    _apply_font(cr, r, Cairo::FontWeight::FONT_WEIGHT_BOLD);
+                    Cairo::TextExtents te;
+                    cr->get_text_extents(label, te);
+                    cr->set_source_rgba(1.0, 1.0, 1.0, 1.0);
+                    cr->move_to(cx - te.width / 2.0, cy + te.height / 2.0 - te.y_bearing / 2.0);
+                    cr->show_text(label);
+                    cr->stroke();
+                    break;
+                }
             }
-        }
     }
 
     bool _on_own_draw(const Cairo::RefPtr<Cairo::Context>& cr)
@@ -286,6 +371,9 @@ protected:
             cr->rectangle(selX, selY, selW, selH);
             cr->clip();
             _draw_shapes(cr, 0.0, 0.0);
+            if (_previewing) {
+                _draw_one_shape(cr, 0.0, 0.0, _currShape);
+            }
             cr->restore();
 
             // orange selection border (QQ style)
@@ -314,11 +402,10 @@ protected:
 
         // bottom hint banner
         const Glib::ustring banner = _toolbar_shown
-            ? Glib::ustring{"选择工具进行标注   |   Enter 确认   |   Esc 取消"}
+            ? Glib::ustring{"选工具标注 · 移动可拖动标注 · Enter 确认 · Esc 取消"}
             : _("Drag to select a region") + Glib::ustring{"   |   "}
             + _("Enter or double-click: confirm") + "   |   " + _("Esc: cancel");
-        cr->select_font_face("Sans", Cairo::FontSlant::FONT_SLANT_NORMAL, Cairo::FontWeight::FONT_WEIGHT_NORMAL);
-        cr->set_font_size(14.0);
+        _apply_font(cr, 14.0);
         Cairo::TextExtents be;
         cr->get_text_extents(banner, be);
         const double bx = (scrW - be.width) / 2.0;
@@ -346,15 +433,47 @@ protected:
                 _show_text_entry(static_cast<int>(event->x), static_cast<int>(event->y));
                 return true;
             }
+            if (Tool::Counter == _tool) {
+                // QQ-style numbered badge: the number is the count of existing badges + 1
+                CtAnnoShape shape{};
+                shape.type = CtAnnoShape::Type::Counter;
+                shape.x1 = static_cast<int>(event->x);
+                shape.y1 = static_cast<int>(event->y);
+                shape.fontSize = std::max(16, _sel_h() / 15);
+                int num = 1;
+                for (const CtAnnoShape& s : _shapes) {
+                    if (CtAnnoShape::Type::Counter == s.type) ++num;
+                }
+                shape.number = num;
+                _shapes.push_back(shape);
+                _redoShapes.clear();
+                _pArea->queue_draw();
+                return true;
+            }
+            if (Tool::Move == _tool) {
+                // move the topmost annotation under the cursor
+                const int px = static_cast<int>(event->x);
+                const int py = static_cast<int>(event->y);
+                for (int i = static_cast<int>(_shapes.size()) - 1; i >= 0; --i) {
+                    if (_shape_hit(_shapes.at(static_cast<size_t>(i)), px, py)) {
+                        _movingIdx = i;
+                        _moveLastX = px;
+                        _moveLastY = py;
+                        return true;
+                    }
+                }
+                return true; // nothing under the cursor; do not start a new selection
+            }
             // start a new annotation
             _annotating = true;
+            _previewing = true;
             _currShape = CtAnnoShape{};
             switch (_tool) {
                 case Tool::Pen:    _currShape.type = CtAnnoShape::Type::Pen; break;
                 case Tool::Arrow:  _currShape.type = CtAnnoShape::Type::Arrow; break;
                 case Tool::Rect:   _currShape.type = CtAnnoShape::Type::Rect; break;
                 case Tool::Ellipse:_currShape.type = CtAnnoShape::Type::Ellipse; break;
-                default: _annotating = false; return true;
+                default: _annotating = false; _previewing = false; return true;
             }
             _currShape.x1 = _currShape.x2 = static_cast<int>(event->x);
             _currShape.y1 = _currShape.y2 = static_cast<int>(event->y);
@@ -385,16 +504,23 @@ protected:
             _pArea->queue_draw();
             return true;
         }
+        if (_movingIdx >= 0 and static_cast<size_t>(_movingIdx) < _shapes.size()) {
+            // translate the picked annotation
+            const int px = static_cast<int>(event->x);
+            const int py = static_cast<int>(event->y);
+            _translate_shape(_shapes.at(static_cast<size_t>(_movingIdx)), px - _moveLastX, py - _moveLastY);
+            _moveLastX = px;
+            _moveLastY = py;
+            _pArea->queue_draw();
+            return true;
+        }
         if (_annotating) {
             _currShape.x2 = static_cast<int>(event->x);
             _currShape.y2 = static_cast<int>(event->y);
             if (CtAnnoShape::Type::Pen == _currShape.type) {
                 _currShape.pts.push_back(Gdk::Point(_currShape.x2, _currShape.y2));
             }
-            // live preview: temporarily draw the in-progress shape
-            _shapes.push_back(_currShape);
-            _pArea->queue_draw();
-            _shapes.pop_back();
+            _pArea->queue_draw(); // _currShape is drawn as a live preview
             return true;
         }
         return false;
@@ -403,8 +529,13 @@ protected:
     bool _on_button_release(GdkEventButton* event)
     {
         if (1 != event->button) return false;
+        if (_movingIdx >= 0) {
+            _movingIdx = -1;
+            return true;
+        }
         if (_annotating) {
             _annotating = false;
+            _previewing = false;
             _currShape.x2 = static_cast<int>(event->x);
             _currShape.y2 = static_cast<int>(event->y);
             const bool tiny = CtAnnoShape::Type::Pen != _currShape.type
@@ -517,6 +648,9 @@ protected:
         Gdk::Cairo::set_source_pixbuf(cr, _rShot, -static_cast<double>(selX), -static_cast<double>(selY));
         cr->paint();
         _draw_shapes(cr, -static_cast<double>(selX), -static_cast<double>(selY));
+        if (_previewing) {
+            _draw_one_shape(cr, -static_cast<double>(selX), -static_cast<double>(selY), _currShape);
+        }
         GdkPixbuf* pRaw = gdk_pixbuf_get_from_surface(rSurface->cobj(), 0, 0, selW, selH);
         return Glib::wrap(pRaw);
     }
@@ -529,7 +663,7 @@ protected:
     }
 
 private:
-    enum class Tool { None, Pen, Arrow, Rect, Ellipse, Text };
+    enum class Tool { None, Pen, Arrow, Rect, Ellipse, Text, Counter, Move };
 
     Glib::RefPtr<Gdk::Pixbuf> _rShot;
     Glib::RefPtr<Gdk::Pixbuf> _rResult;
@@ -542,10 +676,13 @@ private:
 
     bool _selecting{false};
     bool _annotating{false};
+    bool _previewing{false};
     bool _toolbar_shown{false};
     Tool _tool{Tool::Pen};
     int  _selX1{0}, _selY1{0}, _selX2{-1}, _selY2{-1};
     int  _textAnnoX{0}, _textAnnoY{0};
+    int  _movingIdx{-1};
+    int  _moveLastX{0}, _moveLastY{0};
 
     std::vector<CtAnnoShape> _shapes;
     std::vector<CtAnnoShape> _redoShapes;

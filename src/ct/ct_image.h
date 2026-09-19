@@ -92,6 +92,8 @@ private:
     bool _on_button_release_event(GdkEventButton* event);
     bool _in_resize_corner(GdkEventButton* event);
     void _apply_resized_pixbuf(const int newWidth, const int newHeight);
+    bool _on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr); // visible resize grip
+    void _connect_resize_events();
     bool   _dragResizeActive{false};
     double _dragStartX{0.}, _dragStartY{0.};
     int    _dragStartW{0}, _dragStartH{0};

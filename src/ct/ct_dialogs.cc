@@ -636,7 +636,21 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     passw_frame.set_shadow_type(Gtk::SHADOW_NONE);
     passw_frame.add(vbox_passw);
 
-    if (args.ctDocMd) {
+    if (args.mdOnly) {
+        // OrangeArk: saving always uses Markdown; show only that option
+        radiobutton_md.set_active(true);
+        image_sqlite_not_protected->hide();
+        image_sqlite_pass_protected->hide();
+        image_xml_not_protected->hide();
+        image_xml_pass_protected->hide();
+        image_multifile->hide();
+        radiobutton_sqlite_not_protected.hide();
+        radiobutton_sqlite_pass_protected.hide();
+        radiobutton_xml_not_protected.hide();
+        radiobutton_xml_pass_protected.hide();
+        radiobutton_multifile.hide();
+    }
+    else if (args.ctDocMd) {
         passw_frame.set_sensitive(false);
         radiobutton_md.set_active(true);
     }
@@ -695,7 +709,9 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     pContentArea->set_margin_start(5);
     pContentArea->set_margin_end(5);
     pContentArea->pack_start(type_frame);
-    pContentArea->pack_start(passw_frame);
+    if (not args.mdOnly) {
+        pContentArea->pack_start(passw_frame);
+    }
     if (args.showAutosaveOptions) {
         pContentArea->pack_start(*hbox_autosave);
     }

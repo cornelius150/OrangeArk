@@ -694,3 +694,21 @@ void CtTableLight::_on_treeview_event_after(GdkEvent* event)
     }
 }
 #endif
+
+// OrangeArk: row height control (vertical drag of the resize grip)
+void CtTableLight::_set_rows_min_height(const int height)
+{
+    _rowsMinHeight = std::max(0, height);
+    if (not _pManagedTreeView) return;
+    for (Gtk::TreeViewColumn* pCol : _pManagedTreeView->get_columns()) {
+        for (Gtk::CellRenderer* pRenderer : pCol->get_cells()) {
+            pRenderer->set_property("height", _rowsMinHeight);
+        }
+    }
+    _pManagedTreeView->queue_resize();
+}
+
+int CtTableLight::_get_rows_min_height() const
+{
+    return _rowsMinHeight > 0 ? _rowsMinHeight : 24;
+}

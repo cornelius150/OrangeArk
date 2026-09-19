@@ -110,7 +110,8 @@ public:
     bool on_cell_key_press_event(GdkEventKey* event);
     #endif
 
-    // OrangeArk: drag the bottom-right grip (or the wide corner zone) with the mouse to resize the table columns
+    // OrangeArk: drag the bottom-right grip (or the wide corner zone) with the mouse to resize
+    // the table columns (horizontal) and row heights (vertical)
 public:
     static const int TABLE_RESIZE_ZONE{32};
     bool _on_resize_button_press_event(GdkEventButton* event);
@@ -120,13 +121,16 @@ protected:
     void _setup_resize_grip();  // creates the visible corner grip; subclasses place it on an overlay
     bool _on_grip_draw(const Cairo::RefPtr<Cairo::Context>& cr);
     bool _on_grip_button_press_event(GdkEventButton* event);
-    void _resize_drag_begin(const double xRoot);
-    void _resize_drag_update(const double xRoot);
+    void _resize_drag_begin(const double xRoot, const double yRoot);
+    void _resize_drag_update(const double xRoot, const double yRoot);
     void _resize_drag_end();
+    virtual void _set_rows_min_height(const int height) = 0; // OrangeArk: row height control
+    virtual int  _get_rows_min_height() const = 0;
     Gtk::DrawingArea* _pResizeGrip{nullptr};
     bool _dragResizeActive{false};
     bool _dragResizeChanged{false};
     double _dragStartX{0.};
+    double _dragStartY{0.};
     int    _dragStartTotalW{0};
     CtTableColWidths _dragStartColWidths;
     Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
@@ -213,6 +217,11 @@ protected:
     bool _row_sort(const bool sortAsc) override;
     bool _on_cell_key_press_alt_or_ctrl_enter() override;
 
+    // OrangeArk: row height control
+    void _set_rows_min_height(const int height) override;
+    int  _get_rows_min_height() const override;
+    int  _rowsMinHeight{0};
+
     #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
     void _on_treeview_event_after(GdkEvent* event);
     bool _on_entry_focus_out_event(GdkEventFocus* gdk_event, Gtk::Entry* pEntry, const Glib::ustring& path, const size_t column);
@@ -272,6 +281,12 @@ public:
     int get_curr_cell_max_line_num() const override;
     int get_curr_cell_curr_offset() const override;
     int get_curr_cell_max_offset() const override;
+
+    // OrangeArk: row height control
+protected:
+    void _set_rows_min_height(const int height) override;
+    int  _get_rows_min_height() const override;
+    int  _rowsMinHeight{0};
 
 protected:
     void _apply_styles_to_cells(const bool forceReApply);

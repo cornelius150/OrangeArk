@@ -108,11 +108,7 @@ CtImagePng::CtImagePng(CtMainWin* pCtMainWin,
  : CtImage{pCtMainWin, rawBlob, "image/png", charOffset, justification}
  , _link{link}
 {
-#if GTKMM_MAJOR_VERSION < 4
-    signal_button_press_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_button_press_event), false);
-    signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_motion_notify_event), false);
-    signal_button_release_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_button_release_event), false);
-#endif
+    _connect_resize_events();
     update_label_widget();
 }
 
@@ -124,14 +120,23 @@ CtImagePng::CtImagePng(CtMainWin* pCtMainWin,
  : CtImage{pCtMainWin, pixBuf, charOffset, justification}
  , _link{link}
 {
+    _connect_resize_events();
+    update_label_widget();
+}
+
 #if GTKMM_MAJOR_VERSION < 4
+// OrangeArk: wire up the drag-resize interaction (both constructors need it:
+// images loaded from a document use the rawBlob constructor)
+void CtImagePng::_connect_resize_events()
+{
     signal_button_press_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_button_press_event), false);
     signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_motion_notify_event), false);
     signal_button_release_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_button_release_event), false);
-    add_events(Gdk::POINTER_MOTION_MASK | Gdk::BUTTON_RELEASE_MASK);
-#endif
-    update_label_widget();
+    add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
+    // draw a visible grip after the image itself has been drawn
+    signal_draw().connect(sigc::mem_fun(*this, &CtImagePng::_on_draw_grip), true/*after*/);
 }
+#endif
 
 const std::string CtImagePng::get_raw_blob()
 {
@@ -219,7 +224,36 @@ void CtImagePng::update_label_widget()
 
 #if GTKMM_MAJOR_VERSION < 4
 // OrangeArk: resize corner size in px (bottom-right of the image)
-static const int IMG_RESIZE_ZONE{16};
+static const int IMG_RESIZE_ZONE{24};
+
+// visible resize grip in the bottom-right corner (drawn after the image)
+bool CtImagePng::_on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr)
+{
+    const Gtk::Allocation allocation = get_allocation();
+    const int w = allocation.get_width();
+    const int h = allocation.get_height();
+    const int g = std::min(IMG_RESIZE_ZONE, std::min(w, h));
+    if (g < 8) return false;
+    cr->save();
+    // orange corner triangle
+    cr->move_to(w, h - g);
+    cr->line_to(w, h);
+    cr->line_to(w - g, h);
+    cr->close_path();
+    cr->set_source_rgba(1.0, 0.55, 0.1, 0.8);
+    cr->fill();
+    // white diagonal stripes
+    cr->set_source_rgba(1.0, 1.0, 1.0, 0.85);
+    cr->set_line_width(1.2);
+    for (int i = 1; i <= 2; ++i) {
+        const double off = g * i / 3.0;
+        cr->move_to(w - off, h);
+        cr->line_to(w, h - off);
+    }
+    cr->stroke();
+    cr->restore();
+    return false;
+}
 
 bool CtImagePng::_in_resize_corner(GdkEventButton* event)
 {
