@@ -1,0 +1,20 @@
+application/oliveset-ctd:
+	description=OliveSet XML Document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=oliveset
+	category=Documents/Data
+application/oliveset-ctz:
+	description=OliveSet XML Zipped
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=oliveset
+	category=Documents/Data
+application/oliveset-ctb:
+	description=OliveSet SQLite Document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=oliveset
+	category=Documents/Data
+application/oliveset-ctx:
+	description=OliveSet SQLite Zipped
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=oliveset
+	category=Documents/Data

@@ -1,0 +1,3476 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# piyo <py2@live.jp>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2026-05-11 04:20+0900\n"
+"Last-Translator: Giuseppe Penone <giuspen@gmail.com>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.3.1\n"
+
+msgid "Image Format Not Recognized"
+msgstr "認識できない画像形式です"
+
+msgid "Insert Table"
+msgstr "表を挿入"
+
+msgid "CSV File"
+msgstr "CSVファイル"
+
+msgid "Insert a CodeBox"
+msgstr "コード ボックスを挿入"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "添付ファイルの最大容量は %s MBです。"
+
+msgid "Do you want to Continue?"
+msgstr "実行しますか？"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "ノード  '%s' の内容を取得できません"
+
+msgid "Special Characters"
+msgstr "特殊文字"
+
+msgid "Tabs Replaced"
+msgstr "タブを変換しました"
+
+msgid "Lines Stripped"
+msgstr "行の削除処理を実行"
+
+msgid "No Text is Selected."
+msgstr "テキストが選択されていません。"
+
+msgid "OliveSet File"
+msgstr "OliveSet ファイル"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"使用中のファイル/フォルダーは上書きできません。別の名前か別の場所を使用してく"
+"ださい。"
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"フォルダー '%s' はすでに '%s' に存在します。\n"
+"<b>これを置換しますか？</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"ファイル '%s' はすでに '%s' に存在します。\n"
+"<b>これを置換しますか？</b>"
+
+msgid "PDF File"
+msgstr "PDF ファイル"
+
+msgid "Plain Text Document"
+msgstr "テキスト形式 （拡張子指定）"
+
+msgid "Preferences File"
+msgstr "設定ファイル"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "システムトレイがパネルに表示されていますか？"
+
+msgid "Your system does not support the System Tray"
+msgstr "システムがシステムトレイに対応していません"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr "この変更はOliveSetの再起動後に有効になります。"
+
+msgid "Replace in Current Node"
+msgstr "このノード内を置換"
+
+msgid "Search in Current Node"
+msgstr "このノード内を検索"
+
+msgid "Matches"
+msgstr "件の一致"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "<b>'%s' が見つかりません</b>"
+
+msgid "Replace in Multiple Nodes"
+msgstr "複数のノードを置換"
+
+msgid "Search in Multiple Nodes"
+msgstr "複数のノードを検索"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "まだこのセッションでは検索が実行されていません。"
+
+msgid "Tags"
+msgstr "タグ"
+
+msgid ": "
+msgstr ": "
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "まだこのセッションで実行された書式はありません。"
+
+msgid "Link Name"
+msgstr "リンク名"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "カーソルが段落内にありません。"
+
+msgid "Insert/Edit Link"
+msgstr "リンクを挿入/編集"
+
+msgid "Pick a Foreground Color"
+msgstr "文字色を選択"
+
+msgid "Pick a Background Color"
+msgstr "背景色を選択"
+
+msgid "Checking for Newer Version..."
+msgstr "新しいバージョンを確認しています..."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr ""
+"新しいバージョンの情報を確認できませんでした - 後でもう一度確認してください。"
+
+msgid "A Newer Version Is Available!"
+msgstr "新しいバージョンがあります！"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "最新のバージョンを使用しています。"
+
+msgid "You Are Using a Development Version."
+msgstr "開発バージョンを使用しています。"
+
+msgid "Who is the Parent?"
+msgstr "親ノードを選択"
+
+msgid "The Tree Root"
+msgstr "ツリーのルート"
+
+msgid "The Selected Node"
+msgstr "選択しているノード"
+
+msgid "Rename"
+msgstr "名前変更"
+
+msgid "PNG Image"
+msgstr "PNG 画像"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "'%s' への書き出しに失敗しました"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "フォルダー '%s' は無効なリンクです。"
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "ファイル '%s' は無効なリンクです。"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "フォルダー '%s' は無効なリンクです"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "リンクの参照先は、すでに存在しないノードです (Id = %s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "'%s' というアンカー名は見つかりません"
+
+msgid "Edit CodeBox"
+msgstr "コード ボックスを編集"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"'%s' にコマンドを関連付けてください。\n"
+"設定ダイアログで設定できます。"
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr ""
+"'xterm' パッケージをインストールするか、設定ダイアログで別のターミナルを構成"
+"してください。"
+
+msgid "Edit Table Properties"
+msgstr "表のプロパティを編集"
+
+msgid "Insert Anchor"
+msgstr "アンカーを挿入"
+
+msgid "Edit Anchor"
+msgstr "アンカーを編集"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "編集禁止ノードでは添付ファイルを編集できません。"
+
+msgid "Embedded File Automatically Updated:"
+msgstr "添付ファイルは自動更新されました:"
+
+msgid "No Node is Selected"
+msgstr "ノードが選択されていません"
+
+msgid "The Tree is Empty!"
+msgstr "ツリーにノードがありません！"
+
+msgid "The Selected Node is Read Only."
+msgstr "選択ノードは編集禁止です。"
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "この機能はリッチテキスト ノードでのみ使用できます。"
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr "この機能は自動構文ハイライト ノードでは使用できません。"
+
+msgid "No Table is Selected."
+msgstr "表が選択されていません。"
+
+msgid "No CodeBox is Selected."
+msgstr "コード ボックスが選択されていません。"
+
+msgid "New Child Node Properties"
+msgstr "新しい子ノードのプロパティ"
+
+msgid "New Node Properties"
+msgstr "新しいノードのプロパティ"
+
+msgid "Node Properties"
+msgstr "ノードのプロパティ"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"ノードの種類を自動構文ハイライトに変更すると、リッチテキスト書式はすべて失わ"
+"れます。本当に実行しますか？"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "<b>'%s' ノードを削除しますか？</b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "<b>子孫ノードもすべて削除されます！</b>"
+
+msgid "Select the New Parent"
+msgstr "新しい親ノードを選択"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "自分自身を親ノードにすることはできません！"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "現在の親ノードが選択されました、移動しません！"
+
+msgid "The new parent can't be one of his children!"
+msgstr "自分の子ノードを親ノードにすることはできません！"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "%s 個のノードのプロパティを変更"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr "ノード名ヘッダに表示する最近表示したノードの数はすでに最大です。"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr "ノード名ヘッダに表示する最近表示したノードの数はすでに最小です。"
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "ツールバー アイコンはすでに最大の大きさです。"
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "ツールバー アイコンはすでに最小の大きさです。"
+
+msgid "Print OliveSet version"
+msgstr "OliveSetのバージョンを印刷"
+
+msgid "Node name to focus"
+msgstr "ノード名のフォーカス"
+
+msgid "Anchor name to scroll to in node"
+msgstr "ノード内でスクロールするアンカー名"
+
+msgid "Export to HTML at specified directory path"
+msgstr "HTMLにエクスポート (指定の場所)"
+
+msgid "Export to Text at specified directory path"
+msgstr "テキスト形式ファイルにエクスポート (指定の場所)"
+
+msgid "Export to PDF at specified directory path"
+msgstr "PDFにエクスポート (指定の場所)"
+
+msgid "Overwrite if export path already exists"
+msgstr "エクスポート パスが存在する場合に上書き"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "単一ファイルにエクスポート(HTMLとテキスト形式)"
+
+msgid "Password to open document"
+msgstr "ドキュメントを開くパスワード"
+
+msgid "Create a new window"
+msgstr "新しいウィンドウを作成"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "メインセッションから独立したセカンダリセッションで実行"
+
+msgid "Execute Code"
+msgstr "コードを実行"
+
+msgid "Copy Code"
+msgstr "コード をコピー"
+
+msgid "Change CodeBox Properties"
+msgstr "コード ボックスのプロパティを変更"
+
+msgid "Start in OliveSet"
+msgstr "OliveSet をはじめる"
+
+msgid "New Document"
+msgstr "新規ドキュメント"
+
+msgid "Open File"
+msgstr "ファイル選択"
+
+msgid "Open Folder"
+msgstr "フォルダー選択"
+
+msgid "Create a new document or open an existing one."
+msgstr "新規ドキュメントを作成または既存のドキュメントを選択してください。"
+
+msgid "Don't show again"
+msgstr "今後表示しない"
+
+msgid "Recent Documents"
+msgstr "最近使ったファイル"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Path"
+msgstr "パス"
+
+msgid "Open Selected"
+msgstr "選択項目を開く"
+
+msgid "Handle the Bookmarks List"
+msgstr "ブックマークの管理"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "選択ブックマークを一つ上に移動"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "選択ブックマークを一つ下に移動"
+
+msgid "Remove the Selected Bookmark"
+msgstr "選択ブックマークを削除"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "ブックマークを降順に並び替え"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "ブックマークを昇順に並び替え"
+
+msgid "Choose Storage Type"
+msgstr "記憶域の種類を選択"
+
+msgid "Single SQLite File"
+msgstr "単一SQLファイル"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "単一SQLファイル、パスワード付き7zip"
+
+msgid "Single XML File"
+msgstr "単一XMLファイル"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "単一XMLファイル、パスワード付き7zip"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "階層フォルダ構造の複数ファイル"
+
+msgid "Storage Type"
+msgstr "記憶域の種類"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"OliveSetは文書を暗号化した7zip書庫に保存します。文書を閲覧したり編集すると"
+"きには、OliveSetは暗号化された書庫を一時フォルダーに展開し、暗号化されてい"
+"ないコピーで作業します。そして終了時に暗号化されていないコピーが一時フォル"
+"ダーから削除されます。ただしアプリケーションやシステムがクラッシュした場合に"
+"は、暗号化されていない文書が一時フォルダーに残ってしまうことに注意してくださ"
+"い。"
+
+msgid "Enter the New Password Twice"
+msgstr "新しいパスワードを２回入力してください"
+
+msgid "Autosave Every"
+msgstr "自動保存を"
+
+msgid "Minutes"
+msgstr "分ごとにする"
+
+msgid "The Password Fields Must be Filled."
+msgstr "パスワードが入力されていません。"
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "入力した２回のパスワードが一致しません。"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "The Current Document was Updated."
+msgstr "現在のドキュメントは変更されています。"
+
+msgid "Do you want to Save the Changes?"
+msgstr "変更を保存しますか？"
+
+msgid "Do you want to Execute the Code?"
+msgstr "コードを実行しますか？"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "コードを実行する前に確認する"
+
+msgid "Use Internal Terminal"
+msgstr "内部ターミナルを使用する"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+
+msgid "Arabic"
+msgstr "Arabic"
+
+msgid "Armenian"
+msgstr "Armenian"
+
+msgid "Bulgarian"
+msgstr "Bulgarian"
+
+msgid "Chinese Simplified"
+msgstr "Chinese Simplified"
+
+msgid "Chinese Traditional"
+msgstr "Chinese Traditional"
+
+msgid "Croatian"
+msgstr "Croatian"
+
+msgid "Czech"
+msgstr "Czech"
+
+msgid "Dutch"
+msgstr "Dutch"
+
+msgid "Finnish"
+msgstr "Finnish"
+
+msgid "French"
+msgstr "French"
+
+msgid "German"
+msgstr "German"
+
+msgid "Greek"
+msgstr "Greek"
+
+msgid "Hindi India"
+msgstr "Hindi India"
+
+msgid "Hungarian"
+msgstr "Hungarian"
+
+msgid "Italian"
+msgstr "Italian"
+
+msgid "Japanese"
+msgstr "Japanese"
+
+msgid "Kazakh"
+msgstr "Kazakh"
+
+msgid "Kazakh (Latin)"
+msgstr "Kazakh (Latin)"
+
+msgid "Korean"
+msgstr "Korean"
+
+msgid "Lithuanian"
+msgstr "Lithuanian"
+
+msgid "Persian"
+msgstr "Persian"
+
+msgid "Polish"
+msgstr "Polish"
+
+msgid "Portuguese"
+msgstr "Portuguese"
+
+msgid "Portuguese Brazil"
+msgstr "Portuguese Brazil"
+
+msgid "Romanian"
+msgstr "Romanian"
+
+msgid "Russian"
+msgstr "Russian"
+
+msgid "Slovak"
+msgstr "Slovak"
+
+msgid "Slovenian"
+msgstr "Slovenian"
+
+msgid "Spanish"
+msgstr "Spanish"
+
+msgid "Swedish"
+msgstr "Swedish"
+
+msgid "Turkish"
+msgstr "Turkish"
+
+msgid "Ukrainian"
+msgstr "Ukrainian"
+
+msgid "About OliveSet"
+msgstr "OliveSet について"
+
+msgid "Tree Summary Information"
+msgstr "ツリーの概要情報"
+
+msgid "Number of Rich Text Nodes"
+msgstr "リッチテキスト ノードの数"
+
+msgid "Number of Plain Text Nodes"
+msgstr "テキスト形式ノードの数"
+
+msgid "Number of Code Nodes"
+msgstr "コード ノードの数"
+
+msgid "Number of Images"
+msgstr "画像の数"
+
+msgid "Number of LatexBoxes"
+msgstr "Latex ボックスの数"
+
+msgid "Number of Embedded Files"
+msgstr "添付ファイルの数"
+
+msgid "Number of Tables"
+msgstr "表の数"
+
+msgid "Number of CodeBoxes"
+msgstr "コード ボックスの数"
+
+msgid "Number of Anchors"
+msgstr "アンカーの数"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "共有ノード / グループの数"
+
+msgid "Latex Text"
+msgstr "Latex テキスト"
+
+msgid "Image Size dpi"
+msgstr "画像サイズ (dpi)"
+
+msgid "Tutorial"
+msgstr "チュートリアル"
+
+msgid "Reference"
+msgstr "リファレンス"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "LaTeX 数式チュートリアル"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "LaTeX 記号リファレンス"
+
+msgid "Image Properties"
+msgstr "画像のプロパティ"
+
+msgid "Rotate Left"
+msgstr "左に回転"
+
+msgid "Rotate Right"
+msgstr "右に回転"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr "切り抜く領域をマウスで選択してから、OKをクリックしてください"
+
+msgid "Flip Horizontally"
+msgstr "左右反転"
+
+msgid "Flip Vertically"
+msgstr "上下反転"
+
+msgid "Width"
+msgstr "幅"
+
+msgid "Height"
+msgstr "高さ"
+
+msgid "Plain Text"
+msgstr "テキスト形式"
+
+msgid "Automatic Syntax Highlighting"
+msgstr "自動構文ハイライト"
+
+msgid "Type"
+msgstr "種類"
+
+msgid "pixels"
+msgstr "px"
+
+msgid "Size"
+msgstr "大きさ"
+
+msgid "Show Line Numbers"
+msgstr "行番号を表示する"
+
+msgid "Highlight Matching Brackets"
+msgstr "対応する括弧を強調する"
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Rows"
+msgstr "行"
+
+msgid "Columns"
+msgstr "列"
+
+msgid "Default Width"
+msgstr "既定の幅"
+
+msgid "Table Size"
+msgstr "表の大きさ"
+
+msgid "Column Properties"
+msgstr "列のプロパティ"
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "軽量インターフェイス  (大きな表で高速)"
+
+msgid "Import from CSV File"
+msgstr "CSVファイルからインポート"
+
+msgid "Clear"
+msgstr "クリア"
+
+msgid "Reset"
+msgstr "リセット"
+
+msgid "Search for"
+msgstr "検索語"
+
+msgid "Replace with"
+msgstr "置換語"
+
+msgid "Replace in Link Targets"
+msgstr "リンクのターゲット内も置換する"
+
+msgid "Replace options"
+msgstr "置換オプション"
+
+msgid "Match Case"
+msgstr "大文字/小文字を区別する"
+
+msgid "Regular Expression"
+msgstr "正規表現"
+
+msgid "Online Manual"
+msgstr "オンライン マニュアル"
+
+msgid "Accent Insensitive"
+msgstr "アクセントを区別しない"
+
+msgid "Override Exclusions"
+msgstr "検索除外ノードも検索"
+
+msgid "Whole Word"
+msgstr "単語に一致"
+
+msgid "Start Word"
+msgstr "単語の先頭に一致"
+
+msgid "More Words, Exact Match"
+msgstr "複数単語、完全一致"
+
+msgid "More Words, Disregard Order"
+msgstr "複数単語、すべての単語に一致、順不同"
+
+msgid "More Words, Match Any"
+msgstr "複数単語、いずれかの単語に一致"
+
+msgid "Forward"
+msgstr "前方検索"
+
+msgid "Backward"
+msgstr "後方検索"
+
+msgid "All, List Matches"
+msgstr "すべてを検索、結果を一覧表示"
+
+msgid "First From Selection"
+msgstr "現在の位置から最初の一致を表示"
+
+msgid "First in All Range"
+msgstr "すべての範囲から最初の一致を表示"
+
+msgid "Node Created After"
+msgstr "作成日時がこれより新しいノード"
+
+msgid "Node Created Before"
+msgstr "作成日時がこれより古いノード"
+
+msgid "Node Modified After"
+msgstr "更新日時がこれより新しいノード"
+
+msgid "Node Modified Before"
+msgstr "更新日時がこれより古いノード"
+
+msgid "Time filter"
+msgstr "日時で絞り込み"
+
+msgid "Node Content"
+msgstr "ノードの内容"
+
+msgid "Node Name and Tags"
+msgstr "ノード名とタグ"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "選択ノードとサブノードのみ"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "検索/置換の繰り返し操作ダイアログを表示する"
+
+msgid "Search options"
+msgstr "検索オプション"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"置換文字列が空白です: 検索に一致した文字列はすべて削除されます。\n"
+"置換を実行しますか？"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"ノードプロパティの検索除外設定に従って、一つ以上のノードをスキップしまし"
+"た。\n"
+"すべての除外設定をクリアするには、次のメニューを使用します:\n"
+"検索->すべてのノードの検索除外プロパティをクリアする"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "隠す（'%s' で復元）"
+
+msgid "Node Name"
+msgstr "ノード名"
+
+msgid "Line"
+msgstr "行"
+
+msgid "Line Content"
+msgstr "行の内容"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "最後の検索/置換を繰り返す"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Find Previous"
+msgstr "前を検索"
+
+msgid "Find Next"
+msgstr "次を検索"
+
+msgid "Replace"
+msgstr "置換"
+
+msgid "Undo"
+msgstr "元に戻す"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "Remove User Colour from Palette"
+msgstr "カスタム色の削除"
+
+msgid "Colour"
+msgstr "色"
+
+msgid "Question"
+msgstr "質問"
+
+msgid "Info"
+msgstr "情報"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Select File"
+msgstr "ファイルの選択"
+
+msgid "Select Folder"
+msgstr "フォルダーの選択"
+
+msgid "Save File as"
+msgstr "名前を付けて保存"
+
+msgid "Save To Folder"
+msgstr "フォルダーに保存"
+
+msgid "To WebSite"
+msgstr "Webサイト"
+
+msgid "To File"
+msgstr "ファイル"
+
+msgid "To Folder"
+msgstr "フォルダー"
+
+msgid "To Node"
+msgstr "ノード"
+
+msgid "Anchor Name (optional)"
+msgstr "アンカー名（オプション）"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "選択ノードにはアンカーがありません。"
+
+msgid "Choose Existing Anchor"
+msgstr "既存のアンカーを選択"
+
+msgid "Anchor Name"
+msgstr "アンカー名"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "'%s' が見つかりません"
+
+msgid "Bold"
+msgstr "太字"
+
+msgid "Use Selected Color"
+msgstr "選択色を使用"
+
+msgid "Use Selected Icon"
+msgstr "選択アイコンを使用する"
+
+msgid "Rich Text"
+msgstr "リッチテキスト"
+
+msgid "Node Type"
+msgstr "ノードの種類"
+
+msgid "Tags for Searching"
+msgstr "検索用タグ　（スペース区切り）"
+
+msgid "Exclude from Searches"
+msgstr "検索から除外"
+
+msgid "This Node"
+msgstr "このノード"
+
+msgid "The Subnodes"
+msgstr "サブノード"
+
+msgid "Read Only"
+msgstr "編集禁止"
+
+msgid "Unique Id"
+msgstr "ユニークID"
+
+msgid "Shared Nodes Group"
+msgstr "共有ノードグループ"
+
+msgid "Choose Existing Tag"
+msgstr "既存のタグを選択"
+
+msgid "Tag Name"
+msgstr "タグ名"
+
+msgid "Pick a Color"
+msgstr "色を選択"
+
+msgid "Select Node Icon"
+msgstr "ノード アイコンの選択"
+
+msgid "Involved Nodes"
+msgstr "関連ノード"
+
+msgid "Selected Text Only"
+msgstr "選択テキストのみ"
+
+msgid "Selected Node Only"
+msgstr "選択ノードのみ"
+
+msgid "Selected Node and Subnodes"
+msgstr "選択ノードとサブノード"
+
+msgid "All the Tree"
+msgstr "ツリー全体"
+
+msgid "Include Node Name"
+msgstr "ノード名を含める"
+
+msgid "Links Tree in Every Page"
+msgstr "各ページにリンクツリーを挿入する"
+
+msgid "New Node in New Page"
+msgstr "ノードごとに改ページ"
+
+msgid "Single File"
+msgstr "単一ファイル"
+
+msgid "Index"
+msgstr "目次"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr "警告: ページに収まるように、一つ以上の画像が縮小されました。"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "安全上の理由で LaTeX の描画がブロックされました"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr ""
+"ソースにはローカルファイルにアクセスするファイル入出力コマンドが含まれていま"
+"す"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"\\verbatiminput, \\openin, \\openout コマンドや安全でない \\input/\\include "
+"パスを削除してください"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "latex と dvipng の実行ファイルにアクセスできません"
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "Ubuntu でのパッケージのインストール例:"
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "Mac OS でのパッケージのインストール例:"
+
+msgid "Could not access the executable 'latex'"
+msgstr "latex の実行ファイルにアクセスできません"
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "dvipng の実行ファイルにアクセスできません"
+
+msgid "Downloading"
+msgstr "ダウンロードしています"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "パス %s は存在しません"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "最近使ったOliveSetドキュメントを開く"
+
+msgid "_Hide"
+msgstr "隠す(_H)"
+
+msgid "_Quit"
+msgstr "閉じる(_Q)"
+
+msgid "Hide the Window"
+msgstr "ウィンドウを隠す"
+
+msgid "Quit the Application"
+msgstr "アプリケーションを閉じる"
+
+msgid "Spell Check"
+msgstr "スペルチェック"
+
+msgid "Word Count"
+msgstr "ワード数"
+
+msgid "Date Created"
+msgstr "作成日時"
+
+msgid "Date Modified"
+msgstr "更新日時"
+
+msgid "Subnodes"
+msgstr "サブノード"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr ""
+"このセッションでノードがコピーされていないか、コピー元のツリーがもはや存在し"
+"ません。"
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "コピー元のツリーノードはもはや存在しません。"
+
+msgid "Show Menubar:"
+msgstr "メニューバーを表示:"
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "\"%s\" は、OliveSet ファイルではありません"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"OliveSet パスの解析エラー:\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "最近のバックアップを開きますか？"
+
+msgid "Failed to Load from Backup Data"
+msgstr "バックアップデータの読み込みに失敗しました"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "'%s' というノード名は見つかりません。"
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "一時ファイルが作成され、外部アプリケーションで開かれました。"
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "OliveSetを終了する前に外部アプリケーションを終了してください。"
+
+msgid "Did you Quit the External Applications?"
+msgstr "外部アプリケーションを終了しましたか？"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "保存できません: \"%s\" は読み取り専用です"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr "外部でCT* ファイルが更新されたため、ドキュメントを再読み込みしました。"
+
+msgid "Copy Selection or All"
+msgstr "選択範囲またはすべてをコピー"
+
+msgid "Paste"
+msgstr "貼り付け"
+
+msgid "Remove from list"
+msgstr "一覧から削除"
+
+msgid "_File"
+msgstr "ファイル(_F)"
+
+msgid "_Edit"
+msgstr "編集(_E)"
+
+msgid "_Insert"
+msgstr "挿入(_I)"
+
+msgid "F_ormat"
+msgstr "書式(_O)"
+
+msgid "_Tree"
+msgstr "ツリー(_T)"
+
+msgid "Too_ls"
+msgstr "ツール(_L)"
+
+msgid "_Search"
+msgstr "検索(_S)"
+
+msgid "_View"
+msgstr "表示(_V)"
+
+msgid "_Bookmarks"
+msgstr "ブックマーク(_B)"
+
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+msgid "Insert _Date Node"
+msgstr "日付ノードを挿入(_D)"
+
+msgid "Node _Move"
+msgstr "ノードの移動(_M)"
+
+msgid "Nod_es Sort"
+msgstr "ノードの並び替え(_E)"
+
+msgid "B_ookmarks"
+msgstr "ブックマーク(_O)"
+
+msgid "_Import"
+msgstr "インポート(_I)"
+
+msgid "_Export"
+msgstr "エクスポート(_E)"
+
+msgid "_Preferences"
+msgstr "設定(_P)"
+
+msgid "_Recent Documents"
+msgstr "最近使ったファイル(_R)"
+
+msgid "C_hange Case"
+msgstr "大文字/小文字の変換(_H)"
+
+msgid "L_ist"
+msgstr "リスト(_I)"
+
+msgid "_Justify"
+msgstr "行揃え(_J)"
+
+msgid "Toggle _Font Property"
+msgstr "文字属性の設定/解除(_F)"
+
+msgid "_Toggle Heading Property"
+msgstr "見出しに設定/解除(_T)"
+
+msgid "I_nsert"
+msgstr "挿入(_N)"
+
+msgid "_Find"
+msgstr "検索(_F)"
+
+msgid "_Replace"
+msgstr "置換(_R)"
+
+msgid "Ro_w"
+msgstr "行(_W)"
+
+msgid "_Table"
+msgstr "表(_T)"
+
+msgid "_CodeBox"
+msgstr "コード ボックス(_C)"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "_New Instance..."
+msgstr "新規インスタンス(_N)..."
+
+msgid "Start a New Instance of OliveSet"
+msgstr "OliveSetの新しいインスタンスを開始する"
+
+msgid "_Open File..."
+msgstr "ファイルを開く(_O)..."
+
+msgid "Open a OliveSet File"
+msgstr "OliveSetファイルを開く"
+
+msgid "Open Fo_lder..."
+msgstr "フォルダーを開く(_L)..."
+
+msgid "Open a OliveSet Folder"
+msgstr "OliveSetフォルダーを開く"
+
+msgid "_Save"
+msgstr "保存(_S)"
+
+msgid "Save File"
+msgstr "ファイルの保存"
+
+msgid "Save and _Vacuum"
+msgstr "保存と最適化(_V)"
+
+msgid "Save File and Vacuum"
+msgstr "保存と最適化"
+
+msgid "Save _As..."
+msgstr "名前を付けて保存(_A)..."
+
+msgid "Save File As"
+msgstr "ファイルを名前を付けて保存"
+
+msgid "Pa_ge Setup..."
+msgstr "ページ設定(_G)..."
+
+msgid "Set up the Page for Printing"
+msgstr "印刷用のページ設定"
+
+msgid "P_rint..."
+msgstr "印刷(_R)..."
+
+msgid "Print"
+msgstr "印刷"
+
+msgid "Preferences"
+msgstr "設定"
+
+msgid "_Import Preferences..."
+msgstr "設定のインポート(_I)..."
+
+msgid "Import Preferences"
+msgstr "設定のインポート"
+
+msgid "_Export Preferences..."
+msgstr "設定のエクスポート(_E)..."
+
+msgid "Export Preferences"
+msgstr "設定のエクスポート"
+
+msgid "Tree In_fo"
+msgstr "ツリーの情報(_F)"
+
+msgid "_Document Path to Clipboard"
+msgstr "ドキュメントのパスをコピー(_D)"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "ドキュメントのパスをクリップボードにコピー"
+
+msgid "E_xit OliveSet"
+msgstr "OliveSetを終了(_X)"
+
+msgid "Exit from OliveSet"
+msgstr "OliveSetを終了する"
+
+msgid "Edit/Insert"
+msgstr "編集/挿入"
+
+msgid "_Undo"
+msgstr "元に戻す(_U)"
+
+msgid "Undo Last Operation"
+msgstr "最後の操作を元に戻す"
+
+msgid "_Redo"
+msgstr "やり直す(_R)"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "元に戻した操作をやり直す"
+
+msgid "Insert I_mage..."
+msgstr "画像を挿入(_M)..."
+
+msgid "Insert an Image"
+msgstr "画像を挿入"
+
+msgid "Insert Late_x..."
+msgstr "Latexを挿入(_X)..."
+
+msgid "Insert LatexBox"
+msgstr "Latex ボックスを挿入"
+
+msgid "Insert _Table..."
+msgstr "表を挿入(_T)..."
+
+msgid "Insert a Table"
+msgstr "表を挿入"
+
+msgid "Insert _CodeBox..."
+msgstr "コード ボックスを挿入(_C)..."
+
+msgid "Insert _File..."
+msgstr "ファイルを挿入(_F)..."
+
+msgid "Insert File"
+msgstr "ファイルを挿入"
+
+msgid "Insert/Edit _Link..."
+msgstr "リンクを挿入/編集(_L)..."
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "リンクを挿入/カーソル位置のリンクを編集"
+
+msgid "Insert _Anchor..."
+msgstr "アンカーを挿入(_A)..."
+
+msgid "Insert an Anchor"
+msgstr "アンカーを挿入"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "目次と見出しの開閉を挿入(_O)..."
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "目次と見出しの開閉を挿入"
+
+msgid "Insert Timestam_p"
+msgstr "日時を挿入(_P)"
+
+msgid "Insert Timestamp"
+msgstr "日時を挿入"
+
+msgid "Insert _Special Character..."
+msgstr "特殊文字を挿入(_S)..."
+
+msgid "Insert a Special Character"
+msgstr "特殊文字を挿入"
+
+msgid "Insert _Horizontal Rule"
+msgstr "区切り線を挿入(_H)"
+
+msgid "Insert Horizontal Rule"
+msgstr "区切り線を挿入"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "選択範囲/単語を小文字に変換(_L)"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "選択範囲/直下の単語を小文字に変換"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "選択範囲/単語を大文字に変換(_U)"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "選択範囲/直下の単語を大文字に変換"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "選択範囲/単語の大文字・小文字を反転(_T)"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "選択範囲/直下の単語の大文字・小文字を反転"
+
+msgid "Cu_t as Plain Text"
+msgstr "テキスト形式で切り取り(_T)"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "テキスト形式で切り取り、リッチテキスト書式は失われます"
+
+msgid "_Copy as Plain Text"
+msgstr "テキスト形式でコピー(_C)"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "テキスト形式でコピー、リッチテキスト書式は失われます"
+
+msgid "_Paste as Plain Text"
+msgstr "テキスト形式で貼り付け(_P)"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "テキスト形式で貼り付け、リッチテキスト書式は失われます"
+
+msgid "C_ut Row"
+msgstr "行を切り取り(_U)"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "現在行/選択行を切り取り"
+
+msgid "C_opy Row"
+msgstr "行をコピー(_O)"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "現在行/選択行をコピー"
+
+msgid "De_lete Row"
+msgstr "行を削除(_L)"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "現在行/選択行を削除"
+
+msgid "_Duplicate Row"
+msgstr "行を複製(_D)"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "現在行/選択行を複製"
+
+msgid "_Move Up Row"
+msgstr "行を上に移動(_M)"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "現在行/選択行を上に移動"
+
+msgid "Mo_ve Down Row"
+msgstr "行を下に移動(_V)"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "現在行/選択行を下に移動"
+
+msgid "C_ut Table"
+msgstr "表の切り取り(_U)"
+
+msgid "Cut the Selected Table"
+msgstr "表の切り取り"
+
+msgid "_Copy Table"
+msgstr "表のコピー(_C)"
+
+msgid "Copy the Selected Table"
+msgstr "表のコピー"
+
+msgid "_Delete Table"
+msgstr "表の削除(_D)"
+
+msgid "Delete the Selected Table"
+msgstr "表の削除"
+
+msgid "_Add Column"
+msgstr "列を追加(_A)"
+
+msgid "Add a Table Column"
+msgstr "表に列を追加"
+
+msgid "Cu_t Column"
+msgstr "列を切り取り(_T)"
+
+msgid "Cut a Table Column"
+msgstr "表の列を削除"
+
+msgid "_Copy Column"
+msgstr "列をコピー追加(_C)"
+
+msgid "Copy a Table Column"
+msgstr "表の列をコピー"
+
+msgid "_Paste Column"
+msgstr "列を貼り付け(_P)"
+
+msgid "Paste a Table Column"
+msgstr "表に列を貼り付け"
+
+msgid "De_lete Column"
+msgstr "列を削除(_L)"
+
+msgid "Delete the Selected Table Column"
+msgstr "表から選択列を削除"
+
+msgid "Move Column _Left"
+msgstr "列を左に移動(_L)"
+
+msgid "Move the Selected Column Left"
+msgstr "選択列を左に移動"
+
+msgid "Move Column _Right"
+msgstr "列を右に移動(_R)"
+
+msgid "Move the Selected Column Right"
+msgstr "選択列を右に移動"
+
+msgid "Increase Column Width"
+msgstr "列幅を拡大"
+
+msgid "Increase the Width of the Column"
+msgstr "列幅を拡大"
+
+msgid "Decrease Column Width"
+msgstr "列幅を縮小"
+
+msgid "Decrease the Width of the Column"
+msgstr "列幅を縮小"
+
+msgid "_Add Row"
+msgstr "行を追加(_A)"
+
+msgid "Add a Table Row"
+msgstr "表の選択行の下に行を追加"
+
+msgid "Cu_t Row"
+msgstr "行を切り取り(_T)"
+
+msgid "Cut a Table Row"
+msgstr "表から行を切り取り"
+
+msgid "_Copy Row"
+msgstr "行をコピー(_C)"
+
+msgid "Copy a Table Row"
+msgstr "表の行をコピー"
+
+msgid "_Paste Row"
+msgstr "行を貼り付け(_P)"
+
+msgid "Paste a Table Row"
+msgstr "表に行を貼り付け"
+
+msgid "Delete the Selected Table Row"
+msgstr "表から選択行を削除"
+
+msgid "Move Row _Up"
+msgstr "行を上に移動(_U)"
+
+msgid "Move the Selected Row Up"
+msgstr "選択行を一つ上に移動"
+
+msgid "Move Row _Down"
+msgstr "行を下に移動(_D)"
+
+msgid "Move the Selected Row Down"
+msgstr "選択行を一つ下に移動"
+
+msgid "Sort Rows De_scending"
+msgstr "行を降順に並び替える(_S)"
+
+msgid "Sort all the Rows Descending"
+msgstr "表のすべての行を降順に並び替える"
+
+msgid "Sort Rows As_cending"
+msgstr "行を昇順に並び替える(_C)"
+
+msgid "Sort all the Rows Ascending"
+msgstr "表のすべての行を昇順に並び替える"
+
+msgid "_Edit Table Properties..."
+msgstr "表のプロパティを編集(_E)..."
+
+msgid "Edit the Table Properties"
+msgstr "表のプロパティを編集"
+
+msgid "_Table Export..."
+msgstr "表のエクスポート(_T)..."
+
+msgid "Export Table as CSV File"
+msgstr "表をCSVファイルにエクスポート"
+
+msgid "Change CodeBox _Properties..."
+msgstr "コード ボックスのプロパティを変更(_P)..."
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "コード ボックスのプロパティを編集"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "コード ボックスにテキストファイルを読み込む(_L)..."
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "コード ボックスの内容をテキストファイルを読み込む"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "コード ボックスをテキストファイルに保存(_S)..."
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "コード ボックスの内容をテキストファイルに保存"
+
+msgid "C_ut CodeBox"
+msgstr "コード ボックスを切り取り(_U)"
+
+msgid "Cut the Selected CodeBox"
+msgstr "選択コード ボックスを切り取り"
+
+msgid "_Copy CodeBox"
+msgstr "コード ボックスをコピー(_C)"
+
+msgid "Copy the Selected CodeBox"
+msgstr "選択コード ボックスをコピー"
+
+msgid "_Copy CodeBox Content"
+msgstr "コード ボックスの内容をコピー(_C)"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "選択コード ボックスの内容をコピー"
+
+msgid "_Delete CodeBox"
+msgstr "コード ボックスを削除(_D)"
+
+msgid "Delete the Selected CodeBox"
+msgstr "選択コード ボックスを削除"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "コード ボックスを削除し、内容を保持(_K)"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "コード ボックスを削除し、内容を保持"
+
+msgid "Increase CodeBox Width"
+msgstr "コード ボックスの幅を拡大"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "コード ボックスの幅を拡大"
+
+msgid "Decrease CodeBox Width"
+msgstr "コード ボックスの幅を縮小"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "コード ボックスの幅を縮小"
+
+msgid "Increase CodeBox Height"
+msgstr "コード ボックスの高さを拡大"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "コード ボックスの高さを拡大"
+
+msgid "Decrease CodeBox Height"
+msgstr "コード ボックスの高さを縮小"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "コード ボックスの高さを縮小"
+
+msgid "Format"
+msgstr "書式"
+
+msgid "Format Clo_ne"
+msgstr "書式を複製(_N)"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "カーソル位置の書式を複製"
+
+msgid "Format _Latest"
+msgstr "最後に使用した書式(_L)"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "最後に使用した書式の種類を適用"
+
+msgid "_Remove Formatting"
+msgstr "書式を削除(_R)"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "選択テキストから書式を取り除く"
+
+msgid "Text _Color Foreground"
+msgstr "文字色(_C)"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "選択テキストの文字色を変更"
+
+msgid "Text C_olor Background"
+msgstr "背景色(_O)"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "選択テキストの背景色を変更"
+
+msgid "Toggle _Bold Property"
+msgstr "太字に設定/解除(_B)"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "選択テキストを太字に設定/解除"
+
+msgid "Toggle _Italic Property"
+msgstr "斜体に設定/解除(_I)"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "選択テキストを斜体に設定/解除"
+
+msgid "Toggle _Underline Property"
+msgstr "下線を設定/解除(_U)"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "選択テキストに下線を設定/解除"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "取り消し線を設定/解除(_K)"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "選択テキストに取り消し線を設定/解除"
+
+msgid "Toggle h_1 Property"
+msgstr "見出し１に設定/解除(_1)"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "見出し１に設定/解除"
+
+msgid "Toggle h_2 Property"
+msgstr "見出し２に設定/解除(_2)"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "見出し２に設定/解除"
+
+msgid "Toggle h_3 Property"
+msgstr "見出し３に設定/解除(_3)"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "見出し３に設定/解除"
+
+msgid "Toggle h_4 Property"
+msgstr "見出し４に設定/解除(_4)"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "見出し４に設定/解除"
+
+msgid "Toggle h_5 Property"
+msgstr "見出し５に設定/解除(_5)"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "見出し５に設定/解除"
+
+msgid "Toggle h_6 Property"
+msgstr "見出し６に設定/解除(_6)"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "見出し６に設定/解除"
+
+msgid "Toggle _Small Property"
+msgstr "小さい文字に設定/解除(_S)"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "小さい文字に設定/解除"
+
+msgid "Toggle Su_bscript Property"
+msgstr "下付き文字に設定/解除(_B)"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "下付き文字に設定/解除"
+
+msgid "Toggle Su_perscript Property"
+msgstr "上付き文字に設定/解除(_P)"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "上付き文字に設定/解除"
+
+msgid "Toggle _Monospace Property"
+msgstr "等幅に設定/解除(_M)"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "等幅に設定/解除"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "順序なしリストに設定/解除(_B)"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr "現在の段落/選択段落を順序なしリストに設定/解除"
+
+msgid "Set/Unset _Numbered List"
+msgstr "順序付きリストに設定/解除(_N)"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr "現在の段落/選択段落を順序付きリストに設定/解除"
+
+msgid "Set/Unset _To-Do List"
+msgstr "ToDoリストに設定/解除(_T)"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr "現在の段落/選択段落をToDoリストに設定/解除"
+
+msgid "Justify _Left"
+msgstr "左揃え(_L)"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "現在の段落を左揃え"
+
+msgid "Justify _Center"
+msgstr "中央揃え(_C)"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "現在の段落を中央揃え"
+
+msgid "Justify _Right"
+msgstr "右揃え(_R)"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "現在の段落を右揃え"
+
+msgid "Justify _Fill"
+msgstr "両端揃え(_F)"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "現在の段落を両端揃え"
+
+msgid "_Indent Paragraph"
+msgstr "段落をインデント(_I)"
+
+msgid "Indent the Current Paragraph"
+msgstr "現在の段落をインデント"
+
+msgid "_Unindent Paragraph"
+msgstr "段落を逆インデント(_U)"
+
+msgid "Unindent the Current Paragraph"
+msgstr "現在の段落を逆インデント"
+
+msgid "_Expand TOC Headers"
+msgstr "見出しを展開(_E)"
+
+msgid "Expand TOC Headers"
+msgstr "見出しを展開"
+
+msgid "_Collapse TOC Headers"
+msgstr "見出しを折りたたむ(_C)"
+
+msgid "Collapse TOC Headers"
+msgstr "見出しを折りたたむ"
+
+msgid "Tools"
+msgstr "ツール"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "スペルチェックの有効/無効(_S)"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "スペルチェックの有効/無効"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "VIMモードの有効/無効(_V)"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "VIMモードの有効/無効"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "行末の空白文字を削除(_P)"
+
+msgid "Strip Trailing Spaces"
+msgstr "行末の空白文字を削除"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "タブをスペースに変換(_R)"
+
+msgid "Replace Tabs with Spaces"
+msgstr "タブをスペースに変換"
+
+msgid "_Command Palette..."
+msgstr "コマンド パレット(_C)..."
+
+msgid "Command Palette"
+msgstr "コマンド パレット"
+
+msgid "_Execute Code All"
+msgstr "コードをすべて実行(_E)"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "コード ボックスまたはノード内のコードをすべて実行"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "現在行または選択範囲のコードを実行(_E)"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "現在行または選択範囲のコードを実行"
+
+msgid "Tree"
+msgstr "ツリー"
+
+msgid "Go _Back"
+msgstr "一つ戻る(_B)"
+
+msgid "Go to the Previous Visited Node"
+msgstr "前に開いたノードへ戻る"
+
+msgid "Go _Forward"
+msgstr "一つ進む(_F)"
+
+msgid "Go to the Next Visited Node"
+msgstr "次に開いたノードへ進む"
+
+msgid "Add _Node..."
+msgstr "ノードを追加(_N)..."
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "選択ノードと同じ親を持つノードを追加"
+
+msgid "Add _Subnode..."
+msgstr "子ノードを追加(_S)..."
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "選択ノードの子ノードを追加"
+
+msgid "_Duplicate Node"
+msgstr "ノードを複製(_D)"
+
+msgid "Duplicate the Selected Node"
+msgstr "選択ノードを複製"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "ノードとサブノードを複製(_A)"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "選択ノードとサブノードを複製"
+
+msgid "_Create Shared Node"
+msgstr "共有ノードを作成(_C)"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr "選択ノードと同じ内容を共有する新しいノードを作成する"
+
+msgid "Copy Node and S_ubnodes"
+msgstr "ノードとサブノードをコピー(_U)"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "選択ノードとサブノードをコピー"
+
+msgid "_Paste Node and Subnodes"
+msgstr "ノードとサブノードを貼り付け(_P)"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "コピーしたノードとサブノードを貼り付け"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "今日のノードをツリーのルートに挿入(_T)"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "今日用の年/月/日の階層を持つノードをツリーのルートに挿入"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "今日のノードを選択ノード直下に挿入(_Y)"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "今日用の年/月/日の階層を持つノードを選択ノード直下に挿入"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "明日のノードをツリーのルートに挿入(_O)"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "明日用の年/月/日の階層を持つノードをツリーのルートに挿入"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "明日のノードを選択ノード直下に挿入(_W)"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "明日用の年/月/日の階層を持つノードを選択ノード直下に挿入"
+
+msgid "C_hange Node Properties..."
+msgstr "ノードのプロパティを変更(_H)..."
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "選択ノードのプロパティを変更"
+
+msgid "Toggle _Read Only"
+msgstr "編集禁止に設定/解除(_R)"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "編集禁止属性を設定/解除"
+
+msgid "Cop_y Link to Node"
+msgstr "ノードへのリンクをコピー(_Y)"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "選択ノードへのリンクをクリップボードにコピー"
+
+msgid "Children _Inherit Syntax"
+msgstr "ノードの種類/構文を子孫に適用(_I)"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr ""
+"すべての子孫ノードに対し、ノードの種類/構文ハイライトを、選択しているノードと"
+"同じ種類に変更する（注意: 確認ダイアログなし！）"
+
+msgid "_Handle Bookmarks..."
+msgstr "ブックマークの管理(_H)..."
+
+msgid "Add to Boo_kmarks"
+msgstr "ブックマークに追加(_K)"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "現在のノードをブックマーク一覧に追加"
+
+msgid "Remove from Boo_kmarks"
+msgstr "ブックマークから削除(_K)"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "現在のノードをブックマーク一覧から削除"
+
+msgid "E_xpand All Nodes"
+msgstr "すべてのノードのツリーを開く(_X)"
+
+msgid "Expand All the Tree Nodes"
+msgstr "すべてのノードのツリーを開く"
+
+msgid "_Collapse All Nodes"
+msgstr "すべてのノードのツリーを閉じる(_C)"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "すべてのノードのツリーを閉じる"
+
+msgid "Node _Up"
+msgstr "上に移動(_U)"
+
+msgid "Move the Selected Node Up"
+msgstr "選択ノードを上に移動"
+
+msgid "Node _Down"
+msgstr "下に移動(_D)"
+
+msgid "Move the Selected Node Down"
+msgstr "選択ノードを下に移動"
+
+msgid "Node _Left"
+msgstr "左に移動(_L)"
+
+msgid "Move the Selected Node Left"
+msgstr "選択ノードを左に移動"
+
+msgid "Node _Right"
+msgstr "右に移動(_R)"
+
+msgid "Move the Selected Node Right"
+msgstr "選択ノードを右に移動"
+
+msgid "Node Change _Parent..."
+msgstr "親ノードを変更(_P)..."
+
+msgid "Change the Selected Node's Parent"
+msgstr "選択ノードの親を変更する"
+
+msgid "Sort Tree _Ascending"
+msgstr "ツリー全体を昇順に並び替え(_A)"
+
+msgid "Sort the Tree Ascending"
+msgstr "ツリー全体を昇順に並び替え"
+
+msgid "Sort Tree _Descending"
+msgstr "ツリー全体を降順に並び替え(_D)"
+
+msgid "Sort the Tree Descending"
+msgstr "ツリー全体を降順に並び替え"
+
+msgid "Sort Siblings A_scending"
+msgstr "兄弟ノードを昇順に並び替え(_S)"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "兄弟ノードを昇順に並び替え"
+
+msgid "Sort Siblings D_escending"
+msgstr "兄弟ノードを降順に並び替え(_E)"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "兄弟ノードを降順に並び替え"
+
+msgid "De_lete Node"
+msgstr "ノードを削除(_L)"
+
+msgid "Delete the Selected Node"
+msgstr "選択ノードを削除"
+
+msgid "Find/Replace"
+msgstr "検索/置換"
+
+msgid "_Quick Node Selection..."
+msgstr "クイックノード選択(_Q)..."
+
+msgid "Quick Node Selection"
+msgstr "クイックノード選択"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "ノード名とタグを検索(_N)..."
+
+msgid "Find in Nodes Names and Tags"
+msgstr "ノード名とタグを検索"
+
+msgid "_Find in Node Content..."
+msgstr "このノードの内容を検索(_F)..."
+
+msgid "Find into the Selected Node Content"
+msgstr "選択ノードの内容を検索"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "複数のノードを検索(_I)..."
+
+msgid "Find in Multiple Nodes"
+msgstr "複数のノードを検索"
+
+# 全体から検索する場合、常に先頭の一致のみを検索するので、「次を検索」にはしなかった
+msgid "Find _Again"
+msgstr "再検索(_A)"
+
+msgid "Iterate the Last Find Operation"
+msgstr "最後の検索操作を繰り返す"
+
+# 検索設定が後方検索の場合、後方の「逆」で前方への検索になる。このため「前を検索」にはしなかった
+msgid "Find _Back"
+msgstr "逆方向に再検索(_B)"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "最後の検索操作を逆方向に繰り返す"
+
+msgid "_Replace in Node Content..."
+msgstr "このノードの内容を置換(_R)..."
+
+msgid "Replace into the Selected Node Content"
+msgstr "選択ノードの内容を置換"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "複数のノードを置換(M)..."
+
+msgid "Replace A_gain"
+msgstr "最後の置換を繰り返し(_G)"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "最後の置換操作を繰り返す"
+
+msgid "Show All Matches _Dialog..."
+msgstr "検索結果一覧ダイアログを表示(_D)..."
+
+msgid "Show Search All Matches Dialog"
+msgstr "検索結果一覧ダイアログを表示する"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "すべてのノードの検索除外プロパティをクリアする(_C)"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "すべてのノードの検索除外プロパティをクリアする"
+
+msgid "View"
+msgstr "表示"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "ツリーを表示/隠す(_T)"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "ツリーを表示/隠す"
+
+msgid "Show/Hide Te_rminal"
+msgstr "ターミナルを表示/隠す(_R)"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "ターミナルを表示/隠す"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "フォーカスをターミナル/エディタに切り替え(_X)"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "フォーカスをターミナル/エディタ交互に切り替える"
+
+msgid "Show/Hide _Menubar"
+msgstr "メニューバーを表示/隠す(_M)"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "メニューバーの表示切り替え"
+
+msgid "Show/Hide Tool_bar"
+msgstr "ツールバーを表示/隠す(_B)"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "ツールバーを表示/隠す"
+
+msgid "Show/Hide _Statusbar"
+msgstr "ステータスバーを表示/隠す(_S)"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr "ステータスバーの表示切り替え"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "親子ノード間の線を表示/隠す(_L)"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "親子ノード間の線の表示切り替え"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "ノード名のヘッダを表示/隠す(_H)"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "ノード名のヘッダを表示/隠す"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "フォーカスをツリー/エディタに切り替え(_F)"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "フォーカスをツリー/エディタ交互に切り替える"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "ツールバーのアイコンを拡大(_I)"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "ツールバーのアイコンを拡大"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "ツールバーのアイコンを縮小(_D)"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "ツールバーのアイコンを縮小"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "最近表示したノードをノード名ヘッダに表示する数を増やす"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "最近表示したノードをノード名ヘッダに表示する数を増やす"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "最近表示したノードをノード名ヘッダに表示する数を減らす"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "最近表示したノードをノード名ヘッダに表示する数を減らす"
+
+msgid "Full Screen _On/Off"
+msgstr "フルスクリーンの切り替え(_O)"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "フルスクリーンの切り替え"
+
+msgid "_Always On Top On/Off"
+msgstr "常に手前に表示の切り替え(_A)"
+
+msgid "Always On Top On/Off"
+msgstr "常に手前に表示の切り替え"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "メニューバーをタイトルバーに配置しない(_N)"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "メニューバーをタイトルバーに配置しない"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "メニューバーをタイトルバーに配置する(_N)"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "メニューバーをタイトルバーに配置する"
+
+msgid "Import"
+msgstr "インポート"
+
+msgid "From _OliveSet File"
+msgstr "OliveSet ファイルから(_C)"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "OliveSet ファイルから、ツリーにノードを追加"
+
+msgid "From _OliveSet Folder"
+msgstr "OliveSet フォルダーから(_C)"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "OliveSet フォルダーから、ツリーにノードを追加"
+
+msgid "From _Indented List File"
+msgstr "字下げリスト ファイルから(_R)"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "字下げリスト ファイルから、ツリーにノードを追加"
+
+msgid "From _Plain Text File"
+msgstr "テキスト形式 ファイルから(_P)"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "テキスト形式 ファイルから、ツリーにノードを追加"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "テキスト形式 ファイルを含むフォルダーから(_F)"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr "テキスト形式 ファイルを含むフォルダーから、ツリーにノードを追加"
+
+msgid "From _HTML File"
+msgstr "HTML ファイルから(_H)"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "HTML ファイルから、ツリーにノードを追加"
+
+msgid "From _Folder of HTML Files"
+msgstr "HTML ファイルを含むフォルダーから(_F)"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "HTML ファイルを含むフォルダーから、ツリーにノードを追加"
+
+msgid "From _Markdown File"
+msgstr "Markdown ファイルから(_M)"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "Markdown ファイルから、ツリーにノードを追加"
+
+msgid "From _Folder of Markdown Files"
+msgstr "Markdown ファイルを含むフォルダーから(_F)"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "Markdownファイルを含むフォルダーから、ツリーにノードを追加"
+
+msgid "From _Gnote Folder"
+msgstr "Gnote フォルダーから(_G)"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "Gnote フォルダーから、ツリーにノードを追加"
+
+msgid "From _KeepNote Folder"
+msgstr "KeepNote フォルダーから(_K)"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "KeepNote フォルダーから、ツリーにノードを追加"
+
+msgid "From _Leo File"
+msgstr "Leo ファイルから(_L)"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "Leo ファイルから、ツリーにノードを追加"
+
+msgid "From _Mempad File"
+msgstr "Mempad ファイルから(_M)"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "Mempad ファイルから、ツリーにノードを追加"
+
+msgid "From _NoteCase HTML File"
+msgstr "NoteCase HTML ファイルから(_N)"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "NoteCase HTML ファイルから、ツリーにノードを追加"
+
+msgid "From _RedNotebook HTML File"
+msgstr "RedNotebook HTML ファイルから(_R)"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "RedNotebook HTML ファイルから、ツリーにノードを追加"
+
+msgid "From T_omboy Folder"
+msgstr "Tomboy フォルダーから(_O)"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "Tomboy フォルダーから、ツリーにノードを追加"
+
+msgid "From T_reepad Lite File"
+msgstr "Treepad Lite ファイルから(_R)"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "Treepad Lite ファイルから、ツリーにノードを追加"
+
+msgid "From _Zim Folder"
+msgstr "Zim フォルダーから(_Z)"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "Zim フォルダーから、ツリーにノードを追加"
+
+msgid "Export"
+msgstr "エクスポート"
+
+msgid "Export To _PDF"
+msgstr "PDFにエクスポート(_P)"
+
+msgid "Export To PDF"
+msgstr "PDFにエクスポート"
+
+msgid "Export To _HTML"
+msgstr "HTMLにエクスポート(_H)"
+
+msgid "Export To HTML"
+msgstr "HTMLにエクスポート"
+
+msgid "Export to Plain _Text"
+msgstr "テキスト形式ファイルにエクスポート(_T)"
+
+msgid "Export to Plain Text"
+msgstr "テキスト形式ファイルにエクスポート"
+
+msgid "_Export To OliveSet"
+msgstr "OliveSetにエクスポート(_E)"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "OliveSetファイルまたはフォルダーにエクスポート"
+
+msgid "Help"
+msgstr "ヘルプ"
+
+msgid "_Check Newer Version"
+msgstr "新しいバージョンを確認(_C)"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "新しいバージョンを確認する"
+
+msgid "_Website"
+msgstr "ウェブサイト(_W)"
+
+msgid "Visit OliveSet's Website"
+msgstr "ウェブサイトを開く"
+
+msgid "_Source Code"
+msgstr "ソースコード(_S)"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "オンラインでOliveSetのソースコードを閲覧する"
+
+msgid "_Report a Bug"
+msgstr "バグを報告(_R)"
+
+msgid "Report a Bug in OliveSet"
+msgstr "バグを報告する"
+
+msgid "_Donate"
+msgstr "寄付(_D)"
+
+msgid "Donate to Support OliveSet"
+msgstr "寄付して OliveSet をサポートする"
+
+msgid "Online _Manual"
+msgstr "オンライン マニュアル(_M)"
+
+msgid "OliveSet's Online Manual"
+msgstr "オンライン マニュアル"
+
+msgid "_About"
+msgstr "OliveSet について(_A)"
+
+msgid "_Open Preferences Directory"
+msgstr "設定ディレクトリを開く(_O)"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "設定ファイルのあるディレクトリを開く"
+
+msgid "C_ut Anchor"
+msgstr "アンカーを切り取り(_U)"
+
+msgid "Cut the Selected Anchor"
+msgstr "選択アンカーを切り取り"
+
+msgid "_Copy Anchor"
+msgstr "アンカーをコピー(_C)"
+
+msgid "Copy the Selected Anchor"
+msgstr "選択アンカーをコピー"
+
+msgid "_Delete Anchor"
+msgstr "アンカーを削除(_D)"
+
+msgid "Delete the Selected Anchor"
+msgstr "選択アンカーを削除"
+
+msgid "Edit _Anchor..."
+msgstr "アンカー名を編集(_A)..."
+
+msgid "Edit the Underlying Anchor"
+msgstr "直下のアンカーのアンカー名を編集"
+
+msgid "Copy Anchor Link"
+msgstr "アンカーへのリンクをコピー"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "直下のアンカーへのリンクをクリップボードにコピー"
+
+msgid "C_ut Embedded File"
+msgstr "添付ファイルを切り取り(_U)"
+
+msgid "Cut the Selected Embedded File"
+msgstr "選択添付ファイルを切り取り"
+
+msgid "_Copy Embedded File"
+msgstr "添付ファイルをコピー(_C)"
+
+msgid "Copy the Selected Embedded File"
+msgstr "選択添付ファイルをコピー"
+
+msgid "_Delete Embedded File"
+msgstr "添付ファイルを削除(_D)"
+
+msgid "Delete the Selected Embedded File"
+msgstr "選択添付ファイルを削除"
+
+msgid "Open Embedded File"
+msgstr "添付ファイルを開く"
+
+msgid "_Rename"
+msgstr "名前変更(_R)"
+
+msgid "Rename Embedded File"
+msgstr "添付ファイルの名前変更"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "Latex ボックスをPNG形式で保存(_S)..."
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "選択Latex ボックスをPNG形式ファイルで保存"
+
+msgid "_Edit LatexBox..."
+msgstr "Latex ボックスを編集(_E)..."
+
+msgid "Edit the Selected LatexBox"
+msgstr "選択Latex ボックスを編集"
+
+msgid "C_ut LatexBox"
+msgstr "Latex ボックスを切り取り(_U)"
+
+msgid "Cut the Selected LatexBox"
+msgstr "選択Latex ボックスを切り取り"
+
+msgid "_Copy LatexBox"
+msgstr "Latex ボックスをコピー(_C)"
+
+msgid "Copy the Selected LatexBox"
+msgstr "選択Latex ボックスをコピー"
+
+msgid "_Delete LatexBox"
+msgstr "Latex ボックスを削除(_D)"
+
+msgid "Delete the Selected LatexBox"
+msgstr "選択Latex ボックスを削除"
+
+msgid "_Save Image as PNG..."
+msgstr "画像をPNG形式で保存(_S)..."
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "選択画像をPNG形式ファイルで保存"
+
+msgid "_Edit Image..."
+msgstr "画像を編集(_E)..."
+
+msgid "Edit the Selected Image"
+msgstr "選択画像を編集"
+
+msgid "C_ut Image"
+msgstr "画像を切り取り(_U)"
+
+msgid "Cut the Selected Image"
+msgstr "選択画像を切り取り"
+
+msgid "_Copy Image"
+msgstr "画像をコピー(_C)"
+
+msgid "Copy the Selected Image"
+msgstr "選択画像をコピー"
+
+msgid "_Delete Image"
+msgstr "画像を削除(_D)"
+
+msgid "Delete the Selected Image"
+msgstr "選択画像を削除"
+
+msgid "Edit _Link..."
+msgstr "リンクを編集(_L)..."
+
+msgid "Edit the Link Associated to the Image"
+msgstr "画像に関連付けられたリンクを編集"
+
+msgid "D_ismiss Link"
+msgstr "リンクを解除(_I)"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "画像に関連付けられたリンクを解除"
+
+msgid "Show/Hide _OliveSet"
+msgstr "OliveSetを表示/隠す(_C)"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "OliveSetウィンドウを表示/隠す"
+
+msgid "Edit the Underlying Link"
+msgstr "直下のリンクを編集"
+
+msgid "C_ut Link"
+msgstr "リンクを切り取り(_U)"
+
+msgid "Cut the Selected Link"
+msgstr "選択リンクを切り取り"
+
+msgid "_Copy Link"
+msgstr "リンクをコピー(_C)"
+
+msgid "Copy the Selected Link"
+msgstr "選択リンクをコピー"
+
+msgid "Dismiss the Selected Link"
+msgstr "選択リンクを解除"
+
+msgid "_Delete Link"
+msgstr "リンクを削除(_D)"
+
+msgid "Delete the Selected Link"
+msgstr "選択リンクを削除"
+
+msgid "English"
+msgstr "English"
+
+msgid "Text and Code"
+msgstr "テキストとコード"
+
+msgid "Plain Text and Code"
+msgstr "プレーンテキストとコード"
+
+msgid "Tree Explorer"
+msgstr "ツリー"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "Interface"
+msgstr "インターフェース"
+
+msgid "Links"
+msgstr "リンク"
+
+msgid "Toolbar"
+msgstr "ツールバー"
+
+msgid "Keyboard Shortcuts"
+msgstr "キーボード ショートカット"
+
+msgid "Miscellaneous"
+msgstr "その他"
+
+msgid "Monospace"
+msgstr "等幅"
+
+msgid "Code Font"
+msgstr "コードのフォント"
+
+msgid "Terminal Font"
+msgstr "ターミナル フォント"
+
+msgid "Tree Font"
+msgstr "ツリーのフォント"
+
+msgid "Reset to Default"
+msgstr "既定に初期化"
+
+msgid "Fonts"
+msgstr "フォント"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "ステータスバーにワード数を表示する"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "ドキュメント ディレクトリ名をウィンドウ タイトルに表示"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "ノード名のヘッダに完全なパスを表示する"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "メニューバーにブックマーク専用メニューを表示する"
+
+msgid "Menubar in Titlebar"
+msgstr "メニューバーをタイトルバーに配置"
+
+msgid "Toolbar Icons Size"
+msgstr "ツールバーのアイコンサイズ"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "最近表示したノードをノード名ヘッダに表示する数"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "スクロールバースライダーの最小サイズ (0 = システム標準)"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "スクロールバーオーバーレイ テキストエディタ"
+
+msgid "System Default"
+msgstr "システムの既定値"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "マウスオーバーでツールチップを表示する"
+
+msgid "Menus"
+msgstr "メニュー"
+
+msgid "Max Search Results per Page"
+msgstr "ページごとの検索結果表示の最大数"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "検索/置換の履歴をセッション間で保存する"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "Webへのリンクをクリックしたときの動作を指定する"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "ファイルへのリンクをクリックしたときの動作を指定する"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "フォルダーへのリンクをクリックしたときの動作を指定する"
+
+msgid "Custom Actions"
+msgstr "ユーザー設定の動作"
+
+msgid "Colors"
+msgstr "色"
+
+msgid "Double Click for Link Action"
+msgstr "リンクを開くにはダブルクリックが必要"
+
+msgid "Underline Links"
+msgstr "リンクに下線を表示する"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "ファイルとフォルダーへのリンクに相対パスを使用する"
+
+msgid "Anchor Size"
+msgstr "アンカー画像の大きさ"
+
+msgid "Change Selected"
+msgstr "選択項目の変更"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr "キーボード ショートカット '%s' はすでに使用しています。"
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "現在関連付けられている操作は '%s' です"
+
+msgid "Do you want to steal the shortcut?"
+msgstr "ショートカットの割り当てを変更しますか？"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "キーボード ショートカットの編集"
+
+msgid "No Keyboard Shortcut"
+msgstr "キーボード ショートカットなし"
+
+msgid "Autosave on Quit"
+msgstr "終了時に自動保存する"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "保存する前にバックアップの複製を作成する"
+
+msgid "Number of Backups to Keep"
+msgstr "保存するバックアップの最大数"
+
+msgid "Custom Backup Directory"
+msgstr "バックアップディレクトリを指定する"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "複数ファイルの保存時、ドライブ上で添付ファイル名を使用"
+
+msgid "Saving"
+msgstr "保存"
+
+msgid "Automatically Check for Newer Version"
+msgstr "新バージョンの確認を自動的に行う"
+
+msgid "Reload Document From Last Session"
+msgstr "起動時に最後のセッションのドキュメントを読み込む"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "ドキュメントが読み込まれていない場合、スタートダイアログを表示する"
+
+msgid "Reload After External Update to CT* File"
+msgstr "CT* ファイルが外部で更新された場合、再読み込みする"
+
+msgid "Enable Debug Log"
+msgstr "デバッグログを有効にする"
+
+msgid "Debug Log Directory"
+msgstr "デバッグログのディレクトリ"
+
+msgid "Enable System Tray Docking"
+msgstr "閉じるでシステムトレイに入れる"
+
+msgid "Start Minimized in the System Tray"
+msgstr "起動時にシステムトレイに最小化する"
+
+msgid "System Tray"
+msgstr "システムトレイ"
+
+msgid "Language"
+msgstr "言語"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Port"
+msgstr "ポート"
+
+msgid "Username"
+msgstr "ユーザー名"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Proxy"
+msgstr "プロキシ"
+
+msgid "Show White Spaces"
+msgstr "空白文字を表示する"
+
+msgid "Highlight Current Line"
+msgstr "現在行を強調する"
+
+msgid "Text Editor"
+msgstr "テキストエディタ"
+
+msgid "Internal Terminal Shell"
+msgstr "内部ターミナルシェルを使用する"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "Remove Selected"
+msgstr "選択項目の削除"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "ノード/コード ボックスの種類別コマンド"
+
+msgid "Terminal Command"
+msgstr "ターミナル コマンド"
+
+msgid "Code Execution"
+msgstr "コードの実行"
+
+msgid "Select Element to Add"
+msgstr "追加する要素を選択"
+
+msgid "Enable Spell Check"
+msgstr "スペルチェックを有効にする"
+
+msgid "Spell Check Language"
+msgstr "スペルチェックの言語"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "コード ボックスを自動的に拡げる"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "コードボックスにツールバーを表示する"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "表で軽量インターフェイスを使用するセル数"
+
+msgid "Embedded File Icon Size"
+msgstr "添付ファイルアイコンの大きさ"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "添付ファイル サイズの上限 (MB)"
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "添付ファイルアイコンの上にファイル名を表示する"
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "シングルクリックでオブジェクトを自動選択しない"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr ""
+"KDE 6 で Klipper を使用時に発生するクリップボードのフリーズ問題への回避策"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "ノードごとの元に戻せる制限回数"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "キャメルケースのテキストを自動で同名のノードに自動リンクする"
+
+msgid "Auto Link URLs"
+msgstr "URLを自動リンク"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "3回クリックで段落全体を選択"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "Markdown の自動置換を有効にする (実験的)"
+
+msgid "Scale"
+msgstr "倍率"
+
+msgid "Italic"
+msgstr "斜体"
+
+msgid "Underline"
+msgstr "下線"
+
+msgid "Text Color Foreground"
+msgstr "文字色"
+
+msgid "Text Color Background"
+msgstr "背景色"
+
+msgid "Small"
+msgstr "小さい"
+
+msgid "Scalable Tags"
+msgstr "拡大縮小可能なタグ"
+
+msgid "Chars for Bulleted List"
+msgstr "順序なしリスト文字"
+
+msgid "Chars for Todo List"
+msgstr "ToDo リスト文字"
+
+msgid "Chars for Table Of Content"
+msgstr "目次用文字"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "スマート ダブル クォート文字"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "スマート シングル クォート文字"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "スマート クォートの自動置換を有効にする"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "記号の自動置換を有効にする"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "対応する記号の自動置換"
+
+msgid "Only at the Start of the Line"
+msgstr "行頭のみ"
+
+msgid "Tab Width"
+msgstr "タブの幅"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "タブの代わりにスペースを挿入する"
+
+msgid "Use Line Wrapping"
+msgstr "行の折り返しを有効にする"
+
+msgid "Line Wrapping Indentation"
+msgstr "行の折り返しのインデント幅(px)"
+
+msgid "Enable Automatic Indentation"
+msgstr "自動インデントを有効にする"
+
+msgid "Scroll Beyond Last Line"
+msgstr "最終行を超えてスクロール"
+
+msgid "Cursor Blinking"
+msgstr "カーソル点滅"
+
+msgid "On"
+msgstr "オン"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "Text Margin: Left"
+msgstr "テキストマージン: 左"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Vertical Space Around Lines"
+msgstr "行内の上下の余白 (px)"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "折り返し行の上下の余白"
+
+msgid "Timestamp Format"
+msgstr "日時の書式"
+
+msgid "Horizontal Rule"
+msgstr "区切り線"
+
+msgid "Chars to Select at Double Click"
+msgstr "ダブルクリック選択で、単語の一部として扱う文字"
+
+msgid "Light Background, Dark Text"
+msgstr "ライト（明るい背景色と暗い文字色）"
+
+msgid "Dark Background, Light Text"
+msgstr "ダーク（暗い背景色と明るい文字色）"
+
+msgid "Custom Background"
+msgstr "ユーザー設定の背景色"
+
+msgid "Text"
+msgstr "テキスト"
+
+msgid "Selection Background"
+msgstr "選択背景色"
+
+msgid "Table"
+msgstr "表"
+
+msgid "Code"
+msgstr "コード"
+
+msgid "Style Schemes"
+msgstr "スタイルパターン"
+
+msgid "Text Foreground"
+msgstr "文字色"
+
+msgid "Text Background"
+msgstr "背景色"
+
+msgid "Selection Foreground"
+msgstr "選択文字色"
+
+msgid "Cursor"
+msgstr "カーソル"
+
+msgid "Current Line Background"
+msgstr "現在行の背景色"
+
+msgid "Line Numbers Foreground"
+msgstr "行番号の文字色"
+
+msgid "Line Numbers Background"
+msgstr "行番号の背景色"
+
+msgid "Style Scheme Editor"
+msgstr "スタイルパターンの編集"
+
+msgid "Set Dark Theme Icons"
+msgstr "ダークテーマアイコンの設定"
+
+msgid "Set Light Theme Icons"
+msgstr "ライトテーマアイコンの設定"
+
+msgid "Set Default Icons"
+msgstr "既定のアイコンの設定"
+
+msgid "Icon Theme"
+msgstr "アイコンのテーマ"
+
+msgid "Split Toolbar"
+msgstr "ツールバーを分割"
+
+msgid "Use Different Cherries per Level"
+msgstr "レベルごとに異なるチェリー画像を使用する"
+
+msgid "No Icon"
+msgstr "アイコンなし"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "右端の付属アイコンを隠す"
+
+msgid "Default Text Nodes Icons"
+msgstr "既定のテキスト ノードのアイコン"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "ノードの開閉状態を再現する"
+
+msgid "Expand all Nodes"
+msgstr "すべてのノードを開く"
+
+msgid "Collapse all Nodes"
+msgstr "すべてのノードを閉じる"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "ブックマーク ノードを常に表示"
+
+msgid "Nodes Status at Startup"
+msgstr "起動時のノードの状態"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "ツリーノード名の折り返し幅"
+
+msgid "Display Tree on the Right Side"
+msgstr "ツリーを右側に表示する"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "マウスクリックで、テキストエディタにフォーカスを移動する"
+
+msgid "Expand Node at Mouse Click"
+msgstr "マウスクリックでノードのツリーを開く"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "'%s' は無効なアーカイブです"
+
+msgid "Writing to Disk..."
+msgstr "ディスクに書き込みしています..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "%s への書き込み権限がありません"
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "%s のパスワードを入力してください"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr ""
+"保存ドキュメントの整合性チェックに失敗しました。[名前を付けて保存]を試してく"
+"ださい"
+
+msgid "Failed to encrypt the file"
+msgstr "ファイルの暗号化に失敗しました"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "バックアップからの復元が必要:"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr "データベースファイル %s が破損しています。 詳細はログファイル参照。"
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s の書き込み失敗 - ファイルが存在しません。 USBドライブ/共有リソースに再接続"
+"してください。"
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr ""
+"%s の書き込み失敗 - 同期プログラムにファイルがブロックされていませんか？"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s の再オープンに失敗 - ファイルが存在しません。 USBドライブ/共有リソースに再"
+"接続してください。"
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "OliveSet Hierarchical Note Taking"
+
+msgid "_Exit OliveSet"
+msgstr "OliveSetを終了(_E)"
+
+msgid "HTML Document"
+msgstr "HTML ドキュメント"
+
+msgid "Markdown Document"
+msgstr "Markdown ドキュメント"
+
+msgid "Mempad Document"
+msgstr "Mempad ドキュメント"
+
+msgid "Treepad Document"
+msgstr "Treepad ドキュメント"
+
+msgid "Leo Document"
+msgstr "Leo ドキュメント"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "既定値に初期化しますか？"
+
+#~ msgid "Replace in Multiple Nodes..."
+#~ msgstr "複数のノードを置換..."
+
+#~ msgid "Find in Multiple Nodes..."
+#~ msgstr "複数のノードを検索..."
+
+#~ msgid "Insert T_OC..."
+#~ msgstr "目次を挿入(_O)..."
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "目次を挿入"
+
+#~ msgid ""
+#~ "Backup files are by default 3 in the same folder of the corrupted "
+#~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
+#~ "the backup with one tilde: copy the file to another directory, remove the "
+#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "with two tildes and if it still fails try the one with three tildes."
+#~ msgstr ""
+#~ "バックアップファイルは既定では、破損ドキュメントと同じフォルダーに、名前の"
+#~ "末尾にチルダを付加したファイルが3つ作られます(~, ~~, ~~~)。最初にチルダが"
+#~ "一つのファイルを別のディレクトリにコピーし、名前の末尾のチルダを削除し、"
+#~ "olivesetで開いてください。もしこれも開けない場合はチルダが二つのファイ"
+#~ "ル、チルダが三つのファイルを順に試してください。"
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "オンライン マニュアルをブラウザで開く"
+
+#~ msgid "OliveSet Document"
+#~ msgstr "OliveSet ドキュメント"
+
+#~ msgid "Not Protected"
+#~ msgstr "保護なし"
+
+#~ msgid "Password Protected"
+#~ msgstr "パスワード保護"
+
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "ドキュメント %s が見つかりません"
+
+#~ msgid "Find _in Multiple Nodes"
+#~ msgstr "複数のノードを検索(_I)"
+
+#~ msgid "Replace in _Multiple Nodes"
+#~ msgstr "複数のノードを置換(_M)"
+
+#~ msgid ""
+#~ "Pandoc executable could not be found, please ensure it is in your path"
+#~ msgstr "Pandocが見つかりません。 Pathが通っているか確認してください"
+
+#~ msgid "From File using _Pandoc"
+#~ msgstr "Pandoc を利用してファイルから(_P)"
+
+#~ msgid "Add a node to the current tree using Pandoc"
+#~ msgstr "Pandoc を利用して、ツリーにノードを追加"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "新しい言語は、OliveSetの再起動後に有効になります"
+
+#~ msgid "click me"
+#~ msgstr "クリック"
+
+#~ msgid "_Format"
+#~ msgstr "書式(_F)"
+
+#~ msgid "_Tools"
+#~ msgstr "ツール(_T)"
+
+#~ msgid "_List"
+#~ msgstr "リスト(_L)"
+
+#~ msgid "_Row"
+#~ msgstr "行(_R)"
+
+#~ msgid "_Print"
+#~ msgstr "印刷(_P)"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "日時を挿入(_M)"
+
+#~ msgid "Quit"
+#~ msgstr "閉じる"
+
+#~ msgid "Replace in Selected Node and Subnodes"
+#~ msgstr "選択ノードとサブノードを置換"
+
+#~ msgid "Search in Selected Node and Subnodes"
+#~ msgstr "選択ノードとサブノードを検索"
+
+#~ msgid "Search in All Nodes"
+#~ msgstr "すべてのノードを検索"
+
+#~ msgid "Replace in Node Names..."
+#~ msgstr "ノード名を置換..."
+
+#~ msgid "Search For a Node Name..."
+#~ msgstr "ノード名を検索..."
+
+#~ msgid "Monospace Text Color Background"
+#~ msgstr "等幅の背景色"
+
+#~ msgid "Find in _All Nodes Contents"
+#~ msgstr "すべてのノードの内容を検索(_A)"
+
+#~ msgid "Find into All the Tree Nodes Contents"
+#~ msgstr "すべてのノードの内容を検索"
+
+#~ msgid "Find in _Selected Node and Subnodes Contents"
+#~ msgstr "選択ノードとサブノードの内容を検索(_S)"
+
+#~ msgid "Find into the Selected Node and Subnodes Contents"
+#~ msgstr "選択ノードとサブノードの内容を検索"
+
+#~ msgid "Replace in _All Nodes Contents"
+#~ msgstr "すべてのノードの内容を置換(_A)"
+
+#~ msgid "Replace into All the Tree Nodes Contents"
+#~ msgstr "すべてのノードの内容を置換"
+
+#~ msgid "Replace in _Selected Node and Subnodes Contents"
+#~ msgstr "選択ノードとサブノードの内容を置換(_S)"
+
+#~ msgid "Replace into the Selected Node and Subnodes Contents"
+#~ msgstr "選択ノードとサブノードの内容を置換"
+
+#~ msgid "Replace in Nodes _Names"
+#~ msgstr "ノード名を置換(_N)"
+
+#~ msgid "_Execute CodeBox Code"
+#~ msgstr "コード ボックスのコードを実行(_E)"
+
+#~ msgid "For_matting"
+#~ msgstr "書式(_M)"
+
+#~ msgid "Nodes _Import"
+#~ msgstr "ノードのインポート(_I)"
+
+#~ msgid "Nodes E_xport"
+#~ msgstr "ノードのエクスポート(_X)"
+
+#~ msgid "E_xport"
+#~ msgstr "エクスポート(_X)"
+
+#~ msgid "Editor"
+#~ msgstr "編集"
+
+#~ msgid "Monospace Background"
+#~ msgstr "等幅の背景色"
+
+#~ msgid "Export to PDF at specified file path"
+#~ msgstr "PDFにエクスポート (指定の場所)"
+
+#~ msgid "Unknown"
+#~ msgstr "不明"
+
+#~ msgid "(no suggestions)"
+#~ msgstr "(候補なし)"
+
+#~ msgid "Add \"{}\" to Dictionary"
+#~ msgstr "\"{}\" を辞書に追加する"
+
+#~ msgid "Ignore All"
+#~ msgstr "すべて無視する"
+
+#~ msgid "Languages"
+#~ msgstr "言語"
+
+#~ msgid "Suggestions"
+#~ msgstr "候補"
+
+#~ msgid "NoteCase Document"
+#~ msgstr "NoteCase ドキュメント"
+
+#~ msgid "EPIM HTML Document"
+#~ msgstr "EPIM HTML ドキュメント"
+
+#~ msgid "KeyNote Document"
+#~ msgstr "KeyNote ドキュメント"
+
+#~ msgid "Knowit Document"
+#~ msgstr "Knowit ドキュメント"
+
+#~ msgid ""
+#~ "Binary Executable '7za' Not Found, Check The Package 'p7zip-full' to be "
+#~ "Installed Properly"
+#~ msgstr "実行ファイル '7za' がありません。"
+
+#~ msgid "Type To Search..."
+#~ msgstr "コマンドを検索..."
+
+#~ msgid "Command Name"
+#~ msgstr "コマンド名"
+
+#~ msgid "Not Any H1, H2 or H3 Formatting Found"
+#~ msgstr "見出しがありません"
+
+#~ msgid "Min Width"
+#~ msgstr "最小幅"
+
+#~ msgid "Max Width"
+#~ msgstr "最大幅"
+
+#~ msgid "Click to Edit the Column Settings"
+#~ msgstr "クリックで列の設定を編集します"
+
+#~ msgid "Table Column Action"
+#~ msgstr "表の列の操作"
+
+#~ msgid "From _Basket Folder"
+#~ msgstr "Basket フォルダーから(_B)"
+
+#~ msgid "Add Nodes of a Basket Folder to the Current Tree"
+#~ msgstr "Basket フォルダーから、ツリーにノードを追加"
+
+#~ msgid "From _EssentialPIM HTML File"
+#~ msgstr "EssentialPIM HTML ファイルから(_E)"
+
+#~ msgid "Add Node from an EssentialPIM HTML File to the Current Tree"
+#~ msgstr "EssentialPIM HTML ファイルから、ツリーにノードを追加"
+
+#~ msgid "From K_eyNote File"
+#~ msgstr "KeyNote ファイルから(_E)"
+
+#~ msgid "Add Nodes of a KeyNote File to the Current Tree"
+#~ msgstr "KeyNote ファイルから、ツリーにノードを追加"
+
+#~ msgid "From K_nowit File"
+#~ msgstr "Knowit ファイルから(_N)"
+
+#~ msgid "Add Nodes of a Knowit File to the Current Tree"
+#~ msgstr "Knowit ファイルから、ツリーにノードを追加"
+
+#~ msgid "From _TuxCards File"
+#~ msgstr "TuxCards ファイルから(_T)"
+
+#~ msgid "Add Nodes of a TuxCards File to the Current Tree"
+#~ msgstr "TuxCards ファイルから、ツリーにノードを追加"
+
+#~ msgid "Export to Multiple Plain _Text Files"
+#~ msgstr "ノード単位でテキスト形式ファイルにエクスポート(_T)"
+
+#~ msgid "Export to Multiple Plain Text Files"
+#~ msgstr "ノード単位でテキスト形式ファイルにエクスポート"
+
+#~ msgid "Export to _Single Plain Text File"
+#~ msgstr "単一のテキスト形式ファイルにエクスポート(_S)"
+
+#~ msgid "Insert _NewLine"
+#~ msgstr "改行文字を挿入(_N)"
+
+#~ msgid "Insert NewLine Char"
+#~ msgstr "改行文字を挿入"
+
+#~ msgid "Use AppIndicator for Docking"
+#~ msgstr "AppIndicatorを使用する"
+
+#~ msgid "Cancel"
+#~ msgstr "キャンセル"
+
+#~ msgid "The Characters  %s  are Not Allowed"
+#~ msgstr "%s という文字は使用できません"
+
+#~ msgid "Text Font"
+#~ msgstr "テキストのフォント"
+
+#~ msgid "The Maximum Size for Embedded Files is 10 MB"
+#~ msgstr "添付ファイルの最大サイズは10MBです"
+
+#~ msgid "Toggle Node _Expanded/Collapsed"
+#~ msgstr "選択ノードのツリーを開く/閉じる(_E)"
+
+#~ msgid "Toggle Expanded/Collapsed Status of the Selected Node"
+#~ msgstr "選択ノードのツリーの開閉状態を交互に切り替える"
+
+#~ msgid "Find into the Selected Node"
+#~ msgstr "選択ノードを検索"
+
+#~ msgid "Find into all the Tree Nodes"
+#~ msgstr "すべてのノードを検索"
+
+#~ msgid "_Replace in Node"
+#~ msgstr "選択ノードを置換(_R)"
+
+#~ msgid "Replace into the Selected Node"
+#~ msgstr "選択ノードを置換"
+
+#~ msgid "Replace in Node_s"
+#~ msgstr "すべてのノードを置換(_S)"
+
+#~ msgid "Replace into all the Tree Nodes"
+#~ msgstr "すべてのノードを置換"
+
+#~ msgid "Code Nodes"
+#~ msgstr "コード ノード"
+
+#~ msgid "Use Cherries as Nodes Icons"
+#~ msgstr "チェリーの画像を表示"
+
+#~ msgid "Do Not Display Nodes Icons"
+#~ msgstr "ノードアイコンを表示しない"
+
+#~ msgid "All Nodes"
+#~ msgstr "すべてのノード"
+
+#~ msgid "_Bookmark This Node"
+#~ msgstr "このノードをブックマークに追加(_B)"
+
+#~ msgid ""
+#~ "Copyright © 2009-2014\n"
+#~ "Giuseppe Penone <giuspen@gmail.com>"
+#~ msgstr ""
+#~ "Copyright © 2009-2014\n"
+#~ "Giuseppe Penone <giuspen@gmail.com>"
+
+#~ msgid "Sort with Drag and Drop, Delete with the Delete Key"
+#~ msgstr "ドラッグ アンド ドロップで並び替え、Deleteキーで削除"

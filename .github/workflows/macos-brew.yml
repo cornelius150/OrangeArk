@@ -1,0 +1,61 @@
+name: MacOS/Brew
+on: [workflow_dispatch]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  macos-brew:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Cache Homebrew downloads
+        uses: actions/cache@v5
+        with:
+          path: ~/Library/Caches/Homebrew/downloads
+          key: homebrew-${{ runner.os }}-${{ hashFiles('.github/parameters/setup-brew.txt') }}
+          restore-keys: |
+            homebrew-${{ runner.os }}-
+      - name: Install Dependencies
+        run: |
+          if brew tap | grep -qx "aws/tap"; then
+            brew untap aws/tap
+          fi
+          brew install adwaita-icon-theme \
+                       gspell \
+                       gtkmm3 \
+                       gtksourceview4 \
+                       vte3 \
+                       libxml++ \
+                       fmt \
+                       spdlog \
+                       uchardet \
+                       fribidi
+          brew link icu4c --force
+          brew unlink gtkmm3 && brew link gtkmm3
+      - name: CI-Build
+        run: |
+          BREW_PREFIX="$(brew --prefix)"
+          pkg-config gtkmm-3.0 --cflags --libs
+          ls -la "$(brew --prefix gtkmm3)/lib"
+          cmake -S . -B build \
+                -DCMAKE_INSTALL_PREFIX="${BREW_PREFIX}" \
+                -DCMAKE_FIND_FRAMEWORK=LAST \
+                -DBUILD_TESTING='' -DCMAKE_VERBOSE_MAKEFILE=ON \
+                -DCMAKE_EXE_LINKER_FLAGS="-L${BREW_PREFIX}/lib"
+          VERBOSE=1 cmake --build build
+          mkdir -p artifact
+          cp build/oliveset artifact/
+          file artifact/oliveset > artifact/oliveset.file.txt
+          otool -L artifact/oliveset > artifact/oliveset.otool.txt
+          pip3 install --break-system-packages pyobjc-framework-Cocoa
+      - name: Upload oliveset artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: oliveset-macos-brew-${{ github.sha }}
+          path: |
+            artifact/
+          retention-days: 3
+          overwrite: true
+          if-no-files-found: error

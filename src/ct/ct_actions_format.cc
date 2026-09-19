@@ -1,0 +1,684 @@
+/*
+ * ct_actions_format.cc
+ *
+ * Copyright 2009-2026
+ * Giuseppe Penone <giuspen@gmail.com>
+ * Evgenii Gurianov <https://github.com/txe>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ */
+
+#include "ct_actions.h"
+#include <gtkmm/dialog.h>
+#include <glibmm/base64.h>
+#include "ct_dialogs.h"
+#include "ct_list.h"
+#include <optional>
+
+void CtActions::_save_tags_at_cursor_as_latest(Glib::RefPtr<Gtk::TextBuffer> pTextBuffer, int cursorOffset)
+{
+    std::list<std::string> tagProperties;
+    std::list<std::string> tagValues;
+    if (cursorOffset < 0) {
+        cursorOffset = pTextBuffer->property_cursor_position();
+    }
+    Gtk::TextIter textIter = pTextBuffer->get_iter_at_offset(cursorOffset);
+    std::vector<Glib::RefPtr<Gtk::TextTag>> curr_tags = textIter.get_tags();
+    for (auto& curr_tag : curr_tags) {
+        Glib::ustring tag_name = curr_tag->property_name();
+        if (tag_name.empty() or CtConst::GTKSPELLCHECK_TAG_NAME == tag_name) {
+            continue;
+        }
+        std::pair<std::string, std::string> tagPropNVal;
+        if (str::startswith(tag_name, CtConst::TAG_WEIGHT_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_WEIGHT, tag_name.substr(7));
+        else if (str::startswith(tag_name, CtConst::TAG_FOREGROUND_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_FOREGROUND, tag_name.substr(11));
+        else if (str::startswith(tag_name, CtConst::TAG_BACKGROUND_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_BACKGROUND, tag_name.substr(11));
+        else if (str::startswith(tag_name, CtConst::TAG_SCALE_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_SCALE, tag_name.substr(6));
+        else if (str::startswith(tag_name, CtConst::TAG_JUSTIFICATION_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_JUSTIFICATION, tag_name.substr(14));
+        else if (str::startswith(tag_name, CtConst::TAG_STYLE_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_STYLE, tag_name.substr(6));
+        else if (str::startswith(tag_name, CtConst::TAG_UNDERLINE_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_UNDERLINE, tag_name.substr(10));
+        else if (str::startswith(tag_name, CtConst::TAG_STRIKETHROUGH_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_STRIKETHROUGH, tag_name.substr(14));
+        else if (str::startswith(tag_name, CtConst::TAG_INDENT_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_INDENT, tag_name.substr(7));
+        //else if (str::startswith(tag_name, CtConst::TAG_LINK_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_LINK], tag_name.substr(5));
+        else if (str::startswith(tag_name, CtConst::TAG_FAMILY_PREFIX)) tagPropNVal = std::make_pair(CtConst::TAG_FAMILY, tag_name.substr(7));
+        if (not tagPropNVal.first.empty()) {
+            tagProperties.push_back(tagPropNVal.first);
+            tagValues.push_back(tagPropNVal.second);
+        }
+    }
+    if (not tagProperties.empty()) {
+        _pCtConfig->latestTagProp = str::join(tagProperties, ",");
+        _pCtConfig->latestTagVal = str::join(tagValues, ",");
+    }
+}
+
+void CtActions::save_tags_at_cursor_as_latest()
+{
+    _save_tags_at_cursor_as_latest(_curr_buffer(), -1);
+}
+
+// The Iterate Tagging Button was Pressed
+void CtActions::apply_tags_latest()
+{
+    if (not _is_there_selected_node_or_error()) return;
+    if (not _is_curr_node_not_syntax_highlighting_or_error()) return;
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    if (_pCtConfig->latestTagProp.empty()) {
+        CtDialogs::warning_dialog(_("No Previous Text Format Was Performed During This Session."), *_pCtMainWin);
+    }
+    else {
+        remove_text_formatting();
+        std::vector<std::string> tagProperties = str::split(_pCtConfig->latestTagProp, ",");
+        std::vector<std::string> tagValues = str::split(_pCtConfig->latestTagVal, ",");
+        for (size_t i = 0; i < tagProperties.size(); ++i) {
+            apply_tag(tagProperties.at(i), tagValues.at(i));
+        }
+    }
+}
+
+// Cleans the Selected Text from All Formatting Tags
+void CtActions::_remove_text_formatting(const bool dismiss_link)
+{
+    if (not _is_there_selected_node_or_error()) return;
+    if (not _is_curr_node_not_syntax_highlighting_or_error()) return;
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = _pCtMainWin->get_text_view().get_buffer();
+    if (not pTextBuffer->get_has_selection() and not _pCtMainWin->apply_tag_try_automatic_bounds(pTextBuffer, pTextBuffer->get_insert()->get_iter())) {
+        CtDialogs::warning_dialog(_("No Text is Selected."), *_pCtMainWin);
+        return;
+    }
+    CtTreeIter ctTreeIter = _pCtMainWin->curr_tree_iter();
+    Gtk::TextIter iter_sel_start, iter_sel_end;
+    pTextBuffer->get_selection_bounds(iter_sel_start, iter_sel_end);
+    (void)CtTextIterUtil::extend_selection_if_collapsed_text(iter_sel_end, ctTreeIter, _pCtMainWin);
+
+    const int sel_start_offset = iter_sel_start.get_offset();
+    const int sel_end_offset = iter_sel_end.get_offset();
+
+    for (int offset = sel_start_offset; offset < sel_end_offset; ++offset) {
+        Gtk::TextIter it_sel_start = pTextBuffer->get_iter_at_offset(offset);
+        std::vector<Glib::RefPtr<Gtk::TextTag>> curr_tags = it_sel_start.get_tags();
+        for (auto& curr_tag : curr_tags) {
+            const Glib::ustring tag_name = curr_tag->property_name();
+            if ( (not dismiss_link and
+                   (str::startswith(tag_name, CtConst::TAG_WEIGHT_PREFIX) or
+                    str::startswith(tag_name, CtConst::TAG_FOREGROUND_PREFIX) or
+                    str::startswith(tag_name, CtConst::TAG_BACKGROUND_PREFIX) or
+                    str::startswith(tag_name, CtConst::TAG_STYLE_PREFIX) or
+                    str::startswith(tag_name, CtConst::TAG_UNDERLINE_PREFIX) or
+                    str::startswith(tag_name, CtConst::TAG_STRIKETHROUGH_PREFIX) or
+                    str::startswith(tag_name, CtConst::TAG_INDENT_PREFIX) or
+                    str::startswith(tag_name, CtConst::TAG_SCALE_PREFIX) or
+                    str::startswith(tag_name, CtConst::TAG_INVISIBLE_PREFIX) or
+                    str::startswith(tag_name, CtConst::TAG_JUSTIFICATION_PREFIX) or
+                    str::startswith(tag_name, CtConst::TAG_FAMILY_PREFIX)))
+                or
+                 (dismiss_link and str::startswith(tag_name, CtConst::TAG_LINK_PREFIX)) )
+            {
+                Gtk::TextIter it_sel_end = pTextBuffer->get_iter_at_offset(offset+1);
+                pTextBuffer->remove_tag(curr_tag, it_sel_start, it_sel_end);
+            }
+        }
+        Glib::RefPtr<Gtk::TextChildAnchor> pChildAnchor = it_sel_start.get_child_anchor();
+        if (pChildAnchor) {
+            CtAnchoredWidget* pCtAnchoredWidget = ctTreeIter.get_anchored_widget(pChildAnchor);
+            if (pCtAnchoredWidget) {
+                auto pCtImageAnchor = dynamic_cast<CtImageAnchor*>(pCtAnchoredWidget);
+                if (pCtImageAnchor and 0 != CtStrUtil::is_header_anchor_name(pCtImageAnchor->get_anchor_name())) {
+                    Gtk::TextIter iter_bound = it_sel_start;
+                    iter_bound.forward_char();
+                    pTextBuffer->erase(it_sel_start, iter_bound);
+                }
+            }
+        }
+    }
+    _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true/*new_machine_state*/);
+}
+
+// The Foreground Color Chooser Button was Pressed
+void CtActions::apply_tag_foreground()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    apply_tag(CtConst::TAG_FOREGROUND);
+}
+
+// The Background Color Chooser Button was Pressed
+void CtActions::apply_tag_background()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    apply_tag(CtConst::TAG_BACKGROUND);
+}
+
+// The Bold Button was Pressed
+void CtActions::apply_tag_bold()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    apply_tag(CtConst::TAG_WEIGHT, CtConst::TAG_PROP_VAL_HEAVY);
+}
+
+// The Italic Button was Pressed
+void CtActions::apply_tag_italic()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    apply_tag(CtConst::TAG_STYLE, CtConst::TAG_PROP_VAL_ITALIC);
+}
+
+// The Underline Button was Pressed
+void CtActions::apply_tag_underline()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    apply_tag(CtConst::TAG_UNDERLINE, CtConst::TAG_PROP_VAL_SINGLE);
+}
+
+// The Strikethrough Button was Pressed
+void CtActions::apply_tag_strikethrough()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    apply_tag(CtConst::TAG_STRIKETHROUGH, CtConst::TAG_PROP_VAL_TRUE);
+}
+
+//The Indent button was pressed
+void CtActions::apply_tag_indent()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    CtTextRange range = CtList{_pCtConfig, _curr_buffer()}.get_paragraph_iters();
+    if (not range.iter_start) return;
+
+    //Each time we increase indent, we'll add this much margin to the text
+    int newMargin = _find_previous_indent_margin() + 1;
+    apply_tag(CtConst::TAG_INDENT, std::to_string(newMargin), range.iter_start, range.iter_end);
+}
+
+//The 'unindent' button was pressed
+void CtActions::reduce_tag_indent()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    CtTextRange range = CtList{_pCtConfig, _curr_buffer()}.get_paragraph_iters();
+    if (not range.iter_start) return;
+
+    int newMargin = _find_previous_indent_margin() -1;
+    if (newMargin < 1) {
+        // just remove prev indent tag
+        _curr_buffer()->remove_tag_by_name("indent_1", range.iter_start, range.iter_end);
+    }
+    else {
+        apply_tag(CtConst::TAG_INDENT, std::to_string(newMargin), range.iter_start, range.iter_end);
+    }
+}
+
+//See if there's already an indent tag on the current text, & if so, return its numerical margin.
+//If not, return the default "zero margin" (i.e. the margin shown in the UI when there's no indentation)
+int CtActions::_find_previous_indent_margin()
+{
+    CtTextRange range = CtList{_pCtConfig, _curr_buffer()}.get_paragraph_iters();
+    std::vector<Glib::RefPtr<Gtk::TextTag>> curr_tags = range.iter_start.get_tags();
+    for (auto& curr_tag : curr_tags) {
+        Glib::ustring curr_tag_name = curr_tag->property_name();
+        if(str::startswith(curr_tag_name, CtConst::TAG_INDENT_PREFIX)) {
+            return std::stoi(curr_tag_name.substr(7, std::string::npos));
+        }
+    }
+    return 0;
+}
+
+void CtActions::_apply_tag_hN(const char* tagPropScaleVal)
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    CtTextRange range = CtList{_pCtConfig, _curr_buffer()}.get_paragraph_iters();
+    if (not range.iter_start) return;
+    apply_tag(CtConst::TAG_SCALE, tagPropScaleVal, range.iter_start, range.iter_end);
+}
+
+// The Small Button was Pressed
+void CtActions::apply_tag_small()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    apply_tag(CtConst::TAG_SCALE, CtConst::TAG_PROP_VAL_SMALL);
+}
+
+// The Superscript Button was Pressed
+void CtActions::apply_tag_superscript()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    apply_tag(CtConst::TAG_SCALE, CtConst::TAG_PROP_VAL_SUP);
+}
+
+// The Subscript Button was Pressed
+void CtActions::apply_tag_subscript()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    apply_tag(CtConst::TAG_SCALE, CtConst::TAG_PROP_VAL_SUB);
+}
+
+// The Monospace Button was Pressed
+void CtActions::apply_tag_monospace()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    apply_tag(CtConst::TAG_FAMILY, CtConst::TAG_PROP_VAL_MONOSPACE);
+}
+
+// Handler of the Bulleted List
+void CtActions::list_bulleted_handler()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    text_view_n_buffer_codebox_proof proof = _get_text_view_n_buffer_codebox_proof();
+    if (not proof.text_view->get_buffer()) return;
+    CtList{_pCtConfig, proof.text_view->get_buffer()}.list_handler(CtListType::Bullet);
+}
+
+// Handler of the Numbered List
+void CtActions::list_numbered_handler()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    text_view_n_buffer_codebox_proof proof = _get_text_view_n_buffer_codebox_proof();
+    if (not proof.text_view->get_buffer()) return;
+    CtList{_pCtConfig, proof.text_view->get_buffer()}.list_handler(CtListType::Number);
+}
+
+// Handler of the ToDo List
+void CtActions::list_todo_handler()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    text_view_n_buffer_codebox_proof proof = _get_text_view_n_buffer_codebox_proof();
+    if (not proof.text_view->get_buffer()) return;
+    CtList{_pCtConfig, proof.text_view->get_buffer()}.list_handler(CtListType::Todo);
+}
+
+// The Justify Left Button was Pressed
+void CtActions::apply_tag_justify_left()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    CtTextRange range = CtList{_pCtConfig, _curr_buffer()}.get_paragraph_iters();
+    if (not range.iter_start) return;
+    apply_tag(CtConst::TAG_JUSTIFICATION, CtConst::TAG_PROP_VAL_LEFT, range.iter_start, range.iter_end);
+}
+
+// The Justify Center Button was Pressed
+void CtActions::apply_tag_justify_center()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    CtTextRange range = CtList{_pCtConfig, _curr_buffer()}.get_paragraph_iters();
+    if (not range.iter_start) return;
+    apply_tag(CtConst::TAG_JUSTIFICATION, CtConst::TAG_PROP_VAL_CENTER, range.iter_start, range.iter_end);
+}
+
+// The Justify Right Button was Pressed
+void CtActions::apply_tag_justify_right()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    CtTextRange range = CtList{_pCtConfig, _curr_buffer()}.get_paragraph_iters();
+    if (not range.iter_start) return;
+    apply_tag(CtConst::TAG_JUSTIFICATION, CtConst::TAG_PROP_VAL_RIGHT, range.iter_start, range.iter_end);
+}
+
+// The Justify Fill Button was Pressed
+void CtActions::apply_tag_justify_fill()
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    CtTextRange range = CtList{_pCtConfig, _curr_buffer()}.get_paragraph_iters();
+    if (not range.iter_start) return;
+    apply_tag(CtConst::TAG_JUSTIFICATION, CtConst::TAG_PROP_VAL_FILL, range.iter_start, range.iter_end);
+}
+
+void CtActions::apply_tag(const Glib::ustring& tag_property,
+                          Glib::ustring property_value/*= ""*/,
+                          std::optional<Gtk::TextIter> iter_sel_start/*= std::nullopt*/,
+                          std::optional<Gtk::TextIter> iter_sel_end/*= std::nullopt*/,
+                          Glib::RefPtr<Gtk::TextBuffer> text_buffer/*= Glib::RefPtr<Gtk::TextBuffer>{}*/)
+{
+    if (_pCtMainWin->user_active() and !_is_curr_node_not_syntax_highlighting_or_error()) return;
+    if (not text_buffer) text_buffer = _curr_buffer();
+
+    int restore_cursor_offset = -1;
+    if (not iter_sel_start.has_value() or not iter_sel_end.has_value()) {
+        if (tag_property != CtConst::TAG_JUSTIFICATION) {
+            if (not _is_there_selected_node_or_error()) return;
+            if (not text_buffer->get_has_selection()) {
+                if (tag_property != CtConst::TAG_LINK) {
+                    restore_cursor_offset = text_buffer->get_insert()->get_iter().get_offset();
+                    if (not _pCtMainWin->apply_tag_try_automatic_bounds(text_buffer, text_buffer->get_insert()->get_iter())) {
+                        CtDialogs::warning_dialog(_("No Text is Selected."), *_pCtMainWin);
+                        return;
+                    }
+                }
+                else {
+                    Glib::ustring tag_property_value = CtMiscUtil::link_check_around_cursor(text_buffer);
+                    if (tag_property_value.empty()) {
+                        if (not _pCtMainWin->apply_tag_try_automatic_bounds(text_buffer, text_buffer->get_insert()->get_iter())) {
+                            Glib::ustring link_name = CtDialogs::img_n_entry_dialog(*_pCtMainWin, _("Link Name"), "", "ct_link_handle");
+                            if (link_name.empty()) return;
+                            int start_offset = text_buffer->get_insert()->get_iter().get_offset();
+                            text_buffer->insert_at_cursor(link_name);
+                            int end_offset = text_buffer->get_insert()->get_iter().get_offset();
+                            text_buffer->select_range(text_buffer->get_iter_at_offset(start_offset),
+                                                      text_buffer->get_iter_at_offset(end_offset));
+                        }
+                    }
+                    else {
+                        if (not _links_entries_pre_dialog(tag_property_value, _link_entry))
+                            return;
+                    }
+                }
+            }
+            Gtk::TextIter it_sel_start, it_sel_end;
+            text_buffer->get_selection_bounds(it_sel_start, it_sel_end);
+            iter_sel_start = it_sel_start;
+            iter_sel_end = it_sel_end;
+        }
+        else {
+            CtDialogs::warning_dialog(_("The Cursor is Not into a Paragraph."), *_pCtMainWin);
+            return;
+        }
+    }
+    if (not iter_sel_start.has_value() or not iter_sel_end.has_value()) {
+        spdlog::error("unexp no iter_sel");
+        return;
+    }
+    if (property_value.empty()) {
+        if (tag_property == CtConst::TAG_LINK) {
+            if (CtTextIterUtil::startswith_any(*iter_sel_start, CtConst::WEB_LINK_STARTERS)) {
+                _link_entry.type = CtLinkType::Webs;
+                _link_entry.webs = text_buffer->get_text(*iter_sel_start, *iter_sel_end);
+            }
+            int insert_offset = iter_sel_start->get_offset();
+            int bound_offset = iter_sel_end->get_offset();
+            Gtk::TreeModel::iterator sel_tree_iter;
+            if (_link_entry.node_id != -1)
+                sel_tree_iter = _pCtMainWin->get_tree_store().get_node_from_node_id(_link_entry.node_id);
+            if (not CtDialogs::link_handle_dialog(*_pCtMainWin, _("Insert/Edit Link"), sel_tree_iter, _link_entry))
+                return;
+            iter_sel_start = text_buffer->get_iter_at_offset(insert_offset);
+            iter_sel_end = text_buffer->get_iter_at_offset(bound_offset);
+            property_value = CtMiscUtil::get_link_property_from_entry(_link_entry);
+        }
+        else {
+            Glib::ustring& ret_colour = 'f' == tag_property[0] ? _pCtConfig->currColour_fg : _pCtConfig->currColour_bg;
+            const Glib::ustring title = 'f' == tag_property[0] ? _("Pick a Foreground Color") : _("Pick a Background Color");
+            CtDialogs::CtPickDlgState res{CtDialogs::CtPickDlgState::CALL_AGAIN};
+            while (CtDialogs::CtPickDlgState::CALL_AGAIN == res) {
+                res = CtDialogs::colour_pick_dialog(_pCtMainWin, title, ret_colour, true/*allow_remove_colour*/);
+            }
+            if (res == CtDialogs::CtPickDlgState::CANCEL) {
+                return;
+            }
+            if (res == CtDialogs::CtPickDlgState::REMOVE_COLOR) {
+                property_value = "-"; // don't use empty because `apply prev tag` command brings a color dialog again
+            }
+            else {
+                property_value = ret_colour;
+            }
+        }
+    }
+    const int sel_start_offset = iter_sel_start->get_offset();
+    const int sel_end_offset = iter_sel_end->get_offset();
+
+    bool toggle_off = false;
+    const bool is_toggleable_tag = (tag_property == CtConst::TAG_WEIGHT or
+                                    tag_property == CtConst::TAG_STYLE or
+                                    tag_property == CtConst::TAG_UNDERLINE or
+                                    tag_property == CtConst::TAG_STRIKETHROUGH or
+                                    tag_property == CtConst::TAG_FAMILY or
+                                    tag_property == CtConst::TAG_SCALE);
+    if (is_toggleable_tag and sel_start_offset < sel_end_offset) {
+        bool all_have_tag = true;
+        int check_count = 0;
+        const Glib::ustring tag_name_to_match = tag_property + "_" + property_value;
+        for (int offset = sel_start_offset; offset < sel_end_offset; ++offset) {
+            Gtk::TextIter it = text_buffer->get_iter_at_offset(offset);
+            gunichar c = it.get_char();
+            if (c == '\n' or c == '\r') {
+                continue;
+            }
+            check_count++;
+            std::vector<Glib::RefPtr<Gtk::TextTag>> curr_tags = it.get_tags();
+            bool has_this_tag = false;
+            for (auto& curr_tag : curr_tags) {
+                if (curr_tag->property_name() == tag_name_to_match) {
+                    has_this_tag = true;
+                    break;
+                }
+            }
+            if (not has_this_tag) {
+                all_have_tag = false;
+                break;
+            }
+        }
+        if (check_count > 0 and all_have_tag) {
+            toggle_off = true;
+        }
+    }
+
+    if (toggle_off) {
+        property_value.clear();
+    }
+
+    // if there's already a tag about this property, we remove it before apply the new one
+    for (int offset = sel_start_offset; offset < sel_end_offset; ++offset) {
+        Gtk::TextIter it_sel_start = text_buffer->get_iter_at_offset(offset);
+        std::vector<Glib::RefPtr<Gtk::TextTag>> curr_tags = it_sel_start.get_tags();
+        for (auto& curr_tag : curr_tags) {
+            Glib::ustring curr_tag_name = curr_tag->property_name();
+            //#print tag_name
+            if (curr_tag_name.empty()) continue;
+            Gtk::TextIter it_sel_end = text_buffer->get_iter_at_offset(offset+1);
+            if ((tag_property == CtConst::TAG_WEIGHT and str::startswith(curr_tag_name, CtConst::TAG_WEIGHT_PREFIX))
+               or (tag_property == CtConst::TAG_STYLE and str::startswith(curr_tag_name, CtConst::TAG_STYLE_PREFIX))
+               or (tag_property == CtConst::TAG_UNDERLINE and str::startswith(curr_tag_name, CtConst::TAG_UNDERLINE_PREFIX))
+               or (tag_property == CtConst::TAG_STRIKETHROUGH and str::startswith(curr_tag_name, CtConst::TAG_STRIKETHROUGH_PREFIX))
+               or (tag_property == CtConst::TAG_FAMILY and str::startswith(curr_tag_name, CtConst::TAG_FAMILY_PREFIX)))
+            {
+                text_buffer->remove_tag(curr_tag, it_sel_start, it_sel_end);
+            }
+            else if (tag_property == CtConst::TAG_INDENT and str::startswith(curr_tag_name, CtConst::TAG_INDENT_PREFIX)){
+                //Remove old tag but don't reset the value (since we're increasing previous indent to a new value, not toggling it off)
+                text_buffer->remove_tag(curr_tag, it_sel_start, it_sel_end);
+            }
+            else if (tag_property == CtConst::TAG_SCALE and str::startswith(curr_tag_name, CtConst::TAG_SCALE_PREFIX)) {
+                text_buffer->remove_tag(curr_tag, it_sel_start, it_sel_end);
+            }
+            else if (tag_property == CtConst::TAG_JUSTIFICATION and str::startswith(curr_tag_name, CtConst::TAG_JUSTIFICATION_PREFIX)) {
+                text_buffer->remove_tag(curr_tag, it_sel_start, it_sel_end);
+            }
+            else if ((tag_property == CtConst::TAG_FOREGROUND and str::startswith(curr_tag_name, CtConst::TAG_FOREGROUND_PREFIX))
+                  or (tag_property == CtConst::TAG_BACKGROUND and str::startswith(curr_tag_name, CtConst::TAG_BACKGROUND_PREFIX))
+                  or (tag_property == CtConst::TAG_LINK and str::startswith(curr_tag_name, CtConst::TAG_LINK_PREFIX)))
+            {
+                text_buffer->remove_tag(curr_tag, it_sel_start, it_sel_end);
+            }
+        }
+    }
+    // avoid adding invalid color
+    if (tag_property == CtConst::TAG_FOREGROUND or tag_property == CtConst::TAG_BACKGROUND) {
+        if (property_value == "-") {
+            property_value.clear();
+        }
+    }
+
+    if (not property_value.empty()) {
+        text_buffer->apply_tag_by_name(_pCtMainWin->get_text_tag_name_exist_or_create(tag_property, property_value),
+                                       text_buffer->get_iter_at_offset(sel_start_offset),
+                                       text_buffer->get_iter_at_offset(sel_end_offset));
+    }
+
+    if (restore_cursor_offset != -1) { // remove auto selection and restore cursor placement
+        text_buffer->place_cursor(text_buffer->get_iter_at_offset(restore_cursor_offset));
+    }
+    if (_pCtMainWin->user_active()) {
+        _save_tags_at_cursor_as_latest(text_buffer, sel_start_offset);
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true/*new_machine_state*/);
+    }
+}
+
+CtActions::text_view_n_buffer_codebox_proof CtActions::_get_text_view_n_buffer_codebox_proof()
+{
+    if (auto pCodebox = _codebox_in_use()) {
+        return text_view_n_buffer_codebox_proof{
+            &pCodebox->get_text_view(),
+            pCodebox->get_syntax_highlighting(),
+            pCodebox,
+            nullptr};
+    }
+    if (auto pTable = dynamic_cast<CtTableHeavy*>(_table_in_use())) {
+        return text_view_n_buffer_codebox_proof{
+            &pTable->curr_cell_text_view(),
+            CtConst::PLAIN_TEXT_ID,
+            nullptr,
+            pTable};
+    }
+    return text_view_n_buffer_codebox_proof{
+        &_pCtMainWin->get_text_view(),
+        _pCtMainWin->curr_tree_iter().get_node_syntax_highlighting(),
+        nullptr,
+        nullptr};
+}
+
+int CtActions::get_word_count_for_statusbar()
+{
+    auto get_words_count_for_buffer = [](const Glib::RefPtr<Gtk::TextBuffer>& text_buffer)->int {
+        if (not text_buffer) {
+            return 0;
+        }
+        Gtk::TextIter iter_sel_start;
+        Gtk::TextIter iter_sel_end;
+        if (text_buffer->get_selection_bounds(iter_sel_start, iter_sel_end)) {
+            return CtTextIterUtil::get_words_count(text_buffer->get_text(iter_sel_start, iter_sel_end, true));
+        }
+        return CtTextIterUtil::get_words_count(text_buffer->get_text(true));
+    };
+
+    auto get_words_count_for_table = [get_words_count_for_buffer](CtTableCommon* pTable)->int {
+        if (not pTable) {
+            return 0;
+        }
+        if (auto pTableHeavy = dynamic_cast<CtTableHeavy*>(pTable)) {
+            const auto curr_cell_buffer = pTableHeavy->curr_cell_text_view().get_buffer();
+            return get_words_count_for_buffer(curr_cell_buffer);
+        }
+        if (auto pTableLight = dynamic_cast<CtTableLight*>(pTable)) {
+            return CtTextIterUtil::get_words_count(pTableLight->get_curr_cell_text());
+        }
+        return 0;
+    };
+
+    if (auto pCodebox = _codebox_in_use()) {
+        return get_words_count_for_buffer(pCodebox->get_buffer());
+    }
+    if (auto pTable = _table_in_use()) {
+        return get_words_count_for_table(pTable);
+    }
+
+    const auto text_buffer = _pCtMainWin->get_text_view().get_buffer();
+    if (not text_buffer) {
+        return 0;
+    }
+
+    int words_count = get_words_count_for_buffer(text_buffer);
+    Gtk::TextIter iter_sel_start;
+    Gtk::TextIter iter_sel_end;
+    if (text_buffer->get_selection_bounds(iter_sel_start, iter_sel_end) and
+        iter_sel_start.get_offset() + 1 == iter_sel_end.get_offset())
+    {
+        Glib::RefPtr<Gtk::TextChildAnchor> pChildAnchor = iter_sel_start.get_child_anchor();
+        if (pChildAnchor) {
+            CtTreeIter treeIter = _pCtMainWin->curr_tree_iter();
+            if (treeIter) {
+                CtAnchoredWidget* pAnchoredWidget = treeIter.get_anchored_widget(pChildAnchor);
+                if (auto pCodebox = dynamic_cast<CtCodebox*>(pAnchoredWidget)) {
+                    words_count = get_words_count_for_buffer(pCodebox->get_buffer());
+                }
+                else if (auto pTable = dynamic_cast<CtTableCommon*>(pAnchoredWidget)) {
+                    words_count = get_words_count_for_table(pTable);
+                }
+                else {
+                    // Single-char anchor selection of non-text widgets must not report 0.
+                    words_count = CtTextIterUtil::get_words_count(text_buffer->get_text(true));
+                }
+            }
+        }
+    }
+
+    return words_count;
+}
+
+CtCodebox* CtActions::_codebox_in_use()
+{
+    if (not curr_codebox_anchor) return nullptr;
+    if (not _curr_buffer()) return nullptr;
+    Gtk::TextIter iter_sel_start = _curr_buffer()->get_insert()->get_iter();
+    auto widgets = _pCtMainWin->curr_tree_iter().get_anchored_widgets(iter_sel_start.get_offset(), iter_sel_start.get_offset());
+    if (widgets.empty()) return nullptr;
+    if (auto pCtCodebox = dynamic_cast<CtCodebox*>(widgets.front())) {
+        return pCtCodebox;
+    }
+    return nullptr;
+}
+
+CtTableCommon* CtActions::_table_in_use()
+{
+    CtTreeIter tree_iter = _pCtMainWin->curr_tree_iter();
+    if (not tree_iter) return nullptr;
+
+    const auto anchored_widgets = tree_iter.get_anchored_widgets_fast();
+    for (CtAnchoredWidget* pAnchoredWidget : anchored_widgets) {
+        if (auto pTableHeavy = dynamic_cast<CtTableHeavy*>(pAnchoredWidget)) {
+            if (pTableHeavy->curr_cell_text_view().mm().has_focus()) {
+                return pTableHeavy;
+            }
+        }
+        else if (auto pTableLight = dynamic_cast<CtTableLight*>(pAnchoredWidget)) {
+            if (pTableLight->has_focus_or_active_edit()) {
+                return pTableLight;
+            }
+        }
+    }
+
+    if (not _curr_buffer()) return nullptr;
+    Gtk::TextIter iter_sel_start;
+    Gtk::TextIter iter_sel_end;
+    if (_curr_buffer()->get_selection_bounds(iter_sel_start, iter_sel_end) and
+        iter_sel_start.get_offset() + 1 == iter_sel_end.get_offset())
+    {
+        if (Glib::RefPtr<Gtk::TextChildAnchor> pChildAnchor = iter_sel_start.get_child_anchor()) {
+            if (CtAnchoredWidget* pWidget = tree_iter.get_anchored_widget(pChildAnchor)) {
+                if (auto pCtTable = dynamic_cast<CtTableCommon*>(pWidget)) {
+                    return pCtTable;
+                }
+            }
+        }
+    }
+
+    Gtk::TextIter insert_iter = _curr_buffer()->get_insert()->get_iter();
+    auto widgets = tree_iter.get_anchored_widgets(insert_iter.get_offset(), insert_iter.get_offset());
+    if (widgets.empty()) return nullptr;
+    if (auto pCtTable = dynamic_cast<CtTableCommon*>(widgets.front())) {
+        return pCtTable;
+    }
+    return nullptr;
+}
+
+// Prepare Global Links Variables for Dialog
+bool CtActions::_links_entries_pre_dialog(const Glib::ustring& curr_link, CtLinkEntry& link_entry)
+{
+    const CtLinkEntry new_entry = CtMiscUtil::get_link_entry_from_property(curr_link);
+    if (CtLinkType::None == new_entry.type) {
+        CtDialogs::error_dialog(str::format("Tag Name Not Recognized! (%s)", str::xml_escape(curr_link)), *_pCtMainWin);
+        link_entry.type = CtLinkType::Webs;
+        return false;
+    }
+    link_entry = new_entry;
+    return true;
+}
+

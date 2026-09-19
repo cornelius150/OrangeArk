@@ -1,0 +1,475 @@
+/*
+ * tests_lists.cpp
+ *
+ * Copyright 2009-2026
+ * Giuseppe Penone <giuspen@gmail.com>
+ * Evgenii Gurianov <https://github.com/txe>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ */
+
+#include "ct_misc_utils.h"
+#include "ct_list.h"
+#include "ct_config.h"
+#include "tests_common.h"
+#include "ct_export2html.h"
+
+const Glib::ustring bufferContent_1{
+    "- primo elemento" _NL              // 0
+    "- secondo elemento" _NL            // 17
+    "   su più righe" _NL               // 36
+    "   → terzo elemento indentato" _NL // 52
+    "   → quarto su" _NL                // 82
+    "      più 1" _NL                   // 97
+    "      più 2" _NL                   // 109
+    "      più 3" _NL                   // 121
+    "      ⇒ ancora un livello" _NL    // 133
+    "         su più righe" _NL         // 159
+    "      ⇒ stesso livello" _NL        // 181
+    "         • ancora uno avanti" _NL  // 204
+    _NL                                 // 233
+    "1. primo elemento" _NL             // 234
+    "2. secondo elemento" _NL           // 252
+    "   su più righe" _NL               // 272
+    "   1) terzo indentato" _NL         // 288
+    "   2) quarto su" _NL               // 310
+    "      più 1" _NL                   // 326
+    "      più 2" _NL                   // 338
+    "      1- ancora un livello" _NL    // 350
+    "         1> ancora uno avanti"};   // 377
+
+const Glib::ustring bufferContent_2{
+    "ciao" _NL                          // 0
+    _NL                                 // 5
+    "- primo elemento con tag" _NL      // 6
+    "- secondo elemento" _NL};          // 31
+
+TEST(ListsGroup, CtListInfo_2)
+{
+    Glib::init();
+    auto pTextTagTable = Gtk::TextTagTable::create();
+    // I'm struggling to Glib::wrap the GtkSourceBuffer from here, this is otherwise incorrect and should
+    // never be used in application code as all text buffers must be source buffers
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = Gtk::TextBuffer::create(pTextTagTable);
+    pTextBuffer->set_text(bufferContent_2);
+    const std::string tagName{CtConst::TAG_WEIGHT + CtConst::CHAR_USCORE + CtConst::TAG_PROP_VAL_HEAVY};
+    auto pTextTag = Gtk::TextTag::create(tagName);
+#if GTKMM_MAJOR_VERSION >= 4
+    pTextTag->property_weight() = Pango::Weight::HEAVY;
+#else
+    pTextTag->property_weight() = Pango::Weight::WEIGHT_HEAVY;
+#endif
+    pTextTagTable->add(pTextTag);
+    pTextBuffer->apply_tag_by_name(tagName,
+                                   pTextBuffer->get_iter_at_offset(23),
+                                   pTextBuffer->get_iter_at_offset(26));
+
+    CtConfig* pCtConfig = CtConfig::GetCtConfig();
+    CtList ct_list{pCtConfig, pTextBuffer};
+
+    CtListInfo curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(0));
+    ASSERT_EQ(CtListType::None, curr_list_info.type);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(6));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(0, curr_list_info.level);
+    ASSERT_EQ(6, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(31));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(0, curr_list_info.level);
+    ASSERT_EQ(31, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    Glib::ustring out_html = CtExport2Html::html_process_slot(pCtConfig,
+                                                              nullptr/*pCtMainWin*/,
+                                                              0, bufferContent_2.size()-1,
+                                                              pTextBuffer,
+                                                              false/*single_file*/);
+    ASSERT_STREQ("ciao\n<ul><li>primo elemento <strong>con</strong> tag</li><li>secondo elemento</li></ul>", out_html.c_str());
+}
+
+TEST(ListsGroup, CtListInfo_1)
+{
+    Glib::init();
+    // I'm struggling to Glib::wrap the GtkSourceBuffer from here, this is otherwise incorrect and should
+    // never be used in application code as all text buffers must be source buffers
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = Gtk::TextBuffer::create();
+    pTextBuffer->set_text(bufferContent_1);
+    CtConfig* pCtConfig = CtConfig::GetCtConfig();
+    CtList ct_list{pCtConfig, pTextBuffer};
+
+    CtListInfo curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(0));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(0, curr_list_info.level);
+    ASSERT_EQ(0, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(17));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(0, curr_list_info.level);
+    ASSERT_EQ(17, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(36));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(0, curr_list_info.level);
+    ASSERT_EQ(17, curr_list_info.startoffs);
+    ASSERT_EQ(1, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(52));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(1, curr_list_info.level);
+    ASSERT_EQ(52, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(82));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(1, curr_list_info.level);
+    ASSERT_EQ(82, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(97));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(1, curr_list_info.level);
+    ASSERT_EQ(82, curr_list_info.startoffs);
+    ASSERT_EQ(1, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(109));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(1, curr_list_info.level);
+    ASSERT_EQ(82, curr_list_info.startoffs);
+    ASSERT_EQ(2, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(121));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(1, curr_list_info.level);
+    ASSERT_EQ(82, curr_list_info.startoffs);
+    ASSERT_EQ(3, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(133));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(2, curr_list_info.level);
+    ASSERT_EQ(133, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(159));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(2, curr_list_info.level);
+    ASSERT_EQ(133, curr_list_info.startoffs);
+    ASSERT_EQ(1, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(181));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(2, curr_list_info.level);
+    ASSERT_EQ(181, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(204));
+    ASSERT_EQ(CtListType::Bullet, curr_list_info.type);
+    ASSERT_EQ(3, curr_list_info.level);
+    ASSERT_EQ(204, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(233));
+    ASSERT_EQ(CtListType::None, curr_list_info.type);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(234));
+    ASSERT_EQ(CtListType::Number, curr_list_info.type);
+    ASSERT_EQ(0, curr_list_info.level);
+    ASSERT_EQ(1, curr_list_info.num_seq);
+    ASSERT_EQ(234, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(252));
+    ASSERT_EQ(CtListType::Number, curr_list_info.type);
+    ASSERT_EQ(0, curr_list_info.level);
+    ASSERT_EQ(2, curr_list_info.num_seq);
+    ASSERT_EQ(252, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(272));
+    ASSERT_EQ(CtListType::Number, curr_list_info.type);
+    ASSERT_EQ(0, curr_list_info.level);
+    ASSERT_EQ(2, curr_list_info.num_seq);
+    ASSERT_EQ(252, curr_list_info.startoffs);
+    ASSERT_EQ(1, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(288));
+    ASSERT_EQ(CtListType::Number, curr_list_info.type);
+    ASSERT_EQ(1, curr_list_info.level);
+    ASSERT_EQ(1, curr_list_info.num_seq);
+    ASSERT_EQ(288, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(310));
+    ASSERT_EQ(CtListType::Number, curr_list_info.type);
+    ASSERT_EQ(1, curr_list_info.level);
+    ASSERT_EQ(2, curr_list_info.num_seq);
+    ASSERT_EQ(310, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(326));
+    ASSERT_EQ(CtListType::Number, curr_list_info.type);
+    ASSERT_EQ(1, curr_list_info.level);
+    ASSERT_EQ(2, curr_list_info.num_seq);
+    ASSERT_EQ(310, curr_list_info.startoffs);
+    ASSERT_EQ(1, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(338));
+    ASSERT_EQ(CtListType::Number, curr_list_info.type);
+    ASSERT_EQ(1, curr_list_info.level);
+    ASSERT_EQ(2, curr_list_info.num_seq);
+    ASSERT_EQ(310, curr_list_info.startoffs);
+    ASSERT_EQ(2, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(350));
+    ASSERT_EQ(CtListType::Number, curr_list_info.type);
+    ASSERT_EQ(2, curr_list_info.level);
+    ASSERT_EQ(1, curr_list_info.num_seq);
+    ASSERT_EQ(350, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    curr_list_info = ct_list.get_paragraph_list_info(pTextBuffer->get_iter_at_offset(377));
+    ASSERT_EQ(CtListType::Number, curr_list_info.type);
+    ASSERT_EQ(3, curr_list_info.level);
+    ASSERT_EQ(1, curr_list_info.num_seq);
+    ASSERT_EQ(377, curr_list_info.startoffs);
+    ASSERT_EQ(0, curr_list_info.count_nl);
+
+    Glib::ustring out_html = CtExport2Html::html_process_slot(pCtConfig,
+                                                              nullptr/*pCtMainWin*/,
+                                                              0, bufferContent_1.size()-1,
+                                                              pTextBuffer,
+                                                              false/*single_file*/);
+    ASSERT_STREQ("<ul><li>primo elemento</li><li>secondo elemento su pi\xC3\xB9 righe<ul><li>terzo elemento indentato</li><li>quarto su pi\xC3\xB9 1 pi\xC3\xB9 2 pi\xC3\xB9 3<ul><li>ancora un livello su pi\xC3\xB9 righe</li><li>stesso livello<ul><li>ancora uno avanti</li></ul></li></ul></li></ul></li></ul>\n<ol><li>primo elemento</li><li>secondo elemento su pi\xC3\xB9 righe<ol><li>terzo indentato</li><li>quarto su pi\xC3\xB9 1 pi\xC3\xB9 2<ol><li>ancora un livello<ol><li>ancora uno avant</li></ol></li></ol></li></ol></li></ol>", out_html.c_str());
+}
+
+TEST(ListsGroup, RenumberFollowingNumberedItems)
+{
+    Glib::init();
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = Gtk::TextBuffer::create();
+    const Glib::ustring initial_text{
+        "1) first" _NL
+        "2) second" _NL
+        _NL
+        "4) third" _NL
+        "5) fourth"};
+    pTextBuffer->set_text(initial_text);
+
+    CtConfig* pCtConfig = CtConfig::GetCtConfig();
+    CtList ct_list{pCtConfig, pTextBuffer};
+
+    // iter_from is on line 2 (the empty line)
+    Gtk::TextIter iter_from = pTextBuffer->get_iter_at_line(2);
+    ct_list.renumber_following_numbered_items(iter_from, 3/*start_num*/, 0/*level*/);
+
+    const Glib::ustring expected_text{
+        "1) first" _NL
+        "2) second" _NL
+        _NL
+        "3) third" _NL
+        "4) fourth"};
+    ASSERT_STREQ(expected_text.c_str(), pTextBuffer->get_text().c_str());
+}
+
+TEST(ListsGroup, InsertMiddleNumberedItem)
+{
+    Glib::init();
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = Gtk::TextBuffer::create();
+    const Glib::ustring initial_text{
+        "1) first" _NL
+        "2) second" _NL
+        "3) third" _NL
+        "   third bis" _NL
+        "4) fourth"};
+    pTextBuffer->set_text(initial_text);
+
+    CtConfig* pCtConfig = CtConfig::GetCtConfig();
+    CtList ct_list{pCtConfig, pTextBuffer};
+
+    // Simulate pressing Enter at end of "2) second":
+    // 1) GTK inserts newline
+    Gtk::TextIter iter_insert = pTextBuffer->get_iter_at_line(2);
+    pTextBuffer->insert(iter_insert, "\n");
+    // 2) Our handler inserts "3) " and renumbers following
+    iter_insert = pTextBuffer->get_iter_at_line(2);
+    pTextBuffer->insert(iter_insert, "3) ");
+    Gtk::TextIter iter_start = pTextBuffer->get_iter_at_line(2);
+    ct_list.char_iter_forward_to_newline(iter_start);
+    ct_list.renumber_following_numbered_items(iter_start, 4/*start_num*/, 0/*level*/);
+
+    const Glib::ustring expected_text{
+        "1) first" _NL
+        "2) second" _NL
+        "3) " _NL
+        "4) third" _NL
+        "   third bis" _NL
+        "5) fourth"};
+    ASSERT_STREQ(expected_text.c_str(), pTextBuffer->get_text().c_str());
+}
+
+TEST(ListsGroup, SelectionIndentOnlyLists)
+{
+    Glib::init();
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = Gtk::TextBuffer::create();
+    const Glib::ustring initial_text{
+        "- one" _NL
+        "- two" _NL
+        "- three" _NL
+        "   \xE2\x86\x92 three lv2.1" _NL
+        "   \xE2\x86\x92 three lv2.2" _NL
+        "- four"};
+    pTextBuffer->set_text(initial_text);
+
+    CtConfig* pCtConfig = CtConfig::GetCtConfig();
+    CtList ct_list{pCtConfig, pTextBuffer};
+
+    // Select all lines
+    Gtk::TextIter sel_start = pTextBuffer->begin();
+    Gtk::TextIter sel_end = pTextBuffer->end();
+
+    // Tab: increase level of all list items
+    bool res = ct_list.selection_indent(sel_start, sel_end, true/*level_increase*/);
+    ASSERT_TRUE(res);
+
+    const Glib::ustring expected_tab_text{
+        "   \xE2\x86\x92 one" _NL
+        "   \xE2\x86\x92 two" _NL
+        "   \xE2\x86\x92 three" _NL
+        "      \xE2\x87\x92 three lv2.1" _NL
+        "      \xE2\x87\x92 three lv2.2" _NL
+        "   \xE2\x86\x92 four"};
+    ASSERT_STREQ(expected_tab_text.c_str(), pTextBuffer->get_text().c_str());
+
+    // Shift+Tab: decrease level of all list items back to original
+    sel_start = pTextBuffer->begin();
+    sel_end = pTextBuffer->end();
+    res = ct_list.selection_indent(sel_start, sel_end, false/*level_increase*/);
+    ASSERT_TRUE(res);
+    ASSERT_STREQ(initial_text.c_str(), pTextBuffer->get_text().c_str());
+}
+
+TEST(ListsGroup, SelectionIndentMixedListAndText)
+{
+    Glib::init();
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = Gtk::TextBuffer::create();
+    const Glib::ustring initial_text{
+        "some text which is not part of a list" _NL
+        "- one" _NL
+        "- two first line" _NL
+        "   two second line" _NL
+        "- three" _NL
+        "   \xE2\x86\x92 three dot one indented one more level" _NL
+        "   \xE2\x86\x92 three dot two indented one more level, first" _NL
+        "      and second of three dot two" _NL
+        "other text that is not part of the list"};
+    pTextBuffer->set_text(initial_text);
+
+    CtConfig* pCtConfig = CtConfig::GetCtConfig();
+    pCtConfig->spacesInsteadTabs = false;
+    CtList ct_list{pCtConfig, pTextBuffer};
+
+    // Select all lines
+    Gtk::TextIter sel_start = pTextBuffer->begin();
+    Gtk::TextIter sel_end = pTextBuffer->end();
+
+    // Tab: increase list levels and insert \t on non-list lines
+    bool res = ct_list.selection_indent(sel_start, sel_end, true/*level_increase*/);
+    ASSERT_TRUE(res);
+
+    const Glib::ustring expected_tab_text{
+        "\tsome text which is not part of a list" _NL
+        "   \xE2\x86\x92 one" _NL
+        "   \xE2\x86\x92 two first line" _NL
+        "      two second line" _NL
+        "   \xE2\x86\x92 three" _NL
+        "      \xE2\x87\x92 three dot one indented one more level" _NL
+        "      \xE2\x87\x92 three dot two indented one more level, first" _NL
+        "         and second of three dot two" _NL
+        "\tother text that is not part of the list"};
+    ASSERT_STREQ(expected_tab_text.c_str(), pTextBuffer->get_text().c_str());
+
+    // Shift+Tab: decrease list levels and remove \t on non-list lines
+    sel_start = pTextBuffer->begin();
+    sel_end = pTextBuffer->end();
+    res = ct_list.selection_indent(sel_start, sel_end, false/*level_increase*/);
+    ASSERT_TRUE(res);
+    ASSERT_STREQ(initial_text.c_str(), pTextBuffer->get_text().c_str());
+}
+
+TEST(ListsGroup, SelectionIndentMixedSpaces)
+{
+    Glib::init();
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = Gtk::TextBuffer::create();
+    const Glib::ustring initial_text{
+        "intro text" _NL
+        "- item one" _NL
+        "outro text"};
+    pTextBuffer->set_text(initial_text);
+
+    CtConfig* pCtConfig = CtConfig::GetCtConfig();
+    pCtConfig->spacesInsteadTabs = true;
+    pCtConfig->tabsWidth = 4;
+    CtList ct_list{pCtConfig, pTextBuffer};
+
+    Gtk::TextIter sel_start = pTextBuffer->begin();
+    Gtk::TextIter sel_end = pTextBuffer->end();
+
+    // Tab: list item gets 3 spaces + new bullet, non-list lines get 4 spaces
+    bool res = ct_list.selection_indent(sel_start, sel_end, true/*level_increase*/);
+    ASSERT_TRUE(res);
+
+    const Glib::ustring expected_tab_text{
+        "    intro text" _NL
+        "   \xE2\x86\x92 item one" _NL
+        "    outro text"};
+    ASSERT_STREQ(expected_tab_text.c_str(), pTextBuffer->get_text().c_str());
+
+    // Shift+Tab: returns back
+    sel_start = pTextBuffer->begin();
+    sel_end = pTextBuffer->end();
+    res = ct_list.selection_indent(sel_start, sel_end, false/*level_increase*/);
+    ASSERT_TRUE(res);
+    ASSERT_STREQ(initial_text.c_str(), pTextBuffer->get_text().c_str());
+    pCtConfig->spacesInsteadTabs = false;
+}
+
+TEST(ListsGroup, SelectionIndentPartialFirstLine)
+{
+    Glib::init();
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = Gtk::TextBuffer::create();
+    const Glib::ustring initial_text{
+        "   \xE2\x86\x92 item one" _NL
+        "   \xE2\x86\x92 item two"};
+    pTextBuffer->set_text(initial_text);
+
+    CtConfig* pCtConfig = CtConfig::GetCtConfig();
+    CtList ct_list{pCtConfig, pTextBuffer};
+
+    // Selection starts AFTER the leading spaces + bullet on line 0 (offset 7)
+    Gtk::TextIter sel_start = pTextBuffer->get_iter_at_offset(7);
+    Gtk::TextIter sel_end = pTextBuffer->end();
+
+    bool res = ct_list.selection_indent(sel_start, sel_end, true/*level_increase*/);
+    ASSERT_TRUE(res);
+
+    const Glib::ustring expected_tab_text{
+        "      \xE2\x87\x92 item one" _NL
+        "      \xE2\x87\x92 item two"};
+    ASSERT_STREQ(expected_tab_text.c_str(), pTextBuffer->get_text().c_str());
+}

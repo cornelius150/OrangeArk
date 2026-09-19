@@ -1,0 +1,3468 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# seanlee <icarusean@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2025-12-25 19:08+0900\n"
+"Last-Translator: sean.lee <icarusean@gmail.com>\n"
+"Language-Team: Korean\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "Image Format Not Recognized"
+msgstr "알 수 없는 이미지 형식입니다"
+
+msgid "Insert Table"
+msgstr "표 삽입"
+
+msgid "CSV File"
+msgstr "CSV 파일"
+
+msgid "Insert a CodeBox"
+msgstr "코드상자 삽입"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "첨부 파일의 최대 용량은 %s MB입니다."
+
+msgid "Do you want to Continue?"
+msgstr "실행 하시겠습니까?"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "'%s' 노트의 내용을 가져올수 없습니다"
+
+msgid "Special Characters"
+msgstr "특수 문자"
+
+msgid "Tabs Replaced"
+msgstr "탭을 변환했습니다"
+
+msgid "Lines Stripped"
+msgstr "행 삭제 작업을 수행"
+
+msgid "No Text is Selected."
+msgstr "텍스트가 선택되어 있지 않습니다."
+
+msgid "OliveSet File"
+msgstr "OliveSet 파일"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"사용 중인 파일/폴더는 덮어쓸 수 없습니다!\n"
+"다른 이름이나 위치를 사용하세요."
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"'%s' 폴더가 '%s'에 이미 존재합니다.\n"
+"<b>교체하시겠습니까?</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"'%s' 파일이 '%s'에 이미 존재합니다.\n"
+"<b>교체하시겠습니까?</b>"
+
+msgid "PDF File"
+msgstr "PDF 파일"
+
+msgid "Plain Text Document"
+msgstr "텍스트 형식 (확장자 지정)"
+
+msgid "Preferences File"
+msgstr "설정 파일"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "패널에 시스템 트레이가 표시되어 있습니까?"
+
+msgid "Your system does not support the System Tray"
+msgstr "시스템 트레이를 지원하지 않습니다"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr "변경 사항은 OliveSet를 재 실행한 후에 적용됩니다."
+
+msgid "Replace in Current Node"
+msgstr "이 노트를 치환"
+
+msgid "Search in Current Node"
+msgstr "이 노트를 검색"
+
+msgid "Matches"
+msgstr "들 일치"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "<b>'%s'을(를) 찾을 수 없습니다</b>"
+
+msgid "Replace in Multiple Nodes"
+msgstr "모든 노트를 치환"
+
+msgid "Search in Multiple Nodes"
+msgstr "여러 노트에서 검색"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "아직이 세션에서는 검색이 실행되고 있지 않습니다."
+
+msgid "Tags"
+msgstr "태그"
+
+msgid ": "
+msgstr ": "
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "아직이 세션에서 실행 된 서식은 없습니다."
+
+msgid "Link Name"
+msgstr "링크 이름"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "커서가 단락에 없습니다."
+
+msgid "Insert/Edit Link"
+msgstr "링크를 삽입/편집"
+
+msgid "Pick a Foreground Color"
+msgstr "글자 색을 선택"
+
+msgid "Pick a Background Color"
+msgstr "배경색을 선택"
+
+msgid "Checking for Newer Version..."
+msgstr "새 버전을 확인하고 있습니다 ..."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr "새로운 버전 정보를 확인할 수 없습니다 - 나중에 다시 확인하십시오."
+
+msgid "A Newer Version Is Available!"
+msgstr "새로운 버전이 있습니다!"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "최신 버전을 사용하고 있습니다."
+
+msgid "You Are Using a Development Version."
+msgstr "개발 버전을 사용하고 있습니다."
+
+msgid "Who is the Parent?"
+msgstr "부모 노트 어떤것입니까?"
+
+msgid "The Tree Root"
+msgstr "Tree의 루트"
+
+msgid "The Selected Node"
+msgstr "선택된 노트"
+
+msgid "Rename"
+msgstr "이름 변경"
+
+msgid "PNG Image"
+msgstr "PNG 이미지"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "'%s' 로 내보내기에 실패했습니다"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "폴더 '%s' 잘못된 링크입니다."
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "파일 '%s' 잘못된 링크입니다."
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "폴더 '%s' 잘못된 링크입니다"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "링크 참조는 이미 존재하지 않는 노트입니다 (Id = %s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "'%s' 앵커 이름은 찾을 수 없습니다"
+
+msgid "Edit CodeBox"
+msgstr "코드 상자를 편집"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"'%s' 명령을 연결하십시오.\n"
+"설정 대화 상자에서 설정할 수 있습니다."
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr ""
+"'xterm'패키지를 설치하거나 설정 대화 상자에서 다른 터미널을 구성하십시오."
+
+msgid "Edit Table Properties"
+msgstr "표 속성 수정"
+
+msgid "Insert Anchor"
+msgstr "앵커 삽입"
+
+msgid "Edit Anchor"
+msgstr "앵커 편집"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "읽기 전용 노트에서 첨부 파일을 편집 할 수 없습니다."
+
+msgid "Embedded File Automatically Updated:"
+msgstr "첨부 파일은 자동 업데이트되었습니다:"
+
+msgid "No Node is Selected"
+msgstr "노트가 선택되어 있지 않습니다"
+
+msgid "The Tree is Empty!"
+msgstr "Tree에 노트가 없습니다!"
+
+msgid "The Selected Node is Read Only."
+msgstr "선택 노트는 읽기 전용입니다."
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "이 기능은 서식있는 텍스트 노트에서만 사용할 수 있습니다."
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr "이 기능은 자동 구문 강조 노트에서는 사용할 수 없습니다."
+
+msgid "No Table is Selected."
+msgstr "텍스트가 선택되어 있지 않습니다."
+
+msgid "No CodeBox is Selected."
+msgstr "코드 상자가 선택되어 있지 않습니다."
+
+msgid "New Child Node Properties"
+msgstr "새 하위 노트의 속성"
+
+msgid "New Node Properties"
+msgstr "새로운 노트의 속성"
+
+msgid "Node Properties"
+msgstr "노트의 속성"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"노트를 자동 구문 강조으로 변경하면 이 노트의 모든 형식 있는 텍스트 양식이 제"
+"거됩니다. 계속 하시겠습니까?"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "<b> '%s' 노트를 삭제 하시겠습니까? </b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "<b> 하위 노트도 모두 삭제됩니다! </b>"
+
+msgid "Select the New Parent"
+msgstr "새로운 부모 노트를 선택"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "자신을 부모 노트가 될 수 없습니다!"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "현재 부모 노트가 선택되었습니다 이동하지 않습니다!"
+
+msgid "The new parent can't be one of his children!"
+msgstr "자신의 하위 노트를 부모 노트로 할 수 없습니다!"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "%s 노트의 속성이 변경되었습니다"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr "노트 이름 헤더에서 마지막으로 방문한 노트 수는 이미 최대 값입니다."
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr "노트 이름 헤더에서 마지막으로 방문한 노트 수는 이미 최소 값입니다."
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "툴바 아이콘은 이미 최대 크기입니다."
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "툴바 아이콘은 이미 최소 크기입니다."
+
+msgid "Print OliveSet version"
+msgstr "OliveSet 버전을 인쇄"
+
+msgid "Node name to focus"
+msgstr "노트 이름의 초점"
+
+msgid "Anchor name to scroll to in node"
+msgstr "노트에서 스크롤할 앵커 이름"
+
+msgid "Export to HTML at specified directory path"
+msgstr "HTML로 내보내기 (지정 장소)"
+
+msgid "Export to Text at specified directory path"
+msgstr "텍스트 파일로 내보내기 (지정 장소)"
+
+msgid "Export to PDF at specified directory path"
+msgstr "PDF로 내보내기 (지정 장소)"
+
+msgid "Overwrite if export path already exists"
+msgstr "내보내기 경로가 존재하는 경우 덮어쓰기"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "단일 파일로 내보내기 (HTML 및 텍스트)"
+
+msgid "Password to open document"
+msgstr "문서 열기 암호"
+
+msgid "Create a new window"
+msgstr "새 창을 생성"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "메인 세션과 분리한 보조 세션에서 실행"
+
+msgid "Execute Code"
+msgstr "Codebox code 실행"
+
+msgid "Copy Code"
+msgstr "코드 복사"
+
+msgid "Change CodeBox Properties"
+msgstr "코드 상자의 속성을 변경"
+
+msgid "Start in OliveSet"
+msgstr "OliveSet에서 시작"
+
+msgid "New Document"
+msgstr "새 문서"
+
+msgid "Open File"
+msgstr "파일 열기"
+
+msgid "Open Folder"
+msgstr "폴더 열기"
+
+msgid "Create a new document or open an existing one."
+msgstr "새 문서를 만들거나 기존 문서를 여세요."
+
+msgid "Don't show again"
+msgstr "다시 표시 안 함"
+
+msgid "Recent Documents"
+msgstr "최근 문서"
+
+msgid "Name"
+msgstr "이름"
+
+msgid "Path"
+msgstr "경로"
+
+msgid "Open Selected"
+msgstr "선택 항목 열기"
+
+msgid "Handle the Bookmarks List"
+msgstr "북마크 관리"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "선택 북마크를 하나에 이동"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "선택 북마크를 한 단계 아래로 이동"
+
+msgid "Remove the Selected Bookmark"
+msgstr "선택 북마크 삭제"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "북마크 내림차순으로 정렬"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "북마크를 오름차순으로 정렬"
+
+msgid "Choose Storage Type"
+msgstr "저장소 유형을 선택"
+
+msgid "Single SQLite File"
+msgstr "단일 SQLite 파일"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "단일 SQLite 파일, 7-zip 암호화 및 비밀번호 설정"
+
+msgid "Single XML File"
+msgstr "단일 XML 파일"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "단일 XML 파일, 7-zip 암호화 및 비밀번호 설정"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "로컬에 직접 폴더와 파일 형태로 구성"
+
+msgid "Storage Type"
+msgstr "저장소 유형"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"OliveSet 문서를 암호화 된 7zip 압축 저장 기술을 보거나 편집 할 때 "
+"OliveSet 암호화 된 압축 파일을 임시 폴더에 확장하고 암호화되지 않은 복사본"
+"으로 작업합니다. 그리고 종료시에 암호화되지 않은 복사본이 임시 폴더에서 삭제"
+"됩니다. 그러나 응용 프로그램이나 시스템이 충돌 한 경우에는 암호화되지 않은 문"
+"서가 임시 폴더에 남는 것에 주의하십시오."
+
+msgid "Enter the New Password Twice"
+msgstr "새 암호를 두 번 입력하십시오"
+
+msgid "Autosave Every"
+msgstr "자동저장"
+
+msgid "Minutes"
+msgstr "분 단위"
+
+msgid "The Password Fields Must be Filled."
+msgstr "비밀번호가 입력되어 있지 않습니다."
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "입력 한 두 암호가 일치하지 않습니다."
+
+msgid "Warning"
+msgstr "경고"
+
+msgid "The Current Document was Updated."
+msgstr "현재 문서는 변경되어 있습니다."
+
+msgid "Do you want to Save the Changes?"
+msgstr "변경 사항을 저장 하시겠습니까?"
+
+msgid "Do you want to Execute the Code?"
+msgstr "코드를 실행 하시겠습니까?"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "코드를 실행하기 전에 확인 요청"
+
+msgid "Use Internal Terminal"
+msgstr "내부 터미널 사용"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+
+msgid "Arabic"
+msgstr "Arabic"
+
+msgid "Armenian"
+msgstr "Armenian"
+
+msgid "Bulgarian"
+msgstr "Bulgarian"
+
+msgid "Chinese Simplified"
+msgstr "Chinese Simplified"
+
+msgid "Chinese Traditional"
+msgstr "Chinese Traditional"
+
+msgid "Croatian"
+msgstr "Croatian"
+
+msgid "Czech"
+msgstr "Czech"
+
+msgid "Dutch"
+msgstr "Dutch"
+
+msgid "Finnish"
+msgstr "Finnish"
+
+msgid "French"
+msgstr "French"
+
+msgid "German"
+msgstr "German"
+
+msgid "Greek"
+msgstr "Greek"
+
+msgid "Hindi India"
+msgstr "Hindi India"
+
+msgid "Hungarian"
+msgstr "Hungarian"
+
+msgid "Italian"
+msgstr "Italian"
+
+msgid "Japanese"
+msgstr "Japanese"
+
+msgid "Kazakh"
+msgstr "Kazakh"
+
+msgid "Kazakh (Latin)"
+msgstr "Kazakh"
+
+msgid "Korean"
+msgstr "Korean"
+
+msgid "Lithuanian"
+msgstr "Lithuanian"
+
+msgid "Persian"
+msgstr "Persian"
+
+msgid "Polish"
+msgstr "Polish"
+
+msgid "Portuguese"
+msgstr "Portuguese"
+
+msgid "Portuguese Brazil"
+msgstr "Portuguese Brazil"
+
+msgid "Romanian"
+msgstr "Romanian"
+
+msgid "Russian"
+msgstr "Russian"
+
+msgid "Slovak"
+msgstr "Slovak"
+
+msgid "Slovenian"
+msgstr "Slovenian"
+
+msgid "Spanish"
+msgstr "Spanish"
+
+msgid "Swedish"
+msgstr "Swedish"
+
+msgid "Turkish"
+msgstr "Turkish"
+
+msgid "Ukrainian"
+msgstr "Ukrainian"
+
+msgid "About OliveSet"
+msgstr "OliveSet 소개"
+
+msgid "Tree Summary Information"
+msgstr "Tree 개요 정보"
+
+msgid "Number of Rich Text Nodes"
+msgstr "서식있는 텍스트 노트의 수"
+
+msgid "Number of Plain Text Nodes"
+msgstr "텍스트 노트의 수"
+
+msgid "Number of Code Nodes"
+msgstr "코드 노트의 수"
+
+msgid "Number of Images"
+msgstr "그림의 숫자"
+
+msgid "Number of LatexBoxes"
+msgstr "Latex 상자의 수"
+
+msgid "Number of Embedded Files"
+msgstr "첨부 파일의 수"
+
+msgid "Number of Tables"
+msgstr "테이블 수"
+
+msgid "Number of CodeBoxes"
+msgstr "코드 상자의 숫자"
+
+msgid "Number of Anchors"
+msgstr "앵커의 수"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "공유 노트/그룹의 수"
+
+msgid "Latex Text"
+msgstr "Latex 텍스트"
+
+msgid "Image Size dpi"
+msgstr "이미지 크기 DPI"
+
+msgid "Tutorial"
+msgstr "튜토리얼"
+
+msgid "Reference"
+msgstr "레퍼런스"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "LaTeX 수학 및 방정식 튜토리얼"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "LaTeX 수학 심볼 레퍼런스"
+
+msgid "Image Properties"
+msgstr "이미지 속성"
+
+msgid "Rotate Left"
+msgstr "왼쪽으로 회전"
+
+msgid "Rotate Right"
+msgstr "오른쪽으로 회전"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr "이미지를 자르려면 마우스로 영역을 선택한 후 확인을 클릭하세요"
+
+msgid "Flip Horizontally"
+msgstr "좌우 뒤집기"
+
+msgid "Flip Vertically"
+msgstr "상하 뒤집기"
+
+msgid "Width"
+msgstr "폭"
+
+msgid "Height"
+msgstr "높이"
+
+msgid "Plain Text"
+msgstr "텍스트"
+
+msgid "Automatic Syntax Highlighting"
+msgstr "자동 구문 강조"
+
+msgid "Type"
+msgstr "종류"
+
+msgid "pixels"
+msgstr "px"
+
+msgid "Size"
+msgstr "크기"
+
+msgid "Show Line Numbers"
+msgstr "행 번호를 표시한다"
+
+msgid "Highlight Matching Brackets"
+msgstr "해당 괄호를 강조"
+
+msgid "Options"
+msgstr "옵션"
+
+msgid "Rows"
+msgstr "행"
+
+msgid "Columns"
+msgstr "열"
+
+msgid "Default Width"
+msgstr "기본 폭"
+
+msgid "Table Size"
+msgstr "표 크기"
+
+msgid "Column Properties"
+msgstr "열 속성"
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "경량 테이블 (큰 테이블일때 훨씬 빠름)"
+
+msgid "Import from CSV File"
+msgstr "CSV 파일에서 가져 오기"
+
+msgid "Clear"
+msgstr "지우기"
+
+msgid "Reset"
+msgstr "초기화"
+
+msgid "Search for"
+msgstr "검색할 단어"
+
+msgid "Replace with"
+msgstr "변경할 단어"
+
+msgid "Replace in Link Targets"
+msgstr "링크 대상에서 바꾸기"
+
+msgid "Replace options"
+msgstr "바꾸기 옵션"
+
+msgid "Match Case"
+msgstr "대/소문자를 구별"
+
+msgid "Regular Expression"
+msgstr "정규 표현식"
+
+msgid "Online Manual"
+msgstr "온라인 설명서"
+
+msgid "Accent Insensitive"
+msgstr "액센트 구별 안함"
+
+msgid "Override Exclusions"
+msgstr "검색 제외"
+
+msgid "Whole Word"
+msgstr "단어와 일치"
+
+msgid "Start Word"
+msgstr "단어의 시작과 일치"
+
+msgid "More Words, Exact Match"
+msgstr "여러 단어, 완벽한 일치"
+
+msgid "More Words, Disregard Order"
+msgstr "여러 단어, 순서 상관없이 모든 단어에 일치"
+
+msgid "More Words, Match Any"
+msgstr "여러 단어, 아무 단어 하나라도 일치"
+
+msgid "Forward"
+msgstr "앞으로 검색"
+
+msgid "Backward"
+msgstr "뒤로 검색"
+
+msgid "All, List Matches"
+msgstr "모든 검색 결과를 나열"
+
+msgid "First From Selection"
+msgstr "현재 위치에서 첫 번째 일치를 표시"
+
+msgid "First in All Range"
+msgstr "모든 범위에서 첫 번째 일치를 표시"
+
+msgid "Node Created After"
+msgstr "만든 날짜가 더 새로운 노트"
+
+msgid "Node Created Before"
+msgstr "만든 날짜가 그 이전 노트"
+
+msgid "Node Modified After"
+msgstr "수정한 날짜가 더 새로운 노트"
+
+msgid "Node Modified Before"
+msgstr "수정한 날짜가 그 이전 노트"
+
+msgid "Time filter"
+msgstr "날짜로 검색"
+
+msgid "Node Content"
+msgstr "줄 내용"
+
+msgid "Node Name and Tags"
+msgstr "노트 이름 및 태그를 검색"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "선택 노트와 하위 노트"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "찾기/바꾸기 반복 작업 대화 상자를 표시하기"
+
+msgid "Search options"
+msgstr "검색"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"바꾸기 필드가 비어 있습니다: 찾은 모든 항목이 삭제됩니다.\n"
+"계속하시겠습니까?"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"노트 속성의 제외 설정으로 인해 하나 이상의 노트를 건너뛰었습니다.\n"
+"모든 제외 항목을 지우려면 다음 메뉴를 사용하십시오.\n"
+"검색 -> 검색에서 모든 제외 항목 지우기"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "숨기기 ( '%s'에서 복원)"
+
+msgid "Node Name"
+msgstr "노트 이름"
+
+msgid "Line"
+msgstr "행"
+
+msgid "Line Content"
+msgstr "줄 내용"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "마지막 찾기/바꾸기를 반복"
+
+msgid "Close"
+msgstr "닫기"
+
+msgid "Find Previous"
+msgstr "이전 찾기"
+
+msgid "Find Next"
+msgstr "다음 찾기"
+
+msgid "Replace"
+msgstr "치환"
+
+msgid "Undo"
+msgstr "취소"
+
+msgid "Remove"
+msgstr "제거"
+
+msgid "Remove User Colour from Palette"
+msgstr "사용자 정의 색상 제거"
+
+msgid "Colour"
+msgstr "색상"
+
+msgid "Question"
+msgstr "질문"
+
+msgid "Info"
+msgstr "정보"
+
+msgid "Error"
+msgstr "오류"
+
+msgid "Select File"
+msgstr "파일 선택"
+
+msgid "Select Folder"
+msgstr "폴더 선택"
+
+msgid "Save File as"
+msgstr "다른 이름으로 저장"
+
+msgid "Save To Folder"
+msgstr "폴더로 저장하기"
+
+msgid "To WebSite"
+msgstr "웹사이트"
+
+msgid "To File"
+msgstr "파일"
+
+msgid "To Folder"
+msgstr "폴더"
+
+msgid "To Node"
+msgstr "노트"
+
+msgid "Anchor Name (optional)"
+msgstr "앵커 이름 (옵션)"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "선택 노트에 앵커가 없습니다."
+
+msgid "Choose Existing Anchor"
+msgstr "기존의 앵커 선택"
+
+msgid "Anchor Name"
+msgstr "앵커 이름"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "'%s'를 찾을 수 없습니다"
+
+msgid "Bold"
+msgstr "굵게"
+
+msgid "Use Selected Color"
+msgstr "선택 색상을 사용"
+
+msgid "Use Selected Icon"
+msgstr "선택 아이콘을 사용"
+
+msgid "Rich Text"
+msgstr "형식이 있는 텍스트"
+
+msgid "Node Type"
+msgstr "노트 유형"
+
+msgid "Tags for Searching"
+msgstr "검색 용 태그 (공백으로 구분)"
+
+msgid "Exclude from Searches"
+msgstr "검색에서 제외"
+
+msgid "This Node"
+msgstr "노트"
+
+msgid "The Subnodes"
+msgstr "하위 노트"
+
+msgid "Read Only"
+msgstr "읽기 전용"
+
+msgid "Unique Id"
+msgstr "고유 ID"
+
+msgid "Shared Nodes Group"
+msgstr "공유 노트 그룹"
+
+msgid "Choose Existing Tag"
+msgstr "기존의 태그를 선택"
+
+msgid "Tag Name"
+msgstr "태그 이름"
+
+msgid "Pick a Color"
+msgstr "색상을 선택"
+
+msgid "Select Node Icon"
+msgstr "노트 아이콘 선택"
+
+msgid "Involved Nodes"
+msgstr "관련 노트"
+
+msgid "Selected Text Only"
+msgstr "선택 텍스트"
+
+msgid "Selected Node Only"
+msgstr "선택 노트만"
+
+msgid "Selected Node and Subnodes"
+msgstr "선택 노트와 하위 노트"
+
+msgid "All the Tree"
+msgstr "Tree"
+
+msgid "Include Node Name"
+msgstr "노트 이름을 포함"
+
+msgid "Links Tree in Every Page"
+msgstr "각 페이지에 링크 Tree 삽입"
+
+msgid "New Node in New Page"
+msgstr "노트마다 페이지 나누기"
+
+msgid "Single File"
+msgstr "단일 파일"
+
+msgid "Index"
+msgstr "목차"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr "경고 : 페이지에 맞게 하나 이상의 이미지가 축소되었습니다!"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "보안상의 이유로 LaTeX 렌더링이 차단되었습니다"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr "소스에 로컬 파일에 액세스할 수 있는 파일 I/O 명령이 포함되어 있습니다"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"\\verbatiminput, \\openin, \\openout 등의 명령과 안전하지 않은 \\input/"
+"\\include 경로를 제거하세요"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "실행파일 latex 와 dvipng 에 액세스 할 수 없습니다"
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "예를 들어 우분투에서 설치할 패키지는 다음과 같습니다:"
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "예를 들어 Mac OS에서 설치할 패키지는 다음과 같습니다:"
+
+msgid "Could not access the executable 'latex'"
+msgstr "실행파일 latex 에 액세스 할 수 없습니다"
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "실행파일인 dvipng 에 액세스 할 수 없습니다"
+
+msgid "Downloading"
+msgstr "다운로드합니다"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "%s 경로가 존재하지 않습니다"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "최근 사용한 OliveSet 문서 열기"
+
+msgid "_Hide"
+msgstr "숨기기(_H)"
+
+msgid "_Quit"
+msgstr "닫기(_Q)"
+
+msgid "Hide the Window"
+msgstr "창 숨기기"
+
+msgid "Quit the Application"
+msgstr "응용 프로그램 닫기"
+
+msgid "Spell Check"
+msgstr "맞춤법 검사"
+
+msgid "Word Count"
+msgstr "단어 개수"
+
+msgid "Date Created"
+msgstr "만든 날짜"
+
+msgid "Date Modified"
+msgstr "수정한 날짜"
+
+msgid "Subnodes"
+msgstr "하위 노트"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr ""
+"이 세션에서 이전 노트의 복사가 수행되지 않았거나 소스 트리를 더 이상 사용할 "
+"수 없습니다."
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "소스 트리를 더 이상 사용할 수 없습니다."
+
+msgid "Show Menubar:"
+msgstr "메뉴바 표시:"
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "\"%s\"은(는) OliveSet 문서가 아닙니다"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"OliveSet 문서경로 구문분석 오류:\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "마지막 백업을 열겠습니까?"
+
+msgid "Failed to Load from Backup Data"
+msgstr "백업 데이터에서 불러오지 못했습니다"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "'%s' 노트 이름을 찾을 수 없습니다."
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "임시 파일이 생성되고 외부 응용 프로그램에서 열렸습니다."
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "OliveSet를 종료하기 전에 외부 응용프로그램을 종료하십시오."
+
+msgid "Did you Quit the External Applications?"
+msgstr "외부 응용프로그램을 종료했습니까?"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "저장 불가: \"%s\"은(는) 읽기 전용입니다"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr "CT* 파일이 외부 업데이트된 후 문서를 다시 읽어 왔습니다."
+
+msgid "Copy Selection or All"
+msgstr "선택 또는 전체 복사"
+
+msgid "Paste"
+msgstr "붙여넣기"
+
+msgid "Remove from list"
+msgstr "목록에서 제거"
+
+msgid "_File"
+msgstr "파일(_F)"
+
+msgid "_Edit"
+msgstr "편집(_E)"
+
+msgid "_Insert"
+msgstr "삽입(_I)"
+
+msgid "F_ormat"
+msgstr "서식(_O)"
+
+msgid "_Tree"
+msgstr "Tree(_T)"
+
+msgid "Too_ls"
+msgstr "도구(_L)"
+
+msgid "_Search"
+msgstr "검색(_S)"
+
+msgid "_View"
+msgstr "보기(_V)"
+
+msgid "_Bookmarks"
+msgstr "북마크(_B)"
+
+msgid "_Help"
+msgstr "도움말(_H)"
+
+msgid "Insert _Date Node"
+msgstr "날짜 노트 삽입(_D)"
+
+msgid "Node _Move"
+msgstr "노트 이동(_M)"
+
+msgid "Nod_es Sort"
+msgstr "노트 정렬(_E)"
+
+msgid "B_ookmarks"
+msgstr "북마크(_O)"
+
+msgid "_Import"
+msgstr "가져오기(_I)"
+
+msgid "_Export"
+msgstr "내보내기(_E)"
+
+msgid "_Preferences"
+msgstr "설정(_P)"
+
+msgid "_Recent Documents"
+msgstr "최근 사용한 파일(_R)"
+
+msgid "C_hange Case"
+msgstr "대/소문자 변환(_H)"
+
+msgid "L_ist"
+msgstr "목록(_I)"
+
+msgid "_Justify"
+msgstr "정렬(_J)"
+
+msgid "Toggle _Font Property"
+msgstr "글꼴 속성 설정/해제(_F)"
+
+msgid "_Toggle Heading Property"
+msgstr "제목 태크 설정/해제(_T)"
+
+msgid "I_nsert"
+msgstr "삽입(_N)"
+
+msgid "_Find"
+msgstr "찾기(_F)"
+
+msgid "_Replace"
+msgstr "치환(_R)"
+
+msgid "Ro_w"
+msgstr "줄 편집(_W)"
+
+msgid "_Table"
+msgstr "표(_T)"
+
+msgid "_CodeBox"
+msgstr "코드 상자를 잘라내기(_C)"
+
+msgid "File"
+msgstr "파일"
+
+msgid "_New Instance..."
+msgstr "새 저장소만들기(_N)"
+
+msgid "Start a New Instance of OliveSet"
+msgstr "새 저장소로 OliveSet 시작"
+
+msgid "_Open File..."
+msgstr "파일 열기(_O)"
+
+msgid "Open a OliveSet File"
+msgstr "OliveSet 문서 열기"
+
+msgid "Open Fo_lder..."
+msgstr "폴더 열기(_L)"
+
+msgid "Open a OliveSet Folder"
+msgstr "OliveSet 폴더 열기"
+
+msgid "_Save"
+msgstr "저장(_S)"
+
+msgid "Save File"
+msgstr "파일 저장"
+
+msgid "Save and _Vacuum"
+msgstr "저장 및 최적화(_V)"
+
+msgid "Save File and Vacuum"
+msgstr "노트북 저장 및 용량 최적화"
+
+msgid "Save _As..."
+msgstr "다른 이름으로 저장...(_A)"
+
+msgid "Save File As"
+msgstr "파일을 다른 이름으로 저장"
+
+msgid "Pa_ge Setup..."
+msgstr "페이지 설정...(_G)"
+
+msgid "Set up the Page for Printing"
+msgstr "인쇄 페이지 설정"
+
+msgid "P_rint..."
+msgstr "인쇄...(_R)"
+
+msgid "Print"
+msgstr "인쇄"
+
+msgid "Preferences"
+msgstr "설정"
+
+msgid "_Import Preferences..."
+msgstr "설정 불러오기...(_I)"
+
+msgid "Import Preferences"
+msgstr "설정 불러오기"
+
+msgid "_Export Preferences..."
+msgstr "설정 내보내기...(_E)"
+
+msgid "Export Preferences"
+msgstr "설정 내보내기"
+
+msgid "Tree In_fo"
+msgstr "Tree의 정보(_F)"
+
+msgid "_Document Path to Clipboard"
+msgstr "문서 경로 복사(_D)"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "클립 보드에 문서 경로 복사"
+
+msgid "E_xit OliveSet"
+msgstr "OliveSet를 종료(_X)"
+
+msgid "Exit from OliveSet"
+msgstr "OliveSet 종료"
+
+msgid "Edit/Insert"
+msgstr "편집/삽입"
+
+msgid "_Undo"
+msgstr "취소(_U)"
+
+msgid "Undo Last Operation"
+msgstr "마지막 작업취소"
+
+msgid "_Redo"
+msgstr "다시(_R)"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "취소작업 복원"
+
+msgid "Insert I_mage..."
+msgstr "이미지 삽입...(_M)"
+
+msgid "Insert an Image"
+msgstr "이미지 삽입"
+
+msgid "Insert Late_x..."
+msgstr "Latex 삽입...(_X)"
+
+msgid "Insert LatexBox"
+msgstr "Latex 상자 삽입"
+
+msgid "Insert _Table..."
+msgstr "표 삽입...(_T)"
+
+msgid "Insert a Table"
+msgstr "표 삽입"
+
+msgid "Insert _CodeBox..."
+msgstr "코드상자 삽입...(_C)"
+
+msgid "Insert _File..."
+msgstr "파일 삽입...(_F)"
+
+msgid "Insert File"
+msgstr "파일 삽입"
+
+msgid "Insert/Edit _Link..."
+msgstr "링크 삽입/편집...(_L)"
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "링크 삽입/커서 위치의 링크를 편집"
+
+msgid "Insert _Anchor..."
+msgstr "앵커 삽입...(_A)"
+
+msgid "Insert an Anchor"
+msgstr "앵커 삽입"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "목차 및 제목 축소판 삽입...(_O)"
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "목차 및 제목 축소/확장판을 삽입"
+
+msgid "Insert Timestam_p"
+msgstr "날짜시간 삽입(_P)"
+
+msgid "Insert Timestamp"
+msgstr "날짜시간 삽입"
+
+msgid "Insert _Special Character..."
+msgstr "특수문자 삽입...(_S)"
+
+msgid "Insert a Special Character"
+msgstr "특수문자 삽입"
+
+msgid "Insert _Horizontal Rule"
+msgstr "구분선 삽입(_H)"
+
+msgid "Insert Horizontal Rule"
+msgstr "구분선 삽입"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "선택 단어를 소문자로 변환(_L)"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "선택 단어를 소문자로 변환"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "선택 단어를 대문자로 변환(_U)"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "선택 단어를 대문자로 변환"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "선택 단어를 대/소문자로 토글 변환(_T)"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "선택 단어를 대/소문자로 토글 변환"
+
+msgid "Cu_t as Plain Text"
+msgstr "텍스트 형식으로 잘라내기(_T)"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "텍스트 형식으로 잘라내기, 서식있는 텍스트 서식이 손실됩니다"
+
+msgid "_Copy as Plain Text"
+msgstr "텍스트로 복사(_C)"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "텍스트로 복사 서식있는 텍스트 서식이 손실됩니다"
+
+msgid "_Paste as Plain Text"
+msgstr "텍스트로 붙여넣기(_P)"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "텍스트로 붙여넣기 서식있는 텍스트 서식이 손실됩니다"
+
+msgid "C_ut Row"
+msgstr "줄 잘라내기(_U)"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "현재 줄/선택 줄을 잘라내기"
+
+msgid "C_opy Row"
+msgstr "줄 복사(_O)"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "현재 줄/선택 줄을 복사"
+
+msgid "De_lete Row"
+msgstr "줄 삭제(_L)"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "현재 줄/선택 줄 삭제"
+
+msgid "_Duplicate Row"
+msgstr "줄 복제(_D)"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "현재 줄/선택 줄을 복제"
+
+msgid "_Move Up Row"
+msgstr "줄 위로 이동(_M)"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "현재 줄/선택 줄을 위로 이동"
+
+msgid "Mo_ve Down Row"
+msgstr "줄 아래로 이동(_V)"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "현재 줄/선택 줄을 아래로 이동"
+
+msgid "C_ut Table"
+msgstr "표 잘라내기(_U)"
+
+msgid "Cut the Selected Table"
+msgstr "표 잘라내기"
+
+msgid "_Copy Table"
+msgstr "표 복사(_C)"
+
+msgid "Copy the Selected Table"
+msgstr "테이블 복사"
+
+msgid "_Delete Table"
+msgstr "테이블 삭제(_D)"
+
+msgid "Delete the Selected Table"
+msgstr "테이블 삭제"
+
+msgid "_Add Column"
+msgstr "열 추가(_A)"
+
+msgid "Add a Table Column"
+msgstr "테이블에 컬럼을 추가"
+
+msgid "Cu_t Column"
+msgstr "열 잘라내기(_T)"
+
+msgid "Cut a Table Column"
+msgstr "테이블 열 잘라내기"
+
+msgid "_Copy Column"
+msgstr "열 복사(_C)"
+
+msgid "Copy a Table Column"
+msgstr "테이블 열 복사하기"
+
+msgid "_Paste Column"
+msgstr "열 붙어넣기(_P)"
+
+msgid "Paste a Table Column"
+msgstr "테이블에 행 붙여넣기"
+
+msgid "De_lete Column"
+msgstr "열 제거(_L)"
+
+msgid "Delete the Selected Table Column"
+msgstr "테이블의 선택 열을 제거"
+
+msgid "Move Column _Left"
+msgstr "열 왼쪽 이동(_L)"
+
+msgid "Move the Selected Column Left"
+msgstr "선택 열 왼쪽으로 이동"
+
+msgid "Move Column _Right"
+msgstr "열 오른쪽 이동(_R)"
+
+msgid "Move the Selected Column Right"
+msgstr "선택 열 오른쪽으로 이동"
+
+msgid "Increase Column Width"
+msgstr "열 폭을 확대"
+
+msgid "Increase the Width of the Column"
+msgstr "열 폭을 확대"
+
+msgid "Decrease Column Width"
+msgstr "열 폭을 축소"
+
+msgid "Decrease the Width of the Column"
+msgstr "열 폭을 축소"
+
+msgid "_Add Row"
+msgstr "행 추가(_A)"
+
+msgid "Add a Table Row"
+msgstr "테이블의 선택한 행 아래에 행 추가"
+
+msgid "Cu_t Row"
+msgstr "행 잘라내기(_T)"
+
+msgid "Cut a Table Row"
+msgstr "테이블의 행 잘라내기"
+
+msgid "_Copy Row"
+msgstr "행 복사(_C)"
+
+msgid "Copy a Table Row"
+msgstr "테이블의 행 복사"
+
+msgid "_Paste Row"
+msgstr "행 붙여넣기(_P)"
+
+msgid "Paste a Table Row"
+msgstr "테이블에 행 붙여넣기"
+
+msgid "Delete the Selected Table Row"
+msgstr "테이블에 선택한 행 삭제"
+
+msgid "Move Row _Up"
+msgstr "행 위로 이동(_U)"
+
+msgid "Move the Selected Row Up"
+msgstr "선택한 행을 하나 위로 이동"
+
+msgid "Move Row _Down"
+msgstr "행 아래로 이동(_D)"
+
+msgid "Move the Selected Row Down"
+msgstr "선택한 행을 아래로 이동"
+
+msgid "Sort Rows De_scending"
+msgstr "행을 내림차순으로 정렬(_S)"
+
+msgid "Sort all the Rows Descending"
+msgstr "테이블의 모든 행을 내림차순으로 정렬"
+
+msgid "Sort Rows As_cending"
+msgstr "행을 오름차순으로 정렬(_C)"
+
+msgid "Sort all the Rows Ascending"
+msgstr "테이블의 모든 행을 오름차순으로 정렬"
+
+msgid "_Edit Table Properties..."
+msgstr "표 속성을 편집...(_E)"
+
+msgid "Edit the Table Properties"
+msgstr "표 속성 수정"
+
+msgid "_Table Export..."
+msgstr "테이블 내보내기...(_T)"
+
+msgid "Export Table as CSV File"
+msgstr "표를 CSV 파일로 내보내기"
+
+msgid "Change CodeBox _Properties..."
+msgstr "코드 상자의 속성을 변경...(_P)"
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "코드 상자의 속성을 편집"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "코드 상자에 텍스트 파일 불러오기...(_L)"
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "코드 상자의 내용을 텍스트 파일 불러오기"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "코드 상자를 텍스트 파일로 저장...(_S)"
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "코드 상자의 내용을 텍스트 파일로 저장"
+
+msgid "C_ut CodeBox"
+msgstr "코드 상자를 잘라내기(_U)"
+
+msgid "Cut the Selected CodeBox"
+msgstr "선택한 코드 상자 잘라내기"
+
+msgid "_Copy CodeBox"
+msgstr "코드 상자를 복사(_C)"
+
+msgid "Copy the Selected CodeBox"
+msgstr "선택한 코드 상자 복사"
+
+msgid "_Copy CodeBox Content"
+msgstr "코드 상자 내용을 복사(_C)"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "선택한 코드 상자의 내용을 복사한다"
+
+msgid "_Delete CodeBox"
+msgstr "코드 상자를 삭제(_D)"
+
+msgid "Delete the Selected CodeBox"
+msgstr "선택한 코드 상자 제거"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "코드 상자를 제거하고 내용을 유지(_K)"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "코드 상자를 제거하고 내용을 유지"
+
+msgid "Increase CodeBox Width"
+msgstr "코드 상자의 폭을 확대"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "코드 상자의 폭을 확대"
+
+msgid "Decrease CodeBox Width"
+msgstr "코드 상자의 폭을 축소"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "코드 상자의 폭을 축소"
+
+msgid "Increase CodeBox Height"
+msgstr "코드 상자의 높이를 확대"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "코드 상자의 높이를 확대"
+
+msgid "Decrease CodeBox Height"
+msgstr "코드 상자의 높이를 축소"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "코드 상자의 높이를 축소"
+
+msgid "Format"
+msgstr "서식"
+
+msgid "Format Clo_ne"
+msgstr "서식 복제(_N)"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "커서 위치의 서식 복제"
+
+msgid "Format _Latest"
+msgstr "마지막에 사용한 서식(_L)"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "마지막에 사용한 서식 유형을 적용"
+
+msgid "_Remove Formatting"
+msgstr "서식 삭제(_R)"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "선택 텍스트에서 서식 제거"
+
+msgid "Text _Color Foreground"
+msgstr "글자 색(_C)"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "선택 텍스트의 글자 색 변경"
+
+msgid "Text C_olor Background"
+msgstr "글자 배경색(_O)"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "선택 텍스트의 글자 배경색 변경"
+
+msgid "Toggle _Bold Property"
+msgstr "굵게 설정/해제(_B)"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "선택 텍스트를 굵게 설정/해제"
+
+msgid "Toggle _Italic Property"
+msgstr "기울임 꼴로 설정/해제(_I)"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "선택 텍스트를 기울임 꼴로 설정/해제"
+
+msgid "Toggle _Underline Property"
+msgstr "밑줄 설정/해제(_U)"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "선택 텍스트에 밑줄 설정/해제"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "취소선을 설정/해제(_K)"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "선택 텍스트에 취소선 설정/해제"
+
+msgid "Toggle h_1 Property"
+msgstr "제목 h1로 설정/해제(_1)"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "제목 h1로 설정/해제"
+
+msgid "Toggle h_2 Property"
+msgstr "제목 h2로 설정/해제(_2)"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "제목 h2로 설정/해제"
+
+msgid "Toggle h_3 Property"
+msgstr "제목 h3로 설정/해제(_3)"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "제목 h3로 설정/해제"
+
+msgid "Toggle h_4 Property"
+msgstr "제목 h4로 설정/해제(_4)"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "제목 h4로 설정/해제"
+
+msgid "Toggle h_5 Property"
+msgstr "제목 h5로 설정/해제(_5)"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "제목 h5로 설정/해제"
+
+msgid "Toggle h_6 Property"
+msgstr "제목 h6로 설정/해제(_6)"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "제목 h6로 설정/해제"
+
+msgid "Toggle _Small Property"
+msgstr "작은 글자로 설정/해제(_S)"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "작은 글자로 설정/해제"
+
+msgid "Toggle Su_bscript Property"
+msgstr "아래 첨자로 설정/해제(_B)"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "아래 첨자로 설정/해제"
+
+msgid "Toggle Su_perscript Property"
+msgstr "위 첨자로 설정/해제(_P)"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "위 첨자로 설정/해제"
+
+msgid "Toggle _Monospace Property"
+msgstr "글자폭 설정/해제(_M)"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "글자폭 설정/해제"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "순서없는 목록 설정/해제(_B)"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr "현재 단락/선택단락의 순서없는 목록 설정/해제"
+
+msgid "Set/Unset _Numbered List"
+msgstr "정렬된 목록 설정/해제(_N)"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr "현재 단락/선택단락 정렬된 목록 설정/해제"
+
+msgid "Set/Unset _To-Do List"
+msgstr "ToDo 목록 설정/해제(_T)"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr "현재 단락/선택단락의 ToDo 목록 설정/해제"
+
+msgid "Justify _Left"
+msgstr "왼쪽(_L)"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "현재 단락 왼쪽 맞춤"
+
+msgid "Justify _Center"
+msgstr "가운데(_C)"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "현재 단락 가운데 맞춤"
+
+msgid "Justify _Right"
+msgstr "오른쪽(_R)"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "현재 단락 오른쪽 맞춤"
+
+msgid "Justify _Fill"
+msgstr "양쪽 맞춤(_F)"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "현재 단락 양쪽 맞춤"
+
+msgid "_Indent Paragraph"
+msgstr "단락 들여쓰기(_I)"
+
+msgid "Indent the Current Paragraph"
+msgstr "현재 단락 들여쓰기"
+
+msgid "_Unindent Paragraph"
+msgstr "단락 반대 들여쓰기(_U)"
+
+msgid "Unindent the Current Paragraph"
+msgstr "현재 단락 반대 들여쓰기"
+
+msgid "_Expand TOC Headers"
+msgstr "목차 제목 확장(_E)"
+
+msgid "Expand TOC Headers"
+msgstr "목차 제목 확장"
+
+msgid "_Collapse TOC Headers"
+msgstr "목차 제목 축소(_C)"
+
+msgid "Collapse TOC Headers"
+msgstr "목차 제목 축소"
+
+msgid "Tools"
+msgstr "도구"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "맞춤법 검사 활성화/비활성화(_S)"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "맞춤법 검사 유효/무효"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "VIM 모드 활성화/비활성화(_V)"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "VIM 모드 활성화/비활성화"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "줄 끝 공백을 제거(_P)"
+
+msgid "Strip Trailing Spaces"
+msgstr "줄 끝 공백을 제거"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "탭을 공백으로 변환(_R)"
+
+msgid "Replace Tabs with Spaces"
+msgstr "탭을 공백으로 변환"
+
+msgid "_Command Palette..."
+msgstr "명령어 팔레트...(_C)"
+
+msgid "Command Palette"
+msgstr "명령어 팔레트"
+
+msgid "_Execute Code All"
+msgstr "모든 코드 실행(_E)"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "코드 상자 또는 노드에서 모든 코드 실행"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "라인 또는 선택한 코드 실행(_X)"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "현재 줄 또는 선택한 텍스트에서 코드 실행"
+
+msgid "Tree"
+msgstr "Tree"
+
+msgid "Go _Back"
+msgstr "이전 열린 노트로 이동(_B)"
+
+msgid "Go to the Previous Visited Node"
+msgstr "전에 열린 노트로 이동"
+
+msgid "Go _Forward"
+msgstr "다음 열린 노트로 이동(_F)"
+
+msgid "Go to the Next Visited Node"
+msgstr "먼저 열려있던 노트로 이동"
+
+msgid "Add _Node..."
+msgstr "노트 추가...(_N)"
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "Tree에서 선택한 커서와 같은 열에 노트 추가"
+
+msgid "Add _Subnode..."
+msgstr "하위 노트 추가...(_S)"
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "선택된 노트 안에 새 하위 노트를 추가"
+
+msgid "_Duplicate Node"
+msgstr "노트 복제(_D)"
+
+msgid "Duplicate the Selected Node"
+msgstr "선택 노트 복제"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "노트와 하위 노트 복제(_A)"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "선택된 노트와 하위 노트를 모두 복제"
+
+msgid "_Create Shared Node"
+msgstr "공유 노트 만들기(_C)"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr "선택한 노트와 동일한 내용을 공유하는 새 노트 만들기"
+
+msgid "Copy Node and S_ubnodes"
+msgstr "노트와 하위 노트 복사(_U)"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "선택된 노트와 하위 노트를 모두 복사"
+
+msgid "_Paste Node and Subnodes"
+msgstr "노트와 하위 노트 붙어넣기(_P)"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "복사된 노트와 하위 노트를 붙어넣기"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "오늘의 노트를 삽입(_T)"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "오늘 날짜의 년/월/일 계층 구조를 가진 노트를 Tree최상단에 삽입"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "선택한 노트 아래에 오늘의 노트 삽입(_Y)"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "오늘 날짜의 년/월/일 계층 구조를 가진 노트를 선택한 노트 아래로 삽입"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "내일의 노트를 삽입(_O)"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "내일 날짜의 년/월/일 계층 구조를 가진 노트를 Tree최상단에 삽입"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "선택한 노트 아래에 내일의 노트 삽입(_W)"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "내일 날짜의 년/월/일 계층 구조를 가진 노트를 선택한 노트 아래로 삽입"
+
+msgid "C_hange Node Properties..."
+msgstr "노트 속성 변경...(_H)"
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "선택 노트의 속성을 변경"
+
+msgid "Toggle _Read Only"
+msgstr "편집 금지 설정/해제(_R)"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "편집 금지 속성을 설정/해제"
+
+msgid "Cop_y Link to Node"
+msgstr "노트에서 링크 복사(_Y)"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "선택 노트에 대한 링크를 클립 보드에 복사"
+
+msgid "Children _Inherit Syntax"
+msgstr "구문 강조를 하위 노트에 적용(_I)"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr "선택한 노트의 구문 강조를 하위에 모든 노트로 적용"
+
+msgid "_Handle Bookmarks..."
+msgstr "북마크 관리...(_H)"
+
+msgid "Add to Boo_kmarks"
+msgstr "북마크 추가(_K)"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "현재 노트를 북마크 목록에 추가"
+
+msgid "Remove from Boo_kmarks"
+msgstr "북마크 삭제(_K)"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "현재 노트를 북마크 목록에서 삭제"
+
+msgid "E_xpand All Nodes"
+msgstr "모든 노트 Tree 열기(_X)"
+
+msgid "Expand All the Tree Nodes"
+msgstr "모든 노트 Tree를 열기"
+
+msgid "_Collapse All Nodes"
+msgstr "모든 노트 Tree 닫기(_C)"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "모든 노트 Tree를 닫기"
+
+msgid "Node _Up"
+msgstr "위로 이동(_U)"
+
+msgid "Move the Selected Node Up"
+msgstr "선택 노트를 이동"
+
+msgid "Node _Down"
+msgstr "아래로 이동(_D)"
+
+msgid "Move the Selected Node Down"
+msgstr "선택 노트를 아래로 이동"
+
+msgid "Node _Left"
+msgstr "왼쪽으로 이동(_L)"
+
+msgid "Move the Selected Node Left"
+msgstr "선택 노트를 왼쪽으로 이동"
+
+msgid "Node _Right"
+msgstr "오른쪽으로 이동(_R)"
+
+msgid "Move the Selected Node Right"
+msgstr "선택 노트를 오른쪽으로 이동"
+
+msgid "Node Change _Parent..."
+msgstr "상위 노트 변경...(_P)"
+
+msgid "Change the Selected Node's Parent"
+msgstr "선택 노트를 다른 노트의 하부로 변경"
+
+msgid "Sort Tree _Ascending"
+msgstr "Tree전체를 오름차순으로 정렬(_A)"
+
+msgid "Sort the Tree Ascending"
+msgstr "Tree전체를 오름차순으로 정렬"
+
+msgid "Sort Tree _Descending"
+msgstr "Tree전체를 내림차순으로 정렬(_D)"
+
+msgid "Sort the Tree Descending"
+msgstr "Tree전체를 내림차순으로 정렬"
+
+msgid "Sort Siblings A_scending"
+msgstr "노트 오름차순으로 정렬(_S)"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "선텍된 노트와 같은 라인의 노트들을 오름차순으로 정렬"
+
+msgid "Sort Siblings D_escending"
+msgstr "노트 내림차순으로 정렬(_E)"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "선택된 노트와 같은 라인의 노트들을 내림차순으로 정렬"
+
+msgid "De_lete Node"
+msgstr "노트 삭제(_L)"
+
+msgid "Delete the Selected Node"
+msgstr "선택된 노트와 하위 노트 모두 삭제"
+
+msgid "Find/Replace"
+msgstr "찾기/바꾸기"
+
+msgid "_Quick Node Selection..."
+msgstr "빠른 노트 선택(_Q)"
+
+msgid "Quick Node Selection"
+msgstr "빠른 노트 선택"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "노트 이름 및 태그를 검색...(_N)"
+
+msgid "Find in Nodes Names and Tags"
+msgstr "노트 이름 및 태그를 검색"
+
+msgid "_Find in Node Content..."
+msgstr "이 노트의 내용 검색...(_F)"
+
+msgid "Find into the Selected Node Content"
+msgstr "선택 노트의 내용 검색"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "모든 노트를 검색...(_I)"
+
+msgid "Find in Multiple Nodes"
+msgstr "모든 노트를 검색"
+
+# 전체에서 검색하는 경우 항상 첫 번째 일치만을 검색하기 때문에 "다음 찾기"는하지 않았다
+msgid "Find _Again"
+msgstr "다시 검색(_A)"
+
+msgid "Iterate the Last Find Operation"
+msgstr "마지막 찾기 작업을 반복"
+
+# 검색 설정이 반대 방향 검색의 경우, 반대 방향의 역으로 전방에 검색하기 때문에 '이전 찾기'는 하지 않았다
+msgid "Find _Back"
+msgstr "반대 방향 검색(_B)"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "마지막 검색 작업을 반대 방향으로 반복"
+
+msgid "_Replace in Node Content..."
+msgstr "현재 노트의 내용 치환...(_R)"
+
+msgid "Replace into the Selected Node Content"
+msgstr "선택 노트의 내용을 치환"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "모든 노트를 치환...(_M)"
+
+msgid "Replace A_gain"
+msgstr "마지막 치환을 반복(_G)"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "마지막 치환 작업을 반복 한다"
+
+msgid "Show All Matches _Dialog..."
+msgstr "검색결과 목록 대화상자에 표시...(_D)"
+
+msgid "Show Search All Matches Dialog"
+msgstr "검색결과 목록 대화상자에 표시하기"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "모든 노트의 검색 제외 속성 지우기(_C)"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "모든 노트의 검색 제외 속성 지우기"
+
+msgid "View"
+msgstr "표시"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "Tree 탐색기 표시/숨기기(_T)"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "Tree 표시/숨기기"
+
+msgid "Show/Hide Te_rminal"
+msgstr "터미널 표시/숨기기(_R)"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "터미널 표시/숨기기"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "터미널/편집기로 창 전환(_X)"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "터미널/편집기 교대로 전환"
+
+msgid "Show/Hide _Menubar"
+msgstr "메뉴바 표시/숨기기(_M)"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "메뉴바 표시/숨기기"
+
+msgid "Show/Hide Tool_bar"
+msgstr "툴바 표시/숨기기(_B)"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "툴바 표시/숨기기"
+
+msgid "Show/Hide _Statusbar"
+msgstr "상태표시줄 표시/숨기기(_S)"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr "상태표시줄 표시/숨기기"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "Tree 탐색기 표시/숨기기(_L)"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "Tree 표시/숨기기"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "노트 이름의 헤더 표시/숨기기(_H)"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "노트 이름의 헤더 표시/숨기기"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "Tree/편집기로 창 전환(_F)"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "Tree/편집기 교대로 전환"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "툴바의 아이콘을 확대(_I)"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "툴바의 아이콘을 확대"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "툴바의 아이콘을 축소(_D)"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "툴바의 아이콘을 축소"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "노트 이름 헤더에 표시된 최근 노트 수 증가(_V)"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "노트 이름 헤더에 표시된 최근 노트 수 증가"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "노트 이름 헤더에 표시된 최근 노트 수 감소(_E)"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "노트 이름 헤더에 표시된 최근 노트 수 감소"
+
+msgid "Full Screen _On/Off"
+msgstr "전체 화면 전환(_O)"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "전체 화면 전환"
+
+msgid "_Always On Top On/Off"
+msgstr "항상 위에 표시(_A)"
+
+msgid "Always On Top On/Off"
+msgstr "항상 위에 표시"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "제목 표시줄에서 메뉴바 보이기 비활성화(_N)"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "제목 표시줄에 메뉴바를 배치하지 않습니다"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "제목 표시줄에서 메뉴바 보이기 활성화(_N)"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "제목 표시줄에 메뉴바를 배치합니다"
+
+msgid "Import"
+msgstr "가져 오기"
+
+msgid "From _OliveSet File"
+msgstr "OliveSet파일 불러오기(_C)"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "현재 Tree에 OliveSet파일을 불러와 노트로 추가하기"
+
+msgid "From _OliveSet Folder"
+msgstr "OliveSet폴더 불러오기(_C)"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "현재 Tree에 OliveSet폴더를 불러와 노트로 추가하기"
+
+msgid "From _Indented List File"
+msgstr "Indented List 파일 불러오기(_I)"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "현재 Tree에 Indented List 파일 불러와 노트로 추가하기"
+
+msgid "From _Plain Text File"
+msgstr "텍스트파일 불러오기(_P)"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "현재 Tree에 텍스트파일을 불러와 노트로 추가하기"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "폴더에서 텍스트파일 모두 불러오기(_F)"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr "현재 Tree에 폴더 내부 모든 텍스트파일을 불러와 노트로 추가하기"
+
+msgid "From _HTML File"
+msgstr "HTML 파일 불어오기(_H)"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "현재 Tree에 HTML파일을 불러와 노트로 추가하기"
+
+msgid "From _Folder of HTML Files"
+msgstr "폴더에서 HTML 파일 모두 불러오기(_F)"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "현재 Tree에 폴더 내부 모든 HTML파일을 불러와 노트로 추가하기"
+
+msgid "From _Markdown File"
+msgstr "Markdown 파일 불러오기(_M)"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "현재 Tree에 Markdown파일을 불러와 노트로 추가하기"
+
+msgid "From _Folder of Markdown Files"
+msgstr "폴더에서 Markdown 파일 모두 불러오기(_F)"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "현재 Tree에 폴더 내부 모든 Markdown파일을 불러와 노트로 추가하기"
+
+msgid "From _Gnote Folder"
+msgstr "Gnote 폴더 불러오기(_G)"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "현재 Tree에 Gnote폴더를 불러와 노트로 추가하기"
+
+msgid "From _KeepNote Folder"
+msgstr "KeepNote 폴더 불러오기(_K)"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "현재 Tree에 KeepNote폴더를 불러와 노트로 추가하기"
+
+msgid "From _Leo File"
+msgstr "Leo 파일 불러오기(_L)"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "현재 Tree에 Leo파일을 불러와 노트로 추가하기"
+
+msgid "From _Mempad File"
+msgstr "Mempad 파일 불러오기(_M)"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "현재 Tree에 Mempad파일을 불러와 노트로 추가하기"
+
+msgid "From _NoteCase HTML File"
+msgstr "NoteCase HTML 파일 불러오기(_N)"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "현재 Tree에 NoteCase HTML파일을 불러와 노트로 추가하기"
+
+msgid "From _RedNotebook HTML File"
+msgstr "RedNotebook HTML 파일 불러오기(_R)"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "현재 Tree에 RedNotebook HTML파일을 불러와 노트로 추가하기"
+
+msgid "From T_omboy Folder"
+msgstr "Tomboy 폴더 불러오기(_O)"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "현재 Tree에 Tomboy 폴더 불러와 노트로 추가하기"
+
+msgid "From T_reepad Lite File"
+msgstr "Treepad Lite 파일 불러오기(_R)"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "현재 Tree에 Treepad Lite 파일 불러와 노트로 추가하기"
+
+msgid "From _Zim Folder"
+msgstr "Zim 폴더 불러오기(_Z)"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "현재 Tree에 Zim 폴더를 불러와 노트로 추가하기"
+
+msgid "Export"
+msgstr "내보내기"
+
+msgid "Export To _PDF"
+msgstr "PDF로 내보내기(_P)"
+
+msgid "Export To PDF"
+msgstr "PDF로 내보내기"
+
+msgid "Export To _HTML"
+msgstr "HTML로 내보내기(_H)"
+
+msgid "Export To HTML"
+msgstr "HTML로 내보내기"
+
+msgid "Export to Plain _Text"
+msgstr "텍스트 파일로 내보내기(_T)"
+
+msgid "Export to Plain Text"
+msgstr "텍스트 파일로 내보내기"
+
+msgid "_Export To OliveSet"
+msgstr "OliveSet 문서로 내보내기(_E)"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "OliveSet 문서 또는 폴더로 내보내기"
+
+msgid "Help"
+msgstr "도움말"
+
+msgid "_Check Newer Version"
+msgstr "새 버전 확인(_C)"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "온라인에서 사용 가능한 최신 버전 확인"
+
+msgid "_Website"
+msgstr "웹사이트(_W)"
+
+msgid "Visit OliveSet's Website"
+msgstr "OliveSet 웹사이트 방문하기"
+
+msgid "_Source Code"
+msgstr "소스코드(_S)"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "온라인에서 OliveSet의 소스 코드 찾아보기"
+
+msgid "_Report a Bug"
+msgstr "버그 신고(_R)"
+
+msgid "Report a Bug in OliveSet"
+msgstr "OliveSet에서 버그 신고"
+
+msgid "_Donate"
+msgstr "후원(_D)"
+
+msgid "Donate to Support OliveSet"
+msgstr "OliveSet 후원하기"
+
+msgid "Online _Manual"
+msgstr "온라인 설명서(_M)"
+
+msgid "OliveSet's Online Manual"
+msgstr "OliveSet의 온라인 매뉴얼"
+
+msgid "_About"
+msgstr "OliveSet 소개(_A)"
+
+msgid "_Open Preferences Directory"
+msgstr "설정 디렉토리 열기(_O)"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "설정 파일이있는 디렉토리를 열기"
+
+msgid "C_ut Anchor"
+msgstr "앵커 잘라내기(_U)"
+
+msgid "Cut the Selected Anchor"
+msgstr "선택 앵커 잘라"
+
+msgid "_Copy Anchor"
+msgstr "앵커 복사(_C)"
+
+msgid "Copy the Selected Anchor"
+msgstr "선택 앵커 복사"
+
+msgid "_Delete Anchor"
+msgstr "앵커 삭제(_D)"
+
+msgid "Delete the Selected Anchor"
+msgstr "선택 앵커 삭제"
+
+msgid "Edit _Anchor..."
+msgstr "앵커 이름 편집...(_A)"
+
+msgid "Edit the Underlying Anchor"
+msgstr "앵커의 이름을 편집"
+
+msgid "Copy Anchor Link"
+msgstr "앵커에 대한 링크 복사"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "앵커에 대한 링크를 클립보드에 복사"
+
+msgid "C_ut Embedded File"
+msgstr "첨부 파일 잘라내기(_U)"
+
+msgid "Cut the Selected Embedded File"
+msgstr "선택 첨부 파일을 잘라내기"
+
+msgid "_Copy Embedded File"
+msgstr "첨부 파일 복사(_C)"
+
+msgid "Copy the Selected Embedded File"
+msgstr "선택 첨부 파일을 복사"
+
+msgid "_Delete Embedded File"
+msgstr "첨부 파일 삭제(_D)"
+
+msgid "Delete the Selected Embedded File"
+msgstr "선택 첨부 파일 삭제"
+
+msgid "Open Embedded File"
+msgstr "첨부 파일 열기"
+
+msgid "_Rename"
+msgstr "이름 변경(_R)"
+
+msgid "Rename Embedded File"
+msgstr "첨부 파일 이름 변경"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "Latex 상자를 PNG로 저장...(_S)"
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "선택된 Latex 상자를 PNG 파일로 저장"
+
+msgid "_Edit LatexBox..."
+msgstr "Latex 상자 편집...(_E)"
+
+msgid "Edit the Selected LatexBox"
+msgstr "선택된 Latex 상자를 편집"
+
+msgid "C_ut LatexBox"
+msgstr "Latex 상자를 잘라내기(_U)"
+
+msgid "Cut the Selected LatexBox"
+msgstr "선택된 Latex 상자를 잘라내기"
+
+msgid "_Copy LatexBox"
+msgstr "Latex 상자 복사(_C)"
+
+msgid "Copy the Selected LatexBox"
+msgstr "선택된 Latex 상자를 복사"
+
+msgid "_Delete LatexBox"
+msgstr "Latex 상자 삭제(_D)"
+
+msgid "Delete the Selected LatexBox"
+msgstr "선택된 Latex 상자를 삭제"
+
+msgid "_Save Image as PNG..."
+msgstr "이미지를 PNG로 저장...(_S)"
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "선택 이미지를 PNG 파일로 저장"
+
+msgid "_Edit Image..."
+msgstr "이미지 편집...(_E)"
+
+msgid "Edit the Selected Image"
+msgstr "선택 이미지 편집"
+
+msgid "C_ut Image"
+msgstr "이미지 잘라내기(_U)"
+
+msgid "Cut the Selected Image"
+msgstr "선택 이미지 잘라내기"
+
+msgid "_Copy Image"
+msgstr "이미지 복사(_C)"
+
+msgid "Copy the Selected Image"
+msgstr "선택 이미지 복사"
+
+msgid "_Delete Image"
+msgstr "이미지 삭제(_D)"
+
+msgid "Delete the Selected Image"
+msgstr "선택 사진 삭제"
+
+msgid "Edit _Link..."
+msgstr "링크 편집...(_L)"
+
+msgid "Edit the Link Associated to the Image"
+msgstr "이미지에 연결된 링크 편집"
+
+msgid "D_ismiss Link"
+msgstr "링크 해제(_I)"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "이미지에 연결된 링크를 해제"
+
+msgid "Show/Hide _OliveSet"
+msgstr "OliveSet 표시/숨기기(_C)"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "OliveSet 창 표시/숨기기"
+
+msgid "Edit the Underlying Link"
+msgstr "연결 링크 편집"
+
+msgid "C_ut Link"
+msgstr "링크 잘라내기(_U)"
+
+msgid "Cut the Selected Link"
+msgstr "선택한 링크 잘라내기"
+
+msgid "_Copy Link"
+msgstr "링크 복사(_C)"
+
+msgid "Copy the Selected Link"
+msgstr "선택 링크 복사"
+
+msgid "Dismiss the Selected Link"
+msgstr "선택 링크 해제"
+
+msgid "_Delete Link"
+msgstr "링크 삭제(_D)"
+
+msgid "Delete the Selected Link"
+msgstr "선택 링크 삭제"
+
+msgid "English"
+msgstr "English"
+
+msgid "Text and Code"
+msgstr "텍스트와 코드"
+
+msgid "Plain Text and Code"
+msgstr "형식이 있는 텍스트와 코드"
+
+msgid "Tree Explorer"
+msgstr "Tree 탐색기"
+
+msgid "Theme"
+msgstr "테마"
+
+msgid "Interface"
+msgstr "인터페이스"
+
+msgid "Links"
+msgstr "링크"
+
+msgid "Toolbar"
+msgstr "툴바"
+
+msgid "Keyboard Shortcuts"
+msgstr "단축키"
+
+msgid "Miscellaneous"
+msgstr "기타 설정"
+
+msgid "Monospace"
+msgstr "글자폭"
+
+msgid "Code Font"
+msgstr "코드 글꼴"
+
+msgid "Terminal Font"
+msgstr "터미널 글꼴"
+
+msgid "Tree Font"
+msgstr "Tree 글꼴"
+
+msgid "Reset to Default"
+msgstr "기본설정으로 초기화"
+
+msgid "Fonts"
+msgstr "글꼴"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "상태표시줄에 단어 개수를 표시"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "창 제목에 문서 디렉토리 표시"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "노트 이름 헤더에 전체 경로보기"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "메뉴바에 북마크를 별도 표시하기"
+
+msgid "Menubar in Titlebar"
+msgstr "메뉴바를 제목 표시줄에 배치"
+
+msgid "Toolbar Icons Size"
+msgstr "툴바의 아이콘 크기조절"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "최근 사용한 노트를 노트 이름 헤더에 표시"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "스크롤바 슬라이더의 최소 크기 (0 = 기본값)"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "스크롤바 오버레이 텍스트 편집기"
+
+msgid "System Default"
+msgstr "시스템 기본값"
+
+msgid "Yes"
+msgstr "예"
+
+msgid "No"
+msgstr "아니오"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "마우스 오버로 툴팁 표시"
+
+msgid "Menus"
+msgstr "메뉴"
+
+msgid "Max Search Results per Page"
+msgstr "페이지당 검색결과 최대 표시 수"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "세션 간 검색/바꾸기 기록 저장"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "사용자 지정 웹 링크 클릭 동작 활성화"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "사용자 지정 파일 링크 클릭 동작 활성화"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "사용자 지정 폴더 링크 클릭 동작 활성화"
+
+msgid "Custom Actions"
+msgstr "사용자 설정 동작"
+
+msgid "Colors"
+msgstr "색"
+
+msgid "Double Click for Link Action"
+msgstr "링크 작업을 위해 더블 클릭"
+
+msgid "Underline Links"
+msgstr "링크 밑줄 표시"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "파일 및 폴더에 상대 경로 사용"
+
+msgid "Anchor Size"
+msgstr "앵커 이미지의 크기"
+
+msgid "Change Selected"
+msgstr "선택 변경"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr "키보드 단축키 '%s'는 이미 사용하고 있습니다."
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "현재 연관된 작업 '%s'입니다"
+
+msgid "Do you want to steal the shortcut?"
+msgstr "단축키 할당을 변경 하시겠습니까?"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "키보드 단축키 편집"
+
+msgid "No Keyboard Shortcut"
+msgstr "바로 가기 없음"
+
+msgid "Autosave on Quit"
+msgstr "종료시 자동 저장"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "저장하기 전에 백업 복사본을 만듭니다"
+
+msgid "Number of Backups to Keep"
+msgstr "저장 백업의 최대 수"
+
+msgid "Custom Backup Directory"
+msgstr "백업 디렉토리를 지정한다"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "다중 파일 저장, 디스크에 임베디드 파일 이름 사용"
+
+msgid "Saving"
+msgstr "저장"
+
+msgid "Automatically Check for Newer Version"
+msgstr "새로운 버전 확인 자동으로 수행"
+
+msgid "Reload Document From Last Session"
+msgstr "시작시 마지막 세션의 문서를 읽어오기"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "문서가 로드되지 않은 경우 시작 대화 상자 표시"
+
+msgid "Reload After External Update to CT* File"
+msgstr "CT* 파일에 대한 외부 업데이트 후 다시로드"
+
+msgid "Enable Debug Log"
+msgstr "Debug Log 활성화"
+
+msgid "Debug Log Directory"
+msgstr "Debug Log 디렉토리"
+
+msgid "Enable System Tray Docking"
+msgstr "시스템 트레이 도킹 활성화"
+
+msgid "Start Minimized in the System Tray"
+msgstr "시스템 트레이에 최소화 시작"
+
+msgid "System Tray"
+msgstr "시스템 트레이"
+
+msgid "Language"
+msgstr "언어"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Port"
+msgstr "포트"
+
+msgid "Username"
+msgstr "사용자명"
+
+msgid "Password"
+msgstr "비밀번호"
+
+msgid "Proxy"
+msgstr "프록시"
+
+msgid "Show White Spaces"
+msgstr "공백 문자 표시"
+
+msgid "Highlight Current Line"
+msgstr "현재 행을 강조"
+
+msgid "Text Editor"
+msgstr "텍스트 편집기"
+
+msgid "Internal Terminal Shell"
+msgstr "내부 터미널 사용"
+
+msgid "Add"
+msgstr "추가"
+
+msgid "Remove Selected"
+msgstr "선택 항목 삭제"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "노트/코드 상자의 종류별 명령"
+
+msgid "Terminal Command"
+msgstr "터미널 명령"
+
+msgid "Code Execution"
+msgstr "코드의 실행"
+
+msgid "Select Element to Add"
+msgstr "추가 요소를 선택"
+
+msgid "Enable Spell Check"
+msgstr "맞춤법 활성화"
+
+msgid "Spell Check Language"
+msgstr "맞춤법 검사 언어"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "코드 상자를 자동으로 확장"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "코드 상자에 툴바 표시"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "경량 테이블 셀의 한계값"
+
+msgid "Embedded File Icon Size"
+msgstr "첨부 파일 아이콘의 크기"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "첨부 파일 크기 제한 (MB)"
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "첨부 파일 아이콘에 파일 이름을 표시하려면"
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "클릭 한 번으로 개체 자동 선택 안 함"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr "KDE 6의 Klipper 클립보드 관련 중단 문제 해결 방법"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "노트당 되돌릴 제한 횟수"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "CamelCase 텍스트를 같은 이름의 노드에 자동 링크"
+
+msgid "Auto Link URLs"
+msgstr "자동 링크 UR"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "트리플 클릭시 전체 단락을 선택함"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "Markdown의 자동 치환를 적용하기 (실험)"
+
+msgid "Scale"
+msgstr "배율"
+
+msgid "Italic"
+msgstr "기울임"
+
+msgid "Underline"
+msgstr "밑줄"
+
+msgid "Text Color Foreground"
+msgstr "문자색"
+
+msgid "Text Color Background"
+msgstr "문자배경색"
+
+msgid "Small"
+msgstr "작은글꼴"
+
+msgid "Scalable Tags"
+msgstr "제목 태그 설정"
+
+msgid "Chars for Bulleted List"
+msgstr "순서없는 목록 문자"
+
+msgid "Chars for Todo List"
+msgstr "ToDo리스트 캐릭터"
+
+msgid "Chars for Table Of Content"
+msgstr "목차에 문자"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "스마트 더블 쿼트 문자"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "스마트 싱글 쿼트 문자"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "둥근 따옴표 자동 치환를 사용"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "기호의 자동 치환를 사용"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "설정된 기호를 자동으로 치환"
+
+msgid "Only at the Start of the Line"
+msgstr "글머리에만"
+
+msgid "Tab Width"
+msgstr "탭의 폭"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "탭 대신 공백을 삽입"
+
+msgid "Use Line Wrapping"
+msgstr "줄 바꿈을 사용"
+
+msgid "Line Wrapping Indentation"
+msgstr "줄 바꿈 들여 쓰기 (px)"
+
+msgid "Enable Automatic Indentation"
+msgstr "자동 들여 쓰기를 사용"
+
+msgid "Scroll Beyond Last Line"
+msgstr "마지막 행을 넘어 스크롤"
+
+msgid "Cursor Blinking"
+msgstr "커서 깜박임"
+
+msgid "On"
+msgstr "켜기"
+
+msgid "Off"
+msgstr "끄기"
+
+msgid "Text Margin: Left"
+msgstr "텍스트 여백: 왼쪽"
+
+msgid "Right"
+msgstr "오른쪽"
+
+msgid "Vertical Space Around Lines"
+msgstr "행의 상하 여백 (px)"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "줄 바꿈 행의 상하 여백"
+
+msgid "Timestamp Format"
+msgstr "날짜 형식"
+
+msgid "Horizontal Rule"
+msgstr "구분선"
+
+msgid "Chars to Select at Double Click"
+msgstr "더블 클릭 선택에서 단어의 일부로 취급 문자"
+
+msgid "Light Background, Dark Text"
+msgstr "라이트 (밝은 배경과 어두운 글자 색)"
+
+msgid "Dark Background, Light Text"
+msgstr "다크 (어두운 배경과 밝은 글자 색)"
+
+msgid "Custom Background"
+msgstr "사용자 설정 배경색"
+
+msgid "Text"
+msgstr "텍스트"
+
+msgid "Selection Background"
+msgstr "선택 배경색"
+
+msgid "Table"
+msgstr "표"
+
+msgid "Code"
+msgstr "코드"
+
+msgid "Style Schemes"
+msgstr "스타일 패턴"
+
+msgid "Text Foreground"
+msgstr "글자 색"
+
+msgid "Text Background"
+msgstr "배경색"
+
+msgid "Selection Foreground"
+msgstr "선택 문자색"
+
+msgid "Cursor"
+msgstr "커서"
+
+msgid "Current Line Background"
+msgstr "현재 행의 배경색"
+
+msgid "Line Numbers Foreground"
+msgstr "행 번호의 글자 색"
+
+msgid "Line Numbers Background"
+msgstr "행 번호의 배경색"
+
+msgid "Style Scheme Editor"
+msgstr "스타일 패턴 편집"
+
+msgid "Set Dark Theme Icons"
+msgstr "어두운 테마 아이콘 설정"
+
+msgid "Set Light Theme Icons"
+msgstr "밝은 테마 아이콘 설정"
+
+msgid "Set Default Icons"
+msgstr "기본 아이콘 설정"
+
+msgid "Icon Theme"
+msgstr "아이콘 테마"
+
+msgid "Split Toolbar"
+msgstr "툴바를 분할"
+
+msgid "Use Different Cherries per Level"
+msgstr "레벨마다 다른 체리 이미지를 사용하기"
+
+msgid "No Icon"
+msgstr "아이콘 없음"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "오른쪽의 부속 아이콘 숨기기"
+
+msgid "Default Text Nodes Icons"
+msgstr "기본 텍스트 노트의 아이콘"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "확장/축소 상태 복원"
+
+msgid "Expand all Nodes"
+msgstr "모든 노트 확장"
+
+msgid "Collapse all Nodes"
+msgstr "모든 노트 축소"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "북마크 노트를 항상 표시"
+
+msgid "Nodes Status at Startup"
+msgstr "시작시 노트의 상태"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "Tree 노트 이름표기 폭"
+
+msgid "Display Tree on the Right Side"
+msgstr "Tree를 오른쪽에 표시"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "마우스 클릭으로 텍스트 편집기로 창 이동"
+
+msgid "Expand Node at Mouse Click"
+msgstr "마우스 클릭으로 노트 Tree를 확장"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "'%s'은(는) 유효한 압축형태가 아닙니다"
+
+msgid "Writing to Disk..."
+msgstr "디스크에 기록하고 있습니다 ..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "%s 에 쓰기 권한이 없습니다"
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "%s 의 암호를 입력하십시오"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr ""
+"저장된 문서의 무결성 검사에 실패했습니다. 파일-->다른 이름으로 저장 시도"
+
+msgid "Failed to encrypt the file"
+msgstr "파일을 암호화하지 못했습니다"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "백업에서 복원이 필요한 경우:"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr ""
+"데이터베이스 %s 파일이 손상되어 있습니다. 자세한 내용은 로그 파일 참조."
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s 쓰기 실패 - 파일이 없습니다. USB 드라이브 또는 공유 리소스를 다시 연결하세"
+"요."
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr "%s의 쓰기 실패 - 동기화 프로그램 파일이 차단되어 있지 않습니까?"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s 다시열기 실패 - 파일이 없습니다 USB 드라이버 또는 공유 리소스를 다시 연결"
+"하세요."
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "OliveSet 계층적 메모 작성"
+
+msgid "_Exit OliveSet"
+msgstr "OliveSet를 종료(_E)"
+
+msgid "HTML Document"
+msgstr "HTML 문서"
+
+msgid "Markdown Document"
+msgstr "Markdown 문서"
+
+msgid "Mempad Document"
+msgstr "Mempad 문서"
+
+msgid "Treepad Document"
+msgstr "Treepad 문서"
+
+msgid "Leo Document"
+msgstr "Leo 문서"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "기본값으로 초기화 하겠습니까?"
+
+#~ msgid "Replace in Multiple Nodes..."
+#~ msgstr "모든 노트를 치환..."
+
+#~ msgid "Find in Multiple Nodes..."
+#~ msgstr "모든 노트를 검색..."
+
+#~ msgid "Insert T_OC..."
+#~ msgstr "목차 삽입...(_O)"
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "목차 삽입"
+
+#~ msgid ""
+#~ "Backup files are by default 3 in the same folder of the corrupted "
+#~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
+#~ "the backup with one tilde: copy the file to another directory, remove the "
+#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "with two tildes and if it still fails try the one with three tildes."
+#~ msgstr ""
+#~ "백업 파일은 기본적으로 동일한 이름과 뒤에 물결표(~, ~~, ~~~)가 붙은 손상"
+#~ "된 문서의 동일한 폴더에 3개 있습니다 먼저 하나의 물결표로 백업을 시도하십"
+#~ "시오 파일을 다른 디렉토리에 복사하고 후행 물결표를 제거하고 oliveset로 "
+#~ "엽니다 그래도 실패하면 물결표 2개가 있는 것을 시도하고 여전히 실패하면 물"
+#~ "결표 3개가 있는 것을 시도하십시오."
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "온라인 설명서를 브라우저에서 열기"
+
+#~ msgid "OliveSet Document"
+#~ msgstr "OliveSet 문서"
+
+#~ msgid "Not Protected"
+#~ msgstr "비보호"
+
+#~ msgid "Password Protected"
+#~ msgstr "암호 보호"
+
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "문서 %s를 찾을 수 없습니다"
+
+#~ msgid "Find _in Multiple Nodes"
+#~ msgstr "모든 노트를 검색(_S)"
+
+#~ msgid "Replace in _Multiple Nodes"
+#~ msgstr "모든 노트를 치환"
+
+#~ msgid ""
+#~ "Pandoc executable could not be found, please ensure it is in your path"
+#~ msgstr "Pandoc이 없습니다. 해당 경로에 있는지 확인하십시오"
+
+#~ msgid "From File using _Pandoc"
+#~ msgstr "Pandoc을 이용하여 불러오기(_P)"
+
+#~ msgid "Add a node to the current tree using Pandoc"
+#~ msgstr "현재 Tree에 Pandoc를 이용하여 불러와 노트로 추가하기"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "새로운 언어는 OliveSet를 재 실행한 후 사용할 수 있습니다"
+
+#~ msgid "click me"
+#~ msgstr "클릭"
+
+#~ msgid "_Format"
+#~ msgstr "서식(_F)"
+
+#~ msgid "_Tools"
+#~ msgstr "도구(_T)"
+
+#~ msgid "_List"
+#~ msgstr "목록(_L)"
+
+#~ msgid "_Row"
+#~ msgstr "행(_R)"
+
+#~ msgid "_Print"
+#~ msgstr "인쇄(_P)"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "날짜 삽입(_M)"
+
+#~ msgid "Quit"
+#~ msgstr "닫기"
+
+#~ msgid "Replace in Selected Node and Subnodes"
+#~ msgstr "선택 노트와 하위 노트를 치환"
+
+#~ msgid "Search in Selected Node and Subnodes"
+#~ msgstr "선택 노트와 하위 노트를 검색"
+
+#~ msgid "Search in All Nodes"
+#~ msgstr "모든 노트를 검색"
+
+#~ msgid "Replace in Node Names..."
+#~ msgstr "노트 이름을 바꾸기 ..."
+
+#~ msgid "Search For a Node Name..."
+#~ msgstr "노트 이름을 검색 ..."
+
+#~ msgid "Monospace Text Color Background"
+#~ msgstr "고정폭 문자 배경색"
+
+#~ msgid "Find in _All Nodes Contents"
+#~ msgstr "모든 노트의 내용 검색(_A)"
+
+#~ msgid "Find into All the Tree Nodes Contents"
+#~ msgstr "모든 노트의 내용 검색"
+
+#~ msgid "Find in _Selected Node and Subnodes Contents"
+#~ msgstr "선택 노트와 하위 노트의 내용 검색(_S)"
+
+#~ msgid "Find into the Selected Node and Subnodes Contents"
+#~ msgstr "선택 노트와 하위 노트의 내용 검색"
+
+#~ msgid "Replace in _All Nodes Contents"
+#~ msgstr "모든 노트의 내용 치환(_A)"
+
+#~ msgid "Replace into All the Tree Nodes Contents"
+#~ msgstr "모든 노트의 내용을 치환"
+
+#~ msgid "Replace in _Selected Node and Subnodes Contents"
+#~ msgstr "선택 노트와 하위 노트의 내용을 치환(_S)"
+
+#~ msgid "Replace into the Selected Node and Subnodes Contents"
+#~ msgstr "선택 노트와 하위 노트의 내용을 치환"
+
+#~ msgid "Replace in Nodes _Names"
+#~ msgstr "노트 이름 바꾸기(_N)"
+
+#~ msgid "_Execute CodeBox Code"
+#~ msgstr "코드 상자의 코드를 실행(_E)"
+
+#~ msgid "For_matting"
+#~ msgstr "서식(_M)"
+
+#~ msgid "Nodes _Import"
+#~ msgstr "노트 가져오기(_I)"
+
+#~ msgid "Nodes E_xport"
+#~ msgstr "노트 내보내기(_X)"
+
+#~ msgid "E_xport"
+#~ msgstr "내보내기(_X)"
+
+#~ msgid "Editor"
+#~ msgstr "편집"
+
+#~ msgid "Monospace Background"
+#~ msgstr "고정폭 글꼴 배경색"
+
+#~ msgid "Export to PDF at specified file path"
+#~ msgstr "지정한 파일 경로에 PDF로 내보내기"
+
+#~ msgid "Unknown"
+#~ msgstr "알수없음"
+
+#~ msgid "(no suggestions)"
+#~ msgstr "(제안 된것 없음)"
+
+#~ msgid "Add \"{}\" to Dictionary"
+#~ msgstr "\"{}\" 를 사전에 추가하기 "
+
+#~ msgid "Ignore All"
+#~ msgstr "무시하기"
+
+#~ msgid "Languages"
+#~ msgstr "언어"
+
+#~ msgid "Suggestions"
+#~ msgstr "제안"
+
+#~ msgid "NoteCase Document"
+#~ msgstr "NoteCase 문서"
+
+#~ msgid "EPIM HTML Document"
+#~ msgstr "EPIM HTML 문서"
+
+#~ msgid "KeyNote Document"
+#~ msgstr "KeyNote 문서"
+
+#~ msgid "Knowit Document"
+#~ msgstr "Knowit 문서"
+
+#~ msgid ""
+#~ "Binary Executable '7za' Not Found, Check The Package 'p7zip-full' to be "
+#~ "Installed Properly"
+#~ msgstr ""
+#~ "실행 파일 형태의 7za을 찾을 수 없습니다 p7zip-full이 설치되었는지 확인해보"
+#~ "세요"
+
+#~ msgid "Type To Search..."
+#~ msgstr "명령어찾기…"
+
+#~ msgid "Command Name"
+#~ msgstr "명령어 이름"
+
+#~ msgid "Not Any H1, H2 or H3 Formatting Found"
+#~ msgstr "제목 태크 형태가 없습니다"
+
+#~ msgid "Min Width"
+#~ msgstr "최소폭"
+
+#~ msgid "Max Width"
+#~ msgstr "최대폭"
+
+#~ msgid "Click to Edit the Column Settings"
+#~ msgstr "열 설정을 편집하려면 클릭하세요"
+
+#~ msgid "Table Column Action"
+#~ msgstr "테이블 열 작업"
+
+#~ msgid "From _Basket Folder"
+#~ msgstr "Basket 폴더 불러오기(_B)"
+
+#~ msgid "Add Nodes of a Basket Folder to the Current Tree"
+#~ msgstr "현재 Tree에 Basket 폴더를 불러와 노트로 추가하기"
+
+#~ msgid "From _EssentialPIM HTML File"
+#~ msgstr "EssentialPIM HTML 파일 불러오기(_E)"
+
+#~ msgid "Add Node from an EssentialPIM HTML File to the Current Tree"
+#~ msgstr "현재 Tree에 EssentialPIM HTML 파일을 불러와 노트로 추가하기"
+
+#~ msgid "From K_eyNote File"
+#~ msgstr "KeyNote 파일 불러오기(_E)"
+
+#~ msgid "Add Nodes of a KeyNote File to the Current Tree"
+#~ msgstr "현재 Tree에 KeyNote 파일을 불러와 노트로 추가하기"
+
+#~ msgid "From K_nowit File"
+#~ msgstr "Knowit 파일 불러오기(_N)"
+
+#~ msgid "Add Nodes of a Knowit File to the Current Tree"
+#~ msgstr "현재 Tree에 Knowit 파일을 불러와 노트로 추가하기"
+
+#~ msgid "From _TuxCards File"
+#~ msgstr "TuxCards 파일 불러오기(_T)"
+
+#~ msgid "Add Nodes of a TuxCards File to the Current Tree"
+#~ msgstr "현재 Tree에 TuxCards 파일을 불러와 노트로 추가하기"
+
+#~ msgid "Export to Multiple Plain _Text Files"
+#~ msgstr "노트 단위로 텍스트 파일로 내보내기(_T)"
+
+#~ msgid "Export to Multiple Plain Text Files"
+#~ msgstr "노트 단위로 텍스트 파일로 내보내기"
+
+#~ msgid "Export to _Single Plain Text File"
+#~ msgstr "하나의 텍스트 파일로 내보내기(_S)"
+
+#~ msgid "Insert _NewLine"
+#~ msgstr "개행 문자를 삽입(_N)"
+
+#~ msgid "Insert NewLine Char"
+#~ msgstr "개행 문자를 삽입"
+
+#~ msgid "Use AppIndicator for Docking"
+#~ msgstr "AppIndicator 사용"
+
+#~ msgid "Cancel"
+#~ msgstr "취소"
+
+#~ msgid "The Characters  %s  are Not Allowed"
+#~ msgstr "%s의 문자는 사용할 수 없습니다"
+
+#~ msgid "Text Font"
+#~ msgstr "텍스트의 글꼴"
+
+#~ msgid "The Maximum Size for Embedded Files is 10 MB"
+#~ msgstr "첨부 파일의 최대 크기는 10MB입니다"
+
+#~ msgid "Toggle Node _Expanded/Collapsed"
+#~ msgstr "선택 노트의 Tree를 열기/닫기(_E)"
+
+#~ msgid "Toggle Expanded/Collapsed Status of the Selected Node"
+#~ msgstr "선택 노트의 Tree의 열기/닫기 상태 전환"
+
+#~ msgid "Find into the Selected Node"
+#~ msgstr "선택 노트를 검색"
+
+#~ msgid "Find into all the Tree Nodes"
+#~ msgstr "모든 노트를 검색"
+
+#~ msgid "_Replace in Node"
+#~ msgstr "선택 노트를 치환(_R)"
+
+#~ msgid "Replace into the Selected Node"
+#~ msgstr "선택 노트를 치환"
+
+#~ msgid "Replace in Node_s"
+#~ msgstr "모든 노트를 치환(_S)"
+
+#~ msgid "Replace into all the Tree Nodes"
+#~ msgstr "모든 노트를 치환"
+
+#~ msgid "Code Nodes"
+#~ msgstr "코드 노트"
+
+#~ msgid "Use Cherries as Nodes Icons"
+#~ msgstr "체리의 이미지를 표시"
+
+#~ msgid "Do Not Display Nodes Icons"
+#~ msgstr "노트 아이콘을 표시하지 않음"
+
+#~ msgid "All Nodes"
+#~ msgstr "모든 노트"
+
+#~ msgid "_Bookmark This Node"
+#~ msgstr "이 노트를 북마크에 추가(_B)"
+
+#~ msgid ""
+#~ "Copyright © 2009-2014\n"
+#~ "Giuseppe Penone <giuspen@gmail.com>"
+#~ msgstr ""
+#~ "Copyright © 2009-2014\n"
+#~ "Giuseppe Penone <giuspen@gmail.com>"
+
+#~ msgid "Sort with Drag and Drop, Delete with the Delete Key"
+#~ msgstr "드래그 앤 드롭으로 정렬하고 Delete 키로 삭제"

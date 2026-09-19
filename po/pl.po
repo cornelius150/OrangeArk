@@ -1,0 +1,3473 @@
+# Polish translations for PACKAGE package.
+# Copyright (C) 2010 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Marcin Swierczynski <orneo1212@gmail.com>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.30.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2026-05-11 01:03+0200\n"
+"Last-Translator: Giuseppe Penone <giuspen@gmail.com>\n"
+"Language-Team: Polish\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.9\n"
+
+msgid "Image Format Not Recognized"
+msgstr "Nierozpoznany format obrazka"
+
+msgid "Insert Table"
+msgstr "Dodaj ta_belę"
+
+msgid "CSV File"
+msgstr "Plik CSV"
+
+msgid "Insert a CodeBox"
+msgstr "Dodaj pole kodu"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "Maksymalny rozmiar dla dołączonego pliku wynosi %s MB."
+
+msgid "Do you want to Continue?"
+msgstr "Czy chcesz kontynuować?"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "Nie można odczytać zawartości gałęzi '%s'"
+
+msgid "Special Characters"
+msgstr "Znaki specjalne"
+
+msgid "Tabs Replaced"
+msgstr "Zamieniono TABy"
+
+msgid "Lines Stripped"
+msgstr "Linie przekreślone"
+
+msgid "No Text is Selected."
+msgstr "Żaden tekst nie jest zaznaczony."
+
+msgid "OliveSet File"
+msgstr "Plik OliveSet"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"Plik/folder jest w użyciu i nie może być nadpisany!\n"
+"Wybierz inną nazwę lub lokalizację."
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"Folder '%s' już istnieje w '%s'.\n"
+"<b>Czy chcesz go zamienić?</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"Plik '%s' już istnieje w '%s'.\n"
+"<b>Czy chcesz go zamienić?</b>"
+
+msgid "PDF File"
+msgstr "Plik PDF"
+
+msgid "Plain Text Document"
+msgstr "Dokument tekstowy"
+
+msgid "Preferences File"
+msgstr "Plik Ustawień"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "Czy zasobnik systemowy pojawił się na panelu?"
+
+msgid "Your system does not support the System Tray"
+msgstr "Twój system nie wspiera zasobnika systemowego"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr "Ta zmiana zostanie zatwierdzona po ponownym uruchomieniu OliveSet."
+
+msgid "Replace in Current Node"
+msgstr "Zamień w aktualnej gałęzi"
+
+msgid "Search in Current Node"
+msgstr "Szukaj w aktualnej gałęzi"
+
+msgid "Matches"
+msgstr "Pasujące"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "<b>Wyrażenie '%s' nie zostało znalezione</b>"
+
+msgid "Replace in Multiple Nodes"
+msgstr "Zamień we wszystkich gałęziach"
+
+msgid "Search in Multiple Nodes"
+msgstr "Szukaj w wielu gałęziach"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "Nie wykonywano wcześniej szukania w tej sesji."
+
+msgid "Tags"
+msgstr "Tagi"
+
+msgid ": "
+msgstr ": "
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "Nie wykonywano wcześniej żadnego formatowania w tej sesji."
+
+msgid "Link Name"
+msgstr "Nazwa linku"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "Kursor nie znajduje się w paragrafie."
+
+msgid "Insert/Edit Link"
+msgstr "Dodaj/Zmień Link"
+
+msgid "Pick a Foreground Color"
+msgstr "Wybierz kolor podstawowy"
+
+msgid "Pick a Background Color"
+msgstr "Wybierz kolor tła"
+
+msgid "Checking for Newer Version..."
+msgstr "Sprawdzanie czy jest nowa wersja..."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr "Nie udało się pobrać informacji o nowej wersji - spróbuj pózniej."
+
+msgid "A Newer Version Is Available!"
+msgstr "Nowa wersja jest dostępna!"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "Używasz najnowszej wersji."
+
+msgid "You Are Using a Development Version."
+msgstr "Używasz wersji deweloperskiej."
+
+msgid "Who is the Parent?"
+msgstr "Kto jest rodzicem?"
+
+msgid "The Tree Root"
+msgstr "Główna gałąź drzewa"
+
+msgid "The Selected Node"
+msgstr "Zaznaczona gałąź"
+
+msgid "Rename"
+msgstr "Zmień nazwę"
+
+msgid "PNG Image"
+msgstr "Obrazek PNG"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "Zapis do %s nie powiódł się"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "Link do katalogu '%s' nie jest prawidłowy."
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "Link do pliku '%s' nie jest prawidłowy."
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "Link do katalogu '%s' nie jest prawidłowy"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "Link prowadzi do gałęzi która już nie istnieje (Id = %s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "Brak kotwicy o nazwie '%s'"
+
+msgid "Edit CodeBox"
+msgstr "Zmień pole kodu"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"Musisz przypisać polecenie do '%s'.\n"
+"Możesz to zrobić w ustawieniach."
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr "Zainstaluj pakiet 'xterm' lub ustaw inny terminal w ustawieniach."
+
+msgid "Edit Table Properties"
+msgstr "Edytuj właściwości tabeli"
+
+msgid "Insert Anchor"
+msgstr "Dod_aj Kotwicę"
+
+msgid "Edit Anchor"
+msgstr "Zmień Kotwicę"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "Nie można edytować dołączonego pliku w gałęzi tylko do odczytu."
+
+msgid "Embedded File Automatically Updated:"
+msgstr "Dołączone pliki automatycznie zaktualizowane:"
+
+msgid "No Node is Selected"
+msgstr "Nie zaznaczono gałęzi"
+
+msgid "The Tree is Empty!"
+msgstr "Drzewo jest puste!"
+
+msgid "The Selected Node is Read Only."
+msgstr "Zaznaczona gałąź jest tylko do odczytu."
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "Ta funkcja jest dostępna tylko w gałęziach z formatowaniem."
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr "Ta funkcja nie jest dostępna w gałęzi z kolorowaniem składni."
+
+msgid "No Table is Selected."
+msgstr "Nie zaznaczono tabeli."
+
+msgid "No CodeBox is Selected."
+msgstr "Nie zaznaczono pola kodu."
+
+msgid "New Child Node Properties"
+msgstr "Zmień właściwości nowej podrzędnej gałęzi"
+
+msgid "New Node Properties"
+msgstr "Właściwości nowej gałęzi"
+
+msgid "Node Properties"
+msgstr "Właściwości gałęzi"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"Zmiana typu gałęzi na automatyczne kolorowanie składni spowoduje utratę "
+"formatowania. Czy chcesz kontynuować?"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "Jesteś pewien, że chcesz <b>Usunąć gałąź '%s'?</b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "Gałąź <b>posiada gałęzie podrzędne, one także zostaną usunięte!</b>"
+
+msgid "Select the New Parent"
+msgstr "Wybierz nową gałąź nadrzędną"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "Nowa gałęź nadrzędna nie może być gałęzią przenoszoną!"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "Wybrana gałąź jest poprzednią nadrzędną gałęzią!"
+
+msgid "The new parent can't be one of his children!"
+msgstr "Nowa gałąź nadrzędna nie może być jedną z jej gałęzi podrzędnych!"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "Właściwości gałęzi %s zmienione"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr ""
+"Liczba ostatnio odwiedzonych gałęzi w nagłówku nazwy gałęzi jest już "
+"maksymalna."
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr ""
+"Liczba ostatnio odwiedzonych gałęzi w nagłówku nazwy gałęzi jest już "
+"minimalna."
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "Rozmiar ikon w pasku narzędzi jest już największy."
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "Rozmiar ikon w pasku narzędzi jest już najmniejszy."
+
+msgid "Print OliveSet version"
+msgstr "Wyświetl wersję OliveSet"
+
+msgid "Node name to focus"
+msgstr "Nazwa gałęzi do aktywacji"
+
+msgid "Anchor name to scroll to in node"
+msgstr "Nazwa kotwicy w węźle do której przewinąć"
+
+msgid "Export to HTML at specified directory path"
+msgstr "Wyeksportuj do HTML w wybranym katalogu"
+
+msgid "Export to Text at specified directory path"
+msgstr "Wyeksportuj do pliku tekstowego w wybranym katalogu"
+
+msgid "Export to PDF at specified directory path"
+msgstr "Wyeksportuj do PDF w wybranym katalogu"
+
+msgid "Overwrite if export path already exists"
+msgstr "Zamień jeśli ścieżka istnieje"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "Wyeksportuj do jednego pliku (HTML lub TXT)"
+
+msgid "Password to open document"
+msgstr "Hasło do otwarcia dokumentu"
+
+msgid "Create a new window"
+msgstr "Stwórz nowe okno"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "Uruchom w sesji dodatkowej, niezależnie od sesji głównej"
+
+msgid "Execute Code"
+msgstr "Wykonaj kod"
+
+msgid "Copy Code"
+msgstr "Skopiuj kod"
+
+msgid "Change CodeBox Properties"
+msgstr "Zmień właściwości _pola kodu"
+
+msgid "Start in OliveSet"
+msgstr "Uruchom w OliveSet"
+
+msgid "New Document"
+msgstr "Nowy dokument"
+
+msgid "Open File"
+msgstr "Otwórz plik"
+
+msgid "Open Folder"
+msgstr "Otwórz folder"
+
+msgid "Create a new document or open an existing one."
+msgstr "Utwórz nowy dokument lub otwórz istniejący."
+
+msgid "Don't show again"
+msgstr "Nie pokazuj ponownie"
+
+msgid "Recent Documents"
+msgstr "Ostatnie dokumenty"
+
+msgid "Name"
+msgstr "Nazwa"
+
+msgid "Path"
+msgstr "Ścieżka"
+
+msgid "Open Selected"
+msgstr "Otwórz zaznaczone"
+
+msgid "Handle the Bookmarks List"
+msgstr "Obsłuż listę zakładek"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "Przenieś zaznaczoną zakładkę wyżej"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "Przenieś zaznaczoną zakładkę niżej"
+
+msgid "Remove the Selected Bookmark"
+msgstr "Usuń zaznaczoną zakładkę"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "Posortuj zakładki malejąco"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "Posortuj zakładki rosnąco"
+
+msgid "Choose Storage Type"
+msgstr "Wybierz typ magazynu"
+
+msgid "Single SQLite File"
+msgstr "Pojedynczy plik SQLite"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "Pojedynczy plik SQLite zaszyfrowany poprzez 7-zip i z hasłem"
+
+msgid "Single XML File"
+msgstr "Pojedynczy plik XML"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "Pojedynczy plik XML zaszyfrowany poprzez 7-zip i z hasłem"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "Zapis wieloplikowy z hierarchiczną strukturą folderów"
+
+msgid "Storage Type"
+msgstr "Typ magazynu"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"CT zapisuje dokument w zaszyfrowanym archiwum 7zip. Gdy dokument jest "
+"przeglądany lub edytowany, CT wypakowuje go do katalogu tymczasowego, i "
+"pracuje na niezaszyfrowanej wersji dokumentu. Gdy aplikacja jest zamykana "
+"plik jest usuwany. Gdy aplikacja lub system się zawiesi plik pozostaje w "
+"katalogu tymczasowym."
+
+msgid "Enter the New Password Twice"
+msgstr "Wprowadź nowe hasło dwa razy"
+
+msgid "Autosave Every"
+msgstr "Autozapis co"
+
+msgid "Minutes"
+msgstr "Minut"
+
+msgid "The Password Fields Must be Filled."
+msgstr "Pola haseł muszą być wypełnione."
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "Dwa wprowadzone hasła nie są jednakowe."
+
+msgid "Warning"
+msgstr "Ostrzeżenie"
+
+msgid "The Current Document was Updated."
+msgstr "Dokument został zaktualizowany."
+
+msgid "Do you want to Save the Changes?"
+msgstr "Czy chcesz zapisać zmiany?"
+
+msgid "Do you want to Execute the Code?"
+msgstr "Czy chcesz wykonać kod?"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "Poproś o potwierdzenie przed wykonaniem kodu"
+
+msgid "Use Internal Terminal"
+msgstr "Użyj wbudowanego terminala"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr "Strukturalny Notes. Cechy: WYSIWYG edytor oraz kolorowanie składni"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"Ten program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i / "
+"lub modyfikować \n"
+"zgodnie z warunkami licencji GNU General Public License opublikowanej "
+"przez \n"
+"Free Software Foundation w wersji 3 licencji lub \n"
+"(do wyboru) którejś z późniejszych wersji. \n"
+"\n"
+"Niniejszy program rozpowszechniany jest z nadzieją, iż będzie przydatny, \n"
+"ale BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji \n"
+"HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. Zobacz \n"
+"GNU General Public License po więcej szczegółów. \n"
+"\n"
+"Powinieneś otrzymać kopię Powszechnej Licencji Publicznej GNU \n"
+"Wraz z tym programem, a jeśli nie, napisz do Free Software \n"
+"Foundation, Inc, 51 Franklin Street, Fifth Floor, Boston, \n"
+"MA 02110-1301, USA. \n"
+
+msgid "Arabic"
+msgstr "Arabski"
+
+msgid "Armenian"
+msgstr "Ormiański"
+
+msgid "Bulgarian"
+msgstr "Bułgarski"
+
+msgid "Chinese Simplified"
+msgstr "Chiński Uproszczony"
+
+msgid "Chinese Traditional"
+msgstr "Chiński Tradycyjny"
+
+msgid "Croatian"
+msgstr "Chorwacki"
+
+msgid "Czech"
+msgstr "Czeski"
+
+msgid "Dutch"
+msgstr "Holenderski"
+
+msgid "Finnish"
+msgstr "Fiński"
+
+msgid "French"
+msgstr "Francuski"
+
+msgid "German"
+msgstr "Niemiecki"
+
+msgid "Greek"
+msgstr "Grecki"
+
+msgid "Hindi India"
+msgstr "Hinduski"
+
+msgid "Hungarian"
+msgstr "Węgierski"
+
+msgid "Italian"
+msgstr "Włoski"
+
+msgid "Japanese"
+msgstr "Japoński"
+
+msgid "Kazakh"
+msgstr "Kazachski"
+
+msgid "Kazakh (Latin)"
+msgstr "Kazachski (Latin)"
+
+msgid "Korean"
+msgstr "Koreański"
+
+msgid "Lithuanian"
+msgstr "Litewski"
+
+msgid "Persian"
+msgstr "Perski"
+
+msgid "Polish"
+msgstr "Polski"
+
+msgid "Portuguese"
+msgstr "Portugalski"
+
+msgid "Portuguese Brazil"
+msgstr "Portugalski Brazylia"
+
+msgid "Romanian"
+msgstr "Rumuński"
+
+msgid "Russian"
+msgstr "Rosyjski"
+
+msgid "Slovak"
+msgstr "Słowacki"
+
+msgid "Slovenian"
+msgstr "Słoweński"
+
+msgid "Spanish"
+msgstr "Hiszpański"
+
+msgid "Swedish"
+msgstr "Szwedzki"
+
+msgid "Turkish"
+msgstr "Turecki"
+
+msgid "Ukrainian"
+msgstr "Ukraiński"
+
+msgid "About OliveSet"
+msgstr "Informacje o OliveSet"
+
+msgid "Tree Summary Information"
+msgstr "Skrócone informacje o drzewie"
+
+msgid "Number of Rich Text Nodes"
+msgstr "Ilość gałęzi z formatowaniem"
+
+msgid "Number of Plain Text Nodes"
+msgstr "Ilość tekstowych gałęzi"
+
+msgid "Number of Code Nodes"
+msgstr "Ilość gałęzi z kodem"
+
+msgid "Number of Images"
+msgstr "Ilość obrazków"
+
+msgid "Number of LatexBoxes"
+msgstr "Ilość pól Latex"
+
+msgid "Number of Embedded Files"
+msgstr "Ilość załączonych plików"
+
+msgid "Number of Tables"
+msgstr "Ilość tabel"
+
+msgid "Number of CodeBoxes"
+msgstr "Ilość gałęzi z polem kodu"
+
+msgid "Number of Anchors"
+msgstr "Ilość kotwic"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "Ilość wspólnych gałęzi / grup"
+
+msgid "Latex Text"
+msgstr "Tekst Latex"
+
+msgid "Image Size dpi"
+msgstr "Wielkość obrazka dpi"
+
+msgid "Tutorial"
+msgstr "Tutorial"
+
+msgid "Reference"
+msgstr "Referencje"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "Samouczek dotyczący matematyki i notacji LaTeX"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "Objaśnienia symboli matematycznych LaTeX"
+
+msgid "Image Properties"
+msgstr "Właściwości obrazka"
+
+msgid "Rotate Left"
+msgstr "Obróć w lewo"
+
+msgid "Rotate Right"
+msgstr "Obróć w prawo"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr "Aby przyciąć obrazek zaznacz obszar myszką przed kliknięciem OK"
+
+msgid "Flip Horizontally"
+msgstr "Odwróć poziomo"
+
+msgid "Flip Vertically"
+msgstr "Odwróć pionowo"
+
+msgid "Width"
+msgstr "Długość"
+
+msgid "Height"
+msgstr "Wysokość"
+
+msgid "Plain Text"
+msgstr "Zwykły tekst"
+
+msgid "Automatic Syntax Highlighting"
+msgstr "Automatyczne kolorowanie składni"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "pixels"
+msgstr "pikseli"
+
+msgid "Size"
+msgstr "Rozmiar"
+
+msgid "Show Line Numbers"
+msgstr "Wyświetl numery wierszy"
+
+msgid "Highlight Matching Brackets"
+msgstr "Zaznacz pasujące nawiasy"
+
+msgid "Options"
+msgstr "Opcje"
+
+msgid "Rows"
+msgstr "Wiersze"
+
+msgid "Columns"
+msgstr "Kolumny"
+
+msgid "Default Width"
+msgstr "Domyślna szerokość"
+
+msgid "Table Size"
+msgstr "Rozmiar tabeli"
+
+msgid "Column Properties"
+msgstr "Właściwości kolumn"
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "Lekki interfejs (znacznie szybszy w przypadku dużych tabel)"
+
+msgid "Import from CSV File"
+msgstr "Importuj z pliku CSV"
+
+msgid "Clear"
+msgstr "Wyczyść"
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Search for"
+msgstr "Szukaj"
+
+msgid "Replace with"
+msgstr "Zamień na"
+
+msgid "Replace in Link Targets"
+msgstr "Zamieniaj wewnątrz linków"
+
+msgid "Replace options"
+msgstr "Opcje zamieniania"
+
+msgid "Match Case"
+msgstr "Pasująca wielkość"
+
+msgid "Regular Expression"
+msgstr "Wyrażenie regularne"
+
+msgid "Online Manual"
+msgstr "Poradnik online"
+
+msgid "Accent Insensitive"
+msgstr "Niewrażliwy na akcent"
+
+msgid "Override Exclusions"
+msgstr "Zastąp wykluczenia"
+
+msgid "Whole Word"
+msgstr "Całe słowo"
+
+msgid "Start Word"
+msgstr "Początkowe słowo"
+
+msgid "More Words, Exact Match"
+msgstr "Więcej słów, dokładne dopasowanie"
+
+msgid "More Words, Disregard Order"
+msgstr "Więcej słów, zignoruj kolejność"
+
+msgid "More Words, Match Any"
+msgstr "Więcej słów, dopasuj dowolne"
+
+msgid "Forward"
+msgstr "Naprzód"
+
+msgid "Backward"
+msgstr "Wstecz"
+
+msgid "All, List Matches"
+msgstr "Wszystko, spis pasujących"
+
+msgid "First From Selection"
+msgstr "Pierwszy z zaznaczenia"
+
+msgid "First in All Range"
+msgstr "Pierwszy w zasięgu"
+
+msgid "Node Created After"
+msgstr "Gałąź utworzona po"
+
+msgid "Node Created Before"
+msgstr "Gałąź utworzona przed"
+
+msgid "Node Modified After"
+msgstr "Gałąź zmieniona po"
+
+msgid "Node Modified Before"
+msgstr "Gałąź zmieniona przed"
+
+msgid "Time filter"
+msgstr "Filtr czasowy"
+
+msgid "Node Content"
+msgstr "Zawartość gałęzi"
+
+msgid "Node Name and Tags"
+msgstr "Nazwa gałęzi i tagi"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "Tylko zaznaczona gałąź i podgałęzie"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "Pokaż okno Znajdź/Zamien"
+
+msgid "Search options"
+msgstr "Opcje szukania"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"Pole Zamień na jest puste: wszystkie wyniki zostaną wyczyszczone.\n"
+"Czy kontynuować?"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"Pominięto conajmniej jedną gałąź z powodu wykluczeń ustawionych we "
+"właściwościach gałęzi.\n"
+"Aby usunąć wszystkie wykluczenia, użyj menu:\n"
+"Szukaj -> Wyczyść wszystkie wykluczenia z Wyszukiwania"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "Ukryj (przywróć '%s')"
+
+msgid "Node Name"
+msgstr "Nazwa gałęzi"
+
+msgid "Line"
+msgstr "Linia"
+
+msgid "Line Content"
+msgstr "Zawartość linii"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "Iteruj ostatnią zamianę"
+
+msgid "Close"
+msgstr "Zamknij"
+
+msgid "Find Previous"
+msgstr "Znajdź poprzedni"
+
+msgid "Find Next"
+msgstr "Znajdź następny"
+
+msgid "Replace"
+msgstr "Zamień"
+
+msgid "Undo"
+msgstr "Cofnij"
+
+msgid "Remove"
+msgstr "Usuń"
+
+msgid "Remove User Colour from Palette"
+msgstr "Usuń kolor użytkownika z palety"
+
+msgid "Colour"
+msgstr "Kolor"
+
+msgid "Question"
+msgstr "Pytanie"
+
+msgid "Info"
+msgstr "Informacje"
+
+msgid "Error"
+msgstr "Błąd"
+
+msgid "Select File"
+msgstr "Wybierz Plik"
+
+msgid "Select Folder"
+msgstr "Wybierz Katalog"
+
+msgid "Save File as"
+msgstr "Zapisz plik jako"
+
+msgid "Save To Folder"
+msgstr "Zapisz do folderu"
+
+msgid "To WebSite"
+msgstr "Do strony internetowej"
+
+msgid "To File"
+msgstr "Do pliku"
+
+msgid "To Folder"
+msgstr "Do katalogu"
+
+msgid "To Node"
+msgstr "Do gałęzi"
+
+msgid "Anchor Name (optional)"
+msgstr "Nazwa Kotwicy (opcjonalnie)"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "Brak kotwic w aktualnej gałęzi."
+
+msgid "Choose Existing Anchor"
+msgstr "Wybierz istniejącą kotwice"
+
+msgid "Anchor Name"
+msgstr "Nazwa kotwicy"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "Wyrażenie '%s' nie zostało znalezione"
+
+msgid "Bold"
+msgstr "Pogrubienie"
+
+msgid "Use Selected Color"
+msgstr "Użyj zaznaczonego koloru"
+
+msgid "Use Selected Icon"
+msgstr "Użyj wybranej ikony"
+
+msgid "Rich Text"
+msgstr "Formatowanie"
+
+msgid "Node Type"
+msgstr "Typ gałęzi"
+
+msgid "Tags for Searching"
+msgstr "Tagi do szukania"
+
+msgid "Exclude from Searches"
+msgstr "Wyklucz z Wyszukiwania"
+
+msgid "This Node"
+msgstr "Ta gałąź"
+
+msgid "The Subnodes"
+msgstr "Podgałęzie"
+
+msgid "Read Only"
+msgstr "Tylko do odczytu"
+
+msgid "Unique Id"
+msgstr "Unikalny ID"
+
+msgid "Shared Nodes Group"
+msgstr "Grupa wspólnych gałęzi"
+
+msgid "Choose Existing Tag"
+msgstr "Wybierz istniejący znacznik"
+
+msgid "Tag Name"
+msgstr "Nazwa tagu"
+
+msgid "Pick a Color"
+msgstr "Wybierz kolor"
+
+msgid "Select Node Icon"
+msgstr "Wybierz ikonę gałęzi"
+
+msgid "Involved Nodes"
+msgstr "Uwzględnione gałęzie"
+
+msgid "Selected Text Only"
+msgstr "Tylko zaznaczony tekst"
+
+msgid "Selected Node Only"
+msgstr "Tylko zaznaczoną gałąź"
+
+msgid "Selected Node and Subnodes"
+msgstr "Zaznaczoną gałąź i podgałęzie"
+
+msgid "All the Tree"
+msgstr "Całe drzewo"
+
+msgid "Include Node Name"
+msgstr "Dołącz nazwę gałęzi"
+
+msgid "Links Tree in Every Page"
+msgstr "Łącz drzewo na każdej stronie"
+
+msgid "New Node in New Page"
+msgstr "Nowa gałąź na nowej stronie"
+
+msgid "Single File"
+msgstr "Pojedynczy Plik"
+
+msgid "Index"
+msgstr "Indeks"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr ""
+"Ostrzeżenie: Jeden lub wiele obrazków zostały zmniejszone aby pasowały do "
+"strony!"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "Renderowanie LaTeX zostało zablokowane ze względów bezpieczeństwa"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr "Źródło zawiera polecenia I/O mające dostęp do plików lokalnych"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"Usuń polecenia takie jak \\verbatiminput, \\openin, \\openout i "
+"niebiezpieczne ścieżki \\input/\\include"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "Nie znaleziono pliku wykonywalnego 'latex' oraz 'dvipng'"
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "Przykładowo, dla Ubuntu pakiety do zainstalowania to:"
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "Przykładowo, dla macOS pakiety do zainstalowania to:"
+
+msgid "Could not access the executable 'latex'"
+msgstr "Nie znaleziono pliku wykonywalnego 'latex'"
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "Nie znaleziono pliku wykonywalnego 'dvipng'"
+
+msgid "Downloading"
+msgstr "Pobieranie"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "Ścieżka %s nie istnieje"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "Otwórz ostatni dokument OliveSet"
+
+msgid "_Hide"
+msgstr "Ukryj"
+
+msgid "_Quit"
+msgstr "_Zakończ"
+
+msgid "Hide the Window"
+msgstr "Ukryj okno"
+
+msgid "Quit the Application"
+msgstr "Zamknij aplikację"
+
+msgid "Spell Check"
+msgstr "Sprawdzanie pisowni"
+
+msgid "Word Count"
+msgstr "Ilość słów"
+
+msgid "Date Created"
+msgstr "Data utworzenia"
+
+msgid "Date Modified"
+msgstr "Data modyfikacji"
+
+msgid "Subnodes"
+msgstr "Podgałęzie"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr ""
+"W tej sesji nie wykonano żadnej kopii węzła lub drzewo źródłowe nie jest już "
+"dostępne."
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "Gałąź źródłowa nie jest już dostępna."
+
+msgid "Show Menubar:"
+msgstr "Wyświetl/Ukryj pasek menu:"
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "\"%s\" nie jest dokumentem OliveSet"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"Błąd parsowania ścieżki OliveSet:\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "Czy chcesz otworzyć ostatnią kopię zapasową?"
+
+msgid "Failed to Load from Backup Data"
+msgstr "Nie można odczytać kopii zapasowej"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "Nie znaleziono węzła o nazwie '%s'."
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "Pliki tymczasowe zostały stworzone i otwarte w Zewnętrznej aplikacji."
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "Wyjdź z zewnętrznych aplikacji przed zamknięciem OliveSet."
+
+msgid "Did you Quit the External Applications?"
+msgstr "Czy zewnętrzne aplikacje zostały zamknięte?"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "Nie można zapisać: \"%s\" jest tylko do odczytu"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr "Dokument został przeładowany po zewnętrznej zmiane pliku CT*."
+
+msgid "Copy Selection or All"
+msgstr "Skopiuj zaznaczenie lub wszystko"
+
+msgid "Paste"
+msgstr "Wklej"
+
+msgid "Remove from list"
+msgstr "Usuń z listy"
+
+msgid "_File"
+msgstr "_Plik"
+
+msgid "_Edit"
+msgstr "Edyc_ja"
+
+msgid "_Insert"
+msgstr "Dodaj"
+
+msgid "F_ormat"
+msgstr "For_mat"
+
+msgid "_Tree"
+msgstr "_Drzewo"
+
+msgid "Too_ls"
+msgstr "Narzędzia"
+
+msgid "_Search"
+msgstr "Sz_ukaj"
+
+msgid "_View"
+msgstr "_Widok"
+
+msgid "_Bookmarks"
+msgstr "Za_kładki"
+
+msgid "_Help"
+msgstr "_Pomoc"
+
+msgid "Insert _Date Node"
+msgstr "Wstaw gałąź z _datą"
+
+msgid "Node _Move"
+msgstr "Przenieś gałąź"
+
+msgid "Nod_es Sort"
+msgstr "_Sortowanie gałęzi"
+
+msgid "B_ookmarks"
+msgstr "Za_kładki"
+
+msgid "_Import"
+msgstr "_Import"
+
+msgid "_Export"
+msgstr "_Eksport"
+
+msgid "_Preferences"
+msgstr "Ustawienia"
+
+msgid "_Recent Documents"
+msgstr "_Ostatnie dokumenty"
+
+msgid "C_hange Case"
+msgstr "_Zmień wielkość znaków"
+
+msgid "L_ist"
+msgstr "L_ista"
+
+msgid "_Justify"
+msgstr "Wyjustuj"
+
+msgid "Toggle _Font Property"
+msgstr "Przełącz właściwości tekstu"
+
+msgid "_Toggle Heading Property"
+msgstr "Przełącz właściwości nagłówka"
+
+msgid "I_nsert"
+msgstr "Dodaj"
+
+msgid "_Find"
+msgstr "Znajdź"
+
+msgid "_Replace"
+msgstr "_Zamień"
+
+msgid "Ro_w"
+msgstr "_Wiersz"
+
+msgid "_Table"
+msgstr "_Tabela"
+
+msgid "_CodeBox"
+msgstr "_Pole kodu"
+
+msgid "File"
+msgstr "Plik"
+
+msgid "_New Instance..."
+msgstr "_Nowa instancja..."
+
+msgid "Start a New Instance of OliveSet"
+msgstr "Uruchom nową instancję programu"
+
+msgid "_Open File..."
+msgstr "_Otwórz plik..."
+
+msgid "Open a OliveSet File"
+msgstr "Otwórz plik OliveSet"
+
+msgid "Open Fo_lder..."
+msgstr "_Otwórz folder..."
+
+msgid "Open a OliveSet Folder"
+msgstr "Otwórz folder OliveSet"
+
+msgid "_Save"
+msgstr "Zapi_sz"
+
+msgid "Save File"
+msgstr "Zapisz plik"
+
+msgid "Save and _Vacuum"
+msgstr "Zapisz i oczyść"
+
+msgid "Save File and Vacuum"
+msgstr "Zapisz plik i oczyść"
+
+msgid "Save _As..."
+msgstr "Zapisz _jako..."
+
+msgid "Save File As"
+msgstr "Zapisz plik jako"
+
+msgid "Pa_ge Setup..."
+msgstr "_Ustawienia strony..."
+
+msgid "Set up the Page for Printing"
+msgstr "Ustaw stronę do druku"
+
+msgid "P_rint..."
+msgstr "_Drukuj..."
+
+msgid "Print"
+msgstr "Drukuj"
+
+msgid "Preferences"
+msgstr "Ustawienia"
+
+msgid "_Import Preferences..."
+msgstr "_Importuj Ustawienia..."
+
+msgid "Import Preferences"
+msgstr "Importuj Ustawienia"
+
+msgid "_Export Preferences..."
+msgstr "_Eksportuj ustawienia..."
+
+msgid "Export Preferences"
+msgstr "Eksportuj Ustawienia"
+
+msgid "Tree In_fo"
+msgstr "In_formacje o drzewie"
+
+msgid "_Document Path to Clipboard"
+msgstr "Ścieżka _dokumentu do schowka"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "Kopiuj ścieżkę dokumentu do schowka"
+
+msgid "E_xit OliveSet"
+msgstr "Zakończ Ch_erryTree"
+
+msgid "Exit from OliveSet"
+msgstr "Zakończ OliveSet"
+
+msgid "Edit/Insert"
+msgstr "Edytuj/Wstaw"
+
+msgid "_Undo"
+msgstr "Cofnij"
+
+msgid "Undo Last Operation"
+msgstr "Cofnij ostatnią operację"
+
+msgid "_Redo"
+msgstr "Ponów"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "Ponów poprzednio odrzuconą operację"
+
+msgid "Insert I_mage..."
+msgstr "Dodaj _obrazek..."
+
+msgid "Insert an Image"
+msgstr "Dodaj obrazek"
+
+msgid "Insert Late_x..."
+msgstr "Dodaj pole Late_x..."
+
+msgid "Insert LatexBox"
+msgstr "Dodaj pole Latex"
+
+msgid "Insert _Table..."
+msgstr "Dodaj _tabelę..."
+
+msgid "Insert a Table"
+msgstr "Dodaj tabelę"
+
+msgid "Insert _CodeBox..."
+msgstr "Dodaj pole _kodu..."
+
+msgid "Insert _File..."
+msgstr "Dodaj _plik..."
+
+msgid "Insert File"
+msgstr "Dodaj plik"
+
+msgid "Insert/Edit _Link..."
+msgstr "Dodaj/Zmień _Link..."
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "Dodaj/Zmień Link"
+
+msgid "Insert _Anchor..."
+msgstr "Dodaj _kotwicę..."
+
+msgid "Insert an Anchor"
+msgstr "Dodaj kotwicę"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "Dodaj spis treści i zwijacze nagłówków..."
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "Dodaj spis treści i przyciski do zwijania/rozwijania nagłówków"
+
+msgid "Insert Timestam_p"
+msgstr "Dodaj datę/godzinę"
+
+msgid "Insert Timestamp"
+msgstr "Dodaj datę/godzinę"
+
+msgid "Insert _Special Character..."
+msgstr "Wstaw _znak specjalny..."
+
+msgid "Insert a Special Character"
+msgstr "Dodaj znak specjalny"
+
+msgid "Insert _Horizontal Rule"
+msgstr "Dodaj p_oziomą linię"
+
+msgid "Insert Horizontal Rule"
+msgstr "Dodaj poziomą linię"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "Małe znaki zaznaczenia/słowa"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "Zmień zaznaczenie/słowo na małe znaki"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "Duże znaki zaznaczenia/słowa"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "Zmień zaznaczenie/słowo na wielkie znaki"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "Przełącz wielkość zaznaczenia/słowa"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "Przełącz wielkość zaznaczenia/słowa"
+
+msgid "Cu_t as Plain Text"
+msgstr "Wytnij jako surowy tekst"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "Wytnij jako tekst surowy, odrzucając formatowanie"
+
+msgid "_Copy as Plain Text"
+msgstr "Kopiuj jako surowy tekst"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "Kopiuj jako surowy tekst, odrzucając formatowanie"
+
+msgid "_Paste as Plain Text"
+msgstr "Wklej jako surowy tekst"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "Wklej jako surowy tekst, odrzucając formatowanie"
+
+msgid "C_ut Row"
+msgstr "Wytnij wiersz"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "Wytnij aktualny wiersz/zaznaczone wiersze"
+
+msgid "C_opy Row"
+msgstr "Kopiuj wiersz"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "Kopiuj aktualny wiersz/zaznaczone wiersze"
+
+msgid "De_lete Row"
+msgstr "Usuń wiersz"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "Usuń aktualny wiersz/zaznaczone wiersze)"
+
+msgid "_Duplicate Row"
+msgstr "_Duplikuj Wiersz"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "Duplikuj aktualny wiersz/Zaznaczenie"
+
+msgid "_Move Up Row"
+msgstr "Przenieś wiersz wyżej"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "Przenieś aktualny wiersz/zaznaczone wiersze wyżej"
+
+msgid "Mo_ve Down Row"
+msgstr "Przenieś wiersz w dół"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "Przenieś aktualny wiersz/zaznaczone wiersze niżej"
+
+msgid "C_ut Table"
+msgstr "Wytnij ta_belę"
+
+msgid "Cut the Selected Table"
+msgstr "Wytnij zaznaczony wiersz tabeli"
+
+msgid "_Copy Table"
+msgstr "_Kopiuj tabelę"
+
+msgid "Copy the Selected Table"
+msgstr "Kopiuj zaznaczoną tabelę"
+
+msgid "_Delete Table"
+msgstr "_Usuń tabelę"
+
+msgid "Delete the Selected Table"
+msgstr "Usuń zaznaczoną tabelę"
+
+msgid "_Add Column"
+msgstr "Dodaj kolumnę"
+
+msgid "Add a Table Column"
+msgstr "Dodaj kolumnę tabeli"
+
+msgid "Cu_t Column"
+msgstr "Wytnij kolumnę"
+
+msgid "Cut a Table Column"
+msgstr "Wytnij kolumnę tabeli"
+
+msgid "_Copy Column"
+msgstr "Kopiuj kolumnę"
+
+msgid "Copy a Table Column"
+msgstr "Kopiuj kolumnę tabeli"
+
+msgid "_Paste Column"
+msgstr "Wklej kolumnę"
+
+msgid "Paste a Table Column"
+msgstr "Wklej kolumnę tabeli"
+
+msgid "De_lete Column"
+msgstr "Usuń kolumnę"
+
+msgid "Delete the Selected Table Column"
+msgstr "Usuń zaznaczoną kolumnę tabeli"
+
+msgid "Move Column _Left"
+msgstr "Prznieś kolumnę w lewo"
+
+msgid "Move the Selected Column Left"
+msgstr "Przenieś zaznaczoną kolumnę w lewo"
+
+msgid "Move Column _Right"
+msgstr "Prznieś kolumnę w prawo"
+
+msgid "Move the Selected Column Right"
+msgstr "Przenieś zaznaczoną kolumnę w prawo"
+
+msgid "Increase Column Width"
+msgstr "Zwiększ szerokość kolumny"
+
+msgid "Increase the Width of the Column"
+msgstr "Zwiększ szerokość kolumny"
+
+msgid "Decrease Column Width"
+msgstr "Zmniejsz szerokość kolumny"
+
+msgid "Decrease the Width of the Column"
+msgstr "Zmniejsz szerokość kolumny"
+
+msgid "_Add Row"
+msgstr "Dodaj wiersz"
+
+msgid "Add a Table Row"
+msgstr "Dodaj wiersz tabeli"
+
+msgid "Cu_t Row"
+msgstr "Wytnij wiersz"
+
+msgid "Cut a Table Row"
+msgstr "Wytnij wiersz tabeli"
+
+msgid "_Copy Row"
+msgstr "Kopiuj wiersz"
+
+msgid "Copy a Table Row"
+msgstr "Kopiuj wiersz tabeli"
+
+msgid "_Paste Row"
+msgstr "Wklej wiersz"
+
+msgid "Paste a Table Row"
+msgstr "Wklej wiersz tabeli"
+
+msgid "Delete the Selected Table Row"
+msgstr "Usuń zaznaczony wiersz w tabeli"
+
+msgid "Move Row _Up"
+msgstr "Przenieś wiersz wyżej"
+
+msgid "Move the Selected Row Up"
+msgstr "Przenieś zaznaczony wiersz wyżej"
+
+msgid "Move Row _Down"
+msgstr "Przenieś wiersz w dół"
+
+msgid "Move the Selected Row Down"
+msgstr "Przenieś zaznaczony wiersz niżej"
+
+msgid "Sort Rows De_scending"
+msgstr "Posortuj wiersze malejąco"
+
+msgid "Sort all the Rows Descending"
+msgstr "Posortuj wszystkie wiersze malejąco"
+
+msgid "Sort Rows As_cending"
+msgstr "Posortuj wszystkie wiersze rosnąco"
+
+msgid "Sort all the Rows Ascending"
+msgstr "Posortuj wszystkie wiersze rosnąco"
+
+msgid "_Edit Table Properties..."
+msgstr "Edytuj _właściwości tabeli..."
+
+msgid "Edit the Table Properties"
+msgstr "Edytuj właściwości tabeli"
+
+msgid "_Table Export..."
+msgstr "_Eksport tabeli..."
+
+msgid "Export Table as CSV File"
+msgstr "Eksportuj tabelę jako plik CSV"
+
+msgid "Change CodeBox _Properties..."
+msgstr "Zmień właściwości _pola kodu..."
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "Zmień właściwości pola kodu"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "Załaduj kod z pliku tekstowego..."
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "Załaduj treść pola kodu z pliku tekstowego"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "Zapisz kod do pliku tekstowego..."
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "Zapisz treść pola kodu do pliku tekstowego"
+
+msgid "C_ut CodeBox"
+msgstr "_Wytnij pole kodu"
+
+msgid "Cut the Selected CodeBox"
+msgstr "Wytnij zaznaczone pole kodu"
+
+msgid "_Copy CodeBox"
+msgstr "Kopiuj pole kodu"
+
+msgid "Copy the Selected CodeBox"
+msgstr "Kopiuj zaznaczone pole kodu"
+
+msgid "_Copy CodeBox Content"
+msgstr "Kopiuj zawartość pola kodu"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "Kopiuj zawartość zaznaczonego pola kodu"
+
+msgid "_Delete CodeBox"
+msgstr "_Usuń pole kodu"
+
+msgid "Delete the Selected CodeBox"
+msgstr "Usuń zaznaczone pole kodu"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "_Usuń pole kodu, zachowaj zawartość"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "Usuń zaznaczone pole kodu, ale zachowaj zawartość"
+
+msgid "Increase CodeBox Width"
+msgstr "Zwiększ szerokość pola kodu"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "Zwiększ szerokość pola kodu"
+
+msgid "Decrease CodeBox Width"
+msgstr "Zmniejsz szerokość pola kodu"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "Zmniejsz szerokość pola kodu"
+
+msgid "Increase CodeBox Height"
+msgstr "Zwiększ wysokość pola kodu"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "Zwiększ wysokość pola kodu"
+
+msgid "Decrease CodeBox Height"
+msgstr "Zmniejsz wysokość pola kodu"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "Zmniejsz wysokość pola kodu"
+
+msgid "Format"
+msgstr "Formatowanie"
+
+msgid "Format Clo_ne"
+msgstr "Sklo_nuj formatowanie"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "Sklonuj formatowanie przy kursorze"
+
+msgid "Format _Latest"
+msgstr "Ostatnie formatowanie"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "Typ pamięci ostatniego formatowania"
+
+msgid "_Remove Formatting"
+msgstr "Usuń formatowanie"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "Usuń formatowanie z zaznaczonego tekstu"
+
+msgid "Text _Color Foreground"
+msgstr "Kolor tekstu"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "Zmień kolor zaznaczonego tekstu"
+
+msgid "Text C_olor Background"
+msgstr "Kolor tła"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "Zmień kolor tła zaznaczonego tekstu"
+
+msgid "Toggle _Bold Property"
+msgstr "Przełącz pogrubienie"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "Przełącz pogrubienie dla zaznaczonego tekstu"
+
+msgid "Toggle _Italic Property"
+msgstr "Przełącz pochylenie"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "Przełącz pochylenie dla zaznaczonego tekstu"
+
+msgid "Toggle _Underline Property"
+msgstr "Przełącz podkreślenie"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "Przełącz podkreślenie dla zaznaczonego tekstu"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "Przełącz przekreślenie"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "Przełącz przekreślenie zaznaczonego tekstu"
+
+msgid "Toggle h_1 Property"
+msgstr "Przełącz H1"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "Przełącz H_1 dla zaznaczonego tekstu"
+
+msgid "Toggle h_2 Property"
+msgstr "Przełącz H_2"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "Przełącz H2 dla zaznaczonego tekstu"
+
+msgid "Toggle h_3 Property"
+msgstr "Przełącz nagłówek H_3"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "Przełącz nagłówek H3 dla zaznaczonego tekstu"
+
+msgid "Toggle h_4 Property"
+msgstr "Przełącz H4"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "Przełącz H4 dla zaznaczonego tekstu"
+
+msgid "Toggle h_5 Property"
+msgstr "Przełącz H5"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "Przełącz H5 dla zaznaczonego tekstu"
+
+msgid "Toggle h_6 Property"
+msgstr "Przełącz H6"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "Przełącz H6 dla zaznaczonego tekstu"
+
+msgid "Toggle _Small Property"
+msgstr "Przełącz pomniejszenie"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "Przełącz pomniejszenie dla zaznaczonego tekstu"
+
+msgid "Toggle Su_bscript Property"
+msgstr "Przełącz subskrypt"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "Przełącz subskrypt dla zaznaczonego tekstu"
+
+msgid "Toggle Su_perscript Property"
+msgstr "Przełącz superskrypt"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "Przełącz superskrypt dla zaznaczonego tekstu"
+
+msgid "Toggle _Monospace Property"
+msgstr "Przełącz _Monospace"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "Przełącz Monospace dla zaznaczonego tekstu"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "Przełącz wypunktowaną listę"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr "Przełącz aktualny paragraf/zaznaczenie jako lista wypunktowana"
+
+msgid "Set/Unset _Numbered List"
+msgstr "Przełącz numerowaną listę"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr "Przełącz aktualny paragraf/zaznaczenie jako listę numerowaną"
+
+msgid "Set/Unset _To-Do List"
+msgstr "Przełącz listę do-zrobienia"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr "Przełącz aktualny paragraf/zaznaczenie jako listę do zrobienia"
+
+msgid "Justify _Left"
+msgstr "Wyjustuj do lewej"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "Wyjustuj do lewej aktualny paragraf"
+
+msgid "Justify _Center"
+msgstr "Wyjustuj do środka"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "Wyjustuj do środka aktualny paragraf"
+
+msgid "Justify _Right"
+msgstr "Wyjustuj do prawej"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "Wyjustuj do prawej aktualny paragraf"
+
+msgid "Justify _Fill"
+msgstr "Wyjustuj wypełniając"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "Wyjustuj wypełniając aktualny paragraf"
+
+msgid "_Indent Paragraph"
+msgstr "Zwiększ wcięcie paragrafu"
+
+msgid "Indent the Current Paragraph"
+msgstr "Zwiększ wcięcie do aktualnego paragrafu"
+
+msgid "_Unindent Paragraph"
+msgstr "Zmniejsz wcięcie paragrafu"
+
+msgid "Unindent the Current Paragraph"
+msgstr "Zmniejsz wcięcie aktualnego paragrafu"
+
+msgid "_Expand TOC Headers"
+msgstr "_Rozwiń nagłówki spisu treści"
+
+msgid "Expand TOC Headers"
+msgstr "Rozwiń nagłówki spisu treści"
+
+msgid "_Collapse TOC Headers"
+msgstr "_Zwiń nagłówki spisu treści"
+
+msgid "Collapse TOC Headers"
+msgstr "Zwiń nagłówki spisu treści"
+
+msgid "Tools"
+msgstr "Narzędzia"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "Włącz/Wyłącz sprawdzanie pisowni"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "Przełącz sprawdzanie pisowni"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "Włącz/Wyłącz tryb _VIM"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "Przełącz tryb VIM"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "Usuń _nadmiarowe spacje"
+
+msgid "Strip Trailing Spaces"
+msgstr "Usuń nadmiarowe spacje"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "_Zamień TABy na spacje"
+
+msgid "Replace Tabs with Spaces"
+msgstr "Zamień z TABy na spacje"
+
+msgid "_Command Palette..."
+msgstr "Paleta _poleceń..."
+
+msgid "Command Palette"
+msgstr "Paleta poleceń"
+
+msgid "_Execute Code All"
+msgstr "Wykonaj cały kod"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "Wykonaj cały kod z pola kodu lub węzła"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "Wykonaj linie kodu lub zaznaczenie"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "Wykonaj kod z bieżącej linii lub z zaznaczenia"
+
+msgid "Tree"
+msgstr "Drzewo"
+
+msgid "Go _Back"
+msgstr "Wstecz"
+
+msgid "Go to the Previous Visited Node"
+msgstr "Idź do poprzednio odwiedzonej gałęzi"
+
+msgid "Go _Forward"
+msgstr "Naprzód"
+
+msgid "Go to the Next Visited Node"
+msgstr "Idź do następnej odwiedzonej gałęzi"
+
+msgid "Add _Node..."
+msgstr "Dodaj _gałąź..."
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "Dodaj gałąź mającą tę samą nadrzędną gałąź co zaznaczona"
+
+msgid "Add _Subnode..."
+msgstr "Dodaj _podgałąź..."
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "Dodaj podgałąź do zaznaczonej gałęzi"
+
+msgid "_Duplicate Node"
+msgstr "_Duplikuj gałąź"
+
+msgid "Duplicate the Selected Node"
+msgstr "Duplikuj zaznaczoną gałąź"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "Duplikuj gałąź i jej podrzędne"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "Duplikuj zaznaczoną gałąź wraz z podrzędnymi gałęziami"
+
+msgid "_Create Shared Node"
+msgstr "_Utwórz gałąź wspólną"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr "Dodaj gałąź wspólną z tymi samymi danymi co zaznaczona"
+
+msgid "Copy Node and S_ubnodes"
+msgstr "Kopiuj gałąź i podgałęzie"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "Kopiuj zaznaczoną gałąź i podgałęzie"
+
+msgid "_Paste Node and Subnodes"
+msgstr "Wklej gałąź i podgałęzie"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "Wklej skopiowaną gałąź i podgałęzie"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "Wstaw dzisiejszą gałąź w węźle głównym"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "Wstaw gałąź z datą Rok/Miesiąc/Dzień na dziś w węźle głównym"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "Wstaw dzisiejszą gałąź pod zaznaczonym węzłem"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "Wstaw gałąź z datą Rok/Miesiąc/Dzień na dziś pod zaznaczonym węzłem"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "Wstaw _jutrzejszą gałąź w węźle głównym"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "Wstaw gałąź z datą Rok/Miesiąc/Dzień na jutro w węźle głównym"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "Wstaw _jutrzejszą gałąź pod zaznaczonym węzłem"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "Wstaw gałąź z datą Rok/Miesiąc/Dzień na jutro pod zaznaczonym węzłem"
+
+msgid "C_hange Node Properties..."
+msgstr "_Zmień właściwości gałęzi..."
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "Edytuj właściwości zaznaczonej gałęzi"
+
+msgid "Toggle _Read Only"
+msgstr "Przełącz tylko do odczytu"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "Przełącz 'tylko do odczytu' dla zaznaczonego tekstu"
+
+msgid "Cop_y Link to Node"
+msgstr "Kopiuj link do gałęzi"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "Kopiuj link do zaznaczonej gałęzi do schowka"
+
+msgid "Children _Inherit Syntax"
+msgstr "Podgałęzie dziedziczą składnię"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr "Odziedzicz kolorowanie składni po nadrzędnej gałęzi"
+
+msgid "_Handle Bookmarks..."
+msgstr "_Zarządzaj Zakładkami..."
+
+msgid "Add to Boo_kmarks"
+msgstr "Dodaj do Za_kładek"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "Dodaj zakładkę do aktualnej gałęzi"
+
+msgid "Remove from Boo_kmarks"
+msgstr "_Usuń z zakładek"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "Usuń aktualną gałąź z listy zakładek"
+
+msgid "E_xpand All Nodes"
+msgstr "_Rozwiń wszystkie gałęzie"
+
+msgid "Expand All the Tree Nodes"
+msgstr "Rozwiń wszystkie gałęzie"
+
+msgid "_Collapse All Nodes"
+msgstr "_Zwiń wszystkie gałęzie"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "Zwiń wszystkie gałęzie"
+
+msgid "Node _Up"
+msgstr "Gałąź do góry"
+
+msgid "Move the Selected Node Up"
+msgstr "Przenieś gałąź wyżej"
+
+msgid "Node _Down"
+msgstr "Gałąź w dół"
+
+msgid "Move the Selected Node Down"
+msgstr "Przenieś gałąź niżej"
+
+msgid "Node _Left"
+msgstr "Gałąź w lewo"
+
+msgid "Move the Selected Node Left"
+msgstr "Przenieś gałąź w lewo"
+
+msgid "Node _Right"
+msgstr "Gałąź w prawo"
+
+msgid "Move the Selected Node Right"
+msgstr "Przenieś gałąź w prawo"
+
+msgid "Node Change _Parent..."
+msgstr "_Zmień nadrzędną gałąź..."
+
+msgid "Change the Selected Node's Parent"
+msgstr "Zmień nadrzędną gałąź"
+
+msgid "Sort Tree _Ascending"
+msgstr "Posortuj drzewo rosnąco"
+
+msgid "Sort the Tree Ascending"
+msgstr "Posortuj drzewo rosnąco"
+
+msgid "Sort Tree _Descending"
+msgstr "Posortuj drzewo malejąco"
+
+msgid "Sort the Tree Descending"
+msgstr "Posortuj drzewo malejąco"
+
+msgid "Sort Siblings A_scending"
+msgstr "Posortuj gałęzie potomne rosnąco"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "Posortuj wszystkie potomne gałęzie rosnąco"
+
+msgid "Sort Siblings D_escending"
+msgstr "Posortuj gałęzie potomne malejąco"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "Posortuj wszystkie potomne gałęzie malejąco"
+
+msgid "De_lete Node"
+msgstr "_Usuń Gałąź"
+
+msgid "Delete the Selected Node"
+msgstr "Usuń zaznaczoną gałąź"
+
+msgid "Find/Replace"
+msgstr "Znajdź/Zamień"
+
+msgid "_Quick Node Selection..."
+msgstr "_Szybkie wybieranie gałęzi..."
+
+msgid "Quick Node Selection"
+msgstr "Szybkie wybieranie gałęzi"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "Znajdź w _nazwach gałęzi i tagach..."
+
+msgid "Find in Nodes Names and Tags"
+msgstr "Znajdź w nazwach gałęzi i tagach"
+
+msgid "_Find in Node Content..."
+msgstr "_Znajdź w treści gałęzi..."
+
+msgid "Find into the Selected Node Content"
+msgstr "Znajdź w treści zaznaczonej gałęzi"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "Znajdź w _wielu gałęziach..."
+
+msgid "Find in Multiple Nodes"
+msgstr "Znajdź w gałęziach"
+
+msgid "Find _Again"
+msgstr "Zn_ajdź ponownie"
+
+msgid "Iterate the Last Find Operation"
+msgstr "Powtórz ostatnie szukanie"
+
+msgid "Find _Back"
+msgstr "Znajdź wstecz"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "Powtórz ostatnią operację w odwrotnym kierunku"
+
+msgid "_Replace in Node Content..."
+msgstr "Zamień w treści gałęzi..."
+
+msgid "Replace into the Selected Node Content"
+msgstr "Zamień w treści zaznaczonej gałęzi"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "Zamień w _wielu gałęziach..."
+
+msgid "Replace A_gain"
+msgstr "Z_amień ponownie"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "Powtórz ostatnią zamianę"
+
+msgid "Show All Matches _Dialog..."
+msgstr "Pokaż okno _wyników wyszukiwania..."
+
+msgid "Show Search All Matches Dialog"
+msgstr "Pokaż okno Znajdź wszystkie pasujące"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "Wyczyść wszystkie wykluczenia z Wyszukiwania"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "Wyczyść wszystkie właściwości gałęzi z wykluczeń wyszukiwania"
+
+msgid "View"
+msgstr "Widok"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "Wyświetl/Ukryj Drzewo Gałęzi"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "Przełącz wyświetlanie Drzewa"
+
+msgid "Show/Hide Te_rminal"
+msgstr "Wyświetl/Ukryj Te_rminal"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "Przełącz wyświetlanie Terminala"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "Przełącz aktywność Terminal/Tekst"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "Przełącz aktywnosc pomiędzy Terminalem a Tekstem"
+
+msgid "Show/Hide _Menubar"
+msgstr "Wyświetl/Ukryj pasek menu"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "Przełącz wyświetlanie paska menu"
+
+msgid "Show/Hide Tool_bar"
+msgstr "Wyświetl/Ukryj pasek narzędzi"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "Przełącz wyświetlanie paska narzędzi"
+
+msgid "Show/Hide _Statusbar"
+msgstr "Wyświetl/Ukryj pasek stanu"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr "Przełącz wyświetlanie paska stanu"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "Przełącz wyświetlanie linii pomiędzy gałęziami i podgałęziami"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "Przełącz wyświetlanie linii pomiędzy gałęziami i podgałęziami"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "Wyświetl/Ukryj nagłówek nazwy gałęzi"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "Przełącz wyświetlanie nagłówka nazwy gałęzi"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "Przełącz aktywność drzewa/tekstu"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "Przełącz aktywność pomiędzy drzewem a tekstem"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "Zwiększ rozmiar ikon na pasku narzędzi"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "Zwiększ rozmiar ikon na pasku narzędzi"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "Zmniejsz rozmiar ikon na pasku narzędzi"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "Zmniejsz rozmiar ikon na pasku narzędzi"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "Więcej ostatnio odwiedzonych gałęzi w nagłówku nazwy gałęzi"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "Zwiększ liczbę ostatnio odwiedzonych gałęzi w nagłówku nazwy gałęzi"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "Mniej ostatnio odwiedzonych gałęzi w nagłówku nazwy gałęzi"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "Zmniejsz liczbę ostatnio odwiedzonych gałęzi w nagłówku nazwy gałęzi"
+
+msgid "Full Screen _On/Off"
+msgstr "Pełny ekran Włącz/Wyłącz"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "Przełącz pełny ekran"
+
+msgid "_Always On Top On/Off"
+msgstr "Z_awsze na wierzchu Wł/Wył"
+
+msgid "Always On Top On/Off"
+msgstr "Zawsze u góry Wł/Wył"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "Wyłącz Menu w pasku tytułowym"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "Nie umieszczaj menu w pasku tytułu"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "Menu w pasku tytułowym"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "Umieść menu w pasku tytułu"
+
+msgid "Import"
+msgstr "Import"
+
+msgid "From _OliveSet File"
+msgstr "Z pliku _OliveSet"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "Dodaj gałąź z pliku OliveSet do aktualnego drzewa"
+
+msgid "From _OliveSet Folder"
+msgstr "Z folderu _OliveSet"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "Dodaj gałęzie z folderu OliveSet do aktualnego drzewa"
+
+msgid "From _Indented List File"
+msgstr "Z _pliku listy z wcięciami"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "Dodaj gałęzie z pliku listy z wcięciami do aktualnego drzewa"
+
+msgid "From _Plain Text File"
+msgstr "Z pojedynczego pliku tekstowewgo"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "Dodaj gałąź z pliku tekstowego do aktualnego drzewa"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "Z katalogu z plikami tekstowymi"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr "Dodaj gałęzie z katalogu z plikami tekstowymi do aktualnego drzewa"
+
+msgid "From _HTML File"
+msgstr "Z pliku _HTML"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "Dodaj gałąź z pliku HTML do aktualnego drzewa"
+
+msgid "From _Folder of HTML Files"
+msgstr "Z katalogu z plikami HTML"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "Dodaj gałęzie z katalogu z plikami HTML do aktualnego drzewa"
+
+msgid "From _Markdown File"
+msgstr "Z pliku _Markdown"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "Dodaj gałąź z pliku Markdown do aktualnego drzewa"
+
+msgid "From _Folder of Markdown Files"
+msgstr "Z katalogu z plikami Markdown"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "Dodaj gałęzie z katalogu z plikami Markdown do aktualnego drzewa"
+
+msgid "From _Gnote Folder"
+msgstr "Z katalogu _Gnote"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "Dodaj gałęzie z katalogu Gnote do aktualnego drzewa"
+
+msgid "From _KeepNote Folder"
+msgstr "Z katalogu _KeepNote"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "Dodaj gałęzie z katalogu KeepNote do aktualnego drzewa"
+
+msgid "From _Leo File"
+msgstr "Z pliku _Leo"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "Dodaj gałęzie z pliku Leo do aktualnego drzewa"
+
+msgid "From _Mempad File"
+msgstr "Z pliku _Mempad"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "Dodaj gałęzie z pliku Mempad do aktualnego drzewa"
+
+msgid "From _NoteCase HTML File"
+msgstr "Z pliku HTML _NoteCase"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "Dodaj gałęzie z pliku HTML NoteCase do aktualnego drzewa"
+
+msgid "From _RedNotebook HTML File"
+msgstr "Z pliku HTML programu _RedNotebook"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "Dodaj gałęzie z pliku HTML RedNotebook do aktualnego drzewa"
+
+msgid "From T_omboy Folder"
+msgstr "Z katalogu T_omboy"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "Dodaj gałęzie z katalogu Tomboy do aktualnego drzewa"
+
+msgid "From T_reepad Lite File"
+msgstr "Z pliku T_reepad"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "Dodaj gałęzie z pliku Treepad Lite do aktualnego drzewa"
+
+msgid "From _Zim Folder"
+msgstr "Z katalogu _Zim"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "Dodaj gałęzie z katalogu Zim do aktualnego drzewa"
+
+msgid "Export"
+msgstr "Eksport"
+
+msgid "Export To _PDF"
+msgstr "Eksportuj do PDF"
+
+msgid "Export To PDF"
+msgstr "Eksportuj do PDF"
+
+msgid "Export To _HTML"
+msgstr "Eksportuj do HTML"
+
+msgid "Export To HTML"
+msgstr "Eksportuj do HTML"
+
+msgid "Export to Plain _Text"
+msgstr "Eksportuj jako plik tekstowy"
+
+msgid "Export to Plain Text"
+msgstr "Eksportuj jako plik tekstowy"
+
+msgid "_Export To OliveSet"
+msgstr "_Eksportuj do dokumentu OliveSet"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "Eksportuj do pliku lub folderu OliveSet"
+
+msgid "Help"
+msgstr "Pomoc"
+
+msgid "_Check Newer Version"
+msgstr "_Sprawdź aktualizacje"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "Sprawdź czy jest nowa wersja programu"
+
+msgid "_Website"
+msgstr "_Strona internetowa"
+
+msgid "Visit OliveSet's Website"
+msgstr "Wyświetl stronę internetową OliveSet"
+
+msgid "_Source Code"
+msgstr "_Kod źródłowy"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "Przeglądaj kod źródłowy OliveSet online"
+
+msgid "_Report a Bug"
+msgstr "_Zgłoś błąd"
+
+msgid "Report a Bug in OliveSet"
+msgstr "Zgłoś błąd w OliveSet"
+
+msgid "_Donate"
+msgstr "Wspomóż"
+
+msgid "Donate to Support OliveSet"
+msgstr "Wspomóż OliveSet"
+
+msgid "Online _Manual"
+msgstr "_Poradnik online"
+
+msgid "OliveSet's Online Manual"
+msgstr "Poradnik online"
+
+msgid "_About"
+msgstr "_Informacje"
+
+msgid "_Open Preferences Directory"
+msgstr "_Otwórz katalog ustawień"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "Otwórz katalog z plikami ustawień"
+
+msgid "C_ut Anchor"
+msgstr "Wytnij kotwicę"
+
+msgid "Cut the Selected Anchor"
+msgstr "Wytnij zaznaczoną kotwicę"
+
+msgid "_Copy Anchor"
+msgstr "Kopiuj kotwicę"
+
+msgid "Copy the Selected Anchor"
+msgstr "Kopiuj zaznaczoną kotwicę"
+
+msgid "_Delete Anchor"
+msgstr "_Usuń kotwicę"
+
+msgid "Delete the Selected Anchor"
+msgstr "Usuń zaznaczoną kotwicę"
+
+msgid "Edit _Anchor..."
+msgstr "Edytuj _Kotwicę..."
+
+msgid "Edit the Underlying Anchor"
+msgstr "Zmień kotwicę"
+
+msgid "Copy Anchor Link"
+msgstr "Kopiuj link kotwicy"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "Kopiuj link kotwicy do schowka"
+
+msgid "C_ut Embedded File"
+msgstr "Wytnij załączony plik"
+
+msgid "Cut the Selected Embedded File"
+msgstr "Wytnij zaznaczony plik"
+
+msgid "_Copy Embedded File"
+msgstr "Kopiuj załączony plik"
+
+msgid "Copy the Selected Embedded File"
+msgstr "Kopiuj zaznaczony plik"
+
+msgid "_Delete Embedded File"
+msgstr "Usuń załączony plik"
+
+msgid "Delete the Selected Embedded File"
+msgstr "Usuń zaznaczony plik"
+
+msgid "Open Embedded File"
+msgstr "Otwórz załączony plik"
+
+msgid "_Rename"
+msgstr "Zmień nazwę"
+
+msgid "Rename Embedded File"
+msgstr "Zmień nazwę załączonego pliku"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "Zapi_sz pole Latex jako PNG..."
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "Zapisz zaznaczone pole Latex jako PNG"
+
+msgid "_Edit LatexBox..."
+msgstr "_Edytuj pole Latex..."
+
+msgid "Edit the Selected LatexBox"
+msgstr "Edytuj zaznaczone pole Latex"
+
+msgid "C_ut LatexBox"
+msgstr "_Wytnij pole Latex"
+
+msgid "Cut the Selected LatexBox"
+msgstr "Wytnij zaznaczone pole Latex"
+
+msgid "_Copy LatexBox"
+msgstr "Kopiuj pole Latex"
+
+msgid "Copy the Selected LatexBox"
+msgstr "Kopiuj zaznaczone pole Latex"
+
+msgid "_Delete LatexBox"
+msgstr "_Usuń pole Latex"
+
+msgid "Delete the Selected LatexBox"
+msgstr "Usuń zaznaczone pole Latex"
+
+msgid "_Save Image as PNG..."
+msgstr "_Zapisz obrazek jako PNG..."
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "Zapisz zaznaczony obrazek jako PNG"
+
+msgid "_Edit Image..."
+msgstr "_Edytuj Obrazek..."
+
+msgid "Edit the Selected Image"
+msgstr "Zmień zaznaczony obrazek"
+
+msgid "C_ut Image"
+msgstr "Wytnij obrazek"
+
+msgid "Cut the Selected Image"
+msgstr "Wytnij zaznaczony obrazek"
+
+msgid "_Copy Image"
+msgstr "_Kopiuj obrazek"
+
+msgid "Copy the Selected Image"
+msgstr "Kopiuj zaznaczony obrazek"
+
+msgid "_Delete Image"
+msgstr "_Usuń obrazek"
+
+msgid "Delete the Selected Image"
+msgstr "Usuń zaznaczony obrazek"
+
+msgid "Edit _Link..."
+msgstr "Zmień _Link..."
+
+msgid "Edit the Link Associated to the Image"
+msgstr "Zmień link przypisany do obrazu"
+
+msgid "D_ismiss Link"
+msgstr "Odrzuć link"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "Odrzuć link przypisany do obrazu"
+
+msgid "Show/Hide _OliveSet"
+msgstr "Wyświetl/Ukryj _OliveSet"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "Przełącz wyświetlanie OliveSet"
+
+msgid "Edit the Underlying Link"
+msgstr "Zmień link"
+
+msgid "C_ut Link"
+msgstr "Wytnij link"
+
+msgid "Cut the Selected Link"
+msgstr "Wytnij zaznaczony link"
+
+msgid "_Copy Link"
+msgstr "Kopiuj link"
+
+msgid "Copy the Selected Link"
+msgstr "Kopiuj zaznaczony link"
+
+msgid "Dismiss the Selected Link"
+msgstr "Odrzuć zaznaczony link"
+
+msgid "_Delete Link"
+msgstr "_Usuń link"
+
+msgid "Delete the Selected Link"
+msgstr "Usuń zaznaczony link"
+
+msgid "English"
+msgstr "Angielski"
+
+msgid "Text and Code"
+msgstr "Tekst i kod"
+
+msgid "Plain Text and Code"
+msgstr "Zwykły dokument tekstowy i kod"
+
+msgid "Tree Explorer"
+msgstr "Drzewo Gałęzi"
+
+msgid "Theme"
+msgstr "Motyw"
+
+msgid "Interface"
+msgstr "Interfejs"
+
+msgid "Links"
+msgstr "Linki"
+
+msgid "Toolbar"
+msgstr "Panel narzędzi"
+
+msgid "Keyboard Shortcuts"
+msgstr "Skróty klawiszowe"
+
+msgid "Miscellaneous"
+msgstr "Inne"
+
+msgid "Monospace"
+msgstr "Stała szerokość"
+
+msgid "Code Font"
+msgstr "Czcionka kodu"
+
+msgid "Terminal Font"
+msgstr "Czcionka terminala"
+
+msgid "Tree Font"
+msgstr "Czcionka drzewa"
+
+msgid "Reset to Default"
+msgstr "Przywróć domyślne"
+
+msgid "Fonts"
+msgstr "Czcionki"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "Włącz zliczanie słów w pasku statusu"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "Pokazuj katalog dokumentu w tytule okna"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "Wyświetl pełną ścieżkę w nagłówku nazwy gałęzi"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "Dedykowane menu zakładek w Menu"
+
+msgid "Menubar in Titlebar"
+msgstr "Menu w pasku tytułowym"
+
+msgid "Toolbar Icons Size"
+msgstr "Rozmiar ikon na pasku narzędzi"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "Ostatnio wyświetlana gałąź na nagłówku gałęzi"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "Rozmiar suwaka (0 = domyślnie dla systemu)"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "Suwak nachodzi na edytor tekstu"
+
+msgid "System Default"
+msgstr "Domyślne systemowe"
+
+msgid "Yes"
+msgstr "Tak"
+
+msgid "No"
+msgstr "Nie"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "Włącz podpowiedzi po najechaniu kursorem"
+
+msgid "Menus"
+msgstr "Menu"
+
+msgid "Max Search Results per Page"
+msgstr "Liczba wyników wyszukiwania na stronę"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "Zapisuj historię Znajdź/Zamień pomiędzy sesjami"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "Włącz własne akcje dla linków internetowych"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "Włącz własne akcje dla linków do pliku"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "Włącz własne akcje dla linków do katalogu"
+
+msgid "Custom Actions"
+msgstr "Własne akcje"
+
+msgid "Colors"
+msgstr "Kolory"
+
+msgid "Double Click for Link Action"
+msgstr "Kliknij dwa razy by otworzyć link"
+
+msgid "Underline Links"
+msgstr "Podkreśl linki"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "Użyj ścieżek względnych dla plików i katalogów"
+
+msgid "Anchor Size"
+msgstr "Rozmiar kotwicy"
+
+msgid "Change Selected"
+msgstr "Zmień zaznaczoną"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr "Skrót '%s' jest w użyciu."
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "Aktualnie przypisana akcja to '%s'"
+
+msgid "Do you want to steal the shortcut?"
+msgstr "Czy chcesz podmienić skrót?"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "Zmień skróty klawiszowe"
+
+msgid "No Keyboard Shortcut"
+msgstr "Brak skrótu klawiszowego"
+
+msgid "Autosave on Quit"
+msgstr "Autozapis przy wyjściu"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "Stwórz kopię zapasową przed zapisem"
+
+msgid "Number of Backups to Keep"
+msgstr "Ilość kopii zapasowych do pozostawienia"
+
+msgid "Custom Backup Directory"
+msgstr "Własny katalog kopii zapasowych"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "Zapis wieloplikowy, używaj na dysku nazw dołączonych plików"
+
+msgid "Saving"
+msgstr "Zapisywanie"
+
+msgid "Automatically Check for Newer Version"
+msgstr "Automatycznie sprawdź wersję"
+
+msgid "Reload Document From Last Session"
+msgstr "Wczytaj dokument z poprzedniej sesji"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "Pokazuj okienko startowe gdy nie ma załadowanego dokumentu"
+
+msgid "Reload After External Update to CT* File"
+msgstr "Przeładuj zewnętrzne zmiany w pliku CT"
+
+msgid "Enable Debug Log"
+msgstr "Włącz logi debugowania"
+
+msgid "Debug Log Directory"
+msgstr "Katalog logów debugowania"
+
+msgid "Enable System Tray Docking"
+msgstr "Włącz dokowanie w ikonie"
+
+msgid "Start Minimized in the System Tray"
+msgstr "Na starcie uruchom w zasobniku"
+
+msgid "System Tray"
+msgstr "Zasobnik systemowy"
+
+msgid "Language"
+msgstr "Język"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Username"
+msgstr "Użytkownik"
+
+msgid "Password"
+msgstr "Hasło"
+
+msgid "Proxy"
+msgstr "Proxy"
+
+msgid "Show White Spaces"
+msgstr "Pokazuj białe znaki"
+
+msgid "Highlight Current Line"
+msgstr "Podświetlaj aktualną linię"
+
+msgid "Text Editor"
+msgstr "Edytor tekstu"
+
+msgid "Internal Terminal Shell"
+msgstr "Powłoka wbudowanego terminala"
+
+msgid "Add"
+msgstr "Dodaj"
+
+msgid "Remove Selected"
+msgstr "Usuń zaznaczone"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "Polecenie dla Gałęzi/Pola kodu"
+
+msgid "Terminal Command"
+msgstr "Polecenie terminala"
+
+msgid "Code Execution"
+msgstr "Wykonywanie kodu"
+
+msgid "Select Element to Add"
+msgstr "Zaznacz element do dodania"
+
+msgid "Enable Spell Check"
+msgstr "Włącz sprawdzanie pisowni"
+
+msgid "Spell Check Language"
+msgstr "Język sprawdzania pisowni"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "Rozszerz pole kodu automatycznie"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "Pola kodu mają pasek narzędzi"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "Progowa liczba komórek tabeli dla lekkiego interfejsu"
+
+msgid "Embedded File Icon Size"
+msgstr "Rozmiar ikony dołączonego pliku"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "Limit rozmiaru dla dołączonego pliku (MB)"
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "Wyświetl nazwę pliku powyżej ikony dołączonego pliku"
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "Nie zaznaczaj obiektów automatycznie przy pojedynczym kliknięciu"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr "Obejście problemów z zawieszaniem się schowka w Klipper na KDE 6"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "Ilość cofnięć dla każdej gałęzi"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "Automatycznie linkuj tekst CamelCase do gałęzi o takiej samej nazwie"
+
+msgid "Auto Link URLs"
+msgstr "Automatycznie konwertuj linki"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "Przy potrójnym kliknięciu zaznacz cały paragraf"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "Włącz inteligentną zamianę Markdown"
+
+msgid "Scale"
+msgstr "Skala"
+
+msgid "Italic"
+msgstr "Kursywa"
+
+msgid "Underline"
+msgstr "Podkreślenie"
+
+msgid "Text Color Foreground"
+msgstr "Kolor tekstu"
+
+msgid "Text Color Background"
+msgstr "Kolor tła"
+
+msgid "Small"
+msgstr "Pomniejszony"
+
+msgid "Scalable Tags"
+msgstr "Skalowalne tagi"
+
+msgid "Chars for Bulleted List"
+msgstr "Znaki dla wypunktowania"
+
+msgid "Chars for Todo List"
+msgstr "Znaki dla listy do zrobienia"
+
+msgid "Chars for Table Of Content"
+msgstr "Znaki dla spisu treści"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "Znaki dla inteligentnych podwójnych cudzysłowiów"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "Znaki dla inteligentnych pojedynczych cudzysłowiów"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "Włącz inteligentne cudzysłowia"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "Włącz automatyczną zamianę symboli"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "Automatyczna zamiana symboli"
+
+msgid "Only at the Start of the Line"
+msgstr "Tylko na początku linii"
+
+msgid "Tab Width"
+msgstr "Rozmiar Tabulatora"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Wstaw spacje zamiast tabulatorów"
+
+msgid "Use Line Wrapping"
+msgstr "Użyj zawijania wierszy"
+
+msgid "Line Wrapping Indentation"
+msgstr "Wcięcia zawijanych wierszy"
+
+msgid "Enable Automatic Indentation"
+msgstr "Włącz automatyczne wcięcia"
+
+msgid "Scroll Beyond Last Line"
+msgstr "Przewiń poniżej ostatni wierszy"
+
+msgid "Cursor Blinking"
+msgstr "Miganie kursora"
+
+msgid "On"
+msgstr "Włącz"
+
+msgid "Off"
+msgstr "Wyłącz"
+
+msgid "Text Margin: Left"
+msgstr "Wyrównanie tekstu: lewo"
+
+msgid "Right"
+msgstr "Prawo"
+
+msgid "Vertical Space Around Lines"
+msgstr "Pionowy odstęp pomiędzy wierszami"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "Pionowy odstęp pomiędzy wierszami zawiniętymi"
+
+msgid "Timestamp Format"
+msgstr "Format czasu"
+
+msgid "Horizontal Rule"
+msgstr "Dodaj poziomą linijkę"
+
+msgid "Chars to Select at Double Click"
+msgstr "Znaki do zaznaczenia przez podwójne kliknięcie"
+
+msgid "Light Background, Dark Text"
+msgstr "Jasne tło, Ciemny tekst"
+
+msgid "Dark Background, Light Text"
+msgstr "Ciemne tło, Jasny tekst"
+
+msgid "Custom Background"
+msgstr "Własne tło"
+
+msgid "Text"
+msgstr "Tekst"
+
+msgid "Selection Background"
+msgstr "Tło zaznaczenia"
+
+msgid "Table"
+msgstr "Tabela"
+
+msgid "Code"
+msgstr "Kod"
+
+msgid "Style Schemes"
+msgstr "Schemat stylu"
+
+msgid "Text Foreground"
+msgstr "Kolor tekstu"
+
+msgid "Text Background"
+msgstr "Kolor tła"
+
+msgid "Selection Foreground"
+msgstr "Kolor zaznaczenia"
+
+msgid "Cursor"
+msgstr "Kursor"
+
+msgid "Current Line Background"
+msgstr "Tło aktualnej lini"
+
+msgid "Line Numbers Foreground"
+msgstr "Kolor numerów lini"
+
+msgid "Line Numbers Background"
+msgstr "Tło numerów lini"
+
+msgid "Style Scheme Editor"
+msgstr "Edytor schematów stylu"
+
+msgid "Set Dark Theme Icons"
+msgstr "Ciemny motyw ikon"
+
+msgid "Set Light Theme Icons"
+msgstr "Jasny motyw ikon"
+
+msgid "Set Default Icons"
+msgstr "Domyślne ikony"
+
+msgid "Icon Theme"
+msgstr "Motyw ikon"
+
+msgid "Split Toolbar"
+msgstr "Podziel panel narzędzi"
+
+msgid "Use Different Cherries per Level"
+msgstr "Użyj róznych wisienek z każdym poziomem"
+
+msgid "No Icon"
+msgstr "Bez ikony"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "Ukryj prawą pomocniczą ikonę"
+
+msgid "Default Text Nodes Icons"
+msgstr "Domyślna ikona gałęzi tekstowej"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "Przywróć stan Zwiniętych/Rozwiniętych"
+
+msgid "Expand all Nodes"
+msgstr "Rozwiń wszystkie gałęzie"
+
+msgid "Collapse all Nodes"
+msgstr "Zwiń wszystkie gałęzie"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "Gałęzie z zakładek zawsze widoczne"
+
+msgid "Nodes Status at Startup"
+msgstr "Stan gałęzi przy starcie"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "Szerokość załamywania nazwy gałęzi"
+
+msgid "Display Tree on the Right Side"
+msgstr "Wyświetlaj drzewo po prawej stronie"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "Przenieś aktywność przez kliknięcie myszą"
+
+msgid "Expand Node at Mouse Click"
+msgstr "Rozwiń gałąź przez kliknięcie myszą"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "'%s' nie jest poprawnym archiwum"
+
+msgid "Writing to Disk..."
+msgstr "Zapisywanie na dysk..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "Nie masz uprawnień do zapisu dla %s"
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "Wprowadź hasło dla %s"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr ""
+"Nieudana kontrola integralności zapisanego dokumentu. Spróbuj Plik-->Zapisz "
+"jako"
+
+msgid "Failed to encrypt the file"
+msgstr "Nie udało się zaszyfrować pliku"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "Konieczne było wczytanie kopii zapasowej dla:"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr "Plik bazy danych %s jest uszkodzony, zobacz log po więcej szczegółów."
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s nie został zapisany - brak pliku. Podłącz ponownie pamięć USB lub "
+"udostępniony zasób."
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr ""
+"%s nie został zapisany - czy plik nie jest blokowany przez aplikację do "
+"synchronizacji?"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s nie został odczytany - brak pliku. Podłącz ponownie pamięć USB lub "
+"udostępniony zasób."
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "OliveSet Strukturalny Notes"
+
+msgid "_Exit OliveSet"
+msgstr "Zakończ Ch_erryTree"
+
+msgid "HTML Document"
+msgstr "Dokument HTML"
+
+msgid "Markdown Document"
+msgstr "Dokument Markdown"
+
+msgid "Mempad Document"
+msgstr "Dokument Mempad"
+
+msgid "Treepad Document"
+msgstr "Dokument Treepad"
+
+msgid "Leo Document"
+msgstr "Dokument Leo"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "Jesteś pewien, że chcesz przywrócić ustawienia do wartości domyślnych?"
+
+#~ msgid "Replace in Multiple Nodes..."
+#~ msgstr "Zamień we wszystkich gałęziach..."
+
+#~ msgid "Find in Multiple Nodes..."
+#~ msgstr "Znajdź w gałęziach..."
+
+#~ msgid "Insert T_OC..."
+#~ msgstr "Dodaj _spis treści..."
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "Dodaj spis treści"
+
+#~ msgid ""
+#~ "Backup files are by default 3 in the same folder of the corrupted "
+#~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
+#~ "the backup with one tilde: copy the file to another directory, remove the "
+#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "with two tildes and if it still fails try the one with three tildes."
+#~ msgstr ""
+#~ "Domyślnie są 3 pliki kopii zapasowej w folderze uszkodzonego dokumentu, o "
+#~ "tej samej nazwie plus końcowe tyldy (~, ~~, ~~~). Spróbuj najpierw "
+#~ "przywrócić kopię zapasową z jedną tyldą: skopiuj plik do innego katalogu, "
+#~ "usuń końcową tyldę i otwórz za pomocą oliveset. Jeśli to nie zadziała, "
+#~ "wypróbuj tę z dwiema tyldami, a jeśli i to się nie powiedzie, wypróbuj "
+#~ "plik kopii z trzema tyldami."
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "Poradnik aplikacji online"
+
+#~ msgid "OliveSet Document"
+#~ msgstr "Dokument OliveSet"
+
+#~ msgid "Not Protected"
+#~ msgstr "Bez ochrony"
+
+#~ msgid "Password Protected"
+#~ msgstr "Chroniony hasłem"
+
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "Dokument '%s' nie został znaleziony"
+
+#~ msgid "Find _in Multiple Nodes"
+#~ msgstr "Znajdź w gałęz_iach"
+
+#~ msgid "Replace in _Multiple Nodes"
+#~ msgstr "Za_mień we wszystkich gałęziach"
+
+#~ msgid ""
+#~ "Pandoc executable could not be found, please ensure it is in your path"
+#~ msgstr ""
+#~ "Plik wykonywalny Pandoc nie został znaleziony, upewnij się, że jest "
+#~ "dostępny"
+
+#~ msgid "From File using _Pandoc"
+#~ msgstr "Z pliku uzywając _Pandoc"
+
+#~ msgid "Add a node to the current tree using Pandoc"
+#~ msgstr "Dodaj gałąź z użyciem Pandoc"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "Nowy język będzie dostępny po zrestartowaniu OliveSet"
+
+#~ msgid "click me"
+#~ msgstr "wciśnij mnie"
+
+#~ msgid "For_matting"
+#~ msgstr "F_ormatowanie"
+
+#~ msgid "Nodes _Import"
+#~ msgstr "_Importuj gałęzie"
+
+#~ msgid "Nodes E_xport"
+#~ msgstr "Eksportuj gałęzie"
+
+#~ msgid "E_xport"
+#~ msgstr "Eksport"
+
+#~ msgid "_Print"
+#~ msgstr "_Drukuj"
+
+#~ msgid "Editor"
+#~ msgstr "Edytor"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "Dodaj date/godzinę"
+
+#~ msgid "Find in _All Nodes Contents"
+#~ msgstr "Znajdź w treści wszystkich gałęzi"
+
+#~ msgid "Find into All the Tree Nodes Contents"
+#~ msgstr "Znajdź w treści wszystkich gałęzi"
+
+#~ msgid "Find in _Selected Node and Subnodes Contents"
+#~ msgstr "Znajdź w treści zaznaczonych gałęzi i podgałęzi"
+
+#~ msgid "Find into the Selected Node and Subnodes Contents"
+#~ msgstr "Znajdź w treści zaznaczonych gałęzi i podgałęzi"
+
+#~ msgid "Replace in _All Nodes Contents"
+#~ msgstr "Zamień w treści wszystkich gałęzi"
+
+#~ msgid "Replace into All the Tree Nodes Contents"
+#~ msgstr "Zamień w treści wszystkich gałęzi"
+
+#~ msgid "Replace in _Selected Node and Subnodes Contents"
+#~ msgstr "Zamień w treści zaznaczonej gałęzi i podgałęzi"
+
+#~ msgid "Replace into the Selected Node and Subnodes Contents"
+#~ msgstr "Zamień w treści zaznaczonej gałęzi i podgałęzi"
+
+#~ msgid "Replace in Nodes _Names"
+#~ msgstr "Zamień w nazwach gałęzi"
+
+#~ msgid "_Execute CodeBox Code"
+#~ msgstr "Wykonaj kod z pola kodu"
+
+#~ msgid "_List"
+#~ msgstr "_Lista"
+
+#~ msgid "_Row"
+#~ msgstr "Wiersz"
+
+#~ msgid "Replace in Selected Node and Subnodes"
+#~ msgstr "Zamień w zaznaczonej gałęzi i podgałęziach"
+
+#~ msgid "Search in Selected Node and Subnodes"
+#~ msgstr "Szukaj w zaznaczonej gałęzi i podgałęziach"
+
+#~ msgid "Search in All Nodes"
+#~ msgstr "Szukaj we wszystkich gałęziach"
+
+#~ msgid "Replace in Node Names..."
+#~ msgstr "Zamień w nazwach gałęzi..."
+
+#~ msgid "Search For a Node Name..."
+#~ msgstr "Szukaj po nazwie gałęzi..."
+
+#~ msgid "Quit"
+#~ msgstr "Zakończ"
+
+#~ msgid "Monospace Background"
+#~ msgstr "Tło Monospace"
+
+#~ msgid "Export to PDF at specified file path"
+#~ msgstr "Wyeksportuj do PDF w wybranym folderze"
+
+#~ msgid "Export to Multiple Plain _Text Files"
+#~ msgstr "Eksportuj do wielu plików _tekstowych"
+
+#~ msgid "Export to Multiple Plain Text Files"
+#~ msgstr "Eksportuj do wielu plików tekstowych"
+
+#~ msgid "Export to _Single Plain Text File"
+#~ msgstr "Eksportuj jako pojedynczy plik tekstowy"
+
+#~ msgid "Unknown"
+#~ msgstr "Nieznany"
+
+#~ msgid "(no suggestions)"
+#~ msgstr "(brak sugestii)"
+
+#~ msgid "Add \"{}\" to Dictionary"
+#~ msgstr "Dodaj \"{}\" do słownika"
+
+#~ msgid "Ignore All"
+#~ msgstr "Ignoruj wszystkie"
+
+#~ msgid "Languages"
+#~ msgstr "Język"
+
+#~ msgid "Suggestions"
+#~ msgstr "Sugestie"
+
+#~ msgid "NoteCase Document"
+#~ msgstr "Dokument NoteCase"
+
+#~ msgid "EPIM HTML Document"
+#~ msgstr "Dokument HTML EPIM"
+
+#~ msgid "KeyNote Document"
+#~ msgstr "Dokument KeyNote"
+
+#~ msgid "Knowit Document"
+#~ msgstr "Dokument Knowit"
+
+#~ msgid ""
+#~ "Binary Executable '7za' Not Found, Check The Package 'p7zip-full' to be "
+#~ "Installed Properly"
+#~ msgstr "Program '7za' nie został znaleziony, Zainstaluj pakiet 'p7zip-full'"
+
+#~ msgid "Type To Search..."
+#~ msgstr "Wprowadź aby wyszukać..."
+
+#~ msgid "Command Name"
+#~ msgstr "Nazwa polecenia"
+
+#~ msgid "Not Any H1, H2 or H3 Formatting Found"
+#~ msgstr "Nie znaleziono żadnego H1, H2 lub H3"
+
+#~ msgid "Min Width"
+#~ msgstr "Minimalna szerokość"
+
+#~ msgid "Max Width"
+#~ msgstr "Maksymalna Szerokość"
+
+#~ msgid "Click to Edit the Column Settings"
+#~ msgstr "Kliknij aby zmienić ustawienia kolumn"
+
+#~ msgid "Table Column Action"
+#~ msgstr "Akcja kolumny tabeli"
+
+#~ msgid "From _Basket Folder"
+#~ msgstr "Z folderu Koszyk"
+
+#~ msgid "Add Nodes of a Basket Folder to the Current Tree"
+#~ msgstr "Dodaj gałąź z folderu Koszyk do aktualnego drzewa"
+
+#~ msgid "From _EssentialPIM HTML File"
+#~ msgstr "Z pliku HTML _EssentialPIM"
+
+#~ msgid "Add Node from an EssentialPIM HTML File to the Current Tree"
+#~ msgstr "Dodaj gałąź z pliku HTML EssentialPIM do aktualnego drzewa"
+
+#~ msgid "From K_eyNote File"
+#~ msgstr "Z pliku K_eyNote"
+
+#~ msgid "Add Nodes of a KeyNote File to the Current Tree"
+#~ msgstr "Dodaj gałęzie z pliku KeyNote do aktualnego drzewa"
+
+#~ msgid "From K_nowit File"
+#~ msgstr "Z pliku K_nowit"
+
+#~ msgid "Add Nodes of a Knowit File to the Current Tree"
+#~ msgstr "Dodaj gałęzie z pliku Knowit do aktualnego drzewa"
+
+#~ msgid "From _TuxCards File"
+#~ msgstr "Z pliku _TuxCards"
+
+#~ msgid "Add Nodes of a TuxCards File to the Current Tree"
+#~ msgstr "Dodaj gałęzie z pliku TuxCards do aktualnego drzewa"
+
+#~ msgid "Insert _NewLine"
+#~ msgstr "Dodaj _Nową linię"
+
+#~ msgid "Insert NewLine Char"
+#~ msgstr "Wstaw znak nowej lini"
+
+#~ msgid "Use AppIndicator for Docking"
+#~ msgstr "Użyj AppIndicator do dokowania"
+
+#~ msgid "Cancel"
+#~ msgstr "Anuluj"
+
+#~ msgid "The Characters  %s  are Not Allowed"
+#~ msgstr "Znak %s jest niedozwolony"
+
+#~ msgid "Text Font"
+#~ msgstr "Czcionka tekstu"
+
+#~ msgid "Toggle Node _Expanded/Collapsed"
+#~ msgstr "Przełącz stan Zwiniętych/Rozwiniętych gałęzi"
+
+#~ msgid "Toggle Expanded/Collapsed Status of the Selected Node"
+#~ msgstr "Przełącz stan Zwiniętych/Rozwiniętych gałęzi w zaznaczonej gałęzi"
+
+#~ msgid "_Find in Node"
+#~ msgstr "Znajdź w gałęzi"
+
+#~ msgid "Find into the Selected Node"
+#~ msgstr "Znajdź w zaznaczonej gałęzi"
+
+#~ msgid "Find into all the Tree Nodes"
+#~ msgstr "Znajdź we wszystkich gałęziach"
+
+#~ msgid "_Replace in Node"
+#~ msgstr "Zamień w gałęzi"
+
+#~ msgid "Replace into the Selected Node"
+#~ msgstr "Zamień w zaznaczonej gałęzi"
+
+#~ msgid "Replace in Node_s"
+#~ msgstr "Zamień w gałęzi"
+
+#~ msgid "Replace into all the Tree Nodes"
+#~ msgstr "Zamień we wszystkich gałęziach"
+
+#~ msgid "Code Nodes"
+#~ msgstr "Gałąź kodu"
+
+#~ msgid "Use Cherries as Nodes Icons"
+#~ msgstr "Użyj wisienek jako ikony gałęzi"
+
+#~ msgid "Do Not Display Nodes Icons"
+#~ msgstr "Nie wyświetlaj ikon gałęzi"
+
+#~ msgid "All Nodes"
+#~ msgstr "Wszystkie gałęzie"
+
+#~ msgid "_Bookmark This Node"
+#~ msgstr "Dodaj zakładkę"
+
+#~ msgid ""
+#~ "Copyright © 2009-2014\n"
+#~ "Giuseppe Penone <giuspen@gmail.com>"
+#~ msgstr ""
+#~ "Copyright © 2009-2014\n"
+#~ "Giuseppe Penone <giuspen@gmail.com>"
+
+#~ msgid "Sort with Drag and Drop, Delete with the Delete Key"
+#~ msgstr ""
+#~ "Sortuj za pomocą Przytrzymaj i upuść, Usuwaj za pomocą przycisku Delete"
+
+#~ msgid "Updated Embedded File"
+#~ msgstr "Zaktualizuj dołączony plik"
+
+#~ msgid "Find a Node from its Name"
+#~ msgstr "Znajdź gałąź po nazwie"

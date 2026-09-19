@@ -1,0 +1,7 @@
+oliveset
+	command=oliveset
+	name=OliveSet
+	can_open_multiple_files=true
+	expects_uris=false
+	requires_terminal=false
+	mime_types=application/oliveset-ctd;application/oliveset-ctz;application/oliveset-ctb;application/oliveset-ctx;

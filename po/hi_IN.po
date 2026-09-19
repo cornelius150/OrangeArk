@@ -1,0 +1,3198 @@
+# Hindi translations for PACKAGE package.
+# Copyright (C) 2021 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# giuspen <giuspen@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2022-01-02 09:41+0530\n"
+"Last-Translator: giuspen <giuspen@gmail.com>\n"
+"Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "Image Format Not Recognized"
+msgstr "छवि प्रारूप पहचाना नहीं गया"
+
+msgid "Insert Table"
+msgstr "टेबल डालें"
+
+msgid "CSV File"
+msgstr "CSV फ़ाइल"
+
+msgid "Insert a CodeBox"
+msgstr "एक कोडबॉक्स_डालें"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "एंबेडेड फाइलों के लिए अधिकतम आकार %s MB है।"
+
+msgid "Do you want to Continue?"
+msgstr "क्या आप जारी रखना चाहते हैं?"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "नोड '%s' की सामग्री प्राप्त करने में विफल"
+
+msgid "Special Characters"
+msgstr "विशेष वर्ण"
+
+msgid "Tabs Replaced"
+msgstr "टैब बदले गए"
+
+msgid "Lines Stripped"
+msgstr "लाइनें छीन ली गईं"
+
+msgid "No Text is Selected."
+msgstr "कोई पाठ चयनित नहीं है।"
+
+msgid "OliveSet File"
+msgstr "चेरीट्री फ़ाइल"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"उपयोग में फ़ाइल/फ़ोल्डर को ओवरराइट नहीं किया जा सकता!\n"
+"कृपया एक अलग नाम या स्थान का उपयोग करें।"
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"'%s' में '%s' नाम का फ़ोल्डर पहले से मौजूद है।\n"
+"<b>क्या आप इसे बदलना चाहते हैं?</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"'%s' में '%s' नाम की फ़ाइल पहले से मौजूद है।\n"
+"<b>क्या आप इसे बदलना चाहते हैं?</b>"
+
+msgid "PDF File"
+msgstr "PDF फाइल"
+
+msgid "Plain Text Document"
+msgstr "सादा टेक्स्ट दस्तावेज़"
+
+msgid "Preferences File"
+msgstr "फ़ाइल पसंद"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "क्या पैनल पर सिस्टम ट्रे दिखाई दी है?"
+
+msgid "Your system does not support the System Tray"
+msgstr "आपका सिस्टम सिस्टम ट्रे का समर्थन नहीं करता"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr "चेरी ट्री को फिर से शुरू करने के बाद ही इस बदलाव का असर होगा।"
+
+msgid "Replace in Current Node"
+msgstr "वर्तमान नोड में बदलें"
+
+msgid "Search in Current Node"
+msgstr "वर्तमान नोड में खोजें"
+
+msgid "Matches"
+msgstr "मेल कर रहे हैं"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "<b>पैटर्न '%s' नहीं मिला</b>"
+
+msgid "Replace in Multiple Nodes"
+msgstr "एकाधिक नोड्स में बदलें"
+
+msgid "Search in Multiple Nodes"
+msgstr "एकाधिक नोड्स में खोजें"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "इस सत्र के दौरान कोई पिछली खोज नहीं की गई थी।"
+
+msgid "Tags"
+msgstr "टैग"
+
+msgid ": "
+msgstr ":"
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "इस सत्र के दौरान कोई पिछला पाठ प्रारूप नहीं किया गया था।"
+
+msgid "Link Name"
+msgstr "लिंक का नाम"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "कर्सर अनुच्छेद में नहीं है।"
+
+msgid "Insert/Edit Link"
+msgstr "लिंक डालें/संपादित करें"
+
+msgid "Pick a Foreground Color"
+msgstr "अग्रभूमि रंग चुनें"
+
+msgid "Pick a Background Color"
+msgstr "बैकग्राउंड रंग चुनें"
+
+msgid "Checking for Newer Version..."
+msgstr "नए संस्करण के लिए जाँच की जा रही है."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr "नवीनतम संस्करण जानकारी प्राप्त करने में विफल - बाद में पुन: प्रयास करें।"
+
+msgid "A Newer Version Is Available!"
+msgstr "एक नया संस्करण उपलब्ध है!"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "आप उपलब्ध नवीनतम संस्करण का उपयोग कर रहे हैं।"
+
+msgid "You Are Using a Development Version."
+msgstr "आप एक विकास संस्करण का उपयोग कर रहे हैं।"
+
+msgid "Who is the Parent?"
+msgstr "पॆरॆंट कौन है ?"
+
+msgid "The Tree Root"
+msgstr "ट्री की जड़"
+
+msgid "The Selected Node"
+msgstr "चयनित नोड"
+
+msgid "Rename"
+msgstr "नाम बदलें"
+
+msgid "PNG Image"
+msgstr "PNG छवि"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "%s को लिखें विफल"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "फ़ोल्डर लिंक '%s' मान्य नहीं है।"
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "फ़ाइल लिंक '%s' मान्य नहीं है।"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "फ़ोल्डर लिंक '%s' मान्य नहीं है"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "लिंक एक ऐसे नोड को संदर्भित करता है जो अब मौजूद नहीं है (Id = %s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "'%s' नाम का कोई एंकर नहीं मिला"
+
+msgid "Edit CodeBox"
+msgstr "कोडबॉक्स संपादित करें"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"आपको एक कमांड को '%s' से जोड़ना होगा।\n"
+"वरीयता संवाद में ऐसा करें।"
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr "पैकेज 'xterm' स्थापित करें या वरीयता संवाद में एक अलग टर्मिनल कॉन्फ़िगर करें।"
+
+msgid "Edit Table Properties"
+msgstr "टेबल में गुण संपादित करें"
+
+msgid "Insert Anchor"
+msgstr "एंकर_डालें"
+
+msgid "Edit Anchor"
+msgstr "एंकर संपादित करें"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "एंबेडेड फ़ाइल को रीड ओनली नोड में संपादित नहीं किया जा सकता।"
+
+msgid "Embedded File Automatically Updated:"
+msgstr "एम्बेडेड फ़ाइल स्वचालित रूप से अपडेट की गई:"
+
+msgid "No Node is Selected"
+msgstr "कोई नोड सेलेक्ट नहीं किया"
+
+msgid "The Tree is Empty!"
+msgstr "ट्री खाली है!"
+
+msgid "The Selected Node is Read Only."
+msgstr "चयनित नोड केवल पढ़ने के लिए है।"
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "यह सुविधा केवल रिच टेक्स्ट नोड्स में उपलब्ध है।"
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr "यह सुविधा स्वचालित सिंटैक्स हाइलाइटिंग नोड्स में उपलब्ध नहीं है।"
+
+msgid "No Table is Selected."
+msgstr "कोई तालिका चयनित नहीं है।"
+
+msgid "No CodeBox is Selected."
+msgstr "कोई कोडबॉक्स चयनित नहीं है।"
+
+msgid "New Child Node Properties"
+msgstr "न्यू चाइल्ड नोड गुण"
+
+msgid "New Node Properties"
+msgstr "नई नोड गुण"
+
+msgid "Node Properties"
+msgstr "नोड गुण"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"नोड प्रकार को स्वचालित सिंटैक्स हाइलाइटिंग में बदलने से इस नोड की सभी रिच टेक्स्ट फॉर्मेटिंग "
+"हट जाएगी। क्या आप जारी रखना चाहते हैं?"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "क्या आप निश्चित रूप से <b>नोड '%s' को हटाना चाहते हैं?</b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "नोड में <b>बच्चे हैं, उन्हें भी हटा दिया जाएगा!</b>"
+
+msgid "Select the New Parent"
+msgstr "नए पॆरॆंट का चयन करें"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "नया पॆरॆंट स्थानांतरित करने के लिए बहुत ही नोड नहीं हो सकता है!"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "नया चुना हुआ पॆरॆंटअभी भी पुराना पॆरॆंट है!"
+
+msgid "The new parent can't be one of his children!"
+msgstr "नया पॆरॆंट नोड उसके चाइल्ड  में से एक नहीं हो सकता!"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "%s नोड्स गुण परिवर्तित"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr "नोड नाम हैडर पर अंतिम देखे गए नोड्स की संख्या पहले से ही अधिकतम मान पर है।"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr "नोड नाम हैडर पर अंतिम देखे गए नोड्स की संख्या पहले से ही न्यूनतम मान पर है।"
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "टूलबार आइकन का आकार पहले से ही अधिकतम मान पर है।"
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "टूलबार चिह्नों का आकार पहले से ही न्यूनतम मान पर है।"
+
+msgid "Print OliveSet version"
+msgstr "चेरी ट्री की संस्करण संख्या दिखाएं"
+
+msgid "Node name to focus"
+msgstr "नोड के नाम को फोकस करो"
+
+msgid "Anchor name to scroll to in node"
+msgstr "नोड में स्क्रॉल करने के लिए एंकर नाम"
+
+msgid "Export to HTML at specified directory path"
+msgstr "HTML को विशिष्ट मार्ग में निर्यात करें"
+
+msgid "Export to Text at specified directory path"
+msgstr "Text को विशिष्ट मार्ग में निर्यात करें"
+
+msgid "Export to PDF at specified directory path"
+msgstr "PDF को विशिष्ट मार्ग में निर्यात करें"
+
+msgid "Overwrite if export path already exists"
+msgstr "ओवरराइट करें यदि निर्यात पथ पहले से मौजूद है"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "एक फ़ाइल में निर्यात करें (HTML या TXT के लिए)"
+
+msgid "Password to open document"
+msgstr "दस्तावेज़ खोलने के लिए पासवर्ड"
+
+msgid "Create a new window"
+msgstr "एक नई विंडो बनाएं"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "मुख्य सत्र से स्वतंत्र, द्वितीयक सत्र में चलाएं"
+
+msgid "Execute Code"
+msgstr "निष्पादित कोड"
+
+msgid "Copy Code"
+msgstr "कोड कॉपी करें"
+
+msgid "Change CodeBox Properties"
+msgstr "कोडबॉक्स गुण बदलें"
+
+msgid "Start in OliveSet"
+msgstr "चेरीट्री में शुरू करें"
+
+msgid "New Document"
+msgstr "नया दस्तावेज़"
+
+msgid "Open File"
+msgstr "फ़ाइल खोलें"
+
+msgid "Open Folder"
+msgstr "फ़ोल्डर खोलें"
+
+msgid "Create a new document or open an existing one."
+msgstr "एक नया दस्तावेज़ बनाएं या मौजूदा खोलें।"
+
+msgid "Don't show again"
+msgstr "फिर न दिखाएं"
+
+msgid "Recent Documents"
+msgstr "हाल के दस्तावेज़"
+
+msgid "Name"
+msgstr "नाम"
+
+msgid "Path"
+msgstr "पथ"
+
+msgid "Open Selected"
+msgstr "चयनित खोलें"
+
+msgid "Handle the Bookmarks List"
+msgstr "बुकमार्क सूची को संभालें"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "चयनित बुकमार्क को ऊपर ले जाएँ"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "चयनित बुकमार्क को नीचे ले जाएँ"
+
+msgid "Remove the Selected Bookmark"
+msgstr "चयनित बुकमार्क हटाएं"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "बुकमार्क अवरोही क्रमित करें"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "बुकमार्क आरोही क्रमित करें"
+
+msgid "Choose Storage Type"
+msgstr "संग्रहण प्रकार चुनें"
+
+msgid "Single SQLite File"
+msgstr "एकल SQLite फ़ाइल"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "एकल SQLite फ़ाइल, 7-zip एन्क्रिप्टेड और पासवर्ड सुरक्षित"
+
+msgid "Single XML File"
+msgstr "एकल XML फ़ाइल"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "एकल XML फ़ाइल, 7-zip एन्क्रिप्टेड और पासवर्ड सुरक्षित"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "पदानुक्रमित फ़ोल्डर संरचना में एकाधिक फ़ाइलें"
+
+msgid "Storage Type"
+msgstr "भण्डारण प्रकार"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"CT दस्तावेज़ को एन्क्रिप्टेड 7zip संग्रह में सहेजता है। दस्तावेज़ को देखते या संपादित करते समय, "
+"CT एन्क्रिप्टेड संग्रह को एक अस्थायी फ़ोल्डर में निकालता है, और अनएन्क्रिप्टेड कॉपी पर काम "
+"करता है। बंद करते समय, अनएन्क्रिप्टेड प्रतिलिपि अस्थायी निर्देशिका से हटा दी जाती है। "
+"ध्यान दें कि एप्लिकेशन या सिस्टम क्रैश होने की स्थिति में, अनएन्क्रिप्टेड दस्तावेज़ अस्थायी "
+"फ़ोल्डर में रहेगा।"
+
+msgid "Enter the New Password Twice"
+msgstr "दो बार नया पासवर्ड दर्ज करें"
+
+msgid "Autosave Every"
+msgstr "ऑटोसॆव हर एक"
+
+msgid "Minutes"
+msgstr "मिनट"
+
+msgid "The Password Fields Must be Filled."
+msgstr "पासवर्ड फ़ील्ड भरना होगा।"
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "दो सम्मिलित पासवर्ड मेल नहीं खाते।"
+
+msgid "Warning"
+msgstr "चेतावनी"
+
+msgid "The Current Document was Updated."
+msgstr "वर्तमान दस्तावेज़ अपडेट किया गया था।"
+
+msgid "Do you want to Save the Changes?"
+msgstr "क्या आप किये गए बदलाव को सुरक्षित करना चाहते है?"
+
+msgid "Do you want to Execute the Code?"
+msgstr "क्या आप कोड निष्पादित करना चाहते हैं?"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "कोड निष्पादित करने से पहले पुष्टि मांगें"
+
+msgid "Use Internal Terminal"
+msgstr "आंतरिक टर्मिनल का उपयोग करें"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr ""
+"रिच टेक्स्ट और सिंटैक्स हाइलाइटिंग की विशेषता वाला एक पदानुक्रमित नोट लेने वाला एप्लिकेशन"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"यह कार्यक्रम मुफ्त सॉफ्टवेयर है; आप इसे पुनर्वितरित कर सकते हैं और/या संशोधित कर सकते हैं.\n"
+"इसे जीएनयू जनरल पब्लिक लाइसेंस की शर्तों के तहत प्रकाशित किया गया है.\n"
+"फ्री सॉफ्टवेयर फाउंडेशन; लाइसेंस का या तो संस्करण 3,या\n"
+"(आपके विकल्प पर) कोई बाद का संस्करण।\n"
+"\n"
+"यह कार्यक्रम इस उम्मीद में वितरित किया जाता है कि यह उपयोगी होगा,\n"
+"लेकिन बिना किसी वारंटी के; की निहित वारंटी के बिना भी\n"
+"किसी विशेष उद्देश्य के लिए अनुरूपता या फिटनेस। देखें\n"
+"अधिक जानकारी के लिए जीएनयू जनरल पब्लिक लाइसेंस।\n"
+"\n"
+"आपको GNU जनरल पब्लिक लाइसेंस की एक प्रति प्राप्त करनी चाहिए थी\n"
+"इस कार्यक्रम के साथ; यदि नहीं, तो फ्री सॉफ्टवेयर को लिखें\n"
+"फाउंडेशन, इंक., 51 फ्रैंकलिन स्ट्रीट, पांचवीं मंजिल, बोस्टन,\n"
+"एमए 02110-1301, यूएसए।\n"
+"\n"
+"\n"
+"\n"
+"\n"
+
+msgid "Arabic"
+msgstr "अरबी"
+
+msgid "Armenian"
+msgstr "अर्मेनियाई"
+
+msgid "Bulgarian"
+msgstr "बल्गेरियाई"
+
+msgid "Chinese Simplified"
+msgstr "सरलीकृत चीनी"
+
+msgid "Chinese Traditional"
+msgstr "पारंपरिक चीनी"
+
+msgid "Croatian"
+msgstr "क्रोएशियाई"
+
+msgid "Czech"
+msgstr "Czech"
+
+msgid "Dutch"
+msgstr "डच"
+
+msgid "Finnish"
+msgstr "फिनिश"
+
+msgid "French"
+msgstr "फ्रेंच"
+
+msgid "German"
+msgstr "जर्मन"
+
+msgid "Greek"
+msgstr "यूनानी"
+
+msgid "Hindi India"
+msgstr "हिंदी भारत"
+
+msgid "Hungarian"
+msgstr "हंगेरियन"
+
+msgid "Italian"
+msgstr "इटालियन"
+
+msgid "Japanese"
+msgstr "जापानी"
+
+msgid "Kazakh"
+msgstr "कजाख"
+
+msgid "Kazakh (Latin)"
+msgstr "कज़ाख (लैटिन)"
+
+msgid "Korean"
+msgstr "कोरिअन"
+
+msgid "Lithuanian"
+msgstr "लिथुअनिअन"
+
+msgid "Persian"
+msgstr "फ़ारसी"
+
+msgid "Polish"
+msgstr "पोलिश"
+
+msgid "Portuguese"
+msgstr "पुर्तगाली"
+
+msgid "Portuguese Brazil"
+msgstr "पुर्तगाली ब्राजील"
+
+msgid "Romanian"
+msgstr "रोमानियाई"
+
+msgid "Russian"
+msgstr "रूसी"
+
+msgid "Slovak"
+msgstr "स्लोवाक"
+
+msgid "Slovenian"
+msgstr "स्लोवेनियाई"
+
+msgid "Spanish"
+msgstr "स्पेनिश"
+
+msgid "Swedish"
+msgstr "स्वीडिश"
+
+msgid "Turkish"
+msgstr "तुर्की"
+
+msgid "Ukrainian"
+msgstr "यूक्रेनी"
+
+msgid "About OliveSet"
+msgstr "चेरी ट्री के बारे में"
+
+msgid "Tree Summary Information"
+msgstr "ट्री के बारे मैं सारांश जानकारी"
+
+msgid "Number of Rich Text Nodes"
+msgstr "रिच टेक्स्ट नोड्स की संख्या"
+
+msgid "Number of Plain Text Nodes"
+msgstr "सादा पाठ नोड्स की संख्या"
+
+msgid "Number of Code Nodes"
+msgstr "कोड नोड्स की संख्या"
+
+msgid "Number of Images"
+msgstr "छवियों की संख्या"
+
+msgid "Number of LatexBoxes"
+msgstr "लेटेक्स बॉक्स की संख्या"
+
+msgid "Number of Embedded Files"
+msgstr "एम्बेडेड फाइलों की संख्या"
+
+msgid "Number of Tables"
+msgstr "तालिकाओं की संख्या"
+
+msgid "Number of CodeBoxes"
+msgstr "कोडबॉक्स की संख्या"
+
+msgid "Number of Anchors"
+msgstr "एंकरों की संख्या"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "साझा नोड्स / समूहों की संख्या"
+
+msgid "Latex Text"
+msgstr "लेटेक्स टेक्स्ट"
+
+msgid "Image Size dpi"
+msgstr "छवि का आकार DPI"
+
+msgid "Tutorial"
+msgstr "ट्यूटोरियल"
+
+msgid "Reference"
+msgstr "संदर्भ"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "LaTeX गणित और समीकरण ट्यूटोरियल"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "LaTeX गणित प्रतीक संदर्भ"
+
+msgid "Image Properties"
+msgstr "छवि गुण"
+
+msgid "Rotate Left"
+msgstr "बाएं घुमाएं"
+
+msgid "Rotate Right"
+msgstr "दाएं घुमाएं"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr "छवि क्रॉप करने के लिए, OK क्लिक करने से पहले माउस से क्षेत्र का चयन करें"
+
+msgid "Flip Horizontally"
+msgstr "क्षैतिज रूप से पलटें"
+
+msgid "Flip Vertically"
+msgstr "लंबवत रूप से पलटें"
+
+msgid "Width"
+msgstr "चौड़ाई"
+
+msgid "Height"
+msgstr "कद"
+
+msgid "Plain Text"
+msgstr "सादा टेक्स्ट    "
+
+msgid "Automatic Syntax Highlighting"
+msgstr "स्वचालित सिंटैक्स हाइलाइटिंग"
+
+msgid "Type"
+msgstr "प्रकार"
+
+msgid "pixels"
+msgstr "पिक्सल"
+
+msgid "Size"
+msgstr "आकार"
+
+msgid "Show Line Numbers"
+msgstr "लाइन नंबर दिखाएं"
+
+msgid "Highlight Matching Brackets"
+msgstr "मिलान करने वाले कोष्ठकों को हाइलाइट करें"
+
+msgid "Options"
+msgstr "विकल्प"
+
+msgid "Rows"
+msgstr "पंक्तियों"
+
+msgid "Columns"
+msgstr "कॉलम "
+
+msgid "Default Width"
+msgstr "डिफ़ॉल्ट चौड़ाई"
+
+msgid "Table Size"
+msgstr "टेबल   का आकार"
+
+msgid "Column Properties"
+msgstr "कॉलम गुण "
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "हल्का इंटरफ़ेस (बड़ी तालिकाओं के लिए बहुत तेज़)"
+
+msgid "Import from CSV File"
+msgstr "CSV फ़ाइल से आयात करें"
+
+msgid "Clear"
+msgstr "साफ़ करें"
+
+msgid "Reset"
+msgstr "रीसेट"
+
+msgid "Search for"
+msgstr "निम्न को खोजें"
+
+msgid "Replace with"
+msgstr "से बदलो"
+
+msgid "Replace in Link Targets"
+msgstr "लिंक लक्ष्यों में बदलें"
+
+msgid "Replace options"
+msgstr "बदलें विकल्प"
+
+msgid "Match Case"
+msgstr "मामले मिलाएं"
+
+msgid "Regular Expression"
+msgstr "नियमित अभिव्यक्ति"
+
+msgid "Online Manual"
+msgstr "ऑनलाइन मैनुअल"
+
+msgid "Accent Insensitive"
+msgstr "उच्चारण असंवेदनशील"
+
+msgid "Override Exclusions"
+msgstr "बहिष्करण ओवरराइड करें"
+
+msgid "Whole Word"
+msgstr "पूरा शब्द"
+
+msgid "Start Word"
+msgstr "शब्द प्रारंभ करें"
+
+msgid "More Words, Exact Match"
+msgstr "अधिक शब्द, सटीक मिलान"
+
+msgid "More Words, Disregard Order"
+msgstr "अधिक शब्द, क्रम अनदेखा करें"
+
+msgid "More Words, Match Any"
+msgstr "अधिक शब्द, कोई भी मिलान"
+
+msgid "Forward"
+msgstr "आगे"
+
+msgid "Backward"
+msgstr "पिछड़ा"
+
+msgid "All, List Matches"
+msgstr "सभी, सूची मिलान"
+
+msgid "First From Selection"
+msgstr "चयन से प्रथम"
+
+msgid "First in All Range"
+msgstr "सभी रेंज में प्रथम"
+
+msgid "Node Created After"
+msgstr "नोड के बाद बनाया गया"
+
+msgid "Node Created Before"
+msgstr "पहले बनाया गया नोड"
+
+msgid "Node Modified After"
+msgstr "नोड संशोधित के बाद"
+
+msgid "Node Modified Before"
+msgstr "नोड पहले संशोधित"
+
+msgid "Time filter"
+msgstr "समय फ़िल्टर"
+
+msgid "Node Content"
+msgstr "नोड कंटैट"
+
+msgid "Node Name and Tags"
+msgstr "नोड नाम और टैग"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "केवल चयनित नोड और सबनोड्स"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "पुनरावृत्त खोजें/बदलें संवाद दिखाएं"
+
+msgid "Search options"
+msgstr "खोज विकल्प"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"बदलें फ़ील्ड खाली है: सभी मिले संदर्भ मिटा दिए जाएंगे।\n"
+"क्या आप जारी रखना चाहते हैं?"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"उनकी नोड गुणों में निर्धारित बहिष्करणों के कारण कम से कम एक नोड छोड़ दिया गया।\n"
+"सभी बहिष्करण हटाने के लिए, मेनू का उपयोग करें:\n"
+"खोजें -> खोज से सभी बहिष्करण साफ़ करें"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "छुपाएं ('%s' के साथ पुनर्स्थापित करें)"
+
+msgid "Node Name"
+msgstr "नोड का नाम"
+
+msgid "Line"
+msgstr "लाइन"
+
+msgid "Line Content"
+msgstr "लाइन कंटैट"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "नवीनतम खोज/बदलें पुनरावृति"
+
+msgid "Close"
+msgstr "बंद करे"
+
+msgid "Find Previous"
+msgstr "पिछला खोजें"
+
+msgid "Find Next"
+msgstr "अगला ढूंढो"
+
+msgid "Replace"
+msgstr "बदलने के"
+
+msgid "Undo"
+msgstr "पूर्ववत करें"
+
+msgid "Remove"
+msgstr "हटाएं"
+
+msgid "Remove User Colour from Palette"
+msgstr "पैलेट से उपयोगकर्ता रंग हटाएं"
+
+msgid "Colour"
+msgstr "रंग"
+
+msgid "Question"
+msgstr "प्रश्न"
+
+msgid "Info"
+msgstr "जानकारी"
+
+msgid "Error"
+msgstr "त्रुटि"
+
+msgid "Select File"
+msgstr "फ़ाइल का चयन करें"
+
+msgid "Select Folder"
+msgstr "फोल्डर का चयन करें"
+
+msgid "Save File as"
+msgstr "फ़ाइल को इस रूप में सहेजें"
+
+msgid "Save To Folder"
+msgstr "फ़ोल्डर में सहेजें"
+
+msgid "To WebSite"
+msgstr "वेबसाइट तक"
+
+msgid "To File"
+msgstr "फाइल_तक"
+
+msgid "To Folder"
+msgstr "फोल्डर तक"
+
+msgid "To Node"
+msgstr "नोड तक"
+
+msgid "Anchor Name (optional)"
+msgstr "एंकर का नाम (वैकल्पिक)"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "चयनित नोड में कोई एंकर नहीं है।"
+
+msgid "Choose Existing Anchor"
+msgstr "मौजूदा नोड चुनें"
+
+msgid "Anchor Name"
+msgstr "एंकर का नाम"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "पैटर्न '%s' नहीं मिला"
+
+msgid "Bold"
+msgstr "बोल्ड"
+
+msgid "Use Selected Color"
+msgstr "चयनित रंग का प्रयोग करें"
+
+msgid "Use Selected Icon"
+msgstr "चयनित चिह्न का प्रयोग करें"
+
+msgid "Rich Text"
+msgstr "रिच टेक्स्ट   "
+
+msgid "Node Type"
+msgstr "नोड प्रकार"
+
+msgid "Tags for Searching"
+msgstr "खोजने के लिए टैग"
+
+msgid "Exclude from Searches"
+msgstr "खोजों से बाहर करें"
+
+msgid "This Node"
+msgstr "यह नोड"
+
+msgid "The Subnodes"
+msgstr "सबनोड्स"
+
+msgid "Read Only"
+msgstr "केवल पढ़ने के लिए"
+
+msgid "Unique Id"
+msgstr "अद्वितीय आईडी"
+
+msgid "Shared Nodes Group"
+msgstr "साझा नोड्स समूह"
+
+msgid "Choose Existing Tag"
+msgstr "मौजूदा टैग चुनें"
+
+msgid "Tag Name"
+msgstr "टैग नाम"
+
+msgid "Pick a Color"
+msgstr "एक रंग चुनें"
+
+msgid "Select Node Icon"
+msgstr "नोड चिह्न का चयन करें"
+
+msgid "Involved Nodes"
+msgstr "शामिल नोड्स"
+
+msgid "Selected Text Only"
+msgstr "केवल चयनित  टेक्स्ट "
+
+msgid "Selected Node Only"
+msgstr "केवल चयनित नोड"
+
+msgid "Selected Node and Subnodes"
+msgstr "चयनित नोड और सबनोड्स"
+
+msgid "All the Tree"
+msgstr "सभी ट्री"
+
+msgid "Include Node Name"
+msgstr "नोड नाम शामिल करें"
+
+msgid "Links Tree in Every Page"
+msgstr "हर पेज में लिंक ट्री"
+
+msgid "New Node in New Page"
+msgstr "नए पृष्ठ में नया नोड"
+
+msgid "Single File"
+msgstr "एक दस्तावेज"
+
+msgid "Index"
+msgstr "अनुक्रमणिका/सूची"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr "चेतावनी: पेज में प्रवेश करने के लिए एक या अधिक छवियों को छोटा किया गया!"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "सुरक्षा कारणों से LaTeX रेंडरिंग अवरुद्ध की गई"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr "स्रोत में फ़ाइल I/O कमांड हैं जो स्थानीय फ़ाइलों तक पहुंच सकती हैं"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"\\verbatiminput, \\openin, \\openout और असुरक्षित \\input/\\include पथ जैसी "
+"कमांड हटाएं"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "'लेटेक्स' और 'डीवीआईपीएनजी' निष्पादन योग्य फ़ाइलें नहीं मिलीं"
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "उदाहरण के लिए, Ubuntu पर स्थापित करने वाले पैकेज हैं:"
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "उदाहरण के लिए, macOS पर स्थापित करने वाले पैकेज हैं:"
+
+msgid "Could not access the executable 'latex'"
+msgstr "'लेटेक्स' निष्पादन योग्य फ़ाइल नहीं मिली"
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "'डीवीआईपीएनजी' निष्पादन योग्य फ़ाइल नहीं मिली"
+
+msgid "Downloading"
+msgstr "डाउनलोड"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "पथ %s मौजूद नहीं है"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "हाल ही में चेरी ट्री दस्तावेज़ खोलें"
+
+msgid "_Hide"
+msgstr "_छुपाएं"
+
+msgid "_Quit"
+msgstr "_बाहर आये"
+
+msgid "Hide the Window"
+msgstr "छुपाएँ  विंडो "
+
+msgid "Quit the Application"
+msgstr "एप्लीकेशन से बाहर आये"
+
+msgid "Spell Check"
+msgstr "वर्तनी की जाँच"
+
+msgid "Word Count"
+msgstr "शब्द गणना"
+
+msgid "Date Created"
+msgstr "निर्माण की तिथि"
+
+msgid "Date Modified"
+msgstr "तिथि संशोधित"
+
+msgid "Subnodes"
+msgstr "सबनोड्स"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr "इस सत्र के दौरान कोई नोड कॉपी नहीं की गई या स्रोत ट्री अनुपलब्ध है।"
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "स्रोत ट्री नोड अब उपलब्ध नहीं है।"
+
+msgid "Show Menubar:"
+msgstr "मेनूबार दिखाएं:"
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "\"%s\" एक चेरीट्री फ़ाइल नहीं है"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"चेरीट्री पथ पार्स करने में त्रुटि:\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "क्या आप अंतिम बैकअप खोलना चाहते हैं?"
+
+msgid "Failed to Load from Backup Data"
+msgstr "बैकअप डेटा से लोड करने में विफल"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "'%s' नाम का कोई नोड नहीं मिला।"
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "अस्थायी फ़ाइलें बाहरी अनुप्रयोगों के साथ बनाई और खोली गईं।"
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "चेरी ट्री छोड़ने से पहले बाहरी अनुप्रयोगों से बाहर निकलें"
+
+msgid "Did you Quit the External Applications?"
+msgstr "क्या आपने बाहरी अनुप्रयोगों को छोड़ दिया?"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "सहेज नहीं सकते: \"%s\" केवल पढ़ने के लिए है"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr "दस्तावेज़ को CT* फ़ाइल में बाहरी अद्यतन के बाद पुनः लोड किया गया था"
+
+msgid "Copy Selection or All"
+msgstr "चयन या सभी कॉपी करें"
+
+msgid "Paste"
+msgstr "पेस्ट करें"
+
+msgid "Remove from list"
+msgstr "सूची से निकालें"
+
+msgid "_File"
+msgstr "फ़ाइल"
+
+msgid "_Edit"
+msgstr "संपादित करें"
+
+msgid "_Insert"
+msgstr "डालने"
+
+msgid "F_ormat"
+msgstr "प्र_ारूप"
+
+msgid "_Tree"
+msgstr "ट्री"
+
+msgid "Too_ls"
+msgstr "उप_करण"
+
+msgid "_Search"
+msgstr "ढूंढो"
+
+msgid "_View"
+msgstr "देखना"
+
+msgid "_Bookmarks"
+msgstr "बुकमार्क"
+
+msgid "_Help"
+msgstr "मदद"
+
+msgid "Insert _Date Node"
+msgstr "_तिथि नोड डालें"
+
+msgid "Node _Move"
+msgstr "नोड _मूव"
+
+msgid "Nod_es Sort"
+msgstr "नोड्स _क्रमबद्ध"
+
+msgid "B_ookmarks"
+msgstr "बु_कमार्क"
+
+msgid "_Import"
+msgstr "आयात"
+
+msgid "_Export"
+msgstr "निर्यात"
+
+msgid "_Preferences"
+msgstr "पसंद"
+
+msgid "_Recent Documents"
+msgstr "हाल का दस्तावेज़"
+
+msgid "C_hange Case"
+msgstr "C_हैंग केस"
+
+msgid "L_ist"
+msgstr "स_ूची"
+
+msgid "_Justify"
+msgstr "जस्टिफाई"
+
+msgid "Toggle _Font Property"
+msgstr "_फ़ॉन्ट गुण टॉगल करें"
+
+msgid "_Toggle Heading Property"
+msgstr "_शीर्षक संपत्ति टॉगल करें"
+
+msgid "I_nsert"
+msgstr "_सम्मिलित करें"
+
+msgid "_Find"
+msgstr "ढूंढो"
+
+msgid "_Replace"
+msgstr "बदलना"
+
+msgid "Ro_w"
+msgstr "पं_क्ति"
+
+msgid "_Table"
+msgstr "_टेबल"
+
+msgid "_CodeBox"
+msgstr "_कोडबॉक्स"
+
+msgid "File"
+msgstr "फ़ाइल"
+
+msgid "_New Instance..."
+msgstr "_नया उदाहरण..."
+
+msgid "Start a New Instance of OliveSet"
+msgstr "चेरी ट्री का एक नया उदाहरण शुरू करें"
+
+msgid "_Open File..."
+msgstr "फ़ाइल _खोलें..."
+
+msgid "Open a OliveSet File"
+msgstr "चेरीट्री फ़ाइल खोलें"
+
+msgid "Open Fo_lder..."
+msgstr "_फ़ोल्डर खोलें..."
+
+msgid "Open a OliveSet Folder"
+msgstr "चेरीट्री फ़ोल्डर खोलें"
+
+msgid "_Save"
+msgstr "सहेजें"
+
+msgid "Save File"
+msgstr "फ़ाइल सहेजें"
+
+msgid "Save and _Vacuum"
+msgstr "सहेजें और _वैक्यूम"
+
+msgid "Save File and Vacuum"
+msgstr "फ़ाइल सहेजें और वैक्यूम करें"
+
+msgid "Save _As..."
+msgstr "_इस रूप सहेजें..."
+
+msgid "Save File As"
+msgstr "फ़ाइल को इस रूप में सहेजें"
+
+msgid "Pa_ge Setup..."
+msgstr "पे_ज सेटअप..."
+
+msgid "Set up the Page for Printing"
+msgstr "प्रिंटिंग के लिए पेज सेट करें"
+
+msgid "P_rint..."
+msgstr "प्_रिंट..."
+
+msgid "Print"
+msgstr "प्रिंट"
+
+msgid "Preferences"
+msgstr "पसंद"
+
+msgid "_Import Preferences..."
+msgstr "_प्रेफरेंस आयात करें..."
+
+msgid "Import Preferences"
+msgstr "आयत करे प्रेफरेंस"
+
+msgid "_Export Preferences..."
+msgstr "_प्रेफरेंस निर्यात करें..."
+
+msgid "Export Preferences"
+msgstr "निर्यात प्रेफरेंस"
+
+msgid "Tree In_fo"
+msgstr "ट्री _जानकारी"
+
+msgid "_Document Path to Clipboard"
+msgstr "_दस्तावेज़ पथ क्लिपबोर्ड पर"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "दस्तावेज़ पथ क्लिपबोर्ड पर कॉपी करें"
+
+msgid "E_xit OliveSet"
+msgstr "चेरी ट्री से _बाहर निकलें"
+
+msgid "Exit from OliveSet"
+msgstr "चेरी ट्री एप्लिकेशन से बाहर निकलें"
+
+msgid "Edit/Insert"
+msgstr "संपादित करें/सम्मिलित करें"
+
+msgid "_Undo"
+msgstr "_पूर्ववत करें"
+
+msgid "Undo Last Operation"
+msgstr "अंतिम ऑपरेशन पूर्ववत करें"
+
+msgid "_Redo"
+msgstr "_फिर से करें"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "पूर्व में छोड़े गए ऑपरेशन को फिर से करें"
+
+msgid "Insert I_mage..."
+msgstr "_Image डालें..."
+
+msgid "Insert an Image"
+msgstr "एक चित्र डालें"
+
+msgid "Insert Late_x..."
+msgstr "_लेटेक्स डालें..."
+
+msgid "Insert LatexBox"
+msgstr "लेटेक्सबॉक्स डालें"
+
+msgid "Insert _Table..."
+msgstr "_टेबल डालें..."
+
+msgid "Insert a Table"
+msgstr "एक टेबल डालें"
+
+msgid "Insert _CodeBox..."
+msgstr "_कोडबॉक्स डालें..."
+
+msgid "Insert _File..."
+msgstr "_फ़ाइल डालें..."
+
+msgid "Insert File"
+msgstr "फ़ाइल डालें"
+
+msgid "Insert/Edit _Link..."
+msgstr "_लिंक डालें/संपादित करें..."
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "एक लिंक डालें/अंतर्निहित लिंक संपादित करें"
+
+msgid "Insert _Anchor..."
+msgstr "_एंकर डालें..."
+
+msgid "Insert an Anchor"
+msgstr "एक एंकर डालें"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "T_OC और शीर्षक संकुचन बटन डालें..."
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "सामग्री तालिका और शीर्षक संकुचन/विस्तार बटन डालें"
+
+msgid "Insert Timestam_p"
+msgstr "टाइमस्टैम्_प डालें"
+
+msgid "Insert Timestamp"
+msgstr "टाइमस्टैम्प डालें"
+
+msgid "Insert _Special Character..."
+msgstr "_विशेष कैरेक्टर डालें..."
+
+msgid "Insert a Special Character"
+msgstr "विशेष कैरेक्टर को ऐड करे"
+
+msgid "Insert _Horizontal Rule"
+msgstr "सम्मिलित करें _क्षैतिज नियम"
+
+msgid "Insert Horizontal Rule"
+msgstr "क्षैतिज नियम डालें"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "चयन/शब्द का निचला मामला"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "चयन/अंतर्निहित शब्द का मामला कम करें"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "_चयन/शब्द का ऊपरी मामला"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "चयन का ऊपरी मामला/अंतर्निहित शब्द"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "_चयन/शब्द का टॉगल केस"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "चयन/अंतर्निहित शब्द के मामले को टॉगल करें"
+
+msgid "Cu_t as Plain Text"
+msgstr "Plain Text के रूप में काटें"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "Plain Text के रूप में काटें , Rich text को त्यागें"
+
+msgid "_Copy as Plain Text"
+msgstr "Plain Text रूप में कॉपी करें"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "Plain Text के रूप में  कॉपी  , Rich text को त्यागें"
+
+msgid "_Paste as Plain Text"
+msgstr "Plain Text के रूप मे पेस्ट करें"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "Plain Text के रूप मे पेस्ट करें,Rich text को त्यागें"
+
+msgid "C_ut Row"
+msgstr "पंक्ति _काटें"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "वर्तमान पंक्ति को काटें"
+
+msgid "C_opy Row"
+msgstr "पंक्ति _कॉपी करें"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "वर्तमान पंक्ति/चयनित पंक्तियों की कॉपी  बनाएँ"
+
+msgid "De_lete Row"
+msgstr "पंक्ति को हटाएं"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "वर्तमान पंक्ति/चयनित पंक्तियों की कॉपी हटाएं"
+
+msgid "_Duplicate Row"
+msgstr "_डुप्लीकेट पंक्ति"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "वर्तमान पंक्ति/चयन को डुप्लिकेट करें"
+
+msgid "_Move Up Row"
+msgstr "पंक्ति _ऊपर ले जाएं"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "वर्तमान पंक्ति/चयनित पंक्तियों को ऊपर ले जाएँ"
+
+msgid "Mo_ve Down Row"
+msgstr "पंक्ति _नीचे ले जाएं"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "वर्तमान पंक्ति/चयनित पंक्तियों को नीचे ले जाएँ"
+
+msgid "C_ut Table"
+msgstr "कट टेबल"
+
+msgid "Cut the Selected Table"
+msgstr "चयनित तालिका को काटें"
+
+msgid "_Copy Table"
+msgstr "_कॉपी टेबल"
+
+msgid "Copy the Selected Table"
+msgstr "चयनित तालिका की प्रतिलिपि बनाएँ"
+
+msgid "_Delete Table"
+msgstr "_तालिका हटाएं"
+
+msgid "Delete the Selected Table"
+msgstr "चयनित तालिका हटाएं"
+
+msgid "_Add Column"
+msgstr "_कॉलम जोड़ें"
+
+msgid "Add a Table Column"
+msgstr "एक टेबल कॉलम जोड़ें"
+
+msgid "Cu_t Column"
+msgstr "कॉलम _काटें"
+
+msgid "Cut a Table Column"
+msgstr "एक टेबल कॉलम काटें"
+
+msgid "_Copy Column"
+msgstr "कॉलम _कॉपी करें"
+
+msgid "Copy a Table Column"
+msgstr "एक टेबल कॉलम कॉपी करें"
+
+msgid "_Paste Column"
+msgstr "कॉलम _पेस्ट करें"
+
+msgid "Paste a Table Column"
+msgstr "एक टेबल कॉलम पेस्ट करें"
+
+msgid "De_lete Column"
+msgstr "कॉलम हटाएं"
+
+msgid "Delete the Selected Table Column"
+msgstr "चयनित तालिका कॉलम हटाएं"
+
+msgid "Move Column _Left"
+msgstr "स्तम्भ ले जाएँ _बायाँ"
+
+msgid "Move the Selected Column Left"
+msgstr "चयनित कॉलम को बाएँ ले जाएँ"
+
+msgid "Move Column _Right"
+msgstr "कॉलम ले जाएँ _दायाँ"
+
+msgid "Move the Selected Column Right"
+msgstr "चयनित कॉलम को दाईं ओर ले जाएं"
+
+msgid "Increase Column Width"
+msgstr "कॉलम की चौड़ाई बढ़ाएँ"
+
+msgid "Increase the Width of the Column"
+msgstr "कॉलम की चौड़ाई बढ़ाएँ"
+
+msgid "Decrease Column Width"
+msgstr "कॉलम की चौड़ाई घटाएं"
+
+msgid "Decrease the Width of the Column"
+msgstr "कॉलम की चौड़ाई घटाएं"
+
+msgid "_Add Row"
+msgstr "लाइन जोड़ो"
+
+msgid "Add a Table Row"
+msgstr "एक तालिका पंक्ति जोड़ें"
+
+msgid "Cu_t Row"
+msgstr "कट रो"
+
+msgid "Cut a Table Row"
+msgstr "एक टेबल पंक्ति काटें"
+
+msgid "_Copy Row"
+msgstr "_कॉपी पंक्ति"
+
+msgid "Copy a Table Row"
+msgstr "तालिका पंक्ति की प्रतिलिपि बनाएँ"
+
+msgid "_Paste Row"
+msgstr "पंक्ति चिपकाएँ"
+
+msgid "Paste a Table Row"
+msgstr "तालिका पंक्ति चिपकाएँ"
+
+msgid "Delete the Selected Table Row"
+msgstr "चयनित तालिका पंक्ति हटाएं"
+
+msgid "Move Row _Up"
+msgstr "पंक्ति _ऊपर ले जाएँ"
+
+msgid "Move the Selected Row Up"
+msgstr "चयनित पंक्ति को ऊपर ले जाएँ"
+
+msgid "Move Row _Down"
+msgstr "पंक्ति _नीचे ले जाएँ"
+
+msgid "Move the Selected Row Down"
+msgstr "चयनित पंक्ति को नीचे ले जाएँ"
+
+msgid "Sort Rows De_scending"
+msgstr "पंक्तियों को क्रमबद्ध करें"
+
+msgid "Sort all the Rows Descending"
+msgstr "अवरोही सभी पंक्तियों को क्रमबद्ध करें"
+
+msgid "Sort Rows As_cending"
+msgstr "आरोही पंक्तियों को क्रमबद्ध करें"
+
+msgid "Sort all the Rows Ascending"
+msgstr "आरोही सभी पंक्तियों को क्रमबद्ध करें"
+
+msgid "_Edit Table Properties..."
+msgstr "_टेबल गुण संपादित करें..."
+
+msgid "Edit the Table Properties"
+msgstr "तालिका गुण संपादित करें"
+
+msgid "_Table Export..."
+msgstr "_टेबल निर्यात..."
+
+msgid "Export Table as CSV File"
+msgstr "CSV फ़ाइल के रूप में निर्यात तालिका"
+
+msgid "Change CodeBox _Properties..."
+msgstr "कोडबॉक्स _गुण बदलें..."
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "कोडबॉक्स के गुण संपादित करें"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "कोडबॉक्स _पाठ फ़ाइल से लोड करें..."
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "टेक्स्ट फ़ाइल से कोडबॉक्स सामग्री लोड करें"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "कोडबॉक्स _पाठ फ़ाइल में सहेजें..."
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "कोडबॉक्स सामग्री को टेक्स्ट फ़ाइल में सहेजें"
+
+msgid "C_ut CodeBox"
+msgstr "कट कोडबॉक्स"
+
+msgid "Cut the Selected CodeBox"
+msgstr "चयनित कोडबॉक्स को काटें"
+
+msgid "_Copy CodeBox"
+msgstr "_कॉपी कोडबॉक्स"
+
+msgid "Copy the Selected CodeBox"
+msgstr "चयनित कोडबॉक्स को कॉपी करें"
+
+msgid "_Copy CodeBox Content"
+msgstr "_कोडबॉक्स सामग्री कॉपी करें"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "चयनित कोडबॉक्स की सामग्री कॉपी करें"
+
+msgid "_Delete CodeBox"
+msgstr "कोडबॉक्स हटाएं"
+
+msgid "Delete the Selected CodeBox"
+msgstr "चयनित कोडबॉक्स हटाएं"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "कोडबॉक्स हटाएं _सामग्री रखें"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "चयनित कोडबॉक्स हटाएं लेकिन इसकी सामग्री रखें"
+
+msgid "Increase CodeBox Width"
+msgstr "कोडबॉक्स की चौड़ाई बढ़ाएँ"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "कोडबॉक्स की चौड़ाई बढ़ाएँ"
+
+msgid "Decrease CodeBox Width"
+msgstr "कोडबॉक्स की चौड़ाई घटाएं"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "कोडबॉक्स की चौड़ाई घटाएं"
+
+msgid "Increase CodeBox Height"
+msgstr "कोडबॉक्स ऊँचाई बढ़ाएँ"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "कोडबॉक्स की ऊँचाई बढ़ाएँ"
+
+msgid "Decrease CodeBox Height"
+msgstr "कोडबॉक्स ऊंचाई घटाएं"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "कोडबॉक्स की ऊंचाई घटाएं"
+
+msgid "Format"
+msgstr "प्रारूप"
+
+msgid "Format Clo_ne"
+msgstr "प्रारूप _क्लोन"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "कर्सर पर टेक्स्ट फॉर्मेट टाइप को क्लोन करें"
+
+msgid "Format _Latest"
+msgstr "प्रारूप _नवीनतम"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "नवीनतम टेक्स्ट प्रारूप प्रकार की मेमोरी"
+
+msgid "_Remove Formatting"
+msgstr "_स्वरूपण हटाएं"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "चयनित टेक्स्ट से फ़ॉर्मेटिंग हटाएं"
+
+msgid "Text _Color Foreground"
+msgstr "टेक्स्ट _रंग अग्रभूमि"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "चयनित टेक्स्ट अग्रभूमि का रंग बदलें"
+
+msgid "Text C_olor Background"
+msgstr "बैकग्राउंड टेक्स्ट  रंग"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "चयनित टेक्स्ट का रंग बदलें"
+
+msgid "Toggle _Bold Property"
+msgstr "टॉगल _बोल्ड प्रॉपर्टी"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "चयनित टेक्स्ट की बोल्ड प्रॉपर्टी को टॉगल करें"
+
+msgid "Toggle _Italic Property"
+msgstr "टॉगल _इटैलिक प्रॉपर्टी"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "चयनित टेक्स्ट के इटैलिक प्रॉपर्टी को टॉगल करें"
+
+msgid "Toggle _Underline Property"
+msgstr "टॉगल _अंडरलाइन प्रॉपर्टी"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "चयनित टेक्स्ट की अंडरलाइन प्रॉपर्टी को टॉगल करें"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "स्ट्राइकथ्रू संपत्ति टॉगल करें"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "चयनित टेक्स्ट की स्ट्राइकथ्रू प्रॉपर्टी को टॉगल करें"
+
+msgid "Toggle h_1 Property"
+msgstr "H_1 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "चयनित टेक्स्ट की h1 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h_2 Property"
+msgstr "H_2 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "चयनित टेक्स्ट की h2 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h_3 Property"
+msgstr "H_3 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "चयनित टेक्स्ट की h3 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h_4 Property"
+msgstr "H_4 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "चयनित टेक्स्ट की h4 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h_5 Property"
+msgstr "H_5 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "चयनित टेक्स्ट की h5 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h_6 Property"
+msgstr "H_6 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "चयनित टेक्स्ट की h6 प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle _Small Property"
+msgstr "टॉगल _छोटी प्रॉपर्टी"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "चयनित टेक्स्ट की छोटी प्रॉपर्टी को टॉगल करें"
+
+msgid "Toggle Su_bscript Property"
+msgstr "सुपरस्क्रिप्ट प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "चयनित पाठ की सुपरस्क्रिप्ट प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle Su_perscript Property"
+msgstr "सुपरस्क्रिप्ट प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "चयनित पाठ की सुपरस्क्रिप्ट प्रॉपर्टी टॉगल करें"
+
+msgid "Toggle _Monospace Property"
+msgstr "टॉगल _मोनोस्पेस प्रॉपर्टी"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "चयनित टेक्स्ट के मोनोस्पेस प्रॉपर्टी को टॉगल करें"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "सेट/अनसेट _बुलेट की गई"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr "वर्तमान अनुच्छेद/चयन को बुलेटेड सूची के रूप में सेट/अनसेट करें"
+
+msgid "Set/Unset _Numbered List"
+msgstr "सेट/अनसेट _नंबर वाली सूची"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr "वर्तमान अनुच्छेद/चयन को क्रमांकित सूची के रूप में सेट/अनसेट करें"
+
+msgid "Set/Unset _To-Do List"
+msgstr "सेट/अनसेट _टू-डू लिस्ट"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr "वर्तमान अनुच्छेद/चयन को टू-डू सूची के रूप में सेट/अनसेट करें"
+
+msgid "Justify _Left"
+msgstr "औचित्य _बाएं"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "लेफ्ट पैराग्राफ को जस्टिफाई कीजिये"
+
+msgid "Justify _Center"
+msgstr "जस्टिफाई_सेंटर"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "जस्टिफाई सेंटर द करंट पैराग्राफ"
+
+msgid "Justify _Right"
+msgstr "जस्टिफाई राइट"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "जस्टिफाई राइट द करंट पैराग्राफ"
+
+msgid "Justify _Fill"
+msgstr "जस्टिफाई फिल"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "वर्तमान पैराग्राफ को भरने का औचित्य सिद्ध करें"
+
+msgid "_Indent Paragraph"
+msgstr "_इंडेंट पैराग्राफ"
+
+msgid "Indent the Current Paragraph"
+msgstr "वर्तमान पैराग्राफ को इंडेंट करें"
+
+msgid "_Unindent Paragraph"
+msgstr "_अनइंडेंट पैराग्राफ"
+
+msgid "Unindent the Current Paragraph"
+msgstr "वर्तमान पैराग्राफ को अनइंडेंट करें"
+
+msgid "_Expand TOC Headers"
+msgstr "TOC शीर्षक _विस्तृत करें"
+
+msgid "Expand TOC Headers"
+msgstr "TOC शीर्षक विस्तृत करें"
+
+msgid "_Collapse TOC Headers"
+msgstr "TOC शीर्षक _संकुचित करें"
+
+msgid "Collapse TOC Headers"
+msgstr "TOC शीर्षक संकुचित करें"
+
+msgid "Tools"
+msgstr "उपकरण"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "सक्षम/अक्षम करें _वर्तनी जांच"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "वर्तनी जांच सक्षम/अक्षम करें टॉगल करें"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "_VIM मोड सक्षम/अक्षम करें"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "VIM मोड सक्षम/अक्षम करें टॉगल करें"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "स्ट्रिप ट्रेलिंग स्पेस"
+
+msgid "Strip Trailing Spaces"
+msgstr "स्ट्रिप ट्रेलिंग स्पेस"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "टैब को _रिक्त स्थान से बदलें"
+
+msgid "Replace Tabs with Spaces"
+msgstr "टैब को रिक्त स्थान से बदलें"
+
+msgid "_Command Palette..."
+msgstr "_कमांड पैलेट..."
+
+msgid "Command Palette"
+msgstr "कमांड पैलेट"
+
+msgid "_Execute Code All"
+msgstr "_सभी कोड निष्पादित करें"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "कोडबॉक्स या नोड में सभी कोड निष्पादित करें"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "कोड _लाइन या चयन निष्पादित करें"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "वर्तमान लाइन या चयनित टेक्स्ट से कोड निष्पादित करें"
+
+msgid "Tree"
+msgstr "ट्री"
+
+msgid "Go _Back"
+msgstr "वापस जाओ"
+
+msgid "Go to the Previous Visited Node"
+msgstr "पिछले देखे गए नोड पर जाएं"
+
+msgid "Go _Forward"
+msgstr "आगे बढ़ो"
+
+msgid "Go to the Next Visited Node"
+msgstr "अगले देखे गए नोड पर जाएं"
+
+msgid "Add _Node..."
+msgstr "_नोड जोड़ें..."
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "चयनित नोड के समान जनक वाले नोड को जोड़ें"
+
+msgid "Add _Subnode..."
+msgstr "_सबनोड जोड़ें..."
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "चयनित नोड में चाइल्ड नोड जोड़ें"
+
+msgid "_Duplicate Node"
+msgstr "_डुप्लिकेट नोड"
+
+msgid "Duplicate the Selected Node"
+msgstr "चयनित नोड को डुप्लिकेट करें"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "नोड _और सबनोड्स डुप्लिकेट करें"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "चयनित नोड और सबनोड्स को डुप्लिकेट करें"
+
+msgid "_Create Shared Node"
+msgstr "_साझा नोड बनाएं"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr "चयनित नोड का डेटा साझा करने वाला नया नोड बनाएं"
+
+msgid "Copy Node and S_ubnodes"
+msgstr "नोड और _सबनोड्स कॉपी करें"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "चयनित नोड और सबनोड्स कॉपी करें"
+
+msgid "_Paste Node and Subnodes"
+msgstr "नोड और सबनोड्स _पेस्ट करें"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "कॉपी किए गए नोड और सबनोड्स पेस्ट करें"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "ट्री रूट के नीचे _आज का नोड डालें"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "ट्री रूट के नीचे आज के लिए वर्ष/माह/दिन पदानुक्रम के साथ नोड डालें"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "चयनित नोड के नीचे _आज का नोड डालें"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "चयनित नोड के नीचे आज के लिए वर्ष/माह/दिन पदानुक्रम के साथ नोड डालें"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "ट्री रूट के नीचे _कल का नोड डालें"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "ट्री रूट के नीचे कल के लिए वर्ष/माह/दिन पदानुक्रम के साथ नोड डालें"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "चयनित नोड के नीचे _कल का नोड डालें"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "चयनित नोड के नीचे कल के लिए वर्ष/माह/दिन पदानुक्रम के साथ नोड डालें"
+
+msgid "C_hange Node Properties..."
+msgstr "नोड _गुण बदलें..."
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "चयनित नोड के प्रॉपर्टी संपादित करें"
+
+msgid "Toggle _Read Only"
+msgstr "टॉगल करें _केवल पढ़ने के लिए"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "चयनित नोड की रीड ओनली प्रॉपर्टी को टॉगल करें"
+
+msgid "Cop_y Link to Node"
+msgstr "नोड का लिंक _कॉपी करें"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "क्लिपबोर्ड पर चयनित नोड का लिंक कॉपी करें"
+
+msgid "Children _Inherit Syntax"
+msgstr "चिल्ड्रन सिंटैक्स _इनहेरिट करें"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr "चयनित नोड के चिल्ड्रन सिंटैक्स हाइलाइटिंग को पॆरॆंट नोड के सिंटैक्स हाइलाइटिंग में बदलें"
+
+msgid "_Handle Bookmarks..."
+msgstr "_बुकमार्क संभालें..."
+
+msgid "Add to Boo_kmarks"
+msgstr "बु_कमार्क में जोड़ें"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "बुकमार्क सूची में वर्तमान नोड जोड़ें"
+
+msgid "Remove from Boo_kmarks"
+msgstr "बु_कमार्क से हटाएं"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "बुकमार्क सूची से वर्तमान नोड निकालें"
+
+msgid "E_xpand All Nodes"
+msgstr "सभी नोड्स का विस्तार करें"
+
+msgid "Expand All the Tree Nodes"
+msgstr "सभी ट्री नोड्स का विस्तार करें"
+
+msgid "_Collapse All Nodes"
+msgstr "_सभी नोड्स को संक्षिप्त करें"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "सभी ट्री नोड्स को संक्षिप्त करें"
+
+msgid "Node _Up"
+msgstr "नोड _ऊपर"
+
+msgid "Move the Selected Node Up"
+msgstr "चयनित नोड को ऊपर ले जाएँ"
+
+msgid "Node _Down"
+msgstr "नोड _नीचे"
+
+msgid "Move the Selected Node Down"
+msgstr "चयनित नोड को नीचे ले जाएँ"
+
+msgid "Node _Left"
+msgstr "नोड _बाएं"
+
+msgid "Move the Selected Node Left"
+msgstr "चयनित नोड को बाएँ ले जाएँ"
+
+msgid "Node _Right"
+msgstr "नोड _दाएं"
+
+msgid "Move the Selected Node Right"
+msgstr "चयनित नोड को दाएं ले जाएं"
+
+msgid "Node Change _Parent..."
+msgstr "नोड _पेरेंट बदलें..."
+
+msgid "Change the Selected Node's Parent"
+msgstr "चयनित नोड के पॆरॆंट को बदलें"
+
+msgid "Sort Tree _Ascending"
+msgstr "ट्री को आरोही क्रमबद्ध करें"
+
+msgid "Sort the Tree Ascending"
+msgstr "ट्री आरोही क्रम में लगाएं"
+
+msgid "Sort Tree _Descending"
+msgstr "ट्री को क्रमबद्ध करें _अवरोही"
+
+msgid "Sort the Tree Descending"
+msgstr "ट्री के अवरोही क्रम को छाँटें"
+
+msgid "Sort Siblings A_scending"
+msgstr "Siblings को आरोही क्रम में लगाएं"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "चयनित नोड आरोही के सभी  Siblings को क्रमबद्ध करें"
+
+msgid "Sort Siblings D_escending"
+msgstr "Siblings को अवरोही क्रम में लगाएं"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "चयनित नोड अवरोही के सभी Siblings को क्रमबद्ध करें"
+
+msgid "De_lete Node"
+msgstr "नोड को निकाले"
+
+msgid "Delete the Selected Node"
+msgstr "चयनित नोड हटाएं"
+
+msgid "Find/Replace"
+msgstr "खोजें/बदलें"
+
+msgid "_Quick Node Selection..."
+msgstr "_त्वरित नोड चयन..."
+
+msgid "Quick Node Selection"
+msgstr "त्वरित नोड चयन"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "_नोड्स नाम और टैग में खोजें..."
+
+msgid "Find in Nodes Names and Tags"
+msgstr "नोड्स नाम और टैग में खोजें"
+
+msgid "_Find in Node Content..."
+msgstr "_नोड कंटेंट में खोजें..."
+
+msgid "Find into the Selected Node Content"
+msgstr "चयनित नोड कटॆंट में खोजें"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "एकाधिक _नोड्स में खोजें..."
+
+msgid "Find in Multiple Nodes"
+msgstr "एकाधिक नोड्स में खोजें"
+
+msgid "Find _Again"
+msgstr "_फिर से खोजें"
+
+msgid "Iterate the Last Find Operation"
+msgstr "अंतिम खोज ऑपरेशन को पुनरावृत्त करें"
+
+msgid "Find _Back"
+msgstr "ढूंढ_निकालो"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "विपरीत दिशा में अंतिम खोज ऑपरेशन को पुनरावृत्त करें"
+
+msgid "_Replace in Node Content..."
+msgstr "_नोड कंटेंट में बदलें..."
+
+msgid "Replace into the Selected Node Content"
+msgstr "चयनित नोड कटॆंट में बदलें"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "एकाधिक _नोड्स में बदलें..."
+
+msgid "Replace A_gain"
+msgstr "फिर से _बदलें"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "अंतिम प्रतिस्थापन ऑपरेशन को पुनरावृत्त करें"
+
+msgid "Show All Matches _Dialog..."
+msgstr "सभी मिलान _संवाद दिखाएं..."
+
+msgid "Show Search All Matches Dialog"
+msgstr "खोज सभी मिलान संवाद दिखाएं"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "_खोज से सभी बहिष्करण साफ़ करें"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "खोज से बहिष्करण के सभी ट्री नोड्स प्रॉपर्टी साफ़ करें"
+
+msgid "View"
+msgstr "देखना"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "दिखाएँ/छुपाएँ _ट्री एक्सप्लोरर"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "ट्री दिखाएँ/छुपाएँ टॉगल करें"
+
+msgid "Show/Hide Te_rminal"
+msgstr "_टर्मिनल दिखाएं/छुपाएं"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "टर्मिनल दिखाएं/छुपाएं टॉगल करें"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "टर्मिनल/_टेक्स्ट के बीच फोकस टॉगल करें"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "टर्मिनल और टेक्स्ट के बीच फोकस टॉगल करें"
+
+msgid "Show/Hide _Menubar"
+msgstr "दिखाएँ/छुपाएँ _मेनूबार"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "मेनूबार दिखाएँ/छुपाएँ टॉगल करें"
+
+msgid "Show/Hide Tool_bar"
+msgstr "टूलबार दिखाएँ/छुपाएँ"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "टूलबार दिखाएँ/छुपाएँ टॉगल करें"
+
+msgid "Show/Hide _Statusbar"
+msgstr "स्टेटसबार दिखाएँ/छुपाएँ"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr ""
+"टॉगल दिखाएँ/छुपाएँ\n"
+" स्टेटस बार"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "दिखाएँ/छुपाएँ _लाइन्स नोड पेरेंट टु चाइल्ड"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "नोड के बीच की रेखाएँ दिखाएँ/छिपाएँ टॉगल करें पेरेंट और चाइल्ड"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "नोड नाम हैडर दिखाएँ/छुपाएँ"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "नोड नाम हैडर दिखाएँ/छुपाएँ टॉगल करें"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "टॉगल _फोकस ट्री/टेक्स्ट"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "ट्री और टेक्स्ट के बीच फ़ोकस टॉगल करें"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "_टूलबार चिह्नों का आकार बढ़ाएँ"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "टूलबार आइकन का आकार बढ़ाएँ"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "_टूलबार चिह्नों का आकार घटाएं"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "टूलबार आइकन का आकार घटाएं"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "नोड नाम हैडर पर और अधिक _अंतिम देखे गए नोड्स"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "नोड नाम हैडर पर अंतिम देखे गए नोड्स की संख्या बढ़ाएं"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "नोड नाम हैडर पर _कम अंतिम देखे गए नोड्स"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "नोड नाम हैडर पर अंतिम देखे गए नोड्स की संख्या घटाएं"
+
+msgid "Full Screen _On/Off"
+msgstr "पूर्ण स्क्रीन _चालू/बंद"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "पूर्ण स्क्रीन चालू/बंद टॉगल करें"
+
+msgid "_Always On Top On/Off"
+msgstr "_हमेशा शीर्ष पर चालू/बंद"
+
+msgid "Always On Top On/Off"
+msgstr "हमेशा शीर्ष पर चालू/बंद"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "टाइटलबार में मेन्यूबार _अक्षम करें"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "मेन्यूबार को टाइटलबार में न रखें"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "टाइटलबार में _मेन्यूबार सक्षम करें"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "मेन्यूबार को टाइटलबार में रखें"
+
+msgid "Import"
+msgstr "आयात"
+
+msgid "From _OliveSet File"
+msgstr "चेरी ट्री फ़ाइल से"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "चेरी ट्री फ़ाइल के नोड्स को वर्तमान ट्री में जोड़ें"
+
+msgid "From _OliveSet Folder"
+msgstr "_चेरीट्री फ़ोल्डर से"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "चेरीट्री फ़ोल्डर के नोड्स को वर्तमान ट्री में जोड़ें"
+
+msgid "From _Indented List File"
+msgstr "_इंडेंटेड सूची फ़ाइल से"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "इंडेंटेड सूची फ़ाइल के नोड्स को वर्तमान ट्री में जोड़ें"
+
+msgid "From _Plain Text File"
+msgstr "_सादा टेक्स्ट फ़ाइल . से"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "एक सादा टेक्स्ट फ़ाइल से वर्तमान पेड़ में नोड जोड़ें"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "_सादा टेक्स्ट  फ़ाइलों के फ़ोल्डर से"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr "प्लेन टेक्स्ट फाइल के फोल्डर से मौजूदा ट्री में नोड्स जोड़ें"
+
+msgid "From _HTML File"
+msgstr "_HTML फ़ाइल से"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "HTML फ़ाइल से वर्तमान ट्री में नोड जोड़ें"
+
+msgid "From _Folder of HTML Files"
+msgstr "HTML फाइल्स के फोल्डर से"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "HTML फ़ाइलों के एक फ़ोल्डर से वर्तमान ट्री में नोड्स जोड़ें"
+
+msgid "From _Markdown File"
+msgstr "_Markdown फ़ाइल से"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "Markdown फ़ाइल से वर्तमान ट्री में एक नोड जोड़ें"
+
+msgid "From _Folder of Markdown Files"
+msgstr "Markdown फाइल्स के फोल्डर से"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "Markdown फ़ाइलों के एक फ़ोल्डर से वर्तमान ट्री में नोड्स जोड़ें"
+
+msgid "From _Gnote Folder"
+msgstr "_Gnote फ़ोल्डर से"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "_Gnote फोल्डर के नोड्स को करंट ट्री में जोड़ें"
+
+msgid "From _KeepNote Folder"
+msgstr "_KeepNote फ़ोल्डर से"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "एक KeepNote फ़ोल्डर के नोड्स को वर्तमान ट्री में जोड़ें"
+
+msgid "From _Leo File"
+msgstr "_Leo फ़ाइल . से"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "_Leo File  फाइल के नोड्स को करंट ट्री में जोड़ें"
+
+msgid "From _Mempad File"
+msgstr "_Mempad फ़ाइल . से"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "एक Mempad  फ़ाइल के नोड्स को वर्तमान ट्री में जोड़ें"
+
+msgid "From _NoteCase HTML File"
+msgstr "_NoteCase HTML फ़ाइल से"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "वर्तमान ट्री में NoteCase HTML फ़ाइल के नोड्स जोड़ें"
+
+msgid "From _RedNotebook HTML File"
+msgstr "_RedNotebook HTML फ़ाइल से"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "वर्तमान ट्री में RedNotebook HTML फ़ाइल के नोड जोड़ें"
+
+msgid "From T_omboy Folder"
+msgstr "T_omboy फ़ोल्डर से"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "एक Tomboy फ़ोल्डर के नोड्स को वर्तमान ट्री में जोड़ें"
+
+msgid "From T_reepad Lite File"
+msgstr "T_reepad लाइट फ़ाइल से"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "Treepad Lite फ़ाइल के नोड्स को वर्तमान ट्री में जोड़ें"
+
+msgid "From _Zim Folder"
+msgstr "_Zim फोल्डर से"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "वर्तमान ट्री में एक Zim फ़ोल्डर के नोड्स जोड़ें"
+
+msgid "Export"
+msgstr "निर्यात"
+
+msgid "Export To _PDF"
+msgstr "_PDF  को निर्यात करें"
+
+msgid "Export To PDF"
+msgstr "PDF  को निर्यात करें"
+
+msgid "Export To _HTML"
+msgstr "_HTML में निर्यात करें"
+
+msgid "Export To HTML"
+msgstr "HTML में निर्यात करें"
+
+msgid "Export to Plain _Text"
+msgstr "Plain Text  में निर्यात करें"
+
+msgid "Export to Plain Text"
+msgstr "Plain Text  में निर्यात करें"
+
+msgid "_Export To OliveSet"
+msgstr "_चेरीट्री में निर्यात करें"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "चेरीट्री फ़ाइल या फ़ोल्डर में निर्यात करें"
+
+msgid "Help"
+msgstr "मदद"
+
+msgid "_Check Newer Version"
+msgstr "_नए संस्करण की जाँच करें"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "ऑनलाइन उपलब्ध नए संस्करण की जाँच करें"
+
+msgid "_Website"
+msgstr "_वेबसाइट"
+
+msgid "Visit OliveSet's Website"
+msgstr "चेरीट्री की वेबसाइट देखें"
+
+msgid "_Source Code"
+msgstr "_सोर्स कोड"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "चेरीट्री का सोर्स कोड ऑनलाइन देखें"
+
+msgid "_Report a Bug"
+msgstr "_बग रिपोर्ट करें"
+
+msgid "Report a Bug in OliveSet"
+msgstr "चेरीट्री में एक बग रिपोर्ट करें"
+
+msgid "_Donate"
+msgstr "_दान करें"
+
+msgid "Donate to Support OliveSet"
+msgstr "चेरीट्री को समर्थन के लिए दान करें"
+
+msgid "Online _Manual"
+msgstr "ऑनलाइन _मैनुअल"
+
+msgid "OliveSet's Online Manual"
+msgstr "चेरीट्री का ऑनलाइन मैनुअल"
+
+msgid "_About"
+msgstr "बारे में"
+
+msgid "_Open Preferences Directory"
+msgstr "_प्रेफरेंस निर्देशिका खोलें"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "पसंद फाइलों के साथ निर्देशिका खोलें"
+
+msgid "C_ut Anchor"
+msgstr "कट एंकर"
+
+msgid "Cut the Selected Anchor"
+msgstr "चयनित एंकर को काटें"
+
+msgid "_Copy Anchor"
+msgstr "_कॉपी एंकर"
+
+msgid "Copy the Selected Anchor"
+msgstr "चयनित एंकर को कॉपी करें"
+
+msgid "_Delete Anchor"
+msgstr "_एंकर हटाएं"
+
+msgid "Delete the Selected Anchor"
+msgstr "चयनित एंकर को हटाएं"
+
+msgid "Edit _Anchor..."
+msgstr "_एंकर संपादित करें..."
+
+msgid "Edit the Underlying Anchor"
+msgstr "अंतर्निहित एंकर को संपादित करें"
+
+msgid "Copy Anchor Link"
+msgstr "एंकर लिंक कॉपी करें"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "अंतर्निहित एंकर को क्लिपबोर्ड पर लिंक कॉपी करें"
+
+msgid "C_ut Embedded File"
+msgstr "एंबेडेड फ़ाइल काटें"
+
+msgid "Cut the Selected Embedded File"
+msgstr "चयनित एंबेडेड फ़ाइल को काटें"
+
+msgid "_Copy Embedded File"
+msgstr "_कॉपी एंबेडेड फ़ाइल"
+
+msgid "Copy the Selected Embedded File"
+msgstr "चयनित एंबेडेड फ़ाइल की प्रतिलिपि बनाएँ"
+
+msgid "_Delete Embedded File"
+msgstr "_एम्बेडेड फ़ाइल हटाएं"
+
+msgid "Delete the Selected Embedded File"
+msgstr "चयनित एंबेडेड फ़ाइल को हटाएं"
+
+msgid "Open Embedded File"
+msgstr "एंबेडेड फ़ाइल खोलें"
+
+msgid "_Rename"
+msgstr "_नाम बदलें"
+
+msgid "Rename Embedded File"
+msgstr "एंबेडेड फ़ाइल का नाम बदलें"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "_LatexBox को PNG के रूप में सहेजें..."
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "चयनित LatexBox को PNG फ़ाइल के रूप में सहेजें"
+
+msgid "_Edit LatexBox..."
+msgstr "_LatexBox संपादित करें..."
+
+msgid "Edit the Selected LatexBox"
+msgstr "चयनित LatexBox संपादित करें"
+
+msgid "C_ut LatexBox"
+msgstr "LatexBox _काटें"
+
+msgid "Cut the Selected LatexBox"
+msgstr "चयनित LatexBox काटें"
+
+msgid "_Copy LatexBox"
+msgstr "_LatexBox कॉपी करें"
+
+msgid "Copy the Selected LatexBox"
+msgstr "चयनित LatexBox कॉपी करें"
+
+msgid "_Delete LatexBox"
+msgstr "_LatexBox हटाएं"
+
+msgid "Delete the Selected LatexBox"
+msgstr "चयनित LatexBox हटाएं"
+
+msgid "_Save Image as PNG..."
+msgstr "_Image को PNG के रूप में सहेजें..."
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "चयनित Image को PNG फ़ाइल के रूप में सहेजें"
+
+msgid "_Edit Image..."
+msgstr "_Image संपादित करें..."
+
+msgid "Edit the Selected Image"
+msgstr "चयनित Image संपादित करें"
+
+msgid "C_ut Image"
+msgstr "कट  image"
+
+msgid "Cut the Selected Image"
+msgstr "चयनित Image को काटें"
+
+msgid "_Copy Image"
+msgstr "_नकल Image"
+
+msgid "Copy the Selected Image"
+msgstr "चयनित Image की प्रतिलिपि बनाएँ"
+
+msgid "_Delete Image"
+msgstr "_छवि हटाएं"
+
+msgid "Delete the Selected Image"
+msgstr "चयनित छवि हटाएं"
+
+msgid "Edit _Link..."
+msgstr "_लिंक संपादित करें..."
+
+msgid "Edit the Link Associated to the Image"
+msgstr "छवि से संबद्ध लिंक संपादित करें"
+
+msgid "D_ismiss Link"
+msgstr "लिंक खारिज करें"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "छवि से संबद्ध लिंक को खारिज करें"
+
+msgid "Show/Hide _OliveSet"
+msgstr "दिखाएँ/छुपाएँ_चेरी_ट्री"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "टॉगल दिखाएँ/छुपाएँ"
+
+msgid "Edit the Underlying Link"
+msgstr "अंतर्निहित लिंक संपादित करें"
+
+msgid "C_ut Link"
+msgstr "कट लिंक"
+
+msgid "Cut the Selected Link"
+msgstr "चयनित लिंक को काटें"
+
+msgid "_Copy Link"
+msgstr "_प्रतिरूप जोड़ना"
+
+msgid "Copy the Selected Link"
+msgstr "चयनित लिंक को कॉपी करें"
+
+msgid "Dismiss the Selected Link"
+msgstr "चयनित लिंक को खारिज करें"
+
+msgid "_Delete Link"
+msgstr "लिंक हटाएं"
+
+msgid "Delete the Selected Link"
+msgstr "चयनित लिंक हटाएं"
+
+msgid "English"
+msgstr "अंग्रेज़ी"
+
+msgid "Text and Code"
+msgstr "टेक्स्ट और कोड"
+
+msgid "Plain Text and Code"
+msgstr "सादा टेक्स्ट  और कोड"
+
+msgid "Tree Explorer"
+msgstr "ट्री एक्सप्लोरर"
+
+msgid "Theme"
+msgstr "थीम"
+
+msgid "Interface"
+msgstr "इंटरफ़ेस"
+
+msgid "Links"
+msgstr "लिंक"
+
+msgid "Toolbar"
+msgstr "टूलबार"
+
+msgid "Keyboard Shortcuts"
+msgstr "कीबोर्ड शॉर्टकट "
+
+msgid "Miscellaneous"
+msgstr "विविध"
+
+msgid "Monospace"
+msgstr "मोनोस्पेस"
+
+msgid "Code Font"
+msgstr "कोड फोंट्स"
+
+msgid "Terminal Font"
+msgstr "टर्मिनल फ़ॉंट"
+
+msgid "Tree Font"
+msgstr "ट्री फ़ॉन्ट"
+
+msgid "Reset to Default"
+msgstr "वितथ पर ले जाएं"
+
+msgid "Fonts"
+msgstr "फोंट्स"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "Statusbar में वर्ड काउंट सक्षम करें"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "विंडो शीर्षक में दस्तावेज़ निर्देशिका दिखाएं"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "नोड नाम शीर्षलेख में पूर्ण पथ दिखाएं"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "मेनूबार में समर्पित बुकमार्क मेनू"
+
+msgid "Menubar in Titlebar"
+msgstr "टाइटलबार में मेन्यूबार"
+
+msgid "Toolbar Icons Size"
+msgstr "टूलबार आइकन आकार"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "नोड नाम हैडर पर अंतिम बार देखे गए नोड्स"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "स्क्रॉलबार स्लाइडर न्यूनतम आकार (0 = सिस्टम डिफ़ॉल्ट)"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "स्क्रॉलबार टेक्स्ट संपादक पर ओवरले"
+
+msgid "System Default"
+msgstr "सिस्टम डिफ़ॉल्ट"
+
+msgid "Yes"
+msgstr "हाँ"
+
+msgid "No"
+msgstr "नहीं"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "होवर करते समय टूलटिप्स सक्षम करें"
+
+msgid "Menus"
+msgstr "मेनू"
+
+msgid "Max Search Results per Page"
+msgstr "प्रति पृष्ठ अधिकतम खोज परिणाम"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "सत्रों के बीच खोज/बदलें इतिहास सहेजें"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "कस्टम वेब लिंक क्लिक की गई क्रिया सक्षम करें"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "कस्टम फ़ाइल लिंक क्लिक की गई क्रिया सक्षम करें"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "कस्टम फ़ोल्डर लिंक क्लिक की गई क्रिया सक्षम करें"
+
+msgid "Custom Actions"
+msgstr "कस्टम क्रियाएं"
+
+msgid "Colors"
+msgstr "रंग "
+
+msgid "Double Click for Link Action"
+msgstr "लिंक क्रिया के लिए डबल क्लिक"
+
+msgid "Underline Links"
+msgstr "रेखांकित लिंक"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "फ़ाइलों और फ़ोल्डरों के लिए सापेक्ष पथ का प्रयोग करें"
+
+msgid "Anchor Size"
+msgstr "एंकर का आकार"
+
+msgid "Change Selected"
+msgstr "चयनित बदलें"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr "कीबोर्ड शॉर्टकट '%s' पहले से प्रयोग में है।"
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "वर्तमान संबद्ध क्रिया '%s' है"
+
+msgid "Do you want to steal the shortcut?"
+msgstr "क्या आप शॉर्टकट चुराना चाहते हैं?"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "कीबोर्ड शॉर्टकट संपादित करें"
+
+msgid "No Keyboard Shortcut"
+msgstr "कोई की बोर्ड शॉर्टकट नहीं"
+
+msgid "Autosave on Quit"
+msgstr "ऑटोसॆव छोड़ना"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "सेव करने से पहले एक बैकअप कॉपी बनाएं"
+
+msgid "Number of Backups to Keep"
+msgstr "रखने के लिए बैकअप की संख्या"
+
+msgid "Custom Backup Directory"
+msgstr "कस्टम बैकअप निर्देशिका"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "एकाधिक फ़ाइल भंडारण, डिस्क पर एंबेडेड फ़ाइल नाम का उपयोग करें"
+
+msgid "Saving"
+msgstr "सहेजा जा रहा है"
+
+msgid "Automatically Check for Newer Version"
+msgstr "नए संस्करण के लिए स्वचालित रूप से जाँच करें"
+
+msgid "Reload Document From Last Session"
+msgstr "पिछले सत्र से दस्तावेज़ पुनः लोड करें"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "जब कोई दस्तावेज़ लोड नहीं है तो स्टार्ट संवाद दिखाएं"
+
+msgid "Reload After External Update to CT* File"
+msgstr "CT* फ़ाइल में बाहरी अद्यतन के बाद पुनः लोड करें"
+
+msgid "Enable Debug Log"
+msgstr "डीबग लॉग सक्षम करें"
+
+msgid "Debug Log Directory"
+msgstr "डीबग लॉग सक्षम करें"
+
+msgid "Enable System Tray Docking"
+msgstr "सिस्टम ट्रे डॉकिंग सक्षम करें"
+
+msgid "Start Minimized in the System Tray"
+msgstr "सिस्टम ट्रे में छोटा शुरू करें"
+
+msgid "System Tray"
+msgstr "सिस्टम ट्रे"
+
+msgid "Language"
+msgstr "भाषा"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Port"
+msgstr "पोर्ट"
+
+msgid "Username"
+msgstr "उपयोगकर्ता नाम"
+
+msgid "Password"
+msgstr "पासवर्ड"
+
+msgid "Proxy"
+msgstr "प्रॉक्सी"
+
+msgid "Show White Spaces"
+msgstr "सफेद स्थान दिखाएं"
+
+msgid "Highlight Current Line"
+msgstr "वर्तमान लाइन को हाइलाइट करें"
+
+msgid "Text Editor"
+msgstr "टेक्स्ट संपादक"
+
+msgid "Internal Terminal Shell"
+msgstr "आंतरिक टर्मिनल शेल"
+
+msgid "Add"
+msgstr "जोड़ें"
+
+msgid "Remove Selected"
+msgstr "चुना हुआ हटाओ"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "प्रति नोड/कोडबॉक्स प्रकार कमांड"
+
+msgid "Terminal Command"
+msgstr "टर्मिनल कमांड"
+
+msgid "Code Execution"
+msgstr "कोड निष्पादन"
+
+msgid "Select Element to Add"
+msgstr "जोड़ने के लिए तत्व का चयन करें"
+
+msgid "Enable Spell Check"
+msgstr "वर्तनी जांच सक्षम करें"
+
+msgid "Spell Check Language"
+msgstr "वर्तनी जाँच भाषा"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "स्वचालित रूप से कोडबॉक्स का विस्तार करें"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "कोडबॉक्स में टूलबार है"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "हल्के इंटरफ़ेस के लिए तालिका कोशिकाओं की सीमा संख्या"
+
+msgid "Embedded File Icon Size"
+msgstr "एंबेडेड फ़ाइल चिह्न आकार"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "एंबेडेड फ़ाइल आकार सीमा (MB)"
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "एंबेडेड फ़ाइल आइकन के शीर्ष पर फ़ाइल का नाम दिखाएं"
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "एकल क्लिक पर वस्तुओं का स्वतः-चयन न करें"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr "Klipper के साथ KDE 6 पर क्लिपबोर्ड संबंधित फ्रीज़ के लिए वर्कअराउंड"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "प्रति नोड पूर्ववत चरणों की सीमा"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "समान नाम वाले नोड से CamelCase टेक्स्ट को स्वतः लिंक करें"
+
+msgid "Auto Link URLs"
+msgstr "URL स्वतः लिंक करें"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "ट्रिपल क्लिक पर पूरे पैराग्राफ का चयन करें"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "मार्कडाउन ऑटो रिप्लेसमेंट सक्षम करें (प्रायोगिक)"
+
+msgid "Scale"
+msgstr "स्केल"
+
+msgid "Italic"
+msgstr "तिरछे अक्षर"
+
+msgid "Underline"
+msgstr "रेखांकित"
+
+msgid "Text Color Foreground"
+msgstr "पाठ का रंग अग्रभूमि"
+
+msgid "Text Color Background"
+msgstr "टेक्स्ट बैकग्राउंड रंग "
+
+msgid "Small"
+msgstr "छोटा"
+
+msgid "Scalable Tags"
+msgstr "स्केलेबल टैग"
+
+msgid "Chars for Bulleted List"
+msgstr "बुलेटेड सूची के लिए वर्ण"
+
+msgid "Chars for Todo List"
+msgstr "Todo List के लिए वर्ण"
+
+msgid "Chars for Table Of Content"
+msgstr " कंटैट टेबल के लिए वर्ण"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "स्मार्ट डबल कोट्स के लिए वर्ण"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "स्मार्ट सिंगल कोट्स के लिए वर्ण"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "स्मार्ट कोट्स ऑटो रिप्लेसमेंट सक्षम करें"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "प्रतीक ऑटो प्रतिस्थापन सक्षम करें"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "समर्थित प्रतीक ऑटो प्रतिस्थापन"
+
+msgid "Only at the Start of the Line"
+msgstr "केवल लाइन की शुरुआत में"
+
+msgid "Tab Width"
+msgstr "टैब चौड़ाई"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Tabs के बजाय रिक्त स्थान सम्मिलित करें"
+
+msgid "Use Line Wrapping"
+msgstr "लाइन रैपिंग का प्रयोग करें"
+
+msgid "Line Wrapping Indentation"
+msgstr "लाइन रैपिंग इंडेंटेशन"
+
+msgid "Enable Automatic Indentation"
+msgstr "स्वचालित इंडेंटेशन सक्षम करें"
+
+msgid "Scroll Beyond Last Line"
+msgstr "अंतिम पंक्ति से परे स्क्रॉल करें"
+
+msgid "Cursor Blinking"
+msgstr "कर्सर ब्लिंकिंग"
+
+msgid "On"
+msgstr "चालू"
+
+msgid "Off"
+msgstr "बंद"
+
+msgid "Text Margin: Left"
+msgstr "टेक्स्ट मार्जिन: बाएं"
+
+msgid "Right"
+msgstr "दाएं"
+
+msgid "Vertical Space Around Lines"
+msgstr "रेखाओं के चारों ओर लंबवत स्थान"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "लपेटी हुई रेखाओं में लंबवत स्थान"
+
+msgid "Timestamp Format"
+msgstr "टाइमस्टैम्प प्रारूप"
+
+msgid "Horizontal Rule"
+msgstr "क्षैतिज कायदा"
+
+msgid "Chars to Select at Double Click"
+msgstr "डबल क्लिक पर चयन करने के लिए वर्ण"
+
+msgid "Light Background, Dark Text"
+msgstr "लाइट बैकग्राउंड, डार्क  टेक्स्ट"
+
+msgid "Dark Background, Light Text"
+msgstr "डार्क बैकग्राउंड, लाइट टेक्स्ट"
+
+msgid "Custom Background"
+msgstr "कस्टम बैकग्राउंड"
+
+msgid "Text"
+msgstr "टेक्स्ट"
+
+msgid "Selection Background"
+msgstr "चयन बैकग्राउंड"
+
+msgid "Table"
+msgstr "टेबल  "
+
+msgid "Code"
+msgstr "कोड"
+
+msgid "Style Schemes"
+msgstr "शैली योजनाएं"
+
+msgid "Text Foreground"
+msgstr "पाठ अग्रभूमि"
+
+msgid "Text Background"
+msgstr "टेक्स्ट  बैकग्राउंड"
+
+msgid "Selection Foreground"
+msgstr "चयन अग्रभूमि"
+
+msgid "Cursor"
+msgstr "कर्सर"
+
+msgid "Current Line Background"
+msgstr "वर्तमान लाइन बैकग्राउंड"
+
+msgid "Line Numbers Foreground"
+msgstr "लाइन नंबर अग्रभूमि"
+
+msgid "Line Numbers Background"
+msgstr "लाइन नंबर   बैकग्राउंड"
+
+msgid "Style Scheme Editor"
+msgstr "शैली योजना संपादक"
+
+msgid "Set Dark Theme Icons"
+msgstr "डार्क थीम आइकन सेट करें"
+
+msgid "Set Light Theme Icons"
+msgstr "लाइट थीम आइकन सेट करें"
+
+msgid "Set Default Icons"
+msgstr "डिफ़ॉल्ट चिह्न सेट करें"
+
+msgid "Icon Theme"
+msgstr "आइकन थीम"
+
+msgid "Split Toolbar"
+msgstr "स्प्लिट टूलबार"
+
+msgid "Use Different Cherries per Level"
+msgstr "प्रति स्तर विभिन्न चेरी का प्रयोग करें"
+
+msgid "No Icon"
+msgstr "कोई चिह्न नहीं"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "राइट साइड ऑक्जिलरी आइकॉन छुपाएं"
+
+msgid "Default Text Nodes Icons"
+msgstr "डिफ़ॉल्ट टेक्स्ट नोड्स प्रतीक"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "विस्तारित/संक्षिप्त स्थिति पुनर्स्थापित करें"
+
+msgid "Expand all Nodes"
+msgstr "सभी नोड्स का विस्तार करें"
+
+msgid "Collapse all Nodes"
+msgstr "सभी नोड्स को संक्षिप्त करें"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "बुकमार्क में नोड्स हमेशा दृश्यमान"
+
+msgid "Nodes Status at Startup"
+msgstr "स्टार्टअप पर नोड्स की स्थिति"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "ट्री नोड्स नाम रैपिंग चौड़ाई"
+
+msgid "Display Tree on the Right Side"
+msgstr "दाहिनी ओर ट्री  प्रदर्शित करें"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "माउस क्लिक पर फोकस को टेक्स्ट पर ले जाएं"
+
+msgid "Expand Node at Mouse Click"
+msgstr "माउस क्लिक पर नोड का विस्तार करें"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "'%s' एक मान्य संग्रह नहीं है"
+
+msgid "Writing to Disk..."
+msgstr "डिस्क पर लिखा जा रहा है..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "आपके पास मैं %s  लिखाई का एक्सेस नहीं हैं "
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "%s  के लिए पासवर्ड दर्ज करें"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr "सहेजे गए दस्तावेज़ की अखंडता जाँच विफल। फ़ाइल-->इस रूप में सहेजें का प्रयास करें"
+
+msgid "Failed to encrypt the file"
+msgstr "फ़ाइल एन्क्रिप्ट करने में विफल"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "इसके लिए बैकअप से पुनर्स्थापना आवश्यक था:"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr "डेटाबेस फ़ाइल %s दूषित है, अधिक विवरण के लिए लॉग देखें।"
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr "%s लिखने में विफल - फ़ाइल गुम है। USB ड्राइव या साझा संसाधन को फिर से जोड़ें।"
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr "%s लेखन विफल - क्या फ़ाइल एक सिंक प्रोग्राम द्वारा अवरुद्ध है?"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr "%s पुनः खोलने में विफल - फ़ाइल गुम है। USB ड्राइव या साझा संसाधन को फिर से जोड़ें।"
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "चेरीट्री पदानुक्रमित नोट लेना"
+
+msgid "_Exit OliveSet"
+msgstr "चेरी ट्री से बाहर निकलें"
+
+msgid "HTML Document"
+msgstr "HTMLडाक्यूमेंट"
+
+msgid "Markdown Document"
+msgstr "Markdown डाक्यूमेंट"
+
+msgid "Mempad Document"
+msgstr "Mempad डाक्यूमेंट"
+
+msgid "Treepad Document"
+msgstr "Treepad डाक्यूमेंट"
+
+msgid "Leo Document"
+msgstr "Leo डाक्यूमेंट"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "क्या आप निश्चित रूप से डिफ़ॉल्ट पर रीसेट करना चाहते हैं?"
+
+#~ msgid "OliveSet Document"
+#~ msgstr "चेरी ट्री डाक्यूमेंट"
+
+#~ msgid "_Format"
+#~ msgstr "प्रारूप"
+
+#~ msgid "_Tools"
+#~ msgstr "उपकरण"
+
+#~ msgid "_List"
+#~ msgstr "सूची"
+
+#~ msgid "_Row"
+#~ msgstr "_पंक्ति"
+
+#~ msgid "_Print"
+#~ msgstr "_प्रिंट"
+
+#~ msgid "Insert T_OC"
+#~ msgstr "T_OC डालें"
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "सामग्री तालिका सम्मिलित करें"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "टाइमस्टैम्प डालें"
+
+#~ msgid "From File using _Pandoc"
+#~ msgstr "फ़ाइल से _Pandoc का उपयोग कर"
+
+#~ msgid "Add a node to the current tree using Pandoc"
+#~ msgstr "Pandoc का उपयोग करके वर्तमान पेड़ में एक नोड जोड़ें"
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "आवेदन का ऑनलाइन मैनुअल"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "चेरी ट्री को फिर से शुरू करने के बाद ही नई भाषा उपलब्ध होगी"
+
+#~ msgid "Not Protected"
+#~ msgstr "संरक्षित नहीं"
+
+#, c-format
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "दस्‍तावेज़ %s नहीं मिला"
+
+#~ msgid "Quit"
+#~ msgstr "बाहर आये"
+
+#~ msgid "click me"
+#~ msgstr "मुझे क्लिक करें"
+
+#~ msgid ""
+#~ "Pandoc executable could not be found, please ensure it is in your path"
+#~ msgstr "पांडोक निष्पादन योग्य नहीं मिला, कृपया सुनिश्चित करें कि यह आपके पथ में है"

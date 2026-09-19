@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Sodipodi ("http://www.sodipodi.com/") -->
+
+<svg
+   version="1"
+   x="0"
+   y="0"
+   width="640"
+   height="480"
+   id="svg378"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="ct_ru.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     id="namedview4344"
+     showgrid="false"
+     inkscape:zoom="0.4021669"
+     inkscape:cx="513.46841"
+     inkscape:cy="354.3305"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg378"
+     inkscape:pagecheckerboard="0" />
+  <metadata
+     id="metadata4346">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs380" />
+  <rect
+     id="rect171"
+     style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke-width:1.08253pt"
+     y="2.5878916e-07"
+     x="0"
+     height="480"
+     width="640" />
+  <rect
+     id="rect403"
+     style="font-size:12px;fill:#01017e;fill-rule:evenodd;stroke-width:1.08253pt"
+     y="159.99977"
+     x="0"
+     height="320.00024"
+     width="640" />
+  <rect
+     id="rect135"
+     style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke-width:1.08253pt"
+     y="320.00024"
+     x="0"
+     height="159.99977"
+     width="640" />
+</svg>

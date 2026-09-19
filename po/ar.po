@@ -1,0 +1,3254 @@
+# Arabic translations for PACKAGE package.
+# Copyright (C) 2021 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# gpenone <giuspen@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2024-03-02 22:35+0300\n"
+"Last-Translator: mil0d1med <milodi500@gmail.com>\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Bookmarks: -1,-1,-1,-1,-1,-1,-1,-1,290,-1\n"
+
+msgid "Image Format Not Recognized"
+msgstr "نوعية الصورة غير معروفة"
+
+msgid "Insert Table"
+msgstr "إدراج  جذول"
+
+msgid "CSV File"
+msgstr "ملف CSV"
+
+msgid "Insert a CodeBox"
+msgstr "إدراج نص برمجي"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "الحجم الأقصى للملفات المضمنة %s ميغا بايت."
+
+msgid "Do you want to Continue?"
+msgstr "هل تريد الإكمال؟"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "فشل في استرداد محتوى الفرع '%s'"
+
+msgid "Special Characters"
+msgstr "أحرف خاصة"
+
+msgid "Tabs Replaced"
+msgstr "استبدال علامات التبويب"
+
+msgid "Lines Stripped"
+msgstr "خطوط مجردة"
+
+msgid "No Text is Selected."
+msgstr "لم يتم تحديد أي نص."
+
+msgid "OliveSet File"
+msgstr "ملف تشيري تري"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"لا يمكن الكتابة فوق الملف/المجلد المستخدم حاليًا!\n"
+"الرجاء استخدام اسم أو موقع مختلف."
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"مجلد '%s' موجود بالفعل في '%s'.\n"
+"<b>هل تريد استبداله؟</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"ملف '%s' موجود بالفعل في '%s'.\n"
+"<b>هل تريد استبداله؟</b>"
+
+msgid "PDF File"
+msgstr "ملف PDF"
+
+msgid "Plain Text Document"
+msgstr "مستند نصي عادي"
+
+msgid "Preferences File"
+msgstr "إعدادات الملف"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "هل ظهرت أيقونة النظام على اللوحة؟"
+
+msgid "Your system does not support the System Tray"
+msgstr "نظامك لا يدعم الأيقونات المصغرة"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr "سيكون لهذا التغيير تأثير فقط بعد إعادة تشغيل البنامج."
+
+msgid "Replace in Current Node"
+msgstr "إستبدال في المجلد الحالي"
+
+msgid "Search in Current Node"
+msgstr "بحث في المجلد الحالي"
+
+msgid "Matches"
+msgstr "مطابقة"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "لم يتم العثور على النمط '%s'"
+
+msgid "Replace in Multiple Nodes"
+msgstr "استبدال في _كل الفروع"
+
+msgid "Search in Multiple Nodes"
+msgstr "البحث في كل الفروع"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "لم يتم إجراء بحث سابق خلال هذه الجلسة."
+
+msgid "Tags"
+msgstr "كلمات دلالية"
+
+msgid ": "
+msgstr ": "
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "لم يتم تنفيذ أي تنسيق نصي سابق أثناء هذه الجلسة."
+
+msgid "Link Name"
+msgstr "إسم الرابط"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "المؤشر ليس في الفقرة."
+
+msgid "Insert/Edit Link"
+msgstr "تضمين/تعديل الرابط"
+
+msgid "Pick a Foreground Color"
+msgstr "إختر لون المقدمة"
+
+msgid "Pick a Background Color"
+msgstr "إختر لون الخلفية"
+
+msgid "Checking for Newer Version..."
+msgstr "جاري التحقق من التحديثات..."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr "فشل في إستيراد معلومات النسخة الأخيرة - حاول مجددا بعد فترة."
+
+msgid "A Newer Version Is Available!"
+msgstr "تتوفر نسخة جدية من التطبيق!"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "لديك بالفعل أحدث نسخة من البرنامج."
+
+msgid "You Are Using a Development Version."
+msgstr "أنت تستخدم إصدار قيد التطوير من الرنامج."
+
+msgid "Who is the Parent?"
+msgstr "من هي الشجرة الأم؟"
+
+msgid "The Tree Root"
+msgstr "الشجرة الجذر"
+
+msgid "The Selected Node"
+msgstr "الفرع المحدد"
+
+msgid "Rename"
+msgstr "إعادة التسمية"
+
+msgid "PNG Image"
+msgstr "صورة PNG"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "فشلت الكتابة ف %s"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "إرتباط المجلد '%s' غير صالح."
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "إرتباط الملف '%s' غير صالح."
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "إرتباط المجلد '%s' غير صالح"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "الرابط موجه لفرع لم يعد موجود (Id = %s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "لم ييتم إيجاد أي مرساة باسم '%s'"
+
+msgid "Edit CodeBox"
+msgstr "تعديل خانة النص البرمجي"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"يجب إقران أمر إلى '%s'.\n"
+"القيام بذلك في مربع التفضيلات."
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr ""
+"قم بتثبيت الحزمة \"xterm\" أو تكوين محطه مختلفة في مربع حوار التفضيلات."
+
+msgid "Edit Table Properties"
+msgstr "تعديل خصائص الجدول"
+
+msgid "Insert Anchor"
+msgstr "إدراج مرساة"
+
+msgid "Edit Anchor"
+msgstr "تعديل المرساة"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "لا يمكن تحرير الملف المضمن في فرع للقراءة فقط."
+
+msgid "Embedded File Automatically Updated:"
+msgstr "تم تحديث الملف المضمن تلقائيا:"
+
+msgid "No Node is Selected"
+msgstr "لم يتم تحديد أي فرع"
+
+msgid "The Tree is Empty!"
+msgstr "هذه الشجرة فارغة (بدون أفرع)"
+
+msgid "The Selected Node is Read Only."
+msgstr "الفرع المحدد للقراءة فقط."
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "هذه الميزة متاحة فقط في أفرع النص المنسق."
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr "هذه الميزة غير متوفرة في الأفرع ذات التنسيق التلقائي."
+
+msgid "No Table is Selected."
+msgstr "لم يتم تحديد أي نص."
+
+msgid "No CodeBox is Selected."
+msgstr "لم يتم تحديد خانة النص البرمجي."
+
+msgid "New Child Node Properties"
+msgstr "خصائص الغصن الجديد"
+
+msgid "New Node Properties"
+msgstr "خصائص الفرع الجديد"
+
+msgid "Node Properties"
+msgstr "خصائص الفرع"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"تغيير نوع الفرع إلى التنسيق التلقائي سيحذف كل تنسيقات النص المنسق في هذا "
+"الفرع. هل تريد المتابعة؟"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "هل أنت متأكد <b>من حذف الفرع '%s'؟<b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "الفرع <b>ذو أغصان, سيتم حذفهم مع الفرغ!<b>"
+
+msgid "Select the New Parent"
+msgstr "إختر الشجرة الأم"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "لا يمكن أن تكون الشجرة الأم الجديدة  هو الفرع المراد نقله!"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "الشجرة الأم الجديدة المختارة لاتزال هي القديمة!"
+
+msgid "The new parent can't be one of his children!"
+msgstr "الشجرة الأم الجديدة لا يمكن أن تكون أحد الأغصان!"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "%s خصائص الفرع تم تغييرها"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr "عدد الفروع الأخيرة المزورة على رأس اسم الفرع بلغ الحد الأقصى بالفعل."
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr "عدد الفروع الأخيرة المزورة على رأس اسم الفرع بلغ الحد الأدنى بالفعل."
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "يبلغ حجم رموز شريط الأدوات القيمة القصوى بالفعل."
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "حجم أيقونات شريط الأدوات في الحد الأذني بالفعل."
+
+msgid "Print OliveSet version"
+msgstr "عرض إصدار البرنامج"
+
+msgid "Node name to focus"
+msgstr "الفرع المراد التركيز عليه"
+
+msgid "Anchor name to scroll to in node"
+msgstr "اسم الرسو للتمرير إليه في الفرع"
+
+msgid "Export to HTML at specified directory path"
+msgstr "تصدير إلى HTML في مسار محدد"
+
+msgid "Export to Text at specified directory path"
+msgstr "تصدير إلى نص عادي في مسار محدد"
+
+msgid "Export to PDF at specified directory path"
+msgstr "تصدير إلى PDF في مسار محدد"
+
+msgid "Overwrite if export path already exists"
+msgstr "الكتابة فوقه إذا كان مسار التصدير موجودًا بالفعل"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "تصدير إلى ملف واحد (بتنسيق HTML أو TXT)"
+
+msgid "Password to open document"
+msgstr "كلمة المرور لفتح المستند"
+
+msgid "Create a new window"
+msgstr "إنشاء نافذة جديدة"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "تشغيل في جلسة ثانوية، مستقلة عن الجلسة الرئيسية"
+
+msgid "Execute Code"
+msgstr "تنفيد الكود"
+
+msgid "Copy Code"
+msgstr "نسخ الكود"
+
+msgid "Change CodeBox Properties"
+msgstr "تغيير خصائص صندوق الكود"
+
+msgid "Start in OliveSet"
+msgstr "بدء في تشيري تري"
+
+msgid "New Document"
+msgstr "مستند جديد"
+
+msgid "Open File"
+msgstr "فتح ملف"
+
+msgid "Open Folder"
+msgstr "فتح مجلد"
+
+msgid "Create a new document or open an existing one."
+msgstr "إنشاء مستند جديد أو فتح مستند موجود."
+
+msgid "Don't show again"
+msgstr "لا تظهر مجددًا"
+
+msgid "Recent Documents"
+msgstr "المستندات الأخيرة"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Path"
+msgstr "المسار"
+
+msgid "Open Selected"
+msgstr "فتح المحدد"
+
+msgid "Handle the Bookmarks List"
+msgstr "مقبض قائمة الإشارات المرجعية"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "نقل الإشارة المرجعية المحددة للأعلى"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "نقل الإشارة المرجعية المحددة للأسفل"
+
+msgid "Remove the Selected Bookmark"
+msgstr "حذف الإشارة المرجعية المحددة"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "فرز الإشارات المرجعية تنازليًا"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "فرز الإشارات المرجعية تصاعديا"
+
+msgid "Choose Storage Type"
+msgstr "إختر نوع التخزين"
+
+msgid "Single SQLite File"
+msgstr "ملف SQLite واحد"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "ملف SQLite واحد، مشفر بـ 7-zip ومحمي بكلمة مرور"
+
+msgid "Single XML File"
+msgstr "ملف XML واحد"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "ملف XML واحد، مشفر بـ 7-zip ومحمي بكلمة مرور"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "ملفات متعددة في بنية مجلدات هرمية"
+
+msgid "Storage Type"
+msgstr "نوع التخزين"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"يحفظ البرنامج المستند في أرشيف 7zip مشفر. عند عرض المستند أو تحريره، يقوم "
+"البرنامج باستخراج الأرشيف المشفر إلى مجلد مؤقت ، ويعمل على النسخة غير "
+"المشفرة. عند الإغلاق، يتم حذف النسخة غير المشفرة من الدليل المؤقت. يرجى "
+"الإنتباه أنه في حالة تعطل التطبيق أو النظام، سيظل المستند غير المشفر في "
+"المجلد المؤقت."
+
+msgid "Enter the New Password Twice"
+msgstr "أدخل كلمة المرور مرتين"
+
+msgid "Autosave Every"
+msgstr "حفظ تلقائي كل"
+
+msgid "Minutes"
+msgstr "دقيقة"
+
+msgid "The Password Fields Must be Filled."
+msgstr "يجب ملء حقول كلمة المرور."
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "كلمتا المرور المُدرجتان غير متطابقتين."
+
+msgid "Warning"
+msgstr "تحذير"
+
+msgid "The Current Document was Updated."
+msgstr "تم تحديث الملف."
+
+msgid "Do you want to Save the Changes?"
+msgstr "هل تريد حفظ التغييرات؟"
+
+msgid "Do you want to Execute the Code?"
+msgstr "هل تريد تنفيذ النص البرمجي؟"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "طلب التأكيد قبل تنفيذ الكود"
+
+msgid "Use Internal Terminal"
+msgstr "استخدام المحطه الداخلية"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr "تطبيق لتدوين وتسجيل الملاحظات بشكل هرمي, ذو خصائص و إضافات متنوعة"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"هذا البرنامج هو برنامج مجاني, يمكنك إعادة تعديله وتوزيعه\n"
+"بموجب شروط رخصة GNU للبرمجيات الحرة والمفتوحة المصدر,\n"
+"\n"
+"تمت كتابة وتوزيع البرنامج على أمل يكون مفيدا لكل المستخدمين على حد سواء, "
+"وبدون أي ضمانات. كما ننوه أن هذا البرنامج يأتي مع نسخة من رخصة \n"
+"GNU العمومية المتاحة للعامة. \n"
+"إذا لم تتلقى رخصتك أرسل رسالة إلى مكتب البرمجيات الحرة... شارع فرانكلين 51, "
+"الطابق الخامس, بوسطن, MA 02110-1301, USA.\n"
+
+msgid "Arabic"
+msgstr "العربية"
+
+msgid "Armenian"
+msgstr "الأرمينية"
+
+msgid "Bulgarian"
+msgstr "البلغارية"
+
+msgid "Chinese Simplified"
+msgstr "الصينية المبسطة"
+
+msgid "Chinese Traditional"
+msgstr "الصينية التقليدية"
+
+msgid "Croatian"
+msgstr "الكرواتية"
+
+msgid "Czech"
+msgstr "التشيكية"
+
+msgid "Dutch"
+msgstr "الهولاندية"
+
+msgid "Finnish"
+msgstr "الفنلندية"
+
+msgid "French"
+msgstr "الفرنسية"
+
+msgid "German"
+msgstr "الألمانية"
+
+msgid "Greek"
+msgstr "اليونانية"
+
+msgid "Hindi India"
+msgstr "الهندية"
+
+msgid "Hungarian"
+msgstr "الهنغاريه"
+
+msgid "Italian"
+msgstr "الإيطالية"
+
+msgid "Japanese"
+msgstr "اليبانية"
+
+msgid "Kazakh"
+msgstr "الكازاخستانية"
+
+msgid "Kazakh (Latin)"
+msgstr "الكازاخستانية (لاتينيه)"
+
+msgid "Korean"
+msgstr "الكورية"
+
+msgid "Lithuanian"
+msgstr "الليتوانية"
+
+msgid "Persian"
+msgstr "الفارسية"
+
+msgid "Polish"
+msgstr "البولندية"
+
+msgid "Portuguese"
+msgstr "البرتغالية"
+
+msgid "Portuguese Brazil"
+msgstr "الإسبانية(البرازيل)"
+
+msgid "Romanian"
+msgstr "الرومانية"
+
+msgid "Russian"
+msgstr "الروسية"
+
+msgid "Slovak"
+msgstr "السلوفاكية"
+
+msgid "Slovenian"
+msgstr "السلوفينية"
+
+msgid "Spanish"
+msgstr "الإسبانية"
+
+msgid "Swedish"
+msgstr "السويدية"
+
+msgid "Turkish"
+msgstr "التركية"
+
+msgid "Ukrainian"
+msgstr "الأكرانية"
+
+msgid "About OliveSet"
+msgstr "عن البرنامج"
+
+msgid "Tree Summary Information"
+msgstr "ملخص معلومات الشجرة الأم"
+
+msgid "Number of Rich Text Nodes"
+msgstr "عدد أفرع النص المنسق"
+
+msgid "Number of Plain Text Nodes"
+msgstr "عدد أفرع النص العادي"
+
+msgid "Number of Code Nodes"
+msgstr "عدد الأفرع البرمجية"
+
+msgid "Number of Images"
+msgstr "عدد الصور"
+
+msgid "Number of LatexBoxes"
+msgstr "عدد خانات النصوص البرمجية"
+
+msgid "Number of Embedded Files"
+msgstr "عدد الملفات المضمنة"
+
+msgid "Number of Tables"
+msgstr "عدد الجداول"
+
+msgid "Number of CodeBoxes"
+msgstr "عدد خانات النصوص البرمجية"
+
+msgid "Number of Anchors"
+msgstr "عدد المراسي"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "عدد الأفرع البرمجية \\ المجموعات"
+
+msgid "Latex Text"
+msgstr "نص \"latex\""
+
+msgid "Image Size dpi"
+msgstr "حجم الصورة dpi"
+
+msgid "Tutorial"
+msgstr "الدليل التعليمي"
+
+msgid "Reference"
+msgstr "مرجع"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "دليل تعليمي لرياضيات ومعادلات LaTeX"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "مرجع رموز رياضيات LaTeX"
+
+msgid "Image Properties"
+msgstr "خصائص الصورة"
+
+msgid "Rotate Left"
+msgstr "تدوير لليسار"
+
+msgid "Rotate Right"
+msgstr "تدوير لليمين"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr "لاقتصاص الصورة، حدد المنطقة بالماوس قبل النقر على موافق"
+
+msgid "Flip Horizontally"
+msgstr "قلب أفقيًا"
+
+msgid "Flip Vertically"
+msgstr "قلب رأسيًا"
+
+msgid "Width"
+msgstr "عرض"
+
+msgid "Height"
+msgstr "طول"
+
+msgid "Plain Text"
+msgstr "نص عادي"
+
+msgid "Automatic Syntax Highlighting"
+msgstr "تسليط الضوء التلقائي على بناء الجملة"
+
+msgid "Type"
+msgstr "نوع"
+
+msgid "pixels"
+msgstr "بكسل"
+
+msgid "Size"
+msgstr "الحجم"
+
+msgid "Show Line Numbers"
+msgstr "إظهار أرقام الأسطر"
+
+msgid "Highlight Matching Brackets"
+msgstr "تسليط الضوء على الأقواس المتطابقة"
+
+msgid "Options"
+msgstr "خيارات"
+
+msgid "Rows"
+msgstr "صفوف"
+
+msgid "Columns"
+msgstr "الأعمدة"
+
+msgid "Default Width"
+msgstr "Default Width"
+
+msgid "Table Size"
+msgstr "حجم الجدول"
+
+msgid "Column Properties"
+msgstr "خصائص العمود"
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "واجهة خفيفة (أسرع بكثير للجداول الكبيرة)"
+
+msgid "Import from CSV File"
+msgstr "الاستيراد من ملف CSV"
+
+msgid "Clear"
+msgstr "مسح"
+
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+msgid "Search for"
+msgstr "البحث عن"
+
+msgid "Replace with"
+msgstr "استبدال ب"
+
+msgid "Replace in Link Targets"
+msgstr "الاستبدال في وجهات الروابط"
+
+msgid "Replace options"
+msgstr "خيارات الاستبدال"
+
+msgid "Match Case"
+msgstr "طابق الحالات"
+
+msgid "Regular Expression"
+msgstr "تعبير عادي"
+
+msgid "Online Manual"
+msgstr "طريقة الإستخدام"
+
+msgid "Accent Insensitive"
+msgstr "غير حساس للتشكيل"
+
+msgid "Override Exclusions"
+msgstr "تجاوز الاستثناءات"
+
+msgid "Whole Word"
+msgstr "الكلمة بالكامل"
+
+msgid "Start Word"
+msgstr "بداية الكلمة"
+
+msgid "More Words, Exact Match"
+msgstr "كلمات أكثر، تطابق دقيق"
+
+msgid "More Words, Disregard Order"
+msgstr "كلمات أكثر، بصرف النظر عن الترتيب"
+
+msgid "More Words, Match Any"
+msgstr "كلمات أكثر، تطابق أي منها"
+
+msgid "Forward"
+msgstr "للأمام"
+
+msgid "Backward"
+msgstr "للخلف"
+
+msgid "All, List Matches"
+msgstr "كل، عرض التطابق"
+
+msgid "First From Selection"
+msgstr "الأول من الاختيار"
+
+msgid "First in All Range"
+msgstr "الأول من كل بعد"
+
+msgid "Node Created After"
+msgstr "تم إنشاء الفرع بعد"
+
+msgid "Node Created Before"
+msgstr "تم إنشاء الفرع قبل"
+
+msgid "Node Modified After"
+msgstr "تم تعديل الفرع بعد"
+
+msgid "Node Modified Before"
+msgstr "تم تعديل الفرع قبل"
+
+msgid "Time filter"
+msgstr "فلترة بالتوقيت"
+
+msgid "Node Content"
+msgstr "محتوى الفرع"
+
+msgid "Node Name and Tags"
+msgstr "اسم الفرع والكلمات المفتاحية"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "الفرع المحدد وأغصانه فقط"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "إظهار مربع البحث/استبدال الحوار"
+
+msgid "Search options"
+msgstr "خيارات البحث"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"حقل الاستبدال فارغ: سيتم حذف جميع التكرارات الموجودة.\n"
+"هل تريد المتابعة؟"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"تم تخطي فرع واحد على الأقل بسبب الاستثناءات المحددة في خصائص الفرع.\n"
+"لمسح جميع الاستثناءات، استخدم القائمة:\n"
+"بحث -> مسح جميع الاستثناءات من البحث"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "إخفاء (إسترجاع '%s')"
+
+msgid "Node Name"
+msgstr "إسم الفرع"
+
+msgid "Line"
+msgstr "سطر"
+
+msgid "Line Content"
+msgstr "محتوى السطر"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "كرر أخر بحث/استبدال"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Find Previous"
+msgstr "البحث عن السابق"
+
+msgid "Find Next"
+msgstr "بحث عن التالي"
+
+msgid "Replace"
+msgstr "إستبدال"
+
+msgid "Undo"
+msgstr "عودة"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "Remove User Colour from Palette"
+msgstr "إزالة لون المستخدم من اللوحة"
+
+msgid "Colour"
+msgstr "اللون"
+
+msgid "Question"
+msgstr "سؤال"
+
+msgid "Info"
+msgstr "معلومات"
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "Select File"
+msgstr "اختر ملف"
+
+msgid "Select Folder"
+msgstr "حدد مجلد"
+
+msgid "Save File as"
+msgstr "حفظ الملف ك"
+
+msgid "Save To Folder"
+msgstr "حفظ إلى مجلد"
+
+msgid "To WebSite"
+msgstr "توجيه إلى موقع"
+
+msgid "To File"
+msgstr "توجيه إلى ملف"
+
+msgid "To Folder"
+msgstr "توجيه إلى مجلد"
+
+msgid "To Node"
+msgstr "توجيه إلى فرع"
+
+msgid "Anchor Name (optional)"
+msgstr "اسم المرساة (اختياري)"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "لا توجد نقاط ارتساء في الفرع المحدد."
+
+msgid "Choose Existing Anchor"
+msgstr "اختر المرساة الحالية"
+
+msgid "Anchor Name"
+msgstr "إسم المرساة"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "لم يتم إيجاد '%s' النمط"
+
+msgid "Bold"
+msgstr "عريض"
+
+msgid "Use Selected Color"
+msgstr "إستخدام اللون المحدد"
+
+msgid "Use Selected Icon"
+msgstr "إستخدام الأيقونة المحددة"
+
+msgid "Rich Text"
+msgstr "النص الغني"
+
+msgid "Node Type"
+msgstr "نوع الفرع"
+
+msgid "Tags for Searching"
+msgstr "كلمات دلالية للبحث"
+
+msgid "Exclude from Searches"
+msgstr "استبعاد من عمليات البحث"
+
+msgid "This Node"
+msgstr "هذا الفرع"
+
+msgid "The Subnodes"
+msgstr "الفرع المضمن"
+
+msgid "Read Only"
+msgstr "محمي ضد الكتابة"
+
+msgid "Unique Id"
+msgstr "هويه فريده"
+
+msgid "Shared Nodes Group"
+msgstr "مجموعة الافرع المشتركة"
+
+msgid "Choose Existing Tag"
+msgstr "كلمة دلالية موجودة من قبل"
+
+msgid "Tag Name"
+msgstr "إسم الكلمة الدلالية"
+
+msgid "Pick a Color"
+msgstr "إختر لون"
+
+msgid "Select Node Icon"
+msgstr "إختر أيقونة الفرع"
+
+msgid "Involved Nodes"
+msgstr "الأفرع ذات صلة"
+
+msgid "Selected Text Only"
+msgstr "إختيار النص فقط"
+
+msgid "Selected Node Only"
+msgstr "الفرع المحدد فقط"
+
+msgid "Selected Node and Subnodes"
+msgstr "الفرع المحدد وأغصانه"
+
+msgid "All the Tree"
+msgstr "كامل الشجرة"
+
+msgid "Include Node Name"
+msgstr "تضمين إسم الفرع"
+
+msgid "Links Tree in Every Page"
+msgstr "رابط الشجرة في كل صفحة"
+
+msgid "New Node in New Page"
+msgstr "فرع جديد في صفحة جديدة"
+
+msgid "Single File"
+msgstr "ملف واحد"
+
+msgid "Index"
+msgstr "فهرس"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr "تحذير: تم تقليل صورة واحدة أو أكثر لدخول الصفحة!"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "تم حظر عرض LaTeX لأسباب أمنية"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr "المصدر يحتوي على أوامر إدخال/إخراج يمكنها الوصول إلى الملفات المحلية"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"قم بإزالة الأوامر مثل \\verbatiminput و\\openin و\\openout والمسارات غير "
+"الآمنة لـ \\input/\\include"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "تعذر الوصول إلى البرامج القابلة للتنفيذ 'latex' و 'dvipng'"
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "على سبيل المثال، على أوبونتو يتم تثبيت الحزم على النحو التالي:"
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "على سبيل المثال، على macOS يتم تثبيت الحزم على النحو التالي:"
+
+msgid "Could not access the executable 'latex'"
+msgstr "تعذر الوصول إلى البرنامج القابل للتنفيذ 'latex'"
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "تعذر الوصول إلى البرنامج القابل للتنفيذ 'dvipng'"
+
+msgid "Downloading"
+msgstr "يتم التحميل"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "المسار %s غير موجود"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "فتح أخر وثيقة"
+
+msgid "_Hide"
+msgstr "_إخفاء"
+
+msgid "_Quit"
+msgstr "_إغلاق"
+
+msgid "Hide the Window"
+msgstr "إخفاء النافدة"
+
+msgid "Quit the Application"
+msgstr "الخروج من البرنامج"
+
+msgid "Spell Check"
+msgstr "التدقيق الإملائي"
+
+msgid "Word Count"
+msgstr "عدد الكلمات"
+
+msgid "Date Created"
+msgstr "تاريخ إنشاء الملف"
+
+msgid "Date Modified"
+msgstr "تاريخ تعديل الملف"
+
+msgid "Subnodes"
+msgstr "الأغصان الفرعية"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr "لم يتم تنفيذ أي تنسيق نصي سابق أثناء هذه الجلسة."
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "فرع شجرة المصدر لم تعد متاحة."
+
+msgid "Show Menubar:"
+msgstr "إظهار/إخفاء _شريط الأدوات:"
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "\"%s\" ليس ملف تشيري تري"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"خطأ في تحليل مسار :\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "هل تريد فتح آخر نسخة احتياطية؟"
+
+msgid "Failed to Load from Backup Data"
+msgstr "فشل في التحميل من بيانات النسخة الاحتياطية"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "لم ييتم إيجاد أي مرساة باسم '%s'."
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "تم إنشاء الملفات المؤقتة وفتحها باستخدام تطبيقات خارجية."
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "قم بإنهاء التطبيقات الخارجية قبل الخروج من OliveSet."
+
+msgid "Did you Quit the External Applications?"
+msgstr "هل قمت بإنهاء التطبيقات الخارجية؟"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "لا يمكن الحفظ: \"%s\" للقراءة فقط"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr "تم إعادة تحميل المستند بعد التحديث الخارجي لملف *CT."
+
+msgid "Copy Selection or All"
+msgstr "نسخ الاختيار أو الكل"
+
+msgid "Paste"
+msgstr "لصق"
+
+msgid "Remove from list"
+msgstr "حذف من القائمة"
+
+msgid "_File"
+msgstr "_ملف"
+
+msgid "_Edit"
+msgstr "_تعديل"
+
+msgid "_Insert"
+msgstr "_إدراج"
+
+msgid "F_ormat"
+msgstr "ص_يغة"
+
+msgid "_Tree"
+msgstr "_الشجرة الأم"
+
+msgid "Too_ls"
+msgstr "الأ_دوات"
+
+msgid "_Search"
+msgstr "_بحث"
+
+msgid "_View"
+msgstr "_رؤية"
+
+msgid "_Bookmarks"
+msgstr "_إشارات مرجعية"
+
+msgid "_Help"
+msgstr "_مساعدة"
+
+msgid "Insert _Date Node"
+msgstr "إدراج فرع ال_تاريخ"
+
+msgid "Node _Move"
+msgstr "_نقل الفرع"
+
+msgid "Nod_es Sort"
+msgstr "سرد ال_فروع"
+
+msgid "B_ookmarks"
+msgstr "إ_شارات مرجعية"
+
+msgid "_Import"
+msgstr "_إستيراد"
+
+msgid "_Export"
+msgstr "_تصدير"
+
+msgid "_Preferences"
+msgstr "_خصائص"
+
+msgid "_Recent Documents"
+msgstr "_الملفات الأخيرة"
+
+msgid "C_hange Case"
+msgstr "تغيير الحالة"
+
+msgid "L_ist"
+msgstr "قا_ئمة"
+
+msgid "_Justify"
+msgstr "_علل"
+
+msgid "Toggle _Font Property"
+msgstr "تبديل خاصية _الخط"
+
+msgid "_Toggle Heading Property"
+msgstr "تبديل خاصية العنوان"
+
+msgid "I_nsert"
+msgstr "إ_دراج"
+
+msgid "_Find"
+msgstr "_إيجاد"
+
+msgid "_Replace"
+msgstr "_إستبدال"
+
+msgid "Ro_w"
+msgstr "ص_ف"
+
+msgid "_Table"
+msgstr "_الجدول"
+
+msgid "_CodeBox"
+msgstr "_ق_ص خانة النص البرمجي"
+
+msgid "File"
+msgstr "ملف"
+
+msgid "_New Instance..."
+msgstr "_نافدة جديدة..."
+
+msgid "Start a New Instance of OliveSet"
+msgstr "فتح نافدة جديدة من البرنامج"
+
+msgid "_Open File..."
+msgstr "_فتح ملف..."
+
+msgid "Open a OliveSet File"
+msgstr "فتح ملف تشيري تري"
+
+msgid "Open Fo_lder..."
+msgstr "_فتح مجلد..."
+
+msgid "Open a OliveSet Folder"
+msgstr "فتح ملف تشيري تري"
+
+msgid "_Save"
+msgstr "_حفط"
+
+msgid "Save File"
+msgstr "حفظ الملف"
+
+msgid "Save and _Vacuum"
+msgstr "حفظ و _تفريغ"
+
+msgid "Save File and Vacuum"
+msgstr "حفظ وتفريغ الصفحة"
+
+msgid "Save _As..."
+msgstr "حفظ بصيغة..."
+
+msgid "Save File As"
+msgstr "حفظ الملف بصيغة"
+
+msgid "Pa_ge Setup..."
+msgstr "تخصيص الصف_حة..."
+
+msgid "Set up the Page for Printing"
+msgstr "تخصيص الصفحة للطباعة"
+
+msgid "P_rint..."
+msgstr "ط_باعة..."
+
+msgid "Print"
+msgstr "طباعة"
+
+msgid "Preferences"
+msgstr "إعدادات"
+
+msgid "_Import Preferences..."
+msgstr "_إعدادات الإستيراد..."
+
+msgid "Import Preferences"
+msgstr "إعدادات الإيستيراد"
+
+msgid "_Export Preferences..."
+msgstr "_إعدادات التصدير..."
+
+msgid "Export Preferences"
+msgstr "إعدادات التصدير"
+
+msgid "Tree In_fo"
+msgstr "م_علومات الشجرة"
+
+msgid "_Document Path to Clipboard"
+msgstr "_مسار المستند إلى الحافظة"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "نسخ مسار المستند إلى الحافظة"
+
+msgid "E_xit OliveSet"
+msgstr "إغلا_ق البرنامج"
+
+msgid "Exit from OliveSet"
+msgstr "الخروج من البرنامج"
+
+msgid "Edit/Insert"
+msgstr "تعديل/إدراج"
+
+msgid "_Undo"
+msgstr "_عودة للخلف"
+
+msgid "Undo Last Operation"
+msgstr "عودة من أخر"
+
+msgid "_Redo"
+msgstr "عودة للأمام"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "إعادة العملية التي تم تجاهلها سابقًا"
+
+msgid "Insert I_mage..."
+msgstr "إدراج ص_ورة..."
+
+msgid "Insert an Image"
+msgstr "إدراج صورة"
+
+msgid "Insert Late_x..."
+msgstr "إدراج  جدول..."
+
+msgid "Insert LatexBox"
+msgstr "إدراج نص برمجي"
+
+msgid "Insert _Table..."
+msgstr "إدراج _جدول..."
+
+msgid "Insert a Table"
+msgstr "إدراح جدول"
+
+msgid "Insert _CodeBox..."
+msgstr "إدراج خانة _نص برمجي..."
+
+msgid "Insert _File..."
+msgstr "إدراج _ملف..."
+
+msgid "Insert File"
+msgstr "إدراج ملف"
+
+msgid "Insert/Edit _Link..."
+msgstr "إدراج/تعديل _الرابط..."
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "تضمين رابط / تحرير الرابط الأساسي"
+
+msgid "Insert _Anchor..."
+msgstr "إدراج _مرساة..."
+
+msgid "Insert an Anchor"
+msgstr "إدراج مرساة"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "إدراج جدول _محتوى وأزرار طي العناوين..."
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "إدراج جدول المحتويات وأزرار طي/توسيع العناوين"
+
+msgid "Insert Timestam_p"
+msgstr "إدراج تاريخ وتوقيت الل_حظة"
+
+msgid "Insert Timestamp"
+msgstr "إدراج تاريخ وتوقيت اللحظة"
+
+msgid "Insert _Special Character..."
+msgstr "إدراج أحرف _خاصة..."
+
+msgid "Insert a Special Character"
+msgstr "إدراج أحرف خاصة"
+
+msgid "Insert _Horizontal Rule"
+msgstr "إدراج _سطر أفقي"
+
+msgid "Insert Horizontal Rule"
+msgstr "إدراج سطر أفقي"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "خفض حالة التحديد/للكلمة"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "خفض حالة التحديد/الكلمة الأساسية"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "العلوي حالة التحديد/ الكلمة"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "العلوي حالة التحديد/ الكلمة الأساسية"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "تبديل حالة التحديد/الكلمة"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "تبديل حالة التحديد/الكلمة الأساسية"
+
+msgid "Cu_t as Plain Text"
+msgstr "ق_ص كنص عادي"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "قص كنص عادي، تجاهل تنسيق النص"
+
+msgid "_Copy as Plain Text"
+msgstr "_نسخ كنص عادي"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "انسخ كنص عادي، تجاهل تنسيق النص"
+
+msgid "_Paste as Plain Text"
+msgstr "لصق كنص عادي"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "لصق كنص عادي، تجاهل تنسيق النص"
+
+msgid "C_ut Row"
+msgstr "ق_ص الصف"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "قص الصف الحالي/الصفوف المحددة"
+
+msgid "C_opy Row"
+msgstr "نسخ _الصف"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "نصخ الصف الحالي/الصفوف المحدد"
+
+msgid "De_lete Row"
+msgstr "حذ_ف الصف"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "حذف الصف الحالي/الصفوف المحددة"
+
+msgid "_Duplicate Row"
+msgstr "_كرر الصف"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "كرر الصف الحالي/المحدد"
+
+msgid "_Move Up Row"
+msgstr "_نقل الصف للأعلى"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "نقل الصف الحالي للأعلى/الصفوف المحددة"
+
+msgid "Mo_ve Down Row"
+msgstr "نقل الصف للأسفل"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "نقل الصف الحالي للأسفل/الصفوف المحددة"
+
+msgid "C_ut Table"
+msgstr "ق_ص الجدول"
+
+msgid "Cut the Selected Table"
+msgstr "قص الجدول المحدد"
+
+msgid "_Copy Table"
+msgstr "__نسخ الجدول"
+
+msgid "Copy the Selected Table"
+msgstr "نسخ الجدول المحدد"
+
+msgid "_Delete Table"
+msgstr "_حذف الجدول"
+
+msgid "Delete the Selected Table"
+msgstr "حذف الجدول المحدد"
+
+msgid "_Add Column"
+msgstr "إضافة عمود"
+
+msgid "Add a Table Column"
+msgstr "إضافة جدول أعمدة"
+
+msgid "Cu_t Column"
+msgstr "ق_ص العمود"
+
+msgid "Cut a Table Column"
+msgstr "قص عمود الجدول"
+
+msgid "_Copy Column"
+msgstr "_نسخ العمود"
+
+msgid "Copy a Table Column"
+msgstr "نسخ عمود الجدول"
+
+msgid "_Paste Column"
+msgstr "_لصق العمود"
+
+msgid "Paste a Table Column"
+msgstr "لصق عمود الجدول"
+
+msgid "De_lete Column"
+msgstr "حذ_ف العمود"
+
+msgid "Delete the Selected Table Column"
+msgstr "حذف جدول العمود المحدد"
+
+msgid "Move Column _Left"
+msgstr "نقل العمود _لليسار"
+
+msgid "Move the Selected Column Left"
+msgstr "نقل العمود المحدد لليسار"
+
+msgid "Move Column _Right"
+msgstr "نقل العمود _لليمين"
+
+msgid "Move the Selected Column Right"
+msgstr "نقل العمود المحدد لليمين"
+
+msgid "Increase Column Width"
+msgstr "زيادة عرض العمود"
+
+msgid "Increase the Width of the Column"
+msgstr "زيادة عرض العمود"
+
+msgid "Decrease Column Width"
+msgstr "إنقاص عرض العمود"
+
+msgid "Decrease the Width of the Column"
+msgstr "إنقاص عرض العمود"
+
+msgid "_Add Row"
+msgstr "_أضف صف"
+
+msgid "Add a Table Row"
+msgstr "أضف صف جدول"
+
+msgid "Cu_t Row"
+msgstr "ق_ص الصف"
+
+msgid "Cut a Table Row"
+msgstr "قص صف الجدول"
+
+msgid "_Copy Row"
+msgstr "_ نسخ الصف"
+
+msgid "Copy a Table Row"
+msgstr "انسخ صف الجدول"
+
+msgid "_Paste Row"
+msgstr "_لصق صف"
+
+msgid "Paste a Table Row"
+msgstr "لصق صف جدول"
+
+msgid "Delete the Selected Table Row"
+msgstr "حذف صف الجدول المحدد"
+
+msgid "Move Row _Up"
+msgstr "حرك الصف _للأعلى"
+
+msgid "Move the Selected Row Up"
+msgstr "حرك الصف المحدد لأعلى"
+
+msgid "Move Row _Down"
+msgstr "حرك الصف _للأسفل"
+
+msgid "Move the Selected Row Down"
+msgstr "حرك الصف المحدد لأسفل"
+
+msgid "Sort Rows De_scending"
+msgstr "فرز كل الصفوف تن_ازليًا"
+
+msgid "Sort all the Rows Descending"
+msgstr "فرز كل الصفوف تنازليًا"
+
+msgid "Sort Rows As_cending"
+msgstr "رتب الصفوف _تصاعديًا"
+
+msgid "Sort all the Rows Ascending"
+msgstr "رتب كل الصفوف تصاعديًا"
+
+msgid "_Edit Table Properties..."
+msgstr "_تعديل خصائص الجدول..."
+
+msgid "Edit the Table Properties"
+msgstr "تعديل خصائص الجدول"
+
+msgid "_Table Export..."
+msgstr "_تصدير الجدول..."
+
+msgid "Export Table as CSV File"
+msgstr "تصدير الجدول بصيغة CSV"
+
+msgid "Change CodeBox _Properties..."
+msgstr "تغيير _خصائص خانة النص البرمجي..."
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "تعديل خصائص خانة النص البرمجي"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "تحميل المحتوى من ملف نصي..."
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "تحميل محتوى خانة النص البرمجي من ملف نصي"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "_حفظ خانة النص البرمجي إلى ملف نص عادي..."
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "حفظ محتوى خانة النص البرمجي إلى ملف نص"
+
+msgid "C_ut CodeBox"
+msgstr "ق_ص خانة النص البرمجي"
+
+msgid "Cut the Selected CodeBox"
+msgstr "قص خانة النص البرمجي"
+
+msgid "_Copy CodeBox"
+msgstr "_نسخ خانة النص البرمجي"
+
+msgid "Copy the Selected CodeBox"
+msgstr "نسخ خانة النص البرمجي"
+
+msgid "_Copy CodeBox Content"
+msgstr "_نسخ محتويات النص البرمجي"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "نسخ محتويات النص البرمجي الذي اخترته"
+
+msgid "_Delete CodeBox"
+msgstr "_حذف خانة النص البرمجي"
+
+msgid "Delete the Selected CodeBox"
+msgstr "حذف خانة النص البرمجي المحددة"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "حذف خانة النص البرمجي مع _إبقاء المحتوى"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "حذف خانة النص البرمجي مع ترك محتوى الخانة"
+
+msgid "Increase CodeBox Width"
+msgstr "زيادة عرض خانة النص البرمجي"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "قم بزيادة عرض خانة النص البرمجي"
+
+msgid "Decrease CodeBox Width"
+msgstr "تصغير عرض خانة النص البرمجي"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "قم تصغير عرض خانة النص البرمجي"
+
+msgid "Increase CodeBox Height"
+msgstr "زيادة ارتفاع خانة النص البرمجي"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "قم بزيادة ارتفاع خانة النص البرمجي"
+
+msgid "Decrease CodeBox Height"
+msgstr "تصغير ارتفاع خانة النص البرمجي"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "قم بتصغير ارتفاع خانة النص البرمجي"
+
+msgid "Format"
+msgstr "صيغة"
+
+msgid "Format Clo_ne"
+msgstr "نسخ ال_تنسيق"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "نسخ نوع تنسيق النص المحدد في المؤشر"
+
+msgid "Format _Latest"
+msgstr "أخر _تنسيق"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "ذاكرة أحدث تنسيق"
+
+msgid "_Remove Formatting"
+msgstr "_إزالة التنسيق"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "إزالة التنسيق من النص المحدد"
+
+msgid "Text _Color Foreground"
+msgstr "لون _النص في المقدمة"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "تغيير لون مقدمة النص المحدد"
+
+msgid "Text C_olor Background"
+msgstr "خلفية ل_ون النص"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "تغيير لون خلفية النص المحدد"
+
+msgid "Toggle _Bold Property"
+msgstr "تبديل إلى _الوضع الغامق"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "تبديل إلى وضع الخط الغامق"
+
+msgid "Toggle _Italic Property"
+msgstr "تبديل إلى _الوضع المائل"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "تبديل إلى وضع الخط المائل"
+
+msgid "Toggle _Underline Property"
+msgstr "تبديل إلى _وضع التسطير"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "تبديل إلى وضع تسطير النص المحدد"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "تبديل إلى _وضع النص المخطط"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "تبديل إلى خاصية خط وسطي في النص المحدد"
+
+msgid "Toggle h_1 Property"
+msgstr "تبديل إلى العنوان ر_1"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "تبديل النص المحدد إلى عنوان رقم 1"
+
+msgid "Toggle h_2 Property"
+msgstr "تبديل إلى العنوان ر_2"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "تبديل النص المحدد إلى عنوان رقم 2"
+
+msgid "Toggle h_3 Property"
+msgstr "تبديل إلى العنوان ر_3"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "تبديل النص المحدد إلى عنوان رقم 3"
+
+msgid "Toggle h_4 Property"
+msgstr "تبديل إلى العنوان ر_4"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "تبديل النص المحدد إلى عنوان رقم 4"
+
+msgid "Toggle h_5 Property"
+msgstr "تبديل إلى العنوان ر_5"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "تبديل النص المحدد إلى عنوان رقم 5"
+
+msgid "Toggle h_6 Property"
+msgstr "تبديل إلى العنوان ر_6"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "تبديل النص المحدد إلى عنوان رقم 6"
+
+msgid "Toggle _Small Property"
+msgstr "تبديل الوضع إلى _الصغير"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "تبديل وضع النص المحدد إلى نص صغير"
+
+msgid "Toggle Su_bscript Property"
+msgstr "تبديل وضع النص إلى _المنخفض"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "تبديل وضع النص المحدد إلى نص منخفض"
+
+msgid "Toggle Su_perscript Property"
+msgstr "تبديل وضع النص إلى _المرتفع"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "تبديل وضع النص المحدد إلى نص مرتفع"
+
+msgid "Toggle _Monospace Property"
+msgstr "_تبديل خاصية الخط"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "تبديل خاصية المسافة الأحادية للنص المحدد"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "تعيين/إلغاء تعيين _الفقرة"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr "تعيين/ إلغاء تحديد الفقرة الحالية/التحديد كقائمة نقطية"
+
+msgid "Set/Unset _Numbered List"
+msgstr "تعيين/إلغاء تعيين فقرة ذو تعداد رقمي"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr "تعيين/إلغاء تعيين الفقرة الحالية/التحديد كقائمة ذات تعداد رقمي"
+
+msgid "Set/Unset _To-Do List"
+msgstr "تعيين/إلغاء تعيين _المهام"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr "تعيين/إلغاء تعيين الفقرة الحالية/التحديد كقائمة مهام"
+
+msgid "Justify _Left"
+msgstr "تبرير _لليسار"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "تبرير لليسار في الفقرة الحالية"
+
+msgid "Justify _Center"
+msgstr "تبرير _للوسط"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "تبرير للوسط في الفقرة الحالية"
+
+msgid "Justify _Right"
+msgstr "تبرير _لليمين"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "تبرير لليمين في الفقرة الحالية"
+
+msgid "Justify _Fill"
+msgstr "تبرير _تعبئة"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "تبرير تعبئة الفقرة الحالية"
+
+msgid "_Indent Paragraph"
+msgstr "_بدأ الفقرة"
+
+msgid "Indent the Current Paragraph"
+msgstr "بدأ الفقرة الحالية"
+
+msgid "_Unindent Paragraph"
+msgstr "_إلغاء بادئة الفقرة"
+
+msgid "Unindent the Current Paragraph"
+msgstr "إلغاء بادئة الفقرة الحالية"
+
+msgid "_Expand TOC Headers"
+msgstr "_توسيع عناوين جدول المحتوى"
+
+msgid "Expand TOC Headers"
+msgstr "توسيع عناوين جدول المحتوى"
+
+msgid "_Collapse TOC Headers"
+msgstr "_طي عناوين جدول المحتوى"
+
+msgid "Collapse TOC Headers"
+msgstr "طي عناوين جدول المحتوى"
+
+msgid "Tools"
+msgstr "الأدوات"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "تفعيل/تعطيل خاصية _ الإملاء"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "تمكين/تعطيل التدقيق الإملائي"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "تفعيل/تعطيل وضع _VIM"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "تمكين/تعطيل وضع VIM"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "زيادة مساحة ال_شريط"
+
+msgid "Strip Trailing Spaces"
+msgstr "زيادة مساحة الشريط"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "_استبدال ب"
+
+msgid "Replace Tabs with Spaces"
+msgstr "استبدال علامة التبويب ب مساحة"
+
+msgid "_Command Palette..."
+msgstr "_لوحة القيادة..."
+
+msgid "Command Palette"
+msgstr "لوحة القيادة"
+
+msgid "_Execute Code All"
+msgstr "_تنفيد الكود"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "تنفيد الكود في النص البرمجي المضمن او الفرع"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "تنفيذ سطر الكود أو الاختيار"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "تنفيذ الكود من السطر الحالي أو النص المختار"
+
+msgid "Tree"
+msgstr "الشجرة الأم"
+
+msgid "Go _Back"
+msgstr "الذهاب _للوراء"
+
+msgid "Go to the Previous Visited Node"
+msgstr "انتقل إلى الفرع السابق التي تمت زيارته"
+
+msgid "Go _Forward"
+msgstr "الذهاب _للأمام"
+
+msgid "Go to the Next Visited Node"
+msgstr "انتقل إلى الفرع التالي التي تمت زيارته"
+
+msgid "Add _Node..."
+msgstr "إضافة _فرع..."
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "أضف فرع له نفس الأصل للفرع المحدد"
+
+msgid "Add _Subnode..."
+msgstr "إضافة _فرع فرعي..."
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "إضافة غصن للفرع المحدد"
+
+msgid "_Duplicate Node"
+msgstr "_كرر الفرع"
+
+msgid "Duplicate the Selected Node"
+msgstr "كرر الفرع المحدد"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "كرر الفرع _مع أغصانه"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "كرر الفرع المحدد مع أغصانه"
+
+msgid "_Create Shared Node"
+msgstr "إنشاء فرع مشترك"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr "إنشاء فرع جديدة تشترك في نفس البيانات الموجودة في الفرع  المحدد"
+
+msgid "Copy Node and S_ubnodes"
+msgstr "نسخ الفرع _مع أغصانه"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "نسخ الفرع المحدد مع أغصانه"
+
+msgid "_Paste Node and Subnodes"
+msgstr "لصق الفرع واغصانه"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "لصق العقدة المنسوخة والعقد الفرعية"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "إدراج فرع _اليوم تحت جذر الشجرة"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "إدراج فرع بالتسلسل الهرمي سنة/شهر/يوم لليوم تحت جذر الشجرة"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "إدراج عقدة اليوم تحت الفرع المختار"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "إدراج فرع بالتسلسل الهرمي سنة/شهر/يوم لليوم تحت الفرع المختار"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "إدراج فرع ال_غد تحت جذر الشجرة"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "إدراج فرع بالتسلسل الهرمي سنة/شهر/يوم للغد تحت جذر الشجرة"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "إدراج عقدة الغد تحت الفرع المختار"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "إدراج فرع بالتسلسل الهرمي سنة/شهر/يوم للغد تحت الفرع المختار"
+
+msgid "C_hange Node Properties..."
+msgstr "تغيير _خصائص الفرع..."
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "تغيير خصائص الفرع المحدد"
+
+msgid "Toggle _Read Only"
+msgstr "تفعيل وضع _القراءة فقط"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "تفعيل وضع القراءة فقط في الفرع المحدد"
+
+msgid "Cop_y Link to Node"
+msgstr "نس_خ الرابط إلى الفرع"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "انسخ رابط الفرع المحدد إلى الحافظة"
+
+msgid "Children _Inherit Syntax"
+msgstr "تبني خصائص نص الشجرة الأم"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr "تغيير خصائص النص في الفرع المحدد إلى الخصائص الخاصة بالشجرة الأم"
+
+msgid "_Handle Bookmarks..."
+msgstr "_مقبض الإشارات المرجعية..."
+
+msgid "Add to Boo_kmarks"
+msgstr "إضافة إلى القائمة _المرجعية"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "إضافة الفرع الحالي إلى القائمة المرجعية"
+
+msgid "Remove from Boo_kmarks"
+msgstr "حذف من الإشارات _المرجعية"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "حذف الفرع الحالي من القائمة المرجعية"
+
+msgid "E_xpand All Nodes"
+msgstr "تو_سيع الفروع"
+
+msgid "Expand All the Tree Nodes"
+msgstr "قم بتوسيع كافة فروع الشجرة"
+
+msgid "_Collapse All Nodes"
+msgstr "_طي كافة الفروع"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "طي كافة الفروع الشجرية"
+
+msgid "Node _Up"
+msgstr "الفرع _للأعلى"
+
+msgid "Move the Selected Node Up"
+msgstr "نقل الفرع المحدد للأعلى"
+
+msgid "Node _Down"
+msgstr "الفرع __للأسفل"
+
+msgid "Move the Selected Node Down"
+msgstr "نقل الفرع المحدد للأسفل"
+
+msgid "Node _Left"
+msgstr "الفرع _للشمال"
+
+msgid "Move the Selected Node Left"
+msgstr "نقل الفرع المحدد شمالا"
+
+msgid "Node _Right"
+msgstr "الفرع _لليمين"
+
+msgid "Move the Selected Node Right"
+msgstr "نقل الفرع المحدد يمينا"
+
+msgid "Node Change _Parent..."
+msgstr "تغيير الشجرة الأم للفرع..."
+
+msgid "Change the Selected Node's Parent"
+msgstr "تغيير الشجرة الأم للفرع المحدد"
+
+msgid "Sort Tree _Ascending"
+msgstr "فرز الأشجار _تصاعدي"
+
+msgid "Sort the Tree Ascending"
+msgstr "فرز الأشجار تصاعدي"
+
+msgid "Sort Tree _Descending"
+msgstr "فرز الشجرة _تنازلي"
+
+msgid "Sort the Tree Descending"
+msgstr "فرز الشجرة تنازلي"
+
+msgid "Sort Siblings A_scending"
+msgstr "فرز الأشقاء تصاعديا"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "قم بفرز جميع أشقاء الفرع المحدد تصاعديًا"
+
+msgid "Sort Siblings D_escending"
+msgstr "فرز الأشقاء تنازليا"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "قم بفرز جميع أشقاء الفرع المحدد تنازليًا"
+
+msgid "De_lete Node"
+msgstr "حذ_ف الفرع"
+
+msgid "Delete the Selected Node"
+msgstr "حذف الفرع المحدد"
+
+msgid "Find/Replace"
+msgstr "بحث/إستبدال"
+
+msgid "_Quick Node Selection..."
+msgstr "_اختيار الفرع بسرعة..."
+
+msgid "Quick Node Selection"
+msgstr "اختيار الفرع بسرعة"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "ابحث في أسماء _الفروع و الكلمات المفتاحية..."
+
+msgid "Find in Nodes Names and Tags"
+msgstr "ابحث في أسماء الفروع و الكلمات المفتاحية"
+
+msgid "_Find in Node Content..."
+msgstr "_البحث في محتوى الفرع..."
+
+msgid "Find into the Selected Node Content"
+msgstr "ابحث في محتوى الفرع المحددة"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "ابحث _في كل محتوى الفرع..."
+
+msgid "Find in Multiple Nodes"
+msgstr "ابحث في كل محتوى الفرع"
+
+msgid "Find _Again"
+msgstr "بحث _مرة أخرى"
+
+msgid "Iterate the Last Find Operation"
+msgstr "كرر عملية البحث الأخير"
+
+msgid "Find _Back"
+msgstr "ابحث __للخلف"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "كرر آخر عملية بحث في الاتجاه المعاكس"
+
+msgid "_Replace in Node Content..."
+msgstr "_ الاستبدال في محتوى الفرع..."
+
+msgid "Replace into the Selected Node Content"
+msgstr "الاستبدال في محتوى الفرع المحدد"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "استبدال في _كل الفروع..."
+
+msgid "Replace A_gain"
+msgstr "استبدال م_رة أخرى"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "كرر عملية الاستبدال الأخيرة"
+
+msgid "Show All Matches _Dialog..."
+msgstr "عرض كل _الحوار المتطابق..."
+
+msgid "Show Search All Matches Dialog"
+msgstr "إظهار مربع حوار البحث عن جميع المطابقات"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "_مسح كافة المستبعد من البحث"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "مسح كافة خصائص الفروع  الشجرية المستبعدة من البحث"
+
+msgid "View"
+msgstr "عرض"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "إظهار/إخفاء مستكشف الأشجار"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "تبديل إظهار/إخفاء الشجرة"
+
+msgid "Show/Hide Te_rminal"
+msgstr "إظهار/إخفاء المح_طه"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "تبديل إظهار/إخفاء المحطه"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "تبديل _التركيز على محطه/نص"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "تبديل التركيز بين المحطه والنص"
+
+msgid "Show/Hide _Menubar"
+msgstr "إظهار/إخفاء _شريط الأدوات"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "إظهار/إخفاء _شريط الأدوات"
+
+msgid "Show/Hide Tool_bar"
+msgstr "إظهار/إخفاء شريط الأدوات"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "تبديل إظهار/إخفاء شريط الأدوات"
+
+msgid "Show/Hide _Statusbar"
+msgstr "إظهار/إخفاء شريط الحالة"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr "تفعيل إظهار/إخفاء شريط الأدوات"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "إظهار/إخفاء أسطر الفرع في الغصن"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "تفعيل إظهار/إخفاء رأس اسم الفرع"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "إظهار / إخفاء عنوان الفرع"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "تبديل إظهار/إخفاء رأس اسم الفرع"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "تبديل _التركيز على شجرة/نص"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "تبديل التركيز بين الشجرة والنص"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "_زيادة حجم أيقونات شريط الأدوات"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "زيادة حجم أيقونات شريط الأدوات"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "_تصغير حجم رموز شريط الأدوات"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "تصغير حجم رموز شريط الأدوات"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "المزيد من آخر الفروع _المزورة على رأس اسم الفرع"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "زيادة عدد الفروع الأخيرة المزورة على رأس اسم الفرع"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "_تقليل آخر الفروع المزورة على رأس اسم الفرع"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "تقليل عدد الفروع الأخيرة المزورة على رأس اسم الفرع"
+
+msgid "Full Screen _On/Off"
+msgstr "ملئ الشاشة تشغيل/إيقاف"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "تبديل ملء الشاشة تفعيل/إيقاف"
+
+msgid "_Always On Top On/Off"
+msgstr "_دائمًا في الأعلى تفعيل/إيقاف"
+
+msgid "Always On Top On/Off"
+msgstr "دائمًا في الأعلى تفعيل/إيقاف"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "إيقاف شريط القائمة في_ شريط العنوان"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "عدم وضع شريط القوائم في شريط العنوان"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "تفعيل شريط القائمة في_ شريط العنوان"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "وضع شريط القائمة في شريط العنوان"
+
+msgid "Import"
+msgstr "إستيراد"
+
+msgid "From _OliveSet File"
+msgstr "من ملف _OliveSet"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "إضافة ملف OliveSet إلى الشجرة الحالية"
+
+msgid "From _OliveSet Folder"
+msgstr "من مجلد تشيري تري"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "إضافة فرع من مجلد تشيري تري إلى الشجرة الحالية"
+
+msgid "From _Indented List File"
+msgstr "من ملف قائمة مُبوَّبة"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "إضافة فرع من ملف قائمة مُبوَّبة إلى الشجرة الحالية"
+
+msgid "From _Plain Text File"
+msgstr "من ملف نص عادي"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "إضافة فرع من ملف نص عادي إلى الشجرة الحالية"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "من _مجلد نص عادي"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr "أضف فروع من مجلد ملفات نصية عادية إلى الشجرة الحالية"
+
+msgid "From _HTML File"
+msgstr "من ملف _HTML"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "إضافة فرع من ملفات HTML إلى الشجرة الحالية"
+
+msgid "From _Folder of HTML Files"
+msgstr "من _مجلد HTML"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "إضافة فروع من ملف مستندات HTML إلى الشجرة الحالية"
+
+msgid "From _Markdown File"
+msgstr "من مستند HTML"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "أضف فرع من ملف Markdown إلى الشجرة الحالية"
+
+msgid "From _Folder of Markdown Files"
+msgstr "من _مجلد ملفات Markdown"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "إضافة فروع من مجلد Markdown Files إلى الشجرة الحالية"
+
+msgid "From _Gnote Folder"
+msgstr "من مجلد _Gnote"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "أضف فروع مجلد Gnote إلى الشجرة الحالية"
+
+msgid "From _KeepNote Folder"
+msgstr "من مجلد _keepNote"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "أضف فروع مجلد KeepNote إلى الشجرة الحالية"
+
+msgid "From _Leo File"
+msgstr "من ملف _Leo"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "أضف فروع ملف Leo إلى الشجرة الحالية"
+
+msgid "From _Mempad File"
+msgstr "من ملف _Mempad"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "أضف فروع ملف Memepad إلى الشجرة الحالية"
+
+msgid "From _NoteCase HTML File"
+msgstr "من ملف NoteCase_ HTML"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "إضافة فروع ملف NoteCase HTML إلى الشجرة الحالية"
+
+msgid "From _RedNotebook HTML File"
+msgstr "من ملف RedNotebook HTML"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "إضافة فروع ملف RedNotebook HTML إلى الشجرة الحالية"
+
+msgid "From T_omboy Folder"
+msgstr "من مجلد T_omboy"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "أضف فروع من مجلد Tomboy إلى الشجرة الحالية"
+
+msgid "From T_reepad Lite File"
+msgstr "من ملف T_reepad Lite"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "إضافة فروع ملف Treepad Lite إلى الشجرة الحالية"
+
+msgid "From _Zim Folder"
+msgstr "من مجلد _Zim"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "أضف فروع مجلد Zim للشجرة الحالية"
+
+msgid "Export"
+msgstr "تصدير"
+
+msgid "Export To _PDF"
+msgstr "تصدير بصيغة_PDF"
+
+msgid "Export To PDF"
+msgstr "تصدير بصيغة PDF"
+
+msgid "Export To _HTML"
+msgstr "تصدير بصيغة _HTML"
+
+msgid "Export To HTML"
+msgstr "تصدير بصيغة HTML"
+
+msgid "Export to Plain _Text"
+msgstr "تصدير إلى نص_عادي"
+
+msgid "Export to Plain Text"
+msgstr "تصدير بصيغة نص عادي"
+
+msgid "_Export To OliveSet"
+msgstr "_تصدير إلى تشيري تري"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "تصدير إلى ملف أو مجلد تشيري تري"
+
+msgid "Help"
+msgstr "مساعدة"
+
+msgid "_Check Newer Version"
+msgstr "_تحقق من وجود تحديث للبرنامج"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "التحقق من وجود نسخة أحدث متاحة على الإنترنت"
+
+msgid "_Website"
+msgstr "موقع الويب"
+
+msgid "Visit OliveSet's Website"
+msgstr "زيارة موقع تشيري تري الالكتروني"
+
+msgid "_Source Code"
+msgstr "_مصدر الكود"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "تصفح كود تشيري تري عبر الانترنت"
+
+msgid "_Report a Bug"
+msgstr "_الإبلاغ عن خطأ"
+
+msgid "Report a Bug in OliveSet"
+msgstr "الإبلاغ عن خلل في تشيري تري"
+
+msgid "_Donate"
+msgstr "_تبرع"
+
+msgid "Donate to Support OliveSet"
+msgstr "تبرع لدعم تشيري تري"
+
+msgid "Online _Manual"
+msgstr "طريقة _الاستخدام(أونلاين)"
+
+msgid "OliveSet's Online Manual"
+msgstr "الدليل الالكتروني لتشيري تري"
+
+msgid "_About"
+msgstr "_من نحن"
+
+msgid "_Open Preferences Directory"
+msgstr "_فتح مجلد التفضيلات"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "افتح المجلد بملفات التفضيلات"
+
+msgid "C_ut Anchor"
+msgstr "ق_ص المرساة"
+
+msgid "Cut the Selected Anchor"
+msgstr "قص المرساة المحددة"
+
+msgid "_Copy Anchor"
+msgstr "_نسخ المرساة"
+
+msgid "Copy the Selected Anchor"
+msgstr "نسخ المرساة المحددة"
+
+msgid "_Delete Anchor"
+msgstr "_حذف المرساة"
+
+msgid "Delete the Selected Anchor"
+msgstr "حذف المرساة المحددة"
+
+msgid "Edit _Anchor..."
+msgstr "تعديل _المرساة..."
+
+msgid "Edit the Underlying Anchor"
+msgstr "قم بتحرير المرساة الأساسية"
+
+msgid "Copy Anchor Link"
+msgstr "نسخ رابط المرسات"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "انسخ الرابط إلى المرساة الأساسية إلى (الحافظة)"
+
+msgid "C_ut Embedded File"
+msgstr "ق_ص الملف المضمن"
+
+msgid "Cut the Selected Embedded File"
+msgstr "قص الملف المضمن المحدد"
+
+msgid "_Copy Embedded File"
+msgstr "_نسخ الملف المضمن"
+
+msgid "Copy the Selected Embedded File"
+msgstr "نسخ الملف المضمن المحدد"
+
+msgid "_Delete Embedded File"
+msgstr "_حذف الملف المضمن"
+
+msgid "Delete the Selected Embedded File"
+msgstr "حذف الملف المضمن المحدد"
+
+msgid "Open Embedded File"
+msgstr "عرض الملف المضمن"
+
+msgid "_Rename"
+msgstr "_إعادة التسمية"
+
+msgid "Rename Embedded File"
+msgstr "إعادة تسمية الملف المضمن"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "_حفظ بصيغة PNG..."
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "حفظ الصورة المحددة بصيغة PNG"
+
+msgid "_Edit LatexBox..."
+msgstr "تعديل خانة النص البرمجي..."
+
+msgid "Edit the Selected LatexBox"
+msgstr "تعديل الصورة المحددة"
+
+msgid "C_ut LatexBox"
+msgstr "ق_ص خانة النص البرمجي"
+
+msgid "Cut the Selected LatexBox"
+msgstr "قص خانة النص البرمجي"
+
+msgid "_Copy LatexBox"
+msgstr "_نسخ خانة النص البرمجي"
+
+msgid "Copy the Selected LatexBox"
+msgstr "نسخ خانة النص البرمجي"
+
+msgid "_Delete LatexBox"
+msgstr "_حذف خانة النص البرمجي"
+
+msgid "Delete the Selected LatexBox"
+msgstr "حذف خانة النص البرمجي المحددة"
+
+msgid "_Save Image as PNG..."
+msgstr "_حفظ بصيغة PNG..."
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "حفظ الصورة المحددة بصيغة PNG"
+
+msgid "_Edit Image..."
+msgstr "_تعديل الصورة..."
+
+msgid "Edit the Selected Image"
+msgstr "تعديل الصورة المحددة"
+
+msgid "C_ut Image"
+msgstr "ق_ص الصورة"
+
+msgid "Cut the Selected Image"
+msgstr "قص الصورة المحددة"
+
+msgid "_Copy Image"
+msgstr "_نسخ الصورة"
+
+msgid "Copy the Selected Image"
+msgstr "نسخ الصورة المحددة"
+
+msgid "_Delete Image"
+msgstr "_حذف الصورة"
+
+msgid "Delete the Selected Image"
+msgstr "حذف الصورة المحددة"
+
+msgid "Edit _Link..."
+msgstr "تعديل _الرابط..."
+
+msgid "Edit the Link Associated to the Image"
+msgstr "تعديل الر ابط المرتبط بالصورة"
+
+msgid "D_ismiss Link"
+msgstr "ت_جاهل الرابط"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "تجاهل الرابط المرتبط بالصورة"
+
+msgid "Show/Hide _OliveSet"
+msgstr "إظهار/إخفاء_OliveSet"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "تبديل إظهار/إخفاء OliveSet"
+
+msgid "Edit the Underlying Link"
+msgstr "تعديل الرابط الأساسي"
+
+msgid "C_ut Link"
+msgstr "ق_ص الرابط"
+
+msgid "Cut the Selected Link"
+msgstr "قص الرابط المحدد"
+
+msgid "_Copy Link"
+msgstr "_نسخ الرابط"
+
+msgid "Copy the Selected Link"
+msgstr "انسخ الرابط المحدد"
+
+msgid "Dismiss the Selected Link"
+msgstr "تجاهل الارتباط المحدد"
+
+msgid "_Delete Link"
+msgstr "_حذف الإرتباط"
+
+msgid "Delete the Selected Link"
+msgstr "حذف الإرتباط المحدد"
+
+msgid "English"
+msgstr "الإنجليزية"
+
+msgid "Text and Code"
+msgstr "النص والنص البرمجي"
+
+msgid "Plain Text and Code"
+msgstr "نص عادي و نص برمجي"
+
+msgid "Tree Explorer"
+msgstr "تصفح الشجرة"
+
+msgid "Theme"
+msgstr "المظهر"
+
+msgid "Interface"
+msgstr "واجهة"
+
+msgid "Links"
+msgstr "روابط"
+
+msgid "Toolbar"
+msgstr "شريط الأدوات"
+
+msgid "Keyboard Shortcuts"
+msgstr "إختصارات لوحة المفاتيح"
+
+msgid "Miscellaneous"
+msgstr "متنوع"
+
+msgid "Monospace"
+msgstr "خط Monospace"
+
+msgid "Code Font"
+msgstr "خط الكود الرمجي"
+
+msgid "Terminal Font"
+msgstr "خط المحطه"
+
+msgid "Tree Font"
+msgstr "خط الشجرة الأم"
+
+msgid "Reset to Default"
+msgstr "إعادة تعيين إلى الوضع الافتراضي"
+
+msgid "Fonts"
+msgstr "الخط"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "تفعيل ميزة عداد الكلمات"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "إظهار دليل المستند في عنوان النافذة"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "إظهار المسار الكامل في رأس الفرع"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "قائمة الإشارات المرجعية المخصصة في شريط القائمة"
+
+msgid "Menubar in Titlebar"
+msgstr "شريط القائمة في شريط العنوان"
+
+msgid "Toolbar Icons Size"
+msgstr "حجم أيقونات شريط الأدوات"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "آخر فرع تمت زيارته على رأس اسم الفرع"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "الحد الأدنى لحجم مزلاج شريط التمرير (0 = الافتراضي للنظام)"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "شريط التمرير يغطي محرر النص"
+
+msgid "System Default"
+msgstr "النظام الافتراضي"
+
+msgid "Yes"
+msgstr "نعم"
+
+msgid "No"
+msgstr "لا"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "تفعيل التلميحات عند التحويم"
+
+msgid "Menus"
+msgstr "القوائم"
+
+msgid "Max Search Results per Page"
+msgstr "الحد الأقصى لنتائج البحث لكل صفحة"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "حفظ سجل البحث/الاستبدال بين الجلسات"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "تفعيل رابط ويب خاص برابط نقر مزدوج"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "تفعيل ملف خاص برابط نقر مزدوج"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "تفعيل مجلد خاص برابط نقر مزدوج"
+
+msgid "Custom Actions"
+msgstr "حركة خاصة"
+
+msgid "Colors"
+msgstr "اللون"
+
+msgid "Double Click for Link Action"
+msgstr "انقر نقرًا مزدوجًا لتنفيذ إجراء الرابط"
+
+msgid "Underline Links"
+msgstr "خط تحت الروابط"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "استخدم المسارات النسبية للملفات والمجلدات"
+
+msgid "Anchor Size"
+msgstr "حجم المرسات"
+
+msgid "Change Selected"
+msgstr "تغيير المحدد"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr "الإختصار '%s' محجوز من قبل."
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "الإجراء الحالي المقترن هو '%s'"
+
+msgid "Do you want to steal the shortcut?"
+msgstr "هل تريد أخد الاختصار؟"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "تعديل إختصارات لوحة المفاتيخ"
+
+msgid "No Keyboard Shortcut"
+msgstr "بدون إختصارات"
+
+msgid "Autosave on Quit"
+msgstr "حفظ عند الخروج"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "قم بإنشاء نسخة احتياطية قبل الحفظ"
+
+msgid "Number of Backups to Keep"
+msgstr "عدد النسخ الإحتياطية المراج حفظها"
+
+msgid "Custom Backup Directory"
+msgstr "مجلد نسخ عشوائي"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "تخزين ملفات متعددة، استخدام اسم الملف المضمن على القرص"
+
+msgid "Saving"
+msgstr "يتم الحفط"
+
+msgid "Automatically Check for Newer Version"
+msgstr "التحقق التلقائي من التحديثات"
+
+msgid "Reload Document From Last Session"
+msgstr "إعادة فتح المستند من أخر جلسة تعديل"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "إظهار مربع حوار البداية عند عدم تحميل أي مستند"
+
+msgid "Reload After External Update to CT* File"
+msgstr "إعادة التحميل بعد التحديث الخارجي لملف *CT"
+
+msgid "Enable Debug Log"
+msgstr "تفعيل سجل التصحيح"
+
+msgid "Debug Log Directory"
+msgstr "مجلد سجل التصحيح"
+
+msgid "Enable System Tray Docking"
+msgstr "تفعيل أيقونة التطبيق في الخلفية"
+
+msgid "Start Minimized in the System Tray"
+msgstr "تشغيل  التطبيق في الخلفية (أيقونة مصغرة)"
+
+msgid "System Tray"
+msgstr "أيقونة مصغرة"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "URL"
+msgstr "عنوان URL"
+
+msgid "Port"
+msgstr "المنفذ"
+
+msgid "Username"
+msgstr "اسم المستخدم"
+
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Proxy"
+msgstr "الوكيل"
+
+msgid "Show White Spaces"
+msgstr "عرض المساحات البيضاء"
+
+msgid "Highlight Current Line"
+msgstr "تسليط الضوء على الخط الحالي"
+
+msgid "Text Editor"
+msgstr "محرر النصوص"
+
+msgid "Internal Terminal Shell"
+msgstr "غلاف المحطه الداخلي"
+
+msgid "Add"
+msgstr "إضافة"
+
+msgid "Remove Selected"
+msgstr "حدف المحدد"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "أمر لكل فرع/نوع خانة النص البرمجي"
+
+msgid "Terminal Command"
+msgstr "امر المحطه"
+
+msgid "Code Execution"
+msgstr "تنفيذ الكود"
+
+msgid "Select Element to Add"
+msgstr "حدد عنصرًا لإضافته"
+
+msgid "Enable Spell Check"
+msgstr "تفعيل خاصية التدقيق الإملائي"
+
+msgid "Spell Check Language"
+msgstr "لغة التدقيق الإملائي"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "توسيع خانة النص البرمجي تلقائيا"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "النص البرمجي يحتوي على شريط أدوات"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "عتبة عدد خلايا الجدول للواجهة الخفيفة"
+
+msgid "Embedded File Icon Size"
+msgstr "حجم أيقونة الملف المصمن"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "حد حجم الملف المضمن (ميغابايت)"
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "إظهار اسم الملف أعلى رمز الملف المضمن"
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "لا تحدد الكائنات تلقائيًا عند النقر المفرد"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr "حل مؤقت للتجمد المتعلق بالحافظة في KDE 6 مع Klipper"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "حد الخطوات غير القابلة للتنفيذ لكل فرع"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "ربط تلقائي لنص CamelCase  إلى الفرع الذي بنفس الإسم"
+
+msgid "Auto Link URLs"
+msgstr "ربط عناوين URL تلقائيًا"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "عند النقر 3 مرات, حدد الفقرة ب أكملها"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "تمكين الاستبدال التلقائي (تجريبي)"
+
+msgid "Scale"
+msgstr "مقياس"
+
+msgid "Italic"
+msgstr "مائل"
+
+msgid "Underline"
+msgstr "تسطير"
+
+msgid "Text Color Foreground"
+msgstr "لون النص في المقدمة"
+
+msgid "Text Color Background"
+msgstr "خلفية لون النص"
+
+msgid "Small"
+msgstr "صغير"
+
+msgid "Scalable Tags"
+msgstr "علامات قابلة للتحجيم"
+
+msgid "Chars for Bulleted List"
+msgstr "أحرف لقائمة نقطية"
+
+msgid "Chars for Todo List"
+msgstr "أحرف لقائمة المهام"
+
+msgid "Chars for Table Of Content"
+msgstr "أحرف لمحتوى الجدول"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "أحرف لعلامات تنصيص مزدوجة"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "أحرف لعلامة تنصيص واحدة"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "تفعيل التبديل التلقائي لعلامات التنصيص"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "تفعيل الاستبدال التلقائي للرموز"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "الاستبدال التلقائي للرموز المدعومة"
+
+msgid "Only at the Start of the Line"
+msgstr "فقط عند بداية السطر"
+
+msgid "Tab Width"
+msgstr "علامة تبويب"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "إدراج مساحة بدل علامات التبويب"
+
+msgid "Use Line Wrapping"
+msgstr "استخدام التفاف الأسطر"
+
+msgid "Line Wrapping Indentation"
+msgstr "المسافة البادئة للالتفاف على الخط"
+
+msgid "Enable Automatic Indentation"
+msgstr "تفعيل الحجز التلقائي للمسافة"
+
+msgid "Scroll Beyond Last Line"
+msgstr "انتقل إلى ما بعد السطر الأخير"
+
+msgid "Cursor Blinking"
+msgstr "وميض المؤشر"
+
+msgid "On"
+msgstr "تشغيل"
+
+msgid "Off"
+msgstr "إيقاف"
+
+msgid "Text Margin: Left"
+msgstr "هامش النص: يسار"
+
+msgid "Right"
+msgstr "يمين"
+
+msgid "Vertical Space Around Lines"
+msgstr "مسافة عمودية حول الخطوط"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "مسافة عمودية في خطوط ملفوفة"
+
+msgid "Timestamp Format"
+msgstr "تنسيق الطابع الزمني"
+
+msgid "Horizontal Rule"
+msgstr "قاعدة أفقية"
+
+msgid "Chars to Select at Double Click"
+msgstr "تحديد الأحرف عند النقر المزدوج"
+
+msgid "Light Background, Dark Text"
+msgstr "خلفية فاتحة, نص غامق"
+
+msgid "Dark Background, Light Text"
+msgstr "خلفية غامقة, نص فاتح"
+
+msgid "Custom Background"
+msgstr "تخصيص الخلفية"
+
+msgid "Text"
+msgstr "نص"
+
+msgid "Selection Background"
+msgstr "الخلفية المحددة"
+
+msgid "Table"
+msgstr "الجدول"
+
+msgid "Code"
+msgstr "نص برمجي"
+
+msgid "Style Schemes"
+msgstr "أسلوب التنسيق"
+
+msgid "Text Foreground"
+msgstr "مقدمة النص"
+
+msgid "Text Background"
+msgstr "خلفية النص"
+
+msgid "Selection Foreground"
+msgstr "المقدمة المحددة"
+
+msgid "Cursor"
+msgstr "مؤشر الماوس"
+
+msgid "Current Line Background"
+msgstr "خلفية السطر الحالي"
+
+msgid "Line Numbers Foreground"
+msgstr "مقدمة الأسطر المرقمة"
+
+msgid "Line Numbers Background"
+msgstr "خلفية الأسطر المرقمة"
+
+msgid "Style Scheme Editor"
+msgstr "تعديل  أسلوب التنسيق"
+
+msgid "Set Dark Theme Icons"
+msgstr "استخدام أيقونات غامقة اللون"
+
+msgid "Set Light Theme Icons"
+msgstr "استخدام أيقونات فاتحة اللون"
+
+msgid "Set Default Icons"
+msgstr "استخدام كأيقونات إفتراضية"
+
+msgid "Icon Theme"
+msgstr "مظهر الأيقونات"
+
+msgid "Split Toolbar"
+msgstr "شريط أدوات الانقسام"
+
+msgid "Use Different Cherries per Level"
+msgstr "استخدم أنواع مختلفة من الكرز لكل مستوى"
+
+msgid "No Icon"
+msgstr "بدون أيقونة"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "إخفاء أيقونة الجانب الأيمن المساعدة"
+
+msgid "Default Text Nodes Icons"
+msgstr "أيقونات أفرع النص الإفتراضية"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "طي الفروع/توسيع الفروع"
+
+msgid "Expand all Nodes"
+msgstr "توسيع كافة الفروع"
+
+msgid "Collapse all Nodes"
+msgstr "طي كافة الفروع"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "حالة الفروع في القوام المرجعية ظاهرة دائما"
+
+msgid "Nodes Status at Startup"
+msgstr "حالة الفروع عند بدأ التشغيل"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "عرض التفاف أسماء فروع الشجرة"
+
+msgid "Display Tree on the Right Side"
+msgstr "عرض الشجرة على الجانب الأيمن"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "انقل التركيز إلى النص عند النقر بالماوس"
+
+msgid "Expand Node at Mouse Click"
+msgstr "توسيع الفرع عند النقر بالماوس"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "'%s' ليس أرشيفًا صالحًا"
+
+msgid "Writing to Disk..."
+msgstr "يتم الكتابة..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "ليس لديك صلاحية الكتابة على الملف %s"
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "إضافة كلمة مرور %s"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr "فشل في التحقق من سلامة المستند المحفوظ. حاول ملف-->حفظ بإسم"
+
+msgid "Failed to encrypt the file"
+msgstr "فشل في تشفير الملف"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "كانت الاستعادة من النسخة الاحتياطية ضرورية لـ:"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr "قاعدة البيانات %s غير صالحة, راجع سجل البرنامج للمزيد من التفاصيل."
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr "%s فشلت الكتابة - الملف مفقود. أعد توصيل محرك USB أو المورد المشترك."
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr "%s فشلت الكتابة - هل تم حظر الملف بواسطة برنامج مزامنة؟"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s فشل في إعادة الفتح - الملف مفقود. أعد توصيل محرك USB أو المورد المشترك."
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "برنامح تدوين الملاحظات بشكل هرمي"
+
+msgid "_Exit OliveSet"
+msgstr "_إغلاق البرنامج"
+
+msgid "HTML Document"
+msgstr "مستند HTML"
+
+msgid "Markdown Document"
+msgstr "مستند Markdown"
+
+msgid "Mempad Document"
+msgstr "مستند Mempad"
+
+msgid "Treepad Document"
+msgstr "مستند Treepad"
+
+msgid "Leo Document"
+msgstr "مستند Leo"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "هل أنت متأكد من رغبتك في العودة إلى الوضع الإفتراضي؟"
+
+#~ msgid "Insert T_OC..."
+#~ msgstr "إدراج جدول محتوى..."
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "أدخل جدول المحتويات"
+
+#~ msgid ""
+#~ "Backup files are by default 3 in the same folder of the corrupted "
+#~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
+#~ "the backup with one tilde: copy the file to another directory, remove the "
+#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "with two tildes and if it still fails try the one with three tildes."
+#~ msgstr ""
+#~ "ملفات النسخ الاحتياطي افتراضيا 3 في المجلد الذي يحتوي المستند المعطوب، "
+#~ "بنفس الاسم إضافة للعلامات التالية (~, ~~, ~~~). حاول أولا النسخ الاحتياطي "
+#~ "بعلامة واحدة (~) : قم بنسخ المستند إلى مجلد أخر، قم بحذف علامة (~) من "
+#~ "الاسم و قم بفتحه عبر البرنامج. إذا لم ينجح هذا الأمر حاول مجددا مع "
+#~ "المستند الذي يحمل علامتين من العلامات التالية (~~)، إذا لم يفلح هذا، حاول "
+#~ "مع المستند الذي يحمل (---)."
+
+#~ msgid "Replace in Multiple Nodes..."
+#~ msgstr "استبدال في _كل الفروع..."
+
+#~ msgid "Find in Multiple Nodes..."
+#~ msgstr "ابحث في كل محتوى الفرع..."
+
+#~ msgid "OliveSet Document"
+#~ msgstr "مستند OliveSet"
+
+#~ msgid "From File using _Pandoc"
+#~ msgstr "من مجلد بإستخدام _Pandoc"
+
+#~ msgid "Add a node to the current tree using Pandoc"
+#~ msgstr "أضف فرع إلى الشجرة الحالية بإستخدام Pandoc"
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "طريقة الاستخدام عبر الويب"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "سيتم تطبيق اللغة المختارة بعد إعادة تشغيل البرنامج"
+
+#~ msgid "Not Protected"
+#~ msgstr "غير محمي"
+
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "الوثيقة %s لم يم إيجادها"
+
+#~ msgid "click me"
+#~ msgstr "إضغط"
+
+#~ msgid ""
+#~ "Pandoc executable could not be found, please ensure it is in your path"
+#~ msgstr ""
+#~ "تعذر العثور على ملف Pandoc القابل للتنفيذ ، يرجى التأكد من أنه في مسارك "
+#~ "المحدد"
+
+#~ msgid "Replace in Selected Node and Subnodes"
+#~ msgstr "إستبدال في الفرع المحدد و الأغصان الخاصة به"
+
+#~ msgid "Search in Selected Node and Subnodes"
+#~ msgstr "بحث في الفرع المحدد والأغصان الخاصة به"
+
+#~ msgid "Search in All Nodes"
+#~ msgstr "بحث في كل الفروع"
+
+#~ msgid "Replace in Node Names..."
+#~ msgstr "إستبدال في الفرع المسمى..."
+
+#~ msgid "Search For a Node Name..."
+#~ msgstr "بحث في الفرع المسمى..."
+
+#~ msgid "Quit"
+#~ msgstr "الخروج"
+
+#~ msgid "Monospace Text Color Background"
+#~ msgstr "خلفية نص أحادية اللون"
+
+#~ msgid "_Format"
+#~ msgstr "_صيغة"
+
+#~ msgid "_Tools"
+#~ msgstr "_أدوات"
+
+#~ msgid "_List"
+#~ msgstr "_لائحة"
+
+#~ msgid "_Row"
+#~ msgstr "_صف"
+
+#~ msgid "_Print"
+#~ msgstr "_طباعة"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "إدراج تا_ريخ وتوقيت اللحظة"
+
+#~ msgid "Find into All the Tree Nodes Contents"
+#~ msgstr "ابحث في جميع محتويات أفرع الشجرة"
+
+#~ msgid "Find in _Selected Node and Subnodes Contents"
+#~ msgstr "ابحث في الفرع _المحدد ومحتويات الأغصان الفرعية"
+
+#~ msgid "Find into the Selected Node and Subnodes Contents"
+#~ msgstr "ابحث في الفرع المحدد ومحتويات اللأغصان الفرعية"
+
+#~ msgid "Replace in _All Nodes Contents"
+#~ msgstr "تبديل في _كل محتوى الفروع"
+
+#~ msgid "Replace into All the Tree Nodes Contents"
+#~ msgstr "استبدال في كل محتوى الفروع الشجرية"
+
+#~ msgid "Replace in _Selected Node and Subnodes Contents"
+#~ msgstr "استبدال في الفروع _المحددة, كما ومحتوى الأغصان"
+
+#~ msgid "Replace into the Selected Node and Subnodes Contents"
+#~ msgstr "استبدال في الفرع المحدد والأغصان المتفرعة عنه"
+
+#~ msgid "Replace in Nodes _Names"
+#~ msgstr "استبدل في _أسماء الفروع"
+
+#~ msgid "_Execute CodeBox Code"
+#~ msgstr "_تنفيد الكود البرمجي المضمن في الخانة"

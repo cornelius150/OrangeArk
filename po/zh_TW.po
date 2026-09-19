@@ -1,0 +1,3251 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: oliveset 0.26\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2026-05-12 10:32+0800\n"
+"Last-Translator: Emer Chen <ldsemerchen@gmail.com>\n"
+"Language-Team: Chinese (traditional)\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+msgid "Image Format Not Recognized"
+msgstr "圖片格式未能識別"
+
+msgid "Insert Table"
+msgstr "插入表格"
+
+msgid "CSV File"
+msgstr "CSV 檔案"
+
+msgid "Insert a CodeBox"
+msgstr "插入一個代碼框"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "嵌入檔案的最大尺寸是 %s MB."
+
+msgid "Do you want to Continue?"
+msgstr "你想繼續嗎？"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "取回節點'%s'內容失敗"
+
+msgid "Special Characters"
+msgstr "特殊字元"
+
+msgid "Tabs Replaced"
+msgstr "TAB 已替換"
+
+msgid "Lines Stripped"
+msgstr "已刪除行尾空格的行"
+
+msgid "No Text is Selected."
+msgstr "沒有文字被選擇."
+
+msgid "OliveSet File"
+msgstr "OliveSet 檔案"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"正在使用的檔案/目錄不能被覆蓋！\n"
+"請使用不同的名稱或位置。"
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"'%s' 目錄已經存在 '%s'.\n"
+"<b>你想要替換它？</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"'%s' 檔案已經存在 '%s'.\n"
+"<b>你想要替換它？</b>"
+
+msgid "PDF File"
+msgstr "PDF 檔案"
+
+msgid "Plain Text Document"
+msgstr "純文字檔案"
+
+msgid "Preferences File"
+msgstr "配置檔案"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "系統托盤是否已出現在面板上？"
+
+msgid "Your system does not support the System Tray"
+msgstr "你的系統不支持系統托盤"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr "改變僅在 OliveSet 下次啟動時生效."
+
+msgid "Replace in Current Node"
+msgstr "在當前節點中替換"
+
+msgid "Search in Current Node"
+msgstr "在當前節點中搜尋"
+
+msgid "Matches"
+msgstr "已符合"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "<b>符合模式 '%s' 未找到<b>"
+
+msgid "Replace in Multiple Nodes"
+msgstr "在多個節點中替換"
+
+msgid "Search in Multiple Nodes"
+msgstr "在多個節點中搜尋"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "當前通信期沒有歷史搜尋."
+
+msgid "Tags"
+msgstr "標籤"
+
+msgid ": "
+msgstr ": "
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "當前通信期沒有格式化操作歷史."
+
+msgid "Link Name"
+msgstr "連結名稱"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "游標未進入一個段落."
+
+msgid "Insert/Edit Link"
+msgstr "插入/編輯連結"
+
+msgid "Pick a Foreground Color"
+msgstr "選擇前景色"
+
+msgid "Pick a Background Color"
+msgstr "選擇背景顏色"
+
+msgid "Checking for Newer Version..."
+msgstr "檢查新的版本..."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr "獲取最新版本訊息失敗，稍候再試."
+
+msgid "A Newer Version Is Available!"
+msgstr "有新版本可用！"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "您使用的是最新版本."
+
+msgid "You Are Using a Development Version."
+msgstr "您正在使用開發版本."
+
+msgid "Who is the Parent?"
+msgstr "哪個是父節點？"
+
+msgid "The Tree Root"
+msgstr "樹根"
+
+msgid "The Selected Node"
+msgstr "已選擇的節點"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "PNG Image"
+msgstr "PNG 圖片"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "寫入到 %s 失敗"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "目錄連結'%s'無效."
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "檔案連結'%s'無效."
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "目錄連結'%s'無效"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "連結所指向的節點不存在 (Id = %s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "未找到錨點 '%s'"
+
+msgid "Edit CodeBox"
+msgstr "編輯代碼框"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"你必須將一個命令與'%s'關聯起來。\n"
+"在 \"首選項 \"對話框中這樣做."
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr "安裝套件『xterm』或在首選項對話框中配置不同的終端機."
+
+msgid "Edit Table Properties"
+msgstr "編輯表格屬性"
+
+msgid "Insert Anchor"
+msgstr "插入錨點"
+
+msgid "Edit Anchor"
+msgstr "編輯錨點"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "不能編輯唯讀節點的嵌入檔案."
+
+msgid "Embedded File Automatically Updated:"
+msgstr "嵌入檔案已自動更新："
+
+msgid "No Node is Selected"
+msgstr "沒有節點被選中"
+
+msgid "The Tree is Empty!"
+msgstr "樹型為空！"
+
+msgid "The Selected Node is Read Only."
+msgstr "已選擇節點為唯讀."
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "此功能僅在豐富文字節點中有效."
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr "此功能在代碼自動醒目提示的節點中無效."
+
+msgid "No Table is Selected."
+msgstr "沒有文字被選擇."
+
+msgid "No CodeBox is Selected."
+msgstr "未選中任何代碼框."
+
+msgid "New Child Node Properties"
+msgstr "新的子節點屬性"
+
+msgid "New Node Properties"
+msgstr "新的節點屬性"
+
+msgid "Node Properties"
+msgstr "節點屬性"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"將節點類型變更為「自動語法高亮」將刪除此節點中的所有富文本格式。是否繼續？"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "確實要<b>刪除節點「%s」嗎</b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "此節點<b>有子節點，它們也將被刪除</b>"
+
+msgid "Select the New Parent"
+msgstr "選擇新的父節點"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "新的父節點不能隨意移動！"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "新選擇的父節點和原先一樣！"
+
+msgid "The new parent can't be one of his children!"
+msgstr "父節點不能是其自身的子節點！"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "%s節點屬性已變更"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr "節點名稱標頭上的最後訪問節點數已達到最大值."
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr "節點名稱標頭上的最後訪問節點數已達到最小值."
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "工具欄圖示已經最大."
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "工具欄圖示已經最小."
+
+msgid "Print OliveSet version"
+msgstr "列印 OliveSet 版本"
+
+msgid "Node name to focus"
+msgstr "要關注的節點名稱"
+
+msgid "Anchor name to scroll to in node"
+msgstr "捲動到節點中的錨點"
+
+msgid "Export to HTML at specified directory path"
+msgstr "在指定的目錄路徑下匯出為 HTML"
+
+msgid "Export to Text at specified directory path"
+msgstr "在指定的目錄路徑下匯出為文字"
+
+msgid "Export to PDF at specified directory path"
+msgstr "在指定的目錄路徑下匯出為PDF格式"
+
+msgid "Overwrite if export path already exists"
+msgstr "如果匯出路徑已經存在，則覆蓋"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "匯出成單一檔案(網頁或文字)"
+
+msgid "Password to open document"
+msgstr "開啟檔案密碼"
+
+msgid "Create a new window"
+msgstr "創建一個新視窗"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "在第二個通信期執行，獨立於主通信期"
+
+msgid "Execute Code"
+msgstr "執行代碼"
+
+msgid "Copy Code"
+msgstr "複製代碼"
+
+msgid "Change CodeBox Properties"
+msgstr "改變代碼框屬性"
+
+msgid "Start in OliveSet"
+msgstr "在 OliveSet 啟動"
+
+msgid "New Document"
+msgstr "新文件"
+
+msgid "Open File"
+msgstr "打開檔案"
+
+msgid "Open Folder"
+msgstr "打開目錄"
+
+msgid "Create a new document or open an existing one."
+msgstr "建立新文件或開啟既存文件"
+
+msgid "Don't show again"
+msgstr "勿再顯示"
+
+msgid "Recent Documents"
+msgstr "最近文件"
+
+msgid "Name"
+msgstr "名稱"
+
+msgid "Path"
+msgstr "路徑"
+
+msgid "Open Selected"
+msgstr "開啟所選"
+
+msgid "Handle the Bookmarks List"
+msgstr "處理書籤列表"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "將所選書籤上移"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "將所選書籤下移"
+
+msgid "Remove the Selected Bookmark"
+msgstr "刪除選定的書籤"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "對書籤進行降冪排序"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "書籤升冪排序"
+
+msgid "Choose Storage Type"
+msgstr "選擇儲存類型"
+
+msgid "Single SQLite File"
+msgstr "單獨的 SQLite 檔案"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "單獨的 SQLite 檔案，已壓縮及密碼保護"
+
+msgid "Single XML File"
+msgstr "單獨的 XML 檔案"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "單獨的 XML 檔案，已壓縮及密碼保護"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "在階層式目錄架構的多個檔案"
+
+msgid "Storage Type"
+msgstr "儲存類型"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"CT 將檔案儲存在加密的 7zip 存檔中。在查看或編輯檔案時，CT 會將加密的存檔提取"
+"到臨時目錄中，然後處理未加密的副本。關閉時，未加密的副本將從臨時目錄中刪除。"
+"請注意，在應用程式或系統崩潰的情況下，未加密的檔案將保留在臨時目錄中。"
+
+msgid "Enter the New Password Twice"
+msgstr "輸入兩次新密碼"
+
+msgid "Autosave Every"
+msgstr "自動儲存每隔"
+
+msgid "Minutes"
+msgstr "分鐘"
+
+msgid "The Password Fields Must be Filled."
+msgstr "密碼必填."
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "兩次輸入密碼不符合."
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "The Current Document was Updated."
+msgstr "當前檔案已自動更新。"
+
+msgid "Do you want to Save the Changes?"
+msgstr "要儲存檔案的修改嗎？"
+
+msgid "Do you want to Execute the Code?"
+msgstr "你想執行代碼嗎？"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "執行代碼前請確認"
+
+msgid "Use Internal Terminal"
+msgstr "使用內部終端機"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr "一個層級式筆記記錄程式，具有豐富文字和語法醒目提示的功能"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"本程式是自由軟體；你可以根據 GNU 通用公共許可證的條款重新發布它和/或修改"
+"它。\n"
+"它是根據 GNU 通用公共許可證的條款發布的。\n"
+"自由軟體基金會；許可證的第三版，或(由你選擇)任何後來的版本。\n"
+"\n"
+"分發這個程式是希望它能起到作用，\n"
+"但沒有任何保證；甚至沒有隱含的保證\n"
+"適銷性或符合某一特定目的。請參閱\n"
+"GNU 通用公共許可證，了解更多詳細訊息.\n"
+"\n"
+"您應該已經收到了 GNU 通用公共許可證的副本\n"
+"與此程式一起使用；如果不是，請寫信給自由軟體\n"
+"基金會公司，地址：波士頓富蘭克林大街 51 號，5 樓，波士頓,\n"
+"麻省理工學院 02110-1301 年，美國。\n"
+
+msgid "Arabic"
+msgstr "阿拉伯語"
+
+msgid "Armenian"
+msgstr "亞美尼亞語"
+
+msgid "Bulgarian"
+msgstr "保加利亞語"
+
+msgid "Chinese Simplified"
+msgstr "簡體中文"
+
+msgid "Chinese Traditional"
+msgstr "繁體中文"
+
+msgid "Croatian"
+msgstr "克羅埃西亞語"
+
+msgid "Czech"
+msgstr "捷克語"
+
+msgid "Dutch"
+msgstr "荷蘭語"
+
+msgid "Finnish"
+msgstr "芬蘭語"
+
+msgid "French"
+msgstr "法語"
+
+msgid "German"
+msgstr "德語"
+
+msgid "Greek"
+msgstr "希臘語"
+
+msgid "Hindi India"
+msgstr "印地語"
+
+msgid "Hungarian"
+msgstr "匈牙利語"
+
+msgid "Italian"
+msgstr "義大利語"
+
+msgid "Japanese"
+msgstr "日語"
+
+msgid "Kazakh"
+msgstr "哈薩克語"
+
+msgid "Kazakh (Latin)"
+msgstr "哈薩克語(拉丁)"
+
+msgid "Korean"
+msgstr "韓語"
+
+msgid "Lithuanian"
+msgstr "立陶宛語"
+
+msgid "Persian"
+msgstr "波斯語"
+
+msgid "Polish"
+msgstr "波蘭語"
+
+msgid "Portuguese"
+msgstr "葡萄牙語"
+
+msgid "Portuguese Brazil"
+msgstr "巴西葡萄牙語"
+
+msgid "Romanian"
+msgstr "羅馬尼亞語"
+
+msgid "Russian"
+msgstr "俄語"
+
+msgid "Slovak"
+msgstr "斯洛伐克語"
+
+msgid "Slovenian"
+msgstr "斯洛文尼亞語"
+
+msgid "Spanish"
+msgstr "西班牙語"
+
+msgid "Swedish"
+msgstr "瑞典語"
+
+msgid "Turkish"
+msgstr "土耳其語"
+
+msgid "Ukrainian"
+msgstr "烏克蘭語"
+
+msgid "About OliveSet"
+msgstr "關於 OliveSet"
+
+msgid "Tree Summary Information"
+msgstr "樹摘要訊息"
+
+msgid "Number of Rich Text Nodes"
+msgstr "豐富文字節點個數"
+
+msgid "Number of Plain Text Nodes"
+msgstr "純文字節點個數"
+
+msgid "Number of Code Nodes"
+msgstr "代碼節點個數"
+
+msgid "Number of Images"
+msgstr "圖片個數"
+
+msgid "Number of LatexBoxes"
+msgstr "LaTeXBox 個數"
+
+msgid "Number of Embedded Files"
+msgstr "嵌入檔案個數"
+
+msgid "Number of Tables"
+msgstr "表格個數"
+
+msgid "Number of CodeBoxes"
+msgstr "代碼框個數"
+
+msgid "Number of Anchors"
+msgstr "錨點個數"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "分享之節點/群組數量"
+
+msgid "Latex Text"
+msgstr "LaTeX 文字"
+
+msgid "Image Size dpi"
+msgstr "影像大小(dpi)"
+
+msgid "Tutorial"
+msgstr "教學"
+
+msgid "Reference"
+msgstr "參考"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "LaTeX 數學和方程式教學"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "LaTeX 數學符號參考"
+
+msgid "Image Properties"
+msgstr "圖片屬性"
+
+msgid "Rotate Left"
+msgstr "向左旋轉"
+
+msgid "Rotate Right"
+msgstr "向右旋轉"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr "為了裁剪圖像，請使用滑鼠選擇區域，然後按一下“確定”"
+
+msgid "Flip Horizontally"
+msgstr "水平翻轉"
+
+msgid "Flip Vertically"
+msgstr "垂直翻轉"
+
+msgid "Width"
+msgstr "寬"
+
+msgid "Height"
+msgstr "高"
+
+msgid "Plain Text"
+msgstr "純文字"
+
+msgid "Automatic Syntax Highlighting"
+msgstr "自動語法醒目提示"
+
+msgid "Type"
+msgstr "類型"
+
+msgid "pixels"
+msgstr "像素"
+
+msgid "Size"
+msgstr "尺寸"
+
+msgid "Show Line Numbers"
+msgstr "顯示行號"
+
+msgid "Highlight Matching Brackets"
+msgstr "醒目提示括號符合"
+
+msgid "Options"
+msgstr "選項"
+
+msgid "Rows"
+msgstr "列"
+
+msgid "Columns"
+msgstr "欄"
+
+msgid "Default Width"
+msgstr "預設寬度"
+
+msgid "Table Size"
+msgstr "表格尺寸"
+
+msgid "Column Properties"
+msgstr "欄屬性"
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "輕量級界面(大型表格快很多)"
+
+msgid "Import from CSV File"
+msgstr "從 CSV 檔案匯入"
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Search for"
+msgstr "查找"
+
+msgid "Replace with"
+msgstr "替換為"
+
+msgid "Replace in Link Targets"
+msgstr "在連結目標替換"
+
+msgid "Replace options"
+msgstr "替換選項"
+
+msgid "Match Case"
+msgstr "符合大小寫"
+
+msgid "Regular Expression"
+msgstr "正規表示式"
+
+msgid "Online Manual"
+msgstr "線上手冊"
+
+msgid "Accent Insensitive"
+msgstr "口音不敏感"
+
+msgid "Override Exclusions"
+msgstr "覆蓋排除"
+
+msgid "Whole Word"
+msgstr "完整單詞"
+
+msgid "Start Word"
+msgstr "單詞開始部分"
+
+msgid "More Words, Exact Match"
+msgstr "更多文字，精確匹配"
+
+msgid "More Words, Disregard Order"
+msgstr "更多文字，不照順序"
+
+msgid "More Words, Match Any"
+msgstr "更多文字，符合任一"
+
+msgid "Forward"
+msgstr "向前"
+
+msgid "Backward"
+msgstr "向後"
+
+msgid "All, List Matches"
+msgstr "所有，並列出符合"
+
+msgid "First From Selection"
+msgstr "在所選中搜尋"
+
+msgid "First in All Range"
+msgstr "在當前頁搜尋"
+
+msgid "Node Created After"
+msgstr "在此之後創建的節點"
+
+msgid "Node Created Before"
+msgstr "在此之前創建的節點"
+
+msgid "Node Modified After"
+msgstr "在此之後修改的節點"
+
+msgid "Node Modified Before"
+msgstr "在此之前修改過的節點"
+
+msgid "Time filter"
+msgstr "時間篩選器"
+
+msgid "Node Content"
+msgstr "節點內容"
+
+msgid "Node Name and Tags"
+msgstr "節點名稱和標籤"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "已選擇的節點和子節點"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "顯示循環搜尋/替換對話框"
+
+msgid "Search options"
+msgstr "搜尋選項"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"「替換」欄位為空：所有找到的符合項目都將被刪除。\n"
+"是否繼續？"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"由於在節點屬性中設置了排除項，至少跳過了一個節點。\n"
+"為了清除所有排除項，請使用選單：\n"
+"搜索 -> 從搜尋中清除所有排除項"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "隱藏 (用 『%s』 恢復)"
+
+msgid "Node Name"
+msgstr "節點名稱"
+
+msgid "Line"
+msgstr "行"
+
+msgid "Line Content"
+msgstr "首行內容"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "重複上次搜尋/替換"
+
+msgid "Close"
+msgstr "關閉"
+
+msgid "Find Previous"
+msgstr "查找上一個"
+
+msgid "Find Next"
+msgstr "查找下一個"
+
+msgid "Replace"
+msgstr "替換"
+
+msgid "Undo"
+msgstr "撤銷"
+
+msgid "Remove"
+msgstr "刪除"
+
+msgid "Remove User Colour from Palette"
+msgstr "從調色盤中刪除使用者顏色"
+
+msgid "Colour"
+msgstr "顏色"
+
+msgid "Question"
+msgstr "詢問"
+
+msgid "Info"
+msgstr "訊息"
+
+msgid "Error"
+msgstr "錯誤"
+
+msgid "Select File"
+msgstr "選擇檔案"
+
+msgid "Select Folder"
+msgstr "選擇目錄"
+
+msgid "Save File as"
+msgstr "檔案另存為"
+
+msgid "Save To Folder"
+msgstr "儲存到目錄"
+
+msgid "To WebSite"
+msgstr "連接到網址"
+
+msgid "To File"
+msgstr "連接到檔案"
+
+msgid "To Folder"
+msgstr "到目錄"
+
+msgid "To Node"
+msgstr "連接到節點"
+
+msgid "Anchor Name (optional)"
+msgstr "錨點名稱(可選)"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "在已選中的節點中沒有錨點."
+
+msgid "Choose Existing Anchor"
+msgstr "選擇現有的錨點"
+
+msgid "Anchor Name"
+msgstr "錨點名稱"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "符合模式 '%s' 未找到"
+
+msgid "Bold"
+msgstr "粗體"
+
+msgid "Use Selected Color"
+msgstr "使用所選顏色"
+
+msgid "Use Selected Icon"
+msgstr "使用所選圖示"
+
+msgid "Rich Text"
+msgstr "豐富文字"
+
+msgid "Node Type"
+msgstr "節點類型"
+
+msgid "Tags for Searching"
+msgstr "搜尋標籤"
+
+msgid "Exclude from Searches"
+msgstr "從搜尋中排除"
+
+msgid "This Node"
+msgstr "這個節點"
+
+msgid "The Subnodes"
+msgstr "子節點"
+
+msgid "Read Only"
+msgstr "唯讀"
+
+msgid "Unique Id"
+msgstr "單一 ID"
+
+msgid "Shared Nodes Group"
+msgstr "分享的節點群組"
+
+msgid "Choose Existing Tag"
+msgstr "選擇現有的標籤"
+
+msgid "Tag Name"
+msgstr "標籤名稱"
+
+msgid "Pick a Color"
+msgstr "選擇顏色"
+
+msgid "Select Node Icon"
+msgstr "選擇節點圖示"
+
+msgid "Involved Nodes"
+msgstr "涉及到的節點"
+
+msgid "Selected Text Only"
+msgstr "已選擇的文字"
+
+msgid "Selected Node Only"
+msgstr "已選擇的節點"
+
+msgid "Selected Node and Subnodes"
+msgstr "已選擇的節點和子節點"
+
+msgid "All the Tree"
+msgstr "所有的樹"
+
+msgid "Include Node Name"
+msgstr "包含節點名稱"
+
+msgid "Links Tree in Every Page"
+msgstr "在所有頁面中連結樹"
+
+msgid "New Node in New Page"
+msgstr "在新頁面建立新節點"
+
+msgid "Single File"
+msgstr "單獨的檔案"
+
+msgid "Index"
+msgstr "索引"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr "警告：一張或多張圖片被壓縮並插入到當前頁面!"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "出於安全原因，LaTeX渲染已被阻止"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr "來源檔案包含可以存取本機檔案的檔案 I/O 命令"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"移除諸如 \\verbatiminput、\\openin、\\openout 之類的命令以及不安全的 \\input/"
+"\\include 路徑"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "無法存取可執行的'latex'及'dvipng'"
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "舉例，在 Ubuntu 中安裝套件使用："
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "舉例，在 Mac OS 中安裝套件使用："
+
+msgid "Could not access the executable 'latex'"
+msgstr "無法存取可執行的'latex'"
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "無法存取可執行的'dvipng'"
+
+msgid "Downloading"
+msgstr "正在下載"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "路徑%s不存在"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "最近打開的 OliveSet 檔案"
+
+msgid "_Hide"
+msgstr "隱藏(_H)"
+
+msgid "_Quit"
+msgstr "退出(_Q)"
+
+msgid "Hide the Window"
+msgstr "隱藏視窗"
+
+msgid "Quit the Application"
+msgstr "退出程式"
+
+msgid "Spell Check"
+msgstr "拼寫檢查"
+
+msgid "Word Count"
+msgstr "字數"
+
+msgid "Date Created"
+msgstr "創建日期"
+
+msgid "Date Modified"
+msgstr "修改日期"
+
+msgid "Subnodes"
+msgstr "子節點"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr "此通信期未執行先前的節點複製或來源樹不再可用."
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "來源樹不再可用."
+
+msgid "Show Menubar:"
+msgstr "顯示/隱藏工具欄："
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "\"%s\" 不是一個 OliveSet 檔案"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"解析 OliveSet 路徑時出錯：\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "要開啟最後一次備份嗎？"
+
+msgid "Failed to Load from Backup Data"
+msgstr "備份資料開啟失敗"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "未找到節點 '%s'."
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "臨時檔案已被創建並被外部程式打開。"
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "退出 OliveSet 前先退出外部程式。"
+
+msgid "Did you Quit the External Applications?"
+msgstr "要退出外部程式嗎？"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "無法儲存：「%s」為唯讀文件"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr "因 CT* 檔案在外部被修改，檔案已重載."
+
+msgid "Copy Selection or All"
+msgstr "複製已選或全部"
+
+msgid "Paste"
+msgstr "貼上(_P)"
+
+msgid "Remove from list"
+msgstr "從列表中刪除"
+
+msgid "_File"
+msgstr "檔案(_F)"
+
+msgid "_Edit"
+msgstr "編輯(_E)"
+
+msgid "_Insert"
+msgstr "插入(_I)"
+
+msgid "F_ormat"
+msgstr "格式化(_O)"
+
+msgid "_Tree"
+msgstr "樹型(_T)"
+
+msgid "Too_ls"
+msgstr "工具(_L)"
+
+msgid "_Search"
+msgstr "搜尋(_S)"
+
+msgid "_View"
+msgstr "查看(_V)"
+
+msgid "_Bookmarks"
+msgstr "書籤(_B)"
+
+msgid "_Help"
+msgstr "幫助(_H)"
+
+msgid "Insert _Date Node"
+msgstr "插入日期節點(_D)"
+
+msgid "Node _Move"
+msgstr "節點移動(_M)"
+
+msgid "Nod_es Sort"
+msgstr "節點排序(_E)"
+
+msgid "B_ookmarks"
+msgstr "書籤(_O)"
+
+msgid "_Import"
+msgstr "匯入(_I)"
+
+msgid "_Export"
+msgstr "匯出(_E)"
+
+msgid "_Preferences"
+msgstr "設置(_P)"
+
+msgid "_Recent Documents"
+msgstr "最近檔案(_R)"
+
+msgid "C_hange Case"
+msgstr "改變大小寫(_H)"
+
+msgid "L_ist"
+msgstr "列出(_I)"
+
+msgid "_Justify"
+msgstr "對齊(_J)"
+
+msgid "Toggle _Font Property"
+msgstr "切換字體屬性(_F)"
+
+msgid "_Toggle Heading Property"
+msgstr "切換標題屬性(_T)"
+
+msgid "I_nsert"
+msgstr "插入(_N)"
+
+msgid "_Find"
+msgstr "查找(_F)"
+
+msgid "_Replace"
+msgstr "替換(_R)"
+
+msgid "Ro_w"
+msgstr "列(_W)"
+
+msgid "_Table"
+msgstr "表格(_T)"
+
+msgid "_CodeBox"
+msgstr "剪切代碼框(_C)"
+
+msgid "File"
+msgstr "檔案"
+
+msgid "_New Instance..."
+msgstr "新建實例(_N)..."
+
+msgid "Start a New Instance of OliveSet"
+msgstr "開始一個新的 OliveSet 實例"
+
+msgid "_Open File..."
+msgstr "打開檔案(_O)..."
+
+msgid "Open a OliveSet File"
+msgstr "打開一個 OliveSet 檔案"
+
+msgid "Open Fo_lder..."
+msgstr "打開目錄(_O)..."
+
+msgid "Open a OliveSet Folder"
+msgstr "打開一個 OliveSet 目錄"
+
+msgid "_Save"
+msgstr "儲存(_S)"
+
+msgid "Save File"
+msgstr "儲存檔案"
+
+msgid "Save and _Vacuum"
+msgstr "儲存並清理(_V)"
+
+msgid "Save File and Vacuum"
+msgstr "儲存檔案並清理"
+
+msgid "Save _As..."
+msgstr "另存為(_A)..."
+
+msgid "Save File As"
+msgstr "另存檔案為"
+
+msgid "Pa_ge Setup..."
+msgstr "頁面設置(_G)..."
+
+msgid "Set up the Page for Printing"
+msgstr "設置列印頁面"
+
+msgid "P_rint..."
+msgstr "列印(_R)..."
+
+msgid "Print"
+msgstr "列印"
+
+msgid "Preferences"
+msgstr "設置"
+
+msgid "_Import Preferences..."
+msgstr "匯入配置(_I)..."
+
+msgid "Import Preferences"
+msgstr "匯入配置"
+
+msgid "_Export Preferences..."
+msgstr "匯出配置(_E)..."
+
+msgid "Export Preferences"
+msgstr "匯出配置"
+
+msgid "Tree In_fo"
+msgstr "樹訊息(_F)"
+
+msgid "_Document Path to Clipboard"
+msgstr "文件路徑到剪貼板(_D)"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "將文件路徑複製到剪貼板"
+
+msgid "E_xit OliveSet"
+msgstr "退出 OliveSet (_X)"
+
+msgid "Exit from OliveSet"
+msgstr "從 OliveSet 中退出"
+
+msgid "Edit/Insert"
+msgstr "編輯/插入"
+
+msgid "_Undo"
+msgstr "撤銷(_U)"
+
+msgid "Undo Last Operation"
+msgstr "撤銷上次操作"
+
+msgid "_Redo"
+msgstr "重做(_R)"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "重複上次已撤銷的操作"
+
+msgid "Insert I_mage..."
+msgstr "插入圖片(_I)..."
+
+msgid "Insert an Image"
+msgstr "插入一張圖片"
+
+msgid "Insert Late_x..."
+msgstr "插入 LaTeX (_X)..."
+
+msgid "Insert LatexBox"
+msgstr "插入 LaTeXBox"
+
+msgid "Insert _Table..."
+msgstr "插入表格(_T)..."
+
+msgid "Insert a Table"
+msgstr "插入一個表格"
+
+msgid "Insert _CodeBox..."
+msgstr "插入代碼框(_C)..."
+
+msgid "Insert _File..."
+msgstr "插入檔案(_F)..."
+
+msgid "Insert File"
+msgstr "插入檔案"
+
+msgid "Insert/Edit _Link..."
+msgstr "插入/編輯連結(_L)..."
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "插入/編輯連結"
+
+msgid "Insert _Anchor..."
+msgstr "插入錨點(_A)..."
+
+msgid "Insert an Anchor"
+msgstr "插入一個錨點"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "插入 T_OC 和標頭折疊器..."
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "插入目錄和標題折疊器/擴展器"
+
+msgid "Insert Timestam_p"
+msgstr "插入時間戳(_P)"
+
+msgid "Insert Timestamp"
+msgstr "插入時間戳"
+
+msgid "Insert _Special Character..."
+msgstr "插入特殊字元(_S)..."
+
+msgid "Insert a Special Character"
+msgstr "插入一個特殊字元"
+
+msgid "Insert _Horizontal Rule"
+msgstr "插入分割線(_H)"
+
+msgid "Insert Horizontal Rule"
+msgstr "插入分割線"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "選中文字轉換為小寫(_L)"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "選中文字轉換為小寫"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "選中文字轉換為大寫(_U)"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "選中文字轉換為大寫"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "切換已選中文字的大小寫(_T)"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "切換已選中文字的大小寫"
+
+msgid "Cu_t as Plain Text"
+msgstr "剪切為純文字(_T)"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "剪切為純文字，去除豐富文字的格式"
+
+msgid "_Copy as Plain Text"
+msgstr "複製為純文字(_C)"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "複製為純文字，去除豐富文字的格式"
+
+msgid "_Paste as Plain Text"
+msgstr "貼上為純文字(_P)"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "貼上為純文字，去除豐富文字的格式"
+
+msgid "C_ut Row"
+msgstr "剪切列(_U)"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "剪切當前/已選中列"
+
+msgid "C_opy Row"
+msgstr "複製列(_O)"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "複製當前/已選中列"
+
+msgid "De_lete Row"
+msgstr "刪除列(_L)"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "刪除當前/已選中列"
+
+msgid "_Duplicate Row"
+msgstr "複製列(_D)"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "複製當前/已選中列"
+
+msgid "_Move Up Row"
+msgstr "上移一列(_M)"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "上移當前/已選中列"
+
+msgid "Mo_ve Down Row"
+msgstr "下移一列(_V)"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "下移當前/已選中列"
+
+msgid "C_ut Table"
+msgstr "剪切表格(_U)"
+
+msgid "Cut the Selected Table"
+msgstr "剪切已選中表格"
+
+msgid "_Copy Table"
+msgstr "複製表格(_C)"
+
+msgid "Copy the Selected Table"
+msgstr "複製已選中表格"
+
+msgid "_Delete Table"
+msgstr "刪除表格(_D)"
+
+msgid "Delete the Selected Table"
+msgstr "刪除已選中表格"
+
+msgid "_Add Column"
+msgstr "新增欄(_A)"
+
+msgid "Add a Table Column"
+msgstr "新增一個表格欄"
+
+msgid "Cu_t Column"
+msgstr "切下欄(_t)"
+
+msgid "Cut a Table Column"
+msgstr "切下一個表格欄"
+
+msgid "_Copy Column"
+msgstr "複製欄(_C)"
+
+msgid "Copy a Table Column"
+msgstr "複製一個表格欄"
+
+msgid "_Paste Column"
+msgstr "貼上欄(_P)"
+
+msgid "Paste a Table Column"
+msgstr "貼上一個表格欄"
+
+msgid "De_lete Column"
+msgstr "刪除欄(_L)"
+
+msgid "Delete the Selected Table Column"
+msgstr "刪除選定的表格欄"
+
+msgid "Move Column _Left"
+msgstr "向左移動欄(_L)"
+
+msgid "Move the Selected Column Left"
+msgstr "將所選欄向左移動"
+
+msgid "Move Column _Right"
+msgstr "向右移動欄(_R)"
+
+msgid "Move the Selected Column Right"
+msgstr "將所選欄向右移動"
+
+msgid "Increase Column Width"
+msgstr "增加欄寬"
+
+msgid "Increase the Width of the Column"
+msgstr "增加欄的寬度"
+
+msgid "Decrease Column Width"
+msgstr "減小欄寬"
+
+msgid "Decrease the Width of the Column"
+msgstr "減小欄的寬度"
+
+msgid "_Add Row"
+msgstr "新增列(_A)"
+
+msgid "Add a Table Row"
+msgstr "新增一個表格列"
+
+msgid "Cu_t Row"
+msgstr "剪切列(_T)"
+
+msgid "Cut a Table Row"
+msgstr "剪切一個表格列"
+
+msgid "_Copy Row"
+msgstr "複製列(_C)"
+
+msgid "Copy a Table Row"
+msgstr "複製一個表格列"
+
+msgid "_Paste Row"
+msgstr "貼上列(_P)"
+
+msgid "Paste a Table Row"
+msgstr "貼上一個表格列"
+
+msgid "Delete the Selected Table Row"
+msgstr "刪除當前所選表格列"
+
+msgid "Move Row _Up"
+msgstr "上移列(_U)"
+
+msgid "Move the Selected Row Up"
+msgstr "將當前所選列向上移動"
+
+msgid "Move Row _Down"
+msgstr "下移列(_D)"
+
+msgid "Move the Selected Row Down"
+msgstr "將當前所選列向下移動"
+
+msgid "Sort Rows De_scending"
+msgstr "降冪排序列(_S)"
+
+msgid "Sort all the Rows Descending"
+msgstr "降冪排序所有列"
+
+msgid "Sort Rows As_cending"
+msgstr "升冪排序列(_C)"
+
+msgid "Sort all the Rows Ascending"
+msgstr "升冪排序所有列"
+
+msgid "_Edit Table Properties..."
+msgstr "編輯表格屬性(_E)..."
+
+msgid "Edit the Table Properties"
+msgstr "編輯表格屬性"
+
+msgid "_Table Export..."
+msgstr "匯出表格(_T)..."
+
+msgid "Export Table as CSV File"
+msgstr "匯出表格為 CSV 檔案"
+
+msgid "Change CodeBox _Properties..."
+msgstr "修改代碼框屬性(_P)..."
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "編輯代碼框屬性"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "載入文字檔案到代碼框(_L)..."
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "載入文字檔案到代碼框中"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "代碼框儲存到文字檔案(_S)..."
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "儲存代碼框內容到文字檔案"
+
+msgid "C_ut CodeBox"
+msgstr "剪切代碼框(_U)"
+
+msgid "Cut the Selected CodeBox"
+msgstr "剪切當前所選的代碼框"
+
+msgid "_Copy CodeBox"
+msgstr "複製代碼框(_C)"
+
+msgid "Copy the Selected CodeBox"
+msgstr "複製當前所選的代碼框"
+
+msgid "_Copy CodeBox Content"
+msgstr "複製代碼框內容(_C)"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "複製當前所選的代碼框內容"
+
+msgid "_Delete CodeBox"
+msgstr "刪除代碼框(_D)"
+
+msgid "Delete the Selected CodeBox"
+msgstr "刪除當前所選的代碼框"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "刪除代碼框但保留其內容(_ K)"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "刪除所選的代碼框但保留其內容"
+
+msgid "Increase CodeBox Width"
+msgstr "增加代碼框寬度"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "增加代碼框的寬度"
+
+msgid "Decrease CodeBox Width"
+msgstr "減少代碼框寬度"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "減少代碼框的寬度"
+
+msgid "Increase CodeBox Height"
+msgstr "增加代碼框高度"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "增加代碼框的高度"
+
+msgid "Decrease CodeBox Height"
+msgstr "減少代碼框高度"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "減少代碼框的高度"
+
+msgid "Format"
+msgstr "格式化"
+
+msgid "Format Clo_ne"
+msgstr "複製格式(_N)"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "在游標處複製文字格式類型"
+
+msgid "Format _Latest"
+msgstr "最後格式(_L)"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "上次所操作的文字格式類型"
+
+msgid "_Remove Formatting"
+msgstr "移除格式化(_R)"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "移除已選擇文字格式化"
+
+msgid "Text _Color Foreground"
+msgstr "文字前景色(_C)"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "修改已選文字的前景色"
+
+msgid "Text C_olor Background"
+msgstr "文字背景色(_O)"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "修改已選文字的背景色"
+
+msgid "Toggle _Bold Property"
+msgstr "切換粗體(_B)"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "切換已選文字的粗體屬性"
+
+msgid "Toggle _Italic Property"
+msgstr "切換斜體(_I)"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "切換已選文字的斜體屬性"
+
+msgid "Toggle _Underline Property"
+msgstr "切換底線(_U)"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "切換已選文字的底線屬性"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "切換刪除線(_K)"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "切換已選文字的刪除線屬性"
+
+msgid "Toggle h_1 Property"
+msgstr "切換h_1屬性"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "切換選定文字的h1屬性"
+
+msgid "Toggle h_2 Property"
+msgstr "切換h_2屬性"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "切換選定文字的h2屬性"
+
+msgid "Toggle h_3 Property"
+msgstr "切換h_3屬性"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "切換選定文字的h3屬性"
+
+msgid "Toggle h_4 Property"
+msgstr "切換h_4屬性"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "切換選定文字的h4屬性"
+
+msgid "Toggle h_5 Property"
+msgstr "切換h_5屬性"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "切換所選文字的h5屬性"
+
+msgid "Toggle h_6 Property"
+msgstr "切換h_6屬性"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "切換選定文字的h6屬性"
+
+msgid "Toggle _Small Property"
+msgstr "切換小字(_S)"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "切換已選文字的小字屬性"
+
+msgid "Toggle Su_bscript Property"
+msgstr "切換下標(_B)"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "切換已選文字的下標屬性"
+
+msgid "Toggle Su_perscript Property"
+msgstr "切換上標(_P)"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "切換已選文字的上標屬性"
+
+msgid "Toggle _Monospace Property"
+msgstr "切換等寬(_M)"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "切換已選文字的等寬屬性"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "設置/取消符號列表(_B)"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr "設置/取消符號列表"
+
+msgid "Set/Unset _Numbered List"
+msgstr "設置/取消數字列表(_N)"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr "設置/取消數字列表"
+
+msgid "Set/Unset _To-Do List"
+msgstr "設置/取消To-Do列表(_T)"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr "設置/取消To-Do列表"
+
+msgid "Justify _Left"
+msgstr "左對齊(_L)"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "前端段落左對齊"
+
+msgid "Justify _Center"
+msgstr "居中對齊(_C)"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "當前段落居中對齊"
+
+msgid "Justify _Right"
+msgstr "右對齊(_R)"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "當前段落右對齊"
+
+msgid "Justify _Fill"
+msgstr "兩端對齊(_F)"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "當前段落兩端對齊"
+
+msgid "_Indent Paragraph"
+msgstr "縮排段落(_I)"
+
+msgid "Indent the Current Paragraph"
+msgstr "縮排當前段落"
+
+msgid "_Unindent Paragraph"
+msgstr "取消縮排段落(_U)"
+
+msgid "Unindent the Current Paragraph"
+msgstr "解除當前段落的縮排"
+
+msgid "_Expand TOC Headers"
+msgstr "展開目錄標題(_E)"
+
+msgid "Expand TOC Headers"
+msgstr "展開目錄標題"
+
+msgid "_Collapse TOC Headers"
+msgstr "折疊目錄標題(_C)"
+
+msgid "Collapse TOC Headers"
+msgstr "折疊所有目錄標題"
+
+msgid "Tools"
+msgstr "工具"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "啟用/禁用拼寫檢查(_S)"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "啟用/禁用拼寫檢查"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "啟用/禁用VIM模式(_V)"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "啟用/禁用VIM模式"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "刪除行尾空格(_P)"
+
+msgid "Strip Trailing Spaces"
+msgstr "刪除行尾空格"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "替換為(_R)"
+
+msgid "Replace Tabs with Spaces"
+msgstr "TAB替換為空白"
+
+msgid "_Command Palette..."
+msgstr "命令選項板(_C)..."
+
+msgid "Command Palette"
+msgstr "命令選項板"
+
+msgid "_Execute Code All"
+msgstr "執行所有代碼(_E)"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "執行代碼框或節點代碼"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "執行行或選擇代碼(_X)"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "執行當前行或選擇之代碼"
+
+msgid "Tree"
+msgstr "樹型"
+
+msgid "Go _Back"
+msgstr "後退(_B)"
+
+msgid "Go to the Previous Visited Node"
+msgstr "回到上一個已訪問過的節點"
+
+msgid "Go _Forward"
+msgstr "前進(_F)"
+
+msgid "Go to the Next Visited Node"
+msgstr "回到下一個已訪問過的節點"
+
+msgid "Add _Node..."
+msgstr "新增節點(_N)..."
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "新增一個當前選中節點的上級節點"
+
+msgid "Add _Subnode..."
+msgstr "新增子節點(_S)..."
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "為當前所選節點新增一個子節點"
+
+msgid "_Duplicate Node"
+msgstr "複製節點(_D)"
+
+msgid "Duplicate the Selected Node"
+msgstr "複製所選節點"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "複製帶有子節點的選定節點(_A)"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "複製選中的節點及其子節點"
+
+msgid "_Create Shared Node"
+msgstr "建立分享節點(_C)"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr "建立一個新節點分享所選節點相同資料"
+
+msgid "Copy Node and S_ubnodes"
+msgstr "複製節點跟子節點(_U)"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "複製選中的節點及其子節點"
+
+msgid "_Paste Node and Subnodes"
+msgstr "貼上節點跟子節點(_P)"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "貼上已複製的節點和子節點"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "插入今日節點(_T)在樹根之下"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "插入一個今日的 年/月/日 層級節點在樹根之下"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "插入今日節點(_y)在選擇節點之下"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "插入一個今日的 年/月/日 層級節點在選擇節點之下"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "插入明日節點(_O)在樹根之下"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "插入一個明日的 年/月/日 層級節點在樹根之下"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "插入明日節點(_W)在選擇節點之下"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "插入一個明日的 年/月/日 層級節點在選擇節點之下"
+
+msgid "C_hange Node Properties..."
+msgstr "修改節點屬性(_H)..."
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "編輯當前所選節點的屬性"
+
+msgid "Toggle _Read Only"
+msgstr "切換唯讀(_R)"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "切換已選節點的唯讀屬性"
+
+msgid "Cop_y Link to Node"
+msgstr "將連結複製到節點(_Y)"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "將指向選定節點的連結複製到剪貼板"
+
+msgid "Children _Inherit Syntax"
+msgstr "繼承語法醒目提示(_I)"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr "改變當前所選節點的子節點語法醒目提示與其父節點相同"
+
+msgid "_Handle Bookmarks..."
+msgstr "處理書籤(_H)..."
+
+msgid "Add to Boo_kmarks"
+msgstr "新增到書籤(_K)"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "新增當前節點到書籤列表"
+
+msgid "Remove from Boo_kmarks"
+msgstr "從書籤中移除(_K)"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "從當前節點到書籤列表中刪除"
+
+msgid "E_xpand All Nodes"
+msgstr "展開所有節點(_X)"
+
+msgid "Expand All the Tree Nodes"
+msgstr "展開所有樹節點"
+
+msgid "_Collapse All Nodes"
+msgstr "收縮所有節點(_C)"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "收縮所有樹節點"
+
+msgid "Node _Up"
+msgstr "上移節點(_U)"
+
+msgid "Move the Selected Node Up"
+msgstr "將當前所選節點向上移動"
+
+msgid "Node _Down"
+msgstr "下移節點(_D)"
+
+msgid "Move the Selected Node Down"
+msgstr "將當前所選節點向下移動"
+
+msgid "Node _Left"
+msgstr "左移節點"
+
+msgid "Move the Selected Node Left"
+msgstr "將當前所選節點向左移動"
+
+msgid "Node _Right"
+msgstr "右移節點(_R)"
+
+msgid "Move the Selected Node Right"
+msgstr "將當前所選節點向右移動"
+
+msgid "Node Change _Parent..."
+msgstr "改變父節點(_P)..."
+
+msgid "Change the Selected Node's Parent"
+msgstr "改變當前所選節點的父節點"
+
+msgid "Sort Tree _Ascending"
+msgstr "升冪排序樹(_A)"
+
+msgid "Sort the Tree Ascending"
+msgstr "升冪排序所有樹"
+
+msgid "Sort Tree _Descending"
+msgstr "降冪排序樹(_D)"
+
+msgid "Sort the Tree Descending"
+msgstr "降冪排序所有樹"
+
+msgid "Sort Siblings A_scending"
+msgstr "升冪排序同級(_S)"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "升冪排序所有與當前所選同級的節點"
+
+msgid "Sort Siblings D_escending"
+msgstr "降冪排序同級(_E)"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "降冪排序所有與當前所選同級的節點"
+
+msgid "De_lete Node"
+msgstr "刪除節點(_L)"
+
+msgid "Delete the Selected Node"
+msgstr "刪除已選擇節點"
+
+msgid "Find/Replace"
+msgstr "查找/替換"
+
+msgid "_Quick Node Selection..."
+msgstr "快速節點選擇(_Q)..."
+
+msgid "Quick Node Selection"
+msgstr "快速節點選擇"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "在節點名和標籤中搜尋(_N)..."
+
+msgid "Find in Nodes Names and Tags"
+msgstr "在節點名和標籤中搜尋"
+
+msgid "_Find in Node Content..."
+msgstr "在節點內容中搜尋(_F)..."
+
+msgid "Find into the Selected Node Content"
+msgstr "在已選節點內容中搜尋"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "在所有節點內容中搜尋(_I)..."
+
+msgid "Find in Multiple Nodes"
+msgstr "在所有節點內容中搜尋"
+
+msgid "Find _Again"
+msgstr "重複搜尋(_A)"
+
+msgid "Iterate the Last Find Operation"
+msgstr "重複上次的搜尋操作"
+
+msgid "Find _Back"
+msgstr "反向搜尋(_B)"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "反方向重複上次搜尋"
+
+msgid "_Replace in Node Content..."
+msgstr "在節點內容中替換(_R)..."
+
+msgid "Replace into the Selected Node Content"
+msgstr "在當前已選節點內容中替換"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "在多個節點中替換(_M)..."
+
+msgid "Replace A_gain"
+msgstr "重複上次替換(_G)"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "重複上次替換操作"
+
+msgid "Show All Matches _Dialog..."
+msgstr "顯示所有已符合的對話框(_D)..."
+
+msgid "Show Search All Matches Dialog"
+msgstr "顯示所有已符合的搜尋對話框"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "從搜尋中清除所有排除項(_C)"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "從搜尋中清除排除項的所有樹節點屬性"
+
+msgid "View"
+msgstr "檢視"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "顯示/隱藏樹資源管理器(_T)"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "切換樹的顯示"
+
+msgid "Show/Hide Te_rminal"
+msgstr "顯示/隱藏終端機(_R)"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "切換終端機的顯示"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "切換終端機/文字焦點(_x)"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "在終端機和文字間切換焦點"
+
+msgid "Show/Hide _Menubar"
+msgstr "顯示/隱藏工具欄(_M)"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "切換工具欄的顯示"
+
+msgid "Show/Hide Tool_bar"
+msgstr "顯示/隱藏工具欄(_B)"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "切換工具欄的顯示"
+
+msgid "Show/Hide _Statusbar"
+msgstr "顯示/隱藏狀態列(_S)"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr "切換顯示/隱藏狀態列"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "顯示/隱藏"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "切換顯示/隱藏父節點與子節點間的行"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "顯示/隱藏節點標題頭(_H)"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "切換節點標題頭的顯示"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "切換樹/文字焦點(_F)"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "在樹和文字件切換焦點"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "增加工具欄圖示大小(_I)"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "增加工具欄圖示大小"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "減少工具欄圖示大小(_D)"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "減少工具欄圖示大小"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "增加節點標題頭上次訪問的節點(_V)"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "增加節點標題頭上次訪問的節點"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "減少節點標題頭上次訪問的節點(_E)"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "減少節點標題頭上次訪問的節點"
+
+msgid "Full Screen _On/Off"
+msgstr "切換全螢幕(_O)"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "切換全螢幕"
+
+msgid "_Always On Top On/Off"
+msgstr "置頂開關(_A)"
+
+msgid "Always On Top On/Off"
+msgstr "置頂開關"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "停用_選單欄在標題欄(_N)"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "不要將選單欄放在標題欄中"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "啟用選單欄在標題欄(_N)"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "將選單欄放在標題欄中"
+
+msgid "Import"
+msgstr "匯入"
+
+msgid "From _OliveSet File"
+msgstr "來自 OliveSet 檔案(_C)"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "將 OliveSet 檔案新增節點到當前樹"
+
+msgid "From _OliveSet Folder"
+msgstr "來自 OliveSet 目錄(_C)"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "將 OliveSet 目錄新增節點到當前樹"
+
+msgid "From _Indented List File"
+msgstr "來自縮排列表檔案(_I)"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "從縮排列表檔案新增節點到當前樹"
+
+msgid "From _Plain Text File"
+msgstr "來自純文字檔案(_P)"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "將純文字檔案新增節點到當前樹"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "來自純文字目錄(_F)"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr "將純文字目錄新增節點到當前樹"
+
+msgid "From _HTML File"
+msgstr "來自 HTML 檔案(_H)"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "將 HTML 檔案新增節點到當前樹"
+
+msgid "From _Folder of HTML Files"
+msgstr "來自 HTML 目錄(_F)"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "將 HTML 目錄新增節點到當前樹"
+
+msgid "From _Markdown File"
+msgstr "來自 Markdown 檔案"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "將 Markdown 檔案中的節點新增到當前樹中"
+
+msgid "From _Folder of Markdown Files"
+msgstr "來自 Markdown 檔案的目錄(_F)"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "將節點從 Markdown 目錄新增到當前樹"
+
+msgid "From _Gnote Folder"
+msgstr "從 Gnote 目錄(_G)"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "從 Gnote 目錄新增節點到當前樹"
+
+msgid "From _KeepNote Folder"
+msgstr "從 KeepNote 目錄(_K)"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "從 KeepNote 目錄新增節點到當前樹"
+
+msgid "From _Leo File"
+msgstr "從 Leo 檔案(_L)"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "從 Leo 檔案新增節點到當前樹"
+
+msgid "From _Mempad File"
+msgstr "從 Mempad 檔案(_M)"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "從 Mempad 檔案新增節點到當前樹"
+
+msgid "From _NoteCase HTML File"
+msgstr "來自 NoteCase HTML 檔案(_N)"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "將 NoteCase HTML 檔案的節點新增到當前樹"
+
+msgid "From _RedNotebook HTML File"
+msgstr "來自 RedNotebook HTML 檔案(_R)"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "將 RedNotebook HTML 檔案的節點新增到當前樹"
+
+msgid "From T_omboy Folder"
+msgstr "來自 Tomboy 目錄(_O)"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "將 Tomboy 目錄新增節點到當前樹"
+
+msgid "From T_reepad Lite File"
+msgstr "來自 Treepad 檔案(_R)"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "將 Treepad 檔案新增節點到當前樹"
+
+msgid "From _Zim Folder"
+msgstr "來自 Zim 目錄(_Z)"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "將 Zim 目錄新增節點到當前樹"
+
+msgid "Export"
+msgstr "匯出"
+
+msgid "Export To _PDF"
+msgstr "匯出到 PDF(_P)"
+
+msgid "Export To PDF"
+msgstr "匯出到 PDF"
+
+msgid "Export To _HTML"
+msgstr "匯出到 HTML(_H)"
+
+msgid "Export To HTML"
+msgstr "匯出到 HTML"
+
+msgid "Export to Plain _Text"
+msgstr "匯出為純文字(_T)"
+
+msgid "Export to Plain Text"
+msgstr "匯出為純文字"
+
+msgid "_Export To OliveSet"
+msgstr "匯出到 OliveSet(_E)"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "匯出到 OliveSet 檔案或目錄"
+
+msgid "Help"
+msgstr "幫助"
+
+msgid "_Check Newer Version"
+msgstr "檢查新版本(_C)"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "檢查線上可用的新版本"
+
+msgid "_Website"
+msgstr "網站(_W)"
+
+msgid "Visit OliveSet's Website"
+msgstr "拜訪 OliveSet 的網站"
+
+msgid "_Source Code"
+msgstr "原始碼(_S)"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "線上瀏覽 OliveSet 的原始碼"
+
+msgid "_Report a Bug"
+msgstr "回報臭蟲(_R)"
+
+msgid "Report a Bug in OliveSet"
+msgstr "在 OliveSet 回報臭蟲"
+
+msgid "_Donate"
+msgstr "捐款(_D)"
+
+msgid "Donate to Support OliveSet"
+msgstr "捐款支持 OliveSet"
+
+msgid "Online _Manual"
+msgstr "線上手冊(_M)"
+
+msgid "OliveSet's Online Manual"
+msgstr "OliveSet 的線上手冊"
+
+msgid "_About"
+msgstr "關於(_A)"
+
+msgid "_Open Preferences Directory"
+msgstr "打開偏好目錄(_O)"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "通過偏好檔案打開目錄"
+
+msgid "C_ut Anchor"
+msgstr "剪切錨點(_U)"
+
+msgid "Cut the Selected Anchor"
+msgstr "剪切已選中的錨點"
+
+msgid "_Copy Anchor"
+msgstr "複製錨點(_C)"
+
+msgid "Copy the Selected Anchor"
+msgstr "複製已選中的錨點"
+
+msgid "_Delete Anchor"
+msgstr "刪除錨點(_D)"
+
+msgid "Delete the Selected Anchor"
+msgstr "刪除已選中的錨點"
+
+msgid "Edit _Anchor..."
+msgstr "編輯錨點(_A)..."
+
+msgid "Edit the Underlying Anchor"
+msgstr "編輯錨點"
+
+msgid "Copy Anchor Link"
+msgstr "複製錨點連結"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "將基礎錨點的連結複製到剪貼板"
+
+msgid "C_ut Embedded File"
+msgstr "剪切嵌入檔案(_U)"
+
+msgid "Cut the Selected Embedded File"
+msgstr "剪切已選中的嵌入檔案"
+
+msgid "_Copy Embedded File"
+msgstr "複製嵌入檔案(_C)"
+
+msgid "Copy the Selected Embedded File"
+msgstr "複製已選中的嵌入檔案"
+
+msgid "_Delete Embedded File"
+msgstr "刪除嵌入檔案(_D)"
+
+msgid "Delete the Selected Embedded File"
+msgstr "刪除已選中的嵌入檔案"
+
+msgid "Open Embedded File"
+msgstr "打開嵌入檔案"
+
+msgid "_Rename"
+msgstr "重命名(_R)"
+
+msgid "Rename Embedded File"
+msgstr "命名嵌入檔案"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "將 LaTeXBox 另存為 PNG(_S)..."
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "將選中 LaTeXBox 另存為 PNG 檔案"
+
+msgid "_Edit LatexBox..."
+msgstr "編輯 LaTeXBox(_E)..."
+
+msgid "Edit the Selected LatexBox"
+msgstr "編輯選中 LaTeXBox"
+
+msgid "C_ut LatexBox"
+msgstr "剪切 LaTeXBox(_U)"
+
+msgid "Cut the Selected LatexBox"
+msgstr "剪切當前所選的 LaTeXBox"
+
+msgid "_Copy LatexBox"
+msgstr "複製 LaTeXBox(_C)"
+
+msgid "Copy the Selected LatexBox"
+msgstr "複製當前所選的 LaTeXBox"
+
+msgid "_Delete LatexBox"
+msgstr "刪除 LaTeXBox(_D)"
+
+msgid "Delete the Selected LatexBox"
+msgstr "刪除當前所選的 LaTeXBox"
+
+msgid "_Save Image as PNG..."
+msgstr "圖片另存為 PNG(_S)..."
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "將選中圖片另存為 PNG 檔案"
+
+msgid "_Edit Image..."
+msgstr "編輯圖片(_E)..."
+
+msgid "Edit the Selected Image"
+msgstr "編輯選中圖片"
+
+msgid "C_ut Image"
+msgstr "剪切圖片(_U)"
+
+msgid "Cut the Selected Image"
+msgstr "剪切已選中圖片"
+
+msgid "_Copy Image"
+msgstr "複製圖片(_C)"
+
+msgid "Copy the Selected Image"
+msgstr "複製已選中圖片"
+
+msgid "_Delete Image"
+msgstr "刪除圖片(_D)"
+
+msgid "Delete the Selected Image"
+msgstr "刪除已選中圖片"
+
+msgid "Edit _Link..."
+msgstr "編輯連結(_L)..."
+
+msgid "Edit the Link Associated to the Image"
+msgstr "編輯圖片所關聯的連結"
+
+msgid "D_ismiss Link"
+msgstr "取消連結(_I)"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "忽略圖片所關聯的連結"
+
+msgid "Show/Hide _OliveSet"
+msgstr "顯示/隱藏 OliveSet (_C)"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "切換 OliveSet 的顯示"
+
+msgid "Edit the Underlying Link"
+msgstr "編輯相關連結"
+
+msgid "C_ut Link"
+msgstr "剪切連結(_U)"
+
+msgid "Cut the Selected Link"
+msgstr "剪切已選擇連結"
+
+msgid "_Copy Link"
+msgstr "複製連結(_C)"
+
+msgid "Copy the Selected Link"
+msgstr "複製已選擇連結"
+
+msgid "Dismiss the Selected Link"
+msgstr "取消選中連結"
+
+msgid "_Delete Link"
+msgstr "刪除連結(_D)"
+
+msgid "Delete the Selected Link"
+msgstr "刪除已選擇連結"
+
+msgid "English"
+msgstr "英語"
+
+msgid "Text and Code"
+msgstr "純文字和代碼"
+
+msgid "Plain Text and Code"
+msgstr "純文字和代碼"
+
+msgid "Tree Explorer"
+msgstr "樹型資源管理器"
+
+msgid "Theme"
+msgstr "主題"
+
+msgid "Interface"
+msgstr "介面"
+
+msgid "Links"
+msgstr "連結"
+
+msgid "Toolbar"
+msgstr "工具欄"
+
+msgid "Keyboard Shortcuts"
+msgstr "快捷鍵"
+
+msgid "Miscellaneous"
+msgstr "雜項"
+
+msgid "Monospace"
+msgstr "等寬字體"
+
+msgid "Code Font"
+msgstr "代碼字體"
+
+msgid "Terminal Font"
+msgstr "終端機字型"
+
+msgid "Tree Font"
+msgstr "樹型字體"
+
+msgid "Reset to Default"
+msgstr "還原至預設"
+
+msgid "Fonts"
+msgstr "字體"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "啟用狀態欄中的字數統計"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "在視窗標題中顯示檔案目錄"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "在節點名稱欄中顯示完整路徑"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "頂部選單欄中的專用書籤選單"
+
+msgid "Menubar in Titlebar"
+msgstr "選單欄在標題欄"
+
+msgid "Toolbar Icons Size"
+msgstr "工具欄圖示大小"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "節點標題頭上次訪問的節點"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "滾動條浮動塊最小尺寸（0=系統預設）"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "滾動條覆蓋在文字編輯器"
+
+msgid "System Default"
+msgstr "系統預設值"
+
+msgid "Yes"
+msgstr "是"
+
+msgid "No"
+msgstr "否"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "當懸停時啟用工具提示"
+
+msgid "Menus"
+msgstr "選單"
+
+msgid "Max Search Results per Page"
+msgstr "每頁最大搜尋結果"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "保存Session間的搜尋/替換歷史記錄"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "啟用並定義網頁連結點擊動作"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "啟用並定義檔案連結點擊動作"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "啟用並定義目錄連結點擊動作"
+
+msgid "Custom Actions"
+msgstr "自訂動作"
+
+msgid "Colors"
+msgstr "顏色"
+
+msgid "Double Click for Link Action"
+msgstr "雙擊連結操作"
+
+msgid "Underline Links"
+msgstr "連結底線"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "對檔案和目錄使用相對路徑"
+
+msgid "Anchor Size"
+msgstr "錨點大小"
+
+msgid "Change Selected"
+msgstr "改變當前所選"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr "快捷鍵『%s』已被占用."
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "當前關聯動作是『%s』"
+
+msgid "Do you want to steal the shortcut?"
+msgstr "要覆蓋這個快捷鍵嗎？"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "編輯快捷鍵"
+
+msgid "No Keyboard Shortcut"
+msgstr "沒有快捷鍵"
+
+msgid "Autosave on Quit"
+msgstr "退出前自動儲存"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "儲存前創建備份"
+
+msgid "Number of Backups to Keep"
+msgstr "欲保留的備份數"
+
+msgid "Custom Backup Directory"
+msgstr "自訂備份目錄"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "多文件儲存，使用磁碟上嵌入的文件名"
+
+msgid "Saving"
+msgstr "儲存中"
+
+msgid "Automatically Check for Newer Version"
+msgstr "自動檢查新版本"
+
+msgid "Reload Document From Last Session"
+msgstr "重載上一次通信期中的檔案"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "未載入文件時顯示開始對話框"
+
+msgid "Reload After External Update to CT* File"
+msgstr "將重載，因 CT* 檔案在外部被修改"
+
+msgid "Enable Debug Log"
+msgstr "開啟除錯日誌"
+
+msgid "Debug Log Directory"
+msgstr "除錯日誌目錄"
+
+msgid "Enable System Tray Docking"
+msgstr "啟用系統托盤"
+
+msgid "Start Minimized in the System Tray"
+msgstr "程式啟動後最小化到系統托盤"
+
+msgid "System Tray"
+msgstr "系統托盤"
+
+msgid "Language"
+msgstr "語言"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Port"
+msgstr "埠"
+
+msgid "Username"
+msgstr "帳號"
+
+msgid "Password"
+msgstr "密碼"
+
+msgid "Proxy"
+msgstr "Proxy"
+
+msgid "Show White Spaces"
+msgstr "顯示空白字元"
+
+msgid "Highlight Current Line"
+msgstr "醒目提示當前行"
+
+msgid "Text Editor"
+msgstr "文字編輯器"
+
+msgid "Internal Terminal Shell"
+msgstr "使用內部終端機 Shell"
+
+msgid "Add"
+msgstr "新增"
+
+msgid "Remove Selected"
+msgstr "移除所選"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "用於節點/代碼框類型的命令"
+
+msgid "Terminal Command"
+msgstr "終端命令"
+
+msgid "Code Execution"
+msgstr "代碼執行"
+
+msgid "Select Element to Add"
+msgstr "選擇元素新增"
+
+msgid "Enable Spell Check"
+msgstr "啟用拼寫檢查"
+
+msgid "Spell Check Language"
+msgstr "語言拼寫檢查"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "自動擴展代碼框"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "代碼框有工具列"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "輕量級界面的表格單元格數量閾值"
+
+msgid "Embedded File Icon Size"
+msgstr "嵌入檔案的圖示大小"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "嵌入式檔案大小限制(MB)"
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "在嵌入式檔案圖示的頂部顯示檔案名"
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "點擊時不要自動選擇對象"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr "使用 Klipper 解決 KDE 6 上剪貼簿相關卡頓問題的變通方法"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "每個節點撤銷步數限制"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "自動將 CamelCase 文字連接到具有相同名稱的節點"
+
+msgid "Auto Link URLs"
+msgstr "自動連結網址"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "三次點擊選擇整個段落"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "啟用 Markdown 自動替換（實驗性）"
+
+msgid "Scale"
+msgstr "規模"
+
+msgid "Italic"
+msgstr "斜體"
+
+msgid "Underline"
+msgstr "底線"
+
+msgid "Text Color Foreground"
+msgstr "文字顏色前景"
+
+msgid "Text Color Background"
+msgstr "文字顏色背景"
+
+msgid "Small"
+msgstr "小型的"
+
+msgid "Scalable Tags"
+msgstr "可伸縮標籤"
+
+msgid "Chars for Bulleted List"
+msgstr "列舉式列表的字元"
+
+msgid "Chars for Todo List"
+msgstr "待辦事項列表的字元"
+
+msgid "Chars for Table Of Content"
+msgstr "字元表的內容"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "智能雙引號的字元"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "智能單引號的字元"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "啟動智能引號替換"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "啟用符號自動替換"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "啟用符號自動替換"
+
+msgid "Only at the Start of the Line"
+msgstr "僅在行首"
+
+msgid "Tab Width"
+msgstr "TAB 寬度"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "用空格代替 Tab"
+
+msgid "Use Line Wrapping"
+msgstr "啟用換行顯示"
+
+msgid "Line Wrapping Indentation"
+msgstr "換行縮排"
+
+msgid "Enable Automatic Indentation"
+msgstr "啟用自動縮排"
+
+msgid "Scroll Beyond Last Line"
+msgstr "滾動到最後一行之後"
+
+msgid "Cursor Blinking"
+msgstr "游標閃爍"
+
+msgid "On"
+msgstr "開"
+
+msgid "Off"
+msgstr "關"
+
+msgid "Text Margin: Left"
+msgstr "文字邊界：左"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Vertical Space Around Lines"
+msgstr "行之間的距離"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "換行之間的間距"
+
+msgid "Timestamp Format"
+msgstr "時間戳格式"
+
+msgid "Horizontal Rule"
+msgstr "定義分割線"
+
+msgid "Chars to Select at Double Click"
+msgstr "雙擊選中圖表"
+
+msgid "Light Background, Dark Text"
+msgstr "淺色背景，深色文字"
+
+msgid "Dark Background, Light Text"
+msgstr "深色背景，淺色文字"
+
+msgid "Custom Background"
+msgstr "自訂背景"
+
+msgid "Text"
+msgstr "文字"
+
+msgid "Selection Background"
+msgstr "選擇背景"
+
+msgid "Table"
+msgstr "表格"
+
+msgid "Code"
+msgstr "編碼"
+
+msgid "Style Schemes"
+msgstr "樣式方案"
+
+msgid "Text Foreground"
+msgstr "文字前景"
+
+msgid "Text Background"
+msgstr "文字背景"
+
+msgid "Selection Foreground"
+msgstr "選擇前景"
+
+msgid "Cursor"
+msgstr "游標"
+
+msgid "Current Line Background"
+msgstr "當前行背景"
+
+msgid "Line Numbers Foreground"
+msgstr "行號前景"
+
+msgid "Line Numbers Background"
+msgstr "行號背景"
+
+msgid "Style Scheme Editor"
+msgstr "樣式方案編輯器"
+
+msgid "Set Dark Theme Icons"
+msgstr "設定暗黑主題圖示"
+
+msgid "Set Light Theme Icons"
+msgstr "設定清新主題圖示"
+
+msgid "Set Default Icons"
+msgstr "設定預設圖示"
+
+msgid "Icon Theme"
+msgstr "圖示主題"
+
+msgid "Split Toolbar"
+msgstr "分割工具欄"
+
+msgid "Use Different Cherries per Level"
+msgstr "每層級使用不同的櫻桃圖示"
+
+msgid "No Icon"
+msgstr "無圖示"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "隱藏右側輔助圖示"
+
+msgid "Default Text Nodes Icons"
+msgstr "文字節點的預設圖示"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "還原展開/收起狀態"
+
+msgid "Expand all Nodes"
+msgstr "展開所有節點"
+
+msgid "Collapse all Nodes"
+msgstr "收縮所有節點"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "在書籤中的節點始終顯示"
+
+msgid "Nodes Status at Startup"
+msgstr "啟動時節點狀態"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "節點名稱換行顯示時的寬度"
+
+msgid "Display Tree on the Right Side"
+msgstr "節點樹顯示在右側"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "點擊滑鼠移動焦點至文字"
+
+msgid "Expand Node at Mouse Click"
+msgstr "點擊滑鼠展開節點"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "'%s'不是有效的存檔"
+
+msgid "Writing to Disk..."
+msgstr "正在寫入到磁碟..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "您沒有%s檔案的寫入權限"
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "請輸入 %s 的密碼"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr "儲存文件完整性檢查失敗，試著「檔案」-->「另存為」"
+
+msgid "Failed to encrypt the file"
+msgstr "加密檔案失敗"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "需要從備份還原:"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr "資料庫檔案%s已損壞，詳細情況請看日誌."
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr "%s 寫入失敗 - 檔案遺失。重新連接 USB 設備或共享資源."
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr "%s 寫入失敗 - 檔案被同步程式阻止了嗎？"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr "%s 重新開啟失敗 - 檔案遺失。重新連接 USB 設備或分享資源."
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "OliveSet 層級筆記記錄"
+
+msgid "_Exit OliveSet"
+msgstr "退出 OliveSet (_E)"
+
+msgid "HTML Document"
+msgstr "HTML 檔案"
+
+msgid "Markdown Document"
+msgstr "Markdown 檔案"
+
+msgid "Mempad Document"
+msgstr "Mempad 檔案"
+
+msgid "Treepad Document"
+msgstr "Treepad 檔案"
+
+msgid "Leo Document"
+msgstr "Leo 檔案"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "您確定要重設為預設值嗎？"
+
+#~ msgid "Replace in Multiple Nodes..."
+#~ msgstr "在多個節點中替換..."
+
+#~ msgid "Find in Multiple Nodes..."
+#~ msgstr "在所有節點內容中搜尋..."
+
+#~ msgid "Insert T_OC..."
+#~ msgstr "插入檔案目錄(_O)..."
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "插入檔案目錄"
+
+#~ msgid ""
+#~ "Backup files are by default 3 in the same folder of the corrupted "
+#~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
+#~ "the backup with one tilde: copy the file to another directory, remove the "
+#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "with two tildes and if it still fails try the one with three tildes."
+#~ msgstr ""
+#~ "預設情況下，備份文件位於損壞文件的同一目錄中的 3 個，具有相同的名稱加上尾"
+#~ "隨波浪號（~、~~、~~~）。 首先嘗試使用一個波浪號進行備份：將文件複製到另一"
+#~ "個目錄，刪除尾部波浪號並使用OliveSet打開。 如果仍然失敗，請嘗試帶有兩個"
+#~ "波浪號的那個，如果仍然失敗，請嘗試帶有三個波浪號的那個."
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "程式的線上手冊"
+
+#~ msgid "OliveSet Document"
+#~ msgstr "OliveSet檔案"
+
+#~ msgid "Not Protected"
+#~ msgstr "不保護"
+
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "檔案 %s 未找到"
+
+#~ msgid "Find _in Multiple Nodes"
+#~ msgstr "在所有節點內容中搜尋"
+
+#~ msgid "Replace in _Multiple Nodes"
+#~ msgstr "在多個節點中替換"
+
+#~ msgid ""
+#~ "Pandoc executable could not be found, please ensure it is in your path"
+#~ msgstr "無法找到可執行的Pandoc，請確認你的PATH路徑配置"
+
+#~ msgid "From File using _Pandoc"
+#~ msgstr "來自使用了Pandoc的檔案(_P)"
+
+#~ msgid "Add a node to the current tree using Pandoc"
+#~ msgstr "將使用了Pandoc的節點新增到當前樹"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "新語言僅在OliveSet下次啟動時生效"
+
+#~ msgid "click me"
+#~ msgstr "點擊這裏"
+
+#~ msgid "_Format"
+#~ msgstr "格式(_F)"
+
+#~ msgid "_Tools"
+#~ msgstr "工具(_T)"
+
+#~ msgid "_List"
+#~ msgstr "列表(_L)"
+
+#~ msgid "_Row"
+#~ msgstr "行(_R)"
+
+#~ msgid "_Print"
+#~ msgstr "列印(_P)"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "插入時間戳(_M)"
+
+#~ msgid "Quit"
+#~ msgstr "退出"
+
+#~ msgid "Find in _Selected Node and Subnodes Contents"
+#~ msgstr "在已選節點及子節點的內容中搜尋(_S)"
+
+#~ msgid "Find into All the Tree Nodes Contents"
+#~ msgstr "在所有節點內容中搜尋"
+
+#~ msgid "Find into the Selected Node and Subnodes Contents"
+#~ msgstr "在已選節點及子節點的內容中搜尋"
+
+#~ msgid "Monospace Text Color Background"
+#~ msgstr "等寬文字顏色背景"
+
+#~ msgid "Replace in Node Names..."
+#~ msgstr "替換節點名稱..."
+
+#~ msgid "Replace in Nodes _Names"
+#~ msgstr "替換節點名稱(_N)"
+
+#~ msgid "Replace in Selected Node and Subnodes"
+#~ msgstr "在已選節點及子節點中替換"
+
+#~ msgid "Replace in _All Nodes Contents"
+#~ msgstr "在所有節點內容中替換(_A)"
+
+#~ msgid "Replace in _Selected Node and Subnodes Contents"
+#~ msgstr "在已選節點及子節點內容中替換(_S)"
+
+#~ msgid "Replace into All the Tree Nodes Contents"
+#~ msgstr "在所有樹節點內容中替換"
+
+#~ msgid "Replace into the Selected Node and Subnodes Contents"
+#~ msgstr "替換到已選節點及子節點的內容中"
+
+#~ msgid "Search For a Node Name..."
+#~ msgstr "搜尋節點名稱..."
+
+#~ msgid "Search in All Nodes"
+#~ msgstr "在所有節點中搜尋"
+
+#~ msgid "Search in Selected Node and Subnodes"
+#~ msgstr "在已選節點及子節點中搜尋"
+
+#~ msgid "_Execute CodeBox Code"
+#~ msgstr "執行代碼框中的代碼(_E)"

@@ -1,0 +1,209 @@
+name: Windows/MSYS2
+on:
+  workflow_dispatch:
+    inputs:
+      sign_build:
+        description: 'Set to true to sign the build artifact.'
+        required: false
+        default: 'false'
+        type: boolean
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  msys2-ucrt64:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: |
+            mingw-w64-ucrt-x86_64-toolchain
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-gtkmm3
+            mingw-w64-ucrt-x86_64-gtksourceview4
+            mingw-w64-ucrt-x86_64-libxml++2.6
+            mingw-w64-ucrt-x86_64-sqlite3
+            mingw-w64-ucrt-x86_64-gspell
+            mingw-w64-ucrt-x86_64-curl
+            mingw-w64-ucrt-x86_64-uchardet
+            mingw-w64-ucrt-x86_64-fribidi
+            mingw-w64-ucrt-x86_64-fmt
+            mingw-w64-ucrt-x86_64-spdlog
+            mingw-w64-ucrt-x86_64-webp-pixbuf-loader
+            mingw-w64-ucrt-x86_64-texlive-core
+            mingw-w64-ucrt-x86_64-gettext
+            p7zip
+            git
+            sed
+      - name: Initialize TeX Live
+        run: |
+          mkdir -p /ucrt64/var/lib/texmf/web2c/pdftex
+          cd /ucrt64/var/lib/texmf/web2c/pdftex
+          pdftex -ini -jobname=latex -progname=latex *latex.ini
+      - name: CI-Build
+        env:
+          SIGN_BUILD: ${{ github.event.inputs.sign_build }}
+        run: |
+          rm -rf build
+          scripts/msys2_prepare_standalone.sh
+          scripts/generate_nolatex_iss.sh
+      - name: Ensure Inno Setup
+        shell: powershell
+        run: |
+          $isccExe = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (Test-Path $isccExe) {
+            Write-Host "Found ISCC at $isccExe"
+            exit 0
+          }
+
+          $choco = Get-Command choco -ErrorAction SilentlyContinue
+          if ($null -ne $choco) {
+            choco install innosetup --no-progress -y
+          }
+          else {
+            winget install --id JRSoftware.InnoSetup --exact --silent --accept-package-agreements --accept-source-agreements
+          }
+
+          if (!(Test-Path $isccExe)) {
+            throw "ISCC not found after installation attempt"
+          }
+      - name: Upload Portable Files for Signing
+        id: upload-portable-files
+        if: ${{ github.event.inputs.sign_build == 'true' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: oliveset-portable-unsigned
+          path: build/*_win64_portable*/
+          retention-days: 3
+          overwrite: true
+          if-no-files-found: error
+      - name: Sign Portable Files with SignPath
+        if: ${{ github.event.inputs.sign_build == 'true' }}
+        uses: signpath/github-action-submit-signing-request@v2
+        with:
+          api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+          organization-id: '${{ vars.SIGNPATH_ORGANIZATION_ID }}'
+          project-slug: 'oliveset'
+          signing-policy-slug: 'release-signing'
+          github-artifact-id: '${{ steps.upload-portable-files.outputs.artifact-id }}'
+          wait-for-completion: true
+          output-artifact-directory: oliveset-portable-signed
+      - name: Replace Portable Files with Signed Copies
+        if: ${{ github.event.inputs.sign_build == 'true' }}
+        shell: powershell
+        run: |
+          $buildDir = Join-Path $env:GITHUB_WORKSPACE 'build'
+          $signedDir = Join-Path $env:GITHUB_WORKSPACE 'oliveset-portable-signed'
+          $portableDirs = Get-ChildItem $buildDir -Directory -Filter '*_win64_portable*'
+          foreach ($portableDir in $portableDirs) {
+            $signedPortableDir = Join-Path $signedDir $portableDir.Name
+            if (!(Test-Path $signedPortableDir)) {
+              throw "Signed portable directory not found: $signedPortableDir"
+            }
+            Remove-Item $portableDir.FullName -Recurse -Force
+            Move-Item $signedPortableDir $buildDir -Force
+          }
+          if (Test-Path $signedDir) {
+            Remove-Item $signedDir -Recurse -Force
+          }
+      - name: Repack Signed Portable Files
+        if: ${{ github.event.inputs.sign_build == 'true' }}
+        run: |
+          cd build
+          rm -f *_win64_portable.7z *_win64_portable_nolatex.7z
+          for portable_folder in *_win64_portable *_win64_portable_nolatex; do
+            [ -d "$portable_folder" ] || continue
+            7za a "${portable_folder}.7z" "$portable_folder"
+          done
+          cd -
+      - name: Verify Portable Installer Inputs
+        shell: powershell
+        run: |
+          $buildDir = Join-Path $env:GITHUB_WORKSPACE 'build'
+          $portableDirs = @(Get-ChildItem $buildDir -Directory -Filter '*_win64_portable*')
+          $version = (Get-Item (Join-Path $buildDir 'oliveset.exe')).VersionInfo.FileVersion
+          $expectedPortableDirs = @(
+            Join-Path $buildDir "oliveset_${version}_win64_portable"
+            Join-Path $buildDir "oliveset_${version}_win64_portable_nolatex"
+          )
+          Write-Host "Build directory: $buildDir"
+          Write-Host "Executable version: $version"
+          Get-ChildItem $buildDir -Force | Select-Object Mode, Name | Format-Table | Out-String | Write-Host
+          foreach ($expectedPortableDir in $expectedPortableDirs) {
+            Write-Host "Expected portable directory: $expectedPortableDir"
+            if (!(Test-Path $expectedPortableDir -PathType Container)) {
+              throw "Expected portable directory is missing: $expectedPortableDir"
+            }
+            $licensePath = Join-Path $expectedPortableDir 'license.txt'
+            Write-Host "Expected license path: $licensePath"
+            if (!(Test-Path $licensePath -PathType Leaf)) {
+              Get-ChildItem $expectedPortableDir -Force -Recurse | Select-Object FullName | Format-Table -AutoSize | Out-String | Write-Host
+              throw "Required portable license is missing: $licensePath"
+            }
+          }
+          if ($portableDirs.Count -ne 2) {
+            $portableDirs | Select-Object FullName | Format-Table | Out-String | Write-Host
+            throw "Expected exactly two portable directories, found $($portableDirs.Count)"
+          }
+      - name: Compile .ISS to .EXE Installer (NOLATEX)
+        shell: powershell
+        run: |
+          $isccExe = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (!(Test-Path $isccExe)) {
+            throw "ISCC not found at $isccExe"
+          }
+          & $isccExe "/Q" "scripts\oliveset_nolatex.iss"
+      - name: Compile .ISS to .EXE Installer (FULL)
+        shell: powershell
+        run: |
+          $isccExe = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (!(Test-Path $isccExe)) {
+            throw "ISCC not found at $isccExe"
+          }
+          & $isccExe "/Q" "scripts\oliveset.iss"
+      - name: Upload Unsigned Artifact
+        id: upload-unsigned-artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: oliveset-unsigned
+          path: |
+            build/oliveset*_win64_setup*.exe
+          retention-days: 3
+          overwrite: true
+          if-no-files-found: error
+      - name: SignPath Signing
+        if: ${{ github.event.inputs.sign_build == 'true' }}
+        uses: signpath/github-action-submit-signing-request@v2
+        with:
+          api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+          organization-id: '${{ vars.SIGNPATH_ORGANIZATION_ID }}'
+          project-slug: 'oliveset'
+          signing-policy-slug: 'release-signing'
+          github-artifact-id: '${{ steps.upload-unsigned-artifact.outputs.artifact-id }}'
+          wait-for-completion: true
+          output-artifact-directory: oliveset-signed
+      - name: Stage Signed Release Files
+        if: ${{ github.event.inputs.sign_build == 'true' }}
+        run: |
+          rm -rf oliveset-final
+          mkdir -p oliveset-final
+          cp oliveset-signed/*.exe build/*_win64_portable.7z build/*_win64_portable_nolatex.7z oliveset-final/
+      - name: Upload Signed Artifact
+        if: ${{ github.event.inputs.sign_build == 'true' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: oliveset-signed
+          path: oliveset-final/*
+          retention-days: 3
+          overwrite: true
+          if-no-files-found: error

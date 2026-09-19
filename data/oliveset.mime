@@ -1,0 +1,10 @@
+application/oliveset-md
+	ext: md
+application/oliveset-ctd
+	ext: ctd
+application/oliveset-ctz
+	ext: ctz
+application/oliveset-ctb
+	ext: ctb
+application/oliveset-ctx
+	ext: ctx

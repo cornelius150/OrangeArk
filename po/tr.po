@@ -1,0 +1,3474 @@
+# Turkish translations for PACKAGE package.
+# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# giuspen <giuspen@gmail.com>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2025-12-09 21:36+0300\n"
+"Last-Translator: Ferhat AYDIN <ferhataydin44@gmail.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+msgid "Image Format Not Recognized"
+msgstr "Resim Dosyası Biçimi Belirlenemedi"
+
+msgid "Insert Table"
+msgstr "Tablo Ekle"
+
+msgid "CSV File"
+msgstr "CSV Dosyası"
+
+msgid "Insert a CodeBox"
+msgstr "Kod Kutusu Ekle"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "Gömülü Dosya için boyut sınırı en fazla %s MB olmalı."
+
+msgid "Do you want to Continue?"
+msgstr "Devam etmek istiyor musunuz?"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "'%s' notunun içeriği alınamadı"
+
+msgid "Special Characters"
+msgstr "Özel Karakterler"
+
+msgid "Tabs Replaced"
+msgstr "Sekmeler Değiştirildi"
+
+msgid "Lines Stripped"
+msgstr "Boş Satırlar"
+
+msgid "No Text is Selected."
+msgstr "Seçili Metin Yok."
+
+msgid "OliveSet File"
+msgstr "OliveSet Dosyası"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"Kullanılan klasör/dosya için yazma izni yok!\n"
+"Lütfen farklı bir konuma veya farklı bir isimle kayıt yapın."
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"'%s' klasörü '%s' klasörünün içinde zaten mevcut.\n"
+"<b>Değiştirmek ister misiniz?</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"'%s' dosyası '%s' klasörünün içinde zaten mevcut.\n"
+"<b>Değiştirmek ister misiniz?</b>"
+
+msgid "PDF File"
+msgstr "PDF Dosyası"
+
+msgid "Plain Text Document"
+msgstr "Düz Metin Belgesi"
+
+msgid "Preferences File"
+msgstr "Seçenekler Dosyası"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "Panelde Sistem Tepsisi göründü mü?"
+
+msgid "Your system does not support the System Tray"
+msgstr "Sisteminiz Sistem Tepsisini desteklemiyor"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr ""
+"Yapılan Değişiklikler OliveSet Yeniden Başlatıldığında Etkili Olacak."
+
+msgid "Replace in Current Node"
+msgstr "Aktif Notu Değiştir"
+
+msgid "Search in Current Node"
+msgstr "Aktif Not İçinde Ara"
+
+msgid "Matches"
+msgstr "Eşleştirmeler"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "<b>Şablon '%s' bulunamadı</b>"
+
+msgid "Replace in Multiple Nodes"
+msgstr "Çoklu Notlarda Değiştir"
+
+msgid "Search in Multiple Nodes"
+msgstr "Çoklu Notlarda Ara"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "Bu Oturumda Gerçekleştirilen Önceki Bir Arama Yok."
+
+msgid "Tags"
+msgstr "Etiketler"
+
+msgid ": "
+msgstr ": "
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "Bu Oturumda Gerçekleştirilen Önceki Metin Formatı Yok."
+
+msgid "Link Name"
+msgstr "Link İsmi"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "İmleç Bir Paragraf İçinde Değil."
+
+msgid "Insert/Edit Link"
+msgstr "Link Ekle/Düzenle"
+
+msgid "Pick a Foreground Color"
+msgstr "Yazı Rengini Seçin"
+
+msgid "Pick a Background Color"
+msgstr "Arkaplan Rengini Seçin"
+
+msgid "Checking for Newer Version..."
+msgstr "Yeni Sürüm Kontrol Ediliyor..."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr ""
+"Versiyon Bilgisine Bakılırken Bir Hata Oluştu - Daha Sonra Tekrar deneyin."
+
+msgid "A Newer Version Is Available!"
+msgstr "Yeni Bir Sürüm Bulundu!"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "Zaten En Son Sürümü Kullanıyorsunuz."
+
+msgid "You Are Using a Development Version."
+msgstr "Geliştirme Sürümünü Kullanıyorsunuz."
+
+msgid "Who is the Parent?"
+msgstr "Üst Not Hangisi?"
+
+msgid "The Tree Root"
+msgstr "Ağacın Kökü"
+
+msgid "The Selected Node"
+msgstr "Seçili Not"
+
+msgid "Rename"
+msgstr "Yeniden Adlandır"
+
+msgid "PNG Image"
+msgstr "PNG Resmi"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "%s Kısmına Yazma Hatası"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "'%s' Geçerli Bir Klasör Linki Değil."
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "'%s' Geçerli Bir Dosya Linki Değil."
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "'%s' Geçerli Bir Klasör Linki Değil"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "Link Verilen Not Yok (Id = %s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "'%s' isminde çapa bulunamadı"
+
+msgid "Edit CodeBox"
+msgstr "Kod Kutusunu Düzenle"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"'%s' için bir komut belirlemesiniz.\n"
+"Seçenekler ekranına gidin."
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr ""
+"'xterm' paketini yükleyin ve seçenekler ekranında farklı bir terminal "
+"ayarlayın."
+
+msgid "Edit Table Properties"
+msgstr "Tablo Özelliklerini Düzenle"
+
+msgid "Insert Anchor"
+msgstr "Çapa Ekle"
+
+msgid "Edit Anchor"
+msgstr "Çapa Düzenle"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "Yalnız Okunabilir Özelliğinde Olan Nottaki Gömülü Dosya Düzenlenemez."
+
+msgid "Embedded File Automatically Updated:"
+msgstr "Gömülü Dosya Otomatik Güncellendi:"
+
+msgid "No Node is Selected"
+msgstr "Seçili Not Yok"
+
+msgid "The Tree is Empty!"
+msgstr "Ağaç boş!"
+
+msgid "The Selected Node is Read Only."
+msgstr "Seçili Not, Yalnız Okunabilir ve Düzenlenemez."
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "Bu Özellik Sadece Zengin Metin Biçimindeki Notlarda Kullanılabilir."
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr "Bu Özellik Otomatik Söz Dizimi Kurallı Notlarda Kullanılamaz."
+
+msgid "No Table is Selected."
+msgstr "Seçili Tablo Yok."
+
+msgid "No CodeBox is Selected."
+msgstr "Seçili Kod Kutusu Yok."
+
+msgid "New Child Node Properties"
+msgstr "Yeni Alt Not Özellikleri"
+
+msgid "New Node Properties"
+msgstr "Yeni Not Özellikleri"
+
+msgid "Node Properties"
+msgstr "Not Özellikleri"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"Not türünü Otomatik Sözdizimi Vurgulama olarak değiştirmek, bu nottaki tüm "
+"zengin metin biçimlendirmelerini kaldırır. Devam etmek istiyor musunuz?"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "'%s' notunu <b>silmek istediğinizden emin misiniz?</b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "Bu not, alt not(lar) içeriyor.<b>Tüm alt notlar da silinecek!</b>"
+
+msgid "Select the New Parent"
+msgstr "Yeni Üst Notu Seçin"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "Yeni üst not, taşınan çok not olamaz!"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "Seçilen yeni üst not, zaten halihazırda üst not!"
+
+msgid "The new parent can't be one of his children!"
+msgstr ""
+"Bir not, kendisine bağlı bir alt notun alt notu olamaz. (Biliyorum biraz "
+"karışık:))"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "%s Notun Özellikleri Değişti"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr ""
+"Not Adı Başlığındaki Son Ziyaret Edilen Not Sayısı Zaten Maksimum Değerde."
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr ""
+"Not Adı Başlığındaki Son Ziyaret Edilen Not Sayısı Zaten Minimum Değerde."
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "Araç Çubuğu Simge Boyutu Zaten En Büyük Değerinde Seçili Durumda."
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "Araç Çubuğu Simge Boyutu Zaten En Küçük Değerinde Seçili Durumda."
+
+msgid "Print OliveSet version"
+msgstr "OliveSetyi Sürümünü Yazdır"
+
+msgid "Node name to focus"
+msgstr "Odaklanacak Not Adı"
+
+msgid "Anchor name to scroll to in node"
+msgstr "Notta kaydırılacak bağlantı adı"
+
+msgid "Export to HTML at specified directory path"
+msgstr "Belirtilen dizin yolunda HTML ye aktar"
+
+msgid "Export to Text at specified directory path"
+msgstr "Belirtilen Dizin Yolunda Metne Aktar"
+
+msgid "Export to PDF at specified directory path"
+msgstr "Belirtilen dizin yolunda PDF ye aktar"
+
+msgid "Overwrite if export path already exists"
+msgstr "Dışa aktarma yolu zaten mevcutsa üzerine yaz"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "Tek dosya olarak dışa aktar (HTML veya TXT)"
+
+msgid "Password to open document"
+msgstr "Dökümanı açmak için şifre"
+
+msgid "Create a new window"
+msgstr "Yeni bir pencere oluştur"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "Ana oturumdan bağımsız olarak ikincil oturumda çalıştır"
+
+msgid "Execute Code"
+msgstr "Kodu Çalıştır"
+
+msgid "Copy Code"
+msgstr "Kodu Kopyala"
+
+msgid "Change CodeBox Properties"
+msgstr "Kod Kutusu Özelliklerini Değiştir"
+
+msgid "Start in OliveSet"
+msgstr "OliveSet'de Başla"
+
+msgid "New Document"
+msgstr "Yeni Belge"
+
+msgid "Open File"
+msgstr "Dosya Aç"
+
+msgid "Open Folder"
+msgstr "Klasör Aç"
+
+msgid "Create a new document or open an existing one."
+msgstr "Yeni bir belge oluşturun veya mevcut bir belgeyi açın."
+
+msgid "Don't show again"
+msgstr "Bir daha gösterme"
+
+msgid "Recent Documents"
+msgstr "Son Belgeler"
+
+msgid "Name"
+msgstr "İsim"
+
+msgid "Path"
+msgstr "Yol"
+
+msgid "Open Selected"
+msgstr "Seçili Olanı Aç"
+
+msgid "Handle the Bookmarks List"
+msgstr "Yer İmleri Listesini Düzenle"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "Seçili Yer İmini Üste Taşı"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "Seçili Yer İmini Alta Taşı"
+
+msgid "Remove the Selected Bookmark"
+msgstr "Seçili Yer İmini Sil"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "Yer İmlerini Ters-Alfabetik Sırala (Z-A)"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "Yer İmlerini Alfabetik Sırala (A-Z)"
+
+msgid "Choose Storage Type"
+msgstr "Kayıt Türünü Seçin"
+
+msgid "Single SQLite File"
+msgstr "Tekli SQLite dosyası"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "Tekli SQLite Dosyası, 7-zip Şifrelenmiş ve Parola Korumalı"
+
+msgid "Single XML File"
+msgstr "Tekli XML dosyası"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "Tekli XML Dosyası, 7-zip Şifrelenmiş ve Parola Korumalı"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "Hiyerarşik Klasör Yapısında Birden Fazla Dosya"
+
+msgid "Storage Type"
+msgstr "Kayıt Türü"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"CT dosyaları şifreli 7Zip arşivinde kaydedilir. Bir dosyayı okurken veya "
+"düzenlerken, CT şifreli dosyayı geçici klasöre açarak şifresiz versiyonu "
+"üzerinde çalışır. Dosya kapatılırken şifresiz dosya geçici klasörden "
+"silinir. Herhangi bir sistem veya uygulama hatasında şifresiz dosyanın "
+"geçici klasörden silinmeyeceğini unutmayın."
+
+msgid "Enter the New Password Twice"
+msgstr "Yeni Parolayı İki Defa Yazın"
+
+msgid "Autosave Every"
+msgstr "Sürekli Otomatik Kayıt"
+
+msgid "Minutes"
+msgstr "Dakika"
+
+msgid "The Password Fields Must be Filled."
+msgstr "Parola Alanları Doldurulmalı."
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "Girilen Parolalar Uyuşmuyor."
+
+msgid "Warning"
+msgstr "Uyarı"
+
+msgid "The Current Document was Updated."
+msgstr "Aktif Doküman Güncellendi."
+
+msgid "Do you want to Save the Changes?"
+msgstr "Değişiklikleri Kaydetmek İstediğinizden Emin misiniz?"
+
+msgid "Do you want to Execute the Code?"
+msgstr "Kodu Çalıştırmak İstediğinizden Emin misiniz?"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "Kodu Çalıştırmadan Önce Onay İste"
+
+msgid "Use Internal Terminal"
+msgstr "Dahili Konsolu Kullan"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr ""
+"Zengin Metin ve Söz Dizimi Kuralları Özelliğine Sahip Bir Hiyerarşik Not "
+"Saklama Uygulaması"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+" Bu yazılım bedavadır; dilediğiniz gibi kullanabilir, \n"
+"dağıtabilir ve/veya üzerinde değişiklik yapabilirsiniz. \n"
+"GNU Genel Kamu Lisansı v3 ile lisanslanmıştır. \n"
+"\n"
+"Bu yazılım herhangi bir garanti içermez. \n"
+"Kullanımıyla ilgili tüm sorumluluk ve \n"
+"yükümlülük size aittir. Daha fazla bilgi \n"
+"için GNU Kamu Lisansı belgesine bakabilirsiniz. \n"
+"\n"
+"Eğer GNU Kamu Lisansı ile ilgili bir probleminiz \n"
+"varsa aşağıda verilen adresle irtibata geçebilirsiniz. \n"
+"Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+
+msgid "Arabic"
+msgstr "Arapça"
+
+msgid "Armenian"
+msgstr "Ermenice"
+
+msgid "Bulgarian"
+msgstr "Bulgarca"
+
+msgid "Chinese Simplified"
+msgstr "Geleneksel Çince"
+
+msgid "Chinese Traditional"
+msgstr "Geleneksel Çince"
+
+msgid "Croatian"
+msgstr "Hırvat"
+
+msgid "Czech"
+msgstr "Çekçe"
+
+msgid "Dutch"
+msgstr "Hollanda"
+
+msgid "Finnish"
+msgstr "Fince"
+
+msgid "French"
+msgstr "Fransızca"
+
+msgid "German"
+msgstr "Almanca"
+
+msgid "Greek"
+msgstr "Yunanca"
+
+msgid "Hindi India"
+msgstr "Geleneksel Hintçe"
+
+msgid "Hungarian"
+msgstr "Macarca"
+
+msgid "Italian"
+msgstr "İtalyanca"
+
+msgid "Japanese"
+msgstr "Japonca"
+
+msgid "Kazakh"
+msgstr "Kazakça"
+
+msgid "Kazakh (Latin)"
+msgstr "Kazakça (Latin)"
+
+msgid "Korean"
+msgstr "Korece"
+
+msgid "Lithuanian"
+msgstr "Litvanca"
+
+msgid "Persian"
+msgstr "Farsça"
+
+msgid "Polish"
+msgstr "Polonyaca"
+
+msgid "Portuguese"
+msgstr "Portekizce"
+
+msgid "Portuguese Brazil"
+msgstr "Brezilya Portekizcesi"
+
+msgid "Romanian"
+msgstr "Romanca"
+
+msgid "Russian"
+msgstr "Rusça"
+
+msgid "Slovak"
+msgstr "Slovakça"
+
+msgid "Slovenian"
+msgstr "Slovakça"
+
+msgid "Spanish"
+msgstr "İspanyolca"
+
+msgid "Swedish"
+msgstr "İsveççe"
+
+msgid "Turkish"
+msgstr "Türkçe"
+
+msgid "Ukrainian"
+msgstr "Ukraynaca"
+
+msgid "About OliveSet"
+msgstr "OliveSet Hakkında"
+
+msgid "Tree Summary Information"
+msgstr "Ağaç Özet Bilgisi"
+
+msgid "Number of Rich Text Nodes"
+msgstr "Zengin Metin Notlarının Sayısı"
+
+msgid "Number of Plain Text Nodes"
+msgstr "Düz Metin Notlarının Sayısı"
+
+msgid "Number of Code Nodes"
+msgstr "Kod Notlarının Sayısı"
+
+msgid "Number of Images"
+msgstr "Resimlerin Sayısı"
+
+msgid "Number of LatexBoxes"
+msgstr "Latex Kutularının Kutularının Sayısı"
+
+msgid "Number of Embedded Files"
+msgstr "Gömülü Dosyaların Sayısı"
+
+msgid "Number of Tables"
+msgstr "Tabloların Sayısı"
+
+msgid "Number of CodeBoxes"
+msgstr "Kod Kutularının Sayısı"
+
+msgid "Number of Anchors"
+msgstr "Çapaların Sayısı"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "Paylaşılan Notların / Grupların Sayısı"
+
+msgid "Latex Text"
+msgstr "Latex Metni"
+
+msgid "Image Size dpi"
+msgstr "Resim dpi Boyutu"
+
+msgid "Tutorial"
+msgstr "Öğretici"
+
+msgid "Reference"
+msgstr "Referans"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "LaTeX Matematik ve Denklem Öğreticisi"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "Latex Matematik Referansı"
+
+msgid "Image Properties"
+msgstr "Resim Özellikleri"
+
+msgid "Rotate Left"
+msgstr "Sola Döndür"
+
+msgid "Rotate Right"
+msgstr "Sağa Döndür"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr ""
+"Görüntüyü kırpmak için, TAMAM (OK)'a tıklamadan önce fareyle alanı seçin"
+
+msgid "Flip Horizontally"
+msgstr "Yatay Çevir"
+
+msgid "Flip Vertically"
+msgstr "Dikey Çevir"
+
+msgid "Width"
+msgstr "Genişlik"
+
+msgid "Height"
+msgstr "Yükseklik"
+
+msgid "Plain Text"
+msgstr "Düz Metin"
+
+msgid "Automatic Syntax Highlighting"
+msgstr "Otomatik sözdizimi vurgulama"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "pixels"
+msgstr "piksel"
+
+msgid "Size"
+msgstr "Ebat"
+
+msgid "Show Line Numbers"
+msgstr "Satır Numaralarını Göster"
+
+msgid "Highlight Matching Brackets"
+msgstr "Köşeli Ayraçların Eşleştirmesini Vurgula"
+
+msgid "Options"
+msgstr "Seçenekler"
+
+msgid "Rows"
+msgstr "Satırlar"
+
+msgid "Columns"
+msgstr "Kolonlar"
+
+msgid "Default Width"
+msgstr "Varsayılan Genişlik"
+
+msgid "Table Size"
+msgstr "Tablo Boyutu"
+
+msgid "Column Properties"
+msgstr "Kolon Özellikleri"
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "Hafif Arayüz (büyük tablolar için çok daha hızlı)"
+
+msgid "Import from CSV File"
+msgstr "CSV Dosyasından İçe Aktar"
+
+msgid "Clear"
+msgstr "Temizle"
+
+msgid "Reset"
+msgstr "Sıfırla"
+
+msgid "Search for"
+msgstr "Bunu Ara"
+
+msgid "Replace with"
+msgstr "Bununla Değiştir"
+
+msgid "Replace in Link Targets"
+msgstr "Bağlantı Hedeflerinde Değiştir"
+
+msgid "Replace options"
+msgstr "Değiştirme Ayarları"
+
+msgid "Match Case"
+msgstr "Birebir Eşleştir"
+
+msgid "Regular Expression"
+msgstr "Düzenli İfade"
+
+msgid "Online Manual"
+msgstr "İnternet Yardım Dosyası"
+
+msgid "Accent Insensitive"
+msgstr "Aksan Duyarsız"
+
+msgid "Override Exclusions"
+msgstr "İstisnaları Geçersiz Kıl"
+
+msgid "Whole Word"
+msgstr "Tam Kelime"
+
+msgid "Start Word"
+msgstr "Kelime Başlangıcı"
+
+msgid "More Words, Exact Match"
+msgstr "Daha Fazla Kelime, Tam Eşleşme"
+
+msgid "More Words, Disregard Order"
+msgstr "Daha Fazla Kelime, Sırayı Göz Ardı Et"
+
+msgid "More Words, Match Any"
+msgstr "Daha Fazla Kelime, Herhangi Biriyle Eşleş"
+
+msgid "Forward"
+msgstr "İleri"
+
+msgid "Backward"
+msgstr "Geri"
+
+msgid "All, List Matches"
+msgstr "Tümü, Sonuçları Listele"
+
+msgid "First From Selection"
+msgstr "Seçimden İlki"
+
+msgid "First in All Range"
+msgstr "Tüm Aralıkta İlki"
+
+msgid "Node Created After"
+msgstr "Bu tarihten sonra oluşturulan not"
+
+msgid "Node Created Before"
+msgstr "Bu tarihten önce oluşturulan not"
+
+msgid "Node Modified After"
+msgstr "Bu tarihten sonra düzenlenen not"
+
+msgid "Node Modified Before"
+msgstr "Bu tarihten önce düzenlenen not"
+
+msgid "Time filter"
+msgstr "Zaman filtresi"
+
+msgid "Node Content"
+msgstr "Not İçeriği"
+
+msgid "Node Name and Tags"
+msgstr "Not İsmi ve Etiketleri"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "Sadece Seçili Not ve Alt Notlar"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "Yinelenenleri Bul/Değiştir Penceresini Göster"
+
+msgid "Search options"
+msgstr "Arama Ayarları"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"Değiştir alanı boş: bulunan tüm eşleşmeler silinecek.\n"
+"Devam etmek istiyor musunuz?"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"Not özelliklerinde ayarlanan dışlamalar nedeniyle en az bir not atlandı.\n"
+"Tüm hariç tutmaları temizlemek için menüyü kullanın:\n"
+"Ara -> Arama Dışındaki Dışlamaları Temizle"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "Gizle (Geri Yüklemek İçin %s Kısayolunu Kullanın)"
+
+msgid "Node Name"
+msgstr "Not İsmi"
+
+msgid "Line"
+msgstr "Çizgi"
+
+msgid "Line Content"
+msgstr "Çizgi İçeriği"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "Son Aramayı/Değiştirmeyi Yinele"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Find Previous"
+msgstr "Öncekini Bul"
+
+msgid "Find Next"
+msgstr "Sonrakini Bul"
+
+msgid "Replace"
+msgstr "Değiştir"
+
+msgid "Undo"
+msgstr "Geri Al"
+
+msgid "Remove"
+msgstr "Sil"
+
+msgid "Remove User Colour from Palette"
+msgstr "Kullanıcı Rengini Paletten Kaldır"
+
+msgid "Colour"
+msgstr "Renk"
+
+msgid "Question"
+msgstr "Soru"
+
+msgid "Info"
+msgstr "Bilgi"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Select File"
+msgstr "Dosya Seç"
+
+msgid "Select Folder"
+msgstr "Klasör Seç"
+
+msgid "Save File as"
+msgstr "Farklı Kaydet"
+
+msgid "Save To Folder"
+msgstr "Klasöre Kaydet"
+
+msgid "To WebSite"
+msgstr "Web Adresine"
+
+msgid "To File"
+msgstr "Dosyaya"
+
+msgid "To Folder"
+msgstr "Klasöre"
+
+msgid "To Node"
+msgstr "Nota"
+
+msgid "Anchor Name (optional)"
+msgstr "Çapa İsmine (İsteğe Bağlı)"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "Seçili Not İçinde Hiç Çapa Yok."
+
+msgid "Choose Existing Anchor"
+msgstr "Oluşturulmuş Çapa Seç"
+
+msgid "Anchor Name"
+msgstr "Çapa İsmi"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "Şablon '%s' bulunamadı"
+
+msgid "Bold"
+msgstr "Koyu"
+
+msgid "Use Selected Color"
+msgstr "Seçili Rengi Kullan"
+
+msgid "Use Selected Icon"
+msgstr "Seçili Simgeyi Kullan"
+
+msgid "Rich Text"
+msgstr "Zengin Metin"
+
+msgid "Node Type"
+msgstr "Not Tipi"
+
+msgid "Tags for Searching"
+msgstr "Aramada Kullanılacak Etiketler"
+
+msgid "Exclude from Searches"
+msgstr "Aramadan Hariç tut"
+
+msgid "This Node"
+msgstr "Bu not"
+
+msgid "The Subnodes"
+msgstr "Alt notlar"
+
+msgid "Read Only"
+msgstr "Yalnızca Oku"
+
+msgid "Unique Id"
+msgstr "Benzersiz Kimlik"
+
+msgid "Shared Nodes Group"
+msgstr "Paylaşılan Notlar Grubu"
+
+msgid "Choose Existing Tag"
+msgstr "Var Olan Etiketi Seç"
+
+msgid "Tag Name"
+msgstr "Etiket İsmi"
+
+msgid "Pick a Color"
+msgstr "Renk Seçin"
+
+msgid "Select Node Icon"
+msgstr "Not Simgesini Seç"
+
+msgid "Involved Nodes"
+msgstr "İçeren Notlar"
+
+msgid "Selected Text Only"
+msgstr "Yalnızca Seçili Metin"
+
+msgid "Selected Node Only"
+msgstr "Yalnızca Seçili Not"
+
+msgid "Selected Node and Subnodes"
+msgstr "Seçili Not ve Alt Notlar"
+
+msgid "All the Tree"
+msgstr "Tüm Ağaç"
+
+msgid "Include Node Name"
+msgstr "Not İsmini İçeren"
+
+msgid "Links Tree in Every Page"
+msgstr "Herbir Sayfadaki Ağaç Linkleri"
+
+msgid "New Node in New Page"
+msgstr "Özel Karakter Ekle"
+
+msgid "Single File"
+msgstr "Tek dosya"
+
+msgid "Index"
+msgstr "İçindekiler"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr "Uyarı: Girilen Sayfada Bir Ya da Daha Fazla Resim Değiştirildi!"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "LaTeX görüntüleme güvenlik nedeniyle engellendi"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr "Kaynak, yerel dosyalara erişebilen dosya G/Ç komutları içeriyor"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"\\verbatiminput, \\openin, \\openout ve güvensiz \\input/\\include yolları "
+"gibi komutları kaldırın"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "'lateks' ve 'dvipng' yürütülebilir dosyalarına erişilemedi"
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "Örneğin, Ubuntu'da kurulacak paketler şunlardır:"
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "Örneğin, MacOS'ta kurulacak paketler şunlardır:"
+
+msgid "Could not access the executable 'latex'"
+msgstr "'lateks' yürütülebilir dosyalarına erişilemedi"
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "'dvipng' yürütülebilir dosyalarına erişilemedi"
+
+msgid "Downloading"
+msgstr "İndiriliyor"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "%s Klasör Yolu Mevcut Değil"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "Geçmişte Açılmış Bir OliveSet Dökümanı Aç"
+
+msgid "_Hide"
+msgstr "Gizle"
+
+msgid "_Quit"
+msgstr "Çı_kış"
+
+msgid "Hide the Window"
+msgstr "Pencereyi Gizle"
+
+msgid "Quit the Application"
+msgstr "Uygula_madan Çıkış"
+
+msgid "Spell Check"
+msgstr "Yazım Denetimi"
+
+msgid "Word Count"
+msgstr "Kelime Sayısı"
+
+msgid "Date Created"
+msgstr "Oluşturulma Tarihi"
+
+msgid "Date Modified"
+msgstr "Düzenlenme Tarihi"
+
+msgid "Subnodes"
+msgstr "Alt Notlar"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr ""
+"Bu Oturumda Önceki Notu Kopyalama İşlemi Gerçekleştirilemedi veya Kaynak Not "
+"Artık Kullanılmıyor."
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "Kaynak Not Artık Kullanılmıyor."
+
+msgid "Show Menubar:"
+msgstr "Menü Çubuğunu Göster:"
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "\"%s\" bir OliveSet Dosyası Değil"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"OliveSet Dosyasını Ayrıştırırken Hata:\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "Son yedeklemeyi geri yüklemek ister misiniz?"
+
+msgid "Failed to Load from Backup Data"
+msgstr "Yedek Dosyasından Geri Yükleme Başarısız Oldu"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "'%s' isminde not bulunamadı."
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "Geçici Dosyalar Dış Uygulamalarla Oluşturuldu ve Açıldı."
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "OliveSet Uygulamasından Çıkmadan Önce Dış Uygulamaları Kapatın."
+
+msgid "Did you Quit the External Applications?"
+msgstr "Dış Uygulamalardan Çıkmak İstediğinizden Emin misiniz?"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "Kaydedilemiyor: \"%s\" salt okunur"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr "Belge CT* Dosyasını Güncelledikten Sonra Tekrar Yüklendi."
+
+msgid "Copy Selection or All"
+msgstr "Seçimi veya Tümünü Kopyala"
+
+msgid "Paste"
+msgstr "Yapıştır"
+
+msgid "Remove from list"
+msgstr "Listeden Sil"
+
+msgid "_File"
+msgstr "_Dosya"
+
+msgid "_Edit"
+msgstr "Dü_zen"
+
+msgid "_Insert"
+msgstr "Ekle"
+
+msgid "F_ormat"
+msgstr "Biçim"
+
+msgid "_Tree"
+msgstr "_Ağaç"
+
+msgid "Too_ls"
+msgstr "Araçlar"
+
+msgid "_Search"
+msgstr "A_ra"
+
+msgid "_View"
+msgstr "_Görünüm"
+
+msgid "_Bookmarks"
+msgstr "Yer İ_mleri"
+
+msgid "_Help"
+msgstr "_Yardım"
+
+msgid "Insert _Date Node"
+msgstr "_Tarih Notu Ekle"
+
+msgid "Node _Move"
+msgstr "Notu _Taşı"
+
+msgid "Nod_es Sort"
+msgstr "Notları Sırala"
+
+msgid "B_ookmarks"
+msgstr "Yer İ_mleri"
+
+msgid "_Import"
+msgstr "İç_e Aktar"
+
+msgid "_Export"
+msgstr "Dışa Aktar"
+
+msgid "_Preferences"
+msgstr "_Seçenekler"
+
+msgid "_Recent Documents"
+msgstr "Açılan Dökümanlar Geçmişi"
+
+msgid "C_hange Case"
+msgstr "Bü_yük/Küçük Harf Değiştir"
+
+msgid "L_ist"
+msgstr "Liste"
+
+msgid "_Justify"
+msgstr "Doğrula"
+
+msgid "Toggle _Font Property"
+msgstr "Yazıtipi Özelliğini Değiştir"
+
+msgid "_Toggle Heading Property"
+msgstr "Başlık Özelliğini Değiştir"
+
+msgid "I_nsert"
+msgstr "Ekle"
+
+msgid "_Find"
+msgstr "Bul"
+
+msgid "_Replace"
+msgstr "Değ_iştir"
+
+msgid "Ro_w"
+msgstr "Satır"
+
+msgid "_Table"
+msgstr "_Tablo"
+
+msgid "_CodeBox"
+msgstr "_Kod Kutusu"
+
+msgid "File"
+msgstr "Dosya"
+
+msgid "_New Instance..."
+msgstr "Yeni _Veritabanı..."
+
+msgid "Start a New Instance of OliveSet"
+msgstr "OliveSetyi Yeni Bir Veri Tabanıyla Başlat"
+
+msgid "_Open File..."
+msgstr "_Dosya Aç..."
+
+msgid "Open a OliveSet File"
+msgstr "Bir OliveSet Dosyası Aç"
+
+msgid "Open Fo_lder..."
+msgstr "_Klasör Aç..."
+
+msgid "Open a OliveSet Folder"
+msgstr "Bir OliveSet Klasörü Aç"
+
+msgid "_Save"
+msgstr "_Kaydet"
+
+msgid "Save File"
+msgstr "Dosyayı Kaydet"
+
+msgid "Save and _Vacuum"
+msgstr "Kaydet ve Veritabanını Sıkıştır"
+
+msgid "Save File and Vacuum"
+msgstr "Dosyayı  Kaydet ve Boşlukları Kaldır"
+
+msgid "Save _As..."
+msgstr "Farklı Kaydet..."
+
+msgid "Save File As"
+msgstr "Yeni Dosya Olarak  Kaydet"
+
+msgid "Pa_ge Setup..."
+msgstr "Say_fa Ayarı..."
+
+msgid "Set up the Page for Printing"
+msgstr "Sayfa Yazdırma Ayarları"
+
+msgid "P_rint..."
+msgstr "Yazdır..."
+
+msgid "Print"
+msgstr "Yazdır"
+
+msgid "Preferences"
+msgstr "Seçenekler"
+
+msgid "_Import Preferences..."
+msgstr "Seçenekleri İçe Aktar..."
+
+msgid "Import Preferences"
+msgstr "Seçenekleri İçe Aktar"
+
+msgid "_Export Preferences..."
+msgstr "Seçenekleri Dışa Aktar..."
+
+msgid "Export Preferences"
+msgstr "Seçenekleri Dışa Aktar"
+
+msgid "Tree In_fo"
+msgstr "Ağaç Bilgisi"
+
+msgid "_Document Path to Clipboard"
+msgstr "Panoya Belge Yolu"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "Belge Yolunu Panoya Kopyala"
+
+msgid "E_xit OliveSet"
+msgstr "OliveSetyi Kapat"
+
+msgid "Exit from OliveSet"
+msgstr "OliveSetden Çıkış"
+
+msgid "Edit/Insert"
+msgstr "Ekle/Düzenle"
+
+msgid "_Undo"
+msgstr "Son İşleri _Geri Al"
+
+msgid "Undo Last Operation"
+msgstr "Son İşlemi Geri Al"
+
+msgid "_Redo"
+msgstr "_Yinele"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "Önce İptal Edilen İşlemi Yinele"
+
+msgid "Insert I_mage..."
+msgstr "Res_im Ekle..."
+
+msgid "Insert an Image"
+msgstr "Bir Resim Ekle"
+
+msgid "Insert Late_x..."
+msgstr "Latex Ekle..."
+
+msgid "Insert LatexBox"
+msgstr "Latex Kutusu Ekle"
+
+msgid "Insert _Table..."
+msgstr "_Tablo Ekle..."
+
+msgid "Insert a Table"
+msgstr "Bir Tablo Ekle"
+
+msgid "Insert _CodeBox..."
+msgstr "Kod Kutusu E_kle..."
+
+msgid "Insert _File..."
+msgstr "_Dosya Ekle..."
+
+msgid "Insert File"
+msgstr "Dosya Ekle"
+
+msgid "Insert/Edit _Link..."
+msgstr "_Link Ekle/Düzenle..."
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "Link Ekle/Seçili Linki Düzenle"
+
+msgid "Insert _Anchor..."
+msgstr "Çapa Metin Ekle..."
+
+msgid "Insert an Anchor"
+msgstr "Çapa Metin Ekle"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "T_OC ve Başlık Daraltıcılarını Ekle..."
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "İçindekiler Tablosu ve Başlık Daraltıcılar/Genişleticiler Ekle"
+
+msgid "Insert Timestam_p"
+msgstr "Zaman Ekle"
+
+msgid "Insert Timestamp"
+msgstr "Zaman Ekle"
+
+msgid "Insert _Special Character..."
+msgstr "Özel Karakter Ekle..."
+
+msgid "Insert a Special Character"
+msgstr "Özel Karakter Ekle"
+
+msgid "Insert _Horizontal Rule"
+msgstr "Yatay Ayırıcı Çizgi Ekle"
+
+msgid "Insert Horizontal Rule"
+msgstr "Yatay Ayırıcı Çizgi Ekle"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "Seçimi/Kelimeyi küçük harfe Dönüştür"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "Seçimi/Kelimeyi küçük harfe Dönüştür"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "Seçimi/Kelimeyi BÜYÜK HARFE Dönüştür"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "Seçimi/Kelimeyi BÜYÜK HARFE Dönüştür"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "Seçimin/Kelimenin Büyük/Küçük Harfini Diğerlerine Uydur"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "Seçimin/Kelimenin Büyük/Küçük Harfini Diğerlerine Uydur"
+
+msgid "Cu_t as Plain Text"
+msgstr "Düz Metin Olarak Kes"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "Düz Metin Olarak Kes, Zengin Metin Biçimini Bırak"
+
+msgid "_Copy as Plain Text"
+msgstr "Düz Metin Olarak Kopyala"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "Düz Metin Olarak Kopyala, Zengin Metin Biçimini Bırak"
+
+msgid "_Paste as Plain Text"
+msgstr "Düz Metin Olarak Yapıştır"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "Düz Metin Olarak Yapıştır, Zengin Metin Biçimini Bırak"
+
+msgid "C_ut Row"
+msgstr "Satırı Kes"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "Aktif Satırı/Seçili Satırları Kes"
+
+msgid "C_opy Row"
+msgstr "Satır Kopyala"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "Aktif Satırı/Seçili Satırları Kopyala"
+
+msgid "De_lete Row"
+msgstr "Satırı Sil"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "Aktif Satırı/Seçili Satırları Sil"
+
+msgid "_Duplicate Row"
+msgstr "Satırı Birebir Kopyala"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "Aktif Satırı/Seçimi Birebir Kopyala"
+
+msgid "_Move Up Row"
+msgstr "Satırı Üste Taşı"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "Aktif Satırı/Seçili Satırları Üste Taşı"
+
+msgid "Mo_ve Down Row"
+msgstr "Satırı Alta Taşı"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "Aktif Satırı/Seçili Satırları Alta Taşı"
+
+msgid "C_ut Table"
+msgstr "Tabloyu Kes"
+
+msgid "Cut the Selected Table"
+msgstr "Seçili Tabloyu Kes"
+
+msgid "_Copy Table"
+msgstr "Tabloyu Kopyala"
+
+msgid "Copy the Selected Table"
+msgstr "Seçili Tabloyu Kopyala"
+
+msgid "_Delete Table"
+msgstr "Tabloyu Sil"
+
+msgid "Delete the Selected Table"
+msgstr "Seçili Tabloyu Sil"
+
+msgid "_Add Column"
+msgstr "_Sütun Ekle"
+
+msgid "Add a Table Column"
+msgstr "Tabloya Bir Sütun Ekle"
+
+msgid "Cu_t Column"
+msgstr "_Sütun Kes"
+
+msgid "Cut a Table Column"
+msgstr "Bir Tablo Bir Sütununu Kes"
+
+msgid "_Copy Column"
+msgstr "_Sütun Kopyala"
+
+msgid "Copy a Table Column"
+msgstr "Bir Tablo Bir Sütununu Kopyala"
+
+msgid "_Paste Column"
+msgstr "Sütun Yapıştır"
+
+msgid "Paste a Table Column"
+msgstr "Bir Tablo Bir Sütununu Yapıştır"
+
+msgid "De_lete Column"
+msgstr "Sütunu Sil"
+
+msgid "Delete the Selected Table Column"
+msgstr "Seçili Tablo Sütununu Sil"
+
+msgid "Move Column _Left"
+msgstr "Sütunu Sola Taşı"
+
+msgid "Move the Selected Column Left"
+msgstr "Seçili Sütunu Sola Taşı"
+
+msgid "Move Column _Right"
+msgstr "Sütunu Sağa Taşı"
+
+msgid "Move the Selected Column Right"
+msgstr "Seçili Sütunu Sağa Taşı"
+
+msgid "Increase Column Width"
+msgstr "Sütun Genişliğini Arttır"
+
+msgid "Increase the Width of the Column"
+msgstr "Sütunun Genişliğini Arttır"
+
+msgid "Decrease Column Width"
+msgstr "Sütunun Genişliğini Azalt"
+
+msgid "Decrease the Width of the Column"
+msgstr "Sütunun Genişliğini Azalt"
+
+msgid "_Add Row"
+msgstr "Satır Ekle"
+
+msgid "Add a Table Row"
+msgstr "Tabloya Satır Ekle"
+
+msgid "Cu_t Row"
+msgstr "Satırı Kes"
+
+msgid "Cut a Table Row"
+msgstr "Tablo Satırını Kes"
+
+msgid "_Copy Row"
+msgstr "Satırı Kopyala"
+
+msgid "Copy a Table Row"
+msgstr "Tablo Satırını Kopyala"
+
+msgid "_Paste Row"
+msgstr "Satır Yapıştır"
+
+msgid "Paste a Table Row"
+msgstr "Tablo Satırını Yapıştır"
+
+msgid "Delete the Selected Table Row"
+msgstr "Seçili Tablo Satırını Sil"
+
+msgid "Move Row _Up"
+msgstr "Satırı Üste Taşı"
+
+msgid "Move the Selected Row Up"
+msgstr "Seçili Satırı Üste Taşı"
+
+msgid "Move Row _Down"
+msgstr "Satırı Alta Taşı"
+
+msgid "Move the Selected Row Down"
+msgstr "Seçili Satırı Alta Taşı"
+
+msgid "Sort Rows De_scending"
+msgstr "Satırları Sırala (A-Z)"
+
+msgid "Sort all the Rows Descending"
+msgstr "Tüm Satırları Sırala (A-Z)"
+
+msgid "Sort Rows As_cending"
+msgstr "Satırları Sırala (Z-A)"
+
+msgid "Sort all the Rows Ascending"
+msgstr "Tüm Satırları Sırala (Z-A)"
+
+msgid "_Edit Table Properties..."
+msgstr "Tablo Özelliklerini Düzenle..."
+
+msgid "Edit the Table Properties"
+msgstr "Tablo Özelliklerini Düzenle"
+
+msgid "_Table Export..."
+msgstr "Tabloyu Dışa Aktar..."
+
+msgid "Export Table as CSV File"
+msgstr "Tabloyu CSV Dosyası Olarak Dışa Aktar"
+
+msgid "Change CodeBox _Properties..."
+msgstr "Kod Kutusu Özelliklerini Değiştir..."
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "Kod Kutusunun Özelliklerini Düzenle"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "Metin Dosyasından Kod Kutusuna Yükle..."
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "Bir Metin Dosyasından Kod Kutusuna İçerik Yükle"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "Kod Kutusunu Metin Dosyası Olarak Kaydet..."
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "Kod Kutusunun İçeriğini Bir Metin Dosyası Olarak Kaydet"
+
+msgid "C_ut CodeBox"
+msgstr "Kod Kutusunu Kes"
+
+msgid "Cut the Selected CodeBox"
+msgstr "Seçili Kod Kutusunu Kes"
+
+msgid "_Copy CodeBox"
+msgstr "Kod Kutusunu Kopyala"
+
+msgid "Copy the Selected CodeBox"
+msgstr "Seçili Kod Kutusunu Kopyala"
+
+msgid "_Copy CodeBox Content"
+msgstr "Kod Kutusunun İçeriğini Kopyala"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "Seçili Kod Kutusunun İçeriğini Kopyala"
+
+msgid "_Delete CodeBox"
+msgstr "Kod Kutusunu Sil"
+
+msgid "Delete the Selected CodeBox"
+msgstr "Seçili Kod Kutusunu Sil"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "Kod Kutusunun İçeriğini Sil"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "Seçili Kod Kutusunu Sil Fakat İçeriğini Sakla"
+
+msgid "Increase CodeBox Width"
+msgstr "Kod Kutusunun Genişliğini Arttır"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "Kod Kutusunun Genişliğini Arttır"
+
+msgid "Decrease CodeBox Width"
+msgstr "Kod Kutusunun Genişliğini Azalt"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "Kod Kutusunun Genişliğini Azalt"
+
+msgid "Increase CodeBox Height"
+msgstr "Kod Kutusunun Enini Arttır"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "Kod Kutusunun Enini Arttır"
+
+msgid "Decrease CodeBox Height"
+msgstr "Kod Kutusunun Enini Azalt"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "Kod Kutusunun Enini Azalt"
+
+msgid "Format"
+msgstr "Biçim"
+
+msgid "Format Clo_ne"
+msgstr "Kopyayı Biçimlendir"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "İmleçteki Yazıtipi Biçimini Klonla"
+
+msgid "Format _Latest"
+msgstr "Son Biçimlendirme"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "Son Yazı Biçimlendirme Tipi Kaydı"
+
+msgid "_Remove Formatting"
+msgstr "Biçimlendirmeyi Kaldır"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "Seçili Metnin Biçimlendirmesini Kaldır"
+
+msgid "Text _Color Foreground"
+msgstr "Yazı Rengi"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "Seçili Metnin Yazı Rengini Değiştir"
+
+msgid "Text C_olor Background"
+msgstr "Zemin Rengi"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "Seçili Metnin Zemin Rengini Değiştir"
+
+msgid "Toggle _Bold Property"
+msgstr "Koyuluk Ayarı"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "Seçili Metnin Koyuluk Ayarını Uyarla"
+
+msgid "Toggle _Italic Property"
+msgstr "Yatıklık Ayarı"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "Seçili Metnin Yatıklık Ayarını Uyarla"
+
+msgid "Toggle _Underline Property"
+msgstr "Altıçizili Ayarı"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "Seçili Metnin Altıçizili Ayarını Uyarla"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "Üzeriçizili Ayarı"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "Seçili Metnin Üzeriçizili Ayarını Uyarla"
+
+msgid "Toggle h_1 Property"
+msgstr "Birinci Sütun Ayarı"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "Seçili Metnin Birinci Sütun Ayarını Uyarla"
+
+msgid "Toggle h_2 Property"
+msgstr "İkinci Sütun Ayarı"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "Seçili Metnin İkinci Sütun Ayarını Uyarla"
+
+msgid "Toggle h_3 Property"
+msgstr "Üçüncü Sütun Ayarı"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "Seçili Metnin Üçüncü Sütun Ayarını Uyarla"
+
+msgid "Toggle h_4 Property"
+msgstr "Dördüncü Sütun Ayarı"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "Seçili Metnin Dördüncü Sütun Ayarını Uyarla"
+
+msgid "Toggle h_5 Property"
+msgstr "Beşinci Sütun Ayarı"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "Seçili Metnin Beşinci Sütun Ayarını Uyarla"
+
+msgid "Toggle h_6 Property"
+msgstr "Altıncı Sütun Ayarı"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "Seçili Metnin Altıncı Sütun Ayarını Uyarla"
+
+msgid "Toggle _Small Property"
+msgstr "Dipnot Metni Ayarı"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "Seçili Metnin Dipnot Metni Ayarını Uyarla"
+
+msgid "Toggle Su_bscript Property"
+msgstr "Subscript Ayarı"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "Seçili Metnin Subscript Ayarını Uyarla"
+
+msgid "Toggle Su_perscript Property"
+msgstr "Superscript Ayarı"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "Seçili Metnin Superscript Ayarını Uyarla"
+
+msgid "Toggle _Monospace Property"
+msgstr "Sabit Boşluk Ayarını Uyarla"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "Seçili Metinde Sabit Boşluk Ayarını Uyarla"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "Maddelendirmeyi Uygula/Kaldır"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr "Seçili Metinde Maddelendirmeyi Uygula/Kaldır"
+
+msgid "Set/Unset _Numbered List"
+msgstr "Numaralandırmayı Uygula/Kaldır"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr "Seçili Metinde Numaralandırmayı Uygula/Kaldır"
+
+msgid "Set/Unset _To-Do List"
+msgstr "Kutucuk Maddelendirmesini Uygula/Kaldır"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr "Seçili Metinde Kutucuk Maddelendirmesini Uygula/Kaldır"
+
+msgid "Justify _Left"
+msgstr "Sola Hizala"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "Aktif Paragrafı Sola Hizala"
+
+msgid "Justify _Center"
+msgstr "Ortaya Hizala"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "Aktif Paragrafı Ortaya Hizala"
+
+msgid "Justify _Right"
+msgstr "Sağa Hizala"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "Aktif Paragrafı Sağa Hizala"
+
+msgid "Justify _Fill"
+msgstr "Doluluğa Hizala"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "Geçerli Paragrafa Hizala"
+
+msgid "_Indent Paragraph"
+msgstr "Girintili Paragraf"
+
+msgid "Indent the Current Paragraph"
+msgstr "Geçerli Paragrafı Girintile"
+
+msgid "_Unindent Paragraph"
+msgstr "Paragraf Girintisini Kaldır"
+
+msgid "Unindent the Current Paragraph"
+msgstr "Geçerli Paragrafın Girintisini Kaldır"
+
+msgid "_Expand TOC Headers"
+msgstr "TOC Başlıklarını Genişlet"
+
+msgid "Expand TOC Headers"
+msgstr "TOC Başlıklarını Genişlet"
+
+msgid "_Collapse TOC Headers"
+msgstr "TOC Başlıklarını Daralt"
+
+msgid "Collapse TOC Headers"
+msgstr "TOC Başlıklarını Daralt"
+
+msgid "Tools"
+msgstr "Araçlar"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "Yazım Kontrolünü Aktif/Pasif Yap"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "Yazım Kontrolünün Aktif/Pasif Durumunu Değiştir"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "VIM Modunu Aktif/Pasif Yap"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "VIM Modunu Etkinleştir/Devre Dışı Bırak'ı Değiştir"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "Şerit İzi Boşlukları"
+
+msgid "Strip Trailing Spaces"
+msgstr "Şerit İzi Boşlukları"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "Sekmeleri Boşlukla Değiştir"
+
+msgid "Replace Tabs with Spaces"
+msgstr "Sekmeleri Boşlukla Değiştir"
+
+msgid "_Command Palette..."
+msgstr "Komut Listesi..."
+
+msgid "Command Palette"
+msgstr "Komut Listesi"
+
+msgid "_Execute Code All"
+msgstr "Kodun Tümünü Çalıştır"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "Kod Kutusundaki Kodu veya Notu Çalıştır"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "Kod Satırını veya Seçimi Çalıştır"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "Aktif Satırdan veya Seçili Metinden Kodu Çalıştır"
+
+msgid "Tree"
+msgstr "Ağaç"
+
+msgid "Go _Back"
+msgstr "Geri Git"
+
+msgid "Go to the Previous Visited Node"
+msgstr "Önceki Bakılan Nota Git"
+
+msgid "Go _Forward"
+msgstr "Sonrakine Git"
+
+msgid "Go to the Next Visited Node"
+msgstr "Sonraki Bakılan Nota Git"
+
+msgid "Add _Node..."
+msgstr "Not Ekle..."
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "Seçili Notun Üst Notuyla Aynı Özellikte Not Ekle"
+
+msgid "Add _Subnode..."
+msgstr "Alt Not Ekle..."
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "Seçili Nota Bir Alt Not Ekle"
+
+msgid "_Duplicate Node"
+msgstr "Notun Kopyasını Oluştur"
+
+msgid "Duplicate the Selected Node"
+msgstr "Seçili Notun Kopyasını Oluştur"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "Notu ve Alt Notların Kopyasını Oluştur"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "Seçili Notun Alt Notlarıyla Kopyasını Oluştur"
+
+msgid "_Create Shared Node"
+msgstr "Paylaşılan Not Oluştur"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr "Seçilen Not İle Aynı Verileri Paylaşan Yeni Bir Not Oluştur"
+
+msgid "Copy Node and S_ubnodes"
+msgstr "Notu ve Alt Notları Kopyala"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "Seçili Notu ve Alt Notları Kopyala"
+
+msgid "_Paste Node and Subnodes"
+msgstr "Notu ve Alt Notları Yapıştır"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "Kopyalanmış Notu ve Alt Notları Yapıştır"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "Günün Notunu En Üst Not Altına Ekle"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "Yıl/Ay/Gün Hiyerarşisiyle Bugün İçin En Üst Not Altına Yeni Not Ekle"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "Günün Notunu Seçili Notun Altına Ekle"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "Yıl/Ay/Gün Hiyerarşisiyle Bugün İçin Seçili Not Altına Yeni Not Ekle"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "_Yarının Notunu En Üst Not Altına Ekle"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "Yıl/Ay/Gün Hiyerarşisiyle Yarın İçin En Üst Not Altına Yeni Not Ekle"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "_Yarının Notunu Seçili Notun Altına Ekle"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "Yıl/Ay/Gün Hiyerarşisiyle Yarın İçin Seçili Not Altına Yeni Not Ekle"
+
+msgid "C_hange Node Properties..."
+msgstr "Not Özelliklerini Değiştir..."
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "Seçili Notun Özelliklerini Düzenle"
+
+msgid "Toggle _Read Only"
+msgstr "Yalnız Okunabilir Yap"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "Seçili Notun Yalnız Okunabilir Olarak Belirle"
+
+msgid "Cop_y Link to Node"
+msgstr "Nota Linki Kopyala"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "Seçili Nota Bağlantıyı Panoya Kopyala"
+
+msgid "Children _Inherit Syntax"
+msgstr "Söz Dizim Kuralını Al"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr "Seçili Alt Notun Söz Dizim Kuralını Ana Notun Kuralından Alarak Kullan"
+
+msgid "_Handle Bookmarks..."
+msgstr "Yer İmlerini Düzenle..."
+
+msgid "Add to Boo_kmarks"
+msgstr "Yer İmlerine Ekle"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "Seçili Notu Yer İmlerine Listesine Ekle"
+
+msgid "Remove from Boo_kmarks"
+msgstr "Ye_r İmlerinden Sil"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "Seçili Notu Yer İmlerine Listesinden Sil"
+
+msgid "E_xpand All Nodes"
+msgstr "Tüm Notları Genişlet"
+
+msgid "Expand All the Tree Nodes"
+msgstr "Tüm Ağaçlardaki Notları Genişlet"
+
+msgid "_Collapse All Nodes"
+msgstr "Tüm Notları Daralt"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "Tüm Notları Daralt"
+
+msgid "Node _Up"
+msgstr "Notu Yukarı Taşı"
+
+msgid "Move the Selected Node Up"
+msgstr "Seçili Notu Yukarı Taşı"
+
+msgid "Node _Down"
+msgstr "Notu Aşağı Taşı"
+
+msgid "Move the Selected Node Down"
+msgstr "Seçili Notu Aşağı Taşı"
+
+msgid "Node _Left"
+msgstr "Notu Üst Not Yap (Sola Taşı)"
+
+msgid "Move the Selected Node Left"
+msgstr "Seçili Notu Üst Not Yap (Sola Taşı)"
+
+msgid "Node _Right"
+msgstr "Notu Alt Not Yap (Sağa Taşı)"
+
+msgid "Move the Selected Node Right"
+msgstr "Seçili Notu Alt Not Yap (Sağa Taşı)"
+
+msgid "Node Change _Parent..."
+msgstr "Notun Üst Not Bağlantısını Değiştir..."
+
+msgid "Change the Selected Node's Parent"
+msgstr "Seçili Notun Üst Not Bağlantısını Değiştir"
+
+msgid "Sort Tree _Ascending"
+msgstr "Ağacı Sırala (A-Z)"
+
+msgid "Sort the Tree Ascending"
+msgstr "Ağacı Alfabetik Sırala (A-Z)"
+
+msgid "Sort Tree _Descending"
+msgstr "Ağacı Ters Sırala (Z-A)"
+
+msgid "Sort the Tree Descending"
+msgstr "Ağacı Ters-Alfabetik Sırala (Z-A)"
+
+msgid "Sort Siblings A_scending"
+msgstr "Alt Notları Sırala (A-Z)"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "Seçili Notun Alt Notlarını Alfabetik Sırala (A-Z)"
+
+msgid "Sort Siblings D_escending"
+msgstr "Alt Notları Ters Sırala (Z-A)"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "Seçili Notun Alt Notlarını Ters-Alfabetik Sırala (Z-A)"
+
+msgid "De_lete Node"
+msgstr "Notu Sil"
+
+msgid "Delete the Selected Node"
+msgstr "Seçili Notu Sil"
+
+msgid "Find/Replace"
+msgstr "Bul/Değiştir"
+
+msgid "_Quick Node Selection..."
+msgstr "_Hızlı Not Seçimi..."
+
+msgid "Quick Node Selection"
+msgstr "Hızlı Not Seçimi"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "Not İsimlerini ve Etiketleri Bul..."
+
+msgid "Find in Nodes Names and Tags"
+msgstr "Not İsimlerini ve Etiketleri Bul"
+
+msgid "_Find in Node Content..."
+msgstr "Not İçeriğini Bul..."
+
+msgid "Find into the Selected Node Content"
+msgstr "Seçili Notta İçeriği Bul"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "Çoklu Notlarda Bul..."
+
+msgid "Find in Multiple Nodes"
+msgstr "Çoklu Notlarda Bul"
+
+msgid "Find _Again"
+msgstr "Tekrar Ara"
+
+msgid "Iterate the Last Find Operation"
+msgstr "Son Arama İşlemini Yinele"
+
+msgid "Find _Back"
+msgstr "Öncekini Bul"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "Karşıt Yönde Son Arama İşlemini Yinele"
+
+msgid "_Replace in Node Content..."
+msgstr "Not İçeriğini Değiştir..."
+
+msgid "Replace into the Selected Node Content"
+msgstr "Seçili Notta İçeriği Değiştir"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "Çoklu Notlarda Değiştir..."
+
+msgid "Replace A_gain"
+msgstr "Tekrar Değiştir"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "Son Değiştirme İşlemini Yinele"
+
+msgid "Show All Matches _Dialog..."
+msgstr "Eşleştirilme Sonuçları Penceresini Görüntüle..."
+
+msgid "Show Search All Matches Dialog"
+msgstr "Arama İşleminde Eşleştirilme Sonuçlarını Görüntüle"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "Aramadan Tüm Dışlamaları Temizle"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "Aramadan Tüm Not Özelliklerine Ait Dışlamaları Temizle"
+
+msgid "View"
+msgstr "Görünüm"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "Ağacı Göster/Gizle"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "Ağaca Ait Göster/Gizle Ayarını Belirle"
+
+msgid "Show/Hide Te_rminal"
+msgstr "Konsolu Göster/Gizle"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "Konsola Ait Göster/Gizle Ayarını Belirle"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "Konsol/Yazıya İmleci Götür"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "Konsol/Yazıya İmleci Götür"
+
+msgid "Show/Hide _Menubar"
+msgstr "Menü Çubuğunu Göster/Gizle"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "Menü Çubuğunun Göster/Gizle Ayarını Belirle"
+
+msgid "Show/Hide Tool_bar"
+msgstr "Araç Çubuğunu Göster/Gizle"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "Araç Çubuğunun Göster/Gizle Ayarını Belirle"
+
+msgid "Show/Hide _Statusbar"
+msgstr "Durum Çubuğunu Göster/Gizle"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr "Durum Çubuğunun Göster/Gizle Ayarını Belirle"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "Ana Nottan Alt Nota Satırları Göster/Gizle"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "Ana/Alt Nota Arasındaki Çizginin Göster/Gizle Ayarını Belirle"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "Not Başlığını Göster/Gizle"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "Not Başlığının Göster/Gizle Ayarını Belirle"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "Ağaç/Yazıya İmleci Götür"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "Ağaç/Yazıya İmleci Götür"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "Araç Çubuğu Simge Boyutunu Büyült"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "Araç Çubuğundaki Simgelerin Boyutunu Büyült"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "Araç Çubuğu Simge Boyutunu Küçült"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "Araç Çubuğundaki Simgelerin Boyutunu Küçült"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "Not Adı Başlığındaki Son Ziyaret Edilen Notlar"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "Not Adı Başlığında Son Ziyaret Edilen Notların Sayısını Artırın"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "Not Adı Başlığındaki Son Ziyaret Edilen Notlar"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "Not Adı Başlığında Son Ziyaret Edilen Notların Sayısını Azaltın"
+
+msgid "Full Screen _On/Off"
+msgstr "Tam Ekran Aç/Kapat"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "Tam Ekran Yap/Tam Ekrandan Çık"
+
+msgid "_Always On Top On/Off"
+msgstr "Daima En Üstte Aktif/Pasif"
+
+msgid "Always On Top On/Off"
+msgstr "Daima En Üstte Aktif/Pasif"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "Başlık Çubuğunda Menüyü Kapat"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "Başlık Çubuğuna Menüyü Ekleme"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "Başlık Çubuğunda Menüyü Aktif Et"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "Başlık Çubuğuna Menüyü Ekle"
+
+msgid "Import"
+msgstr "İçe Aktar"
+
+msgid "From _OliveSet File"
+msgstr "OliveSet Dosyasından"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "Bir OliveSet Dosyasından Aktif OliveSet Dosyasına Not Ekle"
+
+msgid "From _OliveSet Folder"
+msgstr "OliveSet Klasöründen"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "Bir OliveSet Klasöründen Aktif Ağaca Not Ekle"
+
+msgid "From _Indented List File"
+msgstr "Girintili Liste Dosyasından"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "Girintili Liste Dosyasından Aktif Ağaca Not Ekle"
+
+msgid "From _Plain Text File"
+msgstr "Düz Metin Dosyasından"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "Bir Düz Metin Dosyasından Aktif OliveSet Dosyasına Not Ekle"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "Düz Metin Dosyalarının Klasöründen"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr "Düz Metin Dosyalarının Klasöründen Aktif Ağaca Not Ekle"
+
+msgid "From _HTML File"
+msgstr "HTML Dosyasından"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "HTML Dosyasından Aktif Ağaca Not Ekle"
+
+msgid "From _Folder of HTML Files"
+msgstr "HTML Dosyalarının Klasöründen"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "HTML Dosyalarının Klasöründen Aktif Ağaca Not Ekle"
+
+msgid "From _Markdown File"
+msgstr "_Markdown Dosyasından Ekle"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "Markdown Dosyasından Aktif Ağaca Bir Not Ekle"
+
+msgid "From _Folder of Markdown Files"
+msgstr "Markdown Dosyalarının Klasöründen"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "Markdown Dosyalarının Klasöründen Aktif Ağaca Bir Not Ekle"
+
+msgid "From _Gnote Folder"
+msgstr "Gnote Yazılımının Klasöründen Not Ekle"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "Gnote Yazılımının Klasöründen Aktif Ağaca Not Ekle"
+
+msgid "From _KeepNote Folder"
+msgstr "KeepNote Yazılımının Klasöründen Not Ekle"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "KeepNote Yazılımının Klasöründen Aktif Ağaca Not Ekle"
+
+msgid "From _Leo File"
+msgstr "Leo Yazılımının Dosyasından Not Ekle"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "Leo Yazılımının Dosyasından Aktif Ağaca Not Ekle"
+
+msgid "From _Mempad File"
+msgstr "Mempad Dosyasından Ekle"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "Mempad Dosyasından Aktif Ağaca Not Ekle"
+
+msgid "From _NoteCase HTML File"
+msgstr "NoteCase HTML Dosyasından Not Ekle"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "NoteCase HTML Dosyasından Aktif Ağaca Bir Not Ekle"
+
+msgid "From _RedNotebook HTML File"
+msgstr "RedNotebook HTML Dosyasından"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "RedNotebook HTML  Dosyasından Aktif Ağaca Bir Not Ekle"
+
+msgid "From T_omboy Folder"
+msgstr "Tomboy  Yazılımının Klasöründen Not Ekle"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "Tomboy  Yazılımının Klasöründen Aktif Ağaca Not Ekle"
+
+msgid "From T_reepad Lite File"
+msgstr "Treepad Lite  Yazılımının Dosyasından Not Ekle"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "Treepad Lite  Yazılımının Dosyasından Aktif Ağaca Not Ekle"
+
+msgid "From _Zim Folder"
+msgstr "Zim  Yazılımının Klasöründen Not Ekle"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "Zim   Yazılımının Klasöründen Aktif Ağaca Not Ekle"
+
+msgid "Export"
+msgstr "Dışa Aktar"
+
+msgid "Export To _PDF"
+msgstr "PDF Olarak Dışa Aktar"
+
+msgid "Export To PDF"
+msgstr "PDF Olarak Dışa Aktar"
+
+msgid "Export To _HTML"
+msgstr "HTML Olarak Dışa Aktar"
+
+msgid "Export To HTML"
+msgstr "HTML Olarak Dışa Aktar"
+
+msgid "Export to Plain _Text"
+msgstr "Düz Metin Olarak Dışa Aktar"
+
+msgid "Export to Plain Text"
+msgstr "Düz Metin Olarak Dışa Aktar"
+
+msgid "_Export To OliveSet"
+msgstr "OliveSet Yazılımından Dışa Aktar"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "OliveSet Dosyası veya Klasörü Olarak Dışa Aktar"
+
+msgid "Help"
+msgstr "Yardım"
+
+msgid "_Check Newer Version"
+msgstr "Yeni Sürümü Kontrol Et"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "Kullanılabilir Yeni Sürümü Çevrimiçi Kontrol Et"
+
+msgid "_Website"
+msgstr "_Web Sitesi"
+
+msgid "Visit OliveSet's Website"
+msgstr "OliveSet'nin Sitesine Git"
+
+msgid "_Source Code"
+msgstr "Kaynak Kodu"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "OliveSet'nin Kaynak Koduna Çevrimiçi Gözat"
+
+msgid "_Report a Bug"
+msgstr "Bir Hata Bildir"
+
+msgid "Report a Bug in OliveSet"
+msgstr "OliveSet'de Bir Hata Bildir Dışa Aktar"
+
+msgid "_Donate"
+msgstr "_Bağış Yap"
+
+msgid "Donate to Support OliveSet"
+msgstr "OliveSet'yi Desteklemek İçin Bağış Yapın"
+
+msgid "Online _Manual"
+msgstr "Çevrimiçi Yardım Dosyası"
+
+msgid "OliveSet's Online Manual"
+msgstr "OliveSet'nin Çevrimiçi Yardım Dosyası"
+
+msgid "_About"
+msgstr "Hakkında"
+
+msgid "_Open Preferences Directory"
+msgstr "Seçenek_ler Klasörünü Aç"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "Seçenek Dosyalarının Klasörünü Aç"
+
+msgid "C_ut Anchor"
+msgstr "Çapa Metni Kes"
+
+msgid "Cut the Selected Anchor"
+msgstr "Seçili Çapa Metni Kes"
+
+msgid "_Copy Anchor"
+msgstr "Çapa Metni Kopyala"
+
+msgid "Copy the Selected Anchor"
+msgstr "Seçili Çapa Metni Kopyala"
+
+msgid "_Delete Anchor"
+msgstr "Çapa Metni Sil"
+
+msgid "Delete the Selected Anchor"
+msgstr "Seçili Çapa Metni Sil"
+
+msgid "Edit _Anchor..."
+msgstr "Çapa Metni Düzenle..."
+
+msgid "Edit the Underlying Anchor"
+msgstr "Altı Çizili Çapa Metni Düzenle"
+
+msgid "Copy Anchor Link"
+msgstr "Çapa Linki Kopyala"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "Altı Çizili Çapa Linki Düzenle"
+
+msgid "C_ut Embedded File"
+msgstr "Gömülü Dosyayı Kes"
+
+msgid "Cut the Selected Embedded File"
+msgstr "Seçili Gömülü Dosyayı Kes"
+
+msgid "_Copy Embedded File"
+msgstr "Gömülü Dosyayı Kopyala"
+
+msgid "Copy the Selected Embedded File"
+msgstr "Seçili Gömülü Dosyayı Kopyala"
+
+msgid "_Delete Embedded File"
+msgstr "Gömülü Dosyayı Sil"
+
+msgid "Delete the Selected Embedded File"
+msgstr "Seçili Gömülü Dosyayı Sil"
+
+msgid "Open Embedded File"
+msgstr "Gömülü Dosya Aç"
+
+msgid "_Rename"
+msgstr "Yeniden Adlandır"
+
+msgid "Rename Embedded File"
+msgstr "Gömülü Dosyayı Yeniden Adlandır"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "Latex Kutusunu PNG Olarak Farklı Kaydet..."
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "Seçili Latex Kutusunu PNG Olarak Kaydet"
+
+msgid "_Edit LatexBox..."
+msgstr "Latex Kutusunu Düzenle..."
+
+msgid "Edit the Selected LatexBox"
+msgstr "Seçili Latex Kutusunu Düzenle"
+
+msgid "C_ut LatexBox"
+msgstr "Latex Kutusunu Kes"
+
+msgid "Cut the Selected LatexBox"
+msgstr "Seçili Latex Kutusunu Kes"
+
+msgid "_Copy LatexBox"
+msgstr "Latex Kutusunu Kopyala"
+
+msgid "Copy the Selected LatexBox"
+msgstr "Seçili Latex Kutusunu Kopyala"
+
+msgid "_Delete LatexBox"
+msgstr "Latex Kutusunu Sil"
+
+msgid "Delete the Selected LatexBox"
+msgstr "Seçili Latex Kutusunu Sil"
+
+msgid "_Save Image as PNG..."
+msgstr "PNG Olarak Farklı Kaydet..."
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "Seçili Resmi PNG Olarak Kaydet"
+
+msgid "_Edit Image..."
+msgstr "Resmi Düzenle..."
+
+msgid "Edit the Selected Image"
+msgstr "Seçili Resmi Düzenle"
+
+msgid "C_ut Image"
+msgstr "Resmi Kes"
+
+msgid "Cut the Selected Image"
+msgstr "Seçili Resmi Kes"
+
+msgid "_Copy Image"
+msgstr "Resmi Kopyala"
+
+msgid "Copy the Selected Image"
+msgstr "Seçili Resmi Kopyala"
+
+msgid "_Delete Image"
+msgstr "Resmi Sil"
+
+msgid "Delete the Selected Image"
+msgstr "Seçili Resmi Sil"
+
+msgid "Edit _Link..."
+msgstr "Link Düzenle..."
+
+msgid "Edit the Link Associated to the Image"
+msgstr "Resimle Bağlantılı Linki Düzenle"
+
+msgid "D_ismiss Link"
+msgstr "Linki Çıkar"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "Resimle Bağlantılı Linki Çıkar"
+
+msgid "Show/Hide _OliveSet"
+msgstr "OliveSet Yazılımını Göster/Gizle"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "OliveSet Yazılımını Göster/Gizle"
+
+msgid "Edit the Underlying Link"
+msgstr "Altı Çizili Linki Düzenle"
+
+msgid "C_ut Link"
+msgstr "Linki Kes"
+
+msgid "Cut the Selected Link"
+msgstr "Seçili Linki Kes"
+
+msgid "_Copy Link"
+msgstr "Linki Kopyala"
+
+msgid "Copy the Selected Link"
+msgstr "Seçili Linki Kopyala"
+
+msgid "Dismiss the Selected Link"
+msgstr "Seçili Linki Çıkar"
+
+msgid "_Delete Link"
+msgstr "Linki Sil"
+
+msgid "Delete the Selected Link"
+msgstr "Seçili Linki Sil"
+
+msgid "English"
+msgstr "İngilizce"
+
+msgid "Text and Code"
+msgstr "Metin ve Kod"
+
+msgid "Plain Text and Code"
+msgstr "Düz Metin ve Kod"
+
+msgid "Tree Explorer"
+msgstr "Ağaç Gezgini"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Interface"
+msgstr "Arayüz"
+
+msgid "Links"
+msgstr "Linkler"
+
+msgid "Toolbar"
+msgstr "Araç Çubuğu"
+
+msgid "Keyboard Shortcuts"
+msgstr "Kısayollar"
+
+msgid "Miscellaneous"
+msgstr "Çeşitli"
+
+msgid "Monospace"
+msgstr "Tekli Boşluk"
+
+msgid "Code Font"
+msgstr "Kod Yazı Tipi"
+
+msgid "Terminal Font"
+msgstr "Terminal Yazı Tipi"
+
+msgid "Tree Font"
+msgstr "Ağaç Yazı Tipi"
+
+msgid "Reset to Default"
+msgstr "Varsayılana Sıfırla"
+
+msgid "Fonts"
+msgstr "Yazı Tipleri"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "Kelime Sayısını Durum Çubuğunda Göster"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "Belge Dizinini Pencere Başlığında Göster"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "Not Başlığında Tüm Dosya Yolunu Göster/Gizle"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "Menü Çubuğunda Özel Yer İşaretleri Menüsü"
+
+msgid "Menubar in Titlebar"
+msgstr "Başlık Çubuğunda Menü Çubuğu"
+
+msgid "Toolbar Icons Size"
+msgstr "Araç Çubuğu Simge Boyutu"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "Not Adı Başlağında Son Ziyaret Edilen Notlar"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "Kaydırma Çubuğu Minimum Boyutu (0 = Sistem Varsayılanı)"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "Kaydırma Çubuğu Kaplamaları Metin Düzenleyicisi"
+
+msgid "System Default"
+msgstr "Sistem Varsayılanı"
+
+msgid "Yes"
+msgstr "Evet"
+
+msgid "No"
+msgstr "Hayır"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "Fareyle Gezinirken Araç İpuçlarını Etkinleştir"
+
+msgid "Menus"
+msgstr "Menüler"
+
+msgid "Max Search Results per Page"
+msgstr "Sayfa Başına Maksimum Arama Sonucu"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "Oturumlar Arasında Arama/Değiştirme Geçmişini Kaydet"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "Özel Web Linki Tıklanma Durumunu Aktif Et"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "Özel Dosya Tıklanma Durumunu Aktif Et"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "Özel Klasör Tıklanma Durumunu Aktif Et"
+
+msgid "Custom Actions"
+msgstr "Özel Hareketler"
+
+msgid "Colors"
+msgstr "Renkler"
+
+msgid "Double Click for Link Action"
+msgstr "Bağlantı Eylemi için Çift Tıklama"
+
+msgid "Underline Links"
+msgstr "Altı Çizili Linkler"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "Klasör ve Dosyalar İçin Göreceli Bağlantılar"
+
+msgid "Anchor Size"
+msgstr "Çapa Boyutu"
+
+msgid "Change Selected"
+msgstr "Seçili Olanı Değiştir"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr "'%s' Klavye Kısayolu Zaten Kullanımda."
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "Aktif '%s' ilişkilendirildi"
+
+msgid "Do you want to steal the shortcut?"
+msgstr "Kısayolu değiştirmek (çalmak:) ) istediğinizden emin misiniz?"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "Klavye Kısayollarını Düzenle"
+
+msgid "No Keyboard Shortcut"
+msgstr "Klavye Kısayolu Yok"
+
+msgid "Autosave on Quit"
+msgstr "Çıkışta Otomatik Kaydet"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "Kaydetmeden Önce Yedek Kopyası Oluştur"
+
+msgid "Number of Backups to Keep"
+msgstr "Saklamak İçin Yedekleri Numaralandır"
+
+msgid "Custom Backup Directory"
+msgstr "Özel Yedek Klasörü"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "Çoklu Dosya Depolama, Diskte Gömülü Dosya Adı Kullan"
+
+msgid "Saving"
+msgstr "Kaydediliyor"
+
+msgid "Automatically Check for Newer Version"
+msgstr "Yeni Sürümü Otomatik Kontrol Et"
+
+msgid "Reload Document From Last Session"
+msgstr "Son Oturumu Yeniden Yükle"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "Belge Yüklenmediğinde Başlangıç İletişim Kutusunu Göster"
+
+msgid "Reload After External Update to CT* File"
+msgstr "CT* Dosyasını Güncelledikten Sonra Tekrar Yükle"
+
+msgid "Enable Debug Log"
+msgstr "Hata Ayıklama Kaydını Aktif Et"
+
+msgid "Debug Log Directory"
+msgstr "Hata Kaydı Klasörü"
+
+msgid "Enable System Tray Docking"
+msgstr "Sistem Çekmecesi Bağlantısını Etkinleştir"
+
+msgid "Start Minimized in the System Tray"
+msgstr "Başlangıçta Sistem Çekmecesinde Başlat"
+
+msgid "System Tray"
+msgstr "Sistem Çekmecesi"
+
+msgid "Language"
+msgstr "Dil"
+
+msgid "URL"
+msgstr "URL (Link)"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+msgid "Password"
+msgstr "Parola"
+
+msgid "Proxy"
+msgstr "Proksi"
+
+msgid "Show White Spaces"
+msgstr "Beyaz Boşlukları Göster"
+
+msgid "Highlight Current Line"
+msgstr "Aktif Satırı Vurgula"
+
+msgid "Text Editor"
+msgstr "Metin Düzenleyici"
+
+msgid "Internal Terminal Shell"
+msgstr "Dahili Konsol Kabuğu"
+
+msgid "Add"
+msgstr "Ekle"
+
+msgid "Remove Selected"
+msgstr "Seçili Olanı Sil"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "Herbir Not/Kod Kutusuna Komut"
+
+msgid "Terminal Command"
+msgstr "Terminal Komutu"
+
+msgid "Code Execution"
+msgstr "Kod Yürütme"
+
+msgid "Select Element to Add"
+msgstr "Eklemek İçin Nesne Seçin"
+
+msgid "Enable Spell Check"
+msgstr "Yazım Denetimini Aç"
+
+msgid "Spell Check Language"
+msgstr "Yazım Denetimi Dili"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "Kod Kutularını Otomatik Genişlet"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "Kod Kutularında Araç Çubuğu Var"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "Hafif Arayüz İçin Tablo Hücrelerinin Eşik Sayısı"
+
+msgid "Embedded File Icon Size"
+msgstr "Gömülü Dosya Simge Boyutu"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "Gömülü Dosya Boyutu (MB)"
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "Gömülü Dosya Simgesinin Üstünde Dosya Adını Göster"
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "Tek Tıklamada Nesneleri Otomatik Seçme"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr "KDE 6'da Klipper ile pano donmalarına karşı geçici çözüm"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "Bir Notta Geri Alınabilecek Adım Sayısı Sınırı"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "CamelCase Metnini Aynı İsimle Nota Otomatik Bağla"
+
+msgid "Auto Link URLs"
+msgstr "Otomatik Link URL leri"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "Üç Tıklamada Tüm Paragrafı Seçin"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "Otomatik Değiştirme İşaretlemeyi Etkinleştir (Deneysel)"
+
+msgid "Scale"
+msgstr "Ölçek"
+
+msgid "Italic"
+msgstr "Eğik"
+
+msgid "Underline"
+msgstr "Altı Çizili"
+
+msgid "Text Color Foreground"
+msgstr "Yazı Rengi"
+
+msgid "Text Color Background"
+msgstr "Yazı Zemin Rengi"
+
+msgid "Small"
+msgstr "Küçük"
+
+msgid "Scalable Tags"
+msgstr "Ölçeklenebilir Etiketler"
+
+msgid "Chars for Bulleted List"
+msgstr "Madde İşaretli Liste Karakterleri"
+
+msgid "Chars for Todo List"
+msgstr "Yapılacaklar Listesi İçin Karakterler"
+
+msgid "Chars for Table Of Content"
+msgstr "İçindekiler İçin Karakterler"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "Akıllı Çift Tırnaklar İçin Karakterler"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "Akıllı Tek Tırnaklar İçin Karakterler"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "Akıllı Tırnakların Otomatik Değişimini Etkinleştir"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "Sembollerin Otomatik Değişimini Etkinleştir"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "Otomatik Değişimi Desteklenen Semboller"
+
+msgid "Only at the Start of the Line"
+msgstr "Sadece Satırın Başlangıcında"
+
+msgid "Tab Width"
+msgstr "Tab Genişliği"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Sekmelerin Yerine Boşluk Ekle"
+
+msgid "Use Line Wrapping"
+msgstr "Satır Girintisi Kullan"
+
+msgid "Line Wrapping Indentation"
+msgstr "Satır Girintisi"
+
+msgid "Enable Automatic Indentation"
+msgstr "Otomatik Girintiyi Aktif Et"
+
+msgid "Scroll Beyond Last Line"
+msgstr "Son Satırın Ötesine Kaydır"
+
+msgid "Cursor Blinking"
+msgstr "İmleç Yanıp Sönüyor"
+
+msgid "On"
+msgstr "Açık"
+
+msgid "Off"
+msgstr "Kapalı"
+
+msgid "Text Margin: Left"
+msgstr "Metin Kenar Boşluğu: Sol"
+
+msgid "Right"
+msgstr "Sağ"
+
+msgid "Vertical Space Around Lines"
+msgstr "Çizgiler Etrafında Düşey Boşluk"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "Girintili Satırlarda Düşey Boşluk"
+
+msgid "Timestamp Format"
+msgstr "Zaman Bilgisi Biçimi"
+
+msgid "Horizontal Rule"
+msgstr "Yatay Kural"
+
+msgid "Chars to Select at Double Click"
+msgstr "Karakteri Çift Tıklayarak Seç"
+
+msgid "Light Background, Dark Text"
+msgstr "Açık Renk Arkaplan, Koyu Renk Metin"
+
+msgid "Dark Background, Light Text"
+msgstr "Koyu Renk Arkaplan, Açık Renk Metin"
+
+msgid "Custom Background"
+msgstr "Özel Arkaplan"
+
+msgid "Text"
+msgstr "Metin"
+
+msgid "Selection Background"
+msgstr "Seçili Zemin Rengi"
+
+msgid "Table"
+msgstr "Tablo"
+
+msgid "Code"
+msgstr "Kod"
+
+msgid "Style Schemes"
+msgstr "Şema Tarzı"
+
+msgid "Text Foreground"
+msgstr "Yazı Rengi"
+
+msgid "Text Background"
+msgstr "Zemin Rengi"
+
+msgid "Selection Foreground"
+msgstr "Seçili Yazı Rengi"
+
+msgid "Cursor"
+msgstr "İmleç"
+
+msgid "Current Line Background"
+msgstr "Aktif Çizgi Zemin Rengi"
+
+msgid "Line Numbers Foreground"
+msgstr "Satır Çizgi Numaraları Yazı Rengi"
+
+msgid "Line Numbers Background"
+msgstr "Satır Çizgi Numaraları Zemin Rengi"
+
+msgid "Style Scheme Editor"
+msgstr "Şema Tarzı Düzenleyici"
+
+msgid "Set Dark Theme Icons"
+msgstr "Koyu Tema Simgelerini Ayarla"
+
+msgid "Set Light Theme Icons"
+msgstr "Açık Tema Simgelerini Ayarla"
+
+msgid "Set Default Icons"
+msgstr "Varsayılan Simgeleri Ayarla"
+
+msgid "Icon Theme"
+msgstr "Simge Teması"
+
+msgid "Split Toolbar"
+msgstr "Araç Çubuğunu Böl"
+
+msgid "Use Different Cherries per Level"
+msgstr "Herbir Bölümde Farklı Çilek Simgeleri Kullan"
+
+msgid "No Icon"
+msgstr "Simge Yok"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "Sağ Taraftaki Yardımcı Simgeleri Gizle"
+
+msgid "Default Text Nodes Icons"
+msgstr "Yazı Notlarında Varsayılan Simgeler"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "Notları Genişlet/Daralt"
+
+msgid "Expand all Nodes"
+msgstr "Tüm Notları Genişlet"
+
+msgid "Collapse all Nodes"
+msgstr "Tüm Notları Daralt"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "Yer İmlerindeki Notların Simgeleri Her Zaman Gizli"
+
+msgid "Nodes Status at Startup"
+msgstr "Başlangıçta Notların Durumu"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "Ağaç Not İsimleri Girintileme Genişliği"
+
+msgid "Display Tree on the Right Side"
+msgstr "Ağacı Sağ Tarafta Göster"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "Fareyle Tıklandığında Yazı Kutusuna Odaklan"
+
+msgid "Expand Node at Mouse Click"
+msgstr "Fareyle Tıklandığında Notu Genişlet"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "'%s' Geçerli Bir Arşiv Değil"
+
+msgid "Writing to Disk..."
+msgstr "Diske Yazılıyor..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "%s Klasörüne/Sürücüsüne Yazma İzniniz Yok"
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "%s İçin Parolayı Girin"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr ""
+"Kaydedilen belgenin bütünlük denetimi başarısız oldu. Dosya-->Farklı Kaydet "
+"Deneyin"
+
+msgid "Failed to encrypt the file"
+msgstr "Dosya şifrelenemedi"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "Yedeklemeden Geri Yükleme Şunun İçin Gerekliydi:"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr "%s veri tabanı dosyası bozuk, daha fazla ayrıntı için detaylara bakın."
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s yazma hatası - dosya bulunamıyor. USB sürücüsünü veya paylaşılan kaynağı "
+"yeniden bağlayın."
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr ""
+"%s yazma hatası - dosya bir senkronizasyon programı tarafından engellendi mi?"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s tekrar açılamadı - dosya bulunamıyor. USB sürücüsünü veya dosya kaynağını "
+"yeniden bağlayın."
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "OliveSet Hiyerarşik Notları Tutar"
+
+msgid "_Exit OliveSet"
+msgstr "OliveSetyi Kapat"
+
+msgid "HTML Document"
+msgstr "HTML Belgesi"
+
+msgid "Markdown Document"
+msgstr "Markdown Belgesi"
+
+msgid "Mempad Document"
+msgstr "Mempad Belgesi"
+
+msgid "Treepad Document"
+msgstr "Treepad Belgesi"
+
+msgid "Leo Document"
+msgstr "Leo Belgesi"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "Varsayılana sıfırlamak istediğinizden emin misiniz?"
+
+#~ msgid "Replace in Multiple Nodes..."
+#~ msgstr "Çoklu Notlarda Değiştir..."
+
+#~ msgid "Find in Multiple Nodes..."
+#~ msgstr "Çoklu Notlarda Bul..."
+
+#~ msgid "Insert T_OC..."
+#~ msgstr "İçindekiler Tablosu Ekle..."
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "İçindekiler Tablosu Ekle"
+
+#~ msgid ""
+#~ "Backup files are by default 3 in the same folder of the corrupted "
+#~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
+#~ "the backup with one tilde: copy the file to another directory, remove the "
+#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "with two tildes and if it still fails try the one with three tildes."
+#~ msgstr ""
+#~ "Yedekleme dosyaları varsayılan olarak bozuk belgenin aynı klasöründe 3 "
+#~ "çeşittir, aynı isme ve sonunda yaklaşık işaretine (~, ~~, ~~~) sahiptir. "
+#~ "Önce bir yaklaşık işareti ile yedeklemeyi deneyin: dosyayı başka bir "
+#~ "dizine kopyalayın, sondaki yaklaşık işareti kaldırın ve OliveSet ile "
+#~ "açın. Hala başarısız olursa, iki işaretli olanı deneyin ve hala başarısız "
+#~ "olursa üç işaretli olanı deneyin."
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "Uygulamanın İnternet Yardım Dosyası"
+
+#~ msgid "OliveSet Document"
+#~ msgstr "OliveSet Dökümanı"
+
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "%s Dökümanı Bulunamadı"
+
+#~ msgid "Not Protected"
+#~ msgstr "Korumasız"
+
+#~ msgid "Password Protected"
+#~ msgstr "Parola Korumalı"
+
+#~ msgid "Find _in Multiple Nodes"
+#~ msgstr "Çoklu Notlarda Bul"
+
+#~ msgid "Replace in _Multiple Nodes"
+#~ msgstr "Çoklu Notlarda Değiştir"
+
+#~ msgid ""
+#~ "Pandoc executable could not be found, please ensure it is in your path"
+#~ msgstr ""
+#~ "Pandoc yürütülebilir dosyası bulunamadı, lütfen dizinde olduğundan emin "
+#~ "olun"
+
+#~ msgid "From File using _Pandoc"
+#~ msgstr "_Pandoc Kullanarak Dosyadan"
+
+#~ msgid "Add a node to the current tree using Pandoc"
+#~ msgstr "Pandoc Kullanarak Aktif Ağaca Bir Not Ekle"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "Yeni Dil OliveSet Yeniden Başlatılınca Aktif Olacak"
+
+#~ msgid "click me"
+#~ msgstr "buraya tıkla"
+
+#~ msgid "_Format"
+#~ msgstr "Biçim"
+
+#~ msgid "_Tools"
+#~ msgstr "Araçlar"
+
+#~ msgid "_List"
+#~ msgstr "Liste"
+
+#~ msgid "_Row"
+#~ msgstr "Satır"
+
+#~ msgid "_Print"
+#~ msgstr "Yazdı_r"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "Zaman Ekle"
+
+#~ msgid "Quit"
+#~ msgstr "Çıkış"
+
+#~ msgid "Replace in Selected Node and Subnodes"
+#~ msgstr "Seçili Notta ve Alt Notlarda Değiştir"
+
+#~ msgid "Search in Selected Node and Subnodes"
+#~ msgstr "Seçili Notta ve Alt Notlarda Ara"
+
+#~ msgid "Search in All Nodes"
+#~ msgstr "Tüm Notlarda Ara"
+
+#~ msgid "Replace in Node Names..."
+#~ msgstr "Not İsimlerinde Değiştir..."
+
+#~ msgid "Search For a Node Name..."
+#~ msgstr "Not İsmi İçinde Ara..."
+
+#~ msgid "Monospace Text Color Background"
+#~ msgstr "Tek Aralıklı Yazı Zemin Rengi"
+
+#~ msgid "Find in _All Nodes Contents"
+#~ msgstr "Tüm Notlarda İçeriği Bul"
+
+#~ msgid "Find into All the Tree Nodes Contents"
+#~ msgstr "Tüm Notlarda İçeriği Bul"
+
+#~ msgid "Find in _Selected Node and Subnodes Contents"
+#~ msgstr "Seçili Notta ve Alt Notlarda İçeriği Bul"
+
+#~ msgid "Find into the Selected Node and Subnodes Contents"
+#~ msgstr "Seçili Notta ve Alt Notlarda İçeriği Bul"
+
+#~ msgid "Replace in _All Nodes Contents"
+#~ msgstr "Tüm Notlarda İçeriği Değiştir"
+
+#~ msgid "Replace into All the Tree Nodes Contents"
+#~ msgstr "Tüm Ağaç Notlarında İçeriği Değiştir"
+
+#~ msgid "Replace in _Selected Node and Subnodes Contents"
+#~ msgstr "Seçili Notta ve Alt Notlarda İçeriği Değiştir"
+
+#~ msgid "Replace into the Selected Node and Subnodes Contents"
+#~ msgstr "Seçili Notta ve Alt Notlarda İçeriği Değiştir"
+
+#~ msgid "Replace in Nodes _Names"
+#~ msgstr "Not İsimlerini Değiştir"
+
+#~ msgid "_Execute CodeBox Code"
+#~ msgstr "Kod Kutusunu Çalıştır"
+
+#~ msgid "For_matting"
+#~ msgstr "_Biçimlendirme"
+
+#~ msgid "Nodes _Import"
+#~ msgstr "Notları İç_e Aktar"
+
+#~ msgid "Nodes E_xport"
+#~ msgstr "Notları _Dışa Aktar"
+
+#~ msgid "E_xport"
+#~ msgstr "Dışa A_ktar"
+
+#~ msgid "Editor"
+#~ msgstr "Düzenleyici"
+
+#~ msgid "Monospace Background"
+#~ msgstr "Tek Aralıklı Arkaplan"
+
+#~ msgid "Export to PDF at specified file path"
+#~ msgstr "Belirtilen Dizin Yolunda PDF ye Aktar"
+
+#~ msgid "Export to Multiple Plain _Text Files"
+#~ msgstr "Çoklu Düz Metin Dosyaları Olarak Dışa Aktar"
+
+#~ msgid "Export to Multiple Plain Text Files"
+#~ msgstr "Çoklu Düz Metin Dosyaları Olarak Dışa Aktar"
+
+#~ msgid "Export to _Single Plain Text File"
+#~ msgstr "Tek Düz Metin Dosyası Olarak Dışa Aktar"
+
+#~ msgid "Unknown"
+#~ msgstr "Bilinmeyen"
+
+#~ msgid "(no suggestions)"
+#~ msgstr "(öneri yok)"
+
+#~ msgid "Add \"{}\" to Dictionary"
+#~ msgstr "Sözlükten\"{}\" Ekle"
+
+#~ msgid "Ignore All"
+#~ msgstr "Tümünü Yoksay"
+
+#~ msgid "Languages"
+#~ msgstr "Diller"
+
+#~ msgid "Suggestions"
+#~ msgstr "Öneriler"
+
+#~ msgid "NoteCase Document"
+#~ msgstr "NoteCase Belgesi"
+
+#~ msgid "EPIM HTML Document"
+#~ msgstr "EPIM HTML Belgesi"
+
+#~ msgid "KeyNote Document"
+#~ msgstr "KeyNote Belgesi"
+
+#~ msgid "Knowit Document"
+#~ msgstr "Knowit Belgesi"
+
+#~ msgid ""
+#~ "Binary Executable '7za' Not Found, Check The Package 'p7zip-full' to be "
+#~ "Installed Properly"
+#~ msgstr ""
+#~ "'7za' Çalıştırılabilir Dosyası Bulunamadı, 'p7zip-full' Paketinin Kurulu "
+#~ "Olduğundan Emin Olun"
+
+#~ msgid "Type To Search..."
+#~ msgstr "Aramak İçin Yazın..."
+
+#~ msgid "Command Name"
+#~ msgstr "Komut İsmi"
+
+#~ msgid "Not Any H1, H2 or H3 Formatting Found"
+#~ msgstr "H1, H2 ya da H3 Biçimlendirmesi Bulunamadı"
+
+#~ msgid "Min Width"
+#~ msgstr "En Küçük Genişlik"
+
+#~ msgid "Max Width"
+#~ msgstr "En Büyük Genişlik"
+
+#~ msgid "Click to Edit the Column Settings"
+#~ msgstr "Kolon Ayarlarını Düzenlemek İçin Tıklayın"
+
+#~ msgid "Table Column Action"
+#~ msgstr "Tablo Kolon İşlemi"
+
+#~ msgid "From _Basket Folder"
+#~ msgstr "Basket Yazılımının Klasöründen Not Ekle"
+
+#~ msgid "Add Nodes of a Basket Folder to the Current Tree"
+#~ msgstr "Basket Yazılımının Klasöründen Aktif Ağaca Not Ekle"
+
+#~ msgid "From _EssentialPIM HTML File"
+#~ msgstr "EssentialPIM Yazılımının Klasöründen Not Ekle"
+
+#~ msgid "Add Node from an EssentialPIM HTML File to the Current Tree"
+#~ msgstr "EssentialPIM Yazılımının Klasöründen Aktif Ağaca Not Ekle"
+
+#~ msgid "From K_eyNote File"
+#~ msgstr "KeyNote Yazılımının Klasöründen Not Ekle"
+
+#~ msgid "Add Nodes of a KeyNote File to the Current Tree"
+#~ msgstr "KeyNote Yazılımının Klasöründen Aktif Ağaca Not Ekle"
+
+#~ msgid "From K_nowit File"
+#~ msgstr "Knowit Yazılımının Klasöründen Not Ekle"
+
+#~ msgid "Add Nodes of a Knowit File to the Current Tree"
+#~ msgstr "Knowit Yazılımının Klasöründen Aktif Ağaca Not Ekle"
+
+#~ msgid "From _TuxCards File"
+#~ msgstr "TuxCards  Yazılımının Dosyasından Not Ekle"
+
+#~ msgid "Add Nodes of a TuxCards File to the Current Tree"
+#~ msgstr "TuxCards  Yazılımının Dosyasından Aktif Ağaca Not Ekle"
+
+#~ msgid "Insert _NewLine"
+#~ msgstr "Yeni Satır Ekle"
+
+#~ msgid "Insert NewLine Char"
+#~ msgstr "Yeni Satır Karakteri Ekle"
+
+#~ msgid "Use AppIndicator for Docking"
+#~ msgstr "Uygulama Göstericiyi Kullan"
+
+#~ msgid "Cancel"
+#~ msgstr "Vazgeç"
+
+#~ msgid "The Characters  %s  are Not Allowed"
+#~ msgstr "%s Karakterine İzin Verilmiyor"
+
+#~ msgid "Text Font"
+#~ msgstr "Metin Yazı Tipi"
+
+#~ msgid "Toggle Node _Expanded/Collapsed"
+#~ msgstr "Nota Ait Ağacı Genişlet/Daralt"
+
+#~ msgid "Toggle Expanded/Collapsed Status of the Selected Node"
+#~ msgstr "Seçili Nota Ait Ağacı Genişlet/Daralt"
+
+#~ msgid "Find into the Selected Node"
+#~ msgstr "Seçili Not İçinde Bul"
+
+#~ msgid "Find into all the Tree Nodes"
+#~ msgstr "Tüm Notlarda Bul"
+
+#~ msgid "_Replace in Node"
+#~ msgstr "Not İçinde Değiştir"
+
+#~ msgid "Replace into the Selected Node"
+#~ msgstr "Seçili Not İçinde Değiştir"
+
+#~ msgid "Replace in Node_s"
+#~ msgstr "Notlarda Değiştir"
+
+#~ msgid "Replace into all the Tree Nodes"
+#~ msgstr "Tüm Notlarda Değiştir"
+
+#~ msgid "Code Nodes"
+#~ msgstr "Kod Notları"
+
+#~ msgid "Use Cherries as Nodes Icons"
+#~ msgstr "Not Simgelerinde Kiraz Resmi Kullan"
+
+#~ msgid "Do Not Display Nodes Icons"
+#~ msgstr "Notlarda Simge Gösterme"
+
+#~ msgid "All Nodes"
+#~ msgstr "Tüm Notlar"
+
+#~ msgid "_Bookmark This Node"
+#~ msgstr "Bu Notu Yer İmlerine Ekle"
+
+#~ msgid ""
+#~ "Copyright © 2009-2014\n"
+#~ "Giuseppe Penone <giuspen@gmail.com>"
+#~ msgstr ""
+#~ "Copyright © 2009-2014\n"
+#~ "Giuseppe Penone <giuspen@gmail.com>"
+
+#~ msgid "Sort with Drag and Drop, Delete with the Delete Key"
+#~ msgstr "Sürükleyerek Sıralayın, Del Tuşu İle Silin"

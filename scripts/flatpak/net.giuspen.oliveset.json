@@ -1,0 +1,241 @@
+{
+    "app-id": "net.giuspen.oliveset",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "47",
+    "sdk": "org.gnome.Sdk",
+    "command": "oliveset",
+    "rename-desktop-file": "oliveset.desktop",
+    "rename-icon": "oliveset",
+    "finish-args": [
+        "--share=ipc",
+        "--share=network",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--filesystem=host",
+        "--filesystem=xdg-run/gvfsd",
+        "--talk-name=org.gtk.vfs.*"
+    ],
+    "cleanup": [
+        "/bin/poppler-glib-demo",
+        "/bin/gsl-*",
+        "/include",
+        "/lib/pkgconfig",
+        "/share/aclocal",
+        "/share/devhelp",
+        "/share/doc",
+        "/share/gc",
+        "/share/info",
+        "/share/man",
+        "/share/pkgconfig",
+        "*.la",
+        "*.a"
+    ],
+    "modules": [
+        {
+            "name": "mm-common",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.acc.umu.se/pub/GNOME/sources/mm-common/1.0/mm-common-1.0.6.tar.xz",
+                    "sha256": "b55c46037dbcdabc5cee3b389ea11cc3910adb68ebe883e9477847aa660862e7"
+                }
+            ],
+            "cleanup": [
+                "*"
+            ]
+        },
+        {
+            "name": "sigc++-2",
+            "config-opts": [
+                "--disable-documentation"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.acc.umu.se/pub/GNOME/sources/libsigc++/2.12/libsigc++-2.12.1.tar.xz",
+                    "sha256": "a9dbee323351d109b7aee074a9cb89ca3e7bcf8ad8edef1851f4cf359bd50843"
+                }
+            ]
+        },
+        {
+            "name": "cairomm",
+            "config-opts": [
+                "--disable-documentation"
+            ],
+            "cleanup": [
+                "/lib/cairomm-1.0"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.cairographics.org/releases/cairomm-1.14.5.tar.xz",
+                    "sha256": "70136203540c884e89ce1c9edfb6369b9953937f6cd596d97c78c9758a5d48db"
+                }
+            ]
+        },
+        {
+            "name": "glibmm",
+            "buildsystem": "meson",
+            "cleanup": [
+                "/lib/glibmm-2.4"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.acc.umu.se/pub/GNOME/sources/glibmm/2.66/glibmm-2.66.7.tar.xz",
+                    "sha256": "fe02c1e5f5825940d82b56b6ec31a12c06c05c1583cfe62f934d0763e1e542b3"
+                }
+            ]
+        },
+        {
+            "name": "pangomm",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.acc.umu.se/pub/GNOME/sources/pangomm/2.46/pangomm-2.46.4.tar.xz",
+                    "sha256": "b92016661526424de4b9377f1512f59781f41fb16c9c0267d6133ba1cd68db22"
+                }
+            ]
+        },
+        {
+            "name": "atkmm",
+            "buildsystem": "meson",
+            "cleanup": [
+                "/lib/atkmm-1.6"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.acc.umu.se/pub/GNOME/sources/atkmm/2.28/atkmm-2.28.4.tar.xz",
+                    "sha256": "0a142a8128f83c001efb8014ee463e9a766054ef84686af953135e04d28fdab3"
+                }
+            ]
+        },
+        {
+            "name": "gtkmm",
+            "buildsystem": "meson",
+            "cleanup": [
+                "/lib/gtkmm-3.0"
+            ],
+            "sources": [
+                {
+                    "type" : "archive",
+                    "url" : "https://ftp.acc.umu.se/pub/GNOME/sources/gtkmm/3.24/gtkmm-3.24.9.tar.xz",
+                    "sha256" : "30d5bfe404571ce566a8e938c8bac17576420eb508f1e257837da63f14ad44ce"
+                }
+            ]
+        },
+        {
+            "name": "gtksourceview",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type" : "archive",
+                    "url" : "https://ftp.acc.umu.se/pub/GNOME/sources/gtksourceview/4.8/gtksourceview-4.8.4.tar.xz",
+                    "sha256" : "7ec9d18fb283d1f84a3a3eff3b7a72b09a10c9c006597b3fbabbb5958420a87d"
+                }
+            ]
+        },
+        {
+            "name": "libxml++",
+            "config-opts" : [
+                "--disable-documentation"
+            ],
+            "sources": [
+                {
+                    "type" : "archive",
+                    "url" : "https://ftp.acc.umu.se/pub/GNOME/sources/libxml++/2.42/libxml++-2.42.3.tar.xz",
+                    "sha256" : "74b95302e24dbebc56e97048e86ad0a4121fc82a43e58d381fbe1d380e8eba04"
+                }
+            ]
+        },
+        {
+            "name": "gspell",
+            "buildsystem": "meson",
+            "cleanup": [
+                "/bin"
+            ],
+            "sources": [
+                {
+                    "type" : "archive",
+                    "url" : "https://mirror.accum.se/pub/GNOME/sources/gspell/1.14/gspell-1.14.0.tar.xz",
+                    "sha256" : "64ea1d8e9edc1c25b45a920e80daf67559d1866ffcd7f8432fecfea6d0fe8897"
+                }
+            ]
+        },
+        {
+            "name": "uchardet",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.8.tar.xz",
+                    "sha256" : "e97a60cfc00a1c147a674b097bb1422abd9fa78a2d9ce3f3fdcc2e78a34ac5f0"
+                }
+            ]
+        },
+        {
+            "name": "fmt",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/fmtlib/fmt/releases/download/9.1.0/fmt-9.1.0.zip",
+                    "sha256" : "cceb4cb9366e18a5742128cb3524ce5f50e88b476f1e54737a47ffdf4df4c996"
+                }
+            ]
+        },
+        {
+            "name": "spdlog",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/gabime/spdlog/archive/refs/tags/v1.12.0.tar.gz",
+                    "sha256" : "4dccf2d10f410c1e2feaff89966bfc49a1abb29ef6f08246335b110e001e09a9"
+                }
+            ]
+        },
+        {
+            "name": "vte-2.91",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type" : "archive",
+                    "url" : "https://gitlab.gnome.org/GNOME/vte/-/archive/0.76.4/vte-0.76.4.tar.bz2",
+                    "sha256" : "09dfba043112066f8002bc37757dd6f70b346ff30ed30f0701bebb186e465565"
+                }
+            ]
+        },
+        {
+            "name": "oliveset",
+            "buildsystem": "cmake-ninja",
+            "build-options": {
+                "cxxflags": "-D_FLATPAK_BUILD=1"
+            },
+            "sources": [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.giuspen.net/software/oliveset_1.2.0.tar.xz",
+                    "sha256" : "b9d9c9a0d7853e846657ceccdf74730f79190e19af296eeb955e5f4b54425ec2"
+                }
+            ]
+        },
+        {
+            "name": "tinytex",
+            "buildsystem": "simple",
+            "build-commands": [
+                "tar xf TinyTeX-1-v2022.04.04.tar.xz -C /app/bin/"
+            ],
+            "sources": [
+                {
+                    "type" : "file",
+                    "url" : "https://www.giuspen.net/software/TinyTeX-1-v2022.04.04.tar.xz",
+                    "sha256" : "3025930f9c9e989c0cac59826f8ee126d677aec728d20537b9e53e13ace29020"
+                }
+            ]
+        }
+    ]
+}

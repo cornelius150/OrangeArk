@@ -1,0 +1,3096 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Image Format Not Recognized"
+msgstr ""
+
+msgid "Insert Table"
+msgstr ""
+
+msgid "CSV File"
+msgstr ""
+
+msgid "Insert a CodeBox"
+msgstr ""
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr ""
+
+msgid "Do you want to Continue?"
+msgstr ""
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr ""
+
+msgid "Special Characters"
+msgstr ""
+
+msgid "Tabs Replaced"
+msgstr ""
+
+msgid "Lines Stripped"
+msgstr ""
+
+msgid "No Text is Selected."
+msgstr ""
+
+msgid "OliveSet File"
+msgstr ""
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+
+msgid "PDF File"
+msgstr ""
+
+msgid "Plain Text Document"
+msgstr ""
+
+msgid "Preferences File"
+msgstr ""
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr ""
+
+msgid "Your system does not support the System Tray"
+msgstr ""
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr ""
+
+msgid "Replace in Current Node"
+msgstr ""
+
+msgid "Search in Current Node"
+msgstr ""
+
+msgid "Matches"
+msgstr ""
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr ""
+
+msgid "Replace in Multiple Nodes"
+msgstr ""
+
+msgid "Search in Multiple Nodes"
+msgstr ""
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid ": "
+msgstr ""
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr ""
+
+msgid "Link Name"
+msgstr ""
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr ""
+
+msgid "Insert/Edit Link"
+msgstr ""
+
+msgid "Pick a Foreground Color"
+msgstr ""
+
+msgid "Pick a Background Color"
+msgstr ""
+
+msgid "Checking for Newer Version..."
+msgstr ""
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr ""
+
+msgid "A Newer Version Is Available!"
+msgstr ""
+
+msgid "You Are Using the Latest Version Available."
+msgstr ""
+
+msgid "You Are Using a Development Version."
+msgstr ""
+
+msgid "Who is the Parent?"
+msgstr ""
+
+msgid "The Tree Root"
+msgstr ""
+
+msgid "The Selected Node"
+msgstr ""
+
+msgid "Rename"
+msgstr ""
+
+msgid "PNG Image"
+msgstr ""
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr ""
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr ""
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr ""
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr ""
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr ""
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr ""
+
+msgid "Edit CodeBox"
+msgstr ""
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr ""
+
+msgid "Edit Table Properties"
+msgstr ""
+
+msgid "Insert Anchor"
+msgstr ""
+
+msgid "Edit Anchor"
+msgstr ""
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr ""
+
+msgid "Embedded File Automatically Updated:"
+msgstr ""
+
+msgid "No Node is Selected"
+msgstr ""
+
+msgid "The Tree is Empty!"
+msgstr ""
+
+msgid "The Selected Node is Read Only."
+msgstr ""
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr ""
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr ""
+
+msgid "No Table is Selected."
+msgstr ""
+
+msgid "No CodeBox is Selected."
+msgstr ""
+
+msgid "New Child Node Properties"
+msgstr ""
+
+msgid "New Node Properties"
+msgstr ""
+
+msgid "Node Properties"
+msgstr ""
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr ""
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr ""
+
+msgid "Select the New Parent"
+msgstr ""
+
+msgid "The new parent can't be the very node to move!"
+msgstr ""
+
+msgid "The new chosen parent is still the old parent!"
+msgstr ""
+
+msgid "The new parent can't be one of his children!"
+msgstr ""
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr ""
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr ""
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr ""
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr ""
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr ""
+
+msgid "Print OliveSet version"
+msgstr ""
+
+msgid "Node name to focus"
+msgstr ""
+
+msgid "Anchor name to scroll to in node"
+msgstr ""
+
+msgid "Export to HTML at specified directory path"
+msgstr ""
+
+msgid "Export to Text at specified directory path"
+msgstr ""
+
+msgid "Export to PDF at specified directory path"
+msgstr ""
+
+msgid "Overwrite if export path already exists"
+msgstr ""
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr ""
+
+msgid "Password to open document"
+msgstr ""
+
+msgid "Create a new window"
+msgstr ""
+
+msgid "Run in secondary session, independent from main session"
+msgstr ""
+
+msgid "Execute Code"
+msgstr ""
+
+msgid "Copy Code"
+msgstr ""
+
+msgid "Change CodeBox Properties"
+msgstr ""
+
+msgid "Start in OliveSet"
+msgstr ""
+
+msgid "New Document"
+msgstr ""
+
+msgid "Open File"
+msgstr ""
+
+msgid "Open Folder"
+msgstr ""
+
+msgid "Create a new document or open an existing one."
+msgstr ""
+
+msgid "Don't show again"
+msgstr ""
+
+msgid "Recent Documents"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Path"
+msgstr ""
+
+msgid "Open Selected"
+msgstr ""
+
+msgid "Handle the Bookmarks List"
+msgstr ""
+
+msgid "Move the Selected Bookmark Up"
+msgstr ""
+
+msgid "Move the Selected Bookmark Down"
+msgstr ""
+
+msgid "Remove the Selected Bookmark"
+msgstr ""
+
+msgid "Sort the Bookmarks Descending"
+msgstr ""
+
+msgid "Sort the Bookmarks Ascending"
+msgstr ""
+
+msgid "Choose Storage Type"
+msgstr ""
+
+msgid "Single SQLite File"
+msgstr ""
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr ""
+
+msgid "Single XML File"
+msgstr ""
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr ""
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr ""
+
+msgid "Storage Type"
+msgstr ""
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+
+msgid "Enter the New Password Twice"
+msgstr ""
+
+msgid "Autosave Every"
+msgstr ""
+
+msgid "Minutes"
+msgstr ""
+
+msgid "The Password Fields Must be Filled."
+msgstr ""
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "The Current Document was Updated."
+msgstr ""
+
+msgid "Do you want to Save the Changes?"
+msgstr ""
+
+msgid "Do you want to Execute the Code?"
+msgstr ""
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr ""
+
+msgid "Use Internal Terminal"
+msgstr ""
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr ""
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+
+msgid "Arabic"
+msgstr ""
+
+msgid "Armenian"
+msgstr ""
+
+msgid "Bulgarian"
+msgstr ""
+
+msgid "Chinese Simplified"
+msgstr ""
+
+msgid "Chinese Traditional"
+msgstr ""
+
+msgid "Croatian"
+msgstr ""
+
+msgid "Czech"
+msgstr ""
+
+msgid "Dutch"
+msgstr ""
+
+msgid "Finnish"
+msgstr ""
+
+msgid "French"
+msgstr ""
+
+msgid "German"
+msgstr ""
+
+msgid "Greek"
+msgstr ""
+
+msgid "Hindi India"
+msgstr ""
+
+msgid "Hungarian"
+msgstr ""
+
+msgid "Italian"
+msgstr ""
+
+msgid "Japanese"
+msgstr ""
+
+msgid "Kazakh"
+msgstr ""
+
+msgid "Kazakh (Latin)"
+msgstr ""
+
+msgid "Korean"
+msgstr ""
+
+msgid "Lithuanian"
+msgstr ""
+
+msgid "Persian"
+msgstr ""
+
+msgid "Polish"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
+
+msgid "Portuguese Brazil"
+msgstr ""
+
+msgid "Romanian"
+msgstr ""
+
+msgid "Russian"
+msgstr ""
+
+msgid "Slovak"
+msgstr ""
+
+msgid "Slovenian"
+msgstr ""
+
+msgid "Spanish"
+msgstr ""
+
+msgid "Swedish"
+msgstr ""
+
+msgid "Turkish"
+msgstr ""
+
+msgid "Ukrainian"
+msgstr ""
+
+msgid "About OliveSet"
+msgstr ""
+
+msgid "Tree Summary Information"
+msgstr ""
+
+msgid "Number of Rich Text Nodes"
+msgstr ""
+
+msgid "Number of Plain Text Nodes"
+msgstr ""
+
+msgid "Number of Code Nodes"
+msgstr ""
+
+msgid "Number of Images"
+msgstr ""
+
+msgid "Number of LatexBoxes"
+msgstr ""
+
+msgid "Number of Embedded Files"
+msgstr ""
+
+msgid "Number of Tables"
+msgstr ""
+
+msgid "Number of CodeBoxes"
+msgstr ""
+
+msgid "Number of Anchors"
+msgstr ""
+
+msgid "Number of Shared Nodes / Groups"
+msgstr ""
+
+msgid "Latex Text"
+msgstr ""
+
+msgid "Image Size dpi"
+msgstr ""
+
+msgid "Tutorial"
+msgstr ""
+
+msgid "Reference"
+msgstr ""
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr ""
+
+msgid "LaTeX Math Symbols Reference"
+msgstr ""
+
+msgid "Image Properties"
+msgstr ""
+
+msgid "Rotate Left"
+msgstr ""
+
+msgid "Rotate Right"
+msgstr ""
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr ""
+
+msgid "Flip Horizontally"
+msgstr ""
+
+msgid "Flip Vertically"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Plain Text"
+msgstr ""
+
+msgid "Automatic Syntax Highlighting"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "pixels"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Show Line Numbers"
+msgstr ""
+
+msgid "Highlight Matching Brackets"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Rows"
+msgstr ""
+
+msgid "Columns"
+msgstr ""
+
+msgid "Default Width"
+msgstr ""
+
+msgid "Table Size"
+msgstr ""
+
+msgid "Column Properties"
+msgstr ""
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr ""
+
+msgid "Import from CSV File"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Search for"
+msgstr ""
+
+msgid "Replace with"
+msgstr ""
+
+msgid "Replace in Link Targets"
+msgstr ""
+
+msgid "Replace options"
+msgstr ""
+
+msgid "Match Case"
+msgstr ""
+
+msgid "Regular Expression"
+msgstr ""
+
+msgid "Online Manual"
+msgstr ""
+
+msgid "Accent Insensitive"
+msgstr ""
+
+msgid "Override Exclusions"
+msgstr ""
+
+msgid "Whole Word"
+msgstr ""
+
+msgid "Start Word"
+msgstr ""
+
+msgid "More Words, Exact Match"
+msgstr ""
+
+msgid "More Words, Disregard Order"
+msgstr ""
+
+msgid "More Words, Match Any"
+msgstr ""
+
+msgid "Forward"
+msgstr ""
+
+msgid "Backward"
+msgstr ""
+
+msgid "All, List Matches"
+msgstr ""
+
+msgid "First From Selection"
+msgstr ""
+
+msgid "First in All Range"
+msgstr ""
+
+msgid "Node Created After"
+msgstr ""
+
+msgid "Node Created Before"
+msgstr ""
+
+msgid "Node Modified After"
+msgstr ""
+
+msgid "Node Modified Before"
+msgstr ""
+
+msgid "Time filter"
+msgstr ""
+
+msgid "Node Content"
+msgstr ""
+
+msgid "Node Name and Tags"
+msgstr ""
+
+msgid "Only Selected Node and Subnodes"
+msgstr ""
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr ""
+
+msgid "Search options"
+msgstr ""
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr ""
+
+msgid "Node Name"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Line Content"
+msgstr ""
+
+msgid "Iterate Latest Find/Replace"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Find Previous"
+msgstr ""
+
+msgid "Find Next"
+msgstr ""
+
+msgid "Replace"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Remove User Colour from Palette"
+msgstr ""
+
+msgid "Colour"
+msgstr ""
+
+msgid "Question"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Select File"
+msgstr ""
+
+msgid "Select Folder"
+msgstr ""
+
+msgid "Save File as"
+msgstr ""
+
+msgid "Save To Folder"
+msgstr ""
+
+msgid "To WebSite"
+msgstr ""
+
+msgid "To File"
+msgstr ""
+
+msgid "To Folder"
+msgstr ""
+
+msgid "To Node"
+msgstr ""
+
+msgid "Anchor Name (optional)"
+msgstr ""
+
+msgid "There are No Anchors in the Selected Node."
+msgstr ""
+
+msgid "Choose Existing Anchor"
+msgstr ""
+
+msgid "Anchor Name"
+msgstr ""
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr ""
+
+msgid "Bold"
+msgstr ""
+
+msgid "Use Selected Color"
+msgstr ""
+
+msgid "Use Selected Icon"
+msgstr ""
+
+msgid "Rich Text"
+msgstr ""
+
+msgid "Node Type"
+msgstr ""
+
+msgid "Tags for Searching"
+msgstr ""
+
+msgid "Exclude from Searches"
+msgstr ""
+
+msgid "This Node"
+msgstr ""
+
+msgid "The Subnodes"
+msgstr ""
+
+msgid "Read Only"
+msgstr ""
+
+msgid "Unique Id"
+msgstr ""
+
+msgid "Shared Nodes Group"
+msgstr ""
+
+msgid "Choose Existing Tag"
+msgstr ""
+
+msgid "Tag Name"
+msgstr ""
+
+msgid "Pick a Color"
+msgstr ""
+
+msgid "Select Node Icon"
+msgstr ""
+
+msgid "Involved Nodes"
+msgstr ""
+
+msgid "Selected Text Only"
+msgstr ""
+
+msgid "Selected Node Only"
+msgstr ""
+
+msgid "Selected Node and Subnodes"
+msgstr ""
+
+msgid "All the Tree"
+msgstr ""
+
+msgid "Include Node Name"
+msgstr ""
+
+msgid "Links Tree in Every Page"
+msgstr ""
+
+msgid "New Node in New Page"
+msgstr ""
+
+msgid "Single File"
+msgstr ""
+
+msgid "Index"
+msgstr ""
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr ""
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr ""
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr ""
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr ""
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr ""
+
+msgid "For example, on macOS the packages to install are:"
+msgstr ""
+
+msgid "Could not access the executable 'latex'"
+msgstr ""
+
+msgid "Could not access the executable 'dvipng'"
+msgstr ""
+
+msgid "Downloading"
+msgstr ""
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr ""
+
+msgid "Open a Recent OliveSet Document"
+msgstr ""
+
+msgid "_Hide"
+msgstr ""
+
+msgid "_Quit"
+msgstr ""
+
+msgid "Hide the Window"
+msgstr ""
+
+msgid "Quit the Application"
+msgstr ""
+
+msgid "Spell Check"
+msgstr ""
+
+msgid "Word Count"
+msgstr ""
+
+msgid "Date Created"
+msgstr ""
+
+msgid "Date Modified"
+msgstr ""
+
+msgid "Subnodes"
+msgstr ""
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr ""
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr ""
+
+msgid "Show Menubar:"
+msgstr ""
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr ""
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr ""
+
+msgid "Failed to Load from Backup Data"
+msgstr ""
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr ""
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr ""
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr ""
+
+msgid "Did you Quit the External Applications?"
+msgstr ""
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr ""
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr ""
+
+msgid "Copy Selection or All"
+msgstr ""
+
+msgid "Paste"
+msgstr ""
+
+msgid "Remove from list"
+msgstr ""
+
+msgid "_File"
+msgstr ""
+
+msgid "_Edit"
+msgstr ""
+
+msgid "_Insert"
+msgstr ""
+
+msgid "F_ormat"
+msgstr ""
+
+msgid "_Tree"
+msgstr ""
+
+msgid "Too_ls"
+msgstr ""
+
+msgid "_Search"
+msgstr ""
+
+msgid "_View"
+msgstr ""
+
+msgid "_Bookmarks"
+msgstr ""
+
+msgid "_Help"
+msgstr ""
+
+msgid "Insert _Date Node"
+msgstr ""
+
+msgid "Node _Move"
+msgstr ""
+
+msgid "Nod_es Sort"
+msgstr ""
+
+msgid "B_ookmarks"
+msgstr ""
+
+msgid "_Import"
+msgstr ""
+
+msgid "_Export"
+msgstr ""
+
+msgid "_Preferences"
+msgstr ""
+
+msgid "_Recent Documents"
+msgstr ""
+
+msgid "C_hange Case"
+msgstr ""
+
+msgid "L_ist"
+msgstr ""
+
+msgid "_Justify"
+msgstr ""
+
+msgid "Toggle _Font Property"
+msgstr ""
+
+msgid "_Toggle Heading Property"
+msgstr ""
+
+msgid "I_nsert"
+msgstr ""
+
+msgid "_Find"
+msgstr ""
+
+msgid "_Replace"
+msgstr ""
+
+msgid "Ro_w"
+msgstr ""
+
+msgid "_Table"
+msgstr ""
+
+msgid "_CodeBox"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "_New Instance..."
+msgstr ""
+
+msgid "Start a New Instance of OliveSet"
+msgstr ""
+
+msgid "_Open File..."
+msgstr ""
+
+msgid "Open a OliveSet File"
+msgstr ""
+
+msgid "Open Fo_lder..."
+msgstr ""
+
+msgid "Open a OliveSet Folder"
+msgstr ""
+
+msgid "_Save"
+msgstr ""
+
+msgid "Save File"
+msgstr ""
+
+msgid "Save and _Vacuum"
+msgstr ""
+
+msgid "Save File and Vacuum"
+msgstr ""
+
+msgid "Save _As..."
+msgstr ""
+
+msgid "Save File As"
+msgstr ""
+
+msgid "Pa_ge Setup..."
+msgstr ""
+
+msgid "Set up the Page for Printing"
+msgstr ""
+
+msgid "P_rint..."
+msgstr ""
+
+msgid "Print"
+msgstr ""
+
+msgid "Preferences"
+msgstr ""
+
+msgid "_Import Preferences..."
+msgstr ""
+
+msgid "Import Preferences"
+msgstr ""
+
+msgid "_Export Preferences..."
+msgstr ""
+
+msgid "Export Preferences"
+msgstr ""
+
+msgid "Tree In_fo"
+msgstr ""
+
+msgid "_Document Path to Clipboard"
+msgstr ""
+
+msgid "Copy Document Path to Clipboard"
+msgstr ""
+
+msgid "E_xit OliveSet"
+msgstr ""
+
+msgid "Exit from OliveSet"
+msgstr ""
+
+msgid "Edit/Insert"
+msgstr ""
+
+msgid "_Undo"
+msgstr ""
+
+msgid "Undo Last Operation"
+msgstr ""
+
+msgid "_Redo"
+msgstr ""
+
+msgid "Redo Previously Discarded Operation"
+msgstr ""
+
+msgid "Insert I_mage..."
+msgstr ""
+
+msgid "Insert an Image"
+msgstr ""
+
+msgid "Insert Late_x..."
+msgstr ""
+
+msgid "Insert LatexBox"
+msgstr ""
+
+msgid "Insert _Table..."
+msgstr ""
+
+msgid "Insert a Table"
+msgstr ""
+
+msgid "Insert _CodeBox..."
+msgstr ""
+
+msgid "Insert _File..."
+msgstr ""
+
+msgid "Insert File"
+msgstr ""
+
+msgid "Insert/Edit _Link..."
+msgstr ""
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr ""
+
+msgid "Insert _Anchor..."
+msgstr ""
+
+msgid "Insert an Anchor"
+msgstr ""
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr ""
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr ""
+
+msgid "Insert Timestam_p"
+msgstr ""
+
+msgid "Insert Timestamp"
+msgstr ""
+
+msgid "Insert _Special Character..."
+msgstr ""
+
+msgid "Insert a Special Character"
+msgstr ""
+
+msgid "Insert _Horizontal Rule"
+msgstr ""
+
+msgid "Insert Horizontal Rule"
+msgstr ""
+
+msgid "_Lower Case of Selection/Word"
+msgstr ""
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr ""
+
+msgid "_Upper Case of Selection/Word"
+msgstr ""
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr ""
+
+msgid "_Toggle Case of Selection/Word"
+msgstr ""
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr ""
+
+msgid "Cu_t as Plain Text"
+msgstr ""
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr ""
+
+msgid "_Copy as Plain Text"
+msgstr ""
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr ""
+
+msgid "_Paste as Plain Text"
+msgstr ""
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr ""
+
+msgid "C_ut Row"
+msgstr ""
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr ""
+
+msgid "C_opy Row"
+msgstr ""
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr ""
+
+msgid "De_lete Row"
+msgstr ""
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr ""
+
+msgid "_Duplicate Row"
+msgstr ""
+
+msgid "Duplicate the Current Row/Selection"
+msgstr ""
+
+msgid "_Move Up Row"
+msgstr ""
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr ""
+
+msgid "Mo_ve Down Row"
+msgstr ""
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr ""
+
+msgid "C_ut Table"
+msgstr ""
+
+msgid "Cut the Selected Table"
+msgstr ""
+
+msgid "_Copy Table"
+msgstr ""
+
+msgid "Copy the Selected Table"
+msgstr ""
+
+msgid "_Delete Table"
+msgstr ""
+
+msgid "Delete the Selected Table"
+msgstr ""
+
+msgid "_Add Column"
+msgstr ""
+
+msgid "Add a Table Column"
+msgstr ""
+
+msgid "Cu_t Column"
+msgstr ""
+
+msgid "Cut a Table Column"
+msgstr ""
+
+msgid "_Copy Column"
+msgstr ""
+
+msgid "Copy a Table Column"
+msgstr ""
+
+msgid "_Paste Column"
+msgstr ""
+
+msgid "Paste a Table Column"
+msgstr ""
+
+msgid "De_lete Column"
+msgstr ""
+
+msgid "Delete the Selected Table Column"
+msgstr ""
+
+msgid "Move Column _Left"
+msgstr ""
+
+msgid "Move the Selected Column Left"
+msgstr ""
+
+msgid "Move Column _Right"
+msgstr ""
+
+msgid "Move the Selected Column Right"
+msgstr ""
+
+msgid "Increase Column Width"
+msgstr ""
+
+msgid "Increase the Width of the Column"
+msgstr ""
+
+msgid "Decrease Column Width"
+msgstr ""
+
+msgid "Decrease the Width of the Column"
+msgstr ""
+
+msgid "_Add Row"
+msgstr ""
+
+msgid "Add a Table Row"
+msgstr ""
+
+msgid "Cu_t Row"
+msgstr ""
+
+msgid "Cut a Table Row"
+msgstr ""
+
+msgid "_Copy Row"
+msgstr ""
+
+msgid "Copy a Table Row"
+msgstr ""
+
+msgid "_Paste Row"
+msgstr ""
+
+msgid "Paste a Table Row"
+msgstr ""
+
+msgid "Delete the Selected Table Row"
+msgstr ""
+
+msgid "Move Row _Up"
+msgstr ""
+
+msgid "Move the Selected Row Up"
+msgstr ""
+
+msgid "Move Row _Down"
+msgstr ""
+
+msgid "Move the Selected Row Down"
+msgstr ""
+
+msgid "Sort Rows De_scending"
+msgstr ""
+
+msgid "Sort all the Rows Descending"
+msgstr ""
+
+msgid "Sort Rows As_cending"
+msgstr ""
+
+msgid "Sort all the Rows Ascending"
+msgstr ""
+
+msgid "_Edit Table Properties..."
+msgstr ""
+
+msgid "Edit the Table Properties"
+msgstr ""
+
+msgid "_Table Export..."
+msgstr ""
+
+msgid "Export Table as CSV File"
+msgstr ""
+
+msgid "Change CodeBox _Properties..."
+msgstr ""
+
+msgid "Edit the Properties of the CodeBox"
+msgstr ""
+
+msgid "CodeBox _Load From Text File..."
+msgstr ""
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr ""
+
+msgid "CodeBox _Save To Text File..."
+msgstr ""
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr ""
+
+msgid "C_ut CodeBox"
+msgstr ""
+
+msgid "Cut the Selected CodeBox"
+msgstr ""
+
+msgid "_Copy CodeBox"
+msgstr ""
+
+msgid "Copy the Selected CodeBox"
+msgstr ""
+
+msgid "_Copy CodeBox Content"
+msgstr ""
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr ""
+
+msgid "_Delete CodeBox"
+msgstr ""
+
+msgid "Delete the Selected CodeBox"
+msgstr ""
+
+msgid "Delete CodeBox _Keep Content"
+msgstr ""
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr ""
+
+msgid "Increase CodeBox Width"
+msgstr ""
+
+msgid "Increase the Width of the CodeBox"
+msgstr ""
+
+msgid "Decrease CodeBox Width"
+msgstr ""
+
+msgid "Decrease the Width of the CodeBox"
+msgstr ""
+
+msgid "Increase CodeBox Height"
+msgstr ""
+
+msgid "Increase the Height of the CodeBox"
+msgstr ""
+
+msgid "Decrease CodeBox Height"
+msgstr ""
+
+msgid "Decrease the Height of the CodeBox"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Format Clo_ne"
+msgstr ""
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr ""
+
+msgid "Format _Latest"
+msgstr ""
+
+msgid "Memory of Latest Text Format Type"
+msgstr ""
+
+msgid "_Remove Formatting"
+msgstr ""
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr ""
+
+msgid "Text _Color Foreground"
+msgstr ""
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr ""
+
+msgid "Text C_olor Background"
+msgstr ""
+
+msgid "Change the Color of the Selected Text Background"
+msgstr ""
+
+msgid "Toggle _Bold Property"
+msgstr ""
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle _Italic Property"
+msgstr ""
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle _Underline Property"
+msgstr ""
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle Stri_kethrough Property"
+msgstr ""
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle h_1 Property"
+msgstr ""
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle h_2 Property"
+msgstr ""
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle h_3 Property"
+msgstr ""
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle h_4 Property"
+msgstr ""
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle h_5 Property"
+msgstr ""
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle h_6 Property"
+msgstr ""
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle _Small Property"
+msgstr ""
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle Su_bscript Property"
+msgstr ""
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle Su_perscript Property"
+msgstr ""
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr ""
+
+msgid "Toggle _Monospace Property"
+msgstr ""
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr ""
+
+msgid "Set/Unset _Bulleted List"
+msgstr ""
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr ""
+
+msgid "Set/Unset _Numbered List"
+msgstr ""
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr ""
+
+msgid "Set/Unset _To-Do List"
+msgstr ""
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr ""
+
+msgid "Justify _Left"
+msgstr ""
+
+msgid "Justify Left the Current Paragraph"
+msgstr ""
+
+msgid "Justify _Center"
+msgstr ""
+
+msgid "Justify Center the Current Paragraph"
+msgstr ""
+
+msgid "Justify _Right"
+msgstr ""
+
+msgid "Justify Right the Current Paragraph"
+msgstr ""
+
+msgid "Justify _Fill"
+msgstr ""
+
+msgid "Justify Fill the Current Paragraph"
+msgstr ""
+
+msgid "_Indent Paragraph"
+msgstr ""
+
+msgid "Indent the Current Paragraph"
+msgstr ""
+
+msgid "_Unindent Paragraph"
+msgstr ""
+
+msgid "Unindent the Current Paragraph"
+msgstr ""
+
+msgid "_Expand TOC Headers"
+msgstr ""
+
+msgid "Expand TOC Headers"
+msgstr ""
+
+msgid "_Collapse TOC Headers"
+msgstr ""
+
+msgid "Collapse TOC Headers"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Enable/Disable _Spell Check"
+msgstr ""
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr ""
+
+msgid "Enable/Disable _VIM Mode"
+msgstr ""
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr ""
+
+msgid "Stri_p Trailing Spaces"
+msgstr ""
+
+msgid "Strip Trailing Spaces"
+msgstr ""
+
+msgid "_Replace Tabs with Spaces"
+msgstr ""
+
+msgid "Replace Tabs with Spaces"
+msgstr ""
+
+msgid "_Command Palette..."
+msgstr ""
+
+msgid "Command Palette"
+msgstr ""
+
+msgid "_Execute Code All"
+msgstr ""
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr ""
+
+msgid "E_xecute Code Line or Selection"
+msgstr ""
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr ""
+
+msgid "Tree"
+msgstr ""
+
+msgid "Go _Back"
+msgstr ""
+
+msgid "Go to the Previous Visited Node"
+msgstr ""
+
+msgid "Go _Forward"
+msgstr ""
+
+msgid "Go to the Next Visited Node"
+msgstr ""
+
+msgid "Add _Node..."
+msgstr ""
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr ""
+
+msgid "Add _Subnode..."
+msgstr ""
+
+msgid "Add a Child Node to the Selected Node"
+msgstr ""
+
+msgid "_Duplicate Node"
+msgstr ""
+
+msgid "Duplicate the Selected Node"
+msgstr ""
+
+msgid "Duplicate Node _and Subnodes"
+msgstr ""
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr ""
+
+msgid "_Create Shared Node"
+msgstr ""
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr ""
+
+msgid "Copy Node and S_ubnodes"
+msgstr ""
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr ""
+
+msgid "_Paste Node and Subnodes"
+msgstr ""
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr ""
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr ""
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr ""
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr ""
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr ""
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr ""
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr ""
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr ""
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr ""
+
+msgid "C_hange Node Properties..."
+msgstr ""
+
+msgid "Edit the Properties of the Selected Node"
+msgstr ""
+
+msgid "Toggle _Read Only"
+msgstr ""
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr ""
+
+msgid "Cop_y Link to Node"
+msgstr ""
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr ""
+
+msgid "Children _Inherit Syntax"
+msgstr ""
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr ""
+
+msgid "_Handle Bookmarks..."
+msgstr ""
+
+msgid "Add to Boo_kmarks"
+msgstr ""
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr ""
+
+msgid "Remove from Boo_kmarks"
+msgstr ""
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr ""
+
+msgid "E_xpand All Nodes"
+msgstr ""
+
+msgid "Expand All the Tree Nodes"
+msgstr ""
+
+msgid "_Collapse All Nodes"
+msgstr ""
+
+msgid "Collapse All the Tree Nodes"
+msgstr ""
+
+msgid "Node _Up"
+msgstr ""
+
+msgid "Move the Selected Node Up"
+msgstr ""
+
+msgid "Node _Down"
+msgstr ""
+
+msgid "Move the Selected Node Down"
+msgstr ""
+
+msgid "Node _Left"
+msgstr ""
+
+msgid "Move the Selected Node Left"
+msgstr ""
+
+msgid "Node _Right"
+msgstr ""
+
+msgid "Move the Selected Node Right"
+msgstr ""
+
+msgid "Node Change _Parent..."
+msgstr ""
+
+msgid "Change the Selected Node's Parent"
+msgstr ""
+
+msgid "Sort Tree _Ascending"
+msgstr ""
+
+msgid "Sort the Tree Ascending"
+msgstr ""
+
+msgid "Sort Tree _Descending"
+msgstr ""
+
+msgid "Sort the Tree Descending"
+msgstr ""
+
+msgid "Sort Siblings A_scending"
+msgstr ""
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr ""
+
+msgid "Sort Siblings D_escending"
+msgstr ""
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr ""
+
+msgid "De_lete Node"
+msgstr ""
+
+msgid "Delete the Selected Node"
+msgstr ""
+
+msgid "Find/Replace"
+msgstr ""
+
+msgid "_Quick Node Selection..."
+msgstr ""
+
+msgid "Quick Node Selection"
+msgstr ""
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr ""
+
+msgid "Find in Nodes Names and Tags"
+msgstr ""
+
+msgid "_Find in Node Content..."
+msgstr ""
+
+msgid "Find into the Selected Node Content"
+msgstr ""
+
+msgid "Find _in Multiple Nodes..."
+msgstr ""
+
+msgid "Find in Multiple Nodes"
+msgstr ""
+
+msgid "Find _Again"
+msgstr ""
+
+msgid "Iterate the Last Find Operation"
+msgstr ""
+
+msgid "Find _Back"
+msgstr ""
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr ""
+
+msgid "_Replace in Node Content..."
+msgstr ""
+
+msgid "Replace into the Selected Node Content"
+msgstr ""
+
+msgid "Replace in _Multiple Nodes..."
+msgstr ""
+
+msgid "Replace A_gain"
+msgstr ""
+
+msgid "Iterate the Last Replace Operation"
+msgstr ""
+
+msgid "Show All Matches _Dialog..."
+msgstr ""
+
+msgid "Show Search All Matches Dialog"
+msgstr ""
+
+msgid "_Clear All Exclusions From Search"
+msgstr ""
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Show/Hide _Tree Explorer"
+msgstr ""
+
+msgid "Toggle Show/Hide Tree"
+msgstr ""
+
+msgid "Show/Hide Te_rminal"
+msgstr ""
+
+msgid "Toggle Show/Hide Terminal"
+msgstr ""
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr ""
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr ""
+
+msgid "Show/Hide _Menubar"
+msgstr ""
+
+msgid "Toggle Show/Hide Menubar"
+msgstr ""
+
+msgid "Show/Hide Tool_bar"
+msgstr ""
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr ""
+
+msgid "Show/Hide _Statusbar"
+msgstr ""
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr ""
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr ""
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr ""
+
+msgid "Show/Hide Node Name _Header"
+msgstr ""
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr ""
+
+msgid "Toggle _Focus Tree/Text"
+msgstr ""
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr ""
+
+msgid "_Increase Toolbar Icons Size"
+msgstr ""
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr ""
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr ""
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr ""
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr ""
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr ""
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr ""
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr ""
+
+msgid "Full Screen _On/Off"
+msgstr ""
+
+msgid "Toggle Full Screen On/Off"
+msgstr ""
+
+msgid "_Always On Top On/Off"
+msgstr ""
+
+msgid "Always On Top On/Off"
+msgstr ""
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr ""
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr ""
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr ""
+
+msgid "Place the Menubar in the Titlebar"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "From _OliveSet File"
+msgstr ""
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr ""
+
+msgid "From _OliveSet Folder"
+msgstr ""
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr ""
+
+msgid "From _Indented List File"
+msgstr ""
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr ""
+
+msgid "From _Plain Text File"
+msgstr ""
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr ""
+
+msgid "From _Folder of Plain Text Files"
+msgstr ""
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr ""
+
+msgid "From _HTML File"
+msgstr ""
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr ""
+
+msgid "From _Folder of HTML Files"
+msgstr ""
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr ""
+
+msgid "From _Markdown File"
+msgstr ""
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr ""
+
+msgid "From _Folder of Markdown Files"
+msgstr ""
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr ""
+
+msgid "From _Gnote Folder"
+msgstr ""
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr ""
+
+msgid "From _KeepNote Folder"
+msgstr ""
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr ""
+
+msgid "From _Leo File"
+msgstr ""
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr ""
+
+msgid "From _Mempad File"
+msgstr ""
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr ""
+
+msgid "From _NoteCase HTML File"
+msgstr ""
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr ""
+
+msgid "From _RedNotebook HTML File"
+msgstr ""
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr ""
+
+msgid "From T_omboy Folder"
+msgstr ""
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr ""
+
+msgid "From T_reepad Lite File"
+msgstr ""
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr ""
+
+msgid "From _Zim Folder"
+msgstr ""
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Export To _PDF"
+msgstr ""
+
+msgid "Export To PDF"
+msgstr ""
+
+msgid "Export To _HTML"
+msgstr ""
+
+msgid "Export To HTML"
+msgstr ""
+
+msgid "Export to Plain _Text"
+msgstr ""
+
+msgid "Export to Plain Text"
+msgstr ""
+
+msgid "_Export To OliveSet"
+msgstr ""
+
+msgid "Export To OliveSet File or Folder"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "_Check Newer Version"
+msgstr ""
+
+msgid "Check for a Newer Version Available Online"
+msgstr ""
+
+msgid "_Website"
+msgstr ""
+
+msgid "Visit OliveSet's Website"
+msgstr ""
+
+msgid "_Source Code"
+msgstr ""
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr ""
+
+msgid "_Report a Bug"
+msgstr ""
+
+msgid "Report a Bug in OliveSet"
+msgstr ""
+
+msgid "_Donate"
+msgstr ""
+
+msgid "Donate to Support OliveSet"
+msgstr ""
+
+msgid "Online _Manual"
+msgstr ""
+
+msgid "OliveSet's Online Manual"
+msgstr ""
+
+msgid "_About"
+msgstr ""
+
+msgid "_Open Preferences Directory"
+msgstr ""
+
+msgid "Open the Directory with Preferences Files"
+msgstr ""
+
+msgid "C_ut Anchor"
+msgstr ""
+
+msgid "Cut the Selected Anchor"
+msgstr ""
+
+msgid "_Copy Anchor"
+msgstr ""
+
+msgid "Copy the Selected Anchor"
+msgstr ""
+
+msgid "_Delete Anchor"
+msgstr ""
+
+msgid "Delete the Selected Anchor"
+msgstr ""
+
+msgid "Edit _Anchor..."
+msgstr ""
+
+msgid "Edit the Underlying Anchor"
+msgstr ""
+
+msgid "Copy Anchor Link"
+msgstr ""
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr ""
+
+msgid "C_ut Embedded File"
+msgstr ""
+
+msgid "Cut the Selected Embedded File"
+msgstr ""
+
+msgid "_Copy Embedded File"
+msgstr ""
+
+msgid "Copy the Selected Embedded File"
+msgstr ""
+
+msgid "_Delete Embedded File"
+msgstr ""
+
+msgid "Delete the Selected Embedded File"
+msgstr ""
+
+msgid "Open Embedded File"
+msgstr ""
+
+msgid "_Rename"
+msgstr ""
+
+msgid "Rename Embedded File"
+msgstr ""
+
+msgid "_Save LatexBox as PNG..."
+msgstr ""
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr ""
+
+msgid "_Edit LatexBox..."
+msgstr ""
+
+msgid "Edit the Selected LatexBox"
+msgstr ""
+
+msgid "C_ut LatexBox"
+msgstr ""
+
+msgid "Cut the Selected LatexBox"
+msgstr ""
+
+msgid "_Copy LatexBox"
+msgstr ""
+
+msgid "Copy the Selected LatexBox"
+msgstr ""
+
+msgid "_Delete LatexBox"
+msgstr ""
+
+msgid "Delete the Selected LatexBox"
+msgstr ""
+
+msgid "_Save Image as PNG..."
+msgstr ""
+
+msgid "Save the Selected Image as a PNG file"
+msgstr ""
+
+msgid "_Edit Image..."
+msgstr ""
+
+msgid "Edit the Selected Image"
+msgstr ""
+
+msgid "C_ut Image"
+msgstr ""
+
+msgid "Cut the Selected Image"
+msgstr ""
+
+msgid "_Copy Image"
+msgstr ""
+
+msgid "Copy the Selected Image"
+msgstr ""
+
+msgid "_Delete Image"
+msgstr ""
+
+msgid "Delete the Selected Image"
+msgstr ""
+
+msgid "Edit _Link..."
+msgstr ""
+
+msgid "Edit the Link Associated to the Image"
+msgstr ""
+
+msgid "D_ismiss Link"
+msgstr ""
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr ""
+
+msgid "Show/Hide _OliveSet"
+msgstr ""
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr ""
+
+msgid "Edit the Underlying Link"
+msgstr ""
+
+msgid "C_ut Link"
+msgstr ""
+
+msgid "Cut the Selected Link"
+msgstr ""
+
+msgid "_Copy Link"
+msgstr ""
+
+msgid "Copy the Selected Link"
+msgstr ""
+
+msgid "Dismiss the Selected Link"
+msgstr ""
+
+msgid "_Delete Link"
+msgstr ""
+
+msgid "Delete the Selected Link"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Text and Code"
+msgstr ""
+
+msgid "Plain Text and Code"
+msgstr ""
+
+msgid "Tree Explorer"
+msgstr ""
+
+msgid "Theme"
+msgstr ""
+
+msgid "Interface"
+msgstr ""
+
+msgid "Links"
+msgstr ""
+
+msgid "Toolbar"
+msgstr ""
+
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+msgid "Miscellaneous"
+msgstr ""
+
+msgid "Monospace"
+msgstr ""
+
+msgid "Code Font"
+msgstr ""
+
+msgid "Terminal Font"
+msgstr ""
+
+msgid "Tree Font"
+msgstr ""
+
+msgid "Reset to Default"
+msgstr ""
+
+msgid "Fonts"
+msgstr ""
+
+msgid "Enable Word Count in Statusbar"
+msgstr ""
+
+msgid "Show the Document Directory in the Window Title"
+msgstr ""
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr ""
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr ""
+
+msgid "Menubar in Titlebar"
+msgstr ""
+
+msgid "Toolbar Icons Size"
+msgstr ""
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr ""
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr ""
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr ""
+
+msgid "System Default"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "Enable Tooltips When Hovering"
+msgstr ""
+
+msgid "Menus"
+msgstr ""
+
+msgid "Max Search Results per Page"
+msgstr ""
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr ""
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr ""
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr ""
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr ""
+
+msgid "Custom Actions"
+msgstr ""
+
+msgid "Colors"
+msgstr ""
+
+msgid "Double Click for Link Action"
+msgstr ""
+
+msgid "Underline Links"
+msgstr ""
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr ""
+
+msgid "Anchor Size"
+msgstr ""
+
+msgid "Change Selected"
+msgstr ""
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr ""
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr ""
+
+msgid "Do you want to steal the shortcut?"
+msgstr ""
+
+msgid "Edit Keyboard Shortcut"
+msgstr ""
+
+msgid "No Keyboard Shortcut"
+msgstr ""
+
+msgid "Autosave on Quit"
+msgstr ""
+
+msgid "Create a Backup Copy Before Saving"
+msgstr ""
+
+msgid "Number of Backups to Keep"
+msgstr ""
+
+msgid "Custom Backup Directory"
+msgstr ""
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr ""
+
+msgid "Saving"
+msgstr ""
+
+msgid "Automatically Check for Newer Version"
+msgstr ""
+
+msgid "Reload Document From Last Session"
+msgstr ""
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr ""
+
+msgid "Reload After External Update to CT* File"
+msgstr ""
+
+msgid "Enable Debug Log"
+msgstr ""
+
+msgid "Debug Log Directory"
+msgstr ""
+
+msgid "Enable System Tray Docking"
+msgstr ""
+
+msgid "Start Minimized in the System Tray"
+msgstr ""
+
+msgid "System Tray"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "Port"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Proxy"
+msgstr ""
+
+msgid "Show White Spaces"
+msgstr ""
+
+msgid "Highlight Current Line"
+msgstr ""
+
+msgid "Text Editor"
+msgstr ""
+
+msgid "Internal Terminal Shell"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Remove Selected"
+msgstr ""
+
+msgid "Command per Node/CodeBox Type"
+msgstr ""
+
+msgid "Terminal Command"
+msgstr ""
+
+msgid "Code Execution"
+msgstr ""
+
+msgid "Select Element to Add"
+msgstr ""
+
+msgid "Enable Spell Check"
+msgstr ""
+
+msgid "Spell Check Language"
+msgstr ""
+
+msgid "Expand CodeBoxes Automatically"
+msgstr ""
+
+msgid "CodeBoxes Have Toolbar"
+msgstr ""
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr ""
+
+msgid "Embedded File Icon Size"
+msgstr ""
+
+msgid "Embedded File Size Limit (MB)"
+msgstr ""
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr ""
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr ""
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr ""
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr ""
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr ""
+
+msgid "Auto Link URLs"
+msgstr ""
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr ""
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr ""
+
+msgid "Scale"
+msgstr ""
+
+msgid "Italic"
+msgstr ""
+
+msgid "Underline"
+msgstr ""
+
+msgid "Text Color Foreground"
+msgstr ""
+
+msgid "Text Color Background"
+msgstr ""
+
+msgid "Small"
+msgstr ""
+
+msgid "Scalable Tags"
+msgstr ""
+
+msgid "Chars for Bulleted List"
+msgstr ""
+
+msgid "Chars for Todo List"
+msgstr ""
+
+msgid "Chars for Table Of Content"
+msgstr ""
+
+msgid "Chars for Smart Double Quotes"
+msgstr ""
+
+msgid "Chars for Smart Single Quotes"
+msgstr ""
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr ""
+
+msgid "Enable Symbol Auto Replacement"
+msgstr ""
+
+msgid "Supported Symbols Auto Replacements"
+msgstr ""
+
+msgid "Only at the Start of the Line"
+msgstr ""
+
+msgid "Tab Width"
+msgstr ""
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr ""
+
+msgid "Use Line Wrapping"
+msgstr ""
+
+msgid "Line Wrapping Indentation"
+msgstr ""
+
+msgid "Enable Automatic Indentation"
+msgstr ""
+
+msgid "Scroll Beyond Last Line"
+msgstr ""
+
+msgid "Cursor Blinking"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "Off"
+msgstr ""
+
+msgid "Text Margin: Left"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Vertical Space Around Lines"
+msgstr ""
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr ""
+
+msgid "Timestamp Format"
+msgstr ""
+
+msgid "Horizontal Rule"
+msgstr ""
+
+msgid "Chars to Select at Double Click"
+msgstr ""
+
+msgid "Light Background, Dark Text"
+msgstr ""
+
+msgid "Dark Background, Light Text"
+msgstr ""
+
+msgid "Custom Background"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Selection Background"
+msgstr ""
+
+msgid "Table"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Style Schemes"
+msgstr ""
+
+msgid "Text Foreground"
+msgstr ""
+
+msgid "Text Background"
+msgstr ""
+
+msgid "Selection Foreground"
+msgstr ""
+
+msgid "Cursor"
+msgstr ""
+
+msgid "Current Line Background"
+msgstr ""
+
+msgid "Line Numbers Foreground"
+msgstr ""
+
+msgid "Line Numbers Background"
+msgstr ""
+
+msgid "Style Scheme Editor"
+msgstr ""
+
+msgid "Set Dark Theme Icons"
+msgstr ""
+
+msgid "Set Light Theme Icons"
+msgstr ""
+
+msgid "Set Default Icons"
+msgstr ""
+
+msgid "Icon Theme"
+msgstr ""
+
+msgid "Split Toolbar"
+msgstr ""
+
+msgid "Use Different Cherries per Level"
+msgstr ""
+
+msgid "No Icon"
+msgstr ""
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr ""
+
+msgid "Default Text Nodes Icons"
+msgstr ""
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr ""
+
+msgid "Expand all Nodes"
+msgstr ""
+
+msgid "Collapse all Nodes"
+msgstr ""
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr ""
+
+msgid "Nodes Status at Startup"
+msgstr ""
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr ""
+
+msgid "Display Tree on the Right Side"
+msgstr ""
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr ""
+
+msgid "Expand Node at Mouse Click"
+msgstr ""
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr ""
+
+msgid "Writing to Disk..."
+msgstr ""
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr ""
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr ""
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr ""
+
+msgid "Failed to encrypt the file"
+msgstr ""
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr ""
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr ""
+
+msgid "_Exit OliveSet"
+msgstr ""
+
+msgid "HTML Document"
+msgstr ""
+
+msgid "Markdown Document"
+msgstr ""
+
+msgid "Mempad Document"
+msgstr ""
+
+msgid "Treepad Document"
+msgstr ""
+
+msgid "Leo Document"
+msgstr ""
+
+msgid "Are you sure to Reset to Default?"
+msgstr ""

@@ -1,0 +1,3473 @@
+# Armenian translations for PACKAGE package.
+# Copyright (C) 2014 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# giuspen <giuspen@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2026-05-11 00:15+0400\n"
+"Last-Translator: Seda Stamboltsyan <sedastam@yandex.com>\n"
+"Language-Team: Armenian\n"
+"Language: hy\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+msgid "Image Format Not Recognized"
+msgstr "Չհաջողվեց ճանաչել նկարի ձևաչափը։"
+
+msgid "Insert Table"
+msgstr "Դնել աղյուսակ"
+
+msgid "CSV File"
+msgstr "CSV նիշք"
+
+msgid "Insert a CodeBox"
+msgstr "Դնել այլագրատուփ"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "Ներդրված նիշքերի առավելագույն չափը %s ՄԲ է։"
+
+msgid "Do you want to Continue?"
+msgstr "Շարունակե՞լ։"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "Չհաջողվեց առբերել «%s» ճյուղի պարունակությունը"
+
+msgid "Special Characters"
+msgstr "Հատուկ գրանշաններ"
+
+msgid "Tabs Replaced"
+msgstr "Սյունատները փոխարինված են"
+
+msgid "Lines Stripped"
+msgstr "Մաքրված տողեր"
+
+msgid "No Text is Selected."
+msgstr "Որևէ տեքստ չի ընտրված։"
+
+msgid "OliveSet File"
+msgstr "OliveSet նիշք"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"Բացված նիշքը/պանակը չի կարող վերագրանցվել։\n"
+"Այլ անուն կամ պանակ ընտրեք։"
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"«%s» պանակ արդեն կա «%s»-ում։\n"
+"<b>Փոխարինե՞լ այն։</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"«%s» նիշք արդեն կա «%s»-ում։\n"
+"<b>Փոխարինե՞լ այն։</b>"
+
+msgid "PDF File"
+msgstr "PDF նիշք"
+
+msgid "Plain Text Document"
+msgstr "Հասարակ տեքստային փաստաթուղթ"
+
+msgid "Preferences File"
+msgstr "Ընտրանքների նիշք"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "Համակարգի դարակը հայտնվե՞ց վահանակում։"
+
+msgid "Your system does not support the System Tray"
+msgstr "Համակարգի դարակը չի աջակցվում Ձեր համակարգում"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr "Փոփոխությունը կկատարվի OliveSet-ի վերագործարկումից հետո։"
+
+msgid "Replace in Current Node"
+msgstr "Փոխարինել ընթացիկ ճյուղում"
+
+msgid "Search in Current Node"
+msgstr "Փնտրել ընթացիկ ճյուղում"
+
+msgid "Matches"
+msgstr "համընկում"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "<b>«%s» ձևը չի գտնվել</b>"
+
+msgid "Replace in Multiple Nodes"
+msgstr "Փոխարինել շատ ճյուղերում"
+
+msgid "Search in Multiple Nodes"
+msgstr "Որոնել շատ ճյուղերում"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "Որոնում չի կատարվել այս գործաժամի ընթացքում։"
+
+msgid "Tags"
+msgstr "Պիտակներ"
+
+msgid ": "
+msgstr "՝ "
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "Այս գործաժամի ընթացքում տեքստի ձևաչափում չի կատարվել։"
+
+msgid "Link Name"
+msgstr "Հղման անուն"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "Նշորդը պարբերությունից դուրս է։"
+
+msgid "Insert/Edit Link"
+msgstr "Դնել/խմբագրել հղում"
+
+msgid "Pick a Foreground Color"
+msgstr "Ընտրել խորքի գույն"
+
+msgid "Pick a Background Color"
+msgstr "Ընտրել խորքի գույն"
+
+msgid "Checking for Newer Version..."
+msgstr "Ստուգվում են թարմացումները..."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr ""
+"Վերջին տարբերակի մասին տեղեկություն ձեռք բերել չհաջողվեց։ Ավելի ուշ նորի՛ց "
+"փորձեք։"
+
+msgid "A Newer Version Is Available!"
+msgstr "Առկա է նոր տարբերակ։"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "Դուք գործածում եք առկա վերջին տարբերակը։"
+
+msgid "You Are Using a Development Version."
+msgstr "Դուք գործածում եք դեռ մշակվող տարբերակ։"
+
+msgid "Who is the Parent?"
+msgstr "Ո՞րն է ծնողը"
+
+msgid "The Tree Root"
+msgstr "Ծառարմատը"
+
+msgid "The Selected Node"
+msgstr "Ընտրված ճյուղը"
+
+msgid "Rename"
+msgstr "Վերանվանել"
+
+msgid "PNG Image"
+msgstr "PNG նկար"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "%s նիշքին գրանցումը չհաջողվեց"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "Պանակի '%s' հղումը ճիշտ չէ։"
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "Նիշքի '%s' հղումը ճիշտ չէ։"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "Պանակի '%s' հղումը ճիշտ չէ"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "Հղումը տանում է այլևս գոյություն չունեցող ճյուղի (Id = %s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "«%s» անունով խարիսխ չգտնվեց"
+
+msgid "Edit CodeBox"
+msgstr "Խմբագրել այլագրատուփը"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"Պետք է '%s'-ի համար հրաման ընտրել։\n"
+"Սա արեք ընտրանքների բաժնում։"
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr ""
+"Տեղակայեք  'xterm'  փաթեթը կամ ընտրանքների բաժնում ընտրեք մեկ այլ տերմինալ։"
+
+msgid "Edit Table Properties"
+msgstr "Խմբագրել աղյուսակի հատկությունները"
+
+msgid "Insert Anchor"
+msgstr "Դնել խարիսխ"
+
+msgid "Edit Anchor"
+msgstr "Խմբագրել խարիսխը"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "Միայն ընթերցվող ճյուղում հնարավոր չէ խմբագրել ներդրված նիշքը։"
+
+msgid "Embedded File Automatically Updated:"
+msgstr "Ներդրված նիշքը լռելյայն թարմացվել է"
+
+msgid "No Node is Selected"
+msgstr "Որևէ ճյուղ չի ընտրված"
+
+msgid "The Tree is Empty!"
+msgstr "Ծառը դատարկ է"
+
+msgid "The Selected Node is Read Only."
+msgstr "Ընտրված ճյուղը միայն ընթերցման համար է։"
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "Այս հատկությունը հասանելի է միայն ձևաչափված տեքստով ճյուղերում։"
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr ""
+"Այս հատկությունը հասանելի չէ շարահյուսական ինքնաշխատ գունանշմամբ ճյուղերում։"
+
+msgid "No Table is Selected."
+msgstr "Որևէ աղյուսակ չի ընտրված"
+
+msgid "No CodeBox is Selected."
+msgstr "Որևէ այլագրատուփ չի ընտրված։"
+
+msgid "New Child Node Properties"
+msgstr "Նոր ենթաճյուղի հատկություններ"
+
+msgid "New Node Properties"
+msgstr "Նոր ճյուղի հատկություններ"
+
+msgid "Node Properties"
+msgstr "Ճյուղի հատկություններ"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"Ճյուղի տեսակը շարահյուսական ինքնաշխատ ընդգծմամբ դարձնելը վերացնելու է ճյուղի "
+"ամբողջ ձևավորումը։ Շարունակե՞լ։"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "<b>Ջնջե՞լ  «%s» ճյուղը</b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "Ճյուղն ունի <b>ենթաճյուղեր, որոնք նույնպես կջնջվեն</b>"
+
+msgid "Select the New Parent"
+msgstr "Ընտրել նոր ծնողին"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "Նոր ծնողը չի կարող լինել հենց տեղափոխման ենթակա ճյուղը"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "Ընտրված նոր ծնողը դարձյալ հինն է"
+
+msgid "The new parent can't be one of his children!"
+msgstr "Ծնողական նոր ճյուղը չի կարող նույնանալ դուստր ճյուղի հետ"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "%s ճյուղերի հատկություններ փոխվել են"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr "Այցելված վերջին ճյուղերի թիվն էջագլխում արդեն իսկ առավելագույնն է։"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr "Այցելված վերջին ճյուղերի թիվն էջագլխում արդեն իսկ նվազագույնն է։"
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "Գործիքագոտու պատկերակներն արդեն իսկ առավելագույն չափն ունեն։"
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "Գործիքագոտու պատկերակներն արդեն իսկ նվազագույն չափն ունեն։"
+
+msgid "Print OliveSet version"
+msgstr "Տպել OliveSet-ի տարբերակը"
+
+msgid "Node name to focus"
+msgstr "Ճյուղի անունը՝ կիզակետված"
+
+msgid "Anchor name to scroll to in node"
+msgstr "Խարսխի անունը՝ ճյուղում ոլորմամբ գտնելու"
+
+msgid "Export to HTML at specified directory path"
+msgstr "Արտահանել որպես HTML պանակի ընտրված ուղով"
+
+msgid "Export to Text at specified directory path"
+msgstr "Արտահանել որպես Text պանակի ընտրված ուղով"
+
+msgid "Export to PDF at specified directory path"
+msgstr "Արտահանել որպես PDF պանակի ընտրված ուղով"
+
+msgid "Overwrite if export path already exists"
+msgstr "Վրագրել, եթե արտահանման ուղին արդեն կա"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "Արտահանել մեկ նիշքով (HTML կամ TXT)"
+
+msgid "Password to open document"
+msgstr "Գաղտնաբառ՝ փաստաթուղթը բացելու"
+
+msgid "Create a new window"
+msgstr "Ստեղծել նոր պատուհան"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "Աշխատեցնել երկրորդական գործաժամում՝ հիմնականից անկախ"
+
+msgid "Execute Code"
+msgstr "Գործարկել այլագիրը"
+
+msgid "Copy Code"
+msgstr "Պատճենել այլագիրը"
+
+msgid "Change CodeBox Properties"
+msgstr "Փոխել այլագրատուփի հատկությունները"
+
+msgid "Start in OliveSet"
+msgstr "Սկսել OliveSet-ում"
+
+msgid "New Document"
+msgstr "Նոր փաստաթուղթ"
+
+msgid "Open File"
+msgstr "Բացել նիշք"
+
+msgid "Open Folder"
+msgstr "Բացել պանակ"
+
+msgid "Create a new document or open an existing one."
+msgstr "Ստեղծել նոր փաստաթուղթ կամ բացել եղածը"
+
+msgid "Don't show again"
+msgstr "Նորից ցույց չտալ"
+
+msgid "Recent Documents"
+msgstr "Վերջին փաստաթղթեր"
+
+msgid "Name"
+msgstr "Անուն"
+
+msgid "Path"
+msgstr "Ուղի"
+
+msgid "Open Selected"
+msgstr "Բացել ընտրվածը"
+
+msgid "Handle the Bookmarks List"
+msgstr "Կարգավորել էջանիշների ցանկը"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "Ընտրված էջանիշը վերև տանել"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "Ընտրված էջանիշը ներքև տանել"
+
+msgid "Remove the Selected Bookmark"
+msgstr "Ընտրված էջանիշը ջնջել"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "Դասավորել էջանիշներն ըստ նվազման կարգի"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "Դասավորել էջանիշներն ըստ աճման կարգի"
+
+msgid "Choose Storage Type"
+msgstr "Ընտրեք պահեստարանի տեսակը"
+
+msgid "Single SQLite File"
+msgstr "Մեկ SQLite նիշք"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "Մեկ SQLite նիշք՝ 7-zip-ով գաղտնագրված ու գաղտնաբառով պաշտպանված"
+
+msgid "Single XML File"
+msgstr "Մեկ XML նիշք"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "Մեկ XML նիշք՝ 7-zip-ով գաղտնագրված ու գաղտնաբառով պաշտպանված"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "Շատ նիշքեր՝ աստիճանակարգված պանակներում"
+
+msgid "Storage Type"
+msgstr "Պահեստարանի տեսակ"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"CT-ն փաստաթուղթը պահպանում է որպես գաղտնագրված 7zip սեղմանիշք։ Փաստաթղթի "
+"ընթերցման կամ խմբագրման ժամանակ CT-ն ընդարձակում է գաղտնագրված սեղմանիշքը մի "
+"ժամանակավոր պանակում և աշխատում գաղտնազերծված պատճենի վրա։ Նիշքի փակվելուց "
+"հետո գաղտնազերծված պատճենը ջնջվում է ժամանակավոր պանակից։ Նկատի ունեցեք, որ "
+"ծրագրի կամ համակարգի խափանման դեպքում գաղտնազերծված փաստաթուղթը կմնա "
+"ժամանակավոր պանակում։"
+
+msgid "Enter the New Password Twice"
+msgstr "Նոր գաղտնաբառը մուտքագրեք երկիցս"
+
+msgid "Autosave Every"
+msgstr "Ինքնապահում ամեն"
+
+msgid "Minutes"
+msgstr "րոպեն մեկ"
+
+msgid "The Password Fields Must be Filled."
+msgstr "Գաղտնաբառի դաշտերը պիտի լրացվեն։"
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "Մուտքագրված երկու գաղտնաբառերը չեն համընկնում։"
+
+msgid "Warning"
+msgstr "Զգուշացում"
+
+msgid "The Current Document was Updated."
+msgstr "Փաստաթուղթը թարմացվել է։"
+
+msgid "Do you want to Save the Changes?"
+msgstr "Կամենո՞ւմ եք պահպանել փոփոխությունները"
+
+msgid "Do you want to Execute the Code?"
+msgstr "Կամենո՞ւմ եք այլագիրը գործարկել։"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "Հաստատել նախքան այլագրի գործարկումը"
+
+msgid "Use Internal Terminal"
+msgstr "Գործածել ներքին տերմինալ"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr ""
+"Աստիճանակարգային կառուցվածքով նշատետր-ծրագիր՝ ձևաչափման և շարահյուսական "
+"գունանշման հնարավորություններով"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"Սա ազատ ծրագրակազմ է, որը կարող եք տարածել և/կամ ձևափոխել\n"
+"GNU-ի հանրային ընդհանուր արտոնագրի (GNU GPL) պայմանների պահպանմամբ,\n"
+"ինչպես այն հրապարակվել է Ազատ ծրագրային ապահովման հիմնադրամի (FSF) կողմից՝\n"
+"կամ թույլատրագրի 3-րդ տարբերակով, կամ\n"
+"(ըստ Ձեր հայեցողության)\n"
+"ավելի նոր որևէ տարբերակով։\n"
+"\n"
+"Ծրագիրը տարածվում է օգտակար լինելու ակնկալիքով,\n"
+"սակայն ԱՌԱՆՑ ՈՐԵՎԷ ԵՐԱՇԽԻՔԻ, անգամ առանց ԱՊՐԱՆՔԱՎԻՃԱԿԻ երաշխիքի կամ ՈՐԵՎԷ "
+"ՀԱՏՈՒԿ ՆՊԱՏԱԿԻ ԾԱՌԱՅԵՑՄԱՆ։\n"
+"Ավելի մանրամասն տեղեկությունների համար տեսեք GNU-ի  հանրային ընդհանուր "
+"թույլատրագիրը։\n"
+"  \n"
+"Այս ծրագրի հետ Դուք պետք է որ ստացած լինեք նաև GNU-ի հանրային ընդհանուր "
+"թույլատրագրի պատճենը։\n"
+"Եթե ոչ, գրավոր դիմեք Ազատ ծրագրային ապահովման հիմնադրամին հետևյալ հասցեով՝\n"
+"Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+
+msgid "Arabic"
+msgstr "Արաբերեն"
+
+msgid "Armenian"
+msgstr "Հայերեն"
+
+msgid "Bulgarian"
+msgstr "Բուլղարերեն"
+
+msgid "Chinese Simplified"
+msgstr "Պարզեցված չինարեն"
+
+msgid "Chinese Traditional"
+msgstr "Չինարեն, ավանդական"
+
+msgid "Croatian"
+msgstr "Խորվաթերեն"
+
+msgid "Czech"
+msgstr "Չեխերեն"
+
+msgid "Dutch"
+msgstr "Հոլանդերեն"
+
+msgid "Finnish"
+msgstr "Ֆիններեն"
+
+msgid "French"
+msgstr "Ֆրանսերեն"
+
+msgid "German"
+msgstr "Գերմաներեն"
+
+msgid "Greek"
+msgstr "Հունարեն"
+
+msgid "Hindi India"
+msgstr "Հինդի, Հնդկաստան"
+
+msgid "Hungarian"
+msgstr "Հունգարերեն"
+
+msgid "Italian"
+msgstr "Իտալերեն"
+
+msgid "Japanese"
+msgstr "Ճապոներեն"
+
+msgid "Kazakh"
+msgstr "Ղազախերեն"
+
+msgid "Kazakh (Latin)"
+msgstr "Ղազախերեն (լատինատառ)"
+
+msgid "Korean"
+msgstr "Կորեերեն"
+
+msgid "Lithuanian"
+msgstr "Լիտվերեն"
+
+msgid "Persian"
+msgstr "Պարսկերեն"
+
+msgid "Polish"
+msgstr "Լեհերեն"
+
+msgid "Portuguese"
+msgstr "Պորտուգալերեն"
+
+msgid "Portuguese Brazil"
+msgstr "Բրազիլական պորտուգալերեն"
+
+msgid "Romanian"
+msgstr "Ռումիներեն"
+
+msgid "Russian"
+msgstr "Ռուսերեն"
+
+msgid "Slovak"
+msgstr "Սլովակերեն"
+
+msgid "Slovenian"
+msgstr "Սլովեներեն"
+
+msgid "Spanish"
+msgstr "Իսպաներեն"
+
+msgid "Swedish"
+msgstr "Շվեդերեն"
+
+msgid "Turkish"
+msgstr "Թուրքերեն"
+
+msgid "Ukrainian"
+msgstr "Ուկրաիներեն"
+
+msgid "About OliveSet"
+msgstr "OliveSet-ի մասին"
+
+msgid "Tree Summary Information"
+msgstr "Ծառի մասին ընդհանուր տեղեկանք"
+
+msgid "Number of Rich Text Nodes"
+msgstr "Ձևաչափված տեքստով ճյուղերի քանակը"
+
+msgid "Number of Plain Text Nodes"
+msgstr "Հասարակ տեքստով ճյուղերի քանակը"
+
+msgid "Number of Code Nodes"
+msgstr "Այլագրային ճյուղերի քանակը"
+
+msgid "Number of Images"
+msgstr "Նկարների քանակը"
+
+msgid "Number of LatexBoxes"
+msgstr "Latex-ի տուփերի քանակը"
+
+msgid "Number of Embedded Files"
+msgstr "Ներդրված նիշքերի քանակը"
+
+msgid "Number of Tables"
+msgstr "Աղյուսակների քանակը"
+
+msgid "Number of CodeBoxes"
+msgstr "Այլագրատուփերի քանակը"
+
+msgid "Number of Anchors"
+msgstr "Խարիսխների քանակը"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "Համօգտագործվող ճյուղերի/խմբերի քանակը"
+
+msgid "Latex Text"
+msgstr "Latex տեքստ"
+
+msgid "Image Size dpi"
+msgstr "Նկարի չափը dpi"
+
+msgid "Tutorial"
+msgstr "Ուսուցանյութ"
+
+msgid "Reference"
+msgstr "Ուղեցույց"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "LaTeX մաթ. և հավասարումների ուսուցանյութ"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "LaTeX մաթ․ նշանների ուղեցույց"
+
+msgid "Image Properties"
+msgstr "Նկարի հատկություններ"
+
+msgid "Rotate Left"
+msgstr "Պտտել ձախ"
+
+msgid "Rotate Right"
+msgstr "Պտտել աջ"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr "Նկարը եզրատելու համար մկնիկով ընտրեք անհրաժեշտ մասը և սեղմեք OK"
+
+msgid "Flip Horizontally"
+msgstr "Հորիզոնական շրջում"
+
+msgid "Flip Vertically"
+msgstr "Ուղղահայաց շրջում"
+
+msgid "Width"
+msgstr "Լայնք"
+
+msgid "Height"
+msgstr "Բարձրություն"
+
+msgid "Plain Text"
+msgstr "Հասարակ տեքստ"
+
+msgid "Automatic Syntax Highlighting"
+msgstr "Շարահյուսության ինքնաշխատ գունանշում"
+
+msgid "Type"
+msgstr "Տեսակ"
+
+msgid "pixels"
+msgstr "պիքսել"
+
+msgid "Size"
+msgstr "Չափ"
+
+msgid "Show Line Numbers"
+msgstr "Ցուցադրել տողերի համարակալումը"
+
+msgid "Highlight Matching Brackets"
+msgstr "Գունանշել լծորդ փակագծերը"
+
+msgid "Options"
+msgstr "Ընտրանքներ"
+
+msgid "Rows"
+msgstr "Տողեր"
+
+msgid "Columns"
+msgstr "Սյունակներ"
+
+msgid "Default Width"
+msgstr "Սկզբնադիր լայնք"
+
+msgid "Table Size"
+msgstr "Աղյուսակի չափեր"
+
+msgid "Column Properties"
+msgstr "Սյունակի հատկություններ"
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "Թեթև միջերես (մեծ աղյուսակի համար ավելի արագագործ)"
+
+msgid "Import from CSV File"
+msgstr "Ներմուծել CSV նիշքից"
+
+msgid "Clear"
+msgstr "Ջնջել"
+
+msgid "Reset"
+msgstr "Վերականգնել"
+
+msgid "Search for"
+msgstr "Փնտրել"
+
+msgid "Replace with"
+msgstr "Փոխարինել"
+
+msgid "Replace in Link Targets"
+msgstr "Փոխարինել հղումների թիրախներում"
+
+msgid "Replace options"
+msgstr "Փոխարինման կարգավորումներ"
+
+msgid "Match Case"
+msgstr "Մեծատառն ու փոքրատառը տարբերակել"
+
+msgid "Regular Expression"
+msgstr "Կանոնավոր արտահայտություն"
+
+msgid "Online Manual"
+msgstr "Առցանց ուղեցույց"
+
+msgid "Accent Insensitive"
+msgstr "Շեշտի անտեսում"
+
+msgid "Override Exclusions"
+msgstr "Վերագրել բացառությունները"
+
+msgid "Whole Word"
+msgstr "Միայն ամբողջական բառ"
+
+msgid "Start Word"
+msgstr "Բառի սկիզբ"
+
+msgid "More Words, Exact Match"
+msgstr "Ավելի շատ բառեր, ճշգրիտ համընկում"
+
+msgid "More Words, Disregard Order"
+msgstr "Ավելի շատ բառեր, դասավորությունն անտեսել"
+
+msgid "More Words, Match Any"
+msgstr "Ավելի շատ բառեր, որևէ համընկում"
+
+msgid "Forward"
+msgstr "Առաջ"
+
+msgid "Backward"
+msgstr "Հետ"
+
+msgid "All, List Matches"
+msgstr "Բոլորը. համընկումները ցանկով ներկայացնել"
+
+msgid "First From Selection"
+msgstr "Առաջինը՝ ընտրված հատվածում"
+
+msgid "First in All Range"
+msgstr "Առաջինը՝ ամբողջ տիրույթում"
+
+msgid "Node Created After"
+msgstr "Ճյուղը ստեղծվել է նշյալ ժամանակից հետո՝ "
+
+msgid "Node Created Before"
+msgstr "Ճյուղը ստեղծվել է նախքան "
+
+msgid "Node Modified After"
+msgstr "Ճյուղը փոփոխվել է նշյալ ժամանակից հետո՝"
+
+msgid "Node Modified Before"
+msgstr "Ճյուղը փոփոխվել է նախքան"
+
+msgid "Time filter"
+msgstr "Ժամանակի զտիչ"
+
+msgid "Node Content"
+msgstr "Ճյուղի պարունակություն"
+
+msgid "Node Name and Tags"
+msgstr "Ճյուղի անուն ու պիտակներ"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "Միայն ընտրված ճյուղն ու ենթաճյուղերը"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "Կրկնել որոնման/փոխարինման երկխոսությունը"
+
+msgid "Search options"
+msgstr "Որոնման կարգավորումներ"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"Փոխարինման դաշտը դատարկ է․ գտնված բոլոր արդյունքները կջնջվեն։\n"
+"Շարունակե՞լ։"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"Առնվազն մեկ ճյուղ բաց է թողնվել դրա հատկություններում նշված բացառությունների "
+"պատճառով։\n"
+"Բացառությունները վերացրեք այսպես՝\n"
+"Որոնում -> Վերացնել բոլոր բացառությունները որոնումից"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "Թաքցնել (վերականգնել  '%s' -ով)"
+
+msgid "Node Name"
+msgstr "Ճյուղի անուն"
+
+msgid "Line"
+msgstr "Տող"
+
+msgid "Line Content"
+msgstr "Տողի պարունակություն"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "Կրկնել վերջին փնտրում-փոխարինումը"
+
+msgid "Close"
+msgstr "Փակել"
+
+msgid "Find Previous"
+msgstr "Գտնել նախորդը"
+
+msgid "Find Next"
+msgstr "Գտնել հաջորդը"
+
+msgid "Replace"
+msgstr "Փոխարինել"
+
+msgid "Undo"
+msgstr "Հետարկել"
+
+msgid "Remove"
+msgstr "Հեռացնել"
+
+msgid "Remove User Colour from Palette"
+msgstr "Հեռացնել գույնը գունապնակից"
+
+msgid "Colour"
+msgstr "Գույն"
+
+msgid "Question"
+msgstr "Հարց"
+
+msgid "Info"
+msgstr "Տեղեկանք"
+
+msgid "Error"
+msgstr "Սխալ"
+
+msgid "Select File"
+msgstr "Ընտրել նիշք"
+
+msgid "Select Folder"
+msgstr "Ընտրել պանակ"
+
+msgid "Save File as"
+msgstr "Պահպանել նիշքը որպես"
+
+msgid "Save To Folder"
+msgstr "Պահպանել պանակում"
+
+msgid "To WebSite"
+msgstr "Դեպի կայք"
+
+msgid "To File"
+msgstr "Դեպի նիշք"
+
+msgid "To Folder"
+msgstr "Դեպի պանակ"
+
+msgid "To Node"
+msgstr "Դեպի ճյուղ"
+
+msgid "Anchor Name (optional)"
+msgstr "Խարսխի անուն (ըստ ցանկության)"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "Ընտրված ճյուղում խարիսխներ չկան։"
+
+msgid "Choose Existing Anchor"
+msgstr "Ընտրել գոյություն ունեցող խարիսխ"
+
+msgid "Anchor Name"
+msgstr "Խարսխի անուն"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "«%s» ձևը չի գտնվել"
+
+msgid "Bold"
+msgstr "Թավատառ"
+
+msgid "Use Selected Color"
+msgstr "Ընտրել գույն"
+
+msgid "Use Selected Icon"
+msgstr "Ընտրել պատկերակ"
+
+msgid "Rich Text"
+msgstr "Ձևաչափված տեքստ"
+
+msgid "Node Type"
+msgstr "Ճյուղի տեսակ"
+
+msgid "Tags for Searching"
+msgstr "Պիտակներ՝ որոնման համար"
+
+msgid "Exclude from Searches"
+msgstr "Որոնումից հանել՝"
+
+msgid "This Node"
+msgstr "Այս ճյուղը"
+
+msgid "The Subnodes"
+msgstr "Ենթաճյուղեր"
+
+msgid "Read Only"
+msgstr "Միայն ընթերցման համար"
+
+msgid "Unique Id"
+msgstr "Հատուկ Id"
+
+msgid "Shared Nodes Group"
+msgstr "Համօգտագործվող ճյուղերի խումբ"
+
+msgid "Choose Existing Tag"
+msgstr "Ընտրել գոյություն ունեցող պիտակ"
+
+msgid "Tag Name"
+msgstr "Պիտակի անուն"
+
+msgid "Pick a Color"
+msgstr "Ընտրել գույն"
+
+msgid "Select Node Icon"
+msgstr "Ընտրել ճյուղի պատկերակ"
+
+msgid "Involved Nodes"
+msgstr "Առնչվող ճյուղեր"
+
+msgid "Selected Text Only"
+msgstr "Տեքստի միայն ընտրված մասը"
+
+msgid "Selected Node Only"
+msgstr "Միայն ընտրված ճյուղը"
+
+msgid "Selected Node and Subnodes"
+msgstr "Ընտրված ճյուղն ու ենթաճյուղերը"
+
+msgid "All the Tree"
+msgstr "Ամբողջ ծառը"
+
+msgid "Include Node Name"
+msgstr "Ներառել ճյուղի անունը"
+
+msgid "Links Tree in Every Page"
+msgstr "Հղումների ծառը՝ ամեն էջին"
+
+msgid "New Node in New Page"
+msgstr "Նոր ճյուղը՝ նոր էջից"
+
+msgid "Single File"
+msgstr "Մեկ նիշքով"
+
+msgid "Index"
+msgstr "Ցանկ"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr "Զգուշացում։ Մեկ կամ մի քանի նկար փոքրացվել է էջում տեղավորվելու համար։"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "LaTeX-ն արգելափակվել է անվտանգության հիմքով։"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr ""
+"Աղբյուրում կան ներածման/արտածման հրահանգներ, որոնց համար տեղական նիշքերը "
+"հասանելի են"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"Վերացնել \\verbatiminput, \\openin, \\openout և այլ նման հրահանգներ և "
+"\\input/\\include անապահով ուղիները"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "Չհաջողվեց մատչել գործարկելի latex-ին և dvipng-ին"
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "Օր․՝ Ուբունտուում տեղակայելի փաթեթներն են՝"
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "Օր․՝ Mac ՕՀ-ում տեղակայելի փաթեթներն են՝"
+
+msgid "Could not access the executable 'latex'"
+msgstr "Չհաջողվեց մատչել գործարկելի latex-ին"
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "Չհաջողվեց մատչել գործարկելի dvipng-ին"
+
+msgid "Downloading"
+msgstr "Բեռնում"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "%s ուղին գոյություն չունի"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "Բացել վերջին OliveSet փաստաթղթերից մեկը"
+
+msgid "_Hide"
+msgstr "_Թաքցնել"
+
+msgid "_Quit"
+msgstr "_Դուրս գալ"
+
+msgid "Hide the Window"
+msgstr "Թաքցնել պատուհանը"
+
+msgid "Quit the Application"
+msgstr "Ծրագրից դուրս գալ"
+
+msgid "Spell Check"
+msgstr "Ուղղագրության ստուգում"
+
+msgid "Word Count"
+msgstr "Բառերի քանակ"
+
+msgid "Date Created"
+msgstr "Ստեղծման ժամանակ"
+
+msgid "Date Modified"
+msgstr "Փոփոխման ժամանակ"
+
+msgid "Subnodes"
+msgstr "Ենթաճյուղեր"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr ""
+"Այս գործաժամում ճյուղ չի պատճենվել, կամ աղբյուր ծառն այլևս հասանելի չէ։"
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "Աղբյուր ճյուղն այլևս հասանելի չէ։"
+
+msgid "Show Menubar:"
+msgstr "Ցուցադրել ընտրացանկի գոտին"
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "\"%s\"-ը OliveSet նիշք չէ"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"OliveSet ուղու վերլուծման սխալ՝\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "Բացե՞լ վերջին պահուստը։"
+
+msgid "Failed to Load from Backup Data"
+msgstr "Չհաջողվեց բեռնել պահուստային տվյալներից"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "«%s» անունով ճյուղ չգտնվեց։"
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "Արտաքին ծրագրերով ստեղծվել ու բացվել են ժամանակավոր նիշքեր։"
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "OliveSet-ն փակելուց առաջ փակել արտաքին ծրագրերը։"
+
+msgid "Did you Quit the External Applications?"
+msgstr "Արդյոք փակե՞լ եք արտաքին ծրագրերը։"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "Պահպանումը հնարավոր չէ․ \"%s\"-ը միայն ընթերցման համար է"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr "Փաստաթուղթը բեռնվել է արտաքին թարմացումից հետո։"
+
+msgid "Copy Selection or All"
+msgstr "Պատճենել ընտրվածքը կամ ամբողջը"
+
+msgid "Paste"
+msgstr "Փակցնել"
+
+msgid "Remove from list"
+msgstr "Հեռացնել ցանկից"
+
+msgid "_File"
+msgstr "_Նիշք"
+
+msgid "_Edit"
+msgstr "_Խմբագրում"
+
+msgid "_Insert"
+msgstr "Ներ_մուծել"
+
+msgid "F_ormat"
+msgstr "_Ձևաչափում"
+
+msgid "_Tree"
+msgstr "_Ծառ"
+
+msgid "Too_ls"
+msgstr "_Գործիքներ"
+
+msgid "_Search"
+msgstr "_Որոնում"
+
+msgid "_View"
+msgstr "_Տեսք"
+
+msgid "_Bookmarks"
+msgstr "_Էջանիշներ"
+
+msgid "_Help"
+msgstr "_Օգնություն"
+
+msgid "Insert _Date Node"
+msgstr "Դնել _ամսաթվի ճյուղ"
+
+msgid "Node _Move"
+msgstr "Ճյուղի տեղափոխում"
+
+msgid "Nod_es Sort"
+msgstr "Ճյուղերի _դասավորում"
+
+msgid "B_ookmarks"
+msgstr "_Էջանիշներ"
+
+msgid "_Import"
+msgstr "Ներ_մուծում"
+
+msgid "_Export"
+msgstr "_Արտահանում"
+
+msgid "_Preferences"
+msgstr "_Ընտրանքներ"
+
+msgid "_Recent Documents"
+msgstr "Վերջին փաստաթղթեր"
+
+msgid "C_hange Case"
+msgstr "Փոխել տառաշարը"
+
+msgid "L_ist"
+msgstr "_Ցանկ"
+
+msgid "_Justify"
+msgstr "Ու_ղղել տողերը"
+
+msgid "Toggle _Font Property"
+msgstr "_Տառի հատկություններ"
+
+msgid "_Toggle Heading Property"
+msgstr "_Գլխագրի հատկություններ"
+
+msgid "I_nsert"
+msgstr "Ներ_մուծել "
+
+msgid "_Find"
+msgstr "_Գտնել"
+
+msgid "_Replace"
+msgstr "_Փոխարինում"
+
+msgid "Ro_w"
+msgstr "_Շարք"
+
+msgid "_Table"
+msgstr "Աղյ_ուսակ"
+
+msgid "_CodeBox"
+msgstr "_Այլագրատուփ"
+
+msgid "File"
+msgstr "Նիշք"
+
+msgid "_New Instance..."
+msgstr "_Նոր նիշք..."
+
+msgid "Start a New Instance of OliveSet"
+msgstr "Բացել OliveSet-ի նոր նիշք"
+
+msgid "_Open File..."
+msgstr "_Բացել նիշք..."
+
+msgid "Open a OliveSet File"
+msgstr "Բացել OliveSet նիշք"
+
+msgid "Open Fo_lder..."
+msgstr "Բացել _պանակ..."
+
+msgid "Open a OliveSet Folder"
+msgstr "Բացել OliveSet պանակ"
+
+msgid "_Save"
+msgstr "Պահպանել"
+
+msgid "Save File"
+msgstr "Պահպանել նիշքը"
+
+msgid "Save and _Vacuum"
+msgstr "Մաքրել ու պահպանել"
+
+msgid "Save File and Vacuum"
+msgstr "Մաքրել նիշքն ու պահպանել"
+
+msgid "Save _As..."
+msgstr "Պահպանել _որպես..."
+
+msgid "Save File As"
+msgstr "Նիշքը պահպանել որպես"
+
+msgid "Pa_ge Setup..."
+msgstr "Է_ջի կարգավորում..."
+
+msgid "Set up the Page for Printing"
+msgstr "Էջը կարգավորել տպելու համար"
+
+msgid "P_rint..."
+msgstr "_Տպել..."
+
+msgid "Print"
+msgstr "Տպել"
+
+msgid "Preferences"
+msgstr "Ընտրանքներ"
+
+msgid "_Import Preferences..."
+msgstr "_Ներմուծել ընտրանքներ..."
+
+msgid "Import Preferences"
+msgstr "Ներմուծել ընտրանքներ"
+
+msgid "_Export Preferences..."
+msgstr "_Արտահանել ընտրանքները..."
+
+msgid "Export Preferences"
+msgstr "Արտահանել ընտրանքները"
+
+msgid "Tree In_fo"
+msgstr "_Ծառի մասին տեղեկանք"
+
+msgid "_Document Path to Clipboard"
+msgstr "_Նիշքի ուղին դեպի սեղմատախտակ"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "Պատճենել նիշքի ուղին սեղմատախտակում"
+
+msgid "E_xit OliveSet"
+msgstr "_Փակել OliveSet-ն"
+
+msgid "Exit from OliveSet"
+msgstr "Փակել OliveSet-ն"
+
+msgid "Edit/Insert"
+msgstr "Խմբագրել/ներմուծել"
+
+msgid "_Undo"
+msgstr "Հետարկել"
+
+msgid "Undo Last Operation"
+msgstr "Հետարկել վերջին գործողությունը"
+
+msgid "_Redo"
+msgstr "Վերականգնել"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "Կրկնել հետարկված գործողությունը"
+
+msgid "Insert I_mage..."
+msgstr "Ներմու_ծել նկար..."
+
+msgid "Insert an Image"
+msgstr "Ներմուծել նկար"
+
+msgid "Insert Late_x..."
+msgstr "Ներմուծել Late_x..."
+
+msgid "Insert LatexBox"
+msgstr "Դնել Latex-ի տուփ"
+
+msgid "Insert _Table..."
+msgstr "Դնել աղյու_սակ..."
+
+msgid "Insert a Table"
+msgstr "Դնել աղյուսակ"
+
+msgid "Insert _CodeBox..."
+msgstr "Դնել այլա_գրատուփ..."
+
+msgid "Insert _File..."
+msgstr "Ներմուծել _նիշք..."
+
+msgid "Insert File"
+msgstr "Ներմուծել նիշք"
+
+msgid "Insert/Edit _Link..."
+msgstr "Դնել/խմբագրել հ_ղում..."
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "Դնել/խմբագրել հղում"
+
+msgid "Insert _Anchor..."
+msgstr "Դնել _խարիսխ..."
+
+msgid "Insert an Anchor"
+msgstr "Դնել խարիսխ"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "Դնել ԲՑ և էջագլուխների ամփոփիչներ..."
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "Դնել բովանդակացանկ և էջագլուխների ամփոփիչներ"
+
+msgid "Insert Timestam_p"
+msgstr "Դնել ամսա_թվի կնիք"
+
+msgid "Insert Timestamp"
+msgstr "Դնել ամսաթվի կնիք"
+
+msgid "Insert _Special Character..."
+msgstr "Դնել _հատուկ գրանշան..."
+
+msgid "Insert a Special Character"
+msgstr "Դնել հատուկ գրանշան"
+
+msgid "Insert _Horizontal Rule"
+msgstr "Դնել _հորիզոնական գիծ"
+
+msgid "Insert Horizontal Rule"
+msgstr "Դնել հորիզոնական գիծ"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "Ընտրված մասը/բառը՝ _փոքրատառ"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "Ընտրված մասը/բառը փոքրատառ դարձնել"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "Ընտրված մասը/բառը՝ _մեծատառ"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "Ընտրված մասը/բառը մեծատառ դարձնել"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "Փոխել ընտրված մասի/բառի տառաշարը"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "Փոխել ընտրված մասի/բառի տառաշարը"
+
+msgid "Cu_t as Plain Text"
+msgstr "Կ_տրել որպես հասարակ տեքստ"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "Կտրել որպես հասարակ տեքստ՝ ձևաչափումն անտեսելով"
+
+msgid "_Copy as Plain Text"
+msgstr "_Պատճենել որպես հասարակ տեքստ"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "Պատճենել որպես հասարակ տեքստ՝ ձևաչափումն անտեսելով"
+
+msgid "_Paste as Plain Text"
+msgstr "Փակցնել որպես հասարակ տե_քստ"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "Փակցնել որպես հասարակ տեքստ՝ ձևաչափումն անտեսելով"
+
+msgid "C_ut Row"
+msgstr "_Կտրել տողը"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "Կտրել տողը/ընտրված տողերը"
+
+msgid "C_opy Row"
+msgstr "_Պատճենել տողը"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "Պատճենել տողը/ընտրված տողերը"
+
+msgid "De_lete Row"
+msgstr "_Ջնջել տողը"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "Ջնջել տողը/ընտրված տողերը"
+
+msgid "_Duplicate Row"
+msgstr "Կրկն_օրինակել տողը"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "Կրկնօրինակել տողը/ընտրված մասը"
+
+msgid "_Move Up Row"
+msgstr "Տողը _վերև տանել"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "Տողը/ընտրված տողերը վերև տանել"
+
+msgid "Mo_ve Down Row"
+msgstr "Տողը _ներքև տանել"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "Տողը/ընտրված տողերը ներքև տանել"
+
+msgid "C_ut Table"
+msgstr "Կ_տրել աղյուսակը"
+
+msgid "Cut the Selected Table"
+msgstr "Ընտրված աղյուսակը կտրել"
+
+msgid "_Copy Table"
+msgstr "Պատ_ճենել աղյուսակը"
+
+msgid "Copy the Selected Table"
+msgstr "Ընտրված աղյուսակը պատճենել"
+
+msgid "_Delete Table"
+msgstr "_Ջնջել աղյուսակը"
+
+msgid "Delete the Selected Table"
+msgstr "Ընտրված աղյուսակը ջնջել"
+
+msgid "_Add Column"
+msgstr "_Ավելացնել սյունակ"
+
+msgid "Add a Table Column"
+msgstr "Ավելացնել աղյուսակի սյունակ"
+
+msgid "Cu_t Column"
+msgstr "Կտրել սյունակը"
+
+msgid "Cut a Table Column"
+msgstr "Կտրել աղյուսակի սյունակը"
+
+msgid "_Copy Column"
+msgstr "Պատճենել սյունակը"
+
+msgid "Copy a Table Column"
+msgstr "Պատճենել աղյուսակի սյունակը"
+
+msgid "_Paste Column"
+msgstr "Փակցնել սյունակը"
+
+msgid "Paste a Table Column"
+msgstr "Փակցնել աղյուսակի սյունակը"
+
+msgid "De_lete Column"
+msgstr "Ջն_ջել սյունակը"
+
+msgid "Delete the Selected Table Column"
+msgstr "Ջնջել աղյուսակի ընտրված սյունակը"
+
+msgid "Move Column _Left"
+msgstr "Սյունակը  _ձախ տանել"
+
+msgid "Move the Selected Column Left"
+msgstr "Ընտրված սյունակը ձախ տանել"
+
+msgid "Move Column _Right"
+msgstr "Սյունակն  _աջ տանել"
+
+msgid "Move the Selected Column Right"
+msgstr "Ընտրված սյունակն աջ տանել"
+
+msgid "Increase Column Width"
+msgstr "Լայնացնել սյունակը"
+
+msgid "Increase the Width of the Column"
+msgstr "Լայնացնել սյունակը"
+
+msgid "Decrease Column Width"
+msgstr "Նեղացնել սյունակը"
+
+msgid "Decrease the Width of the Column"
+msgstr "Նեղացնել սյունակը"
+
+msgid "_Add Row"
+msgstr "Ավելացնել _տող"
+
+msgid "Add a Table Row"
+msgstr "Ավելացնել աղյուսակի տող"
+
+msgid "Cu_t Row"
+msgstr "Կ_տրել տողը"
+
+msgid "Cut a Table Row"
+msgstr "Կտրել աղյուսակի տողը"
+
+msgid "_Copy Row"
+msgstr "Պատ_ճենել տողը"
+
+msgid "Copy a Table Row"
+msgstr "Պատճենել աղյուսակի տողը"
+
+msgid "_Paste Row"
+msgstr "Փակցնել տողը"
+
+msgid "Paste a Table Row"
+msgstr "Փակցնել աղյուսակի տողը"
+
+msgid "Delete the Selected Table Row"
+msgstr "Ջնջել աղյուսակի ընտրված տողը"
+
+msgid "Move Row _Up"
+msgstr "Տողը _վերև տանել"
+
+msgid "Move the Selected Row Up"
+msgstr "Ընտրված տողը վերև տանել"
+
+msgid "Move Row _Down"
+msgstr "Տողը _ներքև տանել"
+
+msgid "Move the Selected Row Down"
+msgstr "Ընտրված տողը ներքև տանել"
+
+msgid "Sort Rows De_scending"
+msgstr "Տողերը դասավորել ըստ նվա_զման կարգի"
+
+msgid "Sort all the Rows Descending"
+msgstr "Բոլոր տողերը դասավորել ըստ նվազման կարգի"
+
+msgid "Sort Rows As_cending"
+msgstr "Տողերը դասավորել ըստ ա_ճման կարգի"
+
+msgid "Sort all the Rows Ascending"
+msgstr "Բոլոր տողերը դասավորել ըստ աճման կարգի"
+
+msgid "_Edit Table Properties..."
+msgstr "Ա_ղյուսակի հատկությունների խմբագրում..."
+
+msgid "Edit the Table Properties"
+msgstr "Խմբագրել աղյուսակի հատկությունները"
+
+msgid "_Table Export..."
+msgstr "_Աղյուսակի արտա_հանում..."
+
+msgid "Export Table as CSV File"
+msgstr "Աղյուսակն արտահանել որպես CSV նիշք"
+
+msgid "Change CodeBox _Properties..."
+msgstr "Փոխել այլագրատուփի հատկությունները..."
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "Խմբագրել այլագրատուփի հատկությունները"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "Այլագրատուփի պարունակությունը՝ _տեքստային նիշքից..."
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "Այլագրատուփի պարունակությունը ներմուծել տեքստային նիշքից"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "Այլագրատուփի պարունակությունը՝ ո՟պ տե_քստային նիշք..."
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "Այլագրատուփի պարունակությունը պահպանել ո՟պ տեքստային նիշք"
+
+msgid "C_ut CodeBox"
+msgstr "_Կտրել այլագրատուփը"
+
+msgid "Cut the Selected CodeBox"
+msgstr "Կտրել այլագրատուփը"
+
+msgid "_Copy CodeBox"
+msgstr "Պատ_ճենել այլագրատուփը"
+
+msgid "Copy the Selected CodeBox"
+msgstr "Պատճենել այլագրատուփը"
+
+msgid "_Copy CodeBox Content"
+msgstr "Պատ_ճենել այլագրատուփի պարունակությունը"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "Պատճենել ընտրված այլագրատուփի պարունակությունը"
+
+msgid "_Delete CodeBox"
+msgstr "Ջնջել այլագրատուփը"
+
+msgid "Delete the Selected CodeBox"
+msgstr "Ջնջել այլագրատուփը"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "Այլագրատուփը ջնջել, _պարունակությունը պահել"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "Այլագրատուփը ջնջել, պարունակությունը պահել"
+
+msgid "Increase CodeBox Width"
+msgstr "Լայնացնել այլագրատուփը"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "Լայնացնել այլագրատուփը"
+
+msgid "Decrease CodeBox Width"
+msgstr "Նեղացնել այլագրատուփը"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "Նեղացնել այլագրատուփը"
+
+msgid "Increase CodeBox Height"
+msgstr "Մեծացնել այլագրատուփի բարձրությունը"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "Մեծացնել այլագրատուփի բարձրությունը"
+
+msgid "Decrease CodeBox Height"
+msgstr "Փոքրացնել այլագրատուփի բարձրությունը"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "Փոքրացնել այլագրատուփի բարձրությունը"
+
+msgid "Format"
+msgstr "Ձևաչափում"
+
+msgid "Format Clo_ne"
+msgstr "Կրկնօրինակել _ձևաչափումը"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "Կրկնօրինակել տեքստի ձևաչափը նշորդի տեղում "
+
+msgid "Format _Latest"
+msgstr "Գործածել վերջին _ձևաչափումը"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "Հիշել վերջին ձևաչափումը"
+
+msgid "_Remove Formatting"
+msgstr "Վերացնել ձևաչափումը"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "Վերացնել ընտրված մասի ձևաչափումը"
+
+msgid "Text _Color Foreground"
+msgstr "_Տեքստի գույն"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "Փոխել ընտրված տեքստի գույնը"
+
+msgid "Text C_olor Background"
+msgstr "Տեքստի _խորքի գույն"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "Փոխել ընտրված տեքստի խորքի գույնը"
+
+msgid "Toggle _Bold Property"
+msgstr "Թավատառ"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "Ընտրված մասը թավատառ դարձնել"
+
+msgid "Toggle _Italic Property"
+msgstr "Շեղատառ"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "Ընտրված մասը շեղատառ դարձնել"
+
+msgid "Toggle _Underline Property"
+msgstr "Ընդգծված"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "Ընտրված մասն ընդգծել"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "Ջնջագծված"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "Ընտրված մասը ջնջագծել"
+
+msgid "Toggle h_1 Property"
+msgstr "h1 գլխագիր"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "Ընտրված մասը փոխել h1 գլխագրի"
+
+msgid "Toggle h_2 Property"
+msgstr "h2 գլխագիր"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "Ընտրված մասը փոխել h2 գլխագրի"
+
+msgid "Toggle h_3 Property"
+msgstr "h3 գլխագիր"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "Ընտրված մասը փոխել h3 գլխագրի"
+
+msgid "Toggle h_4 Property"
+msgstr "h_4 գլխագիր"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "Ընտրված մասը փոխել h4 գլխագրի"
+
+msgid "Toggle h_5 Property"
+msgstr "h_5 գլխագիր"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "Ընտրված մասը փոխել h5 գլխագրի"
+
+msgid "Toggle h_6 Property"
+msgstr "h_6 գլխագիր"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "Ընտրված մասը փոխել h6 գլխագրի"
+
+msgid "Toggle _Small Property"
+msgstr "Փոքրացված տառեր"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "Ընտրված մասի տառերը փոքրացնել"
+
+msgid "Toggle Su_bscript Property"
+msgstr "Ենթատողագիր"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "Ընտրված մասը ենթատողագրով ներկայացնել"
+
+msgid "Toggle Su_perscript Property"
+msgstr "Վերտողագիր"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "Ընտրված մասը վերտողագրով ներկայացնել"
+
+msgid "Toggle _Monospace Property"
+msgstr "Նույնալայնք տառատեսակ"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "Ընտրված տեքստում նույնալայնք տառատեսակ գործածել"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "Ն_շանակալված ցանկ"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr "Պարբերությունը/ընտրված մասը վերածել նշանակալված ցանկի"
+
+msgid "Set/Unset _Numbered List"
+msgstr "Հա_մարակալված ցանկ"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr "Պարբերությունը/ընտրված մասը վերածել համարակալված ցանկի"
+
+msgid "Set/Unset _To-Do List"
+msgstr "_Անելիքի ցանկ"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr "Պարբերությունը/ընտրված մասը վերածել անելիքի ցանկի"
+
+msgid "Justify _Left"
+msgstr "Ուղղել _ձախից"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "Պարբերությունն ուղղել ձախից"
+
+msgid "Justify _Center"
+msgstr "Ուղղել _կենտրոնով"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "Պարբերությունն ուղղել կենտրոնով"
+
+msgid "Justify _Right"
+msgstr "Ուղղել ա_ջից"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "Պարբերությունն ուղղել աջից"
+
+msgid "Justify _Fill"
+msgstr "Երկ_կողմանի հավասարեցում"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "Պարբերությունն ուղղել երկու կողմից"
+
+msgid "_Indent Paragraph"
+msgstr "Նահան_ջով պարբերություն"
+
+msgid "Indent the Current Paragraph"
+msgstr "Պարբերությունը՝ նահանջով"
+
+msgid "_Unindent Paragraph"
+msgstr "Առան_ց նահանջի պարբերություն"
+
+msgid "Unindent the Current Paragraph"
+msgstr "Պարբերությունը՝ առանց նահանջի"
+
+msgid "_Expand TOC Headers"
+msgstr "_Բացել ԲՑ-ի էջագլուխները"
+
+msgid "Expand TOC Headers"
+msgstr "Բացել բովանդակացանկի էջագլուխները"
+
+msgid "_Collapse TOC Headers"
+msgstr "_Ամփոփել ԲՑ-ի էջագլուխները"
+
+msgid "Collapse TOC Headers"
+msgstr "Ամփոփել բովանդակացանկի էջագլուխները"
+
+msgid "Tools"
+msgstr "Գործիքներ"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "Ուղղագրության ստուգում"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "Ստուգել ուղղագրությունը"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "VIM-ի խմբագրաձև"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "Միացնել/անջատել VIM-ի խմբագրաձևը"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "Վերացնել տողավեր_ջի բացատները"
+
+msgid "Strip Trailing Spaces"
+msgstr "Վերացնել տողավերջի բացատները"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "_Փոխարինել սյունատը բացատներով"
+
+msgid "Replace Tabs with Spaces"
+msgstr "Փոխարինել սյունատը բացատներով"
+
+msgid "_Command Palette..."
+msgstr "_Հրամանապնակ..."
+
+msgid "Command Palette"
+msgstr "Հրամանապնակ"
+
+msgid "_Execute Code All"
+msgstr "_Գործարկել ամբողջ այլագիրը"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "Գործարկել տուփի կամ ճյուղի ամբողջ այլագիրը"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "Գործարկել այլագրի տողը կամ ընտրվածքը"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "Գործարկել այլագիրը ընթացիկ տողից կամ ընտրված տեքստից"
+
+msgid "Tree"
+msgstr "Ծառ"
+
+msgid "Go _Back"
+msgstr "_Հետ գնալ"
+
+msgid "Go to the Previous Visited Node"
+msgstr "Անցնել նախորդ ճյուղին"
+
+msgid "Go _Forward"
+msgstr "_Առաջ գնալ"
+
+msgid "Go to the Next Visited Node"
+msgstr "Անցնել հաջորդ ճյուղին"
+
+msgid "Add _Node..."
+msgstr "Ավելացնել _ճյուղ..."
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "Ընտրված ճյուղին ավելացնել համահայր ճյուղ"
+
+msgid "Add _Subnode..."
+msgstr "Ավելացնել _ենթաճյուղ..."
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "Ընտրված ճյուղին ավելացնել դուստր ճյուղ"
+
+msgid "_Duplicate Node"
+msgstr "Կրկն_օրինակել ճյուղը"
+
+msgid "Duplicate the Selected Node"
+msgstr "Կրկնօրինակել ընտրված ճյուղը"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "Կրկն_օրինակել ճյուղն ու ենթաճյուղերը"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "Կրկնօրինակել ընտրված ճյուղը ենթաճյուղերով"
+
+msgid "_Create Shared Node"
+msgstr "_Ստեղծել համօգտագործվող ճյուղ"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr "Ընտրված ճյուղի տվյալներով ստեղծել նոր ճյուղ "
+
+msgid "Copy Node and S_ubnodes"
+msgstr "Պատճենել ճյուղն ու են_թաճյուղերը"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "Պատճենել ընտրված ճյուղը ենթաճյուղերով"
+
+msgid "_Paste Node and Subnodes"
+msgstr "_Փակցնել ճյուղն ու ենթաճյուղերը"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "Փակցնել պատճենված ճյուղն ու ենթաճյուղերը"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "Ծառարմատի տակ դնել _այսօրվա ճյուղ"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "Ծառարմատի տակ դնել տարի/ամիս/օր դասավորությամբ ճյուղ այսօրվա համար"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "Ընտրված ճյուղի տակ դնել _այսօրվա ճյուղ"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "Ընտրված ճյուղի տակ դնել տարի/ամիս/օր դասավորությամբ ճյուղ այսօրվա համար"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "Ծառարմատի տակ դնել _վաղվա ճյուղ"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "Ծառարմատի տակ դնել տարի/ամիս/օր դասավորությամբ ճյուղ վաղվա համար"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "Ընտրված ճյուղի տակ դնել _վաղվա ճյուղ"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "Ընտրված ճյուղի տակ դնել տարի/ամիս/օր դասավորությամբ ճյուղ վաղվա համար"
+
+msgid "C_hange Node Properties..."
+msgstr "_Փոխել ճյուղի հատկությունները..."
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "Խմբագրել ընտրված ճյուղի հատկությունները"
+
+msgid "Toggle _Read Only"
+msgstr "Միայն _ընթերցման համար"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "Ընտրված ճյուղը դարձնել միայն ընթերցվող"
+
+msgid "Cop_y Link to Node"
+msgstr "Պատ_ճենել հղումը ճյուղում"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "Պատճենել ընտրված ճյուղի հղումը սեղմատախտակում"
+
+msgid "Children _Inherit Syntax"
+msgstr "Ժառանգել _շարահյուսությունը"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr ""
+"Ճյուղի շարահյուսական գունանշումը փոխարինել ծնողական ճյուղի շարահյուսական "
+"գունանշմամբ"
+
+msgid "_Handle Bookmarks..."
+msgstr "_Կարգավորել էջանիշները..."
+
+msgid "Add to Boo_kmarks"
+msgstr "_Էջանշել"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "Ընթացիկ ճյուղն ավելացնել էջանիշների ցանկին"
+
+msgid "Remove from Boo_kmarks"
+msgstr "_Էջանիշներից հանել"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "Ընթացիկ ճյուղը հանել էջանիշների ցանկից"
+
+msgid "E_xpand All Nodes"
+msgstr "_Ընդարձակել բոլոր ճյուղերը"
+
+msgid "Expand All the Tree Nodes"
+msgstr "Ընդարձակել ծառի բոլոր ճյուղերը"
+
+msgid "_Collapse All Nodes"
+msgstr "_Ամփոփել բոլոր ճյուղերը"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "Ամփոփել ծառի բոլոր ճյուղերը"
+
+msgid "Node _Up"
+msgstr "Ճյուղը _վերև տանել"
+
+msgid "Move the Selected Node Up"
+msgstr "Ընտրված ճյուղը վերև տանել"
+
+msgid "Node _Down"
+msgstr "Ճյուղը _ներքև տանել"
+
+msgid "Move the Selected Node Down"
+msgstr "Ընտրված ճյուղը ներքև տանել"
+
+msgid "Node _Left"
+msgstr "Ճյուղը _ձախ տանել"
+
+msgid "Move the Selected Node Left"
+msgstr "Ընտրված ճյուղը ձախ տանել"
+
+msgid "Node _Right"
+msgstr "Ճյուղն _աջ տանել"
+
+msgid "Move the Selected Node Right"
+msgstr "Ընտրված ճյուղն աջ տանել"
+
+msgid "Node Change _Parent..."
+msgstr "Փոխել ճյուղի _ծնողին..."
+
+msgid "Change the Selected Node's Parent"
+msgstr "Փոխել ընտրված ճյուղի ծնողին"
+
+msgid "Sort Tree _Ascending"
+msgstr "Դասավորել ծառն ըստ _աճման կարգի"
+
+msgid "Sort the Tree Ascending"
+msgstr "Դասավորել ծառն ըստ աճման կարգի"
+
+msgid "Sort Tree _Descending"
+msgstr "Դասավորել ծառն ըստ _նվազման կարգի"
+
+msgid "Sort the Tree Descending"
+msgstr "Դասավորել ծառն ըստ նվազման կարգի"
+
+msgid "Sort Siblings A_scending"
+msgstr "Դասավորել ենթաճյուղերն ըստ ա_ճման կարգի"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "Դասավորել ընտրված ճյուղի ենթաճյուղերն ըստ աճման կարգի"
+
+msgid "Sort Siblings D_escending"
+msgstr "Դասավորել ենթաճյուղերն ըստ ն_վազման կարգի"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "Դասավորել ընտրված ճյուղի ենթաճյուղերն ըստ նվազման կարգի"
+
+msgid "De_lete Node"
+msgstr "Ջնջել ճյուղը"
+
+msgid "Delete the Selected Node"
+msgstr "Ջնջել ընտրված ճյուղը"
+
+msgid "Find/Replace"
+msgstr "Որոնում"
+
+msgid "_Quick Node Selection..."
+msgstr "Ճյուղի արագ ընտրում..."
+
+msgid "Quick Node Selection"
+msgstr "Ճյուղի արագ ընտրում"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "Գտնել _ճյուղերի անուններում ու պիտակներում..."
+
+msgid "Find in Nodes Names and Tags"
+msgstr "Գտնել ճյուղերի անուններում ու պիտակներում"
+
+msgid "_Find in Node Content..."
+msgstr "_Գտնել ճյուղի պարունակության մեջ..."
+
+msgid "Find into the Selected Node Content"
+msgstr "Գտնել ընտրված ճյուղի պարունակության մեջ"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "Գտնել _շատ ճյուղերում․․․"
+
+msgid "Find in Multiple Nodes"
+msgstr "Գտնել շատ ճյուղերում"
+
+msgid "Find _Again"
+msgstr "Նորից փնտրել"
+
+msgid "Iterate the Last Find Operation"
+msgstr "Կրկնել որոնման վերջին գործողությունը"
+
+msgid "Find _Back"
+msgstr "Փնտրել _հակառակ ուղղությամբ"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "Կրկնել որոնման վերջին գործողությունը հակառակ ուղղությամբ"
+
+msgid "_Replace in Node Content..."
+msgstr "_Փոխարինել ճյուղի պարունակության մեջ..."
+
+msgid "Replace into the Selected Node Content"
+msgstr "Փոխարինել ընտրված ճյուղի պարունակության մեջ"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "Փոխարինել _շատ ճյուղերում․․․"
+
+msgid "Replace A_gain"
+msgstr "Նորից _փոխարինել"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "Կրկնել փոխարինման վերջին գործողությունը"
+
+msgid "Show All Matches _Dialog..."
+msgstr "Ցուցադրել համ_ընկումների երկխոսությունը..."
+
+msgid "Show Search All Matches Dialog"
+msgstr "Ցուցադրել համընկումներ փնտրելու երկխոսությունը"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "_Որոնումից հանել բոլոր բացառությունները"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "Որոնումից հանել բացառություններում ճյուղերի բոլոր հատկությունները"
+
+msgid "View"
+msgstr "Տեսք"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "Ցուցադրել/թաքցնել _ծառի հետախույզը"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "Ցուցադրել/թաքցնել ծառը"
+
+msgid "Show/Hide Te_rminal"
+msgstr "Ցուցադրել/թաքցնել _տերմինալը"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "Ցուցադրել/թաքցնել տերմինալը"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "Նշորդը տերմինալից տեղափոխել տեքստ կամ հակառակը"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "Նշորդը տերմինալից տեղափոխել տեքստ կամ հակառակը"
+
+msgid "Show/Hide _Menubar"
+msgstr "Ցուցադրել/թաքցնել _ընտրացանկի գոտին"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "Ցուցադրել/թաքցնել ընտրացանկի գոտին"
+
+msgid "Show/Hide Tool_bar"
+msgstr "Ցուցադրել/թաքցնել _գործիքագոտին"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "Ցուցադրել/թաքցնել գործիքագոտին"
+
+msgid "Show/Hide _Statusbar"
+msgstr "Ցուցադրել/թաքցնել _վիճակագոտին"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr "Ցուցադրել/թաքցնել վիճակագոտին"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "Ցուցադրել/թաքցնել _տողերը դեպի ենթաճյուղեր"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "Ցուցադրել/թաքցնել ճյուղի ծնողի և ենթաճյուղերի միջև տողերը"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "Ցուցադրել/թաքցնել ճյուղի _վերնագիրը"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "Ցուցադրել/թաքցնել ճյուղի վերնագիրը"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "Նշորդի տեղափոխում ծառից դեպի տեքստ կամ հակառակը"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "Նշորդը ծառից տեղափոխել տեքստ կամ հակառակը"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "_Մեծացնել գործիքագոտու պատկերակները"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "Մեծացնել գործիքագոտու պատկերակները"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "_Փոքրացնել գործիքագոտու պատկերակները"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "Փոքրացնել գործիքագոտու պատկերակները"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "Ավելի շատ վերջին ճյուղեր էջագլխում"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "Այցելված վերջին ճյուղերի թիվը մեծացնել էջագլխում"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "Ավելի քիչ վերջին ճյուղեր էջագլխում"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "Այցելված վերջին ճյուղերի թիվը փոքրացնել էջագլխում"
+
+msgid "Full Screen _On/Off"
+msgstr "Ամբ_ողջ էկրանով"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "Միացնել/անջատել ամբողջ էկրանով ցուցադրումը"
+
+msgid "_Always On Top On/Off"
+msgstr "_Միշտ առջևում՝ միացված/անջատված"
+
+msgid "Always On Top On/Off"
+msgstr "Միշտ առջևում՝ միացված/անջատված"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "Անջատել _ընտրացանկի գոտին վերնագրի գոտում"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "Չդնել ընտրացանկի գոտին վերնագրի գոտում"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "Միացնել _ընտրացանկի գոտին վերնագրի գոտում"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "Դնել ընտրացանկի գոտին վերնագրի գոտում"
+
+msgid "Import"
+msgstr "Ներմուծում"
+
+msgid "From _OliveSet File"
+msgstr "OliveSet նիշքից"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "Մեկ այլ OliveSet նիշքի ճյուղերն ավելացնել ընթացիկ ծառին"
+
+msgid "From _OliveSet Folder"
+msgstr "_OliveSet պանակից"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "Ավելացնել OliveSet պանակի ճյուղեր ընթացիկ ծառին"
+
+msgid "From _Indented List File"
+msgstr "_Indented List նիշքից"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "Indented List նիշքից ճյուղեր ավելացնել ծառին"
+
+msgid "From _Plain Text File"
+msgstr "Հասարակ տեքստային նիշքից"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "Հասարակ տեքստային նիշքից ճյուղ ավելացնել ծառին"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "Հասարակ տեքստային նիշքերով պանակից"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr "Հասարակ տեքստային նիշքերով պանակից ճյուղեր ավելացնել ծառին"
+
+msgid "From _HTML File"
+msgstr "HTML նիշքից"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "HTML նիշքից ճյուղ ավելացնել ծառին"
+
+msgid "From _Folder of HTML Files"
+msgstr "HTML նիշքերով պանակից"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "HTML նիշքերով պանակից ճյուղեր ավելացնել ծառին"
+
+msgid "From _Markdown File"
+msgstr "_Markdown նիշքից"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "Markdown նիշքից ճյուղ ավելացնել ծառին"
+
+msgid "From _Folder of Markdown Files"
+msgstr "Markdown նիշքերով պանակից"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "Markdown նիշքերով պանակից ճյուղեր ավելացնել ծառին"
+
+msgid "From _Gnote Folder"
+msgstr "Gnote-ի պանակից"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "Gnote-ի պանակից ճյուղեր ավելացնել ծառին"
+
+msgid "From _KeepNote Folder"
+msgstr "KeepNote-ի պանակից"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "KeepNote-ի պանակից ճյուղեր ավելացնել ծառին"
+
+msgid "From _Leo File"
+msgstr "Leo նիշքից"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "Leo նիշքից ճյուղեր ավելացնել ծառին"
+
+msgid "From _Mempad File"
+msgstr "Mempad նիշքից"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "Mempad նիշքից ճյուղեր ավելացնել ծառին"
+
+msgid "From _NoteCase HTML File"
+msgstr "_NoteCase HTML նիշքից"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "NoteCase HTML նիշքից ճյուղեր ավելացնել ծառին"
+
+msgid "From _RedNotebook HTML File"
+msgstr "_RedNotebook HTML-ից"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "RedNotebook HTML նիշքից ճյուղեր ավելացնել ծառին"
+
+msgid "From T_omboy Folder"
+msgstr "Tomboy-ի պանակից"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "Tomboy-ի պանակից ճյուղեր ավելացնել ծառին"
+
+msgid "From T_reepad Lite File"
+msgstr "Treepad Lite նիշքից"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "Treepad Lite նիշքից ճյուղեր ավելացնել ծառին"
+
+msgid "From _Zim Folder"
+msgstr "Zim-ի պանակից"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "Zim-ի պանակից ճյուղեր ավելացնել ծառին"
+
+msgid "Export"
+msgstr "Արտահանում"
+
+msgid "Export To _PDF"
+msgstr "Արտահանել որպես PDF"
+
+msgid "Export To PDF"
+msgstr "Արտահանել որպես PDF"
+
+msgid "Export To _HTML"
+msgstr "Արտահանել որպես HTML"
+
+msgid "Export To HTML"
+msgstr "Արտահանել որպես HTML"
+
+msgid "Export to Plain _Text"
+msgstr "Արտահանել որպես հասարակ _տեքստ"
+
+msgid "Export to Plain Text"
+msgstr "Արտահանել որպես հասարակ տեքստ"
+
+msgid "_Export To OliveSet"
+msgstr "Արտա_հանել որպես OliveSet"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "Արտահանել որպես OliveSet նիշք կամ պանակ"
+
+msgid "Help"
+msgstr "Օգնություն"
+
+msgid "_Check Newer Version"
+msgstr "Ստուգել ծրագրի թարմացումները"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "Ստուգել առցանց նոր տարբերակի առկայությունը"
+
+msgid "_Website"
+msgstr "_Կայք"
+
+msgid "Visit OliveSet's Website"
+msgstr "Այցելել OliveSet-ի կայք"
+
+msgid "_Source Code"
+msgstr "_Աղբյուր կոդ"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "Զննիր OliveSet-ի աղբյուր կոդն առցանց"
+
+msgid "_Report a Bug"
+msgstr "_Հայտնիր վրիպակի մասին"
+
+msgid "Report a Bug in OliveSet"
+msgstr "Հայտնել OliveSet-ի վրիպակի մասին"
+
+msgid "_Donate"
+msgstr "_Նվիրաբերել"
+
+msgid "Donate to Support OliveSet"
+msgstr "Նվիրաբերել հաջակցություն OliveSet-ի"
+
+msgid "Online _Manual"
+msgstr "Առցանց ուղեցույց"
+
+msgid "OliveSet's Online Manual"
+msgstr "OliveSet-ի առցանց ուղեցույց"
+
+msgid "_About"
+msgstr "Ծրագրի մասին"
+
+msgid "_Open Preferences Directory"
+msgstr "_Բացել ընտրանքների պանակը"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "Բացել ընտրանքների նիշքերով պանակը"
+
+msgid "C_ut Anchor"
+msgstr "Կ_տրել խարիսխը"
+
+msgid "Cut the Selected Anchor"
+msgstr "Կտրել ընտրված խարիսխը"
+
+msgid "_Copy Anchor"
+msgstr "Պատ_ճենել խարիսխը"
+
+msgid "Copy the Selected Anchor"
+msgstr "Պատճենել ընտրված խարիսխը"
+
+msgid "_Delete Anchor"
+msgstr "_Ջնջել խարիսխը"
+
+msgid "Delete the Selected Anchor"
+msgstr "Ջնջել ընտրված խարիսխը"
+
+msgid "Edit _Anchor..."
+msgstr "Խմբագրել _խարիսխը..."
+
+msgid "Edit the Underlying Anchor"
+msgstr "Խմբագրել խարիսխը"
+
+msgid "Copy Anchor Link"
+msgstr "Պատճենել խարսխի հղումը"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "Պատճենել խարսխի հղումը սեղմատախտակում"
+
+msgid "C_ut Embedded File"
+msgstr "Կ_տրել ներդրված նիշքը"
+
+msgid "Cut the Selected Embedded File"
+msgstr "Կտրել ընտրված ներդրված նիշքը"
+
+msgid "_Copy Embedded File"
+msgstr "Պատ_ճենել ներդրված նիշքը"
+
+msgid "Copy the Selected Embedded File"
+msgstr "Պատճենել ընտրված ներդրված նիշքը"
+
+msgid "_Delete Embedded File"
+msgstr "_Ջնջել ներդրված նիշքը"
+
+msgid "Delete the Selected Embedded File"
+msgstr "Ջնջել ընտրված ներդրված նիշքը"
+
+msgid "Open Embedded File"
+msgstr "Բացել ներդրված նիշքը"
+
+msgid "_Rename"
+msgstr "_Վերանվանել"
+
+msgid "Rename Embedded File"
+msgstr "Վերանվանել ներդրված նիշքը"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "Latex-ի տուփը _պահպանել ո՟պ PNG..."
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "Latex-ի ընտրված տուփը պահպանել ո՟պ PNG նիշք"
+
+msgid "_Edit LatexBox..."
+msgstr "_Խմբագրել Latex-ի տուփը..."
+
+msgid "Edit the Selected LatexBox"
+msgstr "Latex-ի  ընտրված տուփը խմբագրել"
+
+msgid "C_ut LatexBox"
+msgstr "_Կտրել Latex-ի տուփը"
+
+msgid "Cut the Selected LatexBox"
+msgstr "Կտրել Latex-ի ընտրված տուփը"
+
+msgid "_Copy LatexBox"
+msgstr "Պատ_ճենել Latex-ի տուփը"
+
+msgid "Copy the Selected LatexBox"
+msgstr "Պատճենել Latex-ի ընտրված տուփը"
+
+msgid "_Delete LatexBox"
+msgstr "_Ջնջել Latex-ի տուփը"
+
+msgid "Delete the Selected LatexBox"
+msgstr "Ջնջել Latex-ի ընտրված տուփը"
+
+msgid "_Save Image as PNG..."
+msgstr "Նկարը պահպանել ո՟պ PNG..."
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "Ընտրված նկարը պահպանել ո՟պ PNG նիշք"
+
+msgid "_Edit Image..."
+msgstr "_Խմբագրել նկարը..."
+
+msgid "Edit the Selected Image"
+msgstr "Ընտրված նկարը խմբագրել"
+
+msgid "C_ut Image"
+msgstr "Կ_տրել նկարը"
+
+msgid "Cut the Selected Image"
+msgstr "Ընտրված նկարը կտրել"
+
+msgid "_Copy Image"
+msgstr "Պատ_ճենել նկարը"
+
+msgid "Copy the Selected Image"
+msgstr "Ընտրված նկարը պատճենել"
+
+msgid "_Delete Image"
+msgstr "_Ջնջել նկարը"
+
+msgid "Delete the Selected Image"
+msgstr "Ընտրված նկարը ջնջել"
+
+msgid "Edit _Link..."
+msgstr "Խմբագրել հ_ղումը..."
+
+msgid "Edit the Link Associated to the Image"
+msgstr "Խմբագրել նկարին առնչվող հղումը"
+
+msgid "D_ismiss Link"
+msgstr "Հանել հղումը"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "Վերացնել նկարին առնչվող հղումը"
+
+msgid "Show/Hide _OliveSet"
+msgstr "Ցուցադրել/թաքցնել OliveSet-ն"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "Ցուցադրել/թաքցնել OliveSet-ն"
+
+msgid "Edit the Underlying Link"
+msgstr "Խմբագրել հղումը"
+
+msgid "C_ut Link"
+msgstr "Կ_տրել հղումը"
+
+msgid "Cut the Selected Link"
+msgstr "Կտրել ընտրված հղումը"
+
+msgid "_Copy Link"
+msgstr "_Պատճենել հղումը"
+
+msgid "Copy the Selected Link"
+msgstr "Պատճենել ընտրված հղումը"
+
+msgid "Dismiss the Selected Link"
+msgstr "Հանել ընտրված հղումը"
+
+msgid "_Delete Link"
+msgstr "Ջնջել հղումը"
+
+msgid "Delete the Selected Link"
+msgstr "Ջնջել ընտրված հղումը"
+
+msgid "English"
+msgstr "Անգլերեն"
+
+msgid "Text and Code"
+msgstr "Տեքստ և այլագիր"
+
+msgid "Plain Text and Code"
+msgstr "Հասարակ տեքստ և այլագիր"
+
+msgid "Tree Explorer"
+msgstr "Ծառի հետախույզ"
+
+msgid "Theme"
+msgstr "Թեմա"
+
+msgid "Interface"
+msgstr "Միջերես"
+
+msgid "Links"
+msgstr "Հղումներ"
+
+msgid "Toolbar"
+msgstr "Գործիքագոտի"
+
+msgid "Keyboard Shortcuts"
+msgstr "Ստեղնային կարճատներ"
+
+msgid "Miscellaneous"
+msgstr "Զանազան"
+
+msgid "Monospace"
+msgstr "Նույնալայնք"
+
+msgid "Code Font"
+msgstr "Այլագրի տառատեսակ"
+
+msgid "Terminal Font"
+msgstr "Տերմինալի տառատեսակ"
+
+msgid "Tree Font"
+msgstr "Ծառի տառատեսակ"
+
+msgid "Reset to Default"
+msgstr "Վերականգնել սկզբնադիր տարբերակը"
+
+msgid "Fonts"
+msgstr "Տառատեսակներ"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "Ցույց տալ բառերի քանակը վիճակագոտում"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "Ցույց տալ փաստաթղթերի պանակը պատուհանի անվանման մեջ"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "Ցուցադրել լրիվ ուղին ճյուղի վերնագրի գլխամասում"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "Էջանշացանկ ընտրացանկի գոտում"
+
+msgid "Menubar in Titlebar"
+msgstr "Ընտրացանկի գոտին վերնագրի գոտում"
+
+msgid "Toolbar Icons Size"
+msgstr "Գործիքագոտու պատկերակների չափ"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "Գործածված վերջին ճյուղերը՝ ճյուղի էջագլխում"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "Ոլորագոտու նվազագույն չափ (0-ն համակարգի սկզբնադիրն է)"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "Ոլորագոտին վերածածկում է տեքստային խմբագրիչը"
+
+msgid "System Default"
+msgstr "Սկզբնադիր տարբերակ"
+
+msgid "Yes"
+msgstr "Այո"
+
+msgid "No"
+msgstr "Ոչ"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "Նշորդը վրան պահելիս տեսնել հուշումներ"
+
+msgid "Menus"
+msgstr "Ընտրացանկեր"
+
+msgid "Max Search Results per Page"
+msgstr "Որոնման առավելագույն արդյունքներն ըստ էջի"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "Պահպանել որոնման/փոխարինման պատմությունը գործաժամերի միջև"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "Դեպի կայք հղման համար գործածել հետևյալը"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "Դեպի նիշք հղման համար գործածել հետևյալը"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "Դեպի պանակ հղման համար գործածել հետևյալը"
+
+msgid "Custom Actions"
+msgstr "Այլ գործողություններ"
+
+msgid "Colors"
+msgstr "Գույներ"
+
+msgid "Double Click for Link Action"
+msgstr "Կրկնակի կտտացնել հղումը գործածելու համար"
+
+msgid "Underline Links"
+msgstr "Ընդգծել հղումները"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "Նիշքերի և պանակների համար գործածել հարաբերական ուղիներ"
+
+msgid "Anchor Size"
+msgstr "Խարսխի չափ"
+
+msgid "Change Selected"
+msgstr "Փոխել ընտրվածը"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr " '%s' ստեղնային կարճատն արդեն կա"
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "Ներկա գործողությունը  '%s' -ն է։"
+
+msgid "Do you want to steal the shortcut?"
+msgstr "Կամենո՞ւմ եք «գողանալ» կարճատը։"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "Խմբագրել ստեղնային կարճատը"
+
+msgid "No Keyboard Shortcut"
+msgstr "Ստեղնային կարճատ պետք չէ"
+
+msgid "Autosave on Quit"
+msgstr "Ինքնապահում դուրս գալիս"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "Նախքան պահպանումը պահուստային օրինակ ստեղծել"
+
+msgid "Number of Backups to Keep"
+msgstr "Պահուստային նիշքերի քանակը"
+
+msgid "Custom Backup Directory"
+msgstr "Պահուստի այլ պանակ"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "Շատ նիշքերով պահեստարան, գործածել ներկառուցված նիշքի անունը"
+
+msgid "Saving"
+msgstr "Պահպանում"
+
+msgid "Automatically Check for Newer Version"
+msgstr "Լռելյայն ստուգել թարմացումները"
+
+msgid "Reload Document From Last Session"
+msgstr "Բեռնել փաստաթուղթը վերջին գործաժամից"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "Ցույց տալ մեկնարկի երկխոսությունը, երբ որևէ փաստաթուղթ բացված չէ"
+
+msgid "Reload After External Update to CT* File"
+msgstr "Բեռնել նիշքն արտաքին թարմացումից հետո"
+
+msgid "Enable Debug Log"
+msgstr "Վրիպազերծման գրանցում"
+
+msgid "Debug Log Directory"
+msgstr "Վրիպազերծման գրանցման պանակը"
+
+msgid "Enable System Tray Docking"
+msgstr "Միացնել համակարգի դարակին հարակցումը"
+
+msgid "Start Minimized in the System Tray"
+msgstr "Սկսել համակարգի դարակում հարակցված"
+
+msgid "System Tray"
+msgstr "Համակարգի դարակ"
+
+msgid "Language"
+msgstr "Ծրագրի լեզուն"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Username"
+msgstr "Օգտանուն"
+
+msgid "Password"
+msgstr "Գաղտնաբառ"
+
+msgid "Proxy"
+msgstr "Proxy"
+
+msgid "Show White Spaces"
+msgstr "Ցուցադրել բացատների նիշերը"
+
+msgid "Highlight Current Line"
+msgstr "Գունանշել ընթացիկ տողը"
+
+msgid "Text Editor"
+msgstr "Տեքստային խմբագրիչ"
+
+msgid "Internal Terminal Shell"
+msgstr "Ներքին տերմինալի խեցի"
+
+msgid "Add"
+msgstr "Ավելացնել"
+
+msgid "Remove Selected"
+msgstr "Վերացնել ընտրվածը։"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "Հրաման ամեն ճյուղի/այլագրատուփի տեսակի համար"
+
+msgid "Terminal Command"
+msgstr "Տերմինալային հրաման"
+
+msgid "Code Execution"
+msgstr "Այլագրի գործարկում"
+
+msgid "Select Element to Add"
+msgstr "Ընտրեք ցանկից՝ ավելացնելու համար'"
+
+msgid "Enable Spell Check"
+msgstr "Կատարել ուղղագրության ստուգում"
+
+msgid "Spell Check Language"
+msgstr "Ուղղագրության ստուգման լեզուն"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "Այլագրատուփի ինքնաշխատ ընդարձակում"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "Այլագրատուփն ունի գործիքագոտի"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "Թեթև միջերեսում աղյուսակի վանդակների քանակի շեմ"
+
+msgid "Embedded File Icon Size"
+msgstr "Ներդրված նիշքի պատկերակի չափերը"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "Ներդրված նիշքի չափի (ՄԲ) սահմանափակում "
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "Ներդրված նիշքի պատկերակի վերևում ցուցադրել նիշքի անունը "
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "Մեկ կտտացումով չընտրել տարրեր"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr "KDE 6-ի Klipper-ի սեղմատախտակին առնչվող խնդիրների լուծում"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "Հետարկման քայլերի քանակը մեկ ճյուղի համար"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "Ուղտաշարով տեքստը ինքնահղել նույնանուն ճյուղին"
+
+msgid "Auto Link URLs"
+msgstr "URL-ների ինքնահղում"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "Եռակի կտտացմամբ ընտրել ամբողջ պարբերությունը"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "Միացնել Markdown-ի ինքնաշխատ փոխարինում (փորձնական)"
+
+msgid "Scale"
+msgstr "Սանդղում"
+
+msgid "Italic"
+msgstr "Շեղատառ"
+
+msgid "Underline"
+msgstr "Ընդգծված"
+
+msgid "Text Color Foreground"
+msgstr "Տեքստի գույն՝ առաջք"
+
+msgid "Text Color Background"
+msgstr "Տեքստի գույն՝ խորք"
+
+msgid "Small"
+msgstr "Փոքր"
+
+msgid "Scalable Tags"
+msgstr "Չափափոխվող պիտակներ"
+
+msgid "Chars for Bulleted List"
+msgstr "Նշանակալված ցանկի նշաններ"
+
+msgid "Chars for Todo List"
+msgstr "Անելիքի ցանկի նշաններ"
+
+msgid "Chars for Table Of Content"
+msgstr "Բովանդակացանկի նշաններ"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "Կրկնակի չակերտների նշաններ"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "Կրկնակի չակերտների նշաններ"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "Չակերտների ինքնաշխատ փոփոխում"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "Նշանների ինքնաշխատ փոփոխում"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "Աջակցվող նշանների ինքնափոխարինում"
+
+msgid "Only at the Start of the Line"
+msgstr "Միայն տողի սկզբում"
+
+msgid "Tab Width"
+msgstr "Սյունատի լայնք"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Սյունանշանի փոխարեն բացատներ դնել"
+
+msgid "Use Line Wrapping"
+msgstr "Գործածել տողանցում"
+
+msgid "Line Wrapping Indentation"
+msgstr "Տողանցում՝ ներքաշված տողագլխով"
+
+msgid "Enable Automatic Indentation"
+msgstr "Տողագլխի ինքնաշխատ ներքաշում"
+
+msgid "Scroll Beyond Last Line"
+msgstr "Ոլորել վերջին տողից անդին"
+
+msgid "Cursor Blinking"
+msgstr "Նշորդի թարթում"
+
+msgid "On"
+msgstr "Միացված"
+
+msgid "Off"
+msgstr "Անջատված"
+
+msgid "Text Margin: Left"
+msgstr "Տեքստի լուսանցք՝ ձախ"
+
+msgid "Right"
+msgstr "Աջ"
+
+msgid "Vertical Space Around Lines"
+msgstr "Միջպարբերութային տարածք"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "Միջտողային տարածք"
+
+msgid "Timestamp Format"
+msgstr "Ամսաթվի կնիքի ձևաչափ"
+
+msgid "Horizontal Rule"
+msgstr "Հորիզոնական գիծ"
+
+msgid "Chars to Select at Double Click"
+msgstr "Կրկնակի կտտացմամբ ընտրվող գրանշաններ"
+
+msgid "Light Background, Dark Text"
+msgstr "Բաց գույնի խորք, մուգ տեքստ"
+
+msgid "Dark Background, Light Text"
+msgstr "Մուգ խորք, բաց գույնի տեքստ"
+
+msgid "Custom Background"
+msgstr "Այլ գույնի խորք"
+
+msgid "Text"
+msgstr "Տեքստ"
+
+msgid "Selection Background"
+msgstr "Ընտրվածքի խորք"
+
+msgid "Table"
+msgstr "Աղյուսակ"
+
+msgid "Code"
+msgstr "Այլագիր"
+
+msgid "Style Schemes"
+msgstr "Ոճեր"
+
+msgid "Text Foreground"
+msgstr "Տեքստի առջևք"
+
+msgid "Text Background"
+msgstr "Տեքստի խորք"
+
+msgid "Selection Foreground"
+msgstr "Ընտրվածքի առջևք"
+
+msgid "Cursor"
+msgstr "Նշորդ"
+
+msgid "Current Line Background"
+msgstr "Ընթացիկ տողի խորք"
+
+msgid "Line Numbers Foreground"
+msgstr "Տողահամարների առջևք"
+
+msgid "Line Numbers Background"
+msgstr "Տողահամարների խորք"
+
+msgid "Style Scheme Editor"
+msgstr "Ոճի խմբագրիչ"
+
+msgid "Set Dark Theme Icons"
+msgstr "Մուգ պատկերակներ"
+
+msgid "Set Light Theme Icons"
+msgstr "Բաց գույնի պատկերակներ"
+
+msgid "Set Default Icons"
+msgstr "Սկզբնադիր պատկերակներ"
+
+msgid "Icon Theme"
+msgstr "Պատկերակների թեմա"
+
+msgid "Split Toolbar"
+msgstr "Տրոհել գործիքագոտին"
+
+msgid "Use Different Cherries per Level"
+msgstr "Տարբեր բալեր՝ ըստ մակարդակի"
+
+msgid "No Icon"
+msgstr "Պատկերակ պետք չէ"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "Թաքցնել աջ կողմի լրացուցիչ պատկերակը"
+
+msgid "Default Text Nodes Icons"
+msgstr "Ճյուղերի սկզբնադիր պատկերակները"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "Վերականգնել ընդարձակված/ամփոփված տեսքը"
+
+msgid "Expand all Nodes"
+msgstr "Ընդարձակել բոլոր ճյուղերը"
+
+msgid "Collapse all Nodes"
+msgstr "Ամփոփել բոլոր ճյուղերը"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "Էջանշված ճյուղերը՝ միշտ տեսանելի"
+
+msgid "Nodes Status at Startup"
+msgstr "Ճյուղերի տեսքը ծրագրի գործարկման ժամանակ"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "Ճյուղի անվան երկարությունը տողանցումից առաջ"
+
+msgid "Display Tree on the Right Side"
+msgstr "Ծառը ցուցադրել աջ կողմում"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "Մկնիկի մեկ կտտոցով անցնել տեքստի հատված"
+
+msgid "Expand Node at Mouse Click"
+msgstr "Ընդարձակել ճյուղը մկնիկի մեկ կտտոցով"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "«%s»-ն ընդունելի սեղմանիշք չէ"
+
+msgid "Writing to Disk..."
+msgstr "Գրանցվում է սկավառակի վրա..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "%s նիշքին գրանցումը հասանելի չէ"
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "Մուտքագրեք %s օգտվողի գաղտնաբառը"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr ""
+"Չհաջողվեց ստուգել պահպանված փաստաթղթի ամբողջականությունը։ Փորձեք Նիշք--"
+">Պահպանել որպես"
+
+msgid "Failed to encrypt the file"
+msgstr "Չհաջողվեց գաղտնագրել նիշքը"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "Պահուստից վերականգնումը պետք էր այս նպատակով․"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr "Տվյալաշտեմարանի %s նիշքը փչացած է, մանրամասները տես մատենանիշքում"
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s գրումը ձախողվեց. նիշքը չկա։ Նորից մտցրեք USB հիշասարքը կամ համօգտագործվող "
+"աղբյուրը։"
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr "%s գրումը ձախողվեց․ նիշքն արգելափակվա՞ծ է համաժամեցման ծրագրով։"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s վերաբացումը ձախողվեց. նիշքը չկա։ Նորից մտցրեք USB հիշասարքը կամ "
+"համօգտագործվող աղբյուրը։"
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "Աստիճանակարգային կառուցվածքով նշատետր OliveSet"
+
+msgid "_Exit OliveSet"
+msgstr "_Փակել OliveSet-ն"
+
+msgid "HTML Document"
+msgstr "HTML փաստաթուղթ"
+
+msgid "Markdown Document"
+msgstr "Markdown փաստաթուղթ"
+
+msgid "Mempad Document"
+msgstr "Mempad փաստաթուղթ"
+
+msgid "Treepad Document"
+msgstr "Treepad փաստաթուղթ"
+
+msgid "Leo Document"
+msgstr "Leo փաստաթուղթ"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "Վերականգնե՞լ սկզբնադիր տարբերակը։"
+
+#~ msgid "Replace in Multiple Nodes..."
+#~ msgstr "Փոխարինել շատ ճյուղերում․․․"
+
+#~ msgid "Find in Multiple Nodes..."
+#~ msgstr "Գտնել շատ ճյուղերում․․․"
+
+#~ msgid "Insert T_OC..."
+#~ msgstr "Դնել _բովանդակության ցանկ..."
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "Դնել բովանդակության ցանկ"
+
+#~ msgid ""
+#~ "Backup files are by default 3 in the same folder of the corrupted "
+#~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
+#~ "the backup with one tilde: copy the file to another directory, remove the "
+#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "with two tildes and if it still fails try the one with three tildes."
+#~ msgstr ""
+#~ "Պահուստային նիշքերը լռելյայն 3-ն են փչացած նիշքի նույն պանակում, նույն "
+#~ "անունով և ալիքանշաններով (~, ~~, ~~~)։ Նախ փորձեք մեկ ալիքանշանով նիշքը. "
+#~ "պատճենեք այն մի ուրիշ պանակում, ջնջեք ալիքանշանը և բացեք OliveSet-ով։ "
+#~ "Եթե չբացվի, փորձեք երկու ալիքանշաններովը, և եթե սա էլ չբացվի, փորձեք երեք "
+#~ "ալիքանշաններովը։"
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "Ծրագրի առցանց ուղեցույցը"
+
+#~ msgid "OliveSet Document"
+#~ msgstr "OliveSet փաստաթուղթ"
+
+#~ msgid "Not Protected"
+#~ msgstr "պաշտպանված չէ"
+
+#~ msgid "Password Protected"
+#~ msgstr "պաշտպանված է գաղտնաբառով"
+
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "%s փաստաթուղթը չի գտնվել"
+
+#~ msgid "Find _in Multiple Nodes"
+#~ msgstr "Գտնել շատ ճյուղերում"
+
+#~ msgid "Replace in _Multiple Nodes"
+#~ msgstr "Փոխարինել շատ ճյուղերում"
+
+#~ msgid ""
+#~ "Pandoc executable could not be found, please ensure it is in your path"
+#~ msgstr "Pandoc-ի գործարկիչը չգտնվեց․ համոզվեք, որ այն Ձեր նշած ուղում է"
+
+#~ msgid "From File using _Pandoc"
+#~ msgstr "Նիշքից՝ _Pandoc-ի միջոցով"
+
+#~ msgid "Add a node to the current tree using Pandoc"
+#~ msgstr "Ծառին ճյուղ ավելացնել Pandoc-ի միջոցով"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "Նոր լեզուն կգործածվի OliveSet-ի վերագործարկումից հետո։"
+
+#~ msgid "click me"
+#~ msgstr "սեղմել այստեղ"
+
+#~ msgid "_Format"
+#~ msgstr "_Ձևաչափում"
+
+#~ msgid "_Tools"
+#~ msgstr "_Գործիքներ"
+
+#~ msgid "_List"
+#~ msgstr "_Ցանկ"
+
+#~ msgid "_Row"
+#~ msgstr "_Տող"
+
+#~ msgid "_Print"
+#~ msgstr "_Տպել"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "Դնել ամսաթվի _կնիք"
+
+#~ msgid "Quit"
+#~ msgstr "Դուրս գալ"
+
+#~ msgid "Replace in Selected Node and Subnodes"
+#~ msgstr "Փոխարինել ընտրված ճյուղում ու ենթաճյուղերում"
+
+#~ msgid "Search in Selected Node and Subnodes"
+#~ msgstr "Փնտրել ընտրված ճյուղում ու ենթաճյուղերում"
+
+#~ msgid "Search in All Nodes"
+#~ msgstr "Փնտրել բոլոր ճյուղերում"
+
+#~ msgid "Replace in Node Names..."
+#~ msgstr "Փոխարինել ճյուղերի անուններում..."
+
+#~ msgid "Search For a Node Name..."
+#~ msgstr "Փնտրել ճյուղի անուն կամ պիտակ..."
+
+#~ msgid "Monospace Text Color Background"
+#~ msgstr "Նույնալայնք տեքստի գույն՝ խորք"
+
+#~ msgid "Find in _All Nodes Contents"
+#~ msgstr "Գտնել _բոլոր ճյուղերի պարունակության մեջ"
+
+#~ msgid "Find into All the Tree Nodes Contents"
+#~ msgstr "Գտնել ծառի բոլոր ճյուղերի պարունակության մեջ"
+
+#~ msgid "Find in _Selected Node and Subnodes Contents"
+#~ msgstr "Գտնել _ընտրված ճյուղի և ենթաճյուղերի պարունակության մեջ"
+
+#~ msgid "Find into the Selected Node and Subnodes Contents"
+#~ msgstr "Գտնել ընտրված ճյուղի և ենթաճյուղերի պարունակության մեջ"
+
+#~ msgid "Replace in _All Nodes Contents"
+#~ msgstr "Փոխարինել _բոլոր ճյուղերի պարունակության մեջ"
+
+#~ msgid "Replace into All the Tree Nodes Contents"
+#~ msgstr "Փոխարինել ծառի բոլոր ճյուղերի պարունակության մեջ"
+
+#~ msgid "Replace in _Selected Node and Subnodes Contents"
+#~ msgstr "Փոխարինել _ընտրված ճյուղի ու ենթաճյուղերի պարունակության մեջ"
+
+#~ msgid "Replace into the Selected Node and Subnodes Contents"
+#~ msgstr "Փոխարինել ընտրված ճյուղի ու ենթաճյուղերի պարունակության մեջ"
+
+#~ msgid "Replace in Nodes _Names"
+#~ msgstr "Փոխարինել ճյուղերի անուններում"
+
+#~ msgid "_Execute CodeBox Code"
+#~ msgstr "_Գործարկել այլագիրը"
+
+#~ msgid "For_matting"
+#~ msgstr "_Ձևաչափում"
+
+#~ msgid "Nodes _Import"
+#~ msgstr "Ճյուղերի ներմուծում"
+
+#~ msgid "Nodes E_xport"
+#~ msgstr "Ճյուղերի արտահանում"
+
+#~ msgid "E_xport"
+#~ msgstr "_Արտահանում"
+
+#~ msgid "Editor"
+#~ msgstr "Խմբագրում"
+
+#~ msgid "Monospace Background"
+#~ msgstr "Նույնալայնք խորք"
+
+#~ msgid "Export to PDF at specified file path"
+#~ msgstr "Արտահանել որպես PDF նիշքի ընտրված ուղով"
+
+#~ msgid "Export to Multiple Plain _Text Files"
+#~ msgstr "Արտահանել որպես բազմաթիվ հասարակ տեքստային նիշքեր"
+
+#~ msgid "Export to Multiple Plain Text Files"
+#~ msgstr "Արտահանել որպես բազմաթիվ հասարակ տեքստային նիշքեր"
+
+#~ msgid "Export to _Single Plain Text File"
+#~ msgstr "Արտահանել որպես մեկ հասարակ տեքստային նիշք"
+
+#~ msgid "Unknown"
+#~ msgstr "Անհայտ է"
+
+#~ msgid "(no suggestions)"
+#~ msgstr "(տարբերակ չկա)"
+
+#~ msgid "Add \"{}\" to Dictionary"
+#~ msgstr "Ավելացնել \"{}\"-ը բառարանի մեջ"
+
+#~ msgid "Ignore All"
+#~ msgstr "Անտեսել բոլորը"
+
+#~ msgid "Languages"
+#~ msgstr "Լեզուներ"
+
+#~ msgid "Suggestions"
+#~ msgstr "Տարբերակներ"
+
+#~ msgid "NoteCase Document"
+#~ msgstr "NoteCase փաստաթուղթ"
+
+#~ msgid "EPIM HTML Document"
+#~ msgstr "EPIM-ի HTML փաստաթուղթ"
+
+#~ msgid "KeyNote Document"
+#~ msgstr "KeyNote փաստաթուղթ"
+
+#~ msgid "Knowit Document"
+#~ msgstr "Knowit փաստաթուղթ"
+
+#~ msgid ""
+#~ "Binary Executable '7za' Not Found, Check The Package 'p7zip-full' to be "
+#~ "Installed Properly"
+#~ msgstr ""
+#~ " '7za' նիշքը չի գտնվել։ Համոզվեք, որ 'p7zip-full' փաթեթը ճիշտ է տեղակայված"
+
+#~ msgid "Type To Search..."
+#~ msgstr "Մուտքագրեք ու որոնեք..."
+
+#~ msgid "Command Name"
+#~ msgstr "Հրամանի անուն"
+
+#~ msgid "Not Any H1, H2 or H3 Formatting Found"
+#~ msgstr "H1, H2 կամ H3 ձևաչափում չի գտնվել"
+
+#~ msgid "Min Width"
+#~ msgstr "Նվազագույն լայնք"
+
+#~ msgid "Max Width"
+#~ msgstr "Առավելագույն լայնք"
+
+#~ msgid "Click to Edit the Column Settings"
+#~ msgstr "Սեղմել՝ սյունակի հատկությունները խմբագրելու համար"
+
+#~ msgid "Table Column Action"
+#~ msgstr "Գործողություն աղյուսակի սյունակի հետ"
+
+#~ msgid "From _Basket Folder"
+#~ msgstr "Basket-ի պանակից"
+
+#~ msgid "Add Nodes of a Basket Folder to the Current Tree"
+#~ msgstr "Basket-ի պանակից ճյուղեր ավելացնել ծառին"
+
+#~ msgid "From _EssentialPIM HTML File"
+#~ msgstr "EssentialPIM-ի HTML նիշքից"
+
+#~ msgid "Add Node from an EssentialPIM HTML File to the Current Tree"
+#~ msgstr "EssentialPIM-ի HTML նիշքից ճյուղ ավելացնել ծառին"
+
+#~ msgid "From K_eyNote File"
+#~ msgstr "KeyNote նիշքից"
+
+#~ msgid "Add Nodes of a KeyNote File to the Current Tree"
+#~ msgstr "KeyNote նիշքից ճյուղեր ավելացնել ծառին"
+
+#~ msgid "From K_nowit File"
+#~ msgstr "Knowit նիշքից"
+
+#~ msgid "Add Nodes of a Knowit File to the Current Tree"
+#~ msgstr "Knowit նիշքից ճյուղեր ավելացնել ծառին"
+
+#~ msgid "From _TuxCards File"
+#~ msgstr "TuxCards նիշքից"
+
+#~ msgid "Add Nodes of a TuxCards File to the Current Tree"
+#~ msgstr "TuxCards նիշքից ճյուղեր ավելացնել ծառին"
+
+#~ msgid "Insert _NewLine"
+#~ msgstr "Դնել _տողահատիչ"
+
+#~ msgid "Insert NewLine Char"
+#~ msgstr "Դնել տողահատիչի գրանշանը"
+
+#~ msgid "Use AppIndicator for Docking"
+#~ msgstr "Փակցնելու համար գործածել AppIndicator-ը"
+
+#~ msgid "Cancel"
+#~ msgstr "Չեղարկել"
+
+#~ msgid "The Characters  %s  are Not Allowed"
+#~ msgstr "%s  գրանշանները չեն թույլատրվում"
+
+#~ msgid "Text Font"
+#~ msgstr "Տեքստի տառատեսակ"
+
+#~ msgid "Toggle Node _Expanded/Collapsed"
+#~ msgstr "_Ճյուղն ընդարձակել/ամփոփել"
+
+#~ msgid "Toggle Expanded/Collapsed Status of the Selected Node"
+#~ msgstr "Ընտրված ճյուղն ընդարձակել/ամփոփել"
+
+#~ msgid "Find into the Selected Node"
+#~ msgstr "Գտնել ընտրված ճյուղում"
+
+#~ msgid "Find into all the Tree Nodes"
+#~ msgstr "Գտնել ծառի բոլոր ճյուղերում"
+
+#~ msgid "_Replace in Node"
+#~ msgstr "Փոխարինել ճյուղում"
+
+#~ msgid "Replace into the Selected Node"
+#~ msgstr "Փոխարինել ընտրված ճյուղում"
+
+#~ msgid "Replace in Node_s"
+#~ msgstr "Փոխարինել ճյուղերում"
+
+#~ msgid "Replace into all the Tree Nodes"
+#~ msgstr "Փոխարինել ծառի բոլոր ճյուղերում"
+
+#~ msgid "Code Nodes"
+#~ msgstr "Այլագրային ճյուղեր"
+
+#~ msgid "Use Cherries as Nodes Icons"
+#~ msgstr "Ճյուղերի պատկերակները՝ բալեր"
+
+#~ msgid "Do Not Display Nodes Icons"
+#~ msgstr "Ճյուղերի համար պատկերակներ չգործածել"
+
+#~ msgid "All Nodes"
+#~ msgstr "Բոլոր ճյուղերը"
+
+#~ msgid "_Bookmark This Node"
+#~ msgstr "_Էջանշել ճյուղը"
+
+#~ msgid ""
+#~ "Copyright © 2009-2014\n"
+#~ "Giuseppe Penone <giuspen@gmail.com>"
+#~ msgstr ""
+#~ "Պատճենաշնորհ © 2009-2014\n"
+#~ "Giuseppe Penone <giuspen@gmail.com>"
+
+#~ msgid "Sort with Drag and Drop, Delete with the Delete Key"
+#~ msgstr "Դասավորել քաշել-տեղադրելու միջոցով, ջնջել Delete ստեղնով"

@@ -1,0 +1,3417 @@
+# Finnish translations for PACKAGE package.
+# Copyright (C) 2019 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# henri k <henrikau@posteo.net>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2022-04-06 16:25+0300\n"
+"Last-Translator: henri k <henrikau@posteo.net>\n"
+"Language-Team: Finnish\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "Image Format Not Recognized"
+msgstr "Kuvaformaattia ei tunnistettu"
+
+msgid "Insert Table"
+msgstr "Lisää taulukko"
+
+msgid "CSV File"
+msgstr "CSV -tiedosto"
+
+msgid "Insert a CodeBox"
+msgstr "Lisää koodilaatikko"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "Suurin koko upotetuille tiedostoille on %s Mt."
+
+msgid "Do you want to Continue?"
+msgstr "Haluatko jatkaa?"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "Solmun '%s' sisällön hakeminen epäonnistui"
+
+msgid "Special Characters"
+msgstr "Erikoismerkit"
+
+msgid "Tabs Replaced"
+msgstr "Sarkaimia korvattu"
+
+msgid "Lines Stripped"
+msgstr "Rivejä karsittu"
+
+msgid "No Text is Selected."
+msgstr "Tekstiä ei ole valittu."
+
+msgid "OliveSet File"
+msgstr "OliveSet-tiedosto"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"Käytössä olevaa tiedostoa/kansiota ei voi ylikirjoittaa!\n"
+"Käytä eri nimeä tai sijaintia."
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"Kansio '%s' on jo olemassa kohteessa '%s'.\n"
+"<b>Haluatko korvata sen?</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"Tiedosto '%s' on jo olemassa kohteessa '%s'.\n"
+"<b>Haluatko korvata sen?</b>"
+
+msgid "PDF File"
+msgstr "PDF -tiedosto"
+
+msgid "Plain Text Document"
+msgstr "Raakatekstiasiakirja"
+
+msgid "Preferences File"
+msgstr "Asetustiedosto"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "Onko järjestelmän ilmoitin ilmestynyt paneeliin?"
+
+msgid "Your system does not support the System Tray"
+msgstr "Järjestelmäsi ei tue järjestelmän ilmoitinta"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr ""
+"Tämä muutos tulee voimaan vasta OliveSet:n uudelleenkäynnistyksen jälkeen."
+
+msgid "Replace in Current Node"
+msgstr "Korvaa nykyisessä solmussa"
+
+msgid "Search in Current Node"
+msgstr "Etsi nykyisestä solmusta"
+
+msgid "Matches"
+msgstr "Löydetyt"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "<b>Merkkijonoa '%s' ei löydetty</b>"
+
+msgid "Replace in Multiple Nodes"
+msgstr "Korvaa useissa solmuissa"
+
+msgid "Search in Multiple Nodes"
+msgstr "Etsi useista solmuista"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "Aikaisempaa etsintää ei ole tehty tämän istunnon aikana."
+
+msgid "Tags"
+msgstr "Avainsanat"
+
+msgid ": "
+msgstr ": "
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "Edellistä tekstin muotoilua ei ole tehty tämän istunnon aikana."
+
+msgid "Link Name"
+msgstr "Linkin nimi"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "Kursori ei ole kappaleessa."
+
+msgid "Insert/Edit Link"
+msgstr "Lisää/muokkaa linkkiä"
+
+msgid "Pick a Foreground Color"
+msgstr "Valitse tekstin väri"
+
+msgid "Pick a Background Color"
+msgstr "Valitse taustan väri"
+
+msgid "Checking for Newer Version..."
+msgstr "Tarkistetaan uudempaa versiota..."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr ""
+"Uuden version tietojen hakeminen epäonnistui - Yritä myöhemmin uudelleen."
+
+msgid "A Newer Version Is Available!"
+msgstr "Uusi versio on saatavilla!"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "Käytät viimeisintä saatavilla olevaa versiota."
+
+msgid "You Are Using a Development Version."
+msgstr "Käytät kehitysversiota."
+
+msgid "Who is the Parent?"
+msgstr "Mikä on vanhempi?"
+
+msgid "The Tree Root"
+msgstr "Puun juuri"
+
+msgid "The Selected Node"
+msgstr "Valittu solmu"
+
+msgid "Rename"
+msgstr "Nimeä uudelleen"
+
+msgid "PNG Image"
+msgstr "PNG -kuva"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "Kirjoitus kohteeseen %s epäonnistui"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "Kansiolinkki '%s' ei kelpaa."
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "Tiedostolinkki '%s' ei kelpaa."
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "Kansiolinkki '%s' ei kelpaa"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "Linkki viittaa solmuun, jota ei ole enää olemassa (Id = %s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "Ankkuria '%s' ei löydetty"
+
+msgid "Edit CodeBox"
+msgstr "Muokkaa koodilaatikkoa"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"Sinun täytyy liittää komento '%s':ään.\n"
+"Tee niin Asetukset -dialogissa."
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr "Asenna paketti 'xterm' tai aseta eri terminaali Asetukset -dialogissa."
+
+msgid "Edit Table Properties"
+msgstr "Muokkaa taulukon ominaisuuksia"
+
+msgid "Insert Anchor"
+msgstr "Lisää ankkuri"
+
+msgid "Edit Anchor"
+msgstr "Muokkaa ankkuria"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "Upotettua tiedostoa ei voida muokata Vain-luku -tilassa."
+
+msgid "Embedded File Automatically Updated:"
+msgstr "Upotetut, automaattisesti päivittyvät tiedostot:"
+
+msgid "No Node is Selected"
+msgstr "Solmua ei ole valittu"
+
+msgid "The Tree is Empty!"
+msgstr "Puu on tyhjä!"
+
+msgid "The Selected Node is Read Only."
+msgstr "Valittu solmu on Vain-luku -tilassa."
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "Tämä ominaisuus on käytettävissä vain Muotoiltu teksti -solmuissa."
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr ""
+"Tämä ominaisuus ei ole käytettävissä automaattisen syntaksin korostuksen "
+"solmuissa."
+
+msgid "No Table is Selected."
+msgstr "Taulukkoa ei ole valittu."
+
+msgid "No CodeBox is Selected."
+msgstr "Koodilaatikkoa ei ole valittu."
+
+msgid "New Child Node Properties"
+msgstr "Uuden jälkeläissolmun ominaisuudet"
+
+msgid "New Node Properties"
+msgstr "Uuden solmun ominaisuudet"
+
+msgid "Node Properties"
+msgstr "Solmun ominaisuudet"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"Muuttamalla solmutyypiksi automaattinen syntaksin korostus poistetaan kaikki "
+"muotoiltu teksti tästä solmusta. Haluatko jatkaa?"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "Haluatko varmasti <b>Poistaa solmun '%s'?</b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "Solmulla <b>on jälkeläisiä, jotka poistetaan myös!</b>"
+
+msgid "Select the New Parent"
+msgstr "Valitse uusi vanhempi"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "Uusi vanhempi ei voi olla uusin siirrettävä solmu!"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "Uusi valittu vanhempi on edelleen vanha vanhempi!"
+
+msgid "The new parent can't be one of his children!"
+msgstr "Uusi vanhempi ei voi olla yksi sen jälkeläisistä!"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "%s solmujen ominaisuuksia muutettu"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr ""
+"Viimeksi vierailtujen solmujen lukumäärä solmun nimiotsikossa on jo "
+"suurimmassa mahdollisessa arvossa."
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr ""
+"Viimeksi vierailtujen solmujen lukumäärä solmun nimiotsikossa on jo "
+"pienimmässä mahdollisessa arvossa."
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "Työkalurivin ikonien koko on jo suurin mahdollinen."
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "Työkalurivin ikonien koko on jo pienin mahdollinen."
+
+msgid "Print OliveSet version"
+msgstr "Tulosta OliveSet:n versio"
+
+msgid "Node name to focus"
+msgstr "Kohdistettavan solmun nimi"
+
+msgid "Anchor name to scroll to in node"
+msgstr "Ankkurin nimi, johon vieritetään solmussa"
+
+msgid "Export to HTML at specified directory path"
+msgstr "Vie HTML-tiedostoksi määritellyllä hakemistopolulla"
+
+msgid "Export to Text at specified directory path"
+msgstr "Vie tekstiksi määritellyllä hakemistopolulla"
+
+msgid "Export to PDF at specified directory path"
+msgstr "Vie PDF-tiedostoksi määritellyllä hakemistopolulla"
+
+msgid "Overwrite if export path already exists"
+msgstr "Ylikirjoita jos viennin polku on jo olemassa"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "Vie yksittäinen tiedosto (HTML tai TXT)"
+
+msgid "Password to open document"
+msgstr "Salasana asiakirjan avaamiseen"
+
+msgid "Create a new window"
+msgstr "Luo uusi ikkuna"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "Suorita toissijaisessa istunnossa, erillään pääistunnosta"
+
+msgid "Execute Code"
+msgstr "Suorita koodi"
+
+msgid "Copy Code"
+msgstr "Kopioi koodi"
+
+msgid "Change CodeBox Properties"
+msgstr "Muuta koodilaatikon ominaisuuksia"
+
+msgid "Start in OliveSet"
+msgstr "Aloita OliveSet:ssä"
+
+msgid "New Document"
+msgstr "Uusi asiakirja"
+
+msgid "Open File"
+msgstr "Avaa tiedosto"
+
+msgid "Open Folder"
+msgstr "Avaa kansio"
+
+msgid "Create a new document or open an existing one."
+msgstr "Luo uusi asiakirja tai avaa olemassa oleva."
+
+msgid "Don't show again"
+msgstr "Älä näytä uudelleen"
+
+msgid "Recent Documents"
+msgstr "Viimeisimmät asiakirjat"
+
+msgid "Name"
+msgstr "Nimi"
+
+msgid "Path"
+msgstr "Polku"
+
+msgid "Open Selected"
+msgstr "Avaa valittu"
+
+msgid "Handle the Bookmarks List"
+msgstr "Käsittele kirjanmerkkilistaa"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "Siirrä valittu kirjainmerkki ylöspäin"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "Siirrä valittu kirjainmerkki alaspäin"
+
+msgid "Remove the Selected Bookmark"
+msgstr "Poista valittu kirjainmerkki"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "Järjestä kirjainmerkit laskevasti"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "Järjestä kirjainmerkit nousevasti"
+
+msgid "Choose Storage Type"
+msgstr "Vaihda tallennustyyppiä"
+
+msgid "Single SQLite File"
+msgstr "Yksittäinen SQLite-tiedosto"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "Yksittäinen SQLite-tiedosto, 7-zip-salattu ja salasanasuojattu"
+
+msgid "Single XML File"
+msgstr "Yksittäinen XML-tiedosto"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "Yksittäinen XML-tiedosto, 7-zip-salattu ja salasanasuojattu"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "Useita tiedostoja hierarkkisessa kansiorakenteessa"
+
+msgid "Storage Type"
+msgstr "Tallennustyyppi"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"CT tallentaa asiakirjan suojattuun 7zip -pakettiin. Asiakirjaa "
+"tarkasteltaessa tai muokatessa CT purkaa suojatun paketin väliaikaiskansioon "
+"ja käyttää suojaamatonta kopiota. Suljettaessa suojaamaton kopio poistetaan "
+"väliaikaiskansiosta. Huomaa, että sovelluksen tai järjestelmän kaatuessa "
+"suojaamaton asiakirja jää väliaikaiskansioon."
+
+msgid "Enter the New Password Twice"
+msgstr "Syötä uusi salasana kahdesti"
+
+msgid "Autosave Every"
+msgstr "Tallenna automaattisesti joka"
+
+msgid "Minutes"
+msgstr "Minuutit"
+
+msgid "The Password Fields Must be Filled."
+msgstr "Salasanakentät on täytettävä."
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "Kaksi syötettyä salasanaa eivät täsmää."
+
+msgid "Warning"
+msgstr "Varoitus"
+
+msgid "The Current Document was Updated."
+msgstr "Nykyinen asiakirja on päivitetty."
+
+msgid "Do you want to Save the Changes?"
+msgstr "Haluatko tallentaa muutokset?"
+
+msgid "Do you want to Execute the Code?"
+msgstr "Haluatko suorittaa koodin?"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "Pyydä vahvistus ennen koodin suorittamista"
+
+msgid "Use Internal Terminal"
+msgstr "Käytä sisäistä pääteikkunaa"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr ""
+"Hierarkkinen muistiinpanojentekosovellus, joka sisältää muotoillun tekstin "
+"sekä syntaksin korostuksen"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"Tämä on ilmainen ohjelmisto; voit uudelleen jakaa ja/tai muuttaa\n"
+"sitä Free Software Foundationin julkaiseman GNU General Public -\n"
+"lisenssin mukaisesti; joko versio 3 tai (vapaavalintaisesti) mikä\n"
+"tahansa sitä myöhempi versio.\n"
+"  \n"
+"Tämä ohjelma jaetaan siinä toivossa, että se on hyödyllinen, mutta\n"
+"ILMAN MITÄÄN TAKUUTA; ilman edes epäsuoraa takuuta MYYNTIKELPOISUUDESTA\n"
+"tai SOPIVUUDESTA TIETTYYN TARKOITUKSEEN. Katso GNU General Public -\n"
+"lisenssi lisätietoja varten.\n"
+"  \n"
+"Tämän ohjelman mukana tulisi toimittaa kopio GNU General Public -\n"
+"lisenssistä. Ellei näin ole, kirjoita osoitteeseen:  Free Software "
+"Foundation,\n"
+"Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n"
+
+msgid "Arabic"
+msgstr "Arabia"
+
+msgid "Armenian"
+msgstr "Armenia"
+
+msgid "Bulgarian"
+msgstr "Bulgaria"
+
+msgid "Chinese Simplified"
+msgstr "Yksinkertaistettu kiina"
+
+msgid "Chinese Traditional"
+msgstr "Traditionaalinen Kiina"
+
+msgid "Croatian"
+msgstr "Kroatia"
+
+msgid "Czech"
+msgstr "Tsekki"
+
+msgid "Dutch"
+msgstr "Hollanti"
+
+msgid "Finnish"
+msgstr "Suomi"
+
+msgid "French"
+msgstr "Ranska"
+
+msgid "German"
+msgstr "Saksa"
+
+msgid "Greek"
+msgstr "Kreikka"
+
+msgid "Hindi India"
+msgstr "Hinti Intia"
+
+msgid "Hungarian"
+msgstr "Unkari"
+
+msgid "Italian"
+msgstr "Italia"
+
+msgid "Japanese"
+msgstr "Japani"
+
+msgid "Kazakh"
+msgstr "Kazakstan"
+
+msgid "Kazakh (Latin)"
+msgstr "Kazakki (latinalainen)"
+
+msgid "Korean"
+msgstr "Korea"
+
+msgid "Lithuanian"
+msgstr "Liettua"
+
+msgid "Persian"
+msgstr "Persia"
+
+msgid "Polish"
+msgstr "Puola"
+
+msgid "Portuguese"
+msgstr "Portugali"
+
+msgid "Portuguese Brazil"
+msgstr "Brasilian portugali"
+
+msgid "Romanian"
+msgstr "Romania"
+
+msgid "Russian"
+msgstr "Venäjä"
+
+msgid "Slovak"
+msgstr "Slovakki"
+
+msgid "Slovenian"
+msgstr "Slovenia"
+
+msgid "Spanish"
+msgstr "Espanja"
+
+msgid "Swedish"
+msgstr "Ruotsi"
+
+msgid "Turkish"
+msgstr "Turkki"
+
+msgid "Ukrainian"
+msgstr "Ukraina"
+
+msgid "About OliveSet"
+msgstr "Tietoja OliveSet:stä"
+
+msgid "Tree Summary Information"
+msgstr "Puun tietojen yhteenveto"
+
+msgid "Number of Rich Text Nodes"
+msgstr "Muotoiltua tekstiä sisältävien solmujen määrä"
+
+msgid "Number of Plain Text Nodes"
+msgstr "Raakatekstiä sisältävien solmujen määrä"
+
+msgid "Number of Code Nodes"
+msgstr "Koodisolmujen lukumäärä"
+
+msgid "Number of Images"
+msgstr "Kuvien lukumäärä"
+
+msgid "Number of LatexBoxes"
+msgstr "Latex-laatikkojen lukumäärä"
+
+msgid "Number of Embedded Files"
+msgstr "Upotettujen tiedostojen lukumäärä"
+
+msgid "Number of Tables"
+msgstr "Taulukkojen lukumäärä"
+
+msgid "Number of CodeBoxes"
+msgstr "Koodilaatikkojen lukumäärä"
+
+msgid "Number of Anchors"
+msgstr "Ankkurien lukumäärä"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "Jaettujen solmujen / ryhmien lukumäärä"
+
+msgid "Latex Text"
+msgstr "Latex -teksti"
+
+msgid "Image Size dpi"
+msgstr "Kuvakoko dpi"
+
+msgid "Tutorial"
+msgstr "Tutoriaali"
+
+msgid "Reference"
+msgstr "Viite"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "LaTex matematiikka ja yhtälö -tutoriaali"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "LaTex matematiikkasymboli-viittaus"
+
+msgid "Image Properties"
+msgstr "Kuvan ominaisuudet"
+
+msgid "Rotate Left"
+msgstr "Kierrä vasemmalle"
+
+msgid "Rotate Right"
+msgstr "Kierrä oikealle"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr "Rajataksesi kuvan, valitse alue hiirellä ennen OK:n klikkaamista"
+
+msgid "Flip Horizontally"
+msgstr "Peilaa vaakasuunnassa"
+
+msgid "Flip Vertically"
+msgstr "Peilaa pystysuunnassa"
+
+msgid "Width"
+msgstr "Leveys"
+
+msgid "Height"
+msgstr "Korkeus"
+
+msgid "Plain Text"
+msgstr "Raakateksti"
+
+msgid "Automatic Syntax Highlighting"
+msgstr "Automaattinen syntaksin korostus"
+
+msgid "Type"
+msgstr "Tyyppi"
+
+msgid "pixels"
+msgstr "pikseliä"
+
+msgid "Size"
+msgstr "Koko"
+
+msgid "Show Line Numbers"
+msgstr "Näytä rivinumerot"
+
+msgid "Highlight Matching Brackets"
+msgstr "Korosta vastaavat sulkeet"
+
+msgid "Options"
+msgstr "Valinnat"
+
+msgid "Rows"
+msgstr "Rivit"
+
+msgid "Columns"
+msgstr "Sarakkeet"
+
+msgid "Default Width"
+msgstr "Oletusleveys"
+
+msgid "Table Size"
+msgstr "Taulukon koko"
+
+msgid "Column Properties"
+msgstr "Sarakkeen ominaisuudet"
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "Kevyt käyttöliittymä (paljon nopeampi suurille taulukoille)"
+
+msgid "Import from CSV File"
+msgstr "Tuo CSV -tiedostosta"
+
+msgid "Clear"
+msgstr "Tyhjennä"
+
+msgid "Reset"
+msgstr "Palauta"
+
+msgid "Search for"
+msgstr "Etsi hakusanoilla"
+
+msgid "Replace with"
+msgstr "Korvaa merkkijonolla"
+
+msgid "Replace in Link Targets"
+msgstr "Korvaa linkkikohteissa"
+
+msgid "Replace options"
+msgstr "Korvaamisen valinnat"
+
+msgid "Match Case"
+msgstr "Huomioi kirjainkoko"
+
+msgid "Regular Expression"
+msgstr "Säännöllinen lauseke"
+
+msgid "Online Manual"
+msgstr "Verkossa oleva _ohjekirja"
+
+msgid "Accent Insensitive"
+msgstr "Aksentteja ei huomioida"
+
+msgid "Override Exclusions"
+msgstr "Ohita poissulkemiset"
+
+msgid "Whole Word"
+msgstr "Koko sana"
+
+msgid "Start Word"
+msgstr "Alkaa sanalla"
+
+msgid "More Words, Exact Match"
+msgstr "Useampi sana, tarkka vastaavuus"
+
+msgid "More Words, Disregard Order"
+msgstr "Useampi sana, järjestyksellä ei väliä"
+
+msgid "More Words, Match Any"
+msgstr "Useampi sana, mikä tahansa vastaavuus"
+
+msgid "Forward"
+msgstr "Eteenpäin"
+
+msgid "Backward"
+msgstr "Taaksepäin"
+
+msgid "All, List Matches"
+msgstr "Kaikki, listaa löydetyt"
+
+msgid "First From Selection"
+msgstr "Ensimmäinen kursorin sijainnista"
+
+msgid "First in All Range"
+msgstr "Ensimmäinen kaikkialta"
+
+msgid "Node Created After"
+msgstr "Solmu luotu ennen"
+
+msgid "Node Created Before"
+msgstr "Solmu luotu jälkeen"
+
+msgid "Node Modified After"
+msgstr "Solmu muutettu jälkeen"
+
+msgid "Node Modified Before"
+msgstr "Solmu muutettu ennen"
+
+msgid "Time filter"
+msgstr "Aikasuodatin"
+
+msgid "Node Content"
+msgstr "Solmun sisältö"
+
+msgid "Node Name and Tags"
+msgstr "Solmun nimi ja avainsanat"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "Vain valittu solmu ja alasolmut"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "Näytä toistuva Etsi/Korvaa -dialogi"
+
+msgid "Search options"
+msgstr "Etsimisen valinnat"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"Korvaa-kenttä on tyhjä: kaikki löydetyt esiintymät poistetaan.\n"
+"Haluatko jatkaa?"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"Vähintään yksi solmu ohitettiin solmun ominaisuuksiin asetettujen "
+"poissulkemisten takia.\n"
+"Poistaaksesi kaikki poissulkemiset, käytä valikkoa:\n"
+"Etsi -> Tyhjennä kaikki poissulkemiset hausta"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "Piilota (palauta '%s':lla)"
+
+msgid "Node Name"
+msgstr "Solmun nimi"
+
+msgid "Line"
+msgstr "Rivi"
+
+msgid "Line Content"
+msgstr "Rivin sisältö"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "Toista viimeisin Etsi/Korvaa"
+
+msgid "Close"
+msgstr "Sulje"
+
+msgid "Find Previous"
+msgstr "Etsi edellinen"
+
+msgid "Find Next"
+msgstr "Etsi seuraava"
+
+msgid "Replace"
+msgstr "Korvaa"
+
+msgid "Undo"
+msgstr "Kumoa"
+
+msgid "Remove"
+msgstr "Poista"
+
+msgid "Remove User Colour from Palette"
+msgstr "Poista käyttäjän väri paletilta"
+
+msgid "Colour"
+msgstr "Väri"
+
+msgid "Question"
+msgstr "Kysymys"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Error"
+msgstr "Virhe"
+
+msgid "Select File"
+msgstr "Valitse tiedosto"
+
+msgid "Select Folder"
+msgstr "Valitse kansio"
+
+msgid "Save File as"
+msgstr "Tallenna tiedosto nimellä"
+
+msgid "Save To Folder"
+msgstr "Tallenna kansioon"
+
+msgid "To WebSite"
+msgstr "Nettisivulle"
+
+msgid "To File"
+msgstr "Tiedostoon"
+
+msgid "To Folder"
+msgstr "Kansioon"
+
+msgid "To Node"
+msgstr "Solmuun"
+
+msgid "Anchor Name (optional)"
+msgstr "Ankkurin nimi (valinnainen)"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "Valitussa solmussa ei ole ankkureita."
+
+msgid "Choose Existing Anchor"
+msgstr "Valitse olemassa oleva ankkuri"
+
+msgid "Anchor Name"
+msgstr "Ankkurin nimi"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "Merkkijonoa '%s' ei löydetty"
+
+msgid "Bold"
+msgstr "Lihavoitu"
+
+msgid "Use Selected Color"
+msgstr "Käytä valittua väriä"
+
+msgid "Use Selected Icon"
+msgstr "Käytä valittua ikonia"
+
+msgid "Rich Text"
+msgstr "Muotoiltu teksti"
+
+msgid "Node Type"
+msgstr "Solmun tyyppi"
+
+msgid "Tags for Searching"
+msgstr "Avainsanat etsimistä varten"
+
+msgid "Exclude from Searches"
+msgstr "Sulje pois hauista"
+
+msgid "This Node"
+msgstr "Tämä solmu"
+
+msgid "The Subnodes"
+msgstr "Alasolmut"
+
+msgid "Read Only"
+msgstr "Vain-luku"
+
+msgid "Unique Id"
+msgstr "Yksilöllinen tunnus"
+
+msgid "Shared Nodes Group"
+msgstr "Jaettujen solmujen ryhmä"
+
+msgid "Choose Existing Tag"
+msgstr "Valitse olemassa oleva avainsana"
+
+msgid "Tag Name"
+msgstr "Avainsanan nimi"
+
+msgid "Pick a Color"
+msgstr "Valitse väri"
+
+msgid "Select Node Icon"
+msgstr "Valitse solmun ikoni"
+
+msgid "Involved Nodes"
+msgstr "Liittyvät solmut"
+
+msgid "Selected Text Only"
+msgstr "Vain valittu teksti"
+
+msgid "Selected Node Only"
+msgstr "Vain valittu solmu"
+
+msgid "Selected Node and Subnodes"
+msgstr "Valittu solmu ja sen alasolmut"
+
+msgid "All the Tree"
+msgstr "Koko puu"
+
+msgid "Include Node Name"
+msgstr "Sisällytä solmun nimi"
+
+msgid "Links Tree in Every Page"
+msgstr "Linkitä puu joka sivulla"
+
+msgid "New Node in New Page"
+msgstr "Uusi solmu uudella sivulla"
+
+msgid "Single File"
+msgstr "Yksittäinen tiedosto"
+
+msgid "Index"
+msgstr "Luettelo"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr ""
+"Varoitus: Yksi tai useampi kuva pienennettiin, jotta se mahtuisi sivulle!"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "LaTeX-renderöinti estettiin tietoturvasyistä"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr ""
+"Lähde sisältää tiedosto-I/O-komentoja, jotka voivat käyttää paikallisia "
+"tiedostoja"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"Poista komennot kuten \\verbatiminput, \\openin, \\openout ja vaaralliset "
+"\\input/\\include-polut"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "Suoritustiedostoja 'latex' ja 'dvipng' ei löytynyt"
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "Esimerkiksi Ubuntussa asennettavat paketit ovat:"
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "Esimerkiksi macOS:ssa asennettavat paketit ovat:"
+
+msgid "Could not access the executable 'latex'"
+msgstr "Suoritustiedostoa 'latex' ei löytynyt"
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "Suoritustiedostoa 'dvipng' ei löytynyt"
+
+msgid "Downloading"
+msgstr "Ladataan"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "Polkua %s ei ole olemassa"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "Avaa viimeisimmät asiakirjat"
+
+msgid "_Hide"
+msgstr "_Piilota"
+
+msgid "_Quit"
+msgstr "_Lopeta"
+
+msgid "Hide the Window"
+msgstr "Piilota ikkuna"
+
+msgid "Quit the Application"
+msgstr "Lopeta ohjelma"
+
+msgid "Spell Check"
+msgstr "Kielentarkistus"
+
+msgid "Word Count"
+msgstr "Sanojen lukumäärä"
+
+msgid "Date Created"
+msgstr "Päivämäärä luotu"
+
+msgid "Date Modified"
+msgstr "Päivämäärä muutettu"
+
+msgid "Subnodes"
+msgstr "Alasolmut"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr ""
+"Edellistä solmun kopiota ei ole tehty tämän istunnon aikana tai lähdepuu ei "
+"ole enää saatavilla."
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "Lähdepuun solmu ei ole enää saatavilla."
+
+msgid "Show Menubar:"
+msgstr "Näytä valikkopalkki:"
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "\"%s\" ei ole OliveSet-tiedosto"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"Virhe jäsennettäessä OliveSet -polkua:\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "Haluatko avata viimeisimmän varmuuskopion?"
+
+msgid "Failed to Load from Backup Data"
+msgstr "Lataaminen varmuuskopiodatasta epäonnistui"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "Solmua nimeltä '%s' ei löydetty."
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "Väliaikaistiedostot luotiin ja avattiin ulkoisilla sovelluksilla."
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "Lopeta ulkoinen sovellus ennen OliveSet:n lopettamista."
+
+msgid "Did you Quit the External Applications?"
+msgstr "Lopetitko ulkoisen sovelluksen?"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "Ei voida tallentaa: \"%s\" on vain-luku-tilassa"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr ""
+"Asiakirja ladattiin uudelleen ulkoisen CT* -tiedoston päivityksen jälkeen."
+
+msgid "Copy Selection or All"
+msgstr "Kopioi valinta tai kaikki"
+
+msgid "Paste"
+msgstr "Liitä"
+
+msgid "Remove from list"
+msgstr "_Poista listasta"
+
+msgid "_File"
+msgstr "_Tiedosto"
+
+msgid "_Edit"
+msgstr "_Muokkaa"
+
+msgid "_Insert"
+msgstr "_Lisää"
+
+msgid "F_ormat"
+msgstr "Mu_otoilu"
+
+msgid "_Tree"
+msgstr "_Puu"
+
+msgid "Too_ls"
+msgstr "Työka_lut"
+
+msgid "_Search"
+msgstr "_Etsi"
+
+msgid "_View"
+msgstr "_Näkymä"
+
+msgid "_Bookmarks"
+msgstr "_Kirjamerkit"
+
+msgid "_Help"
+msgstr "O_hje"
+
+msgid "Insert _Date Node"
+msgstr "Lisää _päivämääräsolmu"
+
+msgid "Node _Move"
+msgstr "_Siirrä solmua"
+
+msgid "Nod_es Sort"
+msgstr "Solmut _Järjestä"
+
+msgid "B_ookmarks"
+msgstr "_Kirjanmerkit"
+
+msgid "_Import"
+msgstr "Tu_o"
+
+msgid "_Export"
+msgstr "_Vie"
+
+msgid "_Preferences"
+msgstr "_Asetukset"
+
+msgid "_Recent Documents"
+msgstr "Viimeisimmät asia_kirjat"
+
+msgid "C_hange Case"
+msgstr "Vai_hda pien-/suuraakkoset"
+
+msgid "L_ist"
+msgstr "L_istaa"
+
+msgid "_Justify"
+msgstr "_Tasaa"
+
+msgid "Toggle _Font Property"
+msgstr "Vaihda _kirjasimen ominaisuus"
+
+msgid "_Toggle Heading Property"
+msgstr "Vaihda _otsikko ominaisuus"
+
+msgid "I_nsert"
+msgstr "_Lisää"
+
+msgid "_Find"
+msgstr "_Etsi"
+
+msgid "_Replace"
+msgstr "_Korvaa"
+
+msgid "Ro_w"
+msgstr "Ri_vi"
+
+msgid "_Table"
+msgstr "_Taulukko"
+
+msgid "_CodeBox"
+msgstr "_Koodilaatikko"
+
+msgid "File"
+msgstr "Tiedosto"
+
+msgid "_New Instance..."
+msgstr "_Uusi instanssi"
+
+msgid "Start a New Instance of OliveSet"
+msgstr "Käynnistä uusi OliveSet -instanssi"
+
+msgid "_Open File..."
+msgstr "_Avaa tiedosto"
+
+msgid "Open a OliveSet File"
+msgstr "Avaa OliveSet -tiedosto"
+
+msgid "Open Fo_lder..."
+msgstr "Avaa ka_nsio..."
+
+msgid "Open a OliveSet Folder"
+msgstr "Avaa OliveSet -kansio"
+
+msgid "_Save"
+msgstr "_Tallenna"
+
+msgid "Save File"
+msgstr "Tallenna tiedosto"
+
+msgid "Save and _Vacuum"
+msgstr "Tallenna ja _puhdista"
+
+msgid "Save File and Vacuum"
+msgstr "Tallenna tiedosto ja puhdista"
+
+msgid "Save _As..."
+msgstr "Tallenna ni_mellä"
+
+msgid "Save File As"
+msgstr "Tallenna tiedosto nimellä"
+
+msgid "Pa_ge Setup..."
+msgstr "Si_vun asetukset"
+
+msgid "Set up the Page for Printing"
+msgstr "Asetukset tulostusta varten"
+
+msgid "P_rint..."
+msgstr "T_ulosta"
+
+msgid "Print"
+msgstr "Tulosta"
+
+msgid "Preferences"
+msgstr "Asetukset"
+
+msgid "_Import Preferences..."
+msgstr "Tuo _asetukset"
+
+msgid "Import Preferences"
+msgstr "Tuo asetukset"
+
+msgid "_Export Preferences..."
+msgstr "Vie _asetukset"
+
+msgid "Export Preferences"
+msgstr "Vie asetukset"
+
+msgid "Tree In_fo"
+msgstr "Puun ti_edot"
+
+msgid "_Document Path to Clipboard"
+msgstr "_Asiakirjan polku leikepöydälle"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "Kopioi asiakirjan polku leikepöydälle"
+
+msgid "E_xit OliveSet"
+msgstr "P_oistu OliveSet:stä"
+
+msgid "Exit from OliveSet"
+msgstr "Poistu OliveSet:stä"
+
+msgid "Edit/Insert"
+msgstr "Muokkaa/lisää"
+
+msgid "_Undo"
+msgstr "K_umoa"
+
+msgid "Undo Last Operation"
+msgstr "Kumoa viimeisin toiminto"
+
+msgid "_Redo"
+msgstr "_Toista"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "Tee uudelleen edellinen hylätty operaatio"
+
+msgid "Insert I_mage..."
+msgstr "Lisää ku_va"
+
+msgid "Insert an Image"
+msgstr "Lisää kuva"
+
+msgid "Insert Late_x..."
+msgstr "Lisää Late_x"
+
+msgid "Insert LatexBox"
+msgstr "Lisää Latex-laatikko"
+
+msgid "Insert _Table..."
+msgstr "Lisää _taulukko"
+
+msgid "Insert a Table"
+msgstr "Lisää taulukko"
+
+msgid "Insert _CodeBox..."
+msgstr "Lisää k_oodilaatikko"
+
+msgid "Insert _File..."
+msgstr "Lisää tie_dosto"
+
+msgid "Insert File"
+msgstr "Lisää tiedosto"
+
+msgid "Insert/Edit _Link..."
+msgstr "Lisää/muokkaa _linkkiä"
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "Lisää linkki/Muokkaa alla olevaa linkkiä"
+
+msgid "Insert _Anchor..."
+msgstr "Lisää a_nkkuri"
+
+msgid "Insert an Anchor"
+msgstr "Lisää ankkuri"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "Lisää sis_ällysluettelo ja otsikkojen tiivistimet..."
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "Lisää sisällysluettelo ja otsikkojen tiivistimet/laajentajat"
+
+msgid "Insert Timestam_p"
+msgstr "Lisää aika_leima"
+
+msgid "Insert Timestamp"
+msgstr "Lisää aikaleima"
+
+msgid "Insert _Special Character..."
+msgstr "Lisää _erikoismerkki"
+
+msgid "Insert a Special Character"
+msgstr "Lisää erikoismerkki"
+
+msgid "Insert _Horizontal Rule"
+msgstr "Lisää _vaakaviiva"
+
+msgid "Insert Horizontal Rule"
+msgstr "Lisää vaakaviiva"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "Valinta/sana pie_naakkosiksi"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "Vaihda valittu/alla oleva sana pienaakkosiksi"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "Valinta/sana _suuraakkosiksi"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "Valinta/alla oleva sana suuraakkosiksi"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "Vai_hda valinta/sana pien-/suuraakkosiksi"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "Vaihda valinta/alla oleva sana suur-/pienaakkosiksi"
+
+msgid "Cu_t as Plain Text"
+msgstr "_Leikkaa raakatekstinä"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "Leikkaa raakatekstinä, hylkää muotoilut"
+
+msgid "_Copy as Plain Text"
+msgstr "Ko_pioi raakatekstinä"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "Kopioi raakatekstinä, hylkää muotoilut"
+
+msgid "_Paste as Plain Text"
+msgstr "Lii_tä raakatekstinä"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "Liitä raakatekstinä, hylkää muotoilut"
+
+msgid "C_ut Row"
+msgstr "L_eikkaa rivi"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "Leikkaa nykyinen/valitut rivit"
+
+msgid "C_opy Row"
+msgstr "K_opioi rivi"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "Kopioi nykyinen/valitut rivit"
+
+msgid "De_lete Row"
+msgstr "P_oista rivi"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "Poista nykyinen/valitut rivit"
+
+msgid "_Duplicate Row"
+msgstr "_Monista rivi"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "Monista nykyinen rivi/valinta"
+
+msgid "_Move Up Row"
+msgstr "Siirrä rivi y_löspäin"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "Siirrä nykyinen rivi/valitut rivit ylöspäin"
+
+msgid "Mo_ve Down Row"
+msgstr "Siirrä rivi a_laspäin"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "Siirrä nykyinen rivi/valitut rivit alaspäin"
+
+msgid "C_ut Table"
+msgstr "_Leikkaa taulukko"
+
+msgid "Cut the Selected Table"
+msgstr "Leikkaa valittu taulukko"
+
+msgid "_Copy Table"
+msgstr "_Kopioi taulukko"
+
+msgid "Copy the Selected Table"
+msgstr "Kopioi valittu taulukko"
+
+msgid "_Delete Table"
+msgstr "_Poista taulukko"
+
+msgid "Delete the Selected Table"
+msgstr "Poista valittu taulukko"
+
+msgid "_Add Column"
+msgstr "_Lisää sarake"
+
+msgid "Add a Table Column"
+msgstr "Lisää taulukkosarake"
+
+msgid "Cu_t Column"
+msgstr "_Leikkaa sarake"
+
+msgid "Cut a Table Column"
+msgstr "Leikkaa taulukkosarake"
+
+msgid "_Copy Column"
+msgstr "Ko_pioi sarake"
+
+msgid "Copy a Table Column"
+msgstr "Kopioi taulukkosarake"
+
+msgid "_Paste Column"
+msgstr "Lii_tä sarake"
+
+msgid "Paste a Table Column"
+msgstr "Liitä taulukkosarake"
+
+msgid "De_lete Column"
+msgstr "_Poista sarake"
+
+msgid "Delete the Selected Table Column"
+msgstr "Poista valittu taulukkosarake"
+
+msgid "Move Column _Left"
+msgstr "Siirrä sarake _vasemmalle"
+
+msgid "Move the Selected Column Left"
+msgstr "Siirrä valittu sarake _vasemmalle"
+
+msgid "Move Column _Right"
+msgstr "Siirrä sarake _oikealle"
+
+msgid "Move the Selected Column Right"
+msgstr "Siirrä valittu sarake oikealle"
+
+msgid "Increase Column Width"
+msgstr "Lisää sarakkeen leveyttä"
+
+msgid "Increase the Width of the Column"
+msgstr "Lisää sarakkeen leveyttä"
+
+msgid "Decrease Column Width"
+msgstr "Vähennä sarakkeen leveyttä"
+
+msgid "Decrease the Width of the Column"
+msgstr "Vähennä sarakkeen leveyttä"
+
+msgid "_Add Row"
+msgstr "L_isää rivi"
+
+msgid "Add a Table Row"
+msgstr "Lisää taulukkorivi"
+
+msgid "Cu_t Row"
+msgstr "_Leikkaa rivi"
+
+msgid "Cut a Table Row"
+msgstr "Leikkaa taulukkorivi"
+
+msgid "_Copy Row"
+msgstr "Ko_pioi rivi"
+
+msgid "Copy a Table Row"
+msgstr "Kopioi taulukkorivi"
+
+msgid "_Paste Row"
+msgstr "Lii_tä rivi"
+
+msgid "Paste a Table Row"
+msgstr "Liitä taulukkorivi"
+
+msgid "Delete the Selected Table Row"
+msgstr "Poista valittu taulukkorivi"
+
+msgid "Move Row _Up"
+msgstr "Siirrä rivi _ylöspäin"
+
+msgid "Move the Selected Row Up"
+msgstr "Siirrä valittu rivi ylöspäin"
+
+msgid "Move Row _Down"
+msgstr "Siirrä rivi _alaspäin"
+
+msgid "Move the Selected Row Down"
+msgstr "Siirrä valittu rivi alaspäin"
+
+msgid "Sort Rows De_scending"
+msgstr "Järjestä rivit _laskevasti"
+
+msgid "Sort all the Rows Descending"
+msgstr "Järjestä kaikki rivit laskevasti"
+
+msgid "Sort Rows As_cending"
+msgstr "Järjestä rivit _nousevasti"
+
+msgid "Sort all the Rows Ascending"
+msgstr "Järjestä kaikki rivit nousevasti"
+
+msgid "_Edit Table Properties..."
+msgstr "_Muokkaa taulukon ominaisuuksia"
+
+msgid "Edit the Table Properties"
+msgstr "Muokkaa taulukon ominaisuuksia"
+
+msgid "_Table Export..."
+msgstr "Taulukon _vienti"
+
+msgid "Export Table as CSV File"
+msgstr "Vie taulukko CSV -tiedostona"
+
+msgid "Change CodeBox _Properties..."
+msgstr "Muokkaa koodilaatikon _ominaisuuksia"
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "Muokkaa koodilaatikon ominaisuuksia"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "Koodilaatikko - _Lataa tekstitiedostosta"
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "Lataa koodilaatikon sisältö tekstitiedostosta"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "Koodilaatikko - _Tallenna tekstitiedostoon"
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "Tallenna koodilaatikon sisältö tekstitiedostoon"
+
+msgid "C_ut CodeBox"
+msgstr "_Leikkaa koodilaatikko"
+
+msgid "Cut the Selected CodeBox"
+msgstr "Leikkaa valittu koodilaatikko"
+
+msgid "_Copy CodeBox"
+msgstr "Ko_pioi koodilaatikko"
+
+msgid "Copy the Selected CodeBox"
+msgstr "Kopioi valittu koodilaatikko"
+
+msgid "_Copy CodeBox Content"
+msgstr "Ko_pioi koodilaatikon sisältö"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "Kopioi valitun koodilaatikon sisältö"
+
+msgid "_Delete CodeBox"
+msgstr "Poista koodilaatikko"
+
+msgid "Delete the Selected CodeBox"
+msgstr "Poista koodilaatikko"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "Poista koodilaatikko säilyttäen sisältö"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "Poista valittu koodilaatikko, mutta pidä sen sisältö"
+
+msgid "Increase CodeBox Width"
+msgstr "Lisää koodilaatikon leveyttä"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "Lisää koodilaatikon leveyttä"
+
+msgid "Decrease CodeBox Width"
+msgstr "Vähennä koodilaatikon leveyttä"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "Vähennä koodilaatikon leveyttä"
+
+msgid "Increase CodeBox Height"
+msgstr "Lisää koodilaatikon korkeutta"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "Lisää koodilaatikon korkeutta"
+
+msgid "Decrease CodeBox Height"
+msgstr "Vähennä koodilaatikon korkeutta"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "Vähennä koodilaatikon korkeutta"
+
+msgid "Format"
+msgstr "Muotoilu"
+
+msgid "Format Clo_ne"
+msgstr "Muotoile k_looni"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "Kloonaa tekstin muotoilu kursorin kohdalla"
+
+msgid "Format _Latest"
+msgstr "_Muotoile viimeisin"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "Viimeisimmän tekstimuotoilutyypin muisti"
+
+msgid "_Remove Formatting"
+msgstr "_Poista muotoilu"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "Poista valitun tekstin muotoilu"
+
+msgid "Text _Color Foreground"
+msgstr "Tekstin v_äri"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "Vaihda valitun tekstin väriä"
+
+msgid "Text C_olor Background"
+msgstr "Tekstin _taustaväri"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "Vaihda valitun tekstin taustaväriä"
+
+msgid "Toggle _Bold Property"
+msgstr "Vaihda _lihavointi"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "Vaihda valitun tekstin lihavointi -ominaisuutta"
+
+msgid "Toggle _Italic Property"
+msgstr "Vaihda _kursivointi"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "Vaihda valitun tekstin kursivointi -ominaisuutta"
+
+msgid "Toggle _Underline Property"
+msgstr "Vaihda _alleviivaus"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "Vaihda valitun tekstin alleviivaus -ominaisuutta"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "Vaihda _yliviivaus"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "Vaihda valitun tekstin yliviivaus -ominaisuutta"
+
+msgid "Toggle h_1 Property"
+msgstr "Vaihda Otsikko _1 -ominaisuutta"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "Vaihda valitun tekstin Otsikko 1 -ominaisuutta"
+
+msgid "Toggle h_2 Property"
+msgstr "Vaihda Otsikko _2 -ominaisuutta"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "Vaihda valitun tekstin Otsikko 2 -ominaisuutta"
+
+msgid "Toggle h_3 Property"
+msgstr "Vaihda Otsikko _3 -ominaisuutta"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "Vaihda valitun tekstin Otsikko 3 -ominaisuutta"
+
+msgid "Toggle h_4 Property"
+msgstr "Vaihda Otsikko _4 -ominaisuutta"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "Vaihda valitun tekstin Otsikko 5 -ominaisuutta"
+
+msgid "Toggle h_5 Property"
+msgstr "Vaihda Otsikko _5 -ominaisuutta"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "Vaihda valitun tekstin Otsikko 5 -ominaisuutta"
+
+msgid "Toggle h_6 Property"
+msgstr "Vaihda Otsikko _6 -ominaisuutta"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "Vaihda valitun tekstin Otsikko 6 -ominaisuutta"
+
+msgid "Toggle _Small Property"
+msgstr "Vaihda pieni koko -ominaisuutta"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "Vaihda _pieni koko -ominaisuutta valitulle tekstille"
+
+msgid "Toggle Su_bscript Property"
+msgstr "Vaihda alain_deksi -ominaisuutta"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "Vaihda alaindeksi -ominaisuutta valitulle tekstille"
+
+msgid "Toggle Su_perscript Property"
+msgstr "Vaihda ylä_indeksi -ominaisuutta"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "Vaihda yläindeksi -ominaisuutta valitulle tekstille"
+
+msgid "Toggle _Monospace Property"
+msgstr "Vaihda _tasaleveys -ominaisuutta"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "Vaihda tasaleveys -ominaisuutta valitulle tekstille"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "Aseta/poista l_uettelomerkkilista"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr "Aseta/poista nykyinen kappale/valinta luettelomerkkilistana"
+
+msgid "Set/Unset _Numbered List"
+msgstr "Aseta/poista numeroitu lista"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr "Aseta/poista nykyinen kappale/valinta numeroituna listana"
+
+msgid "Set/Unset _To-Do List"
+msgstr "Aseta/poista t_ehtävälista"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr "Aseta/poista nykyinen kappale/valinta tehtävälistana"
+
+msgid "Justify _Left"
+msgstr "Tasaa _vasemmalle"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "Tasaa nykyinen kappale vasemmalle"
+
+msgid "Justify _Center"
+msgstr "Tasaa _keskelle"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "Tasaa nykyinen kappale keskelle"
+
+msgid "Justify _Right"
+msgstr "Tasaa _oikealle"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "Tasaa nykyinen kappale oikealle"
+
+msgid "Justify _Fill"
+msgstr "Ta_saa täyttäen"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "Tasaa nykyinen kappaletäyttäen"
+
+msgid "_Indent Paragraph"
+msgstr "_Sisennä kappale"
+
+msgid "Indent the Current Paragraph"
+msgstr "Sisennä nykyinen kappale"
+
+msgid "_Unindent Paragraph"
+msgstr "_Poista kappaleen sisennys"
+
+msgid "Unindent the Current Paragraph"
+msgstr "Poista nykyinen kappaleen sisennys"
+
+msgid "_Expand TOC Headers"
+msgstr "_Laajenna sisällysluettelon otsikot"
+
+msgid "Expand TOC Headers"
+msgstr "Laajenna sisällysluettelon otsikot"
+
+msgid "_Collapse TOC Headers"
+msgstr "_Tiivistä sisällysluettelon otsikot"
+
+msgid "Collapse TOC Headers"
+msgstr "Tiivistä sisällysluettelon otsikot"
+
+msgid "Tools"
+msgstr "Työkalut"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "_Kielentarkastus päälle/pois"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "Kielentarkastus päälle/pois"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "_VIM-tila päälle/pois"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "VIM-tila päälle/pois"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "Poista rivin lopun _välilyönnit"
+
+msgid "Strip Trailing Spaces"
+msgstr "Poista rivin lopun välilyönnit"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "_Korvaa sarkaimet välilyönneillä"
+
+msgid "Replace Tabs with Spaces"
+msgstr "_Korvaa sarkaimet välilyönneillä"
+
+msgid "_Command Palette..."
+msgstr "_Komentopaletti"
+
+msgid "Command Palette"
+msgstr "Komentopaletti"
+
+msgid "_Execute Code All"
+msgstr "_Suorita kaikki koodi"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "Suorita kaikki koodi koodilaatikossa tai solmussa"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "_Suorita koodirivi tai valinta"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "Suorita koodi nykyiseltä riviltä tai valitusta tekstistä"
+
+msgid "Tree"
+msgstr "Puu"
+
+msgid "Go _Back"
+msgstr "Mene _taaksepäin"
+
+msgid "Go to the Previous Visited Node"
+msgstr "Mene viimeksi vierailtuun solmuun"
+
+msgid "Go _Forward"
+msgstr "Mene _eteenpäin"
+
+msgid "Go to the Next Visited Node"
+msgstr "Mene seuraavaksi vierailtuun solmuun"
+
+msgid "Add _Node..."
+msgstr "Lisää _solmu"
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "Lisää solmu, jolla on sama vanhempi kuin valitulla solmulla"
+
+msgid "Add _Subnode..."
+msgstr "Lisää ala_solmu"
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "Lisää jälkeläissolmu valittuun solmuun"
+
+msgid "_Duplicate Node"
+msgstr "_Monista solmu"
+
+msgid "Duplicate the Selected Node"
+msgstr "Monista valittu solmu"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "Monista solmu _ja alasolmut"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "Monista valittu solmu ja alasolmut"
+
+msgid "_Create Shared Node"
+msgstr "_Luo jaettu solmu"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr "Luo uusi solmu, joka jakaa saman sisällön valitun solmun kanssa"
+
+msgid "Copy Node and S_ubnodes"
+msgstr "Kopioi solmu ja _alasolmut"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "Kopioi valittu solmu ja alasolmut"
+
+msgid "_Paste Node and Subnodes"
+msgstr "_Liitä solmu ja alasolmut"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "Liitä kopioitu solmu ja sen alasolmut"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "Lisää _tämän päivän solmu puun juureen"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "Lisää solmu hierarkialla vuosi/kuukausi/päivä tälle päivälle puun juureen"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "Lisää tä_nään solmu valitun solmun alle"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "Lisää solmu hierarkialla vuosi/kuukausi/päivä tälle päivälle valitun solmun alle"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "Lisää _huomisen solmu puun juureen"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "Lisää solmu hierarkialla vuosi/kuukausi/päivä huomiselle puun juureen"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "Lisää _huomenna solmu valitun solmun alle"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "Lisää solmu hierarkialla vuosi/kuukausi/päivä huomiselle valitun solmun alle"
+
+msgid "C_hange Node Properties..."
+msgstr "_Muuta solmun ominaisuuksia"
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "Muokkaa valitun solmun ominaisuuksia"
+
+msgid "Toggle _Read Only"
+msgstr "Vaihda Vain _luku"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "Vaihda valitun solmun Vain luku -ominaisuutta"
+
+msgid "Cop_y Link to Node"
+msgstr "_Kopioi linkki solmuun"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "Kopioi linkki valittuun solmuun leikepöydälle"
+
+msgid "Children _Inherit Syntax"
+msgstr "Perilliset _perivät syntaksin"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr ""
+"Muuta valitun solmun jälkeläisten syntaksin korostus vanhemman syntaksin "
+"korostukseen"
+
+msgid "_Handle Bookmarks..."
+msgstr "_Käsittele kirjanmerkkejä"
+
+msgid "Add to Boo_kmarks"
+msgstr "Lisää k_irjanmerkkeihin"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "Lisää nykyinen solmu kirjanmerkkilistaan"
+
+msgid "Remove from Boo_kmarks"
+msgstr "_Poista kirjanmerkeistä"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "Poista nykyinen solmu kirjanmerkkilistasta"
+
+msgid "E_xpand All Nodes"
+msgstr "_Laajenna kaikki solmut"
+
+msgid "Expand All the Tree Nodes"
+msgstr "Laajenna kaikki puun solmut"
+
+msgid "_Collapse All Nodes"
+msgstr "T_aita kaikki solmut kokoon"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "Taita kaikki puun solmut kokoon"
+
+msgid "Node _Up"
+msgstr "Solmu _ylöspäin"
+
+msgid "Move the Selected Node Up"
+msgstr "Siirrä valittu solmu ylöspäin"
+
+msgid "Node _Down"
+msgstr "Solmu _alaspäin"
+
+msgid "Move the Selected Node Down"
+msgstr "Siirrä valittu solmu alaspäin"
+
+msgid "Node _Left"
+msgstr "Solmu _vasemmalle"
+
+msgid "Move the Selected Node Left"
+msgstr "Siirrä valittu solmu vasemmalle"
+
+msgid "Node _Right"
+msgstr "Solmu _oikealle"
+
+msgid "Move the Selected Node Right"
+msgstr "Siirrä valittu solmu oikealle"
+
+msgid "Node Change _Parent..."
+msgstr "Vaihda solmun va_nhempaa"
+
+msgid "Change the Selected Node's Parent"
+msgstr "Vaihda valitun solmun vanhempaa"
+
+msgid "Sort Tree _Ascending"
+msgstr "Järjestä puu _nousevasti"
+
+msgid "Sort the Tree Ascending"
+msgstr "Järjestä puu nousevasti"
+
+msgid "Sort Tree _Descending"
+msgstr "Järjestä puu laskevasti"
+
+msgid "Sort the Tree Descending"
+msgstr "Järjestä puu laskevasti"
+
+msgid "Sort Siblings A_scending"
+msgstr "Järjestä jälkeläiset no_usevasti"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "Järjestä kaikki valitun solmun jälkeläiset nousevasti"
+
+msgid "Sort Siblings D_escending"
+msgstr "Järjestä jälkeläiset laskevasti"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "Järjestä kaikki valitun solmun jälkeläiset laskevasti"
+
+msgid "De_lete Node"
+msgstr "P_oista solmu"
+
+msgid "Delete the Selected Node"
+msgstr "Poista valittu solmu"
+
+msgid "Find/Replace"
+msgstr "Etsi/Korvaa"
+
+msgid "_Quick Node Selection..."
+msgstr "_Solmun pikavalinta..."
+
+msgid "Quick Node Selection"
+msgstr "Solmun pikavalinta"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "Etsi solmujen _nimistä ja avainsanoista"
+
+msgid "Find in Nodes Names and Tags"
+msgstr "Etsi solmujen nimistä ja avainsanoista"
+
+msgid "_Find in Node Content..."
+msgstr "_Etsi solmun sisällöstä"
+
+msgid "Find into the Selected Node Content"
+msgstr "Etsi valitun solmun sisällöstä"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "Etsi _useista solmuista"
+
+msgid "Find in Multiple Nodes"
+msgstr "Etsi useista solmuista"
+
+msgid "Find _Again"
+msgstr "Etsi _uudelleen"
+
+msgid "Iterate the Last Find Operation"
+msgstr "Toista viimeisin Etsi -toiminto"
+
+msgid "Find _Back"
+msgstr "Etsi _taaksepäin"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "Toista viimeisin Etsi -toiminto vastakkaiseen suuntaan"
+
+msgid "_Replace in Node Content..."
+msgstr "K_orvaa solmun sisällöstä"
+
+msgid "Replace into the Selected Node Content"
+msgstr "Korvaa valitun solmun sisältöön"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "Korvaa _useissa solmuissa"
+
+msgid "Replace A_gain"
+msgstr "_Korvaa uudelleen"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "Toista viimeisin Korvaa -toiminto"
+
+msgid "Show All Matches _Dialog..."
+msgstr "Näytä kaikki löydetyt -_dialogi"
+
+msgid "Show Search All Matches Dialog"
+msgstr "Näytä Etsi kaikista löydetyistä -dialogi"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "Tyhjennä kaikki poissulkemiset hausta"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "Tyhjennä kaikki solmun puun omaisuuksien poissulkemiset hausta"
+
+msgid "View"
+msgstr "Näkymä"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "Näytä/piilota _puuselain"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "Vaihda Näytä/Piilota puu"
+
+msgid "Show/Hide Te_rminal"
+msgstr "Näytä/piilota pää_teikkuna"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "Vaihda Näytä/Piilota pääteikkuna"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "Vaihda k_ohdistus pääteikkuna/teksti"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "Vaihda kohdistusta pääteikkunan ja tekstin välillä"
+
+msgid "Show/Hide _Menubar"
+msgstr "Näytä/piilota _valikkopalkki"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "Vaihda näytä/Piilota valikkopalkki"
+
+msgid "Show/Hide Tool_bar"
+msgstr "Näytä/piilota _työkalupalkki"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "Vaihda Näytä/Piilota työkalupakki"
+
+msgid "Show/Hide _Statusbar"
+msgstr "Näytä/piilota _tilapalkki"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr "Vaihda Näytä/Piilota tilapakki"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "Näytä/piilota viivat solmun vanhemmasta lapseen"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "Näytä/piilota viivat solmun vanhemman ja lapsen välillä"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "Näytä/Piilota solmun _nimiotsikko"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "Vaihda Näytä/Piilota solmun nimiotsikko"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "Vaihda k_ohdistus polku/teksti"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "Vaihda kohdistusta puun ja tekstin välillä"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "_Suurenna työkalurivin ikonien kokoa"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "Suurenna työkalurivin ikonien kokoa"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "P_ienennä työkalurivin ikonien kokoa"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "Pienennä työkalurivin ikonien kokoa"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "Enemmän viimeksi vierail_tuja solmuja solmun nimiotsikossa"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "Lisää viimeksi vierailtujen solmujen lukumäärää solmun nimiotsikossa"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "Vähemmän viimeksi vi_erailtuita solmuja solmun nimiotsikossa"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "Vähennä viimeksi vierailtujen solmujen lukumäärää solmun nimiotsikossa"
+
+msgid "Full Screen _On/Off"
+msgstr "Koko n_äyttö päälle/pois"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "Koko näyttö päälle/pois"
+
+msgid "_Always On Top On/Off"
+msgstr "_Aina päällimmäisenä päälle/pois"
+
+msgid "Always On Top On/Off"
+msgstr "Aina päällimmäisenä päälle/pois"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "Poista valikko_palkki otsikkopalkista"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "Älä sijoita  valikkopalkkia otsikkopalkkiin"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "Laita päälle valikko_palkki otsikkopalkkiin"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "Aseta _valikkopalkki otsikkopalkkiin"
+
+msgid "Import"
+msgstr "Tuo"
+
+msgid "From _OliveSet File"
+msgstr "_OliveSet -tiedostosta"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "Lisää solmut OliveSet -tiedostosta nykyiseen puuhun"
+
+msgid "From _OliveSet Folder"
+msgstr "_OliveSet -kansiosta"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "Lisää solmut OliveSet -kansiosta nykyiseen puuhun"
+
+msgid "From _Indented List File"
+msgstr "_Sisennetystä listatiedostosta"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "Lisää solmut sisennetystä listatiedostosta nykyiseen puuhun"
+
+msgid "From _Plain Text File"
+msgstr "_Raakatekstitiedostosta"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "Lisää solmu raakatekstitiedostosta nykyiseen puuhun"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "_Kansiosta raakatekstitiedostoja"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr "Lisää solmut kansiosta raakatekstitiedostoja nykyiseen puuhun"
+
+msgid "From _HTML File"
+msgstr "_HTML -tiedostosta"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "Lisää solmu HTML -tiedostosta nykyiseen puuhun"
+
+msgid "From _Folder of HTML Files"
+msgstr "_Kansiosta HTML -tiedostoja"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "Lisää solmut kansiosta HTML -tiedostoja nykyiseen puuhun"
+
+msgid "From _Markdown File"
+msgstr "_Markdown -tiedostosta"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "Lisää solmu Markdown -tiedostosta nykyiseen puuhun"
+
+msgid "From _Folder of Markdown Files"
+msgstr "_Kansiosta Markdown -tiedostoja"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "Lisää solmut kansiosta Markdown -tiedostoja nykyiseen puuhun"
+
+msgid "From _Gnote Folder"
+msgstr "_Gnote -kansiosta"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "Lisää solmut Gnote -kansiosta nykyiseen puuhun"
+
+msgid "From _KeepNote Folder"
+msgstr "_KeepNote -kansiosta"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "Lisää solmut KeepNote -kansiosta nykyiseen puuhun"
+
+msgid "From _Leo File"
+msgstr "_Leo -tiedostosta"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "Lisää solmut Leo -tiedostosta nykyiseen puuhun"
+
+msgid "From _Mempad File"
+msgstr "_Mempad -tiedostosta"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "Lisää solmut Mempad -tiedostosta nykyiseen puuhun"
+
+msgid "From _NoteCase HTML File"
+msgstr "_NoteCase HTML -tiedostosta"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "Lisää solmut NoteCase HTML -tiedostosta nykyiseen puuhun"
+
+msgid "From _RedNotebook HTML File"
+msgstr "_RedNotebook HTML -tiedostosta"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "Lisää solmut RedNotebook HTML -kansiosta nykyiseen puuhun"
+
+msgid "From T_omboy Folder"
+msgstr "T_omboy -kansiosta"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "Lisää solmut Tomboy -kansiosta nykyiseen puuhun"
+
+msgid "From T_reepad Lite File"
+msgstr "T_reepad Lite -tiedostosta"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "Lisää solmut Treepad Lite -tiedostosta nykyiseen puuhun"
+
+msgid "From _Zim Folder"
+msgstr "_Zim -kansiosta"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "Lisää solmut Zim -kansiosta nykyiseen puuhun"
+
+msgid "Export"
+msgstr "Vie"
+
+msgid "Export To _PDF"
+msgstr "Vie _PDF:ksi"
+
+msgid "Export To PDF"
+msgstr "Vie PDF:ksi"
+
+msgid "Export To _HTML"
+msgstr "Vie _HTML:ksi"
+
+msgid "Export To HTML"
+msgstr "Vie HTML:ksi"
+
+msgid "Export to Plain _Text"
+msgstr "Vie raakatekstitiedostoksi"
+
+msgid "Export to Plain Text"
+msgstr "Vie raakatekstitiedostoksi"
+
+msgid "_Export To OliveSet"
+msgstr "_Vie OliveSet -tiedostoksi tai kansioksi"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "Vie OliveSet-tiedostoksi tai kansioksi"
+
+msgid "Help"
+msgstr "Ohje"
+
+msgid "_Check Newer Version"
+msgstr "_Tarkista uudempi versio"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "Tarkista onko uudempi versio saatavilla verkossa"
+
+msgid "_Website"
+msgstr "_Verkkosivusto"
+
+msgid "Visit OliveSet's Website"
+msgstr "Vieraile OliveSet:n verkkosivustolla"
+
+msgid "_Source Code"
+msgstr "_Lähdekoodi"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "Selaa OliveSet:n lähdekoodia verkossa"
+
+msgid "_Report a Bug"
+msgstr "_Ilmoita virheestä"
+
+msgid "Report a Bug in OliveSet"
+msgstr "Ilmoita virheestä OliveSet:ssä"
+
+msgid "_Donate"
+msgstr "_Lahjoita"
+
+msgid "Donate to Support OliveSet"
+msgstr "Tue OliveSet:tä lahjoittamalla"
+
+msgid "Online _Manual"
+msgstr "Online -_ohjekirja"
+
+msgid "OliveSet's Online Manual"
+msgstr "OliveSet:n verkko-ohjekirja"
+
+msgid "_About"
+msgstr "T_ietoja"
+
+msgid "_Open Preferences Directory"
+msgstr "Avaa asetukset _hakemisto"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "Avaa asetustiedostojen hakemisto"
+
+msgid "C_ut Anchor"
+msgstr "_Leikkaa ankkuri"
+
+msgid "Cut the Selected Anchor"
+msgstr "Leikkaa valittu ankkuri"
+
+msgid "_Copy Anchor"
+msgstr "_Kopioi ankkuri"
+
+msgid "Copy the Selected Anchor"
+msgstr "Kopioi valittu ankkuri"
+
+msgid "_Delete Anchor"
+msgstr "_Poista ankkuri"
+
+msgid "Delete the Selected Anchor"
+msgstr "Poista valittu ankkuri"
+
+msgid "Edit _Anchor..."
+msgstr "Muokkaa _ankkuria"
+
+msgid "Edit the Underlying Anchor"
+msgstr "Muokkaa alla olevaa ankkuria"
+
+msgid "Copy Anchor Link"
+msgstr "_Kopioi ankkurilinkki"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "Kopioi linkki sisällytettyyn ankkuriin ja leikepöydälle"
+
+msgid "C_ut Embedded File"
+msgstr "_Leikkaa upotettu tiedosto"
+
+msgid "Cut the Selected Embedded File"
+msgstr "Leikkaa valittu upotettu tiedosto"
+
+msgid "_Copy Embedded File"
+msgstr "_Kopioi upotettu tiedosto"
+
+msgid "Copy the Selected Embedded File"
+msgstr "Kopioi valittu upotettu tiedosto"
+
+msgid "_Delete Embedded File"
+msgstr "_Poista upotettu tiedosto"
+
+msgid "Delete the Selected Embedded File"
+msgstr "Poista valittu upotettu tiedosto"
+
+msgid "Open Embedded File"
+msgstr "Avaa upotettu tiedosto"
+
+msgid "_Rename"
+msgstr "_Nimeä"
+
+msgid "Rename Embedded File"
+msgstr "Nimeä upotettu tiedosto"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "_Tallenna Latex-laatikko PNG -tiedostona"
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "Tallenna valittu Latex-laatikko PNG -tiedostona"
+
+msgid "_Edit LatexBox..."
+msgstr "_Muokkaa Latex-laatikko"
+
+msgid "Edit the Selected LatexBox"
+msgstr "_Muokkaa valittua Latex-laatikko"
+
+msgid "C_ut LatexBox"
+msgstr "_Leikkaa Latex-laatikko"
+
+msgid "Cut the Selected LatexBox"
+msgstr "_Leikkaa valittu Latex-laatikko"
+
+msgid "_Copy LatexBox"
+msgstr "Ko_pioi Latex-laatikko"
+
+msgid "Copy the Selected LatexBox"
+msgstr "Ko_pioi valittu Latex-laatikko"
+
+msgid "_Delete LatexBox"
+msgstr "Poista Latex-laatikko"
+
+msgid "Delete the Selected LatexBox"
+msgstr "Poista valittu Latex-laatikko"
+
+msgid "_Save Image as PNG..."
+msgstr "_Tallenna kuva PNG -tiedostona"
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "Tallenna valittu kuva PNG -tiedostona"
+
+msgid "_Edit Image..."
+msgstr "_Muokkaa kuvaa"
+
+msgid "Edit the Selected Image"
+msgstr "Muokkaa valittua kuvaa"
+
+msgid "C_ut Image"
+msgstr "_Leikkaa kuva"
+
+msgid "Cut the Selected Image"
+msgstr "Leikkaa valittu kuva"
+
+msgid "_Copy Image"
+msgstr "_Kopioi kuva"
+
+msgid "Copy the Selected Image"
+msgstr "Kopioi valittu kuva"
+
+msgid "_Delete Image"
+msgstr "_Poista kuva"
+
+msgid "Delete the Selected Image"
+msgstr "Poista valittu kuva"
+
+msgid "Edit _Link..."
+msgstr "Muokkaa _linkkiä"
+
+msgid "Edit the Link Associated to the Image"
+msgstr "Muokkaa kuvaan yhdistettyä linkkiä"
+
+msgid "D_ismiss Link"
+msgstr "_Erota linkki"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "Erota kuvaan liitetty linkki"
+
+msgid "Show/Hide _OliveSet"
+msgstr "Näytä/piilota _OliveSet"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "Vaihda näytä/piilota OliveSet"
+
+msgid "Edit the Underlying Link"
+msgstr "Muokkaa alla olevaa linkkiä"
+
+msgid "C_ut Link"
+msgstr "_Leikkaa linkki"
+
+msgid "Cut the Selected Link"
+msgstr "Leikkaa valittu linkki"
+
+msgid "_Copy Link"
+msgstr "_Kopioi linkki"
+
+msgid "Copy the Selected Link"
+msgstr "Kopioi valittu linkki"
+
+msgid "Dismiss the Selected Link"
+msgstr "Hylkää valittu linkki"
+
+msgid "_Delete Link"
+msgstr "_Poista linkki"
+
+msgid "Delete the Selected Link"
+msgstr "Poista valittu linkki"
+
+msgid "English"
+msgstr "Englantilainen"
+
+msgid "Text and Code"
+msgstr "Teksti ja koodi"
+
+msgid "Plain Text and Code"
+msgstr "Raakateksti ja koodi"
+
+msgid "Tree Explorer"
+msgstr "Puuselain"
+
+msgid "Theme"
+msgstr "Teema"
+
+msgid "Interface"
+msgstr "Käyttöliittymä"
+
+msgid "Links"
+msgstr "Linkit"
+
+msgid "Toolbar"
+msgstr "Työkalupalkki"
+
+msgid "Keyboard Shortcuts"
+msgstr "Pikanäppäimet"
+
+msgid "Miscellaneous"
+msgstr "Sekalaiset"
+
+msgid "Monospace"
+msgstr "Tasavälinen"
+
+msgid "Code Font"
+msgstr "Koodin kirjasin"
+
+msgid "Terminal Font"
+msgstr "Pääteikkunan kirjasin"
+
+msgid "Tree Font"
+msgstr "Puun kirjasin"
+
+msgid "Reset to Default"
+msgstr "Palauta oletus"
+
+msgid "Fonts"
+msgstr "Kirjasimet"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "Näytä sanojen lukumäärä tilarivillä"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "Näytä dokumentin hakemisto ikkunan otsikossa"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "Näytä koko polku solmun nimiotsikko"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "Oma kirjainmerkkivalikko valikkopalkissa"
+
+msgid "Menubar in Titlebar"
+msgstr "Valikkopalkki otsikkopalkissa"
+
+msgid "Toolbar Icons Size"
+msgstr "Työkalurivin ikonien koko"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "Viimeksi vieraillut solmut solmun nimiotsikossa"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "Vierityspalkin liukusäätimen vähimmäiskoko (0 = järjestelmän oletus)"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "Vierityspalkki peittää tekstieditorin"
+
+msgid "System Default"
+msgstr "Järjestelmän oletus"
+
+msgid "Yes"
+msgstr "Kyllä"
+
+msgid "No"
+msgstr "Ei"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "Ota käyttöön työkaluvihjeet hiiren ollessa kohteen päällä"
+
+msgid "Menus"
+msgstr "Valikot"
+
+msgid "Max Search Results per Page"
+msgstr "Enimmäismäärä hakutuloksia sivulla"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "Tallenna etsi/korvaa-historia istuntojen välillä"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "Käytä muokattua nettilinkin klikkaamisen toimintoa"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "Käytä muokattua tiedostolinkin klikkaamisen toimintoa"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "Käytä muokattua kansiolinkin klikkaamisen toimintoa"
+
+msgid "Custom Actions"
+msgstr "Muokatut toiminnot"
+
+msgid "Colors"
+msgstr "Värit"
+
+msgid "Double Click for Link Action"
+msgstr "Kaksoisnapsautus linkin toiminnalle"
+
+msgid "Underline Links"
+msgstr "Alleviivaa linkit"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "Käytä suhteellisia polkua tiedostoille ja kansioille"
+
+msgid "Anchor Size"
+msgstr "Ankkurin koko"
+
+msgid "Change Selected"
+msgstr "Muuta valittua"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr "Pikanäppäin '%s' on jo käytössä."
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "Nykyinen liitetty toiminto on '%s'"
+
+msgid "Do you want to steal the shortcut?"
+msgstr "Haluatko vaihtaa pikanäppäintä?"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "Muokkaa pikanäppäimiä"
+
+msgid "No Keyboard Shortcut"
+msgstr "Ei pikanäppäimiä"
+
+msgid "Autosave on Quit"
+msgstr "Tallenna lopetettaessa"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "Luo varmuuskopio ennen tallentamista"
+
+msgid "Number of Backups to Keep"
+msgstr "Varmuuskopioiden lukumäärä"
+
+msgid "Custom Backup Directory"
+msgstr "Muokattu varmuuskopiohakemisto"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "Useita tiedostoja -tallennus, käytä upotettua tiedostonimeä levyllä"
+
+msgid "Saving"
+msgstr "Tallentaminen"
+
+msgid "Automatically Check for Newer Version"
+msgstr "Tarkista automaattisesti uudempi versio"
+
+msgid "Reload Document From Last Session"
+msgstr "Lataa asiakirja viime sessiosta"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "Näytä aloitusdialogi, kun asiakirjaa ei ole ladattu"
+
+msgid "Reload After External Update to CT* File"
+msgstr "Lataa kun tehty ulkoinen päivitys CT* -tiedostoon"
+
+msgid "Enable Debug Log"
+msgstr "Ota käyttöön virheenkorjausloki"
+
+msgid "Debug Log Directory"
+msgstr "Virheenkorjauslokin hakemisto"
+
+msgid "Enable System Tray Docking"
+msgstr "Telakoi ilmoitusalueelle"
+
+msgid "Start Minimized in the System Tray"
+msgstr "Aloita pienennettynä ilmoitusalueella"
+
+msgid "System Tray"
+msgstr "Ilmoitusalue"
+
+msgid "Language"
+msgstr "Kieli"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Port"
+msgstr "Portti"
+
+msgid "Username"
+msgstr "Käyttäjänimi"
+
+msgid "Password"
+msgstr "Salasana"
+
+msgid "Proxy"
+msgstr "Välityspalvelin"
+
+msgid "Show White Spaces"
+msgstr "Näytä välilyönnit"
+
+msgid "Highlight Current Line"
+msgstr "Korosta nykyinen rivi"
+
+msgid "Text Editor"
+msgstr "Tekstieditori"
+
+msgid "Internal Terminal Shell"
+msgstr "Sisäinen pääteikkunan komentotulkki"
+
+msgid "Add"
+msgstr "Lisää"
+
+msgid "Remove Selected"
+msgstr "Poista valitut"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "Komentoja per solmu/koodilaatikko -tyyppi"
+
+msgid "Terminal Command"
+msgstr "Päätekomento"
+
+msgid "Code Execution"
+msgstr "Koodin suoritus"
+
+msgid "Select Element to Add"
+msgstr "Valitse lisättävä elementti"
+
+msgid "Enable Spell Check"
+msgstr "Aseta kielentarkastus päälle"
+
+msgid "Spell Check Language"
+msgstr "Kielentarkastuksen kieli"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "Laajenna Koodilaatikot automaattisesti"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "Koodilaatikoissa on työkalupalkki"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "Kynnysarvo taulukon solujen määrälle kevyelle käyttöliittymälle"
+
+msgid "Embedded File Icon Size"
+msgstr "Upotetun tiedoston ikonin koko"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "Upotetun tiedoston kokorajoitus (Mt)"
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "Näytä tiedostonimi upotetun tiedoston ikonin yläpuolella"
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "Älä valitse objekteja automaattisesti yksittäisellä klikkauksella"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr ""
+"Korjaus leikepöytään liittyville jäätymisille KDE 6:ssa Klipperin kanssa"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "Rajoita kumottavien vaiheiden määrää solmua kohden"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "Linkitä automaattisesti CamelCase -teksti samannimiseen solmuun"
+
+msgid "Auto Link URLs"
+msgstr "Luo linkit URL-osoitteista automaattisesti"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "Triplaklikatessa valitse koko kappale"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "Ota käyttöön automaattinen Markdown-korvaaja (kokeellinen)"
+
+msgid "Scale"
+msgstr "Asteikko"
+
+msgid "Italic"
+msgstr "Kursiivi"
+
+msgid "Underline"
+msgstr "Alleviivaus"
+
+msgid "Text Color Foreground"
+msgstr "Tekstin väri"
+
+msgid "Text Color Background"
+msgstr "Tekstin taustaväri"
+
+msgid "Small"
+msgstr "Pieni"
+
+msgid "Scalable Tags"
+msgstr "Skaalautuva merkki"
+
+msgid "Chars for Bulleted List"
+msgstr "Merkit luetteloon"
+
+msgid "Chars for Todo List"
+msgstr "Merkit todo-listaan"
+
+msgid "Chars for Table Of Content"
+msgstr "Merkit sisällysluetteloon"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "Merkit älykkäisiin lainausmerkkeihin"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "Merkit älykkäisiin heittomerkkeihin"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "Ota käyttöön älykäs lainauksen korvaus"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "Ota käyttöön symbolien automaattinen korvaaminen"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "Tuettujen symbolien automaattinen korvaaminen"
+
+msgid "Only at the Start of the Line"
+msgstr "Vain rivin alusta"
+
+msgid "Tab Width"
+msgstr "Sarkaimen leveys"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Lisää välilyöntejä sarkainten sijaan"
+
+msgid "Use Line Wrapping"
+msgstr "Käytä rivitystä"
+
+msgid "Line Wrapping Indentation"
+msgstr "Rivityksen sisennys"
+
+msgid "Enable Automatic Indentation"
+msgstr "Ota käyttöön automaattinen sisennys"
+
+msgid "Scroll Beyond Last Line"
+msgstr "Vieritä viimeisen rivin jälkeen"
+
+msgid "Cursor Blinking"
+msgstr "Kursorin vilkkuminen"
+
+msgid "On"
+msgstr "Päällä"
+
+msgid "Off"
+msgstr "Pois"
+
+msgid "Text Margin: Left"
+msgstr "Tekstimarginaali: vasen"
+
+msgid "Right"
+msgstr "Oikea"
+
+msgid "Vertical Space Around Lines"
+msgstr "Rivienvälinen pystysuuntainen tila"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "Rivitettyjen rivien pystysuuntainen tila"
+
+msgid "Timestamp Format"
+msgstr "Aikaleiman muoto"
+
+msgid "Horizontal Rule"
+msgstr "Vaakaviiva"
+
+msgid "Chars to Select at Double Click"
+msgstr "Tuplaklikatessa valittavat merkit"
+
+msgid "Light Background, Dark Text"
+msgstr "Vaalea tausta, tumma teksti"
+
+msgid "Dark Background, Light Text"
+msgstr "Tumma tausta, vaalea teksti"
+
+msgid "Custom Background"
+msgstr "Muokattu tausta"
+
+msgid "Text"
+msgstr "Teksti"
+
+msgid "Selection Background"
+msgstr "Valinnan tausta"
+
+msgid "Table"
+msgstr "Taulukko"
+
+msgid "Code"
+msgstr "Koodi"
+
+msgid "Style Schemes"
+msgstr "Tyyli luonnos"
+
+msgid "Text Foreground"
+msgstr "Teksti"
+
+msgid "Text Background"
+msgstr "Tekstin _tausta"
+
+msgid "Selection Foreground"
+msgstr "Valinta"
+
+msgid "Cursor"
+msgstr "Kursori"
+
+msgid "Current Line Background"
+msgstr "Nykyisen rivin tausta"
+
+msgid "Line Numbers Foreground"
+msgstr "Rivinumerot"
+
+msgid "Line Numbers Background"
+msgstr "Rivinumeroiden tausta"
+
+msgid "Style Scheme Editor"
+msgstr "Tyyliluonnos-editori"
+
+msgid "Set Dark Theme Icons"
+msgstr "Aseta tumman teeman ikonit"
+
+msgid "Set Light Theme Icons"
+msgstr "Aseta vaalean teeman ikonit"
+
+msgid "Set Default Icons"
+msgstr "Aseta oletusikonit"
+
+msgid "Icon Theme"
+msgstr "Ikoniteema"
+
+msgid "Split Toolbar"
+msgstr "Jaettu työkalupalkki"
+
+msgid "Use Different Cherries per Level"
+msgstr "Käytä erilaisia kirsikoita joka tasolla"
+
+msgid "No Icon"
+msgstr "Ei ikonia"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "Piilota oikeanpuoleinen apuikoni"
+
+msgid "Default Text Nodes Icons"
+msgstr "Oletus tekstisolmuikonit"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "Palauta laajennettu/kokoon taitettu -tila"
+
+msgid "Expand all Nodes"
+msgstr "Laajenna kaikki solmut"
+
+msgid "Collapse all Nodes"
+msgstr "Taita kokoon kaikki solmut"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "Solmut kirjanmerkeissä aina näkyvissä"
+
+msgid "Nodes Status at Startup"
+msgstr "Solmujen tila käynnistyksessä"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "Puun solmujen nimien rivityksen leveys"
+
+msgid "Display Tree on the Right Side"
+msgstr "Näytä puu oikealla puolella"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "Siirrä kohdistus tekstiin hiiren klikkauksella"
+
+msgid "Expand Node at Mouse Click"
+msgstr "Laajenna solmu hiiren klikkauksella"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "'%s' ei ole kelvollinen arkisto"
+
+msgid "Writing to Disk..."
+msgstr "Kirjoitetaan levylle..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "Sinulla ei ole kirjoitusoikeutta kohteeseen %s"
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "Syötä salasana %s:lle"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr ""
+"Tallennetun asiakirjan eheystarkistus epäonnistui. Kokeile Tiedosto--"
+">Tallenna nimellä"
+
+msgid "Failed to encrypt the file"
+msgstr "Tiedoston salaaminen epäonnistui"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "Palauttaminen varmuuskopiosta oli tarpeen kohteelle:"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr "Tietokantatiedosto %s on korruptoitunut, katso lokista yksityiskohdat."
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s kirjoittaminen epäonnistui - tiedosto puuttuu. Liitä USB-asema tai jaettu "
+"resurssi uudelleen."
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr "%s kirjoittaminen epäonnistui. Estääkö synkronointi tiedoston käytön?"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s uudelleenavaamineen epäonnistui - tiedosto puuttuu. Liitä USB-asema tai "
+"jaettu resurssi uudelleen."
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "OliveSet hierarkkinen muistiinpanojen tekeminen"
+
+msgid "_Exit OliveSet"
+msgstr "Poistu _OliveSet:stä"
+
+msgid "HTML Document"
+msgstr "HTML -asiakirja"
+
+msgid "Markdown Document"
+msgstr "Markdown -asiakirja"
+
+msgid "Mempad Document"
+msgstr "Mempad -asiakirja"
+
+msgid "Treepad Document"
+msgstr "Treepad -asiakirja"
+
+msgid "Leo Document"
+msgstr "Leo -asiakirja"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "Haluatko varmasti palauttaa oletuksen?"
+
+#~ msgid "OliveSet Document"
+#~ msgstr "OliveSet -asiakirja"
+
+#~ msgid "Insert T_OC"
+#~ msgstr "Lisää sis_ällysluettelo"
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "Lisää sisällysluettelo"
+
+#~ msgid "From File using _Pandoc"
+#~ msgstr "Tiedostosta käyttäen _Pandocia"
+
+#~ msgid "Add a node to the current tree using Pandoc"
+#~ msgstr "Lisää solmu nykyiseen puuhun käyttäen Pandoc:a"
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "Sovelluksen online -ohjekirja"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "Uusi kieli on saatavilla, kun OliveSet käynnistetään uudelleen"
+
+#~ msgid "Not Protected"
+#~ msgstr "Suojaamaton"
+
+#~ msgid "Password Protected"
+#~ msgstr "Salasanasuojattu"
+
+#, c-format
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "Asiakirjaa %s ei löydetty"
+
+#~ msgid ""
+#~ "Backup files are by default 3 in the same folder of the corrupted "
+#~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
+#~ "the backup with one tilde: copy the file to another directory, remove the "
+#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "with two tildes and if it still fails try the one with three tildes"
+#~ msgstr ""
+#~ "Varmuuskopiotiedostoja on oletusarvoisesti 3 samassa kansiossa "
+#~ "korruptoituneen asiakirjan kanssa, ja niillä on sama nimi + perässä "
+#~ "olevat tildet (~, ~~, ~~~). Kokeile ensin varmuuskopiota, jossa on yksi "
+#~ "tilde: kopioi tiedosto toiseen hakemistoon, poista perässä oleva tilde ja "
+#~ "avaa se OliveSet-ohjelmalla. Jos se ei vieläkään onnistu, kokeile sitä, "
+#~ "jossa on kaksi tildeä, ja jos se ei vieläkään onnistu, kokeile sitä, "
+#~ "jossa on kolme tildeä"
+
+#~ msgid "click me"
+#~ msgstr "klikkaa minua"
+
+#~ msgid ""
+#~ "Pandoc executable could not be found, please ensure it is in your path"
+#~ msgstr "Pandoc -suoritinta ei löytynyt, ole hyvä ja tarkasta hakemistopolku"
+
+#~ msgid "_Format"
+#~ msgstr "_Muotoilu"
+
+#~ msgid "_Tools"
+#~ msgstr "T_yökalut"
+
+#~ msgid "_List"
+#~ msgstr "_Listaa"
+
+#~ msgid "_Row"
+#~ msgstr "_Rivi"
+
+#~ msgid "_Print"
+#~ msgstr "Tu_losta"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "Lisää aikal_eima"
+
+#~ msgid "Quit"
+#~ msgstr "Lopeta"
+
+#~ msgid "Replace in Selected Node and Subnodes"
+#~ msgstr "Korvaa valitussa solmussa sekä alasolmuissa"
+
+#~ msgid "Search in Selected Node and Subnodes"
+#~ msgstr "Etsi valitussa solmussa ja alasolmuissa"
+
+#~ msgid "Search in All Nodes"
+#~ msgstr "Etsi kaikista solmuista"
+
+#~ msgid "Replace in Node Names..."
+#~ msgstr "Korvaa solmujen nimissä..."
+
+#~ msgid "Search For a Node Name..."
+#~ msgstr "Etsi solmun nimeä..."
+
+#~ msgid "Monospace Text Color Background"
+#~ msgstr "Tasalevyisen tekstin taustaväri"
+
+#~ msgid "Find into All the Tree Nodes Contents"
+#~ msgstr "Etsi kaikista puun solmujen sisällöistä"
+
+#~ msgid "Find in _Selected Node and Subnodes Contents"
+#~ msgstr "Etsi _valitun solmun ja sen alasolmujen sisällöistä"
+
+#~ msgid "Find into the Selected Node and Subnodes Contents"
+#~ msgstr "Etsi valitun solmun ja sen alasolmujen sisällöistä"
+
+#~ msgid "Replace in _All Nodes Contents"
+#~ msgstr "Korvaa k_aikissa solmujen sisällöissä"
+
+#~ msgid "Replace into All the Tree Nodes Contents"
+#~ msgstr "Korvaa kaikissa puun solmujen sisältöissä"
+
+#~ msgid "Replace in _Selected Node and Subnodes Contents"
+#~ msgstr "Korvaa _valitun solmun ja sen alasolmujen sisällöissä"
+
+#~ msgid "Replace into the Selected Node and Subnodes Contents"
+#~ msgstr "Korvaa kaikkiin valitun solmun ja sen alasolmujen sisältöihin"
+
+#~ msgid "Replace in Nodes _Names"
+#~ msgstr "Korvaa solmujen _nimissä"
+
+#~ msgid "_Execute CodeBox Code"
+#~ msgstr "_Suorita koodilaatikon koodi"
+
+#~ msgid "For_matting"
+#~ msgstr "_Muotoilu"
+
+#~ msgid "Nodes _Import"
+#~ msgstr "Solmujen _tuonti"
+
+#~ msgid "Nodes E_xport"
+#~ msgstr "Solmujen _vienti"
+
+#~ msgid "E_xport"
+#~ msgstr "_Vie"
+
+#~ msgid "Editor"
+#~ msgstr "Editori"
+
+#~ msgid "Monospace Background"
+#~ msgstr "Tasarivinen tausta"
+
+#~ msgid "Export to PDF at specified file path"
+#~ msgstr "Vie PDF-tiedostoksi määritellyllä hakemistopolulla"
+
+#~ msgid "Unknown"
+#~ msgstr "Tuntematon"
+
+#~ msgid "(no suggestions)"
+#~ msgstr "(ei ehdotuksia)"
+
+#~ msgid "Add \"{}\" to Dictionary"
+#~ msgstr "Lisää \"{}\" sanakirjaan"
+
+#~ msgid "Ignore All"
+#~ msgstr "Hylkää kaikki"
+
+#~ msgid "Languages"
+#~ msgstr "Kielet"
+
+#~ msgid "Suggestions"
+#~ msgstr "Ehdotukset"
+
+#~ msgid "NoteCase Document"
+#~ msgstr "NoteCase -asiakirja"
+
+#~ msgid "EPIM HTML Document"
+#~ msgstr "EPIM HTML -asiakirja"
+
+#~ msgid "KeyNote Document"
+#~ msgstr "KeyNote -asiakirja"
+
+#~ msgid "Knowit Document"
+#~ msgstr "Knowit -asiakirja"
+
+#~ msgid ""
+#~ "Binary Executable '7za' Not Found, Check The Package 'p7zip-full' to be "
+#~ "Installed Properly"
+#~ msgstr ""
+#~ "Suorituskelpoista binääritiedostoa '7za':a ei löytynyt. Tarkista, että "
+#~ "paketti 'p7zip-full' on asennettu oikein"
+
+#~ msgid "Type To Search..."
+#~ msgstr "Kirjoita hakeaksesi..."
+
+#~ msgid "Command Name"
+#~ msgstr "Komennon nimi"
+
+#~ msgid "Not Any H1, H2 or H3 Formatting Found"
+#~ msgstr "Ei yhtään Otsikko 1, -2 tai -3 -muotoilua löydetty"
+
+#~ msgid "Min Width"
+#~ msgstr "Vähimmäisleveys"
+
+#~ msgid "Max Width"
+#~ msgstr "Enimmäisleveys"
+
+#~ msgid "Click to Edit the Column Settings"
+#~ msgstr "Klikkaa muokataksesi sarakkeen asetuksia"
+
+#~ msgid "Table Column Action"
+#~ msgstr "Taulukon sarakkeen toiminto"
+
+#~ msgid "From _Basket Folder"
+#~ msgstr "_Basket -kansiosta"
+
+#~ msgid "Add Nodes of a Basket Folder to the Current Tree"
+#~ msgstr "Lisää solmut Basket -kansiosta nykyiseen puuhun"
+
+#~ msgid "From _EssentialPIM HTML File"
+#~ msgstr "_EssentialPIM HTML -tiedostosta"
+
+#~ msgid "Add Node from an EssentialPIM HTML File to the Current Tree"
+#~ msgstr "Lisää solmu EssentialPIM HTML -tiedostosta nykyiseen puuhun"
+
+#~ msgid "From K_eyNote File"
+#~ msgstr "K_eyNote -tiedostosta"
+
+#~ msgid "Add Nodes of a KeyNote File to the Current Tree"
+#~ msgstr "Lisää solmut KeyNote -tiedostosta nykyiseen puuhun"
+
+#~ msgid "From K_nowit File"
+#~ msgstr "K_nowit -tiedostosta"
+
+#~ msgid "Add Nodes of a Knowit File to the Current Tree"
+#~ msgstr "Lisää solmut Knowit -tiedostosta nykyiseen puuhun"
+
+#~ msgid "From _TuxCards File"
+#~ msgstr "_TuxCards -tiedostosta"
+
+#~ msgid "Add Nodes of a TuxCards File to the Current Tree"
+#~ msgstr "Lisää solmut TuxCards -tiedostosta nykyiseen puuhun"
+
+#~ msgid "Export to Multiple Plain _Text Files"
+#~ msgstr "Vie useiksi raaka_tekstitiedostoiksi"
+
+#~ msgid "Export to Multiple Plain Text Files"
+#~ msgstr "Vie useiksi raakatekstitiedostoiksi"
+
+#~ msgid "Export to _Single Plain Text File"
+#~ msgstr "Vie _yhdeksi raakatekstitiedostoksi"
+
+#~ msgid "Insert _NewLine"
+#~ msgstr "Lisää _rivinvaihto"
+
+#~ msgid "Insert NewLine Char"
+#~ msgstr "Lisää rivinvaihtomerkki"
+
+#~ msgid "Use AppIndicator for Docking"
+#~ msgstr "Käytä AppIndicator:a telakointiin"
+
+#~ msgid "Cancel"
+#~ msgstr "Peruuta"
+
+#~ msgid "The Characters  %s  are Not Allowed"
+#~ msgstr "Merkit  %s  eivät ole sallittuja"
+
+#~ msgid "Text Font"
+#~ msgstr "Tekstin kirjasin"

@@ -1,0 +1,3417 @@
+# Swedish translations for oliveset package.
+# Copyright (C) 2020 THE oliveset'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the oliveset package.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2020, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: oliveset 0.38.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2024-09-22 08:35+0200\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: Swedish\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+msgid "Image Format Not Recognized"
+msgstr "Bildformatet kan inte identifieras"
+
+msgid "Insert Table"
+msgstr "Infoga tabell"
+
+msgid "CSV File"
+msgstr "CSV-fil"
+
+msgid "Insert a CodeBox"
+msgstr "Infoga en kodbox"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "Maximal storlek på inbäddade filer är %s MB."
+
+msgid "Do you want to Continue?"
+msgstr "Vill du fortsätta?"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "Kunde inte hämta innehållet i post \"%s\""
+
+msgid "Special Characters"
+msgstr "Specialtecken"
+
+msgid "Tabs Replaced"
+msgstr "Tabbar ersatta"
+
+msgid "Lines Stripped"
+msgstr "Rader rensade"
+
+msgid "No Text is Selected."
+msgstr "Ingen text markerad."
+
+msgid "OliveSet File"
+msgstr "OliveSet-fil"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"Filen/Mappen som används kan inte skrivas över!\n"
+"Använd ett annat namn eller lagringsplats."
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"En mapp \"%s\" finns redan i \"%s\".\n"
+"<b>Vill du ersätta den?</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"En fil \"%s\" finns redan i \"%s\".\n"
+"<b>Vill du ersätta den?</b>"
+
+msgid "PDF File"
+msgstr "PDF-fil"
+
+msgid "Plain Text Document"
+msgstr "Oformaterat textdokument"
+
+msgid "Preferences File"
+msgstr "Inställningsfil"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "Har systemfältet visats på panelen?"
+
+msgid "Your system does not support the System Tray"
+msgstr "Ditt system stödjer inte systemfältet"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr "Denna ändring blir tillgängligt först efter omstart av OliveSet."
+
+msgid "Replace in Current Node"
+msgstr "Ersätt i aktuell post"
+
+msgid "Search in Current Node"
+msgstr "Sök i aktuell post"
+
+msgid "Matches"
+msgstr "Matchar"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "<b>Mönstret \"%s\" hittades inte</b>"
+
+msgid "Replace in Multiple Nodes"
+msgstr "Ersätt i flera poster"
+
+msgid "Search in Multiple Nodes"
+msgstr "Sök i flera poster"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "Ingen sökning har utförts tidigare under denna session."
+
+msgid "Tags"
+msgstr "Taggar"
+
+msgid ": "
+msgstr ": "
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "Ingen textformatering har utförts tidigare under denna session."
+
+msgid "Link Name"
+msgstr "Länknamn"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "Markören är inte i något stycke."
+
+msgid "Insert/Edit Link"
+msgstr "Infoga/Redigera länk"
+
+msgid "Pick a Foreground Color"
+msgstr "Välj en förgrundsfärg"
+
+msgid "Pick a Background Color"
+msgstr "Välj en bakgrundsfärg"
+
+msgid "Checking for Newer Version..."
+msgstr "Söker efter nyare version..."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr "Kunde inte hämta information om senaste versionen. Försök igen senare."
+
+msgid "A Newer Version Is Available!"
+msgstr "En nyare version finns tillgänglig!"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "Du använder den senaste versionen."
+
+msgid "You Are Using a Development Version."
+msgstr "Du använder en utvecklingsversion."
+
+msgid "Who is the Parent?"
+msgstr "Vilken är den överordnade?"
+
+msgid "The Tree Root"
+msgstr "Trädroten"
+
+msgid "The Selected Node"
+msgstr "Markerad post"
+
+msgid "Rename"
+msgstr "Byt namn"
+
+msgid "PNG Image"
+msgstr "PNG-bild"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "Kunde inte skriva till %s"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "Mapplänken \"%s\" är inte giltig."
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "Fillänken \"%s\" är inte giltig."
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "Mapplänken \"%s\" är inte giltig"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "Länken pekar mot en post som inte finns längre (ID=%s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "Ingen fästpunkt kallad \"%s\" hittades"
+
+msgid "Edit CodeBox"
+msgstr "Redigera kodbox"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"Du måste associera ett kommando med \"%s\".\n"
+"Gör så i inställningarna."
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr ""
+"Installera paketet \"xterm\" eller konfigurera en annan terminal i "
+"inställningarna."
+
+msgid "Edit Table Properties"
+msgstr "Redigera tabellegenskaper"
+
+msgid "Insert Anchor"
+msgstr "Infoga fästpunkt"
+
+msgid "Edit Anchor"
+msgstr "Redigera fästpunkt"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "Kan inte redigera inbäddad fil i skrivskyddad post."
+
+msgid "Embedded File Automatically Updated:"
+msgstr "Inbäddad fil automatiskt uppdaterad:"
+
+msgid "No Node is Selected"
+msgstr "Ingen kod vald"
+
+msgid "The Tree is Empty!"
+msgstr "Trädet är tomt!"
+
+msgid "The Selected Node is Read Only."
+msgstr "Den valda posten är skrivskyddad."
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "Denna funktion finns bara tillgänglig i Rich Text-poster."
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr ""
+"Denna funktion finns inte tillgänglig i poster med automatisk "
+"syntaxmarkering."
+
+msgid "No Table is Selected."
+msgstr "Ingen tabell markerad."
+
+msgid "No CodeBox is Selected."
+msgstr "Ingen kodbox vald."
+
+msgid "New Child Node Properties"
+msgstr "Nya egenskaper för underordnad post"
+
+msgid "New Node Properties"
+msgstr "Nya postegenskaper"
+
+msgid "Node Properties"
+msgstr "Postegenskaper"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"Att ändra posttypen till Automatisk syntaxmarkering tar bort all RTF-"
+"formatering i denna post. Vill du fortsätta?"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "Vill du verkligen <b>ta bort posten \"%s\"?</b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "Posten har <b>underordnade poster, de kommer också att tas bort!</b>"
+
+msgid "Select the New Parent"
+msgstr "Välj ny överordnad"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "Ny överordnad kan inte vara den post som flyttas!"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "Ny överordnad är fortfarande den gamla!"
+
+msgid "The new parent can't be one of his children!"
+msgstr "Den nya överordnade mappen kan inte vara en av dess underordnade!"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "%s postegenskaper ändrade"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr "Antalet senast besökta poster i postnamnhuvudet är redan maximalt."
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr "Antalet senast besökta poster i postnamnhuvudet är redan minimalt."
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "Storleken på verktygsfältets ikoner är redan största möjliga."
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "Storleken på verktygsfältets ikoner är redan minsta möjliga."
+
+msgid "Print OliveSet version"
+msgstr "Skriv ut OliveSet-version"
+
+msgid "Node name to focus"
+msgstr "Postnamn att fokusera"
+
+msgid "Anchor name to scroll to in node"
+msgstr "Fästpunktsnamn att skrolla till i post"
+
+msgid "Export to HTML at specified directory path"
+msgstr "Exportera till HTML på angiven mappsökväg"
+
+msgid "Export to Text at specified directory path"
+msgstr "Exportera till text på angiven mappsökväg"
+
+msgid "Export to PDF at specified directory path"
+msgstr "Exportera till PDF på angiven mappsökväg"
+
+msgid "Overwrite if export path already exists"
+msgstr "Skriv över om exportsökvägen redan finns"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "Exportera till en enskild fil (för HTML och TXT)"
+
+msgid "Password to open document"
+msgstr "Lösenord för att öppna dokument"
+
+msgid "Create a new window"
+msgstr "Skapa ett nytt fönster"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "Kör i sekundär session, oberoende av huvudsessionen"
+
+msgid "Execute Code"
+msgstr "Exekvera kod"
+
+msgid "Copy Code"
+msgstr "Kopiera kod"
+
+msgid "Change CodeBox Properties"
+msgstr "Ändra kodboxegenskaper"
+
+msgid "Start in OliveSet"
+msgstr "Starta i OliveSet"
+
+msgid "New Document"
+msgstr "Nytt dokument"
+
+msgid "Open File"
+msgstr "Öppna fil"
+
+msgid "Open Folder"
+msgstr "Öppna mapp"
+
+msgid "Create a new document or open an existing one."
+msgstr "Skapa ett nytt dokument eller öppna ett befintligt."
+
+msgid "Don't show again"
+msgstr "Visa inte igen"
+
+msgid "Recent Documents"
+msgstr "Senaste dokument"
+
+msgid "Name"
+msgstr "Namn"
+
+msgid "Path"
+msgstr "Sökväg"
+
+msgid "Open Selected"
+msgstr "Öppna markerat"
+
+msgid "Handle the Bookmarks List"
+msgstr "Hantera bokmärkeslistan"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "Flytta upp markerat bokmärke"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "Flytta ner markerat bokmärke"
+
+msgid "Remove the Selected Bookmark"
+msgstr "Ta bort markerat bokmärke"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "Sortera bokmärken sjunkande"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "Sortera bokmärken stigande"
+
+msgid "Choose Storage Type"
+msgstr "Välj lagringstyp"
+
+msgid "Single SQLite File"
+msgstr "Enskild SQLite-fil"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "Enskild SQLite-fil, 7-zip-krypterad och lösenordsskyddad"
+
+msgid "Single XML File"
+msgstr "Enskild XML-fil"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "Enskild XML-fil, 7-zip-krypterad och lösenordsskyddad"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "Flera filer i hierarkisk mappstruktur"
+
+msgid "Storage Type"
+msgstr "Lagringstyp"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"CT sparar dokumentet som ett krypterat 7zip-arkiv. Vid visning eller "
+"redigering av dokumentet, extraherar CT det krypterade arkivet till en "
+"temporär mapp och arbetar på den avkrypterade kopian. Vid stängning tas den "
+"avkrypterade kopian bort från den temporära mappen. Notera att om programmet "
+"eller systemet kraschar, kvarstår det avkrypterade dokumentet i den "
+"temporära mappen."
+
+msgid "Enter the New Password Twice"
+msgstr "Ange det nya lösenordet två gånger"
+
+msgid "Autosave Every"
+msgstr "Spara automatiskt varje"
+
+msgid "Minutes"
+msgstr "Minuter"
+
+msgid "The Password Fields Must be Filled."
+msgstr "Lösenordsfältet måste fyllas i."
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "De två angivna lösenorden stämmer inte överens."
+
+msgid "Warning"
+msgstr "Varning"
+
+msgid "The Current Document was Updated."
+msgstr "Aktuellt dokument uppdaterades."
+
+msgid "Do you want to Save the Changes?"
+msgstr "Vill du spara ändringarna?"
+
+msgid "Do you want to Execute the Code?"
+msgstr "Vill du köra koden?"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "Be om bekräftelse innan koden körs"
+
+msgid "Use Internal Terminal"
+msgstr "Använd intern terminal"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr ""
+"Ett hierarkiskt anteckningsprogram, innehållande både Rich Text och "
+"syntaxmarkering"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"Detta program är fri mjukvara! Du kan återdistribuera och/eller \n"
+"modifiera det, under villkoren för GNU General Public License som \n"
+"den publiceras av Free Software Foundation. Antingen version 3 \n"
+"av licensen, eller valfri senare version.\n"
+"\n"
+"Programmet distribueras i hopp om att det skall vara användbart, \n"
+"men UTAN NÅGRA GARANTIER. Utan ens underförstådd garanti om \n"
+"SÄLJBARHET eller LÄMPLIGHET FÖR ETT VISST ÄNDAMÅL. \n"
+"Se GNU General Public License för mer detaljerad info.\n"
+"\n"
+"Du bör ha fått en kopia av GNU General Public License tillsammans med \n"
+"det här programmet. Om inte, skriv till Free Software Foundation, Inc., \n"
+"51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n"
+
+msgid "Arabic"
+msgstr "Arabiska"
+
+msgid "Armenian"
+msgstr "Armeniska"
+
+msgid "Bulgarian"
+msgstr "Bulgariska"
+
+msgid "Chinese Simplified"
+msgstr "Förenklad kinesiska"
+
+msgid "Chinese Traditional"
+msgstr "Kinesiska (Traditionell)"
+
+msgid "Croatian"
+msgstr "Kroatiska"
+
+msgid "Czech"
+msgstr "Tjeckiska"
+
+msgid "Dutch"
+msgstr "Nederländska"
+
+msgid "Finnish"
+msgstr "Slutför"
+
+msgid "French"
+msgstr "Franska"
+
+msgid "German"
+msgstr "Tyska"
+
+msgid "Greek"
+msgstr "Grekiska"
+
+msgid "Hindi India"
+msgstr "Hindi (Indien)"
+
+msgid "Hungarian"
+msgstr "Ungerska"
+
+msgid "Italian"
+msgstr "Italienska"
+
+msgid "Japanese"
+msgstr "Japanska"
+
+msgid "Kazakh"
+msgstr "Kazakiska"
+
+msgid "Kazakh (Latin)"
+msgstr "Kazakiska (Latin)"
+
+msgid "Korean"
+msgstr "Koreanska"
+
+msgid "Lithuanian"
+msgstr "Litauiska"
+
+msgid "Persian"
+msgstr "Persiska"
+
+msgid "Polish"
+msgstr "Polska"
+
+msgid "Portuguese"
+msgstr "Portugisiska"
+
+msgid "Portuguese Brazil"
+msgstr "Portugisisk-brasilienska"
+
+msgid "Romanian"
+msgstr "Rumänska"
+
+msgid "Russian"
+msgstr "Ryska"
+
+msgid "Slovak"
+msgstr "Slovakiska"
+
+msgid "Slovenian"
+msgstr "Slovenska"
+
+msgid "Spanish"
+msgstr "Spanska"
+
+msgid "Swedish"
+msgstr "Svenska"
+
+msgid "Turkish"
+msgstr "Turkiska"
+
+msgid "Ukrainian"
+msgstr "Ukrainska"
+
+msgid "About OliveSet"
+msgstr "Om OliveSet"
+
+msgid "Tree Summary Information"
+msgstr "Sammanfattad trädinformation"
+
+msgid "Number of Rich Text Nodes"
+msgstr "Antal Rich Text-poster"
+
+msgid "Number of Plain Text Nodes"
+msgstr "Antal oformaterade textposter"
+
+msgid "Number of Code Nodes"
+msgstr "Antal kodposter"
+
+msgid "Number of Images"
+msgstr "Antal bilder"
+
+msgid "Number of LatexBoxes"
+msgstr "Antal Latex-boxar"
+
+msgid "Number of Embedded Files"
+msgstr "Antal inbäddade filer"
+
+msgid "Number of Tables"
+msgstr "Antal tabeller"
+
+msgid "Number of CodeBoxes"
+msgstr "Antal kodboxar"
+
+msgid "Number of Anchors"
+msgstr "Antal fästpunkter"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "Antal delade poster/grupper"
+
+msgid "Latex Text"
+msgstr "Latex-text"
+
+msgid "Image Size dpi"
+msgstr "Bildstorlek dpi"
+
+msgid "Tutorial"
+msgstr "Handledning"
+
+msgid "Reference"
+msgstr "Referens"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "LaTeX-matematik och ekvationshandledning"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "LaTeX-matematik symbolreferenser"
+
+msgid "Image Properties"
+msgstr "Bildegenskaper"
+
+msgid "Rotate Left"
+msgstr "Rotera åt vänster"
+
+msgid "Rotate Right"
+msgstr "Rotera åt höger"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr "Välj ett område med musen innan du klickar OK för att beskära bilden"
+
+msgid "Flip Horizontally"
+msgstr "Spegelvänd horisontellt"
+
+msgid "Flip Vertically"
+msgstr "Spegelvänd vertikalt"
+
+msgid "Width"
+msgstr "Bredd"
+
+msgid "Height"
+msgstr "Höjd"
+
+msgid "Plain Text"
+msgstr "Oformaterad text"
+
+msgid "Automatic Syntax Highlighting"
+msgstr "Automatisk syntaxmarkering"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "pixels"
+msgstr "bildpunkter"
+
+msgid "Size"
+msgstr "Storlek"
+
+msgid "Show Line Numbers"
+msgstr "Visa radnummer"
+
+msgid "Highlight Matching Brackets"
+msgstr "Belys matchande klamrar"
+
+msgid "Options"
+msgstr "Alternativ"
+
+msgid "Rows"
+msgstr "Rader"
+
+msgid "Columns"
+msgstr "Kolumner"
+
+msgid "Default Width"
+msgstr "Standardbredd"
+
+msgid "Table Size"
+msgstr "Tabellstorlek"
+
+msgid "Column Properties"
+msgstr "Kolumnegenskaper"
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "Förenklat gränssnitt (mycket snabbare för stora tabeller)"
+
+msgid "Import from CSV File"
+msgstr "Importera från CSV-fil"
+
+msgid "Clear"
+msgstr "Rensa"
+
+msgid "Reset"
+msgstr "Återställ"
+
+msgid "Search for"
+msgstr "Sök efter"
+
+msgid "Replace with"
+msgstr "Ersätt med"
+
+msgid "Replace in Link Targets"
+msgstr "Ersätt i länkmål"
+
+msgid "Replace options"
+msgstr "Ersättningsalternativ"
+
+msgid "Match Case"
+msgstr "Skiftläge"
+
+msgid "Regular Expression"
+msgstr "Regular Expression"
+
+msgid "Online Manual"
+msgstr "Online-manual"
+
+msgid "Accent Insensitive"
+msgstr "Accentokänslig"
+
+msgid "Override Exclusions"
+msgstr "Åsidosätt undantag"
+
+msgid "Whole Word"
+msgstr "Hela ord"
+
+msgid "Start Word"
+msgstr "Startord"
+
+msgid "More Words, Exact Match"
+msgstr "Fler ord, exakt träff"
+
+msgid "More Words, Disregard Order"
+msgstr "Fler ord, ignorera ordning"
+
+msgid "More Words, Match Any"
+msgstr "Fler ord, matcha valfritt"
+
+msgid "Forward"
+msgstr "Framåt"
+
+msgid "Backward"
+msgstr "Tillbaka"
+
+msgid "All, List Matches"
+msgstr "Alla, listmatchningar"
+
+msgid "First From Selection"
+msgstr "Första i markerat"
+
+msgid "First in All Range"
+msgstr "Första i hela intervallet"
+
+msgid "Node Created After"
+msgstr "Post skapad efter"
+
+msgid "Node Created Before"
+msgstr "Post skapad före"
+
+msgid "Node Modified After"
+msgstr "Post ändrad efter"
+
+msgid "Node Modified Before"
+msgstr "Post ändrad före"
+
+msgid "Time filter"
+msgstr "Tidsfilter"
+
+msgid "Node Content"
+msgstr "Postinnehåll"
+
+msgid "Node Name and Tags"
+msgstr "Postnamn och taggar"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "Endast markerad post och underposter"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "Visa upprepad dialog för Sök/Ersätt"
+
+msgid "Search options"
+msgstr "Sökalternativ"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"Ersättningsfältet är tomt: alla funna förekomster kommer att raderas.\n"
+"Vill du fortsätta?"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"Minst en post hoppades över på grund av undantag som angetts i "
+"postegenskaperna.\n"
+"För att ta bort alla undantag, använd menyn:\n"
+"Sök > Ta bort alla undantag från sökning"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "Dölj (återställ med \"%s\")"
+
+msgid "Node Name"
+msgstr "Postnamn"
+
+msgid "Line"
+msgstr "Rad"
+
+msgid "Line Content"
+msgstr "Radinnehåll"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "Upprepa senaste Sök/Ersätt"
+
+msgid "Close"
+msgstr "Stäng"
+
+msgid "Find Previous"
+msgstr "Sök föregående"
+
+msgid "Find Next"
+msgstr "Sök nästa"
+
+msgid "Replace"
+msgstr "Ersätt"
+
+msgid "Undo"
+msgstr "Ångra"
+
+msgid "Remove"
+msgstr "Ta bort"
+
+msgid "Remove User Colour from Palette"
+msgstr "Ta bort användarfärg från paletten"
+
+msgid "Colour"
+msgstr "Färg"
+
+msgid "Question"
+msgstr "Fråga"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Error"
+msgstr "Fel"
+
+msgid "Select File"
+msgstr "Välj fil"
+
+msgid "Select Folder"
+msgstr "Välj mappa"
+
+msgid "Save File as"
+msgstr "Spara fil som"
+
+msgid "Save To Folder"
+msgstr "Spara i mapp"
+
+msgid "To WebSite"
+msgstr "Till webbplats"
+
+msgid "To File"
+msgstr "Till fil"
+
+msgid "To Folder"
+msgstr "Till mapp"
+
+msgid "To Node"
+msgstr "Till post"
+
+msgid "Anchor Name (optional)"
+msgstr "Fästpunktsnamn (valfritt)"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "Det finns inga fästpunkter i markerad post."
+
+msgid "Choose Existing Anchor"
+msgstr "Välj befintlig fästpunkt"
+
+msgid "Anchor Name"
+msgstr "Fästpunktsnamn"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "Mönstret \"%s\" hittades inte"
+
+msgid "Bold"
+msgstr "Fet"
+
+msgid "Use Selected Color"
+msgstr "Använd vald färg"
+
+msgid "Use Selected Icon"
+msgstr "Använd vald ikon"
+
+msgid "Rich Text"
+msgstr "Rich Text"
+
+msgid "Node Type"
+msgstr "Posttyp"
+
+msgid "Tags for Searching"
+msgstr "Taggar för sökning"
+
+msgid "Exclude from Searches"
+msgstr "Undanta från sökningar"
+
+msgid "This Node"
+msgstr "Denna post"
+
+msgid "The Subnodes"
+msgstr "Underposter"
+
+msgid "Read Only"
+msgstr "Skrivskyddad"
+
+msgid "Unique Id"
+msgstr "Unikt ID"
+
+msgid "Shared Nodes Group"
+msgstr "Grupp för delade poster"
+
+msgid "Choose Existing Tag"
+msgstr "Välj befintlig tagg"
+
+msgid "Tag Name"
+msgstr "Taggnamn"
+
+msgid "Pick a Color"
+msgstr "Välj en färg"
+
+msgid "Select Node Icon"
+msgstr "Välj postikon"
+
+msgid "Involved Nodes"
+msgstr "Involverade poster"
+
+msgid "Selected Text Only"
+msgstr "Endast markerad text"
+
+msgid "Selected Node Only"
+msgstr "Endast markerad post"
+
+msgid "Selected Node and Subnodes"
+msgstr "Markerad post med underposter"
+
+msgid "All the Tree"
+msgstr "Hela trädet"
+
+msgid "Include Node Name"
+msgstr "Inkludera postnamn"
+
+msgid "Links Tree in Every Page"
+msgstr "Länkträd på varje sida"
+
+msgid "New Node in New Page"
+msgstr "Ny post på ny sida"
+
+msgid "Single File"
+msgstr "Enskild fil"
+
+msgid "Index"
+msgstr "Index"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr "Varning: En eller flera bilder reducerades för att öppna sidan!"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "LaTeX-rendering blockerades av säkerhetsskäl"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr "Källkoden innehåller fil-I/O-kommandon som kan komma åt lokala filer"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"Ta bort kommandon som \\verbatiminput, \\openin, \\openout och osäkra "
+"\\input/\\include-sökvägar"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "Kunde inte komma åt de körbara \"latex- och dvipng-filerna\""
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "Till exempel, på Ubuntu är paketen som ska installeras:"
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "Till exempel, på Mac OS är paketen som ska installeras:"
+
+msgid "Could not access the executable 'latex'"
+msgstr "Kunde inte komma åt den körbara \"latex-filen\""
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "Kunde inte komma åt den körbara \"dvipng-filen\""
+
+msgid "Downloading"
+msgstr "Nerladdning"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "Sökvägen %s finns inte"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "Öppna ett tidigare OliveSet-dokument"
+
+msgid "_Hide"
+msgstr "_Dölj"
+
+msgid "_Quit"
+msgstr "A_vsluta"
+
+msgid "Hide the Window"
+msgstr "Dölj fönstret"
+
+msgid "Quit the Application"
+msgstr "Avsluta programmet"
+
+msgid "Spell Check"
+msgstr "Stavningskontroll"
+
+msgid "Word Count"
+msgstr "Ordräkning"
+
+msgid "Date Created"
+msgstr "Skapad"
+
+msgid "Date Modified"
+msgstr "Ändrad"
+
+msgid "Subnodes"
+msgstr "Underposter"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr ""
+"Ingen tidigare postkopia utfördes under den här sessionen eller källträdet "
+"är inte längre tillgängligt."
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "Källträdposten finns inte längre tillgänglig."
+
+msgid "Show Menubar:"
+msgstr "Visa menyfält:"
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "\"%s\" är inte en OliveSet-fil"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"Fel vid tolkning av OliveSet-sökvägen:\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "Vill du öppna den senaste säkerhetskopian?"
+
+msgid "Failed to Load from Backup Data"
+msgstr "Kunde inte läsa in från säkerhetskopian"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "Ingen post kallad \"%s\" hittades."
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "Temporära filer skapades och öppnades med externa program."
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "Avsluta externa program innan OliveSet avslutas."
+
+msgid "Did you Quit the External Applications?"
+msgstr "Har du avslutat de externa programmen?"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "Kan inte spara: \"%s\" är skrivskyddad"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr "Dokumentet lästes in igen, efter extern uppdatering till CT*-fil."
+
+msgid "Copy Selection or All"
+msgstr "Kopiera markerat eller alla"
+
+msgid "Paste"
+msgstr "Klistra in"
+
+msgid "Remove from list"
+msgstr "Ta bort från listan"
+
+msgid "_File"
+msgstr "_Arkiv"
+
+msgid "_Edit"
+msgstr "_Redigera"
+
+msgid "_Insert"
+msgstr "_Infoga"
+
+msgid "F_ormat"
+msgstr "Formatera"
+
+msgid "_Tree"
+msgstr "_Träd"
+
+msgid "Too_ls"
+msgstr "V_erktyg"
+
+msgid "_Search"
+msgstr "_Sök"
+
+msgid "_View"
+msgstr "_Visa"
+
+msgid "_Bookmarks"
+msgstr "_Bokmärken"
+
+msgid "_Help"
+msgstr "_Hjälp"
+
+msgid "Insert _Date Node"
+msgstr "Infoga en _datumpost"
+
+msgid "Node _Move"
+msgstr "_Flytta post"
+
+msgid "Nod_es Sort"
+msgstr "_Sortera poster"
+
+msgid "B_ookmarks"
+msgstr "_Bokmärken"
+
+msgid "_Import"
+msgstr "_Importera"
+
+msgid "_Export"
+msgstr "_Exportera"
+
+msgid "_Preferences"
+msgstr "_Inställningar"
+
+msgid "_Recent Documents"
+msgstr "_Tidigare dokument"
+
+msgid "C_hange Case"
+msgstr "_Ändra skiftläge"
+
+msgid "L_ist"
+msgstr "L_ista"
+
+msgid "_Justify"
+msgstr "_Justera"
+
+msgid "Toggle _Font Property"
+msgstr "Växla _Teckensnittsegenskap"
+
+msgid "_Toggle Heading Property"
+msgstr "Växla _rubrikegenskap"
+
+msgid "I_nsert"
+msgstr "_Infoga"
+
+msgid "_Find"
+msgstr "_Sök"
+
+msgid "_Replace"
+msgstr "_Ersätt"
+
+msgid "Ro_w"
+msgstr "Ra_d"
+
+msgid "_Table"
+msgstr "_Tabell"
+
+msgid "_CodeBox"
+msgstr "_Kodbox"
+
+msgid "File"
+msgstr "Arkiv"
+
+msgid "_New Instance..."
+msgstr "Ny _instans..."
+
+msgid "Start a New Instance of OliveSet"
+msgstr "Starta en ny instans av OliveSet"
+
+msgid "_Open File..."
+msgstr "_Öppna fil..."
+
+msgid "Open a OliveSet File"
+msgstr "Öppna en OliveSet-fil"
+
+msgid "Open Fo_lder..."
+msgstr "_Öppna mapp..."
+
+msgid "Open a OliveSet Folder"
+msgstr "Öppna en OliveSet-mapp"
+
+msgid "_Save"
+msgstr "_Spara"
+
+msgid "Save File"
+msgstr "Spara fil"
+
+msgid "Save and _Vacuum"
+msgstr "Spara och _dammsug"
+
+msgid "Save File and Vacuum"
+msgstr "Spara fil och dammsug"
+
+msgid "Save _As..."
+msgstr "S_para som..."
+
+msgid "Save File As"
+msgstr "Spara fil som"
+
+msgid "Pa_ge Setup..."
+msgstr "_Utskriftsinställningar..."
+
+msgid "Set up the Page for Printing"
+msgstr "Ställ in sidan för utskrift"
+
+msgid "P_rint..."
+msgstr "Skriv _ut..."
+
+msgid "Print"
+msgstr "Skriv ut"
+
+msgid "Preferences"
+msgstr "Inställningar"
+
+msgid "_Import Preferences..."
+msgstr "_Importera inställningar..."
+
+msgid "Import Preferences"
+msgstr "Importera inställningar"
+
+msgid "_Export Preferences..."
+msgstr "_Exportera inställningar..."
+
+msgid "Export Preferences"
+msgstr "Exportera inställningar"
+
+msgid "Tree In_fo"
+msgstr "Träd_information"
+
+msgid "_Document Path to Clipboard"
+msgstr "_Dokumentsökväg till urklipp"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "Kopiera dokumentsökväg till urklipp"
+
+msgid "E_xit OliveSet"
+msgstr "A_vsluta OliveSet"
+
+msgid "Exit from OliveSet"
+msgstr "Avsluta OliveSet"
+
+msgid "Edit/Insert"
+msgstr "Redigera/Infoga"
+
+msgid "_Undo"
+msgstr "_Ångra"
+
+msgid "Undo Last Operation"
+msgstr "Ångra senaste åtgärden"
+
+msgid "_Redo"
+msgstr "_Upprepa"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "Upprepa tidigare ångrad åtgärd"
+
+msgid "Insert I_mage..."
+msgstr "Infoga b_ild..."
+
+msgid "Insert an Image"
+msgstr "Infoga en bild"
+
+msgid "Insert Late_x..."
+msgstr "Infoga Late_x..."
+
+msgid "Insert LatexBox"
+msgstr "Infoga LatexBox"
+
+msgid "Insert _Table..."
+msgstr "Infoga _tabell..."
+
+msgid "Insert a Table"
+msgstr "Infoga en tabell"
+
+msgid "Insert _CodeBox..."
+msgstr "Infoga en _kodbox..."
+
+msgid "Insert _File..."
+msgstr "Infoga _fil..."
+
+msgid "Insert File"
+msgstr "Infoga fil"
+
+msgid "Insert/Edit _Link..."
+msgstr "Infoga/Redigera _länk..."
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "Infoga en länk/Redigera den underliggande länken"
+
+msgid "Insert _Anchor..."
+msgstr "Infoga en _fästpunkt..."
+
+msgid "Insert an Anchor"
+msgstr "Infoga en fästpunkt"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "Infoga T_OC och rubrikkomprimerare..."
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "Infoga innehållsförteckning och rubrikkomprimering/-expansion"
+
+msgid "Insert Timestam_p"
+msgstr "Infoga _tidsstämpel"
+
+msgid "Insert Timestamp"
+msgstr "Infoga tidsstämpel"
+
+msgid "Insert _Special Character..."
+msgstr "Infoga _specialtecken..."
+
+msgid "Insert a Special Character"
+msgstr "Infoga ett specialtecken"
+
+msgid "Insert _Horizontal Rule"
+msgstr "Infoga _horisontell avgränsare"
+
+msgid "Insert Horizontal Rule"
+msgstr "Infoga horisontell avgränsare"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "_Gemener för markering/ord"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "Ändra till gemener i markering/det underliggande ordet"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "_Versal för markering/ord"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "Versal för markering/underliggande ord"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "_Växla skiftläge för markering/ord"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "Växla skiftläge för markering/underliggande ord"
+
+msgid "Cu_t as Plain Text"
+msgstr "Klipp ut som _oformaterad text"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "Klipp ut som oformaterad text, ta bort Rich Text-formateringen"
+
+msgid "_Copy as Plain Text"
+msgstr "_Kopiera som oformaterad text"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "Kopiera som oformaterad text, ta bort Rich Text-formateringen"
+
+msgid "_Paste as Plain Text"
+msgstr "_Klistra in som oformaterad text"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "Klistra in som oformaterad text, ta bort Rich Text-formateringen"
+
+msgid "C_ut Row"
+msgstr "Klipp ut _rad"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "Klipp ut aktuell rad/markerade rader"
+
+msgid "C_opy Row"
+msgstr "_Kopiera rad"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "Kopiera aktuell rad/markerade rader"
+
+msgid "De_lete Row"
+msgstr "T_a bort rad"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "Ta bort aktuell rad/markerade rader"
+
+msgid "_Duplicate Row"
+msgstr "_Klona rad"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "Klona aktuell rad/markering"
+
+msgid "_Move Up Row"
+msgstr "Flytta _upp rad"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "Flytta upp aktuell rad/markerade rader"
+
+msgid "Mo_ve Down Row"
+msgstr "Flytta _ner rad"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "Flytta ner aktuell rad/markerade rader"
+
+msgid "C_ut Table"
+msgstr "Klipp ut _tabell"
+
+msgid "Cut the Selected Table"
+msgstr "Klipp ut markerad tabell"
+
+msgid "_Copy Table"
+msgstr "_Kopiera tabell"
+
+msgid "Copy the Selected Table"
+msgstr "Kopiera markerad tabell"
+
+msgid "_Delete Table"
+msgstr "_Ta bort tabell"
+
+msgid "Delete the Selected Table"
+msgstr "Ta bort markerad tabell"
+
+msgid "_Add Column"
+msgstr "_Lägg till kolumn"
+
+msgid "Add a Table Column"
+msgstr "Lägg till en tabellkolumn"
+
+msgid "Cu_t Column"
+msgstr "K_lipp ut kolumn"
+
+msgid "Cut a Table Column"
+msgstr "Klipp ut en tabellkolumn"
+
+msgid "_Copy Column"
+msgstr "_Kopiera kolumn"
+
+msgid "Copy a Table Column"
+msgstr "Kopiera en tabellkolumn"
+
+msgid "_Paste Column"
+msgstr "K_listra in kolumn"
+
+msgid "Paste a Table Column"
+msgstr "Klistra in en tabellkolumn"
+
+msgid "De_lete Column"
+msgstr "Ta _bort kolumn"
+
+msgid "Delete the Selected Table Column"
+msgstr "Ta bort markerad tabellkolumn"
+
+msgid "Move Column _Left"
+msgstr "Flytta kolumn åt _vänster"
+
+msgid "Move the Selected Column Left"
+msgstr "Flytta markerad kolumn åt vänster"
+
+msgid "Move Column _Right"
+msgstr "Flytta kolumn åt _höger"
+
+msgid "Move the Selected Column Right"
+msgstr "Flytta markerad kolumn åt höger"
+
+msgid "Increase Column Width"
+msgstr "Öka kolumnbredden"
+
+msgid "Increase the Width of the Column"
+msgstr "Utöka kolumnens bredd"
+
+msgid "Decrease Column Width"
+msgstr "Minska kolumnbredden"
+
+msgid "Decrease the Width of the Column"
+msgstr "Minska kolumnens bredd"
+
+msgid "_Add Row"
+msgstr "_Lägg till rad"
+
+msgid "Add a Table Row"
+msgstr "Lägg till en tabellrad"
+
+msgid "Cu_t Row"
+msgstr "Klipp ut _rad"
+
+msgid "Cut a Table Row"
+msgstr "Klipp ut en tabellrad"
+
+msgid "_Copy Row"
+msgstr "_Kopiera rad"
+
+msgid "Copy a Table Row"
+msgstr "Kopiera en tabellrad"
+
+msgid "_Paste Row"
+msgstr "_Klistra in rad"
+
+msgid "Paste a Table Row"
+msgstr "Klistra in en tabellrad"
+
+msgid "Delete the Selected Table Row"
+msgstr "Ta bort markerad tabellrad"
+
+msgid "Move Row _Up"
+msgstr "Flytta _upp rad"
+
+msgid "Move the Selected Row Up"
+msgstr "Flytta upp markerad rad"
+
+msgid "Move Row _Down"
+msgstr "Flytta _ner rad"
+
+msgid "Move the Selected Row Down"
+msgstr "Flytta ner markerad rad"
+
+msgid "Sort Rows De_scending"
+msgstr "Sortera rader s_junkande"
+
+msgid "Sort all the Rows Descending"
+msgstr "Sortera alla rader sjunkande"
+
+msgid "Sort Rows As_cending"
+msgstr "Sortera s_tigande"
+
+msgid "Sort all the Rows Ascending"
+msgstr "Sortera alla rader stigande"
+
+msgid "_Edit Table Properties..."
+msgstr "_Redigera tabellegenskaper..."
+
+msgid "Edit the Table Properties"
+msgstr "Redigera tabellegenskaperna"
+
+msgid "_Table Export..."
+msgstr "_Tabellexport..."
+
+msgid "Export Table as CSV File"
+msgstr "Exportera tabell som CSV-fil"
+
+msgid "Change CodeBox _Properties..."
+msgstr "Ändra kodbox_egenskaper..."
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "Redigera egenskaperna för kodboxen"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "Kodbox _inläsning från textfil..."
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "Läs in kodboxinnehållet från en textfil"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "Kodbox _spara till textfil..."
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "Spara kodboxinnehållet till en textfil"
+
+msgid "C_ut CodeBox"
+msgstr "Klipp ut _kodbox"
+
+msgid "Cut the Selected CodeBox"
+msgstr "Klipp ut markerad kodbox"
+
+msgid "_Copy CodeBox"
+msgstr "_Kopiera kodbox"
+
+msgid "Copy the Selected CodeBox"
+msgstr "Kopiera markerad kodbox"
+
+msgid "_Copy CodeBox Content"
+msgstr "_Kopiera kodboxinnehåll"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "Kopiera innehållet i markerad kodbox"
+
+msgid "_Delete CodeBox"
+msgstr "_Ta bort kodbox"
+
+msgid "Delete the Selected CodeBox"
+msgstr "Ta bort markerad kodbox"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "Ta bort kodbox _bevara innehåll"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "Ta bort markerad kodbox men bevara innehållet"
+
+msgid "Increase CodeBox Width"
+msgstr "Öka kodboxbredden"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "Utöka kodboxens bredd"
+
+msgid "Decrease CodeBox Width"
+msgstr "Minska kodboxens bredd"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "Minska kodboxens bredd"
+
+msgid "Increase CodeBox Height"
+msgstr "Öka kodboxhöjden"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "Utöka kodboxens höjd"
+
+msgid "Decrease CodeBox Height"
+msgstr "Minska kodboxens höjd"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "Minska kodboxens höjd"
+
+msgid "Format"
+msgstr "Formatera"
+
+msgid "Format Clo_ne"
+msgstr "Formatera k_lon"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "Klona textformattyp vid markören"
+
+msgid "Format _Latest"
+msgstr "Formatera _senaste"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "Minne för senaste textformattyp"
+
+msgid "_Remove Formatting"
+msgstr "_Ta bort formatering"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "Ta bort formateringen från markerad text"
+
+msgid "Text _Color Foreground"
+msgstr "Textfärg _förgrund"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "Ändra färg på markerad text"
+
+msgid "Text C_olor Background"
+msgstr "Textfärg _bakgrund"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "Ändra färg på markerad textbakgrund"
+
+msgid "Toggle _Bold Property"
+msgstr "_Fet stil på/av"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "Fet stil på/av för markerad text"
+
+msgid "Toggle _Italic Property"
+msgstr "_Kursiv stil på/av"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "Kursiv stil på/av för markerad text"
+
+msgid "Toggle _Underline Property"
+msgstr "Understruken stil på/av"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "Understruken stil på/av för markerad text"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "Genomstruken stil på/av"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "Genomstruken stil på/av för markerad text"
+
+msgid "Toggle h_1 Property"
+msgstr "H1 på/av"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "H1 på/av för markerad text"
+
+msgid "Toggle h_2 Property"
+msgstr "H2 på/av"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "H2 på/av för markerad text"
+
+msgid "Toggle h_3 Property"
+msgstr "H3 på/av"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "H3 på/av för markerad text"
+
+msgid "Toggle h_4 Property"
+msgstr "Växla H_4-egenskap"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "Växla H4-egenskap för markerad text"
+
+msgid "Toggle h_5 Property"
+msgstr "Växla H_5-egenskap"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "Växla H5-egenskap för markerad text"
+
+msgid "Toggle h_6 Property"
+msgstr "Växla H_6-egenskap"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "Växla H6-egenskap för markerad text"
+
+msgid "Toggle _Small Property"
+msgstr "Liten stil på/av"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "Liten stil på/av för markerad text"
+
+msgid "Toggle Su_bscript Property"
+msgstr "Nedsänkt stil på/av"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "Nedsänkt stil på/av för markerad text"
+
+msgid "Toggle Su_perscript Property"
+msgstr "Upphöjd stil på/av"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "Upphöjd stil på/av för markerad text"
+
+msgid "Toggle _Monospace Property"
+msgstr "_Fastbredd på/av"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "Fastbredd på/av för markerad text"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "_Punktlista på/av"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr "Ange/förkasta det aktuella stycket/markeringen som en punktlista"
+
+msgid "Set/Unset _Numbered List"
+msgstr "_Numrerad lista på/av"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr "Ange/förkasta det aktuella stycket/markeringen som en numrerad lista"
+
+msgid "Set/Unset _To-Do List"
+msgstr "Att-göra-lista på/av"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr "Ange/förkasta det aktuella stycket/markeringen som en att-göra-lista"
+
+msgid "Justify _Left"
+msgstr "Justera _vänster"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "Justera aktuellt stycke åt vänster"
+
+msgid "Justify _Center"
+msgstr "_Centrera"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "Centrera aktuellt stycke"
+
+msgid "Justify _Right"
+msgstr "Justera _höger"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "Justera aktuellt stycke åt höger"
+
+msgid "Justify _Fill"
+msgstr "_Sidanpassa"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "Fyll ut aktuellt stycke"
+
+msgid "_Indent Paragraph"
+msgstr "Dra in stycket"
+
+msgid "Indent the Current Paragraph"
+msgstr "Dra in aktuellt stycke"
+
+msgid "_Unindent Paragraph"
+msgstr "Ta _bort indrag från stycket"
+
+msgid "Unindent the Current Paragraph"
+msgstr "Ta bort indrag från aktuellt stycke"
+
+msgid "_Expand TOC Headers"
+msgstr "Expandera _TOC-rubriker"
+
+msgid "Expand TOC Headers"
+msgstr "Expandera TOC-rubriker"
+
+msgid "_Collapse TOC Headers"
+msgstr "_Komprimera TOC-rubriker"
+
+msgid "Collapse TOC Headers"
+msgstr "Komprimera TOC-rubriker"
+
+msgid "Tools"
+msgstr "Verktyg"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "Aktivera/Inaktivera _stavningskontroll"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "Stavningskontroll på/av"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "Aktivera/Inaktivera _VIM-läge"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "VIM-läge på/av"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "Ta _bort efterföljande blanksteg"
+
+msgid "Strip Trailing Spaces"
+msgstr "Ta bort efterföljande blanksteg"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "_Ersätt tabbar med blanksteg"
+
+msgid "Replace Tabs with Spaces"
+msgstr "Ersätt tabbar med blanksteg"
+
+msgid "_Command Palette..."
+msgstr "_Kommandopalett..."
+
+msgid "Command Palette"
+msgstr "Kommandopalett"
+
+msgid "_Execute Code All"
+msgstr "_Exekvera all kod"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "Exekvera all kod i kodbox eller post"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "E_xekvera kodrad eller markerat"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "Exekvera kod från aktuell rad eller markerad text"
+
+msgid "Tree"
+msgstr "Träd"
+
+msgid "Go _Back"
+msgstr "Gå _bakåt"
+
+msgid "Go to the Previous Visited Node"
+msgstr "Gå till föregående besökta post"
+
+msgid "Go _Forward"
+msgstr "Gå _framåt"
+
+msgid "Go to the Next Visited Node"
+msgstr "Gå till nästa besökta post"
+
+msgid "Add _Node..."
+msgstr "Lägg till _post..."
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "Lägg till en post underdnad den markerade posten"
+
+msgid "Add _Subnode..."
+msgstr "Lägg till _underpost..."
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "Lägg till en underpost till markerad post"
+
+msgid "_Duplicate Node"
+msgstr "_Klona post"
+
+msgid "Duplicate the Selected Node"
+msgstr "Klona markerad post"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "_Duplicera post och underposter"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "Duplicera markerad post och underposter"
+
+msgid "_Create Shared Node"
+msgstr "_Skapa delad post"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr "Skapa en ny post som delar samma data som den markerade posten"
+
+msgid "Copy Node and S_ubnodes"
+msgstr "_Kopiera post och underposter"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "Kopiera markerad post och underposter"
+
+msgid "_Paste Node and Subnodes"
+msgstr "_Klistra in post och underposter"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "Klistra in kopierad post med underposter"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "Infoga _dagens post under trädroten"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "Infoga en post med hierarkin År/Månad/Dag för idag under trädroten"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "Infoga _dagens post under markerad post"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "Infoga en post med hierarkin År/Månad/Dag för idag under markerad post"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "Infoga _morgondagens post under trädroten"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "Infoga en post med hierarkin År/Månad/Dag för imorgon under trädroten"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "Infoga _morgondagens post under markerad post"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "Infoga en post med hierarkin År/Månad/Dag för imorgon under markerad post"
+
+msgid "C_hange Node Properties..."
+msgstr "Ändra _postegenskaper..."
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "Redigera egenskaperna för markerad post"
+
+msgid "Toggle _Read Only"
+msgstr "_Skrivskydd på/av"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "Skrivskydd på/av för markerad post"
+
+msgid "Cop_y Link to Node"
+msgstr "Ko_piera länk till post"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "Kopiera länk markerad post, till urklipp"
+
+msgid "Children _Inherit Syntax"
+msgstr "_Ärv syntax"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr ""
+"Ändra markerad underposts syntaxmarkering till överordnad posts "
+"syntaxmarkering"
+
+msgid "_Handle Bookmarks..."
+msgstr "_Hantera bokmärken..."
+
+msgid "Add to Boo_kmarks"
+msgstr "Lägg till i _Bokmärken"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "Lägg till aktuell post i bokmärkeslistan"
+
+msgid "Remove from Boo_kmarks"
+msgstr "_Ta bort från bokmärken"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "Ta bort aktuell post från bokmärkeslistan"
+
+msgid "E_xpand All Nodes"
+msgstr "E_xpandera alla poster"
+
+msgid "Expand All the Tree Nodes"
+msgstr "Expandera alla trädposter"
+
+msgid "_Collapse All Nodes"
+msgstr "_Komprimera alla poster"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "Komprimera alla trädposter"
+
+msgid "Node _Up"
+msgstr "Post _upp"
+
+msgid "Move the Selected Node Up"
+msgstr "Flytta upp markerad post"
+
+msgid "Node _Down"
+msgstr "Post _ner"
+
+msgid "Move the Selected Node Down"
+msgstr "Flytta ner markerad post"
+
+msgid "Node _Left"
+msgstr "Post åt _vänster"
+
+msgid "Move the Selected Node Left"
+msgstr "Flytta markerad post åt vänster"
+
+msgid "Node _Right"
+msgstr "Post åt _höger"
+
+msgid "Move the Selected Node Right"
+msgstr "Flytta markerad post åt höger"
+
+msgid "Node Change _Parent..."
+msgstr "Byt _överordnad post..."
+
+msgid "Change the Selected Node's Parent"
+msgstr "Ändra markerade posters överordnad"
+
+msgid "Sort Tree _Ascending"
+msgstr "Sortera trädet s_tigande"
+
+msgid "Sort the Tree Ascending"
+msgstr "Sortera trädet stigande"
+
+msgid "Sort Tree _Descending"
+msgstr "Sortera trädet s_junkande"
+
+msgid "Sort the Tree Descending"
+msgstr "Sortera trädet sjunkande"
+
+msgid "Sort Siblings A_scending"
+msgstr "Sortera underposter s_tigande"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "Sortera alla underposter till markerad post stigande"
+
+msgid "Sort Siblings D_escending"
+msgstr "Sortera underposter s_junkande"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "Sortera alla underposter till markerad post sjunkande"
+
+msgid "De_lete Node"
+msgstr "T_a bort post"
+
+msgid "Delete the Selected Node"
+msgstr "Ta bort markerad post"
+
+msgid "Find/Replace"
+msgstr "Sök/Ersätt"
+
+msgid "_Quick Node Selection..."
+msgstr "_Snabbpostval..."
+
+msgid "Quick Node Selection"
+msgstr "Snabbpostval"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "Sök i _postnamn och taggar..."
+
+msgid "Find in Nodes Names and Tags"
+msgstr "Sök i postnamn och taggar"
+
+msgid "_Find in Node Content..."
+msgstr "_Sök i postinnehåll..."
+
+msgid "Find into the Selected Node Content"
+msgstr "Sök i markerad posts innehåll"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "Sök _i flera poster..."
+
+msgid "Find in Multiple Nodes"
+msgstr "Sök i flera poster"
+
+msgid "Find _Again"
+msgstr "Sök _igen"
+
+msgid "Iterate the Last Find Operation"
+msgstr "Upprepa senaste sökningen"
+
+msgid "Find _Back"
+msgstr "Sök _bakåt"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "Upprepa senaste sökningen i omvänd ordning"
+
+msgid "_Replace in Node Content..."
+msgstr "_Ersätt i postinnehåll..."
+
+msgid "Replace into the Selected Node Content"
+msgstr "Ersätt i markerad posts innehåll"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "Ersätt i _flera poster..."
+
+msgid "Replace A_gain"
+msgstr "Ersätt _igen"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "Upprepa senaste ersättningen"
+
+msgid "Show All Matches _Dialog..."
+msgstr "Visa dialog för _alla matchningar..."
+
+msgid "Show Search All Matches Dialog"
+msgstr "Visa dialog för sök alla matchningar"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "_Ta bort alla undantag från sökning"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "Ta bort alla trädpostsegenskaper för undantag från sökning"
+
+msgid "View"
+msgstr "Visa"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "Visa/Dölj _trädutforskare"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "Visa/Dölj trädstruktur"
+
+msgid "Show/Hide Te_rminal"
+msgstr "Visa/Dölj te_rminal"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "Visa/Dölj terminal"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "Växla fokus träd/te_xt"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "Växla fokus mellan terminal och text"
+
+msgid "Show/Hide _Menubar"
+msgstr "Visa/Dölj _menyfält"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "Visa/Dölj menyfält"
+
+msgid "Show/Hide Tool_bar"
+msgstr "Visa/Dölj _verktygsfält"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "Visa/Dölj verktygsfält"
+
+msgid "Show/Hide _Statusbar"
+msgstr "Visa/Dölj _statusfält"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr "Visa/Dölj statusfält"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "Visa/Dölj _rader mellan överordnad post och underpost"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "Visa/Dölj rader mellan överordnad post och underpost"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "Visa/Dölj postnamns_rubrik"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "Visa/Dölj postnamnsrubrik"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "_Fokusera träd/text"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "Växla fokus mellan träd och text"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "_Öka storleken på verktygsfältets ikoner"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "Öka storleken på verktygsfältets ikoner"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "_Minska storleken på verktygsfältets ikoner"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "Minska storleken på verktygsfältets ikoner"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "Fler senast _besökta poster i postnamnhuvudet"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "Öka antalet senast besökta poster i postnamnhuvudet"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "Färre senast _besökta poster i postnamnhuvudet"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "Minska antalet senast besökta poster i postnamnhuvudet"
+
+msgid "Full Screen _On/Off"
+msgstr "Helskärmsläge på/av"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "Helskärmsläge på/av"
+
+msgid "_Always On Top On/Off"
+msgstr "_Alltid överst - På/Av"
+
+msgid "Always On Top On/Off"
+msgstr "Alltid överst - På/Av"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "Inaktivera _Menyfält i namnlisten"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "Placera inte menyfältet i namnlisten"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "Aktivera _menyfält i namnlisten"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "Placera inte menyfältet i namnlisten"
+
+msgid "Import"
+msgstr "Importera"
+
+msgid "From _OliveSet File"
+msgstr "Från _OliveSet-fil"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "Lägg till poster från en OliveSet-fil till aktuellt träd"
+
+msgid "From _OliveSet Folder"
+msgstr "Från _OliveSet-mapp"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "Lägg till poster från en OliveSet-mapp till aktuellt träd"
+
+msgid "From _Indented List File"
+msgstr "Från i_ndragen listfil-fil"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "Lägg till poster från en indragen listfil till aktuellt träd"
+
+msgid "From _Plain Text File"
+msgstr "Från _oformaterad textfil"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "Lägg till en post från en oformaterad textfil till aktuellt träd"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "Från _mapp med Plain Text-filer"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr ""
+"Lägg till poster från en mapp med oformaterade textfiler till aktuellt träd"
+
+msgid "From _HTML File"
+msgstr "Från _HTML-fil"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "Lägg till en post från en HTML-fil till aktuellt träd"
+
+msgid "From _Folder of HTML Files"
+msgstr "Från _mapp med HTML-filer"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "Lägg till poster från en mapp med HTML-filer till aktuellt träd"
+
+msgid "From _Markdown File"
+msgstr "Från _Markdown-fil"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "Lägg till en post från en Markdown-fil till aktuellt träd"
+
+msgid "From _Folder of Markdown Files"
+msgstr "Från _mapp med Markdown-filer"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "Lägg till poster från en mapp med Markdown-filer till aktuellt träd"
+
+msgid "From _Gnote Folder"
+msgstr "Från _Gnote-mapp"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "Lägg till poster från en Gnote-mapp till aktuellt träd"
+
+msgid "From _KeepNote Folder"
+msgstr "Från _KeepNote-mapp"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "Lägg till poster från en KeepNote-mapp till aktuellt träd"
+
+msgid "From _Leo File"
+msgstr "Från _Leo-fil"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "Lägg till poster från en Leo-fil till aktuellt träd"
+
+msgid "From _Mempad File"
+msgstr "Från _Mempad-fil"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "Lägg till poster från en Mempad-fil till aktuellt träd"
+
+msgid "From _NoteCase HTML File"
+msgstr "Från _NoteCase HTML-fil"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "Lägg till poster från en NoteCase HTML-fil till aktuellt träd"
+
+msgid "From _RedNotebook HTML File"
+msgstr "Från _RedNotebook HTML-fil"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "Lägg till poster från en RedNotebook HTML-fil till aktuellt träd"
+
+msgid "From T_omboy Folder"
+msgstr "Från T_omboy-mapp"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "Lägg till poster från en Tomboy-mapp till aktuellt träd"
+
+msgid "From T_reepad Lite File"
+msgstr "Från T_reepad Lite-fil"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "Lägg till poster från en Treepad Lite-fil till aktuellt träd"
+
+msgid "From _Zim Folder"
+msgstr "Från _Zim-mapp"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "Lägg till poster från en Zim-mapp till aktuellt träd"
+
+msgid "Export"
+msgstr "Exportera"
+
+msgid "Export To _PDF"
+msgstr "Exportera till _PDF"
+
+msgid "Export To PDF"
+msgstr "Exportera till PDF"
+
+msgid "Export To _HTML"
+msgstr "Exportera till _HTML"
+
+msgid "Export To HTML"
+msgstr "Exportera till HTML"
+
+msgid "Export to Plain _Text"
+msgstr "Exportera till oformaterad _text"
+
+msgid "Export to Plain Text"
+msgstr "Exportera till oformaterad text"
+
+msgid "_Export To OliveSet"
+msgstr "_Exportera till OliveSet"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "Exportera till OliveSet-fil eller -mapp"
+
+msgid "Help"
+msgstr "Hjälp"
+
+msgid "_Check Newer Version"
+msgstr "_Sök efter en nyare version"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "Sök efter en nyare version online"
+
+msgid "_Website"
+msgstr "_Webbsida"
+
+msgid "Visit OliveSet's Website"
+msgstr "Besök OliveSet's webbplats"
+
+msgid "_Source Code"
+msgstr "_Källkod"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "Bläddra i OliveSet's källkod online"
+
+msgid "_Report a Bug"
+msgstr "_Rapportera ett fel"
+
+msgid "Report a Bug in OliveSet"
+msgstr "Rapportera ett fel i OliveSet"
+
+msgid "_Donate"
+msgstr "_Donera"
+
+msgid "Donate to Support OliveSet"
+msgstr "Donera för att stödja OliveSet"
+
+msgid "Online _Manual"
+msgstr "Online-_manual"
+
+msgid "OliveSet's Online Manual"
+msgstr "OliveSet's online-manual"
+
+msgid "_About"
+msgstr "_Om"
+
+msgid "_Open Preferences Directory"
+msgstr "Öppna _inställningsmappen"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "Öppna mappen med inställningsfiler"
+
+msgid "C_ut Anchor"
+msgstr "Klipp ut _fästpunkt"
+
+msgid "Cut the Selected Anchor"
+msgstr "Klipp ut markerad fästpunkt"
+
+msgid "_Copy Anchor"
+msgstr "_Kopiera fästpunkt"
+
+msgid "Copy the Selected Anchor"
+msgstr "Kopiera markerad fästpunkt"
+
+msgid "_Delete Anchor"
+msgstr "_Ta bort fästpunkt"
+
+msgid "Delete the Selected Anchor"
+msgstr "Ta bort markerad fästpunkt"
+
+msgid "Edit _Anchor..."
+msgstr "Redigera _fästpunkt..."
+
+msgid "Edit the Underlying Anchor"
+msgstr "Redigera den underliggande fästpunkten"
+
+msgid "Copy Anchor Link"
+msgstr "Kopiera fästpunktslänk"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "Kopiera länk till underliggande fästpunkt, till urklipp"
+
+msgid "C_ut Embedded File"
+msgstr "Klipp ut _inbäddad fil"
+
+msgid "Cut the Selected Embedded File"
+msgstr "Klipp ut markerad inbäddad fil"
+
+msgid "_Copy Embedded File"
+msgstr "_Kopiera inbäddad fil"
+
+msgid "Copy the Selected Embedded File"
+msgstr "Kopiera markerad inbäddad fil"
+
+msgid "_Delete Embedded File"
+msgstr "_Ta bort inbäddad fil"
+
+msgid "Delete the Selected Embedded File"
+msgstr "Ta bort markerad inbäddad fil"
+
+msgid "Open Embedded File"
+msgstr "Öppna inbäddad fil"
+
+msgid "_Rename"
+msgstr "_Byt namn"
+
+msgid "Rename Embedded File"
+msgstr "Byt namn på inbäddad fil"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "_Spara LatexBox som PNG..."
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "Spara markerad LatexBox som en PNG-fil"
+
+msgid "_Edit LatexBox..."
+msgstr "_Redigera LatexBox..."
+
+msgid "Edit the Selected LatexBox"
+msgstr "Redigera markerad LatexBox"
+
+msgid "C_ut LatexBox"
+msgstr "Klipp ut _LatexBox"
+
+msgid "Cut the Selected LatexBox"
+msgstr "Klipp ut markerad LatexBox"
+
+msgid "_Copy LatexBox"
+msgstr "_Kopiera LatexBox"
+
+msgid "Copy the Selected LatexBox"
+msgstr "Kopiera markerad LatexBox"
+
+msgid "_Delete LatexBox"
+msgstr "_Ta bort LatexBox"
+
+msgid "Delete the Selected LatexBox"
+msgstr "Ta bort markerad LatexBox"
+
+msgid "_Save Image as PNG..."
+msgstr "_Spara bild som PNG..."
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "Spara markerad bild som en PNG-fil"
+
+msgid "_Edit Image..."
+msgstr "_Redigera bild..."
+
+msgid "Edit the Selected Image"
+msgstr "Redigera markerad bild"
+
+msgid "C_ut Image"
+msgstr "Klipp ut _bild"
+
+msgid "Cut the Selected Image"
+msgstr "Klipp ut markerad bild"
+
+msgid "_Copy Image"
+msgstr "_Kopiera bild"
+
+msgid "Copy the Selected Image"
+msgstr "Kopiera markerad bild"
+
+msgid "_Delete Image"
+msgstr "_Ta bort bild"
+
+msgid "Delete the Selected Image"
+msgstr "Ta bort markerad bild"
+
+msgid "Edit _Link..."
+msgstr "Redigera _länk..."
+
+msgid "Edit the Link Associated to the Image"
+msgstr "Redigera länken som associeras med bilden"
+
+msgid "D_ismiss Link"
+msgstr "A_vfärda länk"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "Avfärda länken som associeras med bilden"
+
+msgid "Show/Hide _OliveSet"
+msgstr "Visa/Dölj _OliveSet"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "Visa/Dölj OliveSet"
+
+msgid "Edit the Underlying Link"
+msgstr "Redigera den underliggande länken"
+
+msgid "C_ut Link"
+msgstr "Klipp ut _länk"
+
+msgid "Cut the Selected Link"
+msgstr "Klipp ut markerad länk"
+
+msgid "_Copy Link"
+msgstr "_Kopiera länk"
+
+msgid "Copy the Selected Link"
+msgstr "Kopiera markerad länk"
+
+msgid "Dismiss the Selected Link"
+msgstr "Avfärda markerad länk"
+
+msgid "_Delete Link"
+msgstr "_Ta bort länk"
+
+msgid "Delete the Selected Link"
+msgstr "Ta bort markerad länk"
+
+msgid "English"
+msgstr "Engelska"
+
+msgid "Text and Code"
+msgstr "Text och kod"
+
+msgid "Plain Text and Code"
+msgstr "Oformaterad text och kod"
+
+msgid "Tree Explorer"
+msgstr "Trädutforskare"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Interface"
+msgstr "Gränssnitt"
+
+msgid "Links"
+msgstr "Länkar"
+
+msgid "Toolbar"
+msgstr "Verktygsfält"
+
+msgid "Keyboard Shortcuts"
+msgstr "Tangenbordsgenvägar"
+
+msgid "Miscellaneous"
+msgstr "Diverse"
+
+msgid "Monospace"
+msgstr "Monospace"
+
+msgid "Code Font"
+msgstr "Kodteckensnitt"
+
+msgid "Terminal Font"
+msgstr "Terminalteckensnitt"
+
+msgid "Tree Font"
+msgstr "Trädteckensnitt"
+
+msgid "Reset to Default"
+msgstr "Återställ till standard"
+
+msgid "Fonts"
+msgstr "Teckensnitt"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "Aktivera ordräknare i statusfältet"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "Visa dokumenmappen i fönsterrubriken"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "Visa fullständig sökväg i postnamnsrubriken"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "Dedikerad bokmärkesmeny i menyfältet"
+
+msgid "Menubar in Titlebar"
+msgstr "Menyfält i namnlisten"
+
+msgid "Toolbar Icons Size"
+msgstr "Verktygsfältets ikonstorlek"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "Senast besökta poster i postrubriken"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "Minsta storlek på skrollisten (0=Systemstandard)"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "Textredigerare för rullningslistöverlägg"
+
+msgid "System Default"
+msgstr "Systemstandard"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nej"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "Aktivera knappbeskrivning vid hovring"
+
+msgid "Menus"
+msgstr "Menyer"
+
+msgid "Max Search Results per Page"
+msgstr "Max anta sökträffar per sida"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "Spara sök/ersätt-historik mellan sessioner"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "Aktivera anpassad klickåtgärd för webblänk"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "Aktivera anpassad klickåtgärd för fillänk"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "Aktivera anpassad klickåtgärd för mapplänk"
+
+msgid "Custom Actions"
+msgstr "Anpassade åtgärder"
+
+msgid "Colors"
+msgstr "Färger"
+
+msgid "Double Click for Link Action"
+msgstr "Dubbelklick för länkåtgärd"
+
+msgid "Underline Links"
+msgstr "Stryk under länkar"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "Använd relativa sökvägar för filer och mappar"
+
+msgid "Anchor Size"
+msgstr "Fästpunktsstorlek"
+
+msgid "Change Selected"
+msgstr "Ändra markerat"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr "Tangenbordsgenvägen \"%s\" används redan."
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "Nuvarande associerad åtgärd är \"%s\""
+
+msgid "Do you want to steal the shortcut?"
+msgstr "Vill du stjäla genvägen?"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "Redigera tangentbordsgenväg"
+
+msgid "No Keyboard Shortcut"
+msgstr "Ingen tangentbordsgenväg"
+
+msgid "Autosave on Quit"
+msgstr "Spara automatiskt vid avslut"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "Skapa en säkerhetskopia före spara"
+
+msgid "Number of Backups to Keep"
+msgstr "Antal säkerhetskopior att spara"
+
+msgid "Custom Backup Directory"
+msgstr "Anpassad säkerhetskopieringsmapp"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "Lagring av flera filer, använd inbäddat filnamn på disk"
+
+msgid "Saving"
+msgstr "Sparar"
+
+msgid "Automatically Check for Newer Version"
+msgstr "Sök automatiskt efter nya versioner"
+
+msgid "Reload Document From Last Session"
+msgstr "Läs in dokument från senaste sessionen"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "Visa startdialogruta när inget dokument är inläst"
+
+msgid "Reload After External Update to CT* File"
+msgstr "Läs in igen efter extern uppdatering till CT*-fil"
+
+msgid "Enable Debug Log"
+msgstr "Aktivera felsökningslogg"
+
+msgid "Debug Log Directory"
+msgstr "Mapp för felsökningslogg"
+
+msgid "Enable System Tray Docking"
+msgstr "Aktivera systemfältsdockning"
+
+msgid "Start Minimized in the System Tray"
+msgstr "Starta minimerad till systemfältet"
+
+msgid "System Tray"
+msgstr "Systemfältet"
+
+msgid "Language"
+msgstr "Språk"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Username"
+msgstr "Användarnamn"
+
+msgid "Password"
+msgstr "Lösenord"
+
+msgid "Proxy"
+msgstr "Proxy"
+
+msgid "Show White Spaces"
+msgstr "Visa blanksteg"
+
+msgid "Highlight Current Line"
+msgstr "Belys aktuell rad"
+
+msgid "Text Editor"
+msgstr "Textredigerare"
+
+msgid "Internal Terminal Shell"
+msgstr "Internt terminalskal"
+
+msgid "Add"
+msgstr "Lägg till"
+
+msgid "Remove Selected"
+msgstr "Ta bort markerat"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "Kommando per post/kodboxtyp"
+
+msgid "Terminal Command"
+msgstr "Terminalkommando"
+
+msgid "Code Execution"
+msgstr "Kodexekvering"
+
+msgid "Select Element to Add"
+msgstr "Välj element att lägga till"
+
+msgid "Enable Spell Check"
+msgstr "Aktivera stavningskontroll"
+
+msgid "Spell Check Language"
+msgstr "Stavningsspråk"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "Expandera kodboxar automatiskt"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "Kodrutor har verktygsfält"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "Tröskelvärde för antal tabellceller i förenklat gränssnitt"
+
+msgid "Embedded File Icon Size"
+msgstr "Ikonstorlek för inbäddad fil"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "Inbäddad filstorleksgräns (MB)"
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "Visa filnamn ovanför ikon för inbäddad fil"
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "Markera inte objekt automatiskt vid enkelklick"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr "Lösning för urklippsrelaterade frysningar i KDE 6 med Klipper"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "Gräns för ångrade steg per post"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "Länka CamelCase-text automatiskt till posten med samma namn"
+
+msgid "Auto Link URLs"
+msgstr "Länka webbadresser automatiskt"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "Markera hela stycket vid trippelklick"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "Aktivera automatisk ersättning av Markdown (Experimentellt)"
+
+msgid "Scale"
+msgstr "Skala"
+
+msgid "Italic"
+msgstr "Kursiv"
+
+msgid "Underline"
+msgstr "Stryk under"
+
+msgid "Text Color Foreground"
+msgstr "Textfärg förgrund"
+
+msgid "Text Color Background"
+msgstr "Textfärgs bakgrund"
+
+msgid "Small"
+msgstr "Liten"
+
+msgid "Scalable Tags"
+msgstr "Skalbara taggar"
+
+msgid "Chars for Bulleted List"
+msgstr "Tecken för punktlista"
+
+msgid "Chars for Todo List"
+msgstr "Tecken för Att-göra-listan"
+
+msgid "Chars for Table Of Content"
+msgstr "Tecken för tabell över innehåll"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "Tecken för smarta dubbla citattecken"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "Tecken för smarta enkla citattecken"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "Aktivera automatisk ersättning av smarta citationstecken"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "Aktivera automatisk ersättning av tecken"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "Automatisk ersättning av tecken som stöds"
+
+msgid "Only at the Start of the Line"
+msgstr "Endast i början på raden"
+
+msgid "Tab Width"
+msgstr "Tabulatorbredd"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Infoga blanksteg istället för tabbar"
+
+msgid "Use Line Wrapping"
+msgstr "Använd radbrytning"
+
+msgid "Line Wrapping Indentation"
+msgstr "Radbrytningsindrag"
+
+msgid "Enable Automatic Indentation"
+msgstr "Aktivera automatiskt indrag"
+
+msgid "Scroll Beyond Last Line"
+msgstr "Skrolla bortom sista raden"
+
+msgid "Cursor Blinking"
+msgstr "Blinkande markör"
+
+msgid "On"
+msgstr "På"
+
+msgid "Off"
+msgstr "Av"
+
+msgid "Text Margin: Left"
+msgstr "Textmarginal: Vänster"
+
+msgid "Right"
+msgstr "Höger"
+
+msgid "Vertical Space Around Lines"
+msgstr "Vertikalt mellanrum runt rader"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "Vertikalt mellanrum i radbrutna rader"
+
+msgid "Timestamp Format"
+msgstr "Tidsstämpelformat"
+
+msgid "Horizontal Rule"
+msgstr "Horisontell avgränsare"
+
+msgid "Chars to Select at Double Click"
+msgstr "Tecken att välja vid dubbelklick"
+
+msgid "Light Background, Dark Text"
+msgstr "Ljus bakgrund, mörk text"
+
+msgid "Dark Background, Light Text"
+msgstr "Mörk bakgrund, ljus text"
+
+msgid "Custom Background"
+msgstr "Anpassad bakgrund"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Selection Background"
+msgstr "Markeringsbakgrund"
+
+msgid "Table"
+msgstr "Tabell"
+
+msgid "Code"
+msgstr "Kod"
+
+msgid "Style Schemes"
+msgstr "Stilscheman"
+
+msgid "Text Foreground"
+msgstr "Textförgrund"
+
+msgid "Text Background"
+msgstr "Textbakgrund"
+
+msgid "Selection Foreground"
+msgstr "Markeringsförgrund"
+
+msgid "Cursor"
+msgstr "Markör"
+
+msgid "Current Line Background"
+msgstr "Bakgrund för aktuell rad"
+
+msgid "Line Numbers Foreground"
+msgstr "Radnummerförgrund"
+
+msgid "Line Numbers Background"
+msgstr "Bakgrund för radnummer"
+
+msgid "Style Scheme Editor"
+msgstr "Stilschemaredigerare"
+
+msgid "Set Dark Theme Icons"
+msgstr "Ange mörka temaikoner"
+
+msgid "Set Light Theme Icons"
+msgstr "Ange ljusa temaikoner"
+
+msgid "Set Default Icons"
+msgstr "Ange standardikoner"
+
+msgid "Icon Theme"
+msgstr "Ikontema"
+
+msgid "Split Toolbar"
+msgstr "Dela verktygsfält"
+
+msgid "Use Different Cherries per Level"
+msgstr "Använd olika körsbär per nivå"
+
+msgid "No Icon"
+msgstr "Ingen ikon"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "Dölj extraikon på höger sida"
+
+msgid "Default Text Nodes Icons"
+msgstr "Standardikoner för textposter"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "Återställ status för expandera/komprimera"
+
+msgid "Expand all Nodes"
+msgstr "Expandera alla poster"
+
+msgid "Collapse all Nodes"
+msgstr "Komprimera alla poster"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "Poster i bokmärken alltid synliga"
+
+msgid "Nodes Status at Startup"
+msgstr "Poststatus vid uppstart"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "Radbrytningsbredd för trädposter"
+
+msgid "Display Tree on the Right Side"
+msgstr "Visa trädet på höger sida"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "Flytta fokus till text vid musklick"
+
+msgid "Expand Node at Mouse Click"
+msgstr "Expandera post vid musklick"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "\"%s\" är inte ett giltigt arkiv"
+
+msgid "Writing to Disk..."
+msgstr "Skriver till disk..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "Du har inte skrivbehörighet i %s"
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "Ange lösenord för %s"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr ""
+"Misslyckad integritetskontroll av det sparade dokumentet. Försök med Arkiv --"
+"> Spara som"
+
+msgid "Failed to encrypt the file"
+msgstr "Kunde inte kryptera filen"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "En återställning från säkerhetskopia var nödvändig för:"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr "Databasfilen %s är skadad, se loggen för mer detaljerad info."
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s skrivning misslyckades - Filen saknas. Återanslut USB-disk eller delad "
+"resurs!"
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr ""
+"%s skrivning misslyckades - Är filen blockerad av ett synkroniseringsprogram?"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s återöppning misslyckades - Filen saknas. Återanslut USB-disk eller delad "
+"resurs!"
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "OliveSet hierarkiska anteckningar"
+
+msgid "_Exit OliveSet"
+msgstr "Avsluta OliveSet"
+
+msgid "HTML Document"
+msgstr "HTML-dokument"
+
+msgid "Markdown Document"
+msgstr "Markdown-dokument"
+
+msgid "Mempad Document"
+msgstr "Mempad-dokument"
+
+msgid "Treepad Document"
+msgstr "Treepad-dokument"
+
+msgid "Leo Document"
+msgstr "Leo-dokument"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "Vill du verkligen återställa till standardvärden?"
+
+#~ msgid "Replace in Multiple Nodes..."
+#~ msgstr "Ersätt i flera poster..."
+
+#~ msgid "Find in Multiple Nodes..."
+#~ msgstr "Sök i flera poster..."
+
+#~ msgid "Insert T_OC..."
+#~ msgstr "Infoga T_OC..."
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "Infoga tabell över innehåll"
+
+#~ msgid ""
+#~ "Backup files are by default 3 in the same folder of the corrupted "
+#~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
+#~ "the backup with one tilde: copy the file to another directory, remove the "
+#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "with two tildes and if it still fails try the one with three tildes."
+#~ msgstr ""
+#~ "Säkerhetskopieringsfiler finns som standard 3 i samma mapp som det "
+#~ "skadade dokumentet, med samma namn plus efterföljande tilder (~, ~~, "
+#~ "~~~). Prova först säkerhetskopian med en tilde: Kopiera filen till en "
+#~ "annan katalog, ta bort den efterföljande tilde och öppna med oliveset. "
+#~ "Om det fortfarande misslyckas, prova den med två tilder och om det "
+#~ "fortfarande misslyckas prova den med tre tilder."
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "Programmets online-manual"
+
+#~ msgid "OliveSet Document"
+#~ msgstr "OliveSet-dokument"
+
+#~ msgid "Not Protected"
+#~ msgstr "Inte skyddad"
+
+#~ msgid "Password Protected"
+#~ msgstr "Lösenordsskyddad"
+
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "Dokumentet \"%s\" hittades inte"
+
+#~ msgid "Find _in Multiple Nodes"
+#~ msgstr "Sök _i flera poster"
+
+#~ msgid "Replace in _Multiple Nodes"
+#~ msgstr "Ersätt i _flera poster"
+
+#~ msgid ""
+#~ "Pandoc executable could not be found, please ensure it is in your path"
+#~ msgstr "Körbar Pandoc kunde inte hittas, tillse att den finns på din sökväg"
+
+#~ msgid "From File using _Pandoc"
+#~ msgstr "Från fil med hjälp av _Pandoc"
+
+#~ msgid "Add a node to the current tree using Pandoc"
+#~ msgstr "Lägg till en post till aktuellt träd, med hjälp av Pandoc"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "Det nya språket blir tillgängligt först efter omstart av OliveSet"
+
+#~ msgid "click me"
+#~ msgstr "klicka mig"
+
+#~ msgid "_Format"
+#~ msgstr "_Formatera"
+
+#~ msgid "_Tools"
+#~ msgstr "_Verktyg"
+
+#~ msgid "_List"
+#~ msgstr "_Lista"
+
+#~ msgid "_Row"
+#~ msgstr "_Rad"
+
+#~ msgid "_Print"
+#~ msgstr "_Skriv ut"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "Infoga ti_dsstämpel"
+
+#~ msgid "Quit"
+#~ msgstr "Avsluta"
+
+#~ msgid "Replace in Selected Node and Subnodes"
+#~ msgstr "Ersätt i markerad post och underposter"
+
+#~ msgid "Search in Selected Node and Subnodes"
+#~ msgstr "Sök i markerad post med underposter"
+
+#~ msgid "Search in All Nodes"
+#~ msgstr "Sök i alla poster"
+
+#~ msgid "Replace in Node Names..."
+#~ msgstr "Ersätt i postnamn..."
+
+#~ msgid "Search For a Node Name..."
+#~ msgstr "Sök efter ett postnamn..."
+
+#~ msgid "Monospace Text Color Background"
+#~ msgstr "Monospace textfärg bakgrund"
+
+#~ msgid "Find into All the Tree Nodes Contents"
+#~ msgstr "Sök i alla trädposters innehåll"
+
+#~ msgid "Find in _Selected Node and Subnodes Contents"
+#~ msgstr "Sök i _markerad posts och underposters innehåll"
+
+#~ msgid "Find into the Selected Node and Subnodes Contents"
+#~ msgstr "Sök i markerad posts och underposters innehåll"
+
+#~ msgid "Replace in _All Nodes Contents"
+#~ msgstr "Ersätt i _alla posters innehåll"
+
+#~ msgid "Replace into All the Tree Nodes Contents"
+#~ msgstr "Ersätt i alla trädposters innehåll"
+
+#~ msgid "Replace in _Selected Node and Subnodes Contents"
+#~ msgstr "Ersätt i _markerad post och underposters innehåll"
+
+#~ msgid "Replace into the Selected Node and Subnodes Contents"
+#~ msgstr "Ersätt i markerad post och underposters innehåll"
+
+#~ msgid "Replace in Nodes _Names"
+#~ msgstr "Ersätt i post_namn"
+
+#~ msgid "_Execute CodeBox Code"
+#~ msgstr "_Exekvera kodboxkod"
+
+#~ msgid "For_matting"
+#~ msgstr "For_matering"
+
+#~ msgid "Nodes _Import"
+#~ msgstr "_Importera poster"
+
+#~ msgid "Nodes E_xport"
+#~ msgstr "E_xportera poster"
+
+#~ msgid "E_xport"
+#~ msgstr "E_xportera"
+
+#~ msgid "Editor"
+#~ msgstr "Redigerare"
+
+#~ msgid "Monospace Background"
+#~ msgstr "Bakgrund för fastbredd"
+
+#~ msgid "Export to PDF at specified file path"
+#~ msgstr "Exportera till PDF på angiven mappsökväg"
+
+#~ msgid "Export to Multiple Plain _Text Files"
+#~ msgstr "Exportera till flera oformaterade _textfiler"
+
+#~ msgid "Export to Multiple Plain Text Files"
+#~ msgstr "Exportera till flera oformaterade textfiler"
+
+#~ msgid "Export to _Single Plain Text File"
+#~ msgstr "Exportera till _enskild oformaterad textfil"
+
+#~ msgid "Unknown"
+#~ msgstr "Okänd"
+
+#~ msgid "(no suggestions)"
+#~ msgstr "(inga förslag)"
+
+#~ msgid "Add \"{}\" to Dictionary"
+#~ msgstr "Lägg till \"{}\" i ordboken"
+
+#~ msgid "Ignore All"
+#~ msgstr "Ignorera alla"
+
+#~ msgid "Languages"
+#~ msgstr "Språk"
+
+#~ msgid "Suggestions"
+#~ msgstr "Förslag"
+
+#~ msgid "NoteCase Document"
+#~ msgstr "NoteCase-dokument"
+
+#~ msgid "EPIM HTML Document"
+#~ msgstr "EPIM HTML-dokument"
+
+#~ msgid "KeyNote Document"
+#~ msgstr "KeyNote-dokument"
+
+#~ msgid "Knowit Document"
+#~ msgstr "Knowit-dokument"
+
+#~ msgid ""
+#~ "Binary Executable '7za' Not Found, Check The Package 'p7zip-full' to be "
+#~ "Installed Properly"
+#~ msgstr ""
+#~ "Binär exekverbar \"7za\" hittades inte. Tillse att paketet \"p7zip-full\" "
+#~ "är korrekt installerat."
+
+#~ msgid "Type To Search..."
+#~ msgstr "Skriv för att söka..."
+
+#~ msgid "Command Name"
+#~ msgstr "Kommandonamn"
+
+#~ msgid "Not Any H1, H2 or H3 Formatting Found"
+#~ msgstr "Ingen H1-, H2- eller H3-formatering hittades"
+
+#~ msgid "Min Width"
+#~ msgstr "Minimibredd"
+
+#~ msgid "Max Width"
+#~ msgstr "Maxbredd"
+
+#~ msgid "Click to Edit the Column Settings"
+#~ msgstr "Klicka för att redigera kolumninställningar"
+
+#~ msgid "Table Column Action"
+#~ msgstr "Tabellkolumnåtgärd"
+
+#~ msgid "From _Basket Folder"
+#~ msgstr "Från _Basket-mapp"
+
+#~ msgid "Add Nodes of a Basket Folder to the Current Tree"
+#~ msgstr "Lägg till poster från en korgmapp till aktuellt träd"
+
+#~ msgid "From _EssentialPIM HTML File"
+#~ msgstr "Från _EssentialPIM HTML-fil"
+
+#~ msgid "Add Node from an EssentialPIM HTML File to the Current Tree"
+#~ msgstr "Lägg till en post från en EssentialPIM HTML-fil till aktuellt träd"
+
+#~ msgid "From K_eyNote File"
+#~ msgstr "Från K_eyNote-fil"
+
+#~ msgid "Add Nodes of a KeyNote File to the Current Tree"
+#~ msgstr "Lägg till poster från en KeyNote-fil till aktuellt träd"
+
+#~ msgid "From K_nowit File"
+#~ msgstr "Från K_nowit-fil"
+
+#~ msgid "Add Nodes of a Knowit File to the Current Tree"
+#~ msgstr "Lägg till poster från en Knowit-fil till aktuellt träd"
+
+#~ msgid "From _TuxCards File"
+#~ msgstr "Från _TuxCards-fil"
+
+#~ msgid "Add Nodes of a TuxCards File to the Current Tree"
+#~ msgstr "Lägg till poster från en TuxCards-fil till aktuellt träd"
+
+#~ msgid "Insert _NewLine"
+#~ msgstr "Infoga ny _rad"
+
+#~ msgid "Insert NewLine Char"
+#~ msgstr "Infoga ny-rad-tecken"
+
+#~ msgid "Use AppIndicator for Docking"
+#~ msgstr "Använd programindikator för dockning"
+
+#~ msgid "Cancel"
+#~ msgstr "Avbryt"
+
+#~ msgid "The Characters  %s  are Not Allowed"
+#~ msgstr "Tecknen  %s  är inte tillåtna"

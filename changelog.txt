@@ -1,0 +1,804 @@
+1.7.2 (August 22nd, 2026)
+  * fixed crash introduced with word count changes in v1.7.1 (#2890)
+  * moved tree explorer auxiliary icon (e.g. indicating read only) between node icon and node name (#2458)
+  * fixed selecting a word via double click in a codebox or table cell not working
+  * improved search in node name and tags to support multiple words across both (#2894)
+  * improved pasting rich text from mismatching theme (e.g. from dark theme source to locally configured light theme)
+  * fixed embedded files cannot be opened anymore with custom action on windows (#2892)
+  * added support for pasting web content containing .webp images on windows (#2907)
+  * fixed LatexBox containing non ASCII characters loses end bytes after saving in SQLite/reopening (#2903, @cartesiana)
+  * fixed crash selecting syntax highlighting language id 'def' not meant to be in the list (#2906)
+  * fixed regression after indent/unindent multiple list items in a selection - if the selection included non list items, those were not indented (#2881)
+  * when a numbered list is split by pressing enter twice at the end of an intermediate list item, the second part of the list now decrements as the temporary intermediate list item is removed
+  * increased margin at the bottom of the tree explorer to prevent the hovering horizontal scrollbar from hiding the last node (#2891)
+  * when pasting rich text which results empty, automatically fallback to the plain text clipboard target (#2878)
+
+1.7.1 (July 18th, 2026)
+  * word count now enabled by default (can be disabled in preferences dialog, tab 'Interface')
+  * word count now counting only inside of the selection when a selection is in place (#283)
+  * word count to work also inside of codeboxes and tables
+  * tree node icons to change size with tree font
+  * added current tree node icon on the node name header
+  * support indent/unindent multiple list items when there is a selection (#2881)
+  * when toggling a formatting (e.g. bold), toggle off only if all selected text has it, otherwise toggle on (#2885)
+  * added menu items/actions to insert tomorrow's node similarly to today's node
+  * fixed regression after #2814 - the option to collapse all nodes on startup not properly working anymore (#2865)
+  * collapse all nodes action now drops expanded status at all levels (#2865)
+  * implemented safe fallback for multiFile backup directory moves (#2867)
+  * improved performance of nodes sorting algorithm (#2868)
+  * fixed copy/paste issues from firefox on mac os (#2878)
+  * 'Do Not Auto-Select Objects on Single Click' enebled by default on KDE (#2873)
+  * fixed generation of pdf when the text contains a link URL with invalid control character (e.g. '\n')
+  * fixed regression text row cut/copy/delete no longer including newline
+  * fix: avoid crash in time_format when localtime returns null (#2871)
+  * fixed warning pasting from firefox on windows
+  * when dragging a node and dropping as a child of another node, do not expand the new parent node to select the dragged child if Shift is held down
+
+1.7.0 (May 23rd, 2026)
+  * implemented new start dialog that shows when no document is loaded (e.g. after file--new instance) to better guide the user in what to do (and preferences dialog option to disable it)
+  * added confirmation dialog for when the user is searching + replacing with the option 'all, list matches' and the replace entry is empty (#2850)
+  * when searching + replacing rich text that has format or link tags, do not lose the tags
+  * when searching + replacing, all replacements were also happening inside of link targets without any option. the option has now been added in the search/replace dialog, off by default
+  * fixed issue with search with option all matches (default), and presence of the pattern also in links targets and anchors names
+  * fixed issue with search, iteratively forward / backward, and presence of the pattern also in links targets and anchors names
+  * fixed data loss when replacing attachment with same name in case of multi file data storage and option to use embedded file name on disk (#2859)
+  * support for remembering/restoring nodes children expanded status when parent node is collapsed and then expanded again (#2814)
+  * search / replace history persistence to disk is now configurable in the preferences dialog (#2849)
+  * fixed on linux links to files containing question marks don't work (#2808)
+  * fixed switch to node (-n or --node) not working if already running (#2813)
+  * improved robustness of code to notify that a change happened, saving is needed - possibly fixing reported issue (not easy to reproduce)
+  * fixed issues with copying line (Shift+Alt+C)
+  * fixed latex injection vulnerabilities (#2846)
+  * fixed when tree configured on the right hand side may have width increasing on every app start (#2847)
+  * fixed issue with tree tooltip and node names with ampersand (#2860)
+  * fixed in search results dialog, last result hidden by overlay horizontal scrollbar (#2862)
+  * added on the statusbar indication of the number of children nodes of the currently selected node
+  * implemented workaround for issue of freeze in Debian12/KDE6 caused by Klipper - added option 'Do Not Auto-Select Objects on Single Click' in preferences dialog, tab rich text (#2759)
+  * added check to avoid writing to read only document file (#2851)
+  * multi file document type, in case of bad unicode node content generated from external application, do not crash and allow the remaining nodes to open normally (#2807, work of @kindofbeard)
+  * hide the menu item to copy the current document path to clipboard if the document was never saved / has no path
+  * fixed crash importing from tomboy/gnote (#2845)
+  * all the languages translations where the maintainer could not support this release have been completed with github copilot. If you spot issues and want to help providing a better translation use https://github.com/giuspen/cherrytree/issues
+
+1.6.3 (January 12th, 2026)
+  * improved search/replace dialog with memory of the latest patterns searched for / replaced with
+  * fixed closing parenthesis not included in automatically created link (#2789)
+  * fix for drag and drop of text on windows behaving as copy, not move (#2786)
+  * added action to copy to clipboard the current document filepath (#2764)
+  * added icons for artificial intelligence chatgpt, gemini, copilot, claude
+  * fixed title of dialog to search/replace in multiple nodes (#2770)
+  * incomplete languages: ar, bg, fa, fi, fr, hi_IN, hr, hu, lt, nl, pt, sk, sv, zh_CN (want to help and update one? write me https://www.giuspen.net/feedback/)
+
+1.6.2 (September 19th, 2025)
+  * fixed links to TOCs (anchors) no longer scrolling to the target (#2768, #2766, #2389)
+  * default option for searching multiple words is back to 'exact match' as way faster; the last used option is now preserved across sessions (#2767)
+  * incomplete languages: ar, bg, el, fa, fi, fr, hi_IN, hr, hu, kk_KZ, kk_LA, lt, nl, ru, sk, sv, tr, zh_CN (want to help and update one? write me https://www.giuspen.net/feedback/)
+
+1.6.1 (September 14th, 2025)
+  * fixed search results reporting link content not limited in size causing crash in all matches dialog
+  * incomplete languages: ar, bg, el, fa, fi, fr, hi_IN, hr, hu, kk_KZ, kk_LA, lt, nl, ru, sk, sv, tr, zh_CN (want to help and update one? write me https://www.giuspen.net/feedback/)
+
+1.6.0 (September 9th, 2025)
+  * implemented support for searching for multiple words disregarding the order (aka AND) and matching any (aka OR) (#2674, #2221, #1255, #752)
+  * fixed crash when exporting to pdf (#2735)
+  * added support for search and replace also in links targets (#975, #2719)
+  * fixed issue with microsoft print to pdf causing huge font (pango markup to use <span size= rise=> instead of <sup><sub>) (#2479, #2735)
+  * fixed copy/paste and drag/drop of files from windows file manager into rich text (#2738)
+  * fix paste filepath from clipboard on windows does not recognise an image (#2737)
+  * fixed copying from code and pasting to rich text sometimes not retaining syntax highlighting colours
+  * added syntax highlighting definition for glib's GKeyFile
+  * fixed clicking on a TOC leading to an anchor that is hidden doesn't expand and select the anchor (#2389)
+  * handle bookmarks dialog, use the correct nodes icons rather than generic pin icon
+  * added option to follow links with double click rather than single click (#2736)
+  * fixed table light interface editable in read only mode (#2756)
+  * table light interface, fixed moving a column does not move the column width
+  * added in preferences dialog configurability of whether in rich text nodes to automatically create links for urls
+  * last visited nodes on node name header, added node icon beside node name and inverted order as more intuitive with more recent on the right
+  * moved preferences for 'last visited nodes on node name header' from tab 'tree explorer' to tab 'interface' and added control also in top menu view (#2746)
+  * allocated default keyboard shortcut Ctr+7,8,9 to small,subscript,superscript (#2758)
+  * fixed code that checks if a keyboard shortcut is already in use, issue with case (#2758)
+  * added possibility to configure a proxy in the preferences dialog, tab misc (#2522)
+  * incomplete languages: ar, bg, el, fa, fi, fr, hi_IN, hr, hu, kk_KZ, kk_LA, lt, nl, ru, sk, sv, tr, zh_CN (want to help and update one? write me https://www.giuspen.net/feedback/)
+
+1.5.0 (June 3rd, 2025)
+  * fixed Ctrl+V issues on ArchLinux (#2705)
+  * fixed data loss in multifile data storage when disabling option to use embedded file name on disk (#2695)
+  * fixed issue with system tray docking on windows causing unwanted auto-resize of the tree pane (#2699)
+  * fixed insert TOC not marking the text buffer for update if empty (#1484)
+  * fixed cursor stops blinking after a timeout (#2714)
+  * improved colour chooser dialog, now also supporting remove a user colour
+  * replace html non breaking spaces characters with normal spaces when the target is xml (e.g. paste from clipboard)
+  * explorer tree search by typing to use the quick node selection dialog (#1974)
+  * quick node selection dialog, added nodes icons (#2683)
+  * fixed quick node selection dialog can get too wide (#2683)
+  * added right click menu items to expand/collapse all TOC headers (#2389)
+  * fixed clear formatting can remove a collapsed anchor without expanding the hidden text (#2389)
+  * added new icons for jenkins, postgresql, spring-boot (#2677)
+  * added new icons for snowflake, vim, locale/languages (#2686)
+  * command palette, added actions icons
+  * incomplete languages: ar, el, fi, hi_IN, hr, kk_KZ, kk_LA, lt, nl, ru, sk, sv, zh_CN (want to help and update one? write me https://www.giuspen.net/feedback/)
+
+1.4.0 (March 22nd, 2025)
+  * password protected archives, enhanced encryption strength (7zip AES, work of @vitusb, from original report/patch to 7zip of @3lbios, #2211)
+  * collapsible headers, the collapsible section must not contain a bigger header, only smaller headers (#2389)
+  * collapsible headers, expand automatically when moving a row of text up/down into a collapsed secion (#2389)
+  * collapsible headers, changed expanded/collapsed icon to arrows (#2389)
+  * collapsible headers, when copy/cut a collapsed header ensure that the hidden section is also set in the clipboard (#2389)
+  * remove text formtting to also remove TOC anchors (#2389)
+  * fixed on windows copy table and paste into microsoft word results in plain text paste
+  * settings to expand codeboxes automatically now separated for width and height
+  * increased default height of the dialogs to select an element from a list
+  * updated languages ja, kk_KZ, kk_LA, ru, zh_TW
+  * incomplete languages: ar, fa, fi, hi_IN, hr, ko, lt, nl, pt, sv, zh_CN (want to help and update one? write me https://www.giuspen.net/feedback/)
+
+1.3.0 (February 6th, 2025)
+  * insert image dialog, added support for cropping (#2626, work of @Uks2)
+  * implemented table column cut/copy/paste (#2542)
+  * fixed crash at table row move up, so called heavy version
+  * fixed table export to csv with empty cells (#2028)
+  * improved html parsing (rich text from clipboard / import from html) - added support for <font style="color: rgb(255, 0, 0);">
+  * fixed issue with reloading document after external edit and encrypted documeents (#2612)
+  * fixed search missing first match after a codebox (#2631)
+  * fixed duplication of codebox toolbar callbacks after changing codebox properties (#2635, work of @Uks2)
+  * fixed issues pasting a codebox into a codebox (#2625)
+  * change cursor when hovering collapsible headers to indicate that it is clickable (#2389)
+  * collapsible headers use same icon of expand/collapse tree node (#2389)
+  * improved action that clears the formatting to retain the links (#2389)
+  * multiple files storage, added configurable option to use for the embedded files a constant name (#2354)
+  * do not add 'http://' in front of a link of type 'mailto:'
+  * preferences dialog, added buttons to reset to default to: timestamp formatting, chars to select at double click, horizontal rule
+  * chars to select at double click default, added underscore (#2581)
+  * restored support for building on ubuntu 18.04 where gtksourceview4 is not available, gtksourceview3 must be used instead (#2583)
+  * do not use a leading dot for backups inside of the home directory if snap package (#2507)
+
+1.2.0 (October 4th, 2024)
+  * dropped unmaintained and outdated libgtksourceviewmm3 for libgtksourceview4 (direct access to C API, #2562)
+  * implemented quick node selection typing part of the node name, default keyboard shortcut to Ctrl+Shift+G (#2552, work of @ericguin)
+  * implemented collapsible headers support when TOC is generated (#2389)
+  * fixed links to nodes not working when exporting to html, single file (#2570)
+  * fixed properties of fonts selected in the preferences dialog not enforced: bold, italic, stretch, variant (#2533)
+  * hyperlinks: do not automatically add the prefix http:// when a URL-like prefix already exists (#2570)
+  * fixed crash pressing Ctrl+Z while editing table light cell
+  * changed default keyboard shortcut to open codebox properties dialog to Shift+Alt+U as the previous shortcut was causing problems to german layout keyboards (#2549)
+  * fixed formatting issues with fmt 11 (#2548, #2560)
+  * added support for new language Slovak (work of Michal Fusatý)
+  * incomplete languages: ar, el, fa, fi, hi_IN, hr, kk_KZ, kk_LA, pt_BR, ru, zh_CN
+
+1.1.4 (June 30th, 2024)
+  * implemented reset of zoom with Ctrl+0 (#1835)
+  * fixed syntax error in latex box wrongly detected as a failure to access latex executable (#2534)
+  * copy link to node and copy anchor link to include absolute path to the cherrytree document and hierarchical path to node (#2452)
+  * added auto recovery from a backup (after asking the user) in case of corrupted cherrytree single file document (.ctd, .ctz, .ctb, .ctx)
+  * added warning message in case an automatic restore from backup was necessary for the new multifile data storage document
+  * fixed regression with locale in some linux systems (#2529)
+  * incomplete languages: fi, hi_IN, hu
+
+1.1.3 (June 14th, 2024)
+  * new multifile data storage, added data integrity check after save (re-read and parse) (#2505)
+  * new multifile data storage, in case of corruption, all backups are looked for data recovery starting from the most recent (#2505)
+  * fixed crash when importing text file for incorrect detection of encoding (#2492)
+  * fixed crash in case of a duplicated button configured in the toolbar (#2482)
+  * workaround for crash in Gsv::Init() -> [gtk] [critical] Class::register_derived_type(): base_query.type_name is NULL (#2518)
+  * added support for moving cursor to table cell above/below when key up pressed on first line/down pressed on the last line (#2523)
+  * added support for moving cursor to table cell previous/next when key left pressed before first character/right pressed after the last character (#2523)
+  * added in statusbar the position (row,column) of the cursor
+  * do not allow in the preferences dialog, toolbar configurator, to add a button twice (#2482)
+  * added checks to prevent a save as or export overwriting the currently open document as it is not supported (#2504)
+  * drag and drop of text, fixed issus and added support for copy instead of move
+  * fixed right click -> copy link not working if there is a text selection (#2362)
+  * fixed syntax highlighting broken in the AppImage (#2493)
+  * replaced regular expression help dead url (#2511)
+  * added in config.cfg the group [proxy] to support downloading data/checking for new version available from behind a proxy (#2522)
+  * incomplete languages: fi, hi_IN, hu
+
+1.1.2 (April 4th, 2024)
+  * fixed regression issues with the search (#2469)
+  * fixed regression crash when deleting a node with children (#2476)
+  * fixed html paste (@VladislavGrudinin, #2474)
+  * fixed drop position of dragged text wrongly one position to the left
+  * incomplete languages: el, fi, hi_IN, hu
+
+1.1.1 (March 27th, 2024)
+  * fixed regression after one search with replace, all subsequent searches open replace dialog (#2468)
+  * fixed regression searching in multiple nodes, only nodes names and tags, not working (#2461, #2408)
+  * fixed regression vertical scroll and cursor position of previous nodes not remembered (#2460)
+  * fixed regression import nodes from cherrytree not importing anything (#2463)
+  * fixed import from cherrytree sqlite document having shared nodes
+  * fixed unwanted nodes expansion with auto reload from extenal doc edit and enabled option to show bookmarked nodes at start (#2464)
+  * changed default value of option to automatically focus the text at new tree node clicked, from false to true
+  * incomplete languages: el, fi, hi_IN, hu
+
+1.1.0 (March 20th, 2024)
+  * implemented support for so called shared nodes that all point to the same data - create with right click on node (#1222)
+  * improved search in tables and codeboxes to list and select all the instances; replace is also now supported (#2155, #2444)
+  * implemented vertical toolbar in codeboxes supporting code exec, code copy, edit properties (can be disabled in preferences)
+  * fixed crash when rapidly moving a node in the tree via keyboard shortcuts (#2409)
+  * fixed issues with find and presence of anchored widgets (#2444)
+  * fixed double click on word in table cell, heavy implementation, not selecting word
+  * icon save on toolbar/menu is now greyed out when save is not needed
+  * moved some preferences dialog settings from tab 'miscellanous' to tab 'fonts' that has been renamed 'interface'
+  * added option to allow to override the system setting for scrollbar overlay/auto hide (#2427)
+  * added option to allow control of the minimum size of the scrollbar slider (#2427)
+  * added options to control the text margins (#2425)
+  * added also in preferences dialog option to enable/disable the menubar in titlebar (was already under top menu view, #2443)
+  * added also in preferences dialog option to control the size of the toolbar icons (was already under top menu view, #2406)
+  * added in preferences dialog enable/disable tooltips on tree, menus, toolbar (#2169)
+  * added in preferences dialog control of max search results per page to display in the matches dialog
+  * added up to 18 custom user colours in the colour picker palette (#2422)
+  * allowing now underneath text selection with search/replace dialog open (#2426)
+  * fixed regression in speed when searching in nodes names and tags (no nodes contents) after v1.0.2 (#2408)
+  * reset autosave when manually saving; autosave to use a counter so that suspended time doesn't count (#2120)
+  * fixed tooltip on search results dialog, expected to display the node hierarchical name (#674)
+  * added ABAP syntax highlighting (work of @marbovo, #2430)
+  * added new gruvbox-light, gruvbox-dark style themes (work of Rafael Remigio, #2435)
+  * fixed zoom not working with Ctrl+ on english keyboard (key + is on shift)
+  * changed 6 default keyboard shortcuts using {,},[,] as problematic on German/Norwegian keyboards (#2423)
+  * incomplete languages: el, fi, hi_IN, hu
+
+1.0.4 (December 16th, 2023)
+  * fixed crash when displaying search results dialog (#2398, #2399, #2404, #2405)
+  * preferences dialog, keyboard shortcuts, now emphasizing with bold the overridden/non default shortcuts (#2397)
+  * preferences dialog, keyboard shortcuts, added possibility to reset an individual shortcut to the default value
+  * changed default keyboard shortcuts to move tree nodes From Shift+Arrows to Shift+Alt+Arrows as disrupting the functionality of text selection (#2397, #2400)
+  * incomplete languages: ar, el, fi, hi_IN, hr, ja, pt
+
+1.0.3 (December 9th, 2023)
+  * fixed crash when losing access to open document (#2120)
+  * fixed crash sorting table (#2391)
+  * fixed issues with search/replace and option 'all matches'
+  * fixed corrupted export to pdf on mac os with non ascii links to files/folders (#2388)
+  * multi page search results increased default limit 50->500 and configurable in config.cfg 'max_matches_in_page' (#2370)
+  * changed all the default keyboard shortcuts using Ctrl+Alt for issues on windows with AltGr key (#2341, #2324, #2316, #2124, #2069, #1944)
+  * fixed progress bar of search hardly visible on windows (#2373)
+  * nodes in bookmark menu to have the correct icon rather the anonymous pin icon (#206)
+  * fixed node name in bookmarks menu not updated if node renamed (#2393)
+  * export to pdf, now hiding anchor character (#2379)
+  * changed codebox border colour with theme cobalt-darkened as hardly visible
+  * added option in config.cfg to disable tree, menus and toolbar tooltips 'tree_tooltips', 'menus_tooltips', 'toolbar_tooltips' (#2169)
+  * fixed paste of code selection to rich text target adding unwanted newline with </pre>
+  * fixed issue when changing theme in preferences dialog, style scheme editor, the change was only applied to the current node
+  * incomplete languages: ar, el, fi, hi_IN, hr, ja, pt
+
+1.0.2 (September 26th, 2023)
+  * improved performance of search/replace with option 'all matches' (#272, #1830, #2019)
+  * added multi pages support to all matches dialog with a limit of 50 matches per page (#2019)
+  * fixed crash when searching with all matches option and the text line containing the pattern is very long
+  * fixed pasting file/folder path with non latin characters on windows applies the start of the link before the pasted text (#2320)
+  * fixed pasting rich text into codebox causing issues with syntax highlighting
+  * fixed single click on line number to select line, double click for pargraph (#1363)
+  * added 42 stock icons
+  * incomplete languages: ar, el, fi, hi_IN, hr, ja, lt, pt
+
+1.0.1 (August 25th, 2023)
+  * fixed overwrite confirmation not working when saving as new multifile storage (#2333)
+  * fixed crash on close (#2302)
+  * fixed xorg crash / wayland warning caused by popup menus without a parent (#2328)
+  * fixed paste content copied from column edit mode not working in codeboxes
+  * highlight current text line to be disabled when the text loses focus or when the text is in column mode
+  * reverted 'on windows, paste image from clipboard to take priority over html target ...' causing paste from spreadsheet cells generating a picture instead of a table
+  * default keyboard shortcut for increase/decrease table column changed to Ctrl+Alt+> Ctrl+Alt+< as Ctrl+) isn't working on windows (#2336)
+  * added new stock icon light bulb / internet of things IoT
+  * added option 'recent_docs' in config.cfg to be set to false in order to not remember the recent documents (#2330)
+  * incomplete languages: ar, el, fi, hi_IN, hr, ja, lt, pt
+
+1.0.0 (July 16th, 2023)
+  * fixed crash when opening node properties (#2304, #2313)
+  * fixed blurry output when exporting LaTeX to pdf (#2308)
+  * added configurability of the blinking of the cursor in the preferences dialog (#2298)
+  * added support for executing 'rust' and 'go' code in code nodes and codeboxes
+  * added 24 new stock icons available to be chosen as tree node icons
+  * added menu items under top menu 'help' to link to website, source code and bug tracker
+  * on windows, paste image from clipboard to take priority over html target containing image so that can work offline (#2303, work of @DaPa)
+  * added new language Persian (work of Majid Abri)
+  * incomplete languages: ar, bg, el, es, fi, hi_IN, hr, hu, ja, ko, lt, pt, pt_BR, ro, sl, zh_TW
+
+0.99.56 (June 22nd, 2023)
+  * implemented new data storage type: multiple files in hierarchical folder structure (#2123, #1823)
+  * the backups for the new multiple files data storage do not contain all the tree but only what has changed
+  * all backup files (or folders for the brand new multifile data storage) are now starting with a dot (.name~, .name~~, ..)
+  * fixed crash sorting rows of table lightweight interface (#2253)
+  * fix export to html of lists (#2276, #2286)
+  * fixed recent documents corruption when file is deleted/missing (#2277)
+  * fixed on Windows zooming the font reverts the font family to Sans (#2257)
+  * click on line number to behave as triple click (select line, #1363)
+  * column edit (selection with Ctrl+Alt held down) added clipboard support (#2232)
+  * added 37 new stock icons available to be chosen as tree node icons
+  * remember last selected custom icon in node properties same as last selected colour (#2185)
+  * implemented import nodes from indented list (#1551, #2258)
+  * added support for executing java code in code nodes and codeboxes
+  * added detection of exclusions from the search hit in the current search and message to the user / how to disable exclusions
+  * fixed in flatpak and appimage languages not available (#2270)
+  * fixed latex box issue with portable version of cherrytree on windows (#2294)
+  * added tooltip with node name when hovering node (#2295)
+  * incomplete languages: ar, bg, el, fi, hi_IN, hr, lt, zh_CN
+
+0.99.55 (March 7th, 2023)
+  * table actions: keyboard shortcuts now configurable in preferences dialog and available in toolbar configurability (#2124, #2195, #2219)
+  * codebox actions: keyboard shortcuts now configurable in preferences dialog and available in toolbar configurability
+  * implemented conversion of multi level lists to real html unordered and ordered lists (#1765)
+  * fixed autosave in case the document was never saved before, to prompt the user for a storage type/path (#2225)
+  * fixed export to pdf crash (#2227)
+  * fixed issue with font family name getting multiplied while zooming (#1895)
+  * added support for executing c-sharp code (#2234)
+  * windows version only - fixed issue with font sub-pixel rendering present since 0.99.52 (issue fixed from msys2, #2226, #2171)
+  * incomplete languages: ar, bg, el, es, fi, fr, hi_IN, kk_KZ, kk_LA, ko, lt, pl, pt, pt_BR, ru, tr, zh_CN
+
+0.99.54 (January 30th, 2023)
+  * implemented lightweight variant of tables. large tables visibly slow should use this interface. the change of interface is via table properties (#2140)
+  * the number of table cells to use as threshold for defaulting to table light mode is configurable in the preferences dialog (default 25)
+  * fixed searching for regexp everything (.*) freeze (#2190)
+  * dialog search with regexp, added help button to display reference web page
+  * fixed crash when attempting to print on Windows OS (#2066, libcairo-2.dll, msys2/MINGW-packages/issues/15316)
+  * dialog all matches improved to show also the node tags and the pattern searched
+  * fixed issue with integrated terminal when using zsh as default shell on Mac OS (#2199)
+  * integrated terminal shell now configurable in preferences dialog
+  * added menu item action to toggle focus between text and integrated terminal with default shortcut Ctrl+Shift+T (#1772)
+  * implemented option to keep cherrytree always on top, under top menu 'view' (#2145)
+  * added menu item action to insert today's node under the selected node rather than under the tree root (#40)
+  * added search dialog option to override search exclusions (#2174)
+  * incomplete languages: ar, bg, el, fi, fr, hi_IN, hr, hu, kk_KZ, kk_LA, ko, lt, ru, zh_CN
+
+0.99.53 (December 11th, 2022)
+  * fixed growing encrypted document size after each save when configured with no backups (#2178)
+  * fixed crash when changing terminal font in preferences dialog and terminal never shown in the session (#2177)
+  * few German translation fixes (#2173)
+  * still incomplete languages ar, el, fi, hi_IN, lt
+
+0.99.52 (November 24th, 2022)
+  * moved encryption and backup to a separate thread to improve performance; implemented integrity verification of the document before encryption and backup rotation (#2148)
+  * code execution: added new tag to allow placing the code directly into the terminal rather than in a temporary file (#1772)
+  * assigned hard coded keyboard shortcut to change codebox properties 'Ctrl'+'[' (#2138)
+  * fix import from gnote/tomboy (#2152, #1991, #1686)
+  * linux support path links starting with ~/ (#2149)
+  * fix paste from gnome-characters in fedora (#2094)
+  * using github.com instead of giuspen.net to retrieve the latest version released as some users have issues to access giuspen.net (#2162)
+  * added support for typescript syntax highlighting (#2161)
+  * updated languages Chinese Simplified, Dutch to 100% (still incomplete ar, el, fi, hi_IN, lt)
+
+0.99.51 (October 23rd, 2022)
+  * fixed loss of transparency with PNGs in some GTK3 themes (#1402, #2132)
+  * fixed issue with separator between tree and text not restored when tree on right side and window maximised (#2126)
+  * fixed integrated terminal when executing a command for the first time from hidden (not yet instantiated) not passing the command
+  * fixed inconsistency between codebox width displayed and printed to pdf with auto expand enabled
+  * fixed few dialogs missing the property to be destroyed with the parent causing problem when quit from systray (#2133)
+  * fixed crash on windows when printing to pdf long codebox (multi page) including unicode characters
+  * dropped support for pandoc as implementation relies on std::stringstream which causes crashes on windows; elsewhere removed usage of std::stringstream
+  * fixed import from zim (#1870)
+  * fixed issue with integrated terminal show/hide command
+  * update language Turkish to 100% (still incomplete ar, el, fi, hi_IN, lt, nl, zh_CN)
+
+0.99.50 (October 9th, 2022)
+  * added support for code execution in integrated terminal - available only in Linux and Mac OS, not in Windows (#1902, #1772, #547)
+  * implemented action to execute code from either the text selection or the current text line (#1772)
+  * improved code execution confirmation dialog displaying the code about to be executed and the syntax
+  * implemented stricter checks for hard coded keyboard shortcuts Requiring Ctrl but not Alt (#2124)
+  * changed syntax of displayed keyboard shortcuts in toolbar tooltips (#2128)
+
+0.99.49 (September 11th, 2022)
+  * added support for accent insensitive search - when enabled, for example, any of 'àáâãäåāăąạ' is equivalent to the ascii 'a' (#1981)
+  * fixed export to HTML crash - regression introduced with support for RTL languages (#2109)
+  * fixed crash on print/export to pdf of a sequence of characters without spaces longer that the page width, such as a very long URL (#2045)
+  * fixed bulleted list unindent (Shift+Tab) crash (#2103)
+  * fixed tooltip and cursor not reset after hovering link and then navigating to non rich text node
+  * added keyboard shortcuts to the toolbar button's tooltips (#2106)
+  * changed non configurable keyboard shortcuts for codebox width and table column width increase/decrease to use parenthesis open instead of backslash (#2113)
+  * fixed wrongly entering column edit mode when using keyboard shortcuts with <Ctrl><Alt> such as insert codebox (#2075)
+  * allow to disable the dialog asking for confirmation before executing the code in codeboxes and code nodes
+  * fixed crash on double exit from systray icon right click menu (#2114)
+  * added command line option '--anchor AnchorName' that in addition to existing '--node NodeName' allows to open a document focusing an anchor in a node
+  * added syntax highlighting support for GDScript
+
+0.99.48 (June 28th, 2022)
+  * added support for right to left languages in export to html and pdf (#2044, #1668, #698)
+  * in order to support the right to left languages in export to html, the resulting html text lines are no longer LINE<br/> but <p>LINE</p>
+  * fixed in export to pdf the link to node+anchor with non ascii anchor name
+  * fixed export to pdf broken on windows with links to node/node+anchor and destination not in the pdf (#2045)
+  * on windows, export to pdf, fixed links to files/folders; links to non ascii paths are disabled because currently crashing the library
+  * improved detection of missing executables required for rendering LatexBoxes. These dependencies are no longer mandatory (#2033)
+  * added help to the user to show again a hidden menubar (#1927, #2054)
+  * pressing Tab on the very latest table cell now adds a new table line and moves to its first cell
+  * fixed issue with relative links to files and folders and documents moved between linux and windows
+  * in export to html and txt multiple files, now appending the node id to the file names to support multiple nodes with the same name
+  * added syntax highlight support for solidity (#2030)
+  * after issues with the domain giuspen.com, the domain changed to giuspen.net and giuspen.com will eventually go
+  * work has been done to support an appimage, so the first appimage will be available for download shortly (#2025)
+
+0.99.47 (April 12th, 2022)
+  * added support for latex math equations (#400)
+  * added copy/paste of tree nodes and subnodes between multiple opened files (#1688)
+  * restored support for drag and drop of text selection; now rich text content is preserved (#1891)
+  * added syntax highlighting for HCL (Hashicop Configuration Language) from @guitarmanvt (#2005)
+  * fixed issue at reset toolbar in preferences dialog when menubar in titlebar
+  * added few node icons for DevOps tools & technology (#1964)
+  * added command line option (-S/--secondary_session) to run in isolation from a possibly already running main instance (#1965)
+
+0.99.46 (February 18th, 2022)
+  * fixed time created/modified filter on searches for node name and tags (#1858)
+  * changed default keyboard shortcuts using Ctrl+Period to Ctrl+Backslash for clash with latest linux desktops (#1942, #1956)
+  * fixed restore window position on Windows and dual screen (#1943, fix on gtk3 of Luca Bacci)
+  * fixed on Windows copy from codebox and pasting to rich text unwanted additional characters (#1934)
+  * export to txt on Windows set expected line endings [CR][NL] rather than [NL]
+  * added strip trailing spaces action to rich text right click menu (#1935)
+  * fixed issue restoring hpaned tree/text position with tree on the right (#1918)
+  * added command line option to pass the password to open an encrypted document (#1965)
+  * added language Arabic, work of Mohamed Milodi
+  * added language Hungarian, work of Stiener Norbert
+  * updated languages French, Russina, Kazakh
+
+0.99.45 (January 16th, 2022)
+  * fixed issue with tags in dialog messages introduced in 0.99.44 (#1890, #1897)
+  * fix table cell lose focus after deleting row or column (#194)
+  * added action to replace tabs with spaces; changed execute code icon to play symbol
+  * fixed print/export to pdf of code indented with tabs using always 8 spaces as tab width ignoring the settings
+  * fixed print/export to pdf of codebox of plain text to use plain text configured font
+  * fixed paste text in codebox with auto resize enabled being left in wrong scrolling position
+  * added configurability of existing feature to automatically try to link CamelCase text to a node with the same name
+  * in preferences dialog added possibility to search for a keyboard shortcut: just focus the list and type part of the description (#1833)
+  * added possibility to disable the auto url link generation as you type - not in preferences dialog yet, look for 'url_autolink' in config.cfg
+  * changed default keyboard shortcuts for indent/unindent from Shift+Ctrl+'>'/'<' to Ctrl+'>'/'<' (#1901)
+  * fixed import from zim dropping unwanted header data in the imported node; added missing default zim notes folder (#1870)
+  * fixed alt access keys in top menu: ensured uniqueness and added missing (#1865)
+  * fixed crash on windows only during search on multiple nodes if codeboxes are set to not expand automatically (#1729)
+  * fix RTL (Arabic) links not working (#1889)
+  * added language Hindi India (work of Paresh Mhatre)
+
+0.99.44 (December 8th, 2021)
+  * copy and paste of a file from the file manager to rich text results in the file being embedded/bundled in the document; on linux and mac os, multiple copy is also supported
+  * in linux the drag n drop of files from the file manager to rich text also results in the files being embedded/bundled in the document
+  * fix info dialog indicating pattern not found when pattern contains ampersand (#1876)
+  * fix export to html of multiple nodes, link to node/page not working when using an apostrophe in the node name/page title (#1869)
+  * fix export to plain text of multiple nodes with tables and/or codeboxes (#1880)
+  * strip trailing spaces action to work also inside codeboxes
+  * added new language Chinese Traditional (work of Emer Chen)
+  * updated languages: Korean, Turkish, Finnish, Spanish, Russian, Kazakh, German
+
+0.99.43 (November 14th, 2021)
+  * added action under top menu 'search' to clear all exclusions from the search; to be run from users finding unexpected exclusions from the search in tree nodes (auxiliary icons of ghosts, #1837)
+  * added action under top menu 'view' to enable/disable placing the menubar in the titlebar (#1815)
+  * unfullscreen doesn't work with the custom titlebar active (menubar in titlebar), so in this case we can only maximise/unmaximise when fullscreen/unfullscreen is requested
+  * implemented under top menu 'view' toggle show/hide menubar with default keyboard shortcut F12 (#1849)
+  * restored Ctrl+T keyboard shortcut to pop up unified search in multiple nodes dialog with only node name and tags selected (#1829)
+  * export to html of code do not use '&nbsp;' - use <pre></pre> instead
+  * fixed issue of code non syntax highlighted in exported pdf and html
+  * fixed wrong line number reported in search all matches dialog
+  * added new language Portuguese Portugal (work of Rui Santos)
+
+0.99.42 (October 16th, 2021)
+  * unified search in nodes name+tags and search in nodes content (#513, #1525)
+  * fixed search in multiple nodes with the option first from selection/first in all range
+  * fixed issue with password protected data extraction on windows and non ascii paths
+  * link to node insert/edit dialog, added search for anchor name in the tree (#1572)
+  * implemented node property to exclude node and/or subnodes from search (#1096, #1761)
+  * applying a colour to foreground/background of text to use default gtk3 palette (#1818)
+  * added in preferenced dialog, tab theme, possibility to choose 2 new icon themes (#1766, artwork of @userfav)
+  * added option to hide the status bar (#1742)
+  * added configurability of selected node's background/foreground colour in the tree (#1809)
+  * tree explorer added view option to show lines connecting the nodes parent-children (#1692)
+  * added syntax highlighting for AutoHotkey (work of Chen Bo)
+  * added in preferences dialog, tab fonts, buttons to reset the fonts to default values (#1819)
+  * at F8/current day node do not visit year/month if already existing, only day (#1796)
+  * support for portable mode in non-windows os looking for config/config.cfg beside cherrytree binary executable (#1811)
+  * tree sorting menu items: moved siblings only sorting first and after separator sorting whole tree (#1797)
+  * added experimantal option menubar_in_titlebar that can be activated in config.cfg, but off by default (#1815)
+
+0.99.41 (September 15th, 2021)
+  * added flip image buttons to image properties dialog (#1791, work of @v31l)
+  * rich text tag monospace: added configurability of the foreground colour (#1745)
+  * fix incorrect insertion from plain text clipboard of link with pipe char (#1781)
+  * fix apply link to image via toolbar button rather than right click (#1782)
+  * fix after unmaximise main window, close, reopen -> still maximised
+  * fix fullscreen expands the width of tree explorer rather than the editing frame when tree on the right (#1785)
+  * fix segfault/crash from exporting imported markdown file with a table (#1790)
+  * fix todo lists in ubuntu 18.04 not cycling through available mark choices (#1775)
+  * fix print/export to pdf of table columns widths (#1760)
+  * print/export to pdf of scalable tags (h1..h6,small) and monospace use configured properties (#1650)
+  * node name header font size/family to follow the tree font (#1764)
+  * improved table sorting to use not only first column (#1784)
+  * improved import from markdown of a table with or without pre/post text (#1790)
+  * updated es.po (UserFav)
+
+0.99.40 (August 7th, 2021)
+  * new supported language Croatian (Filip Bakula)
+  * language Spanish to 100% (UserFav)
+  * updated Korean (Sean Lee)
+  * fixed blacklist of action that cannot be part of the configurable toolbar
+
+0.99.39 (July 19th, 2021)
+  * fixed Menu element icons not always visible (#1410)
+  * fixed File links in exported PDF do not work when path isn't relative (#1749)
+  * fixed TODO lists not working in table cells (#194)
+  * fixed bug in password protected archives on windows a backslash character in the password was replaced with a slash character
+  * fixed issue with p7zip on windows and non ascii characters in document path - p7zip is now using glib (#1736)
+  * fixed build with fmt 8.0.0 (#1744, Luca Weiss)
+  * when system tray and start hidden on system tray are enabled, load document only after the user clicks the systray icon to show cherrytree (#1751)
+  * fixed codebox plain text wrongly using code font instead of plain text font
+  * fixed error in translation ru.po
+
+0.99.38 (June 11th, 2021)
+  * fix crash visiting node with a corrupted/invalid utf-8 character (#1337)
+  * fix crash when trying to insert image from file with format not supported from Glib such as .webp (#1709)
+  * fix unwanted characters found after copy/paste (#1687)
+  * fix status icon missing / bad rendered in tray (#1703)
+  * fixed tree node visibility issue when starting minimised on system tray (#1704)
+  * fix link markdown paste broken link (#1714)
+  * fix issues with spell check enabled and no languages available (#1718)
+  * improved web link recognition (#1713)
+  * updated languages Finnish, Korean, Brazilian Portuguese
+  * this (gtkmm3) version can now build on older distributions such as debian 10 / ubuntu 18.04
+
+0.99.37 (May 18th, 2021)
+  * added configurable option to have bookmarks also under dedicated menu in top menu bar (#1643)
+  * added configurable option to show the full node path in the node name header (#1399)
+  * new configurable scalable tags h1,h2,...,small - allow partial bold/italic/underline when not configured on (#1633)
+  * added preferences file import/export under top menu File--Preferences
+  * Help--Open Preferences Directory moved under File--Preferences
+  * added dialog listing all available symbols auto replacements (#1659)
+  * fix after undo, redo jumps to the top of the document (#1151)
+  * fix crash on imports (#1593)
+  * fix URL detection doesn't recognize Tab as a delimiter (#1654)
+  * fixed import of text files with extension not .txt on linux (#1656)
+  * configurability of log enable/disable + directory in preferences dialog, tab miscellaneous (#1614)
+  * fix content in the table can be modified while the node is read only (#1674)
+  * fix Shift+Enter able to modify locked nodes with lists (#1640)
+  * fix system tray icon on windows not hiding at click (#1631)
+  * Ctrl+Arrows in tables disconnected from cells navigation. Ctrl+( and Ctrl+) to navigate Up/Down; Tab and Shift+Tab for navigate Right/Left (#194)
+  * assigned keyboard shortcut to move table rows Up/Down: Ctrl+[ and Ctrl+] (#1626)
+  * assigned keyboard shortcut to move table columns Left/Right: Ctrl+{ and Ctrl+}
+  * preserve print page setup settings between sessions (#1664)
+  * spell check enabled also for plain text (#1651)
+  * added Romanian language (work of Tudor Sprinceana)
+
+0.99.36 (April 17th, 2021)
+  * fix segfault on startup when configured to start on systray (in 0.99.34,0.99.35 - #1610, #1619)
+  * updated Japanese language (Piyo)
+
+0.99.35 (April 16th, 2021)
+  * fix issue in 0.99.34 H1/H2/H3/H4/H5/H6/small not working for certain locale (#1611)
+  * fix issue with bookmarks in tree right click menu (#1613)
+
+0.99.34 (April 14th, 2021)
+  * implementation of configurable h1,h2,h3,small + (now supported) h4,h5,h6 (#349,#753,#1063)
+  * reorganised the main menu (work of Viktor Polyanskiy / @Camilot55)
+  * fix undo/redo state machine vertical scrollbar position and cursor position (#1151)
+  * fix crash when importing text/html files with non ascii file name on windows (#1578)
+  * fix links to file/folder on windows with UNC path (#1565)
+  * detect system shutdown to save config (#1581)
+  * improved recognition of web link as you type in case of start with ({[, end with ,;.)}] (#1589)
+  * fixed wheel click on file link (to open parent folder)
+  * fix zooming text/tree font not being properly enforced like preferences dialog does (#1568)
+  * added support for Korean Language (work of Sean Lee)
+  * added support for Kazakh Language (work of Viktor Polyanskiy / @Camilot55)
+  * enabled logging to config folder, max size 5MB
+
+0.99.33 (March 20th, 2021)
+  * fix crash editing keyboard shortcuts on windows (#1559, #1560)
+  * fix changing codebox width of codeboxes having width set in percentage (#1556)
+  * treat equally return key presses and numeric keypad enter key presses (#1547)
+  * fix import from cherrytree file missing dialog asking for parent node (#1562)
+  * user-* themes are not to be selectable for code, now excluded from the list
+  * added automatic syntax highlighting for the Dart language (#1569)
+  * updated Czech language (Pavel Fric)
+  * updated Finnish language (Henri Kaustinen)
+
+0.99.32 (March 13th, 2021)
+  * improved restoring of exact vertical scroll position (#1151)
+  * fix iterated find/replace dialog disappearing after first button click
+  * more node icons (#1514)
+  * fix copy as plain text not working in table cell (#1528)
+  * close image resize dialog when pressing enter (#1547)
+  * fix crash at find in all nodes before dialog pops up, Windows OS (#1460)
+  * improved dialog to select an item in the list focusing the item that was last used (e.g. special characters)
+  * in nodes icons cycle cherries colors after reaching a node level superior to the max number of cherries colors (#692)
+  * fixed issue with tree on the right side not properly restoring the tree width (#1534)
+  * user-* themes are not to be selectable for code, now excluded from the list
+  * added support for language 'elixir' by @SteffenBauer (#1541)
+
+0.99.31 (February 23rd, 2021)
+  * in preferences dialog tab themes there are now two style schemes, one starting from dark colors and one starting from light colors (#1362)
+  * a different style scheme can now be selected for plain text and code (used to share the same)
+  * implemented 'format clone' cloning formatting at cursor which can then be applied with existing menu item 'format latest' (#600)
+  * insert special symbols changed from having a submenu item per symbol to a dialog listing all the symbols (#1503)
+  * added few more icons as selectable as custom node icon (#1514)
+  * fix mac os big sur crash when formatting text foreground/background color with RGB not from palette (#1512)
+  * removed default global shortcut Ctrl+Delete to delete tree node because overrides text editor standard (#1513)
+  * fixed import from keepnote missing images (#1516)
+  * preferences dialog, selection of ui language, added flags (#1511)
+  * fixed misleading command line argument to export to pdf - the user is expected to pass a directory path, not a file path
+
+0.99.30 (January 24th, 2021)
+  * moved top menu items 'Edit'->'Preferences' and 'Tree'->'Tree Info' to 'File' menu (#1497)
+  * fix Table of Contents not saving (#1484)
+  * fix export to pdf crash
+  * fix crash when importing CSV file (#1476)
+  * fix copy from cherrytree to external app in windows (#1472)
+  * improved language selection in preferences dialog (#1496)
+  * fix when creating new node/subnode not proposing syntax highlighting of selected node (#1481)
+  * insert link dialog to remember/repropose last selection (#1413)
+  * new icon for generic code node (@uservaf/Ugo Yak, #1451)
+  * fixes to Russian translation from new maintainer Viktor Polyanskiy
+
+0.99.29 (January 4th, 2021)
+  * fix unable to open sqlite document created with old document version (#1471)
+  * added meta modifier shortcut key support (#1467, work of Chris Stahly)
+
+0.99.28 (January 2nd, 2021)
+  * improved performance of tables (#1416, #1427, #1446, #1447)
+  * improved sanitisation from bad characters at xml parse time (#1465)
+  * fix time filter for find in nodes names and tags (#1453)
+  * fix color for selected item in tree not consistent with selected item in menu (#1456)
+  * icon theme new save icon and other improvements (@userfav/Ugo Yak)
+  * fix config.cfg re-created when symlinked (#1464)
+  * support for sqlite database generated with old version of cherrytree, convert at write time not read time
+  * fix failed import from zim (#1273)
+  * spdlog and fmt libraries no longer bundled but to be installed separately (#1199, #1433, #1458)
+  * build optimisation changed from -O3 to -O2 (#1433)
+  * new language supported: Bulgarian (Iliya Nikolaev)
+  * updated Turkish (Ferhat Aydin)
+
+0.99.27 (December 21st, 2020)
+  * fix select text with keyboard not working, regression of 0.99.26 (#1441, #1444, #1448)
+  * updated Dutch (Luuk Geurts)
+
+0.99.26 (December 19th, 2020)
+  * fix crash trying to open a bookmarked node that was deleted (#1430)
+  * fix crash when trying to paste invalid image in clipboard (#1440)
+  * fix tree drag n drop freezing issue (#1377)
+  * when (re)generating TOC do not remove anchors created from the user (#1382)
+  * fix recent documents list does't show undercores (#1435)
+  * fix when setting language different than Default, open folder link not working if non ASCII characters in path (#1423)
+  * fix non working keyboard shorcuts Alt+Left/Right to go to previous/next visited nodes (#1412)
+  * keyboard shortcut to delete a node becomes Ctrl+Delete since this action now works also with focus on the text/while editing text (#1412)
+  * fix table keyboard shortcut Ctrl+comma (add row) and Ctrl+Alt+comma (delete row) (#1417)
+  * fix some icons are invisible on dark theme + several icons improvements (#1414, work of @userfav/Ugo Yak)
+  * fix find function adds empty lines to blank nodes (#1428)
+  * fix wrongly detecting being run from the sorces directory build folder (#1422)
+
+0.99.25 (December 8th, 2020)
+  * icon theme update (#1408, work of @userfav/Ugo Yak)
+  * fix TOC generation when existing anchor but wrong name (#1382)
+  * export to plain text do not alter node name case and prefix with a # per node level (#1385)
+  * fix spell-check language selection from preferences dialog not working (#1400)
+  * fix spell-check language selection from right click menu was not saved to preferences
+  * added missing tooltips on the bookmarks handle dialog (#1403)
+  * improved command line switch --new-window (#1339)
+  * updated language Spanish to 100% (@userfav), fixed typo in language French (@bataillec)
+
+0.99.24 (November 30th, 2020)
+  * fix crash parsing sqlite node with image (#1337)
+  * fix bugs with search time filter (#1381)
+  * fix can't open encrypted .ctx/.ctz file when the filename is renamed (#1383)
+  * fix missing copy/cut/paste for tables and codeboxes in right click menu (#1379)
+  * fix insert TOC with closing bracket at the end of the headline (#1382)
+  * fix Automatically Check for Newer version (#1380)
+  * added commandline option -s/--export_single_file for exports to html and plaintext (work of Sylvain Pasche)
+
+0.99.23 (November 26th, 2020)
+  * fixed crash applying rich text tags in flatpak version (#1367, #1369, #1372, #1374, #1378)
+
+0.99.22 (November 23rd, 2020)
+  * fixed not saving node properties when only node properties are changed (#1364)
+  * fix issue (gitch) pasting tables from clipboard (#1358)
+  * added command line switch --new-window (#1339)
+  * the rich text tagged monospace is not forced to use a dedicated font anymore - configurable and off by default (#1343)
+  * fixed crash when manually generating config.cfg (with BOM) for windows portable
+  * fixed issues with portable version not using portable config dir
+
+0.99.21 (November 19th, 2020)
+  * fix issue with clipboard on Windows (#1336, #1344, #1341)
+  * fix crash when triying to move a table column (#1342)
+  * fix crash when pasting HTML (#1346)
+  * suppressed misleading print of error while executing unit tests at build time (#1340)
+  * updated languages German, Dutch, Turkish
+
+0.99.20 (November 13th, 2020)
+  * fix cannot save after editing old .ctd File (#1331)
+  * fix HTML Interpretation on Paste (#1317)
+  * fix PDF export: wrong colours (#1311)
+  * fix instead of increasing enumeration on enter, list removed enumeration
+  * fix progress bar during search not visible (#1302)
+  * fix Microsoft Print to PDF erroneous (#1270)
+  * fix pressing enter at the beginning of a non empty list element must not quit the list (#1327)
+  * fix pressing enter in middle of numbered list did not update very latest list element if at buffer end without newline
+  * fix pasting images with data:image/base64 format
+  * last visited nodes are now restored when closing and reopening a document (#1319)
+  * file attachments can now be renamed (#1301)
+  * symlinks to cherrytree document paths are now resolved
+
+0.99.19 (November 7th, 2020)
+  * the table columns widths are no longer forced equal - modify with right click menu or Ctrl+Period/Ctrl+Alt+Period (#1228)
+  * fix search in current node not searching in the current node (#1293)
+  * fix rich text monospace tagged text does not zoom (#1264)
+  * fix import of plain text file non ascii/utf-8 (new library needed - uchardet)
+  * improved undo/redo for codeboxes and tables, restoring cursor position
+  * fix visualisation glitches in tables after altering rows/columns (#1205)
+  * fix menus have excessive white-space before icons (#1289)
+  * support in tables for navigation with Tab and Shift+Tab (#1228) in addition to Ctrl+Arrows
+  * removed unnecessary whitespaces from html copy/paste
+  * French language updated (Klaus Becker)
+
+0.99.18 (October 28th, 2020)
+  * fix crash when exporting to pdf (#1291)
+  * fix freeze/crash when deleting a node (#1285)
+  * fix garbled special characters on windows (#1065, #1269, #1245)
+  * fix visualisation glitches of anchored widgets at undo/redo time (#1205)
+  * fix order for new created nodes (#1263)
+  * fix PDF export: paragraph format lost (#1268)
+  * fix content missing in PDF export (#1265)
+  * fix paste not working on macOS (#1259)
+  * fix Keepnote import (#1276)
+
+0.99.17 (October 24th, 2020)
+  * fix visualisation glitches of nodes with anchored widgets (#1205)
+  * fix re-inserting Table Of Contents (#1266)
+  * protect preferences dialog tab special characters from bad settings causing crash (#1261)
+  * bundled default gtksourceview styles to ensure availability (#1272)
+  * fix dynamic change of 'show white spaces' and 'highlight current line' via preferences dialog (#1262)
+  * Finnish language updated (Henri Kaustinen)
+
+0.99.16 (October 18th, 2020)
+  * fix crash when exporting to pdf due to missing escape in links (#1239)
+  * supports for huge xml files (#1238)
+  * fix 0.39 crashes on 0.99 file (#1250)
+  * fix 'Insert Today’s Node' not respecting chosen language (#1258)
+  * fix windows/msys2 portable and installer missing ssl folder (#1203)
+  * windows/msys2 portable and installer removed unnecessary tcl/tk files
+  * removed python3-lxml from build dependencies
+
+0.99.15 (October 7th, 2020)
+  * fix paste in context-menu for images in clipboard is greyed-out (#1196)
+  * fix Crash when clicking on dead link in TOC (#1189)
+  * added command line option --version/-V (#1204)
+  * fix preferences dialog option to enable/disable node name wrap requires cherrytree restart
+  * code execution on linux avoid to blocks cherrytree adding trailing ampersand (#1201, thanks @4Syno)
+  * autosave is enabled by default (#1140)
+  * fix preferences dialog keyboard shortcuts tab wrong icon (#1210)
+  * expand codeboxes automatically enabled by default (#141, #197, #719)
+  * fix Windows settings from old pygtk2 version are not preserved (#1212)
+  * fix relative links not working (#1213)
+  * export to plain HTML added node level into title class (#1166)
+  * icons for the icon theme can be overridden placing in ~/.config/cherrytree/icons or windows equivalent (#1179)
+  * fix Windows 7 Crash when clicking website link in Help/About (#1215)
+  * fix insert TOC hangs (#1211)
+  * fix Can't do anything with search results window open (#1224)
+  * configurable highlight matching brackets for rich text and plain text (#1227)
+
+0.99.14 (September 30th, 2020)
+  * fix crash when pasting a single character (#1186)
+  * fix remove invalid (deleted) anchor widgets from the list (#1190)
+  * fix crash while importing from html due to odd attrs amount (#1191)
+  * fix encoding issue str::time_format returns UTF-8 (#1197)
+  * fix codebox change width/height was not being detected as a change to be saved
+  * fix width/height increase when auto resize is enabled (as by default in 0.99.x)
+  * fix message of newer version available showing old version while new version expected
+  * fix windows crash on exception 'locale::facet::_S_create_c_locale name not valid' (#1184)
+  * fix windows installer issues with generated shortcut and double click on file from explorer (#1184)
+  * fix windows detected paths for locale and data folders
+  * Japanese language updated (Piyo)
+
+0.99.13 (September 27th, 2020)
+  * This is the first public release of the 0.99.x serie where Evgenii (@txe) and myself (@giuspen) have rewritten everything from scratch in C++/GTK3
+  * This attempts to list the features not yet ported and brand new against 0.39.4, currently last Python2/GTK2 release
+  * The following imports are missing and may not be implemented at all if not requested: Basket, EPIM HTML, KeyNote, KnowIt, TuxCards
+  * Ubuntu AppIndicator is not currently supported
+  * New: Export to PDF support for hyperlinks (work of @ForeverRainbow)
+  * New: Export to HTML option to produce a single file
+  * New: Duplicate a node and its subnodes (before only the selected node could be duplicated)
+  * New: Option to scroll beyond the last line, enabled by default
+  * New: The rich text does no longer have light/dark/custom theme but a range of themes to select from like already for plain text & code
+  * New: Tables also can select their own theme like rich text and plain text & code
+  * New: You can now right click a node or an anchor and select to copy a link to it in the clipboard, then paste the link into rich text
+  * New: Formatting tag to indent/unindent (work of @metal450)
+  * New: The tables are implemented with a different library widget, editing a cell is easier, Ctrl+Arrow to move cursor between cells
+  * New: For both codeboxes and tables, Ctrl+Space allows to move the cursor in and out
+  * New: Rich text, monospace tag has the font configurable in the preferences dialog
+  * New: Column edit mode scintilla-like holding down Ctrl and Alt and selecting the column (cut/copy/paste not yet supported)
+  * New: Foreground and background tags in the rich text can be removed without altering the other tags
+  * New: The cherrytree backup files can be saved in a configured directory rather than the document directory
+  * New: Code build/execution, in preferences dialog it is configurable also the file extension of the temporary generated file
+  * New: Import from markdown file/folder (work of @ForeverRainbow)
+  * New: Option for markdown auto replacement to rich text (work of @ForeverRainbow)
+  * New: The toolbar supports multiple rows of icons
+  * New: Filetype icons for file attachments on Linux (work of @metal450)
+  * New: it is configurable whether to wrap or not the nodes names in the tree, off by default
+  * New: Now configurable from the preferences dialog are the "Embedded file size limit", "Triple click to select the whole paragraph", "Chars for bulleted list", "Chars for todo list", "Chars for table of content", "Chars for smart double quote", "Chars for smart single quote"
+  * New: It is configurable whether to show the document directory in the window title or not

@@ -1,0 +1,3413 @@
+# Lithuanian translations for PACKAGE package.
+# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# zygis <zygimantus@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 22:26+0100\n"
+"PO-Revision-Date: 2024-09-22 09:09+0300\n"
+"Last-Translator: zygis <zygimantus@gmail.com>\n"
+"Language-Team: Lithuanian\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+msgid "Image Format Not Recognized"
+msgstr "Paveikslėlio formatas neatpažįstamas"
+
+msgid "Insert Table"
+msgstr "Įterpti lentelę"
+
+msgid "CSV File"
+msgstr "CSV failas"
+
+msgid "Insert a CodeBox"
+msgstr "Įterpti kodo laukelį"
+
+#, c-format
+msgid "The Maximum Size for Embedded Files is %s MB."
+msgstr "Maksimaliausias iterpiamų failų dydis yra %s MB."
+
+msgid "Do you want to Continue?"
+msgstr "Ar nori tęsti?"
+
+#, c-format
+msgid "Failed to retrieve the content of the node '%s'"
+msgstr "Nepavyko rasti '%s' užrašo turinio"
+
+msgid "Special Characters"
+msgstr "Specialūs simboliai"
+
+msgid "Tabs Replaced"
+msgstr "Pakeisti tabuliaciją"
+
+msgid "Lines Stripped"
+msgstr "Nutrintos linijos"
+
+msgid "No Text is Selected."
+msgstr "Nepažymėtas josks tekstas."
+
+msgid "OliveSet File"
+msgstr "OliveSet failas"
+
+msgid ""
+"The file/folder in use cannot be overwritten!\n"
+"Please use a different name or location."
+msgstr ""
+"Naudojamas failas/katalogas negali būti užrašytas\n"
+"Prašau naudokite kitą pavadinimą ar vietą."
+
+#, c-format
+msgid ""
+"A folder '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"Aplankas '%s' jau egzistuoja '%s'.\n"
+"<b>Ar nori jį pakeisti?</b>"
+
+#, c-format
+msgid ""
+"A file '%s' already exists in '%s'.\n"
+"<b>Do you want to replace it?</b>"
+msgstr ""
+"Failas '%s' jau egzistuoja '%s'.\n"
+"<b>Ar nori jį pakeisti?</b>"
+
+msgid "PDF File"
+msgstr "PDF failas"
+
+msgid "Plain Text Document"
+msgstr "Paprasto teksto dokumentas"
+
+msgid "Preferences File"
+msgstr "Nustatymų failas"
+
+msgid "Has the System Tray appeared on the panel?"
+msgstr "Ar programos ikona pasirodė sistemos juostoje"
+
+msgid "Your system does not support the System Tray"
+msgstr "Jūsų sistema nepalaiko sistemos juostos ikonos"
+
+msgid "This Change will have Effect Only After Restarting OliveSet."
+msgstr "Šis pakeitimas veiks tik perleidus OliveSet."
+
+msgid "Replace in Current Node"
+msgstr "Pakeisti dabartiniame užraše"
+
+msgid "Search in Current Node"
+msgstr "Ieškoti dabartiniame užraše"
+
+msgid "Matches"
+msgstr "Sutapimai"
+
+#, c-format
+msgid "<b>The pattern '%s' was not found</b>"
+msgstr "<b>Šablonas '%s' nerastas</b>"
+
+msgid "Replace in Multiple Nodes"
+msgstr "Pakeisti visuose užrašuose"
+
+msgid "Search in Multiple Nodes"
+msgstr "Ieškoti visuose užrašuose"
+
+msgid "No Previous Search Was Performed During This Session."
+msgstr "Nebuvo atlikta jokių paieškų šioje sesijoje."
+
+msgid "Tags"
+msgstr "Etiketės"
+
+msgid ": "
+msgstr ": "
+
+msgid "No Previous Text Format Was Performed During This Session."
+msgstr "Joks teksto formatavimas nebuvo atliktas per šią sesiją."
+
+msgid "Link Name"
+msgstr "Nuorodos pavadinimas"
+
+msgid "The Cursor is Not into a Paragraph."
+msgstr "Kursorius yra ne paragrafe."
+
+msgid "Insert/Edit Link"
+msgstr "Įterpti/Keisti nuorodą"
+
+msgid "Pick a Foreground Color"
+msgstr "Pasirink spalvą"
+
+msgid "Pick a Background Color"
+msgstr "Pasirink fono spalvą"
+
+msgid "Checking for Newer Version..."
+msgstr "Ieškoma naujos versijos..."
+
+msgid "Failed to Retrieve Latest Version Information - Try Again Later."
+msgstr "Nepavyko gauti naujausios versijos informacijos - bandykite vėliau."
+
+msgid "A Newer Version Is Available!"
+msgstr "Yra nauja versija!"
+
+msgid "You Are Using the Latest Version Available."
+msgstr "Jūs naudojate naujausią versiją."
+
+msgid "You Are Using a Development Version."
+msgstr "Jūs naudojatės kuriamąją versija."
+
+msgid "Who is the Parent?"
+msgstr "Kas yra tėvas?"
+
+msgid "The Tree Root"
+msgstr "Medžio šaknis"
+
+msgid "The Selected Node"
+msgstr "Pasirinktas užrašas"
+
+msgid "Rename"
+msgstr "Pervadinti"
+
+msgid "PNG Image"
+msgstr "PNG paveikslėlis"
+
+#, c-format
+msgid "Write to %s Failed"
+msgstr "Įrašymas į %s nepavyko"
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid."
+msgstr "Aplanko nuorodą '%s' yra neteisinga."
+
+#, c-format
+msgid "The File Link '%s' is Not Valid."
+msgstr "Failo nuoroda '%s' yra neteisinga."
+
+#, c-format
+msgid "The Folder Link '%s' is Not Valid"
+msgstr "Aplanko nuorodą '%s' yra neteisinga"
+
+#, c-format
+msgid "The Link Refers to a Node that Does Not Exist Anymore (Id = %s)"
+msgstr "Nuoroda nurodo į užrašą, kuris nebeegzistuoja (Id = %s)"
+
+#, c-format
+msgid "No anchor named '%s' found"
+msgstr "Inkaras su pavadinimu '%s' nerastas"
+
+msgid "Edit CodeBox"
+msgstr "Keisti kodo laukelį"
+
+#, c-format
+msgid ""
+"You must associate a command to '%s'.\n"
+"Do so in the Preferences Dialog."
+msgstr ""
+"Turite priskirti komandą '%s'.\n"
+"Tai galite padaryti Nustatymuose."
+
+msgid ""
+"Install the package 'xterm' or configure a different terminal in the "
+"Preferences Dialog."
+msgstr ""
+"Įrašykite paketą 'xterm' arba sukonfigūruokite kitą terminalą Nustatymuose."
+
+msgid "Edit Table Properties"
+msgstr "Keisti lentelės savybes"
+
+msgid "Insert Anchor"
+msgstr "Įterpti inkarą"
+
+msgid "Edit Anchor"
+msgstr "Keisti inkarą"
+
+msgid "Cannot Edit Embedded File in Read Only Node."
+msgstr "Negalima keisti įterpto failo tik skaitymo rėžime."
+
+msgid "Embedded File Automatically Updated:"
+msgstr "Įterptas failas automatiškai atnaujintas:"
+
+msgid "No Node is Selected"
+msgstr "Joks užrašas nepasirinktas"
+
+msgid "The Tree is Empty!"
+msgstr "Medis yra tuščias!"
+
+msgid "The Selected Node is Read Only."
+msgstr "Pasirinkto užrašo koregavimas yra užrakintas."
+
+msgid "This Feature is Available Only in Rich Text Nodes."
+msgstr "Ši savybė galima tik raiškiojo teksto užrašuose."
+
+msgid "This Feature is Not Available in Automatic Syntax Highlighting Nodes."
+msgstr ""
+"Ši savybė yra negalima Automatinės Sintaksės Pažymėjimo tipo užrašuose."
+
+msgid "No Table is Selected."
+msgstr "Nepasirinkta lentelė."
+
+msgid "No CodeBox is Selected."
+msgstr "Nepasirinktas kodo laukelis."
+
+msgid "New Child Node Properties"
+msgstr "Naujo vaiko savybės"
+
+msgid "New Node Properties"
+msgstr "Naujo užrašo savybės"
+
+msgid "Node Properties"
+msgstr "Užrašo savybės"
+
+msgid ""
+"Changing the node type to Automatic Syntax Highlighting removes all rich "
+"text formatting in this node. Do you want to Continue?"
+msgstr ""
+"Keisdami užrašo tipą į Automatinio sintaksių žymėjimą, prarasite visą "
+"formatavimą šiame užraše. Ar norite tęsti?"
+
+#, c-format
+msgid "Are you sure to <b>Delete the node '%s'?</b>"
+msgstr "Ar tikrai norite <b>ištrinti užrašą '%s'?</b>"
+
+msgid "The node <b>has Children, they will be Deleted too!</b>"
+msgstr "Užrašas <b> turi vaikų, jie taip pat bus ištrinti!</b>"
+
+msgid "Select the New Parent"
+msgstr "Pasirinkti naują tėvą"
+
+msgid "The new parent can't be the very node to move!"
+msgstr "Naujas tėvas negali būti tas pats užrašas!"
+
+msgid "The new chosen parent is still the old parent!"
+msgstr "Naujas pasirinktas tėvas yra tas pats kaip ir senasis!"
+
+msgid "The new parent can't be one of his children!"
+msgstr "Naujas tėvas negali būti vienas iš jo vaikų!"
+
+#, c-format
+msgid "%s Nodes Properties Changed"
+msgstr "Užrašo %s savybės pasikeitė"
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Maximum Value."
+msgstr ""
+"Pastarojo laiko aplankytų užrašų skaičius pavadinimo antraštėje jau yra "
+"maksimalus."
+
+msgid ""
+"The Number of Last Visited Nodes on Node Name Header is already at the "
+"Minimum Value."
+msgstr ""
+"Pastarojo laiko aplankytų užrašų skaičius pavadinimo antraštėje jau yra "
+"minimalus."
+
+msgid "The Size of the Toolbar Icons is already at the Maximum Value."
+msgstr "Įrankių juostos ikonų dydis jau yra maksimaliausias."
+
+msgid "The Size of the Toolbar Icons is already at the Minimum Value."
+msgstr "Įrankių juostos ikonų dydis jau yra minimaliausias."
+
+msgid "Print OliveSet version"
+msgstr "Išspausdinti OliveSet versiją"
+
+msgid "Node name to focus"
+msgstr "Sufokusuoti ant užrašo pavadinimo"
+
+msgid "Anchor name to scroll to in node"
+msgstr "Inkaro pavadinimas, kurį parodyti Užrašo lange"
+
+msgid "Export to HTML at specified directory path"
+msgstr "Eksportuoti kaip HTML į nurodytą aplanką"
+
+msgid "Export to Text at specified directory path"
+msgstr "Eksportuoti kaip tekto failą į nurodytą aplanką"
+
+msgid "Export to PDF at specified directory path"
+msgstr "Eksportuoti kaip PDF į nurodytą aplanką"
+
+msgid "Overwrite if export path already exists"
+msgstr "Užrašyti ant viršaus, jei toks failo kelias jau egzistuoja"
+
+msgid "Export to a single file (for HTML or TXT)"
+msgstr "Eksportuoti į vieną failą (HTML arba TXT)"
+
+msgid "Password to open document"
+msgstr "Slaptažodis atidaryti dokumentą"
+
+msgid "Create a new window"
+msgstr "Sukurti naują langą"
+
+msgid "Run in secondary session, independent from main session"
+msgstr "Paleisti antrą sesiją, nepriklausomą nuo pagrindinės sesijos"
+
+msgid "Execute Code"
+msgstr "Vykdyti kodą"
+
+msgid "Copy Code"
+msgstr "Kopijuoti kodą"
+
+msgid "Change CodeBox Properties"
+msgstr "Keisti kodo laukelio savybes"
+
+msgid "Start in OliveSet"
+msgstr "Pradėti OliveSet"
+
+msgid "New Document"
+msgstr "Naujas dokumentas"
+
+msgid "Open File"
+msgstr "Atidaryti failą"
+
+msgid "Open Folder"
+msgstr "Atverti aplanką"
+
+msgid "Create a new document or open an existing one."
+msgstr "Sukurti naują dokumentą arba atidaryti esamą."
+
+msgid "Don't show again"
+msgstr "Daugiau nerodyti"
+
+msgid "Recent Documents"
+msgstr "Naujausi dokumentai"
+
+msgid "Name"
+msgstr "Pavadinimas"
+
+msgid "Path"
+msgstr "Kelias"
+
+msgid "Open Selected"
+msgstr "Atidaryti pažymėtą"
+
+msgid "Handle the Bookmarks List"
+msgstr "Tvarkyti žymių sąrašą"
+
+msgid "Move the Selected Bookmark Up"
+msgstr "Perkelti pažymėtą žymę aukštyn"
+
+msgid "Move the Selected Bookmark Down"
+msgstr "Perkelti pažymėtą žymę žemyn"
+
+msgid "Remove the Selected Bookmark"
+msgstr "Pašalinti pažymėtą žymę"
+
+msgid "Sort the Bookmarks Descending"
+msgstr "Rūšiuoti žymes mažėjančiai"
+
+msgid "Sort the Bookmarks Ascending"
+msgstr "Rūšiuoti žymes didėjančiai"
+
+msgid "Choose Storage Type"
+msgstr "Pasirinkti saugojimo tipą"
+
+msgid "Single SQLite File"
+msgstr "Vienas SQLite failas"
+
+msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
+msgstr "Vienas SQLite failas, užšifruotas 7-zip ir apsaugotas slaptažodžiu"
+
+msgid "Single XML File"
+msgstr "Vienas XML failas"
+
+msgid "Single XML File, 7-zip Encrypted and Password Protected"
+msgstr "Vienas XML failas, užšifruotas 7-zip ir apsaugotas slaptažodžiu"
+
+msgid "Multiple Files in Hierarchical Folder Structure"
+msgstr "Keli failai hierarchinėje aplankų struktūroje"
+
+msgid "Storage Type"
+msgstr "Saugojimo tipas"
+
+msgid ""
+"CT saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, CT extracts the encrypted archive to a temporary folder, and "
+"works on the unencrypted copy. When closing, the unencrypted copy is deleted "
+"from the temporary directory. Note that in the case of application or system "
+"crash, the unencrypted document will remain in the temporary folder."
+msgstr ""
+"CT saugo dokumentą užšifruotame 7zip archyve. Kai dokumentas žiūrimas ar "
+"keičiamas, CT išspaudžia užšifruotą archyvą į laikinų failų aplanko ir dirba "
+"su neužšifruota kopija. Kai uždaroma, neužšifruota kopija yra ištrinama iš "
+"laikinų failų aplanko. Atkreiptina, kad programos ar sistemos lūžimo atveju, "
+"neužšifruotas dokumentas liks laikinųjų failų aplanke."
+
+msgid "Enter the New Password Twice"
+msgstr "Įveskite slaptažodį du kartus"
+
+msgid "Autosave Every"
+msgstr "Automatinis išsaugojimas kas"
+
+msgid "Minutes"
+msgstr "Minutės"
+
+msgid "The Password Fields Must be Filled."
+msgstr "Slaptažodžio laukai turi būti užpildyti."
+
+msgid "The Two Inserted Passwords Do Not Match."
+msgstr "Slaptažodžiai nesutampa."
+
+msgid "Warning"
+msgstr "Įspėjimas"
+
+msgid "The Current Document was Updated."
+msgstr "Dabartinis dokumentas buvo atnaujintas."
+
+msgid "Do you want to Save the Changes?"
+msgstr "Ar nori išsaugoti pakeitimus?"
+
+msgid "Do you want to Execute the Code?"
+msgstr "Ar norite paleisti kodą?"
+
+msgid "Ask Confirmation Before Executing the Code"
+msgstr "Klausti patvirtinimo prieš paleidžiant kodą"
+
+msgid "Use Internal Terminal"
+msgstr "Naudoti vidinį terminalą"
+
+msgid ""
+"A Hierarchical Note Taking Application, featuring Rich Text and Syntax "
+"Highlighting"
+msgstr ""
+"Hierarchinė užrašų programa, turinti raiškųjį tekstą ir sintaksės pažymėjimą"
+
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,\n"
+"MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"Ši programa yra nemokama programinė įranga; galite ją perskirstyti ir/arba "
+"modifikuoti\n"
+"naudojanti GNU General Public licenciją kokią nurodo Free Software "
+"Foundation;\n"
+"licencijos versija 3 arba (pagal jūsų pasirinkimą) bet kuri vėlesnė.\n"
+"\n"
+
+msgid "Arabic"
+msgstr "Arabų"
+
+msgid "Armenian"
+msgstr "Armėnų"
+
+msgid "Bulgarian"
+msgstr "Bulgarų"
+
+msgid "Chinese Simplified"
+msgstr "Kinų supaprastinta"
+
+msgid "Chinese Traditional"
+msgstr "Kinų tradicinė"
+
+msgid "Croatian"
+msgstr "Kroatų"
+
+msgid "Czech"
+msgstr "Čekų"
+
+msgid "Dutch"
+msgstr "Olandų"
+
+msgid "Finnish"
+msgstr "Suomių"
+
+msgid "French"
+msgstr "Prancūzų"
+
+msgid "German"
+msgstr "Vokiečių"
+
+msgid "Greek"
+msgstr "Graikų"
+
+msgid "Hindi India"
+msgstr "Hindi Indija"
+
+msgid "Hungarian"
+msgstr "Vengrų"
+
+msgid "Italian"
+msgstr "Italų"
+
+msgid "Japanese"
+msgstr "Japonų"
+
+msgid "Kazakh"
+msgstr "Kazachų"
+
+msgid "Kazakh (Latin)"
+msgstr "Kazachų (Lotyniškai)"
+
+msgid "Korean"
+msgstr "Korėjiečių"
+
+msgid "Lithuanian"
+msgstr "Lietuvių"
+
+msgid "Persian"
+msgstr "Persų"
+
+msgid "Polish"
+msgstr "Lenkų"
+
+msgid "Portuguese"
+msgstr "Portugalų"
+
+msgid "Portuguese Brazil"
+msgstr "Brazilų Portugalų"
+
+msgid "Romanian"
+msgstr "Romunų"
+
+msgid "Russian"
+msgstr "Rusų"
+
+msgid "Slovak"
+msgstr "Slovakų"
+
+msgid "Slovenian"
+msgstr "Slovėnų"
+
+msgid "Spanish"
+msgstr "Ispanų"
+
+msgid "Swedish"
+msgstr "Švedų"
+
+msgid "Turkish"
+msgstr "Turkų"
+
+msgid "Ukrainian"
+msgstr "Ukrainiečių"
+
+msgid "About OliveSet"
+msgstr "Apie OliveSet"
+
+msgid "Tree Summary Information"
+msgstr "Medžio santraukos informacija"
+
+msgid "Number of Rich Text Nodes"
+msgstr "Raiškiojo teksto užrašų skaičius"
+
+msgid "Number of Plain Text Nodes"
+msgstr "Paprasto teksto užrašų skaičius"
+
+msgid "Number of Code Nodes"
+msgstr "Kodo užrašų skaičius"
+
+msgid "Number of Images"
+msgstr "Paveikslėlių skaičius"
+
+msgid "Number of LatexBoxes"
+msgstr "LaTeX laukelių skaičius"
+
+msgid "Number of Embedded Files"
+msgstr "Įterptų failų skaičius"
+
+msgid "Number of Tables"
+msgstr "Lentelių skaičius"
+
+msgid "Number of CodeBoxes"
+msgstr "Kodo laukelių skaičius"
+
+msgid "Number of Anchors"
+msgstr "Inkarų skaičius"
+
+msgid "Number of Shared Nodes / Groups"
+msgstr "Bendrųjų užrašų / grupių kiekis"
+
+msgid "Latex Text"
+msgstr "LaTeX tekstas"
+
+msgid "Image Size dpi"
+msgstr "Paveikslėlio dydis dpi"
+
+msgid "Tutorial"
+msgstr "Gidas"
+
+msgid "Reference"
+msgstr "Žinynas"
+
+msgid "LaTeX Math and Equations Tutorial"
+msgstr "LaTeX matematikos ir formulių gidas"
+
+msgid "LaTeX Math Symbols Reference"
+msgstr "LaTeX matematikos simbolių žinynas"
+
+msgid "Image Properties"
+msgstr "Paveikslėlio savybės"
+
+msgid "Rotate Left"
+msgstr "Pasukti kairėn"
+
+msgid "Rotate Right"
+msgstr "Pasukti dešinėn"
+
+msgid ""
+"In order to crop the image, select the area with the mouse before clicking OK"
+msgstr ""
+"Norėdami apkarpyti paveikslėlį, pelės mygtuku pažymėkite sritį prieš "
+"spausdami Gerai"
+
+msgid "Flip Horizontally"
+msgstr "Atspėdinti horizontaliai"
+
+msgid "Flip Vertically"
+msgstr "Atspėdinti vertikaliai"
+
+msgid "Width"
+msgstr "Plotis"
+
+msgid "Height"
+msgstr "Aukštis"
+
+msgid "Plain Text"
+msgstr "Paprastas tekstas"
+
+msgid "Automatic Syntax Highlighting"
+msgstr "Automatinis sintaksės pažymėjimas"
+
+msgid "Type"
+msgstr "Tipas"
+
+msgid "pixels"
+msgstr "pikseliai"
+
+msgid "Size"
+msgstr "Dydis"
+
+msgid "Show Line Numbers"
+msgstr "Rodyti linijų numerius"
+
+msgid "Highlight Matching Brackets"
+msgstr "Paryškinti sutampančius skliaustus"
+
+msgid "Options"
+msgstr "Parinktys"
+
+msgid "Rows"
+msgstr "Eilutės"
+
+msgid "Columns"
+msgstr "Stulpeliai"
+
+msgid "Default Width"
+msgstr "Numatytasis plotis"
+
+msgid "Table Size"
+msgstr "Lentelės dydis"
+
+msgid "Column Properties"
+msgstr "Stulpelio nustatymai"
+
+msgid "Lightweight Interface (much faster for large tables)"
+msgstr "Lengvoji Sąsaja (daug greitesnė didelėms lentelėms)"
+
+msgid "Import from CSV File"
+msgstr "Importuoti iš CSV failo"
+
+msgid "Clear"
+msgstr "Išvalyti"
+
+msgid "Reset"
+msgstr "Atstatyti"
+
+msgid "Search for"
+msgstr "Ieškoti"
+
+msgid "Replace with"
+msgstr "Pakeisti"
+
+msgid "Replace in Link Targets"
+msgstr "Pakeisti nuorodų paskirtyse"
+
+msgid "Replace options"
+msgstr "Keitimo nustatymai"
+
+msgid "Match Case"
+msgstr "Tikrinti raidžių dydį"
+
+msgid "Regular Expression"
+msgstr "RegExp paieška"
+
+msgid "Online Manual"
+msgstr "Vadovas internete"
+
+msgid "Accent Insensitive"
+msgstr "Nejautri akcentui"
+
+msgid "Override Exclusions"
+msgstr "Nepaisyti neieškojimo savybės"
+
+msgid "Whole Word"
+msgstr "Pilnas žodis"
+
+msgid "Start Word"
+msgstr "Pirmas žodis"
+
+msgid "More Words, Exact Match"
+msgstr "Daugiau žodžių, tikslus atitikmuo"
+
+msgid "More Words, Disregard Order"
+msgstr "Daugiau žodžių, ignoruoti tvarką"
+
+msgid "More Words, Match Any"
+msgstr "Daugiau žodžių, sutapti su bet kuriuo"
+
+msgid "Forward"
+msgstr "Pirmyn"
+
+msgid "Backward"
+msgstr "Atgal"
+
+msgid "All, List Matches"
+msgstr "Visi, išdėstyti atitikimus"
+
+msgid "First From Selection"
+msgstr "Pirmas iš pasirinkimo"
+
+msgid "First in All Range"
+msgstr "Pirmas visame intervale"
+
+msgid "Node Created After"
+msgstr "Užrašas sukurtas po"
+
+msgid "Node Created Before"
+msgstr "Užrašas sukurtas prieš"
+
+msgid "Node Modified After"
+msgstr "Užrašas modifikuotas po"
+
+msgid "Node Modified Before"
+msgstr "Užrašas modifikuotas prieš"
+
+msgid "Time filter"
+msgstr "Laiko filtravimas"
+
+msgid "Node Content"
+msgstr "Užrašo turinys"
+
+msgid "Node Name and Tags"
+msgstr "Užrašo pavadinime ir etiketėse"
+
+msgid "Only Selected Node and Subnodes"
+msgstr "Tik pažymėtas užrašas ir jo vaikai"
+
+msgid "Show Iterated Find/Replace Dialog"
+msgstr "Rodyti iteruotą radimo/pakeitimo langą"
+
+msgid "Search options"
+msgstr "Paieškos nustatymai"
+
+msgid ""
+"The Replace field is empty: all found occurrences will be erased.\n"
+"Do you want to continue?"
+msgstr ""
+"Keitimo laukas yra tuščias: visi rasti atitikmenys bus pašalinti.\n"
+"Ar norite tęsti?"
+
+msgid ""
+"At least one node was skipped because of exclusions set in the node "
+"properties.\n"
+"In order to clear all the exclusions, use the menu:\n"
+"Search -> Clear All Exclusions From Search"
+msgstr ""
+"Bent vienas užrašas buvo praleistas, nes buvo pasirinktą jį praleisti užrašo "
+"nustatymuose.\n"
+"Norint išvalyti visas paieškos išimtis, naudokite meniu pasirinkimą:\n"
+"Ieškoti -> Išvalyti visas paieškos išimtis"
+
+#, c-format
+msgid "Hide (Restore with '%s')"
+msgstr "Paslėpti (atkurti su '%s')"
+
+msgid "Node Name"
+msgstr "Užrašo pavadinimas"
+
+msgid "Line"
+msgstr "Linija"
+
+msgid "Line Content"
+msgstr "Linijos turinys"
+
+msgid "Iterate Latest Find/Replace"
+msgstr "Iteruoti paskutinį rasti/pakeisti"
+
+msgid "Close"
+msgstr "Uždaryti"
+
+msgid "Find Previous"
+msgstr "Rasti ankstesnį"
+
+msgid "Find Next"
+msgstr "_Rasti sekantį"
+
+msgid "Replace"
+msgstr "Pakeisti"
+
+msgid "Undo"
+msgstr "Atkuri"
+
+msgid "Remove"
+msgstr "Pašalinti"
+
+msgid "Remove User Colour from Palette"
+msgstr "Pašalinti vartotojo spalvą iš paletės"
+
+msgid "Colour"
+msgstr "Spalva"
+
+msgid "Question"
+msgstr "Klausimas"
+
+msgid "Info"
+msgstr "Informacija"
+
+msgid "Error"
+msgstr "Klaida"
+
+msgid "Select File"
+msgstr "Pasirinkti failą"
+
+msgid "Select Folder"
+msgstr "Pasirinkti aplanką"
+
+msgid "Save File as"
+msgstr "Išsaugoti kaip"
+
+msgid "Save To Folder"
+msgstr "Išsaugoti aplanke"
+
+msgid "To WebSite"
+msgstr "Į svetainę"
+
+msgid "To File"
+msgstr "Į failą"
+
+msgid "To Folder"
+msgstr "Į aplanką"
+
+msgid "To Node"
+msgstr "Į užrašą"
+
+msgid "Anchor Name (optional)"
+msgstr "Inkaro pavadinimas (nebūtina)"
+
+msgid "There are No Anchors in the Selected Node."
+msgstr "Nėra jokių inkarų pasirinktame užraše."
+
+msgid "Choose Existing Anchor"
+msgstr "Pasirinkt esamą inkarą"
+
+msgid "Anchor Name"
+msgstr "Inkaro pavadinimas"
+
+#, c-format
+msgid "The pattern '%s' was not found"
+msgstr "Šablonas '%s' nerastas"
+
+msgid "Bold"
+msgstr "Pastorinti"
+
+msgid "Use Selected Color"
+msgstr "Naudoti pasirinktą spalvą"
+
+msgid "Use Selected Icon"
+msgstr "Naudoti pasirinktą ikoną"
+
+msgid "Rich Text"
+msgstr "Raiškusis tekstas"
+
+msgid "Node Type"
+msgstr "Užrašo tipas"
+
+msgid "Tags for Searching"
+msgstr "Etiketės paieškai"
+
+msgid "Exclude from Searches"
+msgstr "Neįtraukti į paieškas"
+
+msgid "This Node"
+msgstr "Šis Užrašas"
+
+msgid "The Subnodes"
+msgstr "Užrašo vaikai"
+
+msgid "Read Only"
+msgstr "Tik skaitymui"
+
+msgid "Unique Id"
+msgstr "Unikalus ID"
+
+msgid "Shared Nodes Group"
+msgstr "Bendrųjų užrašų grupė"
+
+msgid "Choose Existing Tag"
+msgstr "Pasirinkite esamą etiketę"
+
+msgid "Tag Name"
+msgstr "Etiketės pavadinimas"
+
+msgid "Pick a Color"
+msgstr "Pasirink spalvą"
+
+msgid "Select Node Icon"
+msgstr "Pasirinkti užrašo ikoną"
+
+msgid "Involved Nodes"
+msgstr "Įtraukti užrašai"
+
+msgid "Selected Text Only"
+msgstr "Tik pasirinktas tekstas"
+
+msgid "Selected Node Only"
+msgstr "Tik pasirinktam užrašui"
+
+msgid "Selected Node and Subnodes"
+msgstr "Pasirinktas užrašas ir jo vaikai"
+
+msgid "All the Tree"
+msgstr "Visas medis"
+
+msgid "Include Node Name"
+msgstr "Įtraukti užrašo pavadinimą"
+
+msgid "Links Tree in Every Page"
+msgstr "Jungti medį kiekviename lape"
+
+msgid "New Node in New Page"
+msgstr "Naujas užrašas naujame lape"
+
+msgid "Single File"
+msgstr "Vienas failas"
+
+msgid "Index"
+msgstr "Indeksas"
+
+msgid "Warning: One or More Images Were Reduced to Enter the Page!"
+msgstr ""
+"Perspėjimas: vienas ar daugiau paveiksliukų buvo sumažinti atidarant puslapį!"
+
+msgid "LaTeX rendering was blocked for security reasons"
+msgstr "LaTeX atvaizdavimas buvo užblokuotas dėl saugumo priežasčių"
+
+msgid "The source contains file I/O commands that can access local files"
+msgstr ""
+"Šaltinis turi failų I/O komandas, kurios gali pasiekti vietinius failus"
+
+msgid ""
+"Remove commands such as \\verbatiminput, \\openin, \\openout and unsafe "
+"\\input/\\include paths"
+msgstr ""
+"Pašalinkite komandas, tokias kaip \\verbatiminput, \\openin, \\openout ir "
+"nesaugius \\input/\\include kelius"
+
+msgid "Could not access the executables 'latex' and 'dvipng'"
+msgstr "Negalima pasiekti 'latex' ir 'dvipng' vykdomųjų failų"
+
+msgid "For example, on Ubuntu the packages to install are:"
+msgstr "Pavyzdžiui, Ubuntu sistemoje reikia instaliuoti paketus:"
+
+msgid "For example, on macOS the packages to install are:"
+msgstr "Pavyzdžiui, macOS sistemoje reikia instaliuoti paketus:"
+
+msgid "Could not access the executable 'latex'"
+msgstr "Negalima pasiekti 'latex' vykdomojo failo"
+
+msgid "Could not access the executable 'dvipng'"
+msgstr "Negalima pasiekti 'dvipng' vykdomojo failo"
+
+msgid "Downloading"
+msgstr "Siunčiama"
+
+#, c-format
+msgid "The Path %s does Not Exist"
+msgstr "Kelias %s neegzistuoja"
+
+msgid "Open a Recent OliveSet Document"
+msgstr "Atidaryti paskutinį OliveSet dokumentą"
+
+msgid "_Hide"
+msgstr "Paslėpti"
+
+msgid "_Quit"
+msgstr "Išeiti"
+
+msgid "Hide the Window"
+msgstr "Paslėpti langą"
+
+msgid "Quit the Application"
+msgstr "Išeiti iš programos"
+
+msgid "Spell Check"
+msgstr "Rašybos tikrinimas"
+
+msgid "Word Count"
+msgstr "Žodžių kiekis"
+
+msgid "Date Created"
+msgstr "Sukūrimo data"
+
+msgid "Date Modified"
+msgstr "Modifikavimo data"
+
+msgid "Subnodes"
+msgstr "Antriniai užrašai"
+
+msgid ""
+"No Previous Node Copy Was Performed During This Session or the Source Tree "
+"is No Longer Available."
+msgstr ""
+"Joks užrašo kopijavimas nebuvo atliktas per šią sesiją arba šaltinis "
+"nebeegzistuoja."
+
+msgid "The Source Tree Node is No Longer Available."
+msgstr "Šaltinis daugiau nebeegzistuoja."
+
+msgid "Show Menubar:"
+msgstr "Rodyti meniu juostą:"
+
+#, c-format
+msgid "\"%s\" is Not a OliveSet File"
+msgstr "„%s“ nėra OliveSet dokumentas"
+
+#, c-format
+msgid ""
+"Error Parsing the OliveSet Path:\n"
+"\"%s\""
+msgstr ""
+"Klaida nuskaitant OliveSet kelią:\n"
+"\"%s\""
+
+msgid "Do you want to Open the Last Backup?"
+msgstr "Ar norite atidaryti paskutinę atsarginę kopiją?"
+
+msgid "Failed to Load from Backup Data"
+msgstr "Nepavyko atstatyti iš atsarginės kopijos failo"
+
+#, c-format
+msgid "No node named '%s' found."
+msgstr "Užrašas su pavadinimu '%s' nerastas."
+
+msgid "Temporary Files were Created and Opened with External Applications."
+msgstr "Laikini failai buvo sukurti ir atidaryti su išorine programa."
+
+msgid "Quit the External Applications Before Quit OliveSet."
+msgstr "Išeikite iš išorinių programų prieš išeidami iš OliveSet."
+
+msgid "Did you Quit the External Applications?"
+msgstr "Ar išėjai iš išorinių programų?"
+
+#, c-format
+msgid "Cannot Save: \"%s\" is Read-Only"
+msgstr "Nepavyko išsaugoti: \"%s\" yra tik skaitymas"
+
+msgid "The Document was Reloaded After External Update to CT* File."
+msgstr "Dokumentas buvo perkrautas po išorinio atnaujinimo į CT* failą."
+
+msgid "Copy Selection or All"
+msgstr "Kopijuoti pasirinktą arba viską"
+
+msgid "Paste"
+msgstr "Įklijuoti"
+
+msgid "Remove from list"
+msgstr "_Pašalinti iš sąrašo"
+
+msgid "_File"
+msgstr "Failas"
+
+msgid "_Edit"
+msgstr "Keisti"
+
+msgid "_Insert"
+msgstr "Įterpti"
+
+msgid "F_ormat"
+msgstr "Formatuoti"
+
+msgid "_Tree"
+msgstr "Medis"
+
+msgid "Too_ls"
+msgstr "Įrankiai"
+
+msgid "_Search"
+msgstr "Paieška"
+
+msgid "_View"
+msgstr "Rodymas"
+
+msgid "_Bookmarks"
+msgstr "Žymes"
+
+msgid "_Help"
+msgstr "Pagalba"
+
+msgid "Insert _Date Node"
+msgstr "Įterpti _datos užrašą"
+
+msgid "Node _Move"
+msgstr "Perkelti užrašą"
+
+msgid "Nod_es Sort"
+msgstr "Rūšiuoti užrašus"
+
+msgid "B_ookmarks"
+msgstr "Žymes"
+
+msgid "_Import"
+msgstr "Importuoti"
+
+msgid "_Export"
+msgstr "Eksportuoti"
+
+msgid "_Preferences"
+msgstr "_Nustatymai"
+
+msgid "_Recent Documents"
+msgstr "Naujausi dokumentai"
+
+msgid "C_hange Case"
+msgstr "Keisti didžiąsias/mažąsias raides"
+
+msgid "L_ist"
+msgstr "Sąrašas"
+
+msgid "_Justify"
+msgstr "Lygiuoti"
+
+msgid "Toggle _Font Property"
+msgstr "Pakeisti šrifto savybę"
+
+msgid "_Toggle Heading Property"
+msgstr "Perjungti antraštės savybę"
+
+msgid "I_nsert"
+msgstr "Įterpti"
+
+msgid "_Find"
+msgstr "Rasti"
+
+msgid "_Replace"
+msgstr "Pakeisti"
+
+msgid "Ro_w"
+msgstr "Eilutė"
+
+msgid "_Table"
+msgstr "Lentelė"
+
+msgid "_CodeBox"
+msgstr "Kodo laukelis"
+
+msgid "File"
+msgstr "Failas"
+
+msgid "_New Instance..."
+msgstr "Naujas langas..."
+
+msgid "Start a New Instance of OliveSet"
+msgstr "Atidaryti naują OliveSet langą"
+
+msgid "_Open File..."
+msgstr "Atidaryti dokumentą..."
+
+msgid "Open a OliveSet File"
+msgstr "Atidaryti OliveSet dokumentą"
+
+msgid "Open Fo_lder..."
+msgstr "Atverti aplanką..."
+
+msgid "Open a OliveSet Folder"
+msgstr "Atidaryti OliveSet aplanką"
+
+msgid "_Save"
+msgstr "Išsaugoti"
+
+msgid "Save File"
+msgstr "Išsaugoti failą"
+
+msgid "Save and _Vacuum"
+msgstr "Išsaugoti ir išvalyti"
+
+msgid "Save File and Vacuum"
+msgstr "Išsaugoti failą ir išvalyti"
+
+msgid "Save _As..."
+msgstr "Išsaugoti kaip..."
+
+msgid "Save File As"
+msgstr "Išsaugoti kaip"
+
+msgid "Pa_ge Setup..."
+msgstr "Puslapio nustatymai..."
+
+msgid "Set up the Page for Printing"
+msgstr "Nustatyti puslapį spausdinimui"
+
+msgid "P_rint..."
+msgstr "Spausdinti..."
+
+msgid "Print"
+msgstr "Spausdinti"
+
+msgid "Preferences"
+msgstr "Nustatymai"
+
+msgid "_Import Preferences..."
+msgstr "Importuoti nustatymus..."
+
+msgid "Import Preferences"
+msgstr "Importuoti nustatymus"
+
+msgid "_Export Preferences..."
+msgstr "Eksportuoti nustatymus..."
+
+msgid "Export Preferences"
+msgstr "Eksportuoti Nustatymus"
+
+msgid "Tree In_fo"
+msgstr "Medžio informacija"
+
+msgid "_Document Path to Clipboard"
+msgstr "Dokumento _kelias į iškarpinę"
+
+msgid "Copy Document Path to Clipboard"
+msgstr "Kopijuoti dokumento kelią į iškarpinę"
+
+msgid "E_xit OliveSet"
+msgstr "Išeiti iš OliveSet"
+
+msgid "Exit from OliveSet"
+msgstr "Išeiti iš OliveSet"
+
+msgid "Edit/Insert"
+msgstr "Keisti/Įterpti"
+
+msgid "_Undo"
+msgstr "Anuliuoti"
+
+msgid "Undo Last Operation"
+msgstr "Anuliuoti paskutinę operaciją"
+
+msgid "_Redo"
+msgstr "Atstatyti paskutinę operaciją"
+
+msgid "Redo Previously Discarded Operation"
+msgstr "Kartoti paskutinę anuliuotą operaciją"
+
+msgid "Insert I_mage..."
+msgstr "Įterpti paveikslėlį..."
+
+msgid "Insert an Image"
+msgstr "Įterpti paveikslėlį"
+
+msgid "Insert Late_x..."
+msgstr "Įterpti LaTeX..."
+
+msgid "Insert LatexBox"
+msgstr "Įterpti kodo langelį"
+
+msgid "Insert _Table..."
+msgstr "Įterpti lentelę..."
+
+msgid "Insert a Table"
+msgstr "Įterpti lentelę"
+
+msgid "Insert _CodeBox..."
+msgstr "Įterpti kodo laukelį..."
+
+msgid "Insert _File..."
+msgstr "Įterpti failą..."
+
+msgid "Insert File"
+msgstr "Įterpti failą"
+
+msgid "Insert/Edit _Link..."
+msgstr "Įterpti/Keisti nuorodą..."
+
+msgid "Insert a Link/Edit the Underlying Link"
+msgstr "Įterpti/Keisti nuorodą"
+
+msgid "Insert _Anchor..."
+msgstr "Įterpti inkarą..."
+
+msgid "Insert an Anchor"
+msgstr "Įterpti inkarą"
+
+msgid "Insert T_OC and Headers Collapsors..."
+msgstr "Įterpti Turinį ir Antraščių sutraukimus..."
+
+msgid "Insert Table of Contents and Headers Collapsors/Expanders"
+msgstr "Įterpti Turinį id Antraščių sutraukimus/Išplėtimus"
+
+msgid "Insert Timestam_p"
+msgstr "Įterpti datą ir laiką"
+
+msgid "Insert Timestamp"
+msgstr "Įterpti datą ir laiką"
+
+msgid "Insert _Special Character..."
+msgstr "Įtraukti specialųjį simbolį..."
+
+msgid "Insert a Special Character"
+msgstr "Įtraukti specialųjį simbolį"
+
+msgid "Insert _Horizontal Rule"
+msgstr "Įterpti horizontalią liniuotę"
+
+msgid "Insert Horizontal Rule"
+msgstr "Įterpti horizontalią liniuotę"
+
+msgid "_Lower Case of Selection/Word"
+msgstr "Paversti į mažąsias raides"
+
+msgid "Lower the Case of the Selection/the Underlying Word"
+msgstr "Sumažinti pažymėto teksto arba žodžio po kursoriumi raides"
+
+msgid "_Upper Case of Selection/Word"
+msgstr "Paversti didžiosiomis raidėmis"
+
+msgid "Upper the Case of the Selection/the Underlying Word"
+msgstr "Padidinti pažymėto teksto arba žodžio po kursoriumi raides"
+
+msgid "_Toggle Case of Selection/Word"
+msgstr "Perjungti didžiąsias-mažąsias raides"
+
+msgid "Toggle the Case of the Selection/the Underlying Word"
+msgstr "Perjungti pažymėto teksto arba žodžio po kursoriumi raides"
+
+msgid "Cu_t as Plain Text"
+msgstr "Iškirpti kaip neformatuotą tekstą"
+
+msgid "Cut as Plain Text, Discard the Rich Text Formatting"
+msgstr "Iškirpti tekstą be formatavimo"
+
+msgid "_Copy as Plain Text"
+msgstr "Kopijuoti kaip paprastą tekstą"
+
+msgid "Copy as Plain Text, Discard the Rich Text Formatting"
+msgstr "Kopijuoti tekstą be formatavimo"
+
+msgid "_Paste as Plain Text"
+msgstr "Įklijuoti kaip tekstą be farmataz"
+
+msgid "Paste as Plain Text, Discard the Rich Text Formatting"
+msgstr "Įklijuoti tekstą be formatavimo"
+
+msgid "C_ut Row"
+msgstr "Iškirpti eilutę"
+
+msgid "Cut the Current Row/Selected Rows"
+msgstr "Iškirpti pažymėtas eilutes/eilutę su kursoriumi"
+
+msgid "C_opy Row"
+msgstr "Kopijuoti eilutę"
+
+msgid "Copy the Current Row/Selected Rows"
+msgstr "Kopijuoti pažymėtas eilutes/eilutę su kursoriumi"
+
+msgid "De_lete Row"
+msgstr "Ištrinti eilutę"
+
+msgid "Delete the Current Row/Selected Rows"
+msgstr "Ištrinti pažymėtas eilutes/eilutę su kursoriumi"
+
+msgid "_Duplicate Row"
+msgstr "Dubliuoti eilutę"
+
+msgid "Duplicate the Current Row/Selection"
+msgstr "Dubliuoti pažymėtas eilutes/eilutę su kursoriumi"
+
+msgid "_Move Up Row"
+msgstr "Perkelti eilute aukštyn"
+
+msgid "Move Up the Current Row/Selected Rows"
+msgstr "Perkelti pažymėtas eilutes/eilutę su kursoriumi į viršų"
+
+msgid "Mo_ve Down Row"
+msgstr "Perkelti eilutę žemyn"
+
+msgid "Move Down the Current Row/Selected Rows"
+msgstr "Perkelti pažymėtas eilutes/eilutę su kursoriumi į žemyn"
+
+msgid "C_ut Table"
+msgstr "Iškirpti lentelę"
+
+msgid "Cut the Selected Table"
+msgstr "Iškirtpti pažymėtą lentelę"
+
+msgid "_Copy Table"
+msgstr "Kopijuoti lentelę"
+
+msgid "Copy the Selected Table"
+msgstr "Kopijuoti pažymėtą lentelę"
+
+msgid "_Delete Table"
+msgstr "Ištrinti lentelę"
+
+msgid "Delete the Selected Table"
+msgstr "Ištrinti pažymėtą lentelę"
+
+msgid "_Add Column"
+msgstr "Pridėti stulpelį"
+
+msgid "Add a Table Column"
+msgstr "Pridėti lentelės stulpelį"
+
+msgid "Cu_t Column"
+msgstr "Iš_kirpti stulpelį"
+
+msgid "Cut a Table Column"
+msgstr "Iškirpti lentelės stulpelį"
+
+msgid "_Copy Column"
+msgstr "_Kopijuoti stulpelį"
+
+msgid "Copy a Table Column"
+msgstr "Kopijuoti lentelės stulpelį"
+
+msgid "_Paste Column"
+msgstr "Įk_lijuoti stulpelį"
+
+msgid "Paste a Table Column"
+msgstr "Įklijuoti lentelės stulpelį"
+
+msgid "De_lete Column"
+msgstr "Ištrinti stulpelį"
+
+msgid "Delete the Selected Table Column"
+msgstr "Ištrinti pažymėtą lentelės stulpelį"
+
+msgid "Move Column _Left"
+msgstr "Perkelti stulpelį kairėje"
+
+msgid "Move the Selected Column Left"
+msgstr "Perkelti pažymėtą stulpelį į kairę"
+
+msgid "Move Column _Right"
+msgstr "Perkelti į stulpelį dešinėje"
+
+msgid "Move the Selected Column Right"
+msgstr "Perkelti pažymėtą stulpelį į dešinę"
+
+msgid "Increase Column Width"
+msgstr "Padidinti stulpelio plotį"
+
+msgid "Increase the Width of the Column"
+msgstr "Padidinti stulpelio plotį"
+
+msgid "Decrease Column Width"
+msgstr "Sumažinti stulpelio plotį"
+
+msgid "Decrease the Width of the Column"
+msgstr "Sumažinti stulpelio plotį"
+
+msgid "_Add Row"
+msgstr "_Pridėti eilutę"
+
+msgid "Add a Table Row"
+msgstr "Pridėti lentelės eilutę"
+
+msgid "Cu_t Row"
+msgstr "Iškirpti eilutę"
+
+msgid "Cut a Table Row"
+msgstr "Iškirpti lentelės eilutę"
+
+msgid "_Copy Row"
+msgstr "Kopijuoti eilutę"
+
+msgid "Copy a Table Row"
+msgstr "Kopijuoti lentelės eilutę"
+
+msgid "_Paste Row"
+msgstr "Įklijuoti eilutę"
+
+msgid "Paste a Table Row"
+msgstr "Įklijuoti lentelės eilutę"
+
+msgid "Delete the Selected Table Row"
+msgstr "Ištrinti pažymėtą lentelės eilutę"
+
+msgid "Move Row _Up"
+msgstr "Perkelti eilutę aukštyn"
+
+msgid "Move the Selected Row Up"
+msgstr "Perkelti pažymėtą eilutę aukštyn"
+
+msgid "Move Row _Down"
+msgstr "Perkelti eilutę žemyn"
+
+msgid "Move the Selected Row Down"
+msgstr "Perkelti pažymėtą eilutę žemyn"
+
+msgid "Sort Rows De_scending"
+msgstr "Rūšiuoti eilutes mažėjančiai"
+
+msgid "Sort all the Rows Descending"
+msgstr "Rūšiuoti visas eilutes mažėjančiai"
+
+msgid "Sort Rows As_cending"
+msgstr "Rūšiuoti eilutes didėjančiai"
+
+msgid "Sort all the Rows Ascending"
+msgstr "Rūšiuoti visas eilutes didėjančiai"
+
+msgid "_Edit Table Properties..."
+msgstr "Keisti lentelės savybes..."
+
+msgid "Edit the Table Properties"
+msgstr "Keisti lentelės savybes"
+
+msgid "_Table Export..."
+msgstr "Eksportuoti lentelę..."
+
+msgid "Export Table as CSV File"
+msgstr "Eksportuoti lentelę kaip CSV failą"
+
+msgid "Change CodeBox _Properties..."
+msgstr "Keisti kodo laukelio savybes..."
+
+msgid "Edit the Properties of the CodeBox"
+msgstr "Keisti kodo laukelio savybes"
+
+msgid "CodeBox _Load From Text File..."
+msgstr "Įkelti kodo laukelį iš tekstinio failo..."
+
+msgid "Load the CodeBox Content From a Text File"
+msgstr "Įkelti kodo laukelio turinį iš tekstinio failo"
+
+msgid "CodeBox _Save To Text File..."
+msgstr "Saugoti kodo laukelį į tekstinį failą..."
+
+msgid "Save the CodeBox Content To a Text File"
+msgstr "Išsaugoti kodo laukelį į tekstinį failą"
+
+msgid "C_ut CodeBox"
+msgstr "Iškirpti kodo laukelį"
+
+msgid "Cut the Selected CodeBox"
+msgstr "Iškirpti pažymėtą kodo laukelį"
+
+msgid "_Copy CodeBox"
+msgstr "Kopijuoti kodo laukelį"
+
+msgid "Copy the Selected CodeBox"
+msgstr "Kopijuoti pažymėtą kodo dėžutę"
+
+msgid "_Copy CodeBox Content"
+msgstr "Kopijuoti kodo laukelio turinį"
+
+msgid "Copy the Content of the Selected CodeBox"
+msgstr "Kopijuoti pažymėto kodo laukelio turinį"
+
+msgid "_Delete CodeBox"
+msgstr "Ištrinti kodo laukelį"
+
+msgid "Delete the Selected CodeBox"
+msgstr "Ištrinti pažymėtą kodo laukelį"
+
+msgid "Delete CodeBox _Keep Content"
+msgstr "Ištrinti kodo laukelio, palinkti turinį"
+
+msgid "Delete the Selected CodeBox But Keep Its Content"
+msgstr "Ištrinti pažymėtą kodo laukelį, bet palikti jo turinį"
+
+msgid "Increase CodeBox Width"
+msgstr "Padidinti kodo laukelio plotį"
+
+msgid "Increase the Width of the CodeBox"
+msgstr "Padidinti kodo laukelio plotį"
+
+msgid "Decrease CodeBox Width"
+msgstr "Sumažinti kodo laukelio plotį"
+
+msgid "Decrease the Width of the CodeBox"
+msgstr "Sumažinti kodo laukelio plotį"
+
+msgid "Increase CodeBox Height"
+msgstr "Padidinti kodo laukelio aukštį"
+
+msgid "Increase the Height of the CodeBox"
+msgstr "Padidinti kodo laukelio aukštį"
+
+msgid "Decrease CodeBox Height"
+msgstr "Sumažinti kodo laukelio aukštį"
+
+msgid "Decrease the Height of the CodeBox"
+msgstr "Sumažinti kodo laukelio aukštį"
+
+msgid "Format"
+msgstr "Formatuoti"
+
+msgid "Format Clo_ne"
+msgstr "Klonuoti formatavimą"
+
+msgid "Clone the Text Format Type at Cursor"
+msgstr "Klonuoti teksto formatą ties kursoriumi"
+
+msgid "Format _Latest"
+msgstr "Formatuoto paskutinį"
+
+msgid "Memory of Latest Text Format Type"
+msgstr "Pakartoti paskutinį teksto formatavimą"
+
+msgid "_Remove Formatting"
+msgstr "_Pašalinti formatavimą"
+
+msgid "Remove the Formatting from the Selected Text"
+msgstr "Pašalinti formatą iš pasirinkto teksto"
+
+msgid "Text _Color Foreground"
+msgstr "Šrifto spalva"
+
+msgid "Change the Color of the Selected Text Foreground"
+msgstr "Keisti pažymėto teksto šrifto spalvą"
+
+msgid "Text C_olor Background"
+msgstr "Teksto fono spalva"
+
+msgid "Change the Color of the Selected Text Background"
+msgstr "Keisti pažymėto teksto šrifto spalvą"
+
+msgid "Toggle _Bold Property"
+msgstr "Keisti paryškinimą"
+
+msgid "Toggle Bold Property of the Selected Text"
+msgstr "Įjungti/išjungti paryškinto teksto savybę"
+
+msgid "Toggle _Italic Property"
+msgstr "Keisti kursyvą"
+
+msgid "Toggle Italic Property of the Selected Text"
+msgstr "Įjungti/išjungti teksto kursyvo savybę"
+
+msgid "Toggle _Underline Property"
+msgstr "Keisti pabraukimą pabraukimą"
+
+msgid "Toggle Underline Property of the Selected Text"
+msgstr "Įjungti/išjungti teksto pabraukimo savybę"
+
+msgid "Toggle Stri_kethrough Property"
+msgstr "Keisti išbraukimą"
+
+msgid "Toggle Strikethrough Property of the Selected Text"
+msgstr "Įjungti/išjungti teksto išbraukimo savybę"
+
+msgid "Toggle h_1 Property"
+msgstr "Keisti 1-ojo lygio antraštės savybę"
+
+msgid "Toggle h1 Property of the Selected Text"
+msgstr "Įjungti/išjungti pažymėto teksto 1-ojo lygio antraštės savybę"
+
+msgid "Toggle h_2 Property"
+msgstr "Keisti 2-ojo lygio antraštės savybę"
+
+msgid "Toggle h2 Property of the Selected Text"
+msgstr "Įjungti/išjungti pažymėto teksto 2-ojo lygio antraštės savybę"
+
+msgid "Toggle h_3 Property"
+msgstr "Keisti 2-ojo lygio antraštės savybę"
+
+msgid "Toggle h3 Property of the Selected Text"
+msgstr "Įjungti/išjungti pažymėto teksto 3-ojo lygio antraštės savybę"
+
+msgid "Toggle h_4 Property"
+msgstr "Keisti 4-ojo lygio antraštės savybę"
+
+msgid "Toggle h4 Property of the Selected Text"
+msgstr "Įjungti/išjungti pažymėto teksto 4-ojo lygio antraštės savybę"
+
+msgid "Toggle h_5 Property"
+msgstr "Keisti 5-ojo lygio antraštės savybę"
+
+msgid "Toggle h5 Property of the Selected Text"
+msgstr "Įjungti/išjungti pažymėto teksto 5-ojo lygio antraštės savybę"
+
+msgid "Toggle h_6 Property"
+msgstr "Perjungti 6-ojo lygio antraštę"
+
+msgid "Toggle h6 Property of the Selected Text"
+msgstr "Įjungti/išjungti pažymėto teksto 6-ojo lygio antraštės savybę"
+
+msgid "Toggle _Small Property"
+msgstr "Perjungti mažą tekstą"
+
+msgid "Toggle Small Property of the Selected Text"
+msgstr "Įjungti/išjungti pažymėto teksto mažo teksto savybę"
+
+msgid "Toggle Su_bscript Property"
+msgstr "Perjungti apatinio indeksą"
+
+msgid "Toggle Subscript Property of the Selected Text"
+msgstr "Įjungti/išjungti pažymėto teksto apatinio indekso savybę"
+
+msgid "Toggle Su_perscript Property"
+msgstr "Perjungti viršutinį indeksą"
+
+msgid "Toggle Superscript Property of the Selected Text"
+msgstr "Įjungti/išjungti pažymėto teksto viršutinio indekso savybę"
+
+msgid "Toggle _Monospace Property"
+msgstr "Perjungti Monospace savybę"
+
+msgid "Toggle Monospace Property of the Selected Text"
+msgstr "Įjungti/išjungti pažymėto teksto Monospace savybę"
+
+msgid "Set/Unset _Bulleted List"
+msgstr "Punktuotas sąrašas"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Bulleted List"
+msgstr ""
+"Įjungti/išjungti dabartiniam paragrafui/pažymėtam tekstui punktuoto sąrašo "
+"savybę"
+
+msgid "Set/Unset _Numbered List"
+msgstr "Numeruotas sąrašas"
+
+msgid "Set/Unset the Current Paragraph/Selection as a Numbered List"
+msgstr ""
+"Įjungti/išjungti dabartiniam paragrafui/pažymėtam tekstui numeruoto sąrašo "
+"savybę"
+
+msgid "Set/Unset _To-Do List"
+msgstr "To-Do sąrašas"
+
+msgid "Set/Unset the Current Paragraph/Selection as a To-Do List"
+msgstr ""
+"Įjungti/išjungti dabartiniam paragrafui/pažymėtam tekstui To-Do sąrašo savybę"
+
+msgid "Justify _Left"
+msgstr "Lygiuoti kairėje"
+
+msgid "Justify Left the Current Paragraph"
+msgstr "Lygiuoti dabartinį paragrafą kairėje"
+
+msgid "Justify _Center"
+msgstr "Lygiuoti centre"
+
+msgid "Justify Center the Current Paragraph"
+msgstr "Lygiuoti dabartinį paragrafą centre"
+
+msgid "Justify _Right"
+msgstr "Lygiuoti dešinėje"
+
+msgid "Justify Right the Current Paragraph"
+msgstr "Lygiuoti dabartinį paragrafą dešinėje"
+
+msgid "Justify _Fill"
+msgstr "Lygiuoti išpildant"
+
+msgid "Justify Fill the Current Paragraph"
+msgstr "Išpildytas lygiavimas dabartiniam paragrafui"
+
+msgid "_Indent Paragraph"
+msgstr "Padidinti paragrafo indentaciją"
+
+msgid "Indent the Current Paragraph"
+msgstr "Padidinti paragrafo su kursoriumi indentaciją"
+
+msgid "_Unindent Paragraph"
+msgstr "Sumažinti paragrafo indentaciją"
+
+msgid "Unindent the Current Paragraph"
+msgstr "Sumažinti paragrafo su kursoriumi indentaciją"
+
+msgid "_Expand TOC Headers"
+msgstr "Išskleisti _TOC antraštes"
+
+msgid "Expand TOC Headers"
+msgstr "Išskleisti TOC antraštes"
+
+msgid "_Collapse TOC Headers"
+msgstr "Suskleisti TOC antraštes"
+
+msgid "Collapse TOC Headers"
+msgstr "Suskleisti TOC antraštes"
+
+msgid "Tools"
+msgstr "Įrankiai"
+
+msgid "Enable/Disable _Spell Check"
+msgstr "Įjungti/išjungti rašybos tikrinimą"
+
+msgid "Toggle Enable/Disable Spell Check"
+msgstr "Įjungti/išjungti rašybos tikrinimą"
+
+msgid "Enable/Disable _VIM Mode"
+msgstr "Įjungti/išjungti _VIM režimą"
+
+msgid "Toggle Enable/Disable VIM Mode"
+msgstr "VIM režimas įjungti/išjungti"
+
+msgid "Stri_p Trailing Spaces"
+msgstr "Šalinti galinius tarpus"
+
+msgid "Strip Trailing Spaces"
+msgstr "Šalinti galinius tarpus"
+
+msgid "_Replace Tabs with Spaces"
+msgstr "Pakeisti tabuliacija tarpais"
+
+msgid "Replace Tabs with Spaces"
+msgstr "Pakeisti tabuliacija tarpais"
+
+msgid "_Command Palette..."
+msgstr "Komandų paletė..."
+
+msgid "Command Palette"
+msgstr "Komandų paletė"
+
+msgid "_Execute Code All"
+msgstr "Vykdyti visą kodą"
+
+msgid "Execute All Code in CodeBox or Node"
+msgstr "Vykdyti visą kodą kodo laukelyje arba užraše"
+
+msgid "E_xecute Code Line or Selection"
+msgstr "Vykdyti kodo eilutę ar pažymėtą kodą"
+
+msgid "Execute Code from Current Line or Selected Text"
+msgstr "Vykdyti kodo eilutę su kursoriumi ar pažymėtą kodą"
+
+msgid "Tree"
+msgstr "Medis"
+
+msgid "Go _Back"
+msgstr "Grįžti atgal"
+
+msgid "Go to the Previous Visited Node"
+msgstr "Eiti į prieš tai lankytą užrašą"
+
+msgid "Go _Forward"
+msgstr "Eiti pirmyn"
+
+msgid "Go to the Next Visited Node"
+msgstr "Eiti į sekantį lankytą užrašą"
+
+msgid "Add _Node..."
+msgstr "Pridėti užrašą..."
+
+msgid "Add a Node having the same Parent of the Selected Node"
+msgstr "Pridėti užrašą, turintį tą patį tėvą pasirinktam užrašui"
+
+msgid "Add _Subnode..."
+msgstr "Pridėti užrašą..."
+
+msgid "Add a Child Node to the Selected Node"
+msgstr "Pridėti užrašą kaip vaiką pažymėtam užrašui"
+
+msgid "_Duplicate Node"
+msgstr "Dubliuoti užrašą"
+
+msgid "Duplicate the Selected Node"
+msgstr "Dubliuoti pasirinktą užrašą"
+
+msgid "Duplicate Node _and Subnodes"
+msgstr "Dubliuoti užrašą ir jo vidinius užrašus"
+
+msgid "Duplicate the Selected Node and the Subnodes"
+msgstr "Dubliuoti pažymėtą užrašą ir jo vidinius užrašus"
+
+msgid "_Create Shared Node"
+msgstr "Sukurti Bendrąjį Užrašą"
+
+msgid "Create a New Node Sharing the Same Data of the Selected Node"
+msgstr ""
+"Sukurti naują užrašą turintį tokius pat duomenis kaip ir pažymėtas užrašas"
+
+msgid "Copy Node and S_ubnodes"
+msgstr "Kopijuoti užrašą ir jo vidinius užrašus"
+
+msgid "Copy the Selected Node and the Subnodes"
+msgstr "Kopijuoti pažymėtą užrašą ir jo vidinius užrašus"
+
+msgid "_Paste Node and Subnodes"
+msgstr "Įklijuoti užrašą ir jo vidinius užrašus"
+
+msgid "Paste the Copied Node and Subnodes"
+msgstr "Įklijuoti nukopijuoti užrašą ir jo vidinius užrašus"
+
+msgid "Insert _Today's Node Under Tree Root"
+msgstr "Įterpti šios dienos užrašą į pagrindinį medį"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Tree Root"
+msgstr "Įterpti užrašą su hierarchiniais metais/mėnesiu/diena šiai dienai pagrindiniame medyje"
+
+msgid "Insert Toda_y's Node Under Selected Node"
+msgstr "Įterpti šios dienos užrašą pažymėtam užrašui"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Today Under the Selected Node"
+msgstr "Įterpti užrašą su hierarchiniais metais/mėnesiu/diena šiai dienai pažymėtam užrašui"
+
+msgid "Insert T_omorrow's Node Under Tree Root"
+msgstr "Įterpti _rytojaus užrašą į pagrindinį medį"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Tree Root"
+msgstr "Įterpti užrašą su hierarchiniais metais/mėnesiu/diena rytojui pagrindiniame medyje"
+
+msgid "Insert Tomorro_w's Node Under Selected Node"
+msgstr "Įterpti _rytojaus užrašą pažymėtam užrašui"
+
+msgid ""
+"Insert a Node with Hierarchy Year/Month/Day for Tomorrow Under the Selected "
+"Node"
+msgstr "Įterpti užrašą su hierarchiniais metais/mėnesiu/diena rytojui pažymėtam užrašui"
+
+msgid "C_hange Node Properties..."
+msgstr "Keisti užrašo savybes..."
+
+msgid "Edit the Properties of the Selected Node"
+msgstr "Keisti pasirinkto mazgo savybes"
+
+msgid "Toggle _Read Only"
+msgstr "Perjungti tik skaitymo savybę"
+
+msgid "Toggle the Read Only Property of the Selected Node"
+msgstr "Perjungti tik skaitymo savybę pasirinktam užrašui"
+
+msgid "Cop_y Link to Node"
+msgstr "Kopijuoti nuorodą į užrašą"
+
+msgid "Copy Link to the Selected Node to Clipboard"
+msgstr "Kopijuoti nuorodą į pasirinktą užrašą į iškarpinę"
+
+msgid "Children _Inherit Syntax"
+msgstr "Vaikai paveldi sintaksę"
+
+msgid ""
+"Change the Selected Node's Children Syntax Highlighting to the Parent's "
+"Syntax Highlighting"
+msgstr ""
+"Pakeisti pasirinktų užrašų vaikų sintaksės žymėjimą į tėvo sintaksės žymėjimą"
+
+msgid "_Handle Bookmarks..."
+msgstr "Tvarkyti žymes..."
+
+msgid "Add to Boo_kmarks"
+msgstr "Pridėti į žymes"
+
+msgid "Add the Current Node to the Bookmarks List"
+msgstr "Pridėti dabartinį užrašą į žymių sąrašą"
+
+msgid "Remove from Boo_kmarks"
+msgstr "Pašalinti iš žymių"
+
+msgid "Remove the Current Node from the Bookmarks List"
+msgstr "Pašalinti dabartinį užrašą iš žymių sąrašo"
+
+msgid "E_xpand All Nodes"
+msgstr "Išskleisti visus užrašus"
+
+msgid "Expand All the Tree Nodes"
+msgstr "Išskleisti visus medžio užrašus"
+
+msgid "_Collapse All Nodes"
+msgstr "Suskleisti visus užrašus"
+
+msgid "Collapse All the Tree Nodes"
+msgstr "Suskleisti visus medžio užrašus"
+
+msgid "Node _Up"
+msgstr "Užrašas aukštyn"
+
+msgid "Move the Selected Node Up"
+msgstr "Perkelti pasirinktą užrašą aukštyn"
+
+msgid "Node _Down"
+msgstr "Užrašas žemyn"
+
+msgid "Move the Selected Node Down"
+msgstr "Perkelti pasirinktą užrašą žemyn"
+
+msgid "Node _Left"
+msgstr "Užrašas kairėn"
+
+msgid "Move the Selected Node Left"
+msgstr "Perkelti pasirinktą užrašą kairėn"
+
+msgid "Node _Right"
+msgstr "Užrašas dešinėn"
+
+msgid "Move the Selected Node Right"
+msgstr "Perkelti pasirinktą užrašą į dešinę"
+
+msgid "Node Change _Parent..."
+msgstr "Pakeisti užrašo tėvą..."
+
+msgid "Change the Selected Node's Parent"
+msgstr "Pakeisti pasirinkto užrašo tėvą"
+
+msgid "Sort Tree _Ascending"
+msgstr "Rūšiuoti medį didėjančiai"
+
+msgid "Sort the Tree Ascending"
+msgstr "Rūšiuoti medžio užrašus didėjančia tvarka"
+
+msgid "Sort Tree _Descending"
+msgstr "Rūšiuoti medį mažėjančiai"
+
+msgid "Sort the Tree Descending"
+msgstr "Rūšiuoti medžio užrašus mažėjančia tvarka"
+
+msgid "Sort Siblings A_scending"
+msgstr "Rūšiuoti vaikus didėjančiai"
+
+msgid "Sort all the Siblings of the Selected Node Ascending"
+msgstr "Rūšiuoti visus pasirinkto užrašo vaikus didėjančia tvarka"
+
+msgid "Sort Siblings D_escending"
+msgstr "Rūšiuoti vaikus mažėjančiai"
+
+msgid "Sort all the Siblings of the Selected Node Descending"
+msgstr "Rūšiuoti visus pasirinkto užrašo vaikus mažėjančia tvarka"
+
+msgid "De_lete Node"
+msgstr "Ištrinti užrašą"
+
+msgid "Delete the Selected Node"
+msgstr "Ištrinti pasirinktą užrašą"
+
+msgid "Find/Replace"
+msgstr "Rasti/Pakeisti"
+
+msgid "_Quick Node Selection..."
+msgstr "Greitas užrašo pasirinkimas..."
+
+msgid "Quick Node Selection"
+msgstr "Greitas užrašo pasirinkimas"
+
+msgid "Find in _Nodes Names and Tags..."
+msgstr "Rasti užrašų pavadinimuose ir etiketėse..."
+
+msgid "Find in Nodes Names and Tags"
+msgstr "Rasti užrašų pavadinimuose ir etiketėse"
+
+msgid "_Find in Node Content..."
+msgstr "Rasti užrašo turinyje..."
+
+msgid "Find into the Selected Node Content"
+msgstr "Rasti pasirinkto užrašo turinyje"
+
+msgid "Find _in Multiple Nodes..."
+msgstr "Rasti užrašuose..."
+
+msgid "Find in Multiple Nodes"
+msgstr "Ieškoti visuose užrašuose"
+
+msgid "Find _Again"
+msgstr "Rasti _vėl"
+
+msgid "Iterate the Last Find Operation"
+msgstr "Ieškoti naudojant paskutinę paieškos užklausą"
+
+msgid "Find _Back"
+msgstr "Rasti atgal"
+
+msgid "Iterate the Last Find Operation in Opposite Direction"
+msgstr "Ieškoti naudojant paskutinę paieškos užklausą priešinga kryptimi"
+
+msgid "_Replace in Node Content..."
+msgstr "Pakeisti užrašo turinyje..."
+
+msgid "Replace into the Selected Node Content"
+msgstr "Pakeisti užrašo turinyje esantį tekstą"
+
+msgid "Replace in _Multiple Nodes..."
+msgstr "Pakeisti visuose užrašuose..."
+
+msgid "Replace A_gain"
+msgstr "Keisti dar kartą"
+
+msgid "Iterate the Last Replace Operation"
+msgstr "Atkartoti paskutinę keitimo operaciją"
+
+msgid "Show All Matches _Dialog..."
+msgstr "Rodyti visų rezultatų langą..."
+
+msgid "Show Search All Matches Dialog"
+msgstr "Rodyti visu paieškos rezultatų langą"
+
+msgid "_Clear All Exclusions From Search"
+msgstr "Išvalyti visas paieškos išimtis"
+
+msgid "Clear All Tree Nodes Properties of Exclusions From Search"
+msgstr "Išvalyti visas paieškos išimtis iš užrašų savybių"
+
+msgid "View"
+msgstr "Rodymas"
+
+msgid "Show/Hide _Tree Explorer"
+msgstr "Rodyti/Slėpti užrašų medį"
+
+msgid "Toggle Show/Hide Tree"
+msgstr "Keisti užrašų medžio rodymą"
+
+msgid "Show/Hide Te_rminal"
+msgstr "Rodyti/Slėpti terminalą"
+
+msgid "Toggle Show/Hide Terminal"
+msgstr "Keisti terminalo rodymą"
+
+msgid "Toggle Focus Terminal/Te_xt"
+msgstr "Perjungti teksto/terminalo fokusavimą"
+
+msgid "Toggle Focus Between Terminal and Text"
+msgstr "Keisti fokusavimą tarp užrašo teksto ir terminalo"
+
+msgid "Show/Hide _Menubar"
+msgstr "Rodyti/slėpti meniu juostą"
+
+msgid "Toggle Show/Hide Menubar"
+msgstr "Rodyti/slėpti meniu juostą"
+
+msgid "Show/Hide Tool_bar"
+msgstr "Rodyti/slėpti įrankių juostą"
+
+msgid "Toggle Show/Hide Toolbar"
+msgstr "Rodyti/slėpti įrankų juostą"
+
+msgid "Show/Hide _Statusbar"
+msgstr "Rodyti/slėpti būsenos juostą"
+
+msgid "Toggle Show/Hide Statusbar"
+msgstr "Rodyti/slėpti būsenos juostą"
+
+msgid "Show/Hide _Lines Node Parent to Children"
+msgstr "Rodyti/slėpti linijas tarp užrašo ir jo vaikų"
+
+msgid "Toggle Show/Hide Lines Between Node Parent and Children"
+msgstr "Rodyti/slėpti linijas tarp užrašo ir užrašų kurie yra jo vaikai"
+
+msgid "Show/Hide Node Name _Header"
+msgstr "Slėpti/rodyti užrašo pavadinimo juostą"
+
+msgid "Toggle Show/Hide Node Name Header"
+msgstr "Slėpti/rodyti užrašo pavadinimo juostą"
+
+msgid "Toggle _Focus Tree/Text"
+msgstr "Perjungti medžio/teksto fokusavimą"
+
+msgid "Toggle Focus Between Tree and Text"
+msgstr "Perjungti fokusavimą tarp medžio ir teksto"
+
+msgid "_Increase Toolbar Icons Size"
+msgstr "Padidinti įrankių juostos ikonų dydį"
+
+msgid "Increase the Size of the Toolbar Icons"
+msgstr "Padidinti įrankių juostos ikonų dydį"
+
+msgid "_Decrease Toolbar Icons Size"
+msgstr "Sumažinti įrankių juostos ikonų dydį"
+
+msgid "Decrease the Size of the Toolbar Icons"
+msgstr "Sumažinti įrankių juostos ikonų dydį"
+
+msgid "More Last _Visited Nodes on Node Name Header"
+msgstr "Daugiau paskutinių aplankytų užrašų pavadinimo antraštėje"
+
+msgid "Increase the Number of Last Visited Nodes on Node Name Header"
+msgstr "Padidinti paskutinių aplankytų užrašų skaiciú pavadinimo antraštėje"
+
+msgid "L_ess Last Visited Nodes on Node Name Header"
+msgstr "Mažiau paskutinių aplankytų užrašų pavadinimo antraštėje"
+
+msgid "Decrease the Number of Last Visited Nodes on Node Name Header"
+msgstr "Sumažinti paskutinių aplankytų užrašų skaiciú pavadinimo antraštėje"
+
+msgid "Full Screen _On/Off"
+msgstr "Įjungti/išjungti visą ekraną"
+
+msgid "Toggle Full Screen On/Off"
+msgstr "Įjungti/išjungti rodymą per visą ekraną"
+
+msgid "_Always On Top On/Off"
+msgstr "Įjungti/išjungti visada ant viršaus"
+
+msgid "Always On Top On/Off"
+msgstr "Įjungia/išjungia programos lango rodymo visada ant viršaus funkciją"
+
+msgid "Disable Menubar i_n Titlebar"
+msgstr "Išjungti meniu pavadinimo juostoje"
+
+msgid "Do Not Place the Menubar in the Titlebar"
+msgstr "Nerodyti meniu juostos pavadinimo juostoje"
+
+msgid "Enable Menubar i_n Titlebar"
+msgstr "Įjungti meniu pavadinimo juostoje"
+
+msgid "Place the Menubar in the Titlebar"
+msgstr "Rodyti meniu juostą pavadinimo juostoje"
+
+msgid "Import"
+msgstr "Importuoti"
+
+msgid "From _OliveSet File"
+msgstr "Iš OliveSet failo"
+
+msgid "Add Nodes of a OliveSet File to the Current Tree"
+msgstr "Pridėti užrašus iš OliveSet failo į dabartinį medį"
+
+msgid "From _OliveSet Folder"
+msgstr "Iš OliveSet aplanko"
+
+msgid "Add Nodes of a OliveSet Folder to the Current Tree"
+msgstr "Pridėti užrašus iš OliveSet aplanko į dabartinį medį"
+
+msgid "From _Indented List File"
+msgstr "Iš indentuoto sąrašo failo"
+
+msgid "Add Nodes from an Indented List File to the Current Tree"
+msgstr "Pridėti užrašus iš indentuoto sąrašo failo į dabartinį medį"
+
+msgid "From _Plain Text File"
+msgstr "Iš paprasto tekstinio failo"
+
+msgid "Add Node from a Plain Text File to the Current Tree"
+msgstr "Pridėti užrašą iš paprasto tekstinio failo į dabartinį medį"
+
+msgid "From _Folder of Plain Text Files"
+msgstr "Iš paprastų teksto failų aplanko"
+
+msgid "Add Nodes from a Folder of Plain Text Files to the Current Tree"
+msgstr "Pridėti užrašą iš paprasto teksto failų aplanko į dabartinį medį"
+
+msgid "From _HTML File"
+msgstr "Iš HTML failo"
+
+msgid "Add Node from an HTML File to the Current Tree"
+msgstr "Pridėti užrašus iš HTML failo į dabartinį medį"
+
+msgid "From _Folder of HTML Files"
+msgstr "Iš HTML failų aplanko"
+
+msgid "Add Nodes from a Folder of HTML Files to the Current Tree"
+msgstr "Pridėti užrašus iš HTML failų aplanko į dabartinį medį"
+
+msgid "From _Markdown File"
+msgstr "Iš Markdown failo"
+
+msgid "Add a node from a Markdown File to the Current Tree"
+msgstr "Pridėti užrašus iš Markdown failo į dabartinį medį"
+
+msgid "From _Folder of Markdown Files"
+msgstr "Iš aplanko su Markdown failais"
+
+msgid "Add Nodes from a Folder of Markdown Files to the Current Tree"
+msgstr "Pridėti užrašus iš aplanko su Markdown failais į dabartinį medį"
+
+msgid "From _Gnote Folder"
+msgstr "Iš Gnote aplanko"
+
+msgid "Add Nodes of a Gnote Folder to the Current Tree"
+msgstr "Pridėti užrašus iš Gnote aplanko į dabartinį medį"
+
+msgid "From _KeepNote Folder"
+msgstr "Iš KeepNote aplanko"
+
+msgid "Add Nodes of a KeepNote Folder to the Current Tree"
+msgstr "Pridėti užrašus iš aplanko su KeepNote į dabartinį medį"
+
+msgid "From _Leo File"
+msgstr "Iš Leo failo"
+
+msgid "Add Nodes of a Leo File to the Current Tree"
+msgstr "Pridėti užrašus iš Leo failo į dabartinį medį"
+
+msgid "From _Mempad File"
+msgstr "Iš Mempad failo"
+
+msgid "Add Nodes of a Mempad File to the Current Tree"
+msgstr "Pridėti užrašus iš Mempad failo į dabartinį medį"
+
+msgid "From _NoteCase HTML File"
+msgstr "Iš NoteCase HTML failo"
+
+msgid "Add Nodes of a NoteCase HTML File to the Current Tree"
+msgstr "Pridėti užrašus iš NoteCase HTML failo į dabartinį medį"
+
+msgid "From _RedNotebook HTML File"
+msgstr "Iš RedNotebook HTML failo"
+
+msgid "Add Nodes of a RedNotebook HTML file to the Current Tree"
+msgstr "Pridėti užrašus is RedNotebook HTML failo į dabartinį medį"
+
+msgid "From T_omboy Folder"
+msgstr "Iš Tomboy aplanko"
+
+msgid "Add Nodes of a Tomboy Folder to the Current Tree"
+msgstr "Pridėti užrašus iš Tomboy aplanko į dabartinį medį"
+
+msgid "From T_reepad Lite File"
+msgstr "Iš Treepad Lite failo"
+
+msgid "Add Nodes of a Treepad Lite File to the Current Tree"
+msgstr "Pridėti užrašus iš Treepad Lite failo į dabartinį medį"
+
+msgid "From _Zim Folder"
+msgstr "Iš Zim aplanko"
+
+msgid "Add Nodes of a Zim Folder to the Current Tree"
+msgstr "Pridėti užrašus iš Zim aplanko į dabartinį medį"
+
+msgid "Export"
+msgstr "Eksportuoti"
+
+msgid "Export To _PDF"
+msgstr "Eksportuoti į _PDF"
+
+msgid "Export To PDF"
+msgstr "Eksportuoti į PDF"
+
+msgid "Export To _HTML"
+msgstr "Eksportuoti į _HTML"
+
+msgid "Export To HTML"
+msgstr "Eksportuoti į HTML"
+
+msgid "Export to Plain _Text"
+msgstr "Eksportuoti į paprastą tekstinį failą"
+
+msgid "Export to Plain Text"
+msgstr "Eksportuoti į paprastą tekstinį failą"
+
+msgid "_Export To OliveSet"
+msgstr "Eksportuoti į OliveSet dokumentą"
+
+msgid "Export To OliveSet File or Folder"
+msgstr "Eksportuoti į OliveSet dokumentą arba aplanką"
+
+msgid "Help"
+msgstr "Pagalba"
+
+msgid "_Check Newer Version"
+msgstr "Patikrinti naujesnę versiją"
+
+msgid "Check for a Newer Version Available Online"
+msgstr "Patikrinti, ar yra nauja versija"
+
+msgid "_Website"
+msgstr "Svetainė"
+
+msgid "Visit OliveSet's Website"
+msgstr "Eiti į OliveSet svetainę"
+
+msgid "_Source Code"
+msgstr "Programos kodo šaltinis"
+
+msgid "Browse OliveSet's Source Code Online"
+msgstr "Žiūrėti OliveSet kodą"
+
+msgid "_Report a Bug"
+msgstr "Pranešk apie problemą"
+
+msgid "Report a Bug in OliveSet"
+msgstr "Pranešk apie problemą OliveSet programoje"
+
+msgid "_Donate"
+msgstr "Paaukoti"
+
+msgid "Donate to Support OliveSet"
+msgstr "Paaukoti OliveSet palaikymui"
+
+msgid "Online _Manual"
+msgstr "Vadovas internete"
+
+msgid "OliveSet's Online Manual"
+msgstr "OliveSet vadovas internete"
+
+msgid "_About"
+msgstr "Apie"
+
+msgid "_Open Preferences Directory"
+msgstr "Atidaryti nustatymų direktoriją"
+
+msgid "Open the Directory with Preferences Files"
+msgstr "Atidaryti direktoriją su nustatymų failais"
+
+msgid "C_ut Anchor"
+msgstr "Iškirpti inkarą"
+
+msgid "Cut the Selected Anchor"
+msgstr "Iškirpti pažymėtą inkarą"
+
+msgid "_Copy Anchor"
+msgstr "Kopijuoti inkarą"
+
+msgid "Copy the Selected Anchor"
+msgstr "Kopijuoti pažymėtą inkarą"
+
+msgid "_Delete Anchor"
+msgstr "Ištrinti inkarą"
+
+msgid "Delete the Selected Anchor"
+msgstr "Ištrinti pasirinktą inkarą"
+
+msgid "Edit _Anchor..."
+msgstr "Keisti inkarą..."
+
+msgid "Edit the Underlying Anchor"
+msgstr "Keisti inkaro nuorodą"
+
+msgid "Copy Anchor Link"
+msgstr "Kopijuoti inkaro nuorodą"
+
+msgid "Copy Link to the Underlying Anchor to Clipboard"
+msgstr "Kopijuoti nuorodą į inkarą į iškarpinę"
+
+msgid "C_ut Embedded File"
+msgstr "Iškirpti įterptą failą"
+
+msgid "Cut the Selected Embedded File"
+msgstr "Iškirpti pasirinktą įterptą failą"
+
+msgid "_Copy Embedded File"
+msgstr "Kopijuoti įterptą failą"
+
+msgid "Copy the Selected Embedded File"
+msgstr "Kopijuoti pasirinktą įterptą failą"
+
+msgid "_Delete Embedded File"
+msgstr "Ištrinti įterptą failą"
+
+msgid "Delete the Selected Embedded File"
+msgstr "Ištrinti pasirinktą pasirinktą failą"
+
+msgid "Open Embedded File"
+msgstr "Atidaryti įterptą failą"
+
+msgid "_Rename"
+msgstr "Pervadinti"
+
+msgid "Rename Embedded File"
+msgstr "Pervadinti įterptą failą"
+
+msgid "_Save LatexBox as PNG..."
+msgstr "Išsaugoti LaTeX kaip PNG..."
+
+msgid "Save the Selected LatexBox as a PNG file"
+msgstr "Išsaugoti pažymėtą LaTeX kaip PNG failą"
+
+msgid "_Edit LatexBox..."
+msgstr "Keisti LaTeX laukelį..."
+
+msgid "Edit the Selected LatexBox"
+msgstr "Keisti pasirinkto LaTeX paveikslėlio kodą"
+
+msgid "C_ut LatexBox"
+msgstr "Iškirpti LaTeX laukelį"
+
+msgid "Cut the Selected LatexBox"
+msgstr "Iškirpti pasirinktą LaTeX laukelį"
+
+msgid "_Copy LatexBox"
+msgstr "Kopijuoti LaTeX laukelį"
+
+msgid "Copy the Selected LatexBox"
+msgstr "Kopijuoti pasirinktą LaTeX laukelį"
+
+msgid "_Delete LatexBox"
+msgstr "Ištrinti LaTeX"
+
+msgid "Delete the Selected LatexBox"
+msgstr "Ištrinti pažymėtą LaTeX laukelį"
+
+msgid "_Save Image as PNG..."
+msgstr "Išsaugoti paveikslėlį kaip PNG..."
+
+msgid "Save the Selected Image as a PNG file"
+msgstr "Išsaugoti pasirinktą paveikslėlį kaip PNG failą"
+
+msgid "_Edit Image..."
+msgstr "Redaguoti paveikslėlį..."
+
+msgid "Edit the Selected Image"
+msgstr "Keisti pasirinktą paveikslėlį"
+
+msgid "C_ut Image"
+msgstr "Iškirpti paveikslėlį"
+
+msgid "Cut the Selected Image"
+msgstr "Iškirpti pasirinktą paveikslėlį"
+
+msgid "_Copy Image"
+msgstr "Kopijuoti paveikslėlį"
+
+msgid "Copy the Selected Image"
+msgstr "Kopijuoti pasirinktą paveikslėlį"
+
+msgid "_Delete Image"
+msgstr "Ištrinti paveikslėlį"
+
+msgid "Delete the Selected Image"
+msgstr "Ištrinti pasirinktą paveikslėlį"
+
+msgid "Edit _Link..."
+msgstr "Keisti nuorodą..."
+
+msgid "Edit the Link Associated to the Image"
+msgstr "Keisti nuorodą, susietą su paveikslėliu"
+
+msgid "D_ismiss Link"
+msgstr "Pašalinti nuorodą"
+
+msgid "Dismiss the Link Associated to the Image"
+msgstr "Pašalinti nuorodą, susietą su paveikslėliu"
+
+msgid "Show/Hide _OliveSet"
+msgstr "Rodyti/slėpti _OliveSet"
+
+msgid "Toggle Show/Hide OliveSet"
+msgstr "Perjungti OliveSet rodymą"
+
+msgid "Edit the Underlying Link"
+msgstr "Keisti nuorodą"
+
+msgid "C_ut Link"
+msgstr "Iškirpti nuorodą"
+
+msgid "Cut the Selected Link"
+msgstr "Iškirpti pasirinktą nuorodą"
+
+msgid "_Copy Link"
+msgstr "Kopijuoti nuorodą"
+
+msgid "Copy the Selected Link"
+msgstr "Kopijuoti pasirinktą nuorodą"
+
+msgid "Dismiss the Selected Link"
+msgstr "Pašalinti pasirinktą nuorodą"
+
+msgid "_Delete Link"
+msgstr "Ištrinti nuorodą"
+
+msgid "Delete the Selected Link"
+msgstr "Ištrinti pasirinktą nuorodą"
+
+msgid "English"
+msgstr "Anglų"
+
+msgid "Text and Code"
+msgstr "Tekstas ir kodas"
+
+msgid "Plain Text and Code"
+msgstr "Paprastas tekstas ir kodas"
+
+msgid "Tree Explorer"
+msgstr "Medžio naršyklė"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Interface"
+msgstr "Sąsaja"
+
+msgid "Links"
+msgstr "Nuorodos"
+
+msgid "Toolbar"
+msgstr "Įrankių juosta"
+
+msgid "Keyboard Shortcuts"
+msgstr "Spartieji klavišai"
+
+msgid "Miscellaneous"
+msgstr "Kita"
+
+msgid "Monospace"
+msgstr "Monospace"
+
+msgid "Code Font"
+msgstr "Kodo šriftas"
+
+msgid "Terminal Font"
+msgstr "Terminalo Šriftas"
+
+msgid "Tree Font"
+msgstr "Medžio šriftas"
+
+msgid "Reset to Default"
+msgstr "Atkurti į numatytą"
+
+msgid "Fonts"
+msgstr "Šriftai"
+
+msgid "Enable Word Count in Statusbar"
+msgstr "Rodyti žodžių kiekį būsenos juostoje"
+
+msgid "Show the Document Directory in the Window Title"
+msgstr "Rodyti dokumento direktoriją lango titulinėje juostoje"
+
+msgid "Show the Full Path in the Node Name Header"
+msgstr "Rodyti visą kelią užrašo pavadinimo antraštėje"
+
+msgid "Dedicated Bookmarks Menu in Menubar"
+msgstr "Atskiras žymių meniu meniu juostoje"
+
+msgid "Menubar in Titlebar"
+msgstr "Meniu pavadinimo juostoje"
+
+msgid "Toolbar Icons Size"
+msgstr "Įrankių juostos ikonų dydis"
+
+msgid "Last Visited Nodes on Node Name Header"
+msgstr "Paskutiniai atidaryti užrašai užrašo pavadinimo antraštėje"
+
+msgid "Scrollbar Slider Minimum Size (0 = System Default)"
+msgstr "Slinkties juostos minimalus dydis (0 = pagal nutylėjimą)"
+
+msgid "Scrollbar Overlays Text Editor"
+msgstr "Slinkties juosta uždengia teksto redaktorių"
+
+msgid "System Default"
+msgstr "Numatytosios pasirinktys"
+
+msgid "Yes"
+msgstr "Taip"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "Enable Tooltips When Hovering"
+msgstr "Rodyti patarimus užvadus kursorių"
+
+msgid "Menus"
+msgstr "Meniu"
+
+msgid "Max Search Results per Page"
+msgstr "Maksimalus paieškos rezultatų skaičius per lapą"
+
+msgid "Save Search/Replace History Between Sessions"
+msgstr "Išsaugoti paieškos/keitimo istoriją tarp sesijų"
+
+msgid "Enable Custom Web Link Clicked Action"
+msgstr "Įjungti nestandartinį puslapio nuorodos paspaudimo veiksmą"
+
+msgid "Enable Custom File Link Clicked Action"
+msgstr "Įjungti nestandartinį failo nuorodos paspaudimo veiksmą"
+
+msgid "Enable Custom Folder Link Clicked Action"
+msgstr "Įjungti nestandartinį aplanko nuorodos paspaudimo veiksmą"
+
+msgid "Custom Actions"
+msgstr "Nestandartiniai veiksmai"
+
+msgid "Colors"
+msgstr "Spalvos"
+
+msgid "Double Click for Link Action"
+msgstr "Dvigubas paspaudimas nuorodos veiksmui"
+
+msgid "Underline Links"
+msgstr "Pabraukti nuorodas"
+
+msgid "Use Relative Paths for Files And Folders"
+msgstr "Naudoti reliatyvius kelius failams ir aplankams"
+
+msgid "Anchor Size"
+msgstr "Inkaro dydis"
+
+msgid "Change Selected"
+msgstr "Pakeisti pasirinktą"
+
+#, c-format
+msgid "The Keyboard Shortcut '%s' is already in use."
+msgstr "Spartusis klavišas '%s' jau yra naudojamas."
+
+#, c-format
+msgid "The current associated action is '%s'"
+msgstr "Dabartinis susietas veiksmas yra '%s'"
+
+msgid "Do you want to steal the shortcut?"
+msgstr "Ar norite pakeisti sparčiojo klavišo funkciją?"
+
+msgid "Edit Keyboard Shortcut"
+msgstr "Keisti sparčiuosius klavišus"
+
+msgid "No Keyboard Shortcut"
+msgstr "Nėra sparčiojo klavišo"
+
+msgid "Autosave on Quit"
+msgstr "Automatinis saugojimas išeinant"
+
+msgid "Create a Backup Copy Before Saving"
+msgstr "Sukurti atsarginę kopiją prieš išsaugant"
+
+msgid "Number of Backups to Keep"
+msgstr "Laikomų atsarginių kopijų skaičius"
+
+msgid "Custom Backup Directory"
+msgstr "Nestandartinis atsarginių kopijų aplankas"
+
+msgid "Multiple Files Storage, Use Embedded File Name On Disk"
+msgstr "Kelių failų saugojimas, naudoti įterptą failo pavadinimą diske"
+
+msgid "Saving"
+msgstr "Saugojimas"
+
+msgid "Automatically Check for Newer Version"
+msgstr "Automatiškas tikrinti, ar yra nauja versija"
+
+msgid "Reload Document From Last Session"
+msgstr "Perkrauti dokumentą iš paskutinės sesijos"
+
+msgid "Show Start Dialog When No Document Is Loaded"
+msgstr "Rodyti pradžios dialogo langą kai dokumentas neįkeltas"
+
+msgid "Reload After External Update to CT* File"
+msgstr "Perkrauti po išorinio atnaujinimo į CT* failą"
+
+msgid "Enable Debug Log"
+msgstr "Įjungti Debug žurnalą"
+
+msgid "Debug Log Directory"
+msgstr "Debug žurnalo aplankas"
+
+msgid "Enable System Tray Docking"
+msgstr "Įjungti sistemos juostelės palaikymą"
+
+msgid "Start Minimized in the System Tray"
+msgstr "Paleisti sumažinus sistemos juostelėje"
+
+msgid "System Tray"
+msgstr "Sistemos juostelė"
+
+msgid "Language"
+msgstr "Kalba"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Port"
+msgstr "Prievadas"
+
+msgid "Username"
+msgstr "Vartotojo vardas"
+
+msgid "Password"
+msgstr "Slaptažodis"
+
+msgid "Proxy"
+msgstr "Tarpinis serveris"
+
+msgid "Show White Spaces"
+msgstr "Rodyti tarpus"
+
+msgid "Highlight Current Line"
+msgstr "Paryškinti dabartinę eilutę"
+
+msgid "Text Editor"
+msgstr "Teksto redaktorius"
+
+msgid "Internal Terminal Shell"
+msgstr "Vidinio terminalo vaizdas"
+
+msgid "Add"
+msgstr "Pridėti"
+
+msgid "Remove Selected"
+msgstr "Pašalinti pažymėtą"
+
+msgid "Command per Node/CodeBox Type"
+msgstr "Komanda užrašo/kodo lango tipui"
+
+msgid "Terminal Command"
+msgstr "Terminalo komanda"
+
+msgid "Code Execution"
+msgstr "Kodo vykdymas"
+
+msgid "Select Element to Add"
+msgstr "Pasirinkti elementą pridėjimui"
+
+msgid "Enable Spell Check"
+msgstr "Įgalinti rašybos tikrinimą"
+
+msgid "Spell Check Language"
+msgstr "Rašybos tikrinimo kalba"
+
+msgid "Expand CodeBoxes Automatically"
+msgstr "Išskleisti kodo laukelius automatiškai"
+
+msgid "CodeBoxes Have Toolbar"
+msgstr "Kodo laukeliai turi įrankų juostą"
+
+msgid "Threshold Number of Table Cells for Lightweight Interface"
+msgstr "Maksimalus langelių skaičius lengvojoje lentelės sąsajoje"
+
+msgid "Embedded File Icon Size"
+msgstr "Įterpto failo ikonos dydis"
+
+msgid "Embedded File Size Limit (MB)"
+msgstr "Įterpto failo dydžio limitas (MB)"
+
+msgid "Show File Name on Top of Embedded File Icon"
+msgstr "Rodyti įterpto failo pavadinimą virš įterpto failo ikonos"
+
+msgid "Do Not Auto-Select Objects on Single Click"
+msgstr "Nepažymėti objektų automatiškai vienu paspaudimu"
+
+msgid "Workaround for clipboard-related freezes on KDE 6 with Klipper"
+msgstr ""
+"Laikinas sprendimas su iškarpine susijusiems įšalimams KDE 6 su Klipper"
+
+msgid "Limit of Undoable Steps Per Node"
+msgstr "Apriboti grąžinamus veiksmus užrašui"
+
+msgid "Auto Link CamelCase Text to Node With Same Name"
+msgstr "Automatiškai susieti CamelCase tekstą su užrašu tuo pačiu pavadinimu"
+
+msgid "Auto Link URLs"
+msgstr "Automatiškai susieti URL adresus"
+
+msgid "At Triple Click Select the Whole Paragraph"
+msgstr "Trigubas paspaudimas pažymės visą paragrafą"
+
+msgid "Enable Markdown Auto Replacement (Experimental)"
+msgstr "Įgalinti sumaniųjų Markdown pakeitimą (eksperimentalus)"
+
+msgid "Scale"
+msgstr "Dydis"
+
+msgid "Italic"
+msgstr "Pasvirusiai"
+
+msgid "Underline"
+msgstr "Pabraukti"
+
+msgid "Text Color Foreground"
+msgstr "Teksto spalva"
+
+msgid "Text Color Background"
+msgstr "Teksto fono spalva"
+
+msgid "Small"
+msgstr "Mažas"
+
+msgid "Scalable Tags"
+msgstr "Keičiamo dydžio etiketės"
+
+msgid "Chars for Bulleted List"
+msgstr "Punktuoto sąrašo simboliai"
+
+msgid "Chars for Todo List"
+msgstr "Todo sąrašo simboliai"
+
+msgid "Chars for Table Of Content"
+msgstr "Turinio simboliai"
+
+msgid "Chars for Smart Double Quotes"
+msgstr "Sumaniųjų dvigubų kabučių simboliai"
+
+msgid "Chars for Smart Single Quotes"
+msgstr "Sumaniųjų viengubų kabučių simboliai"
+
+msgid "Enable Smart Quotes Auto Replacement"
+msgstr "Įgalinti sumaniųjų kabučių pakeitimą"
+
+msgid "Enable Symbol Auto Replacement"
+msgstr "Įgalinti sumaniųjų kabučių pakeitimą"
+
+msgid "Supported Symbols Auto Replacements"
+msgstr "Palaikomų simbolių automatinis keitimas"
+
+msgid "Only at the Start of the Line"
+msgstr "Tik eilutės pradžioje"
+
+msgid "Tab Width"
+msgstr "Tabuliatoriaus plotis"
+
+msgid "Insert Spaces Instead of Tabs"
+msgstr "Įterpti tarpus vietoje tabuliatorių"
+
+msgid "Use Line Wrapping"
+msgstr "Naudoti linijų perkėlimą"
+
+msgid "Line Wrapping Indentation"
+msgstr "Linijų perkėlimo indentacija"
+
+msgid "Enable Automatic Indentation"
+msgstr "Įjungti automatinę indentaciją"
+
+msgid "Scroll Beyond Last Line"
+msgstr "Slinkti žemiau paskutinės linijos"
+
+msgid "Cursor Blinking"
+msgstr "Mirksinti kursorius"
+
+msgid "On"
+msgstr "Įjungta"
+
+msgid "Off"
+msgstr "Išjungta"
+
+msgid "Text Margin: Left"
+msgstr "Paraštė: kairė"
+
+msgid "Right"
+msgstr "Dešinė"
+
+msgid "Vertical Space Around Lines"
+msgstr "Vertikalūs tarpai aplinkui linijas"
+
+msgid "Vertical Space in Wrapped Lines"
+msgstr "Vertikalūs tarpai perkeltuose linijose"
+
+msgid "Timestamp Format"
+msgstr "Datos ir laiko formatas"
+
+msgid "Horizontal Rule"
+msgstr "Horizontalioji liniuotė"
+
+msgid "Chars to Select at Double Click"
+msgstr "Pasirinkti simbolius dvigubu paspaudimu"
+
+msgid "Light Background, Dark Text"
+msgstr "Šviesus fonas, tamsus tekstas"
+
+msgid "Dark Background, Light Text"
+msgstr "Tamsus fonas, šviesus tekstas"
+
+msgid "Custom Background"
+msgstr "Nestandartinis kodas"
+
+msgid "Text"
+msgstr "Tekstas"
+
+msgid "Selection Background"
+msgstr "Pažymėjimo fonas"
+
+msgid "Table"
+msgstr "Lentelė"
+
+msgid "Code"
+msgstr "Kodas"
+
+msgid "Style Schemes"
+msgstr "Stiliaus schema"
+
+msgid "Text Foreground"
+msgstr "Teksto spalva"
+
+msgid "Text Background"
+msgstr "Teksto fono spalva"
+
+msgid "Selection Foreground"
+msgstr "Pažymėjimo spalva"
+
+msgid "Cursor"
+msgstr "Kursorius"
+
+msgid "Current Line Background"
+msgstr "Esamos eilutės fonas"
+
+msgid "Line Numbers Foreground"
+msgstr "Linijos numerio spalva"
+
+msgid "Line Numbers Background"
+msgstr "Linijos numerio fonas"
+
+msgid "Style Scheme Editor"
+msgstr "Stiliaus schemos redaktorius"
+
+msgid "Set Dark Theme Icons"
+msgstr "Nustatyti tamsios temos ikoną"
+
+msgid "Set Light Theme Icons"
+msgstr "Nustatyti šviesios temos ikoną"
+
+msgid "Set Default Icons"
+msgstr "Nustatyti numatytąsias ikonas"
+
+msgid "Icon Theme"
+msgstr "Ikonų tema"
+
+msgid "Split Toolbar"
+msgstr "Perskelti įrankių juostą"
+
+msgid "Use Different Cherries per Level"
+msgstr "Naudoti skirtingas vyšnias kiekvienam lygiui"
+
+msgid "No Icon"
+msgstr "Nėra ikonos"
+
+msgid "Hide Right Side Auxiliary Icon"
+msgstr "Paslėpti papildomą dešinės pusės ikoną"
+
+msgid "Default Text Nodes Icons"
+msgstr "Numatytos tekstinių užrašų ikonos"
+
+msgid "Restore Expanded/Collapsed Status"
+msgstr "Atkurti išskleidimo/suskleidimo būseną"
+
+msgid "Expand all Nodes"
+msgstr "Išskleisti visus užrašus"
+
+msgid "Collapse all Nodes"
+msgstr "Suskleisti visus užrašus"
+
+msgid "Nodes in Bookmarks Always Visible"
+msgstr "Užrašai žymėse visada yra matomi"
+
+msgid "Nodes Status at Startup"
+msgstr "Užrašo būsena paleidimo metu"
+
+msgid "Tree Nodes Names Wrapping Width"
+msgstr "Medžio užrašų pavadinimų perkėlimo plotis"
+
+msgid "Display Tree on the Right Side"
+msgstr "Rodyti medį dešinėje pusėje"
+
+msgid "Move Focus to Text at Mouse Click"
+msgstr "Perkelti fokusavimą į tekstą pelės paspaudimu"
+
+msgid "Expand Node at Mouse Click"
+msgstr "Išskleisti užrašą paspaudus pele"
+
+#, c-format
+msgid "'%s' is Not a Valid Archive"
+msgstr "'%s' nėra tinkamas archyvas"
+
+msgid "Writing to Disk..."
+msgstr "Rašoma į diską..."
+
+#, c-format
+msgid "You Have No Write Access to %s"
+msgstr "Neturite teisės rašyti į %s"
+
+#, c-format
+msgid "Enter Password for %s"
+msgstr "Įveskite slaptažodį, skirtą %s"
+
+msgid "Failed integrity check of the saved document. Try File-->Save As"
+msgstr ""
+"Nepavyko patikrinti išsaugoto failo vientisumo. Bandykite Failas -> "
+"Išsaugoti kaip"
+
+msgid "Failed to encrypt the file"
+msgstr "Nepavyko užšifruoti failo"
+
+msgid "A Restore From Backup Was Necessary For:"
+msgstr "Atstatymas iš atsarginės kopijos buvo būtinas, nes:"
+
+#, c-format
+msgid "The database file %s is corrupt, see log for more details."
+msgstr ""
+"Duomenų bazės failas %s sugadintas, daugiau informacijos ieškokite žurnale."
+
+#, c-format
+msgid ""
+"%s write failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s įrašymas nepavyko - tokio failo nėra. Vėl prijunkite USB arba tinklo "
+"resursą."
+
+#, c-format
+msgid "%s write failed - is file blocked by a sync program?"
+msgstr "%s įrašymas nepavyko - ar sinchronizavimo programa blokuoja failą?"
+
+#, c-format
+msgid ""
+"%s reopen failed - file is missing. Reattach USB drive or shared resource."
+msgstr ""
+"%s atidarymas nepavyko - nėra failo. Vėl prijunkite USB arba tinklo resursą."
+
+msgid "OliveSet Hierarchical Note Taking"
+msgstr "OliveSet hierarchiniai užrašai"
+
+msgid "_Exit OliveSet"
+msgstr "Išeiti iš OliveSet"
+
+msgid "HTML Document"
+msgstr "HTML dokumentas"
+
+msgid "Markdown Document"
+msgstr "Markdown Dokumentas"
+
+msgid "Mempad Document"
+msgstr "Mempad dokumentas"
+
+msgid "Treepad Document"
+msgstr "Treepad dokumentas"
+
+msgid "Leo Document"
+msgstr "Leo dokumentas"
+
+msgid "Are you sure to Reset to Default?"
+msgstr "Ar tikrai norite atkurti numatytuosius nustatymus?"
+
+#~ msgid "Replace in Multiple Nodes..."
+#~ msgstr "Pakeisti visuose užrašuose..."
+
+#~ msgid "Find in Multiple Nodes..."
+#~ msgstr "Ieškoti visuose užrašuose..."
+
+#~ msgid "Insert T_OC..."
+#~ msgstr "Įterpti turinį..."
+
+#~ msgid "Insert Table of Contents"
+#~ msgstr "Įterpti turinį"
+
+#~ msgid ""
+#~ "Backup files are by default 3 in the same folder of the corrupted "
+#~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
+#~ "the backup with one tilde: copy the file to another directory, remove the "
+#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "with two tildes and if it still fails try the one with three tildes."
+#~ msgstr ""
+#~ "Pagal nutylėjimą, 3 atsarginiai failai yra tame pačiame aplanke kaip ir "
+#~ "sugadintas dokumentas. Jų pavadinimas toks pat, tik turi pridėtas tildes "
+#~ "(~, ~~, ~~~) gale. Pirmiausia bandyk atsarginę kopiją su viena tilde: "
+#~ "nukopijuok failą į kitą aplanką, pašalink tildę ir atidaryk su "
+#~ "OliveSet. Jei tai nepavyks, tą patį bandyk su dvejomis tildėmis. Jei ir "
+#~ "tai nepavyks, bandyk failą su trimis tildėmis."
+
+#~ msgid "Search in Selected Node and Subnodes"
+#~ msgstr "Ieškoti pasirinktame mazge ir pomazgiuose"
+
+#~ msgid "Search in All Nodes"
+#~ msgstr "Ieškoti visuose mazguose"
+
+#~ msgid "Replace in Node Names..."
+#~ msgstr "Pakeisti mazgų varduose..."
+
+#~ msgid "Search For a Node Name..."
+#~ msgstr "Ieškoti mazgo pavadinimo..."
+
+#~ msgid "_Print"
+#~ msgstr "Spausdinti"
+
+#~ msgid "Insert Ti_mestamp"
+#~ msgstr "Įterpti datą ir laiką"
+
+#~ msgid "Find in _All Nodes Contents"
+#~ msgstr "Rasti visuose mazgo turiniuose"
+
+#~ msgid "Find into All the Tree Nodes Contents"
+#~ msgstr "Rasti visuose mazgo turiniuose"
+
+#~ msgid "Find in _Selected Node and Subnodes Contents"
+#~ msgstr "Ieškoti pasirinktame mazge ir pomazgiuose"
+
+#~ msgid "Find into the Selected Node and Subnodes Contents"
+#~ msgstr "Ieškoti pasirinktame mazge ir pomazgiuose"
+
+#~ msgid "Replace in _All Nodes Contents"
+#~ msgstr "Pakeisti visų mazgų turinį"
+
+#~ msgid "Replace into All the Tree Nodes Contents"
+#~ msgstr "Pakeisti visų mazgų turinį"
+
+#~ msgid "Replace in _Selected Node and Subnodes Contents"
+#~ msgstr ""
+#~ "Pakeisti pasirinkto mazgo ir pomazgių\n"
+#~ " turinius"
+
+#~ msgid "Replace into the Selected Node and Subnodes Contents"
+#~ msgstr ""
+#~ "Pakeisti pasirinkto mazgo ir pomazgių\n"
+#~ " turinius"
+
+#~ msgid "Replace in Nodes _Names"
+#~ msgstr "Pakeisti mazgų pavadinimuose"
+
+#~ msgid "From _Basket Folder"
+#~ msgstr "Iš Basket direktorijos"
+
+#~ msgid "Add Nodes of a Basket Folder to the Current Tree"
+#~ msgstr "Pridėti mazgus iš Basket katalogo"
+
+#~ msgid "From _EssentialPIM HTML File"
+#~ msgstr "Iš EssentialPIM HTML failo"
+
+#~ msgid "Add Node from an EssentialPIM HTML File to the Current Tree"
+#~ msgstr "Pridėti mazgą iš EssentialPIM HTML failo"
+
+#~ msgid "From K_eyNote File"
+#~ msgstr "Iš KeyNote failo"
+
+#~ msgid "Add Nodes of a KeyNote File to the Current Tree"
+#~ msgstr "Pridėti mazgus iš KeyNote failo į dabartinį medį"
+
+#~ msgid "From K_nowit File"
+#~ msgstr "Iš Knowit failo"
+
+#~ msgid "Add Nodes of a Knowit File to the Current Tree"
+#~ msgstr "Pridėti mazgus iš Knowit failo į dabartinį medį"
+
+#~ msgid "From _TuxCards File"
+#~ msgstr "Iš TuxCards failo"
+
+#~ msgid "Add Nodes of a TuxCards File to the Current Tree"
+#~ msgstr "Pridėti mazgus iš TuxCards failo"
+
+#~ msgid "Export to Multiple Plain _Text Files"
+#~ msgstr "Eksportuoti į kelius paprasto teksto failus"
+
+#~ msgid "Export to Multiple Plain Text Files"
+#~ msgstr "Eksportuoti į kelis paprasto teksto failus"
+
+#~ msgid "Export to _Single Plain Text File"
+#~ msgstr "Eksportuoti į vieną paprasto teksto failą"
+
+#~ msgid "Application's Online Manual"
+#~ msgstr "Programos vadovas tinkle"
+
+#~ msgid "For_matting"
+#~ msgstr "For_matavimas"
+
+#~ msgid "Nodes _Import"
+#~ msgstr "Importuoti mazgą"
+
+#~ msgid "Nodes E_xport"
+#~ msgstr "Eksportuoti mazgą"
+
+#~ msgid "E_xport"
+#~ msgstr "Eksportuoti"
+
+#~ msgid "_List"
+#~ msgstr "_Sąrašas"
+
+#~ msgid "_Row"
+#~ msgstr "Eilutė"
+
+#~ msgid "Insert _NewLine"
+#~ msgstr "Įterpti NewLine"
+
+#~ msgid "Insert NewLine Char"
+#~ msgstr "Įterpti NewLine simbolį"
+
+#~ msgid "Cancel"
+#~ msgstr "Atšaukti"
+
+#~ msgid "The Document %s was Not Found"
+#~ msgstr "Dokumentas %s nebuvo rastas"
+
+#~ msgid "Unknown"
+#~ msgstr "Nežinomas"
+
+#~ msgid "(no suggestions)"
+#~ msgstr "(nėra pasiūlymų)"
+
+#~ msgid "Add \"{}\" to Dictionary"
+#~ msgstr "Pridėti \"{}\" į žodyną"
+
+#~ msgid "Ignore All"
+#~ msgstr "Ignoruoti viską"
+
+#~ msgid "Languages"
+#~ msgstr "Kalbos"
+
+#~ msgid "Suggestions"
+#~ msgstr "Pasiūlymai"
+
+#~ msgid "OliveSet Document"
+#~ msgstr "OliveSet dokumentacija"
+
+#~ msgid "Editor"
+#~ msgstr "Redaktorius"
+
+#~ msgid "Use AppIndicator for Docking"
+#~ msgstr "Naudoti AppIndicator prijungimui"
+
+#~ msgid "The New Language will be Available Only After Restarting OliveSet"
+#~ msgstr "Nauja kalba bus galima tik po OliveSet perkrovimo"
+
+#~ msgid "Min Width"
+#~ msgstr "Min plotis"
+
+#~ msgid "Max Width"
+#~ msgstr "Max plotis"
+
+#~ msgid "click me"
+#~ msgstr "spausk mane"
+
+#~ msgid "Click to Edit the Column Settings"
+#~ msgstr "Spausti keisti stulpelių nustatymams"
+
+#~ msgid "Table Column Action"
+#~ msgstr "Lentelės stulpelio veiksmas"
+
+#~ msgid "NoteCase Document"
+#~ msgstr "NoteCase dokumentas"
+
+#~ msgid "EPIM HTML Document"
+#~ msgstr "EPIM HTML dokumentas"
+
+#~ msgid "KeyNote Document"
+#~ msgstr "KeyNote dokumentas"
+
+#~ msgid "Knowit Document"
+#~ msgstr "Knowit dokumentas"
+
+#~ msgid "Not Protected"
+#~ msgstr "Neapsaugotas"
+
+#~ msgid "The Characters  %s  are Not Allowed"
+#~ msgstr "Simboliai %s neleidžiami"
+
+#~ msgid ""
+#~ "Binary Executable '7za' Not Found, Check The Package 'p7zip-full' to be "
+#~ "Installed Properly"
+#~ msgstr ""
+#~ "Dvejetainis paleidimas '7za' nerastas, patikrink paragrafą 'p7zip-full', "
+#~ "kad įdiegti teisingai"
+
+#~ msgid "Not Any H1, H2 or H3 Formatting Found"
+#~ msgstr "Joks H1, H2 arba H3 formatavimas nerastas"
+
+#~ msgid "Toggle Node _Expanded/Collapsed"
+#~ msgstr "Perjungti mazgo išplėtimą/suplėtimą"
+
+#~ msgid "Toggle Expanded/Collapsed Status of the Selected Node"
+#~ msgstr "Perjungti mazgo išplėtimą/suplėtimą"
+
+#~ msgid "Find into the Selected Node"
+#~ msgstr "Rasti pasirinktame mazge"
+
+#~ msgid "Find into all the Tree Nodes"
+#~ msgstr "Rasti visuose medžio mazguose"
+
+#~ msgid "_Replace in Node"
+#~ msgstr "_Pakeisti mazge"
+
+#~ msgid "Replace into the Selected Node"
+#~ msgstr "Pakeisti pasirinktame mazge"
+
+#~ msgid "Replace in Node_s"
+#~ msgstr "Pakesti mazguose"
+
+#~ msgid "Replace into all the Tree Nodes"
+#~ msgstr "Pakeisti visuose mazguose"
+
+#~ msgid "Code Nodes"
+#~ msgstr "Kodo mazgai"
+
+#~ msgid "Use Cherries as Nodes Icons"
+#~ msgstr "Naudoti vyšnias kaip mazgų ikonas"
+
+#~ msgid "Do Not Display Nodes Icons"
+#~ msgstr "Nerodyti mazgų ikonų"
+
+#~ msgid "All Nodes"
+#~ msgstr "Visi mazgai"
