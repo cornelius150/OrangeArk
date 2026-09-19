@@ -119,11 +119,12 @@ void CtTableLight::_reset(CtTableMatrix& tableMatrix)
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
     _pManagedTreeView->signal_button_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::on_table_button_press_event), false);
     _pManagedTreeView->signal_event_after().connect(sigc::mem_fun(*this, &CtTableLight::_on_treeview_event_after));
-    // OrangeArk: drag the bottom-right corner to resize the table columns
+    // OrangeArk: drag anywhere on the table border to resize (also from the tree view itself)
     signal_button_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_resize_button_press_event), false);
     signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_resize_motion_notify_event), false);
     signal_button_release_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_resize_button_release_event), false);
     add_events(Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
+    _connect_resize_widget(_pManagedTreeView);
 #endif
 
     _pManagedTreeView->get_style_context()->add_class("ct-table-light");

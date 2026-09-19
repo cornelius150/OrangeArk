@@ -118,6 +118,10 @@ public:
     bool _on_resize_button_press_event(GdkEventButton* event);
     bool _on_resize_motion_notify_event(GdkEventMotion* event);
     bool _on_resize_button_release_event(GdkEventButton* event);
+    bool _resize_press_at(const double x, const double y, GdkEventButton* event);
+    bool _resize_motion_at(const double x, const double y, GdkEventMotion* event);
+    bool _resize_release(GdkEventButton* event);
+    void _connect_resize_widget(Gtk::Widget* pWidget); // hook resize into an inner widget (cells/treeview)
 protected:
     void _setup_resize_grip();  // creates the visible corner grip; subclasses place it on an overlay
     bool _on_grip_draw(const Cairo::RefPtr<Cairo::Context>& cr);

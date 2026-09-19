@@ -449,8 +449,15 @@ void CtMainWin::file_autosave_restart()
         if (++_autoSaveCounter >= _pCtConfig->autosaveMinutes) {
             resetAutoSaveCounter();
             if (get_file_save_needed()) {
-                spdlog::debug("autosave needed");
-                _uCtActions->file_save();
+                // OrangeArk: autosave must stay silent — never pop the save dialog
+                // (a document without a file path cannot be saved automatically)
+                if (_uCtStorage->get_file_path().empty()) {
+                    spdlog::debug("autosave skipped: document has no file path yet");
+                }
+                else {
+                    spdlog::debug("autosave needed");
+                    _uCtActions->file_save();
+                }
             }
             else {
                 spdlog::debug("autosave no need");

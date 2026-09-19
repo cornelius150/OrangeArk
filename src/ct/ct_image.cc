@@ -225,7 +225,7 @@ void CtImagePng::update_label_widget()
 #if GTKMM_MAJOR_VERSION < 4
 // OrangeArk: resize hit zones in px (borders of the image)
 static const int IMG_RESIZE_ZONE{24};   // corner zone
-static const int IMG_RESIZE_EDGE{10};   // plain edge band
+static const int IMG_RESIZE_EDGE{16};   // plain edge band
 
 // visible resize grip in the bottom-right corner (drawn after the image)
 bool CtImagePng::_on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr)
@@ -309,11 +309,57 @@ void CtImagePng::_apply_resized_pixbuf(const int newWidth, const int newHeight)
     catch (...) {}
 }
 
+// OrangeArk: compute the target size for the currently dragged borders
+bool CtImagePng::_compute_resize(const double xRoot, const double yRoot, int& newW, int& newH) const
+{
+    // the dragged border decides which deltas apply
+    double dx = 0.0, dy = 0.0;
+    if (_dragEdges & 2)      dx = xRoot - _dragStartX;   // right edge
+    else if (_dragEdges & 1) dx = _dragStartX - xRoot;   // left edge
+    if (_dragEdges & 8)      dy = yRoot - _dragStartY;   // bottom edge
+    else if (_dragEdges & 4) dy = _dragStartY - yRoot;   // top edge
+
+    // keep the aspect ratio: grow/shrink with the dominant dragged axis
+    double scale = 1.0;
+    if (dx != 0.0) scale = std::max(scale, (_dragStartW + dx) / static_cast<double>(_dragStartW));
+    if (dy != 0.0) scale = std::max(scale, (_dragStartH + dy) / static_cast<double>(_dragStartH));
+    newW = static_cast<int>(std::lround(_dragStartW * scale));
+    newH = static_cast<int>(std::lround(_dragStartH * scale));
+    if (newW < 16) {
+        newH = static_cast<int>(std::lround(newH * (16.0 / newW)));
+        newW = 16;
+    }
+    if (newH < 16) {
+        newW = static_cast<int>(std::lround(newW * (16.0 / newH)));
+        newH = 16;
+    }
+    return newW != _dragStartW or newH != _dragStartH;
+}
+
+// OrangeArk: apply the resized size while dragging (re-scaled from the original pixbuf)
+void CtImagePng::_resize_live(const double xRoot, const double yRoot)
+{
+    int newW = 0, newH = 0;
+    if (not _compute_resize(xRoot, yRoot, newW, newH)) return;
+    if (newW == _liveW and newH == _liveH) return;
+    _liveW = newW;
+    _liveH = newH;
+    try {
+        Glib::RefPtr<Gdk::Pixbuf> rScaled = _dragOrigPixbuf->scale_simple(newW, newH, Gdk::InterpType::INTERP_BILINEAR);
+        if (not rScaled) return;
+        _rPixbuf = rScaled;
+        _image.set(_rPixbuf);
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    }
+    catch (...) {}
+}
+
 bool CtImagePng::_on_motion_notify_event(GdkEventMotion* event)
 {
     if (_dragResizeActive) {
-        // live cursor feedback while dragging
+        // live cursor feedback and live resizing while dragging
         _set_hover_cursor(_dragEdges);
+        _resize_live(event->x_root, event->y_root);
         return true;
     }
     // hover feedback: change cursor when over any image border
@@ -328,31 +374,8 @@ bool CtImagePng::_on_button_release_event(GdkEventButton* event)
     gtk_grab_remove(GTK_WIDGET(gobj()));
     _hoverCursorType = -1;
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
-
-    // OrangeArk: the dragged border decides which deltas apply
-    double dx = 0.0, dy = 0.0;
-    if (_dragEdges & 2)      dx = event->x_root - _dragStartX;   // right edge
-    else if (_dragEdges & 1) dx = _dragStartX - event->x_root;   // left edge
-    if (_dragEdges & 8)      dy = event->y_root - _dragStartY;   // bottom edge
-    else if (_dragEdges & 4) dy = _dragStartY - event->y_root;   // top edge
-
-    // keep the aspect ratio: grow/shrink with the dominant dragged axis
-    double scale = 1.0;
-    if (dx != 0.0) scale = std::max(scale, (_dragStartW + dx) / static_cast<double>(_dragStartW));
-    if (dy != 0.0) scale = std::max(scale, (_dragStartH + dy) / static_cast<double>(_dragStartH));
-    int newW = static_cast<int>(std::lround(_dragStartW * scale));
-    int newH = static_cast<int>(std::lround(_dragStartH * scale));
-    if (newW < 16) {
-        newH = static_cast<int>(std::lround(newH * (16.0 / newW)));
-        newW = 16;
-    }
-    if (newH < 16) {
-        newW = static_cast<int>(std::lround(newW * (16.0 / newH)));
-        newH = 16;
-    }
-    if (newW != _dragStartW or newH != _dragStartH) {
-        _apply_resized_pixbuf(newW, newH);
-    }
+    // the live resize has already applied the final size
+    _dragOrigPixbuf.reset();
     return true;
 }
 
@@ -370,6 +393,9 @@ bool CtImagePng::_on_button_press_event(GdkEventButton* event)
         _dragStartY = event->y_root;
         _dragStartW = _rPixbuf->get_width();
         _dragStartH = _rPixbuf->get_height();
+        _dragOrigPixbuf = _rPixbuf; // keep the original for lossless live re-scaling
+        _liveW = _dragStartW;
+        _liveH = _dragStartH;
         gtk_grab_add(GTK_WIDGET(gobj()));
         return true;
     }

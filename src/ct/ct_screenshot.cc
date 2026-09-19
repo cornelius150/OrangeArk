@@ -25,6 +25,7 @@ struct CtAnnoShape
     std::vector<Gdk::Point> pts;          // for Pen
     int                   x1{0}, y1{0}, x2{0}, y2{0}; // bounding for others
     Glib::ustring         text;
+    std::string           fontName;       // font family used by Text/Counter
     int                   fontSize{16};
     int                   number{0};      // for Counter
 };
@@ -108,6 +109,35 @@ protected:
             pBtn->signal_clicked().connect([this, td]() { _on_tool_clicked(td.label); });
             _pToolbar->pack_start(*pBtn, Gtk::PACK_SHRINK);
         }
+
+        // OrangeArk: font family and size pickers for the text/counter annotations
+        struct FontDef { const char* label; const char* family; };
+        const std::vector<FontDef> fonts = {
+            {"雅黑", "Microsoft YaHei"}, {"宋体", "SimSun"}, {"黑体", "SimHei"},
+            {"楷体", "KaiTi"}, {"仿宋", "FangSong"}, {"Arial", "Arial"}, {"Times", "Times New Roman"},
+        };
+        auto* pFontCombo = Gtk::manage(new Gtk::ComboBoxText());
+        for (const FontDef& f : fonts) pFontCombo->append(f.label);
+        pFontCombo->set_active(0);
+        pFontCombo->set_tooltip_text("文字标注字体");
+        pFontCombo->signal_changed().connect([this, pFontCombo, fonts]() {
+            const Glib::ustring label = pFontCombo->get_active_text();
+            for (const FontDef& f : fonts) {
+                if (label == f.label) { _annoFontName = f.family; break; }
+            }
+        });
+        _pToolbar->pack_start(*pFontCombo, Gtk::PACK_SHRINK);
+
+        auto* pSizeCombo = Gtk::manage(new Gtk::ComboBoxText());
+        for (const int s : {12, 14, 16, 18, 20, 24, 28, 36, 48}) pSizeCombo->append(std::to_string(s));
+        pSizeCombo->set_active(3); // 18
+        pSizeCombo->set_tooltip_text("文字标注字号");
+        pSizeCombo->signal_changed().connect([this, pSizeCombo]() {
+            const Glib::ustring text = pSizeCombo->get_active_text();
+            if (not text.empty()) _annoFontSize = std::atoi(text.c_str());
+        });
+        _pToolbar->pack_start(*pSizeCombo, Gtk::PACK_SHRINK);
+
         auto* pSep = Gtk::manage(new Gtk::Separator{Gtk::ORIENTATION_VERTICAL});
         _pToolbar->pack_start(*pSep, Gtk::PACK_SHRINK);
 
@@ -195,16 +225,44 @@ protected:
            and y >= _sel_y() and y <= _sel_y() + _sel_h();
     }
 
+    // OrangeArk: which selection border handle (bit mask 1=left 2=right 4=top 8=bottom)
+    // is under the cursor, 0 when none
+    int _sel_handle_at(const double x, const double y) const
+    {
+        const double m = 7.0;
+        const double x1 = _sel_x(), y1 = _sel_y();
+        const double x2 = x1 + _sel_w(), y2 = y1 + _sel_h();
+        const bool inX = x >= x1 - m and x <= x2 + m;
+        const bool inY = y >= y1 - m and y <= y2 + m;
+        if (not inX or not inY) return 0;
+        int e = 0;
+        if (std::abs(x - x1) <= m) e |= 1;
+        if (std::abs(x - x2) <= m) e |= 2;
+        if (std::abs(y - y1) <= m) e |= 4;
+        if (std::abs(y - y2) <= m) e |= 8;
+        if (0 == e) return 0;
+        const bool nearVert = (e & 0x3) != 0;
+        const bool nearHorz = (e & 0xC) != 0;
+        if (nearVert and y >= y1 - m and y <= y2 + m) return e;
+        if (nearHorz and x >= x1 - m and x <= x2 + m) return e;
+        return 0;
+    }
+
     // -- drawing --------------------------------------------------------------
     // OrangeArk: pick a font that renders CJK on Windows (Sans alone shows boxes)
     static void _apply_font(const Cairo::RefPtr<Cairo::Context>& cr, const double size,
-                            const Cairo::FontWeight weight = Cairo::FontWeight::FONT_WEIGHT_NORMAL)
+                            const Cairo::FontWeight weight = Cairo::FontWeight::FONT_WEIGHT_NORMAL,
+                            const std::string& fontName = std::string())
     {
+        std::string face = fontName;
+        if (face.empty()) {
 #ifdef _WIN32
-        cr->select_font_face("Microsoft YaHei", Cairo::FontSlant::FONT_SLANT_NORMAL, weight);
+            face = "Microsoft YaHei";
 #else
-        cr->select_font_face("Sans", Cairo::FontSlant::FONT_SLANT_NORMAL, weight);
+            face = "Sans";
 #endif
+        }
+        cr->select_font_face(face, Cairo::FontSlant::FONT_SLANT_NORMAL, weight);
         cr->set_font_size(size);
     }
 
@@ -320,7 +378,7 @@ protected:
                     break;
                 }
                 case CtAnnoShape::Type::Text: {
-                    _apply_font(cr, shape.fontSize);
+                    _apply_font(cr, shape.fontSize, Cairo::FontWeight::FONT_WEIGHT_NORMAL, shape.fontName);
                     cr->move_to(shape.x1 + dx, shape.y1 + dy);
                     cr->show_text(shape.text.c_str());
                     cr->stroke();
@@ -334,11 +392,12 @@ protected:
                     cr->arc(cx, cy, r, 0.0, 2.0 * M_PI);
                     cr->fill();
                     const std::string label = std::to_string(shape.number);
-                    _apply_font(cr, r, Cairo::FontWeight::FONT_WEIGHT_BOLD);
+                    _apply_font(cr, r * 0.95, Cairo::FontWeight::FONT_WEIGHT_BOLD, shape.fontName);
                     Cairo::TextExtents te;
                     cr->get_text_extents(label, te);
+                    // center the glyph bounding box on the circle centre
                     cr->set_source_rgba(1.0, 1.0, 1.0, 1.0);
-                    cr->move_to(cx - te.width / 2.0, cy + te.height / 2.0 - te.y_bearing / 2.0);
+                    cr->move_to(cx - te.x_bearing - te.width / 2.0, cy - te.y_bearing - te.height / 2.0);
                     cr->show_text(label);
                     cr->stroke();
                     break;
@@ -389,6 +448,24 @@ protected:
             cr->rectangle(selX + 0.5, selY + 0.5, selW - 1.0, selH - 1.0);
             cr->stroke();
 
+            // OrangeArk: white square handles on the border (drag to resize the selection)
+            {
+                const double hs = 4.0; // half size of a handle square
+                const double mx = selX + selW / 2.0;
+                const double my = selY + selH / 2.0;
+                const double hx[4] = {static_cast<double>(selX), mx, static_cast<double>(selX + selW), mx};
+                const double hy[4] = {static_cast<double>(selY), my, static_cast<double>(selY + selH), my};
+                cr->set_source_rgba(1.0, 1.0, 1.0, 0.95);
+                for (int i = 0; i < 4; ++i) {
+                    cr->rectangle(hx[i] - hs, hy[i] - hs, 2 * hs, 2 * hs); // four corners
+                }
+                cr->rectangle(mx - hs, selY - hs, 2 * hs, 2 * hs);              // top mid
+                cr->rectangle(mx - hs, selY + selH - hs, 2 * hs, 2 * hs);       // bottom mid
+                cr->rectangle(selX - hs, my - hs, 2 * hs, 2 * hs);              // left mid
+                cr->rectangle(selX + selW - hs, my - hs, 2 * hs, 2 * hs);       // right mid
+                cr->fill();
+            }
+
             // size hint text
             const std::string hint = std::to_string(selW) + " x " + std::to_string(selH);
             cr->select_font_face("Sans", Cairo::FontSlant::FONT_SLANT_NORMAL, Cairo::FontWeight::FONT_WEIGHT_BOLD);
@@ -435,7 +512,15 @@ protected:
             _confirm();
             return true;
         }
-        if (_toolbar_shown and _in_selection(event->x, event->y)) {
+        // OrangeArk: selection border handles work just outside the selection too
+        const int selHandle = _toolbar_shown ? _sel_handle_at(event->x, event->y) : 0;
+        if (_toolbar_shown and (_in_selection(event->x, event->y) or selHandle != 0)) {
+            // OrangeArk: selection border handles take priority (drag to resize the selection)
+            if (selHandle != 0) {
+                _selResizing = true;
+                _selEdges = selHandle;
+                return true;
+            }
             // QQ style: pressing an existing annotation always starts moving it,
             // whatever the active tool is (no need to switch to the Move tool)
             {
@@ -460,7 +545,8 @@ protected:
                 shape.type = CtAnnoShape::Type::Counter;
                 shape.x1 = static_cast<int>(event->x);
                 shape.y1 = static_cast<int>(event->y);
-                shape.fontSize = std::max(16, _sel_h() / 15);
+                shape.fontSize = _annoFontSize;
+                shape.fontName = _annoFontName;
                 int num = 1;
                 for (const CtAnnoShape& s : _shapes) {
                     if (CtAnnoShape::Type::Counter == s.type) ++num;
@@ -498,7 +584,8 @@ protected:
             }
             _currShape.x1 = _currShape.x2 = static_cast<int>(event->x);
             _currShape.y1 = _currShape.y2 = static_cast<int>(event->y);
-            _currShape.fontSize = std::max(16, _sel_h() / 15);
+            _currShape.fontSize = _annoFontSize;
+            _currShape.fontName = _annoFontName;
             if (Tool::Pen == _tool) {
                 _currShape.pts.push_back(Gdk::Point(_currShape.x1, _currShape.y1));
             }
@@ -519,16 +606,32 @@ protected:
 
     bool _on_motion_notify(GdkEventMotion* event)
     {
+        // OrangeArk: dragging a selection border handle resizes the selection
+        if (_selResizing) {
+            const int px = static_cast<int>(event->x);
+            const int py = static_cast<int>(event->y);
+            if (_selEdges & 1) _selX1 = px;
+            if (_selEdges & 2) _selX2 = px;
+            if (_selEdges & 4) _selY1 = py;
+            if (_selEdges & 8) _selY2 = py;
+            _pArea->queue_draw();
+            return true;
+        }
         // hover feedback: show the move cursor over an existing annotation
-        if (_toolbar_shown and not _selecting and not _annotating and _movingIdx < 0) {
+        if (_toolbar_shown and not _selecting and not _annotating and _movingIdx < 0 and not _selResizing) {
             if (Glib::RefPtr<Gdk::Window> rWin = _pArea->get_window()) {
                 const int px = static_cast<int>(event->x);
                 const int py = static_cast<int>(event->y);
-                bool over = false;
-                for (auto it = _shapes.rbegin(); it != _shapes.rend(); ++it) {
-                    if (_shape_hit(*it, px, py)) { over = true; break; }
+                Glib::RefPtr<Gdk::Cursor> rCursor;
+                if (_sel_handle_at(px, py) != 0) {
+                    rCursor = _rCursorMove;
                 }
-                rWin->set_cursor(over ? _rCursorMove : Glib::RefPtr<Gdk::Cursor>{});
+                else {
+                    for (auto it = _shapes.rbegin(); it != _shapes.rend(); ++it) {
+                        if (_shape_hit(*it, px, py)) { rCursor = _rCursorMove; break; }
+                    }
+                }
+                rWin->set_cursor(rCursor);
             }
         }
         if (_selecting) {
@@ -562,6 +665,11 @@ protected:
     bool _on_button_release(GdkEventButton* event)
     {
         if (1 != event->button) return false;
+        if (_selResizing) {
+            _selResizing = false;
+            _pArea->queue_draw();
+            return true;
+        }
         if (_movingIdx >= 0) {
             _movingIdx = -1;
             return true;
@@ -636,8 +744,9 @@ protected:
         CtAnnoShape shape{};
         shape.type = CtAnnoShape::Type::Text;
         shape.x1 = _textAnnoX;
-        shape.y1 = _textAnnoY + std::max(16, _sel_h() / 15); // baseline
-        shape.fontSize = std::max(16, _sel_h() / 15);
+        shape.y1 = _textAnnoY + _annoFontSize; // baseline
+        shape.fontSize = _annoFontSize;
+        shape.fontName = _annoFontName;
         shape.text = text;
         _shapes.push_back(shape);
         _redoShapes.clear();
@@ -712,7 +821,11 @@ private:
     bool _annotating{false};
     bool _previewing{false};
     bool _toolbar_shown{false};
+    bool _selResizing{false};   // OrangeArk: dragging a selection border handle
+    int  _selEdges{0};
     Tool _tool{Tool::Pen};
+    Glib::ustring _annoFontName{"Microsoft YaHei"}; // OrangeArk: text annotation font
+    int  _annoFontSize{18};                         // OrangeArk: text annotation size
     int  _selX1{0}, _selY1{0}, _selX2{-1}, _selY2{-1};
     int  _textAnnoX{0}, _textAnnoY{0};
     int  _movingIdx{-1};

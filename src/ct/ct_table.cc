@@ -457,28 +457,69 @@ static void _table_border_cursor(Gtk::Widget* pWidget, const int edges)
     else rWin->set_cursor(Gdk::Cursor::create(type));
 }
 
+// OrangeArk: hook the resize handlers into an inner widget (cell text views or
+// the light tree view) — pressing near the table outer border starts resizing
+// even when the event lands on an inner widget
+void CtTableCommon::_connect_resize_widget(Gtk::Widget* pWidget)
+{
+    pWidget->signal_button_press_event().connect(
+        [this, pWidget](GdkEventButton* e) {
+            int tx = 0, ty = 0;
+            if (not pWidget->translate_coordinates(*this, static_cast<int>(e->x), static_cast<int>(e->y), tx, ty)) return false;
+            return _resize_press_at(static_cast<double>(tx), static_cast<double>(ty), e);
+        }, false);
+    pWidget->signal_motion_notify_event().connect(
+        [this, pWidget](GdkEventMotion* e) {
+            int tx = 0, ty = 0;
+            if (not pWidget->translate_coordinates(*this, static_cast<int>(e->x), static_cast<int>(e->y), tx, ty)) return false;
+            return _resize_motion_at(static_cast<double>(tx), static_cast<double>(ty), e);
+        }, false);
+    pWidget->signal_button_release_event().connect(
+        [this](GdkEventButton* e) {
+            return _resize_release(e);
+        }, false);
+    pWidget->add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
+}
+
 bool CtTableCommon::_on_resize_button_press_event(GdkEventButton* event)
 {
+    return _resize_press_at(event->x, event->y, event);
+}
+
+bool CtTableCommon::_resize_press_at(const double x, const double y, GdkEventButton* event)
+{
     if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
-    if (0 == _table_border_edges(event->x, event->y, get_allocation())) return false;
+    const int edges = _table_border_edges(x, y, get_allocation());
+    if (0 == edges) return false;
     if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
     _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
+    _dragEdgesMask = edges;
     _resize_drag_begin(event->x_root, event->y_root);
     return true; // do not propagate while resizing
 }
 
 bool CtTableCommon::_on_resize_motion_notify_event(GdkEventMotion* event)
 {
+    return _resize_motion_at(event->x, event->y, event);
+}
+
+bool CtTableCommon::_resize_motion_at(const double x, const double y, GdkEventMotion* event)
+{
     if (_dragResizeActive) {
         _resize_drag_update(event->x_root, event->y_root); // live preview while dragging
         _table_border_cursor(this, _dragEdgesMask);
         return true;
     }
-    _table_border_cursor(this, _table_border_edges(event->x, event->y, get_allocation()));
+    _table_border_cursor(this, _table_border_edges(x, y, get_allocation()));
     return false;
 }
 
 bool CtTableCommon::_on_resize_button_release_event(GdkEventButton* event)
+{
+    return _resize_release(event);
+}
+
+bool CtTableCommon::_resize_release(GdkEventButton* event)
 {
     if (not _dragResizeActive or 1 != event->button) return false;
     _resize_drag_end();
@@ -581,6 +622,8 @@ void CtTableHeavy::_new_text_cell_attach(const size_t rowIdx, const size_t colId
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
     textView.signal_populate_popup().connect(sigc::mem_fun(*this, &CtTableCommon::on_cell_populate_popup));
     textView.signal_key_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::on_cell_key_press_event), false);
+    // OrangeArk: allow starting a table resize from the border of any cell
+    _connect_resize_widget(&textView);
 #endif
 
     _grid.attach(pTextCell->get_text_view().mm(), colIdx, rowIdx, 1/*# cell horiz*/, 1/*# cell vert*/);
