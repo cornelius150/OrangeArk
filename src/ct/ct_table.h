@@ -110,10 +110,11 @@ public:
     bool on_cell_key_press_event(GdkEventKey* event);
     #endif
 
-    // OrangeArk: drag the bottom-right grip (or the wide corner zone) with the mouse to resize
-    // the table columns (horizontal) and row heights (vertical)
+    // OrangeArk: drag the bottom-right grip (or anywhere on the table border) with the mouse to
+    // resize the table columns (horizontal) and row heights (vertical)
 public:
     static const int TABLE_RESIZE_ZONE{32};
+    static const int TABLE_BORDER_ZONE{8};
     bool _on_resize_button_press_event(GdkEventButton* event);
     bool _on_resize_motion_notify_event(GdkEventMotion* event);
     bool _on_resize_button_release_event(GdkEventButton* event);
@@ -129,6 +130,7 @@ protected:
     Gtk::DrawingArea* _pResizeGrip{nullptr};
     bool _dragResizeActive{false};
     bool _dragResizeChanged{false};
+    int  _dragEdgesMask{0};
     double _dragStartX{0.};
     double _dragStartY{0.};
     int    _dragStartTotalW{0};

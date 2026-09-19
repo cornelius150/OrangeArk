@@ -366,6 +366,7 @@ bool CtTableCommon::_on_grip_button_press_event(GdkEventButton* event)
     if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
     if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
     _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
+    _dragEdgesMask = 2 | 8; // the grip sits in the bottom-right corner
     _resize_drag_begin(event->x_root, event->y_root);
     return true;
 }
@@ -422,14 +423,46 @@ void CtTableCommon::_resize_drag_end()
     }
 }
 
+// OrangeArk: bit mask of the table borders under the cursor
+// (1 = left, 2 = right, 4 = top, 8 = bottom) — any border position resizes
+static int _table_border_edges(const double x, const double y, const Gtk::Allocation& allocation)
+{
+    const int w = allocation.get_width();
+    const int h = allocation.get_height();
+    if (x < 0 or y < 0 or x > w or y > h) return 0;
+    int edges = 0;
+    if (x <= CtTableCommon::TABLE_BORDER_ZONE)        edges |= 1;
+    if (x >= w - CtTableCommon::TABLE_BORDER_ZONE)    edges |= 2;
+    if (y <= CtTableCommon::TABLE_BORDER_ZONE)        edges |= 4;
+    if (y >= h - CtTableCommon::TABLE_BORDER_ZONE)    edges |= 8;
+    // the corner zone keeps working even inside the edge band
+    if (x >= w - CtTableCommon::TABLE_RESIZE_ZONE and y >= h - CtTableCommon::TABLE_RESIZE_ZONE) edges = 2 | 8;
+    return edges;
+}
+
+static void _table_border_cursor(Gtk::Widget* pWidget, const int edges)
+{
+    if (nullptr == pWidget) return;
+    Glib::RefPtr<Gdk::Window> rWin = pWidget->get_window();
+    if (not rWin) return;
+    Gdk::CursorType type;
+    if ((edges & 0x3) and (edges & 0xC)) {
+        const bool brDiag = ((edges & 2) and (edges & 8)) or ((edges & 1) and (edges & 4));
+        type = brDiag ? Gdk::CursorType::BOTTOM_RIGHT_CORNER : Gdk::CursorType::TOP_RIGHT_CORNER;
+    }
+    else if (edges & 0x3) type = Gdk::CursorType::SB_H_DOUBLE_ARROW;
+    else if (edges & 0xC) type = Gdk::CursorType::SB_V_DOUBLE_ARROW;
+    else type = static_cast<Gdk::CursorType>(-1);
+    if (type < 0) rWin->set_cursor();
+    else rWin->set_cursor(Gdk::Cursor::create(type));
+}
+
 bool CtTableCommon::_on_resize_button_press_event(GdkEventButton* event)
 {
     if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
-    const Gtk::Allocation allocation = get_allocation();
-    const bool inCorner = event->x >= allocation.get_width() - TABLE_RESIZE_ZONE
-                      and event->y >= allocation.get_height() - TABLE_RESIZE_ZONE;
-    if (not inCorner) return false;
+    if (0 == _table_border_edges(event->x, event->y, get_allocation())) return false;
     if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
+    _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
     _resize_drag_begin(event->x_root, event->y_root);
     return true; // do not propagate while resizing
 }
@@ -438,20 +471,10 @@ bool CtTableCommon::_on_resize_motion_notify_event(GdkEventMotion* event)
 {
     if (_dragResizeActive) {
         _resize_drag_update(event->x_root, event->y_root); // live preview while dragging
+        _table_border_cursor(this, _dragEdgesMask);
         return true;
     }
-    const Gtk::Allocation allocation = get_allocation();
-    const bool inCorner = event->x >= allocation.get_width() - TABLE_RESIZE_ZONE
-                      and event->y >= allocation.get_height() - TABLE_RESIZE_ZONE;
-    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
-        if (inCorner) {
-            if (not _rHoverCursor) _rHoverCursor = Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER);
-            rWin->set_cursor(_rHoverCursor);
-        }
-        else {
-            rWin->set_cursor();
-        }
-    }
+    _table_border_cursor(this, _table_border_edges(event->x, event->y, get_allocation()));
     return false;
 }
 

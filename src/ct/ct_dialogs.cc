@@ -637,18 +637,10 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     passw_frame.add(vbox_passw);
 
     if (args.mdOnly) {
-        // OrangeArk: saving always uses Markdown; show only that option
+        // OrangeArk: keep the full storage-type layout, but .md is the preselected
+        // target (the save flow always writes a Markdown file)
         radiobutton_md.set_active(true);
-        image_sqlite_not_protected->hide();
-        image_sqlite_pass_protected->hide();
-        image_xml_not_protected->hide();
-        image_xml_pass_protected->hide();
-        image_multifile->hide();
-        radiobutton_sqlite_not_protected.hide();
-        radiobutton_sqlite_pass_protected.hide();
-        radiobutton_xml_not_protected.hide();
-        radiobutton_xml_pass_protected.hide();
-        radiobutton_multifile.hide();
+        passw_frame.set_sensitive(false);
     }
     else if (args.ctDocMd) {
         passw_frame.set_sensitive(false);

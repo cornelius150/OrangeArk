@@ -223,8 +223,9 @@ void CtImagePng::update_label_widget()
 }
 
 #if GTKMM_MAJOR_VERSION < 4
-// OrangeArk: resize corner size in px (bottom-right of the image)
-static const int IMG_RESIZE_ZONE{24};
+// OrangeArk: resize hit zones in px (borders of the image)
+static const int IMG_RESIZE_ZONE{24};   // corner zone
+static const int IMG_RESIZE_EDGE{10};   // plain edge band
 
 // visible resize grip in the bottom-right corner (drawn after the image)
 bool CtImagePng::_on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr)
@@ -255,14 +256,45 @@ bool CtImagePng::_on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr)
     return false;
 }
 
-bool CtImagePng::_in_resize_corner(GdkEventButton* event)
+// OrangeArk: bit mask of the image borders under the given widget coords
+// (1 = left, 2 = right, 4 = top, 8 = bottom) — any border position resizes
+int CtImagePng::_resize_edges(const double x, const double y) const
 {
-    if (event->x_root < 0 or event->y_root < 0) return false;
-    const int winX = static_cast<int>(event->x);
-    const int winY = static_cast<int>(event->y);
     const Gtk::Allocation allocation = get_allocation();
-    return winX >= allocation.get_width() - IMG_RESIZE_ZONE
-       and winY >= allocation.get_height() - IMG_RESIZE_ZONE;
+    const int w = allocation.get_width();
+    const int h = allocation.get_height();
+    if (x < 0 or y < 0 or x > w or y > h) return 0;
+    int edges = 0;
+    if (x <= IMG_RESIZE_EDGE)        edges |= 1;
+    if (x >= w - IMG_RESIZE_EDGE)    edges |= 2;
+    if (y <= IMG_RESIZE_EDGE)        edges |= 4;
+    if (y >= h - IMG_RESIZE_EDGE)    edges |= 8;
+    // the corner zone keeps working even inside the edge band
+    if (x >= w - IMG_RESIZE_ZONE and y >= h - IMG_RESIZE_ZONE) edges = 2 | 8;
+    return edges;
+}
+
+// OrangeArk: cursor feedback according to the hovered border
+void CtImagePng::_set_hover_cursor(const int edges)
+{
+    Gdk::CursorType type;
+    if ((edges & 0x3) and (edges & 0xC)) {
+        const bool brDiag = ((edges & 2) and (edges & 8)) or ((edges & 1) and (edges & 4));
+        type = brDiag ? Gdk::CursorType::BOTTOM_RIGHT_CORNER : Gdk::CursorType::TOP_RIGHT_CORNER;
+    }
+    else if (edges & 0x3) type = Gdk::CursorType::SB_H_DOUBLE_ARROW;
+    else if (edges & 0xC) type = Gdk::CursorType::SB_V_DOUBLE_ARROW;
+    else                  type = static_cast<Gdk::CursorType>(-1);
+
+    if (static_cast<int>(type) == _hoverCursorType) return;
+    _hoverCursorType = static_cast<int>(type);
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+        if (type < 0) rWin->set_cursor();
+        else {
+            _rHoverCursor = Gdk::Cursor::create(type);
+            rWin->set_cursor(_rHoverCursor);
+        }
+    }
 }
 
 void CtImagePng::_apply_resized_pixbuf(const int newWidth, const int newHeight)
@@ -281,24 +313,11 @@ bool CtImagePng::_on_motion_notify_event(GdkEventMotion* event)
 {
     if (_dragResizeActive) {
         // live cursor feedback while dragging
-        if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
-            rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER));
-        }
+        _set_hover_cursor(_dragEdges);
         return true;
     }
-    // hover feedback: change cursor when over the resize corner
-    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
-        const int winX = static_cast<int>(event->x);
-        const int winY = static_cast<int>(event->y);
-        const Gtk::Allocation allocation = get_allocation();
-        if (winX >= allocation.get_width() - IMG_RESIZE_ZONE and winY >= allocation.get_height() - IMG_RESIZE_ZONE) {
-            if (not _rHoverCursor) _rHoverCursor = Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER);
-            rWin->set_cursor(_rHoverCursor);
-        }
-        else {
-            rWin->set_cursor();
-        }
-    }
+    // hover feedback: change cursor when over any image border
+    _set_hover_cursor(_resize_edges(event->x, event->y));
     return false;
 }
 
@@ -307,10 +326,20 @@ bool CtImagePng::_on_button_release_event(GdkEventButton* event)
     if (not _dragResizeActive or 1 != event->button) return false;
     _dragResizeActive = false;
     gtk_grab_remove(GTK_WIDGET(gobj()));
+    _hoverCursorType = -1;
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
 
-    const double dx = event->x_root - _dragStartX;
-    const double scale = (_dragStartW + dx) / static_cast<double>(_dragStartW);
+    // OrangeArk: the dragged border decides which deltas apply
+    double dx = 0.0, dy = 0.0;
+    if (_dragEdges & 2)      dx = event->x_root - _dragStartX;   // right edge
+    else if (_dragEdges & 1) dx = _dragStartX - event->x_root;   // left edge
+    if (_dragEdges & 8)      dy = event->y_root - _dragStartY;   // bottom edge
+    else if (_dragEdges & 4) dy = _dragStartY - event->y_root;   // top edge
+
+    // keep the aspect ratio: grow/shrink with the dominant dragged axis
+    double scale = 1.0;
+    if (dx != 0.0) scale = std::max(scale, (_dragStartW + dx) / static_cast<double>(_dragStartW));
+    if (dy != 0.0) scale = std::max(scale, (_dragStartH + dy) / static_cast<double>(_dragStartH));
     int newW = static_cast<int>(std::lround(_dragStartW * scale));
     int newH = static_cast<int>(std::lround(_dragStartH * scale));
     if (newW < 16) {
@@ -322,7 +351,6 @@ bool CtImagePng::_on_button_release_event(GdkEventButton* event)
         newH = 16;
     }
     if (newW != _dragStartW or newH != _dragStartH) {
-        // keep the aspect ratio, let the size grow/shrink with the drag
         _apply_resized_pixbuf(newW, newH);
     }
     return true;
@@ -332,10 +360,12 @@ bool CtImagePng::_on_button_press_event(GdkEventButton* event)
 {
     _pCtMainWin->get_ct_actions()->curr_image_anchor = this;
     _pCtMainWin->get_ct_actions()->object_set_selection(this);
-    // OrangeArk: start drag-resize when pressing the bottom-right corner
-    if (1 == event->button and _in_resize_corner(event)) {
+    // OrangeArk: start drag-resize when pressing anywhere on the image border
+    const int edges = _resize_edges(event->x, event->y);
+    if (1 == event->button and edges != 0) {
         if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
         _dragResizeActive = true;
+        _dragEdges = edges;
         _dragStartX = event->x_root;
         _dragStartY = event->y_root;
         _dragStartW = _rPixbuf->get_width();

@@ -79,7 +79,7 @@ void CtActions::file_save_as()
     }
     CtDialogs::CtStorageSelectArgs storageSelArgs{};
     storageSelArgs.showAutosaveOptions = true;
-    storageSelArgs.mdOnly = true; // OrangeArk: the storage dialog shows only the Markdown option
+    storageSelArgs.mdOnly = true; // OrangeArk: full dialog layout with .md preselected; saving always produces .md
     if (not CtDialogs::choose_data_storage_dialog(_pCtMainWin, storageSelArgs)) {
         return;
     }

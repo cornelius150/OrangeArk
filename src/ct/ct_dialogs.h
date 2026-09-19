@@ -213,7 +213,7 @@ struct CtStorageSelectArgs
     CtDocType     ctDocType{CtDocType::None};
     CtDocEncrypt  ctDocEncrypt{CtDocEncrypt::None};
     bool          ctDocMd{false};   // OrangeArk: save as a Markdown (.md) document
-    bool          mdOnly{false};    // OrangeArk: show only the Markdown (.md) option (used when saving)
+    bool          mdOnly{false};    // OrangeArk: keep the full layout but preselect .md (save flow always writes .md)
     Glib::ustring password;
     bool          showAutosaveOptions{false};
 };

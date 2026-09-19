@@ -87,17 +87,20 @@ public:
 private:
 #if GTKMM_MAJOR_VERSION < 4
     bool _on_button_press_event(GdkEventButton* event);
-    // OrangeArk: drag the bottom-right corner with the mouse to resize the image
+    // OrangeArk: drag anywhere on the image border with the mouse to resize it
     bool _on_motion_notify_event(GdkEventMotion* event);
     bool _on_button_release_event(GdkEventButton* event);
-    bool _in_resize_corner(GdkEventButton* event);
+    int  _resize_edges(const double x, const double y) const; // bit mask: 1=left 2=right 4=top 8=bottom
+    void _set_hover_cursor(const int edges);
     void _apply_resized_pixbuf(const int newWidth, const int newHeight);
     bool _on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr); // visible resize grip
     void _connect_resize_events();
     bool   _dragResizeActive{false};
+    int    _dragEdges{0};
     double _dragStartX{0.}, _dragStartY{0.};
     int    _dragStartW{0}, _dragStartH{0};
     Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
+    int    _hoverCursorType{-1};
 #endif
 
 protected:

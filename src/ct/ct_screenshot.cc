@@ -221,12 +221,19 @@ protected:
                 bx = minX; by = minY; bw = maxX - minX; bh = maxY - minY;
                 break;
             }
-            case CtAnnoShape::Type::Text:
+            case CtAnnoShape::Type::Text: {
+                // estimate the drawn width: CJK glyphs are about one em wide,
+                // ASCII glyphs about 0.55 em (shape.text is UTF-8 encoded)
+                double textW = 0.0;
+                for (const gunichar ch : Glib::ustring(shape.text)) {
+                    textW += (ch > 0x7F ? 1.0 : 0.55) * shape.fontSize;
+                }
                 bx = shape.x1 - 2;
                 by = shape.y1 - shape.fontSize;
-                bw = static_cast<int>(shape.text.size() * shape.fontSize * 0.6) + 8;
+                bw = static_cast<int>(textW) + 8;
                 bh = shape.fontSize + 6;
                 break;
+            }
             case CtAnnoShape::Type::Counter:
                 bx = shape.x1 - shape.fontSize; by = shape.y1 - shape.fontSize;
                 bw = shape.fontSize * 2; bh = shape.fontSize * 2;
@@ -429,6 +436,20 @@ protected:
             return true;
         }
         if (_toolbar_shown and _in_selection(event->x, event->y)) {
+            // QQ style: pressing an existing annotation always starts moving it,
+            // whatever the active tool is (no need to switch to the Move tool)
+            {
+                const int px = static_cast<int>(event->x);
+                const int py = static_cast<int>(event->y);
+                for (int i = static_cast<int>(_shapes.size()) - 1; i >= 0; --i) {
+                    if (_shape_hit(_shapes.at(static_cast<size_t>(i)), px, py)) {
+                        _movingIdx = i;
+                        _moveLastX = px;
+                        _moveLastY = py;
+                        return true;
+                    }
+                }
+            }
             if (Tool::Text == _tool) {
                 _show_text_entry(static_cast<int>(event->x), static_cast<int>(event->y));
                 return true;
@@ -498,6 +519,18 @@ protected:
 
     bool _on_motion_notify(GdkEventMotion* event)
     {
+        // hover feedback: show the move cursor over an existing annotation
+        if (_toolbar_shown and not _selecting and not _annotating and _movingIdx < 0) {
+            if (Glib::RefPtr<Gdk::Window> rWin = _pArea->get_window()) {
+                const int px = static_cast<int>(event->x);
+                const int py = static_cast<int>(event->y);
+                bool over = false;
+                for (auto it = _shapes.rbegin(); it != _shapes.rend(); ++it) {
+                    if (_shape_hit(*it, px, py)) { over = true; break; }
+                }
+                rWin->set_cursor(over ? _rCursorMove : Glib::RefPtr<Gdk::Cursor>{});
+            }
+        }
         if (_selecting) {
             _selX2 = static_cast<int>(event->x);
             _selY2 = static_cast<int>(event->y);
@@ -668,6 +701,7 @@ private:
     Glib::RefPtr<Gdk::Pixbuf> _rShot;
     Glib::RefPtr<Gdk::Pixbuf> _rResult;
     Glib::RefPtr<Gdk::Cursor> _rCursorCross;
+    Glib::RefPtr<Gdk::Cursor> _rCursorMove;
 
     Gtk::Fixed*        _pFixed{nullptr};
     Gtk::DrawingArea*  _pArea{nullptr};
