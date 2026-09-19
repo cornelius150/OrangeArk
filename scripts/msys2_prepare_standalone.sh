@@ -5,7 +5,7 @@ set -e
 
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 IN_CT_FOLDER="$(dirname "${SCRIPT_DIR}")"
-IN_CT_EXE="${IN_CT_FOLDER}/build/oliveset.exe"
+IN_CT_EXE="${IN_CT_FOLDER}/build/orangeark.exe"
 IN_CT_LANGUAGES_FOLDER="${IN_CT_FOLDER}/po"
 IN_CT_DATA_FOLDER="${IN_CT_FOLDER}/data"
 IN_CT_ICONS_FOLDER="${IN_CT_FOLDER}/icons"
@@ -85,14 +85,14 @@ cd ${IN_CT_FOLDER}
 
 
 CT_VERSION_NUM="$(cat ${IN_CT_CONFIG_H} | grep PACKAGE_VERSION_WINDOWS_STR | awk '{print substr($3, 2, length($3)-2)}')"
-OUT_MSYS2_FOLDER="${IN_CT_FOLDER}/build/oliveset-msys2"
-OUT_ROOT_FOLDER="${IN_CT_FOLDER}/build/oliveset_${CT_VERSION_NUM}_win64_portable"
+OUT_MSYS2_FOLDER="${IN_CT_FOLDER}/build/orangeark-msys2"
+OUT_ROOT_FOLDER="${IN_CT_FOLDER}/build/orangeark_${CT_VERSION_NUM}_win64_portable"
 OUT_ROOT_FOLDER_NOLATEX="${OUT_ROOT_FOLDER}_nolatex"
 OUT_UCRT64_FOLDER="${OUT_ROOT_FOLDER}/ucrt64"
 OUT_ETC_GTK_FOLDER="${OUT_ROOT_FOLDER}/etc/gtk-3.0"
 OUT_ETC_GTK_SETTINGS_INI="${OUT_ETC_GTK_FOLDER}/settings.ini"
 OUT_HUNSPELL_FOLDER="${OUT_UCRT64_FOLDER}/share/hunspell"
-OUT_OLIVESET_SHARE="${OUT_UCRT64_FOLDER}/usr/share/oliveset"
+OUT_ORANGEARK_SHARE="${OUT_UCRT64_FOLDER}/usr/share/orangeark"
 
 
 # latex.exe and dvipng.exe ensure the list of files to copy from is available
@@ -272,27 +272,27 @@ echo "[Settings]" > ${OUT_ETC_GTK_SETTINGS_INI}
 echo "gtk-theme-name=win32" >> ${OUT_ETC_GTK_SETTINGS_INI}
 
 
-echo "copying oliveset files..."
+echo "copying orangeark files..."
 # exe
 strip ${IN_CT_EXE}
 cp -v ${IN_CT_EXE} ${OUT_UCRT64_FOLDER}/bin/
 # license
 cp -v ${IN_CT_LICENSE} ${OUT_ROOT_FOLDER}/
 # share data
-mkdir -p ${OUT_OLIVESET_SHARE}/data
-cp -rv ${IN_CT_LANGUAGE_SPECS_FOLDER} ${OUT_OLIVESET_SHARE}/
-cp -rv ${IN_CT_STYLES_FOLDER} ${OUT_OLIVESET_SHARE}/
+mkdir -p ${OUT_ORANGEARK_SHARE}/data
+cp -rv ${IN_CT_LANGUAGE_SPECS_FOLDER} ${OUT_ORANGEARK_SHARE}/
+cp -rv ${IN_CT_STYLES_FOLDER} ${OUT_ORANGEARK_SHARE}/
 for element_rel in script3.js \
                    styles4.css \
                    user-style.xml
 do
-  cp -v ${IN_CT_DATA_FOLDER}/${element_rel} ${OUT_OLIVESET_SHARE}/data/
+  cp -v ${IN_CT_DATA_FOLDER}/${element_rel} ${OUT_ORANGEARK_SHARE}/data/
 done
 # share icons
-mkdir -p ${OUT_OLIVESET_SHARE}/icons
-cp -v ${IN_CT_ICONS_FOLDER}/ct_home.svg ${OUT_OLIVESET_SHARE}/icons/
-cp -r -v ${IN_CT_ICONS_FOLDER}/Breeze_Dark_icons ${OUT_OLIVESET_SHARE}/icons/
-cp -r -v ${IN_CT_ICONS_FOLDER}/Breeze_Light_icons ${OUT_OLIVESET_SHARE}/icons/
+mkdir -p ${OUT_ORANGEARK_SHARE}/icons
+cp -v ${IN_CT_ICONS_FOLDER}/ct_home.svg ${OUT_ORANGEARK_SHARE}/icons/
+cp -r -v ${IN_CT_ICONS_FOLDER}/Breeze_Dark_icons ${OUT_ORANGEARK_SHARE}/icons/
+cp -r -v ${IN_CT_ICONS_FOLDER}/Breeze_Light_icons ${OUT_ORANGEARK_SHARE}/icons/
 # i18n languages
 for element_rel in $(ls ${IN_CT_LANGUAGES_FOLDER})
 do

@@ -1,4 +1,4 @@
-IDI_ICON1               ICON    DISCARDABLE     "oliveset.ico"
+IDI_ICON1               ICON    DISCARDABLE     "orangeark.ico"
 
 #include "../config.h"
 
@@ -15,12 +15,12 @@ BEGIN
             VALUE "CompanyName",      ""
             VALUE "FileDescription",  ""
             VALUE "FileVersion",      PACKAGE_VERSION_WINDOWS_STR
-            VALUE "InternalName",     "oliveset"
+            VALUE "InternalName",     "orangeark"
             VALUE "LegalCopyright",   "GPL3"
             VALUE "LegalTrademarks1", ""
             VALUE "LegalTrademarks2", ""
-            VALUE "OriginalFilename", "oliveset.exe"
-            VALUE "ProductName",      "oliveset"
+            VALUE "OriginalFilename", "orangeark.exe"
+            VALUE "ProductName",      "orangeark"
             VALUE "ProductVersion",   PACKAGE_VERSION_WINDOWS_STR
         END
     END

@@ -109,6 +109,19 @@ public:
     bool on_cell_key_press_event(GdkEventKey* event);
     #endif
 
+    // OrangeArk: drag the bottom-right corner with the mouse to resize the table columns
+public:
+    static const int TABLE_RESIZE_ZONE{18};
+    bool _on_resize_button_press_event(GdkEventButton* event);
+    bool _on_resize_motion_notify_event(GdkEventMotion* event);
+    bool _on_resize_button_release_event(GdkEventButton* event);
+protected:
+    bool _dragResizeActive{false};
+    double _dragStartX{0.};
+    int    _dragStartTotalW{0};
+    CtTableColWidths _dragStartColWidths;
+    Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
+
 protected:
     virtual void _populate_xml_rows_cells(xmlpp::Element* p_table_node) const = 0;
     virtual bool _row_sort(const bool sortAsc) = 0;

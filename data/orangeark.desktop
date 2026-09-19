@@ -1,5 +1,6 @@
 [Desktop Entry]
-Name=OliveSet
+Name=OrangeArk
+Name[zh_CN]=橙子笔记
 Comment=Hierarchical Note Taking
 Comment[cs]=Hierarchická tvorba poznámek
 Comment[de]=Hierarchische Notizfunktion
@@ -20,9 +21,9 @@ Comment[sv]=Hierarkiska anteckningar
 Comment[tr]=Hiyerarşik Notları Tutar
 Comment[uk]=Записник з ієрархічною структурою
 Comment[zh_CN]=分层笔记
-Exec=oliveset --new_window %f
-Icon=oliveset
-MimeType=application/oliveset-ctd;application/oliveset-ctz;application/oliveset-ctb;application/oliveset-ctx;
+Exec=orangeark --new_window %f
+Icon=orangeark
+MimeType=application/orangeark-ctd;application/orangeark-ctz;application/orangeark-ctb;application/orangeark-ctx;
 Terminal=false
 Type=Application
 StartupNotify=true

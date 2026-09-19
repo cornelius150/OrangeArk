@@ -57,17 +57,17 @@ bool CtExport2Html::prepare_html_folder(fs::path dir_place,
     g_mkdir_with_parents(_embed_dir.c_str(), 0777);
     g_mkdir_with_parents(_res_dir.c_str(), 0777);
 
-    fs::path config_dir = fs::get_oliveset_configdir();
+    fs::path config_dir = fs::get_orangeark_configdir();
     fs::path styles_css_filepath = config_dir / "styles4.css";
     if (not fs::is_regular_file(styles_css_filepath)) {
-        fs::path styles_css_original = fs::path(fs::get_oliveset_datadir()) / fs::path("data") / "styles4.css";
+        fs::path styles_css_original = fs::path(fs::get_orangeark_datadir()) / fs::path("data") / "styles4.css";
         fs::copy_file(styles_css_original, styles_css_filepath);
     }
     fs::copy_file(styles_css_filepath, _res_dir / "styles4.css");
 
     fs::path styles_js_filepath = config_dir / "script3.js";
     if (not fs::is_regular_file(styles_js_filepath)) {
-        fs::path script_js_original = fs::get_oliveset_datadir() / "data" / "script3.js";
+        fs::path script_js_original = fs::get_orangeark_datadir() / "data" / "script3.js";
         fs::copy_file(script_js_original, styles_js_filepath);
     }
     fs::copy_file(styles_js_filepath, _res_dir / "script3.js");
@@ -162,7 +162,7 @@ void CtExport2Html::node_export_to_html(CtTreeIter tree_iter,
 void CtExport2Html::nodes_all_export_to_multiple_html(bool all_tree,
                                                       const CtExportOptions& options)
 {
-    fs::path home_svg = fs::get_oliveset_datadir() / fs::path("icons") / "ct_home.svg";
+    fs::path home_svg = fs::get_orangeark_datadir() / fs::path("icons") / "ct_home.svg";
     fs::copy_file(home_svg, _images_dir / "home.svg");
 
     // create tree links text

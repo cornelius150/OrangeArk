@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<oliveset>
+<orangeark>
   <node unique_id="5" master_id="0" name="e" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1565008774" ts_lastsave="1708466019">
     <rich_text>anchored widgets:
 
@@ -90,4 +90,4 @@ latex equation:
 $a^2+b^2=c^2$
 \end{document}</encoded_png>
   </node>
-</oliveset>
+</orangeark>

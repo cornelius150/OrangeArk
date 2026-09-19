@@ -54,11 +54,11 @@ void set_rgb24_str_from_int24(guint32 int24, char *foreground_rgb24)
 }
 
 
-class OliveSetDocRead
+class OrangeArkDocRead
 {
 public:
-    OliveSetDocRead(std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore);
-    virtual ~OliveSetDocRead();
+    OrangeArkDocRead(std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore);
+    virtual ~OrangeArkDocRead();
     virtual void tree_walk(Gtk::TreeIter parent_iter)=0;
 protected:
     std::list<gint64> *mp_bookmarks;
@@ -66,11 +66,11 @@ protected:
 };
 
 
-class OliveSetSQLiteRead : public OliveSetDocRead
+class OrangeArkSQLiteRead : public OrangeArkDocRead
 {
 public:
-    OliveSetSQLiteRead(Glib::ustring &filepath, std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore);
-    virtual ~OliveSetSQLiteRead();
+    OrangeArkSQLiteRead(Glib::ustring &filepath, std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore);
+    virtual ~OrangeArkSQLiteRead();
     void tree_walk(Gtk::TreeIter parent_iter);
 private:
     sqlite3 *mp_db;
@@ -81,17 +81,17 @@ private:
 };
 
 
-OliveSetDocRead::OliveSetDocRead(std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore) : mp_bookmarks(p_bookmarks), mr_treestore(r_treestore)
+OrangeArkDocRead::OrangeArkDocRead(std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore) : mp_bookmarks(p_bookmarks), mr_treestore(r_treestore)
 {
 }
 
 
-OliveSetDocRead::~OliveSetDocRead()
+OrangeArkDocRead::~OrangeArkDocRead()
 {
 }
 
 
-OliveSetSQLiteRead::OliveSetSQLiteRead(Glib::ustring &filepath, std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore) : OliveSetDocRead(p_bookmarks, r_treestore)
+OrangeArkSQLiteRead::OrangeArkSQLiteRead(Glib::ustring &filepath, std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore) : OrangeArkDocRead(p_bookmarks, r_treestore)
 {
     int ret_code = sqlite3_open(filepath.c_str(), &mp_db);
     if(ret_code != SQLITE_OK)
@@ -102,13 +102,13 @@ OliveSetSQLiteRead::OliveSetSQLiteRead(Glib::ustring &filepath, std::list<gint64
 }
 
 
-OliveSetSQLiteRead::~OliveSetSQLiteRead()
+OrangeArkSQLiteRead::~OrangeArkSQLiteRead()
 {
     sqlite3_close(mp_db);
 }
 
 
-void OliveSetSQLiteRead::tree_walk(Gtk::TreeIter parent_iter)
+void OrangeArkSQLiteRead::tree_walk(Gtk::TreeIter parent_iter)
 {
     sqlite3_stmt *p_stmt;
     if(sqlite3_prepare_v2(mp_db, "SELECT node_id FROM bookmark ORDER BY sequence ASC", -1, &p_stmt, 0) != SQLITE_OK)
@@ -131,7 +131,7 @@ void OliveSetSQLiteRead::tree_walk(Gtk::TreeIter parent_iter)
 }
 
 
-void OliveSetSQLiteRead::_sqlite3_tree_walk_iter(gint64 node_id, Gtk::TreeIter parent_iter)
+void OrangeArkSQLiteRead::_sqlite3_tree_walk_iter(gint64 node_id, Gtk::TreeIter parent_iter)
 {
     Gtk::TreeIter new_iter = _sqlite3_node_process(node_id, parent_iter);
 
@@ -143,7 +143,7 @@ void OliveSetSQLiteRead::_sqlite3_tree_walk_iter(gint64 node_id, Gtk::TreeIter p
 }
 
 
-std::list<gint64> OliveSetSQLiteRead::_sqlite3_get_children_node_id_from_father_id(gint64 father_id)
+std::list<gint64> OrangeArkSQLiteRead::_sqlite3_get_children_node_id_from_father_id(gint64 father_id)
 {
     std::list<gint64> ret_children;
     sqlite3_stmt *p_stmt;
@@ -163,7 +163,7 @@ std::list<gint64> OliveSetSQLiteRead::_sqlite3_get_children_node_id_from_father_
 }
 
 
-t_node_properties OliveSetSQLiteRead::_sqlite3_get_node_properties(gint64 node_id)
+t_node_properties OrangeArkSQLiteRead::_sqlite3_get_node_properties(gint64 node_id)
 {
     t_node_properties node_properties;
     node_properties.node_id = node_id;
@@ -201,7 +201,7 @@ t_node_properties OliveSetSQLiteRead::_sqlite3_get_node_properties(gint64 node_i
 }
 
 
-Gtk::TreeIter OliveSetSQLiteRead::_sqlite3_node_process(gint64 node_id, Gtk::TreeIter parent_iter)
+Gtk::TreeIter OrangeArkSQLiteRead::_sqlite3_node_process(gint64 node_id, Gtk::TreeIter parent_iter)
 {
     t_node_properties node_properties = _sqlite3_get_node_properties(node_id);
     Gtk::TreeIter new_iter;
@@ -227,6 +227,6 @@ int main(int argc, char *argv[])
     Glib::RefPtr<Gtk::TreeStore> r_treestore;
     Gtk::TreeIter parent_iter;
 
-    OliveSetSQLiteRead ct_sqlite_read(filepath, &bookmarks, r_treestore);
+    OrangeArkSQLiteRead ct_sqlite_read(filepath, &bookmarks, r_treestore);
     ct_sqlite_read.tree_walk(parent_iter);
 }

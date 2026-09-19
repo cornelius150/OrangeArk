@@ -18,4 +18,4 @@ REGISTER_CODEC_E(LZMA2,
     "LZMA2")
 }}
 
-void oliveset_register_lzma2() {}
+void orangeark_register_lzma2() {}

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: OliveSet\n"
+"Project-Id-Version: OrangeArk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-10 22:26+0100\n"
 "PO-Revision-Date: 2025-05-14 18:58+0300\n"
@@ -52,8 +52,8 @@ msgstr "Изчистени линии"
 msgid "No Text is Selected."
 msgstr "Няма избран текст."
 
-msgid "OliveSet File"
-msgstr "OliveSet файл"
+msgid "OrangeArk File"
+msgstr "OrangeArk файл"
 
 msgid ""
 "The file/folder in use cannot be overwritten!\n"
@@ -93,8 +93,8 @@ msgstr "Появи ли се системният панел?"
 msgid "Your system does not support the System Tray"
 msgstr "Вашата система не поддържа системен панел"
 
-msgid "This Change will have Effect Only After Restarting OliveSet."
-msgstr "Промените ще влязат в сила след рестартиране на OliveSet."
+msgid "This Change will have Effect Only After Restarting OrangeArk."
+msgstr "Промените ще влязат в сила след рестартиране на OrangeArk."
 
 msgid "Replace in Current Node"
 msgstr "Замяна в текущия клон"
@@ -307,8 +307,8 @@ msgstr "Размерът на иконите на лентите с инстру
 msgid "The Size of the Toolbar Icons is already at the Minimum Value."
 msgstr "Размерът на иконите на лентите с инструменти е вече минимален."
 
-msgid "Print OliveSet version"
-msgstr "Изход от OliveSet"
+msgid "Print OrangeArk version"
+msgstr "Изход от OrangeArk"
 
 msgid "Node name to focus"
 msgstr "Име на клон на фокус"
@@ -349,8 +349,8 @@ msgstr "Копиране на кода"
 msgid "Change CodeBox Properties"
 msgstr "Промяна на свойствата на блока с код"
 
-msgid "Start in OliveSet"
-msgstr "Стартирай в OliveSet"
+msgid "Start in OrangeArk"
+msgstr "Стартирай в OrangeArk"
 
 msgid "New Document"
 msgstr "Нов документ"
@@ -611,8 +611,8 @@ msgstr "Турски"
 msgid "Ukrainian"
 msgstr "Украински"
 
-msgid "About OliveSet"
-msgstr "За програмата OliveSet"
+msgid "About OrangeArk"
+msgstr "За програмата OrangeArk"
 
 msgid "Tree Summary Information"
 msgstr "Сумарна информация за дървото"
@@ -1056,8 +1056,8 @@ msgstr "Изтегляне"
 msgid "The Path %s does Not Exist"
 msgstr "Пътят %s  не съществува"
 
-msgid "Open a Recent OliveSet Document"
-msgstr "Отвори скорошен документ на OliveSet"
+msgid "Open a Recent OrangeArk Document"
+msgstr "Отвори скорошен документ на OrangeArk"
 
 msgid "_Hide"
 msgstr "Скрий"
@@ -1100,15 +1100,15 @@ msgid "Show Menubar:"
 msgstr "Покажи меню бар:"
 
 #, c-format
-msgid "\"%s\" is Not a OliveSet File"
-msgstr "\"%s\" не е OliveSet документ"
+msgid "\"%s\" is Not a OrangeArk File"
+msgstr "\"%s\" не е OrangeArk документ"
 
 #, c-format
 msgid ""
-"Error Parsing the OliveSet Path:\n"
+"Error Parsing the OrangeArk Path:\n"
 "\"%s\""
 msgstr ""
-"Грешка при анализ на OliveSet файл:\n"
+"Грешка при анализ на OrangeArk файл:\n"
 "\"%s\""
 
 msgid "Do you want to Open the Last Backup?"
@@ -1124,8 +1124,8 @@ msgstr "Не е намерен клон с име '%s'."
 msgid "Temporary Files were Created and Opened with External Applications."
 msgstr "Временни файлове бяха създадени или отворени с външно приложение."
 
-msgid "Quit the External Applications Before Quit OliveSet."
-msgstr "Затворете външно приложение, преди да излезете от OliveSet."
+msgid "Quit the External Applications Before Quit OrangeArk."
+msgstr "Затворете външно приложение, преди да излезете от OrangeArk."
 
 msgid "Did you Quit the External Applications?"
 msgstr "Затворихте ли външното приложение?"
@@ -1239,20 +1239,20 @@ msgstr "Файл"
 msgid "_New Instance..."
 msgstr "Нова инстанция..."
 
-msgid "Start a New Instance of OliveSet"
-msgstr "Отвори нова инстанция на OliveSet"
+msgid "Start a New Instance of OrangeArk"
+msgstr "Отвори нова инстанция на OrangeArk"
 
 msgid "_Open File..."
 msgstr "Отвори файл..."
 
-msgid "Open a OliveSet File"
-msgstr "Отваряне на OliveSet документ"
+msgid "Open a OrangeArk File"
+msgstr "Отваряне на OrangeArk документ"
 
 msgid "Open Fo_lder..."
 msgstr "Отвори папка..."
 
-msgid "Open a OliveSet Folder"
-msgstr "Отвари OliveSet документ"
+msgid "Open a OrangeArk Folder"
+msgstr "Отвари OrangeArk документ"
 
 msgid "_Save"
 msgstr "Запис"
@@ -1308,11 +1308,11 @@ msgstr "Пътя на документа в клипборда"
 msgid "Copy Document Path to Clipboard"
 msgstr "Копирай пътя до документа в клипборда"
 
-msgid "E_xit OliveSet"
-msgstr "Изход от OliveSet"
+msgid "E_xit OrangeArk"
+msgstr "Изход от OrangeArk"
 
-msgid "Exit from OliveSet"
-msgstr "Изход от OliveSet"
+msgid "Exit from OrangeArk"
+msgstr "Изход от OrangeArk"
 
 msgid "Edit/Insert"
 msgstr "Редакция/Вмъкване"
@@ -2274,17 +2274,17 @@ msgstr "Постави менюбара в лентата със заглави�
 msgid "Import"
 msgstr "Импорт"
 
-msgid "From _OliveSet File"
-msgstr "От OliveSet файл"
+msgid "From _OrangeArk File"
+msgstr "От OrangeArk файл"
 
-msgid "Add Nodes of a OliveSet File to the Current Tree"
-msgstr "Импорт от OliveSet файл в текущото дърво"
+msgid "Add Nodes of a OrangeArk File to the Current Tree"
+msgstr "Импорт от OrangeArk файл в текущото дърво"
 
-msgid "From _OliveSet Folder"
-msgstr "От OliveSet папка"
+msgid "From _OrangeArk Folder"
+msgstr "От OrangeArk папка"
 
-msgid "Add Nodes of a OliveSet Folder to the Current Tree"
-msgstr "Добави клони от OliveSet папка в текущото дърво"
+msgid "Add Nodes of a OrangeArk Folder to the Current Tree"
+msgstr "Добави клони от OrangeArk папка в текущото дърво"
 
 msgid "From _Indented List File"
 msgstr "От списъчен  файл с отстъпи"
@@ -2403,11 +2403,11 @@ msgstr "Експортиране в обикновен текст"
 msgid "Export to Plain Text"
 msgstr "Експортиране в обикновен текст"
 
-msgid "_Export To OliveSet"
-msgstr "_Експорт в OliveSet документ"
+msgid "_Export To OrangeArk"
+msgstr "_Експорт в OrangeArk документ"
 
-msgid "Export To OliveSet File or Folder"
-msgstr "Експорт в OliveSet файл или папка"
+msgid "Export To OrangeArk File or Folder"
+msgstr "Експорт в OrangeArk файл или папка"
 
 msgid "Help"
 msgstr "Помощ"
@@ -2421,31 +2421,31 @@ msgstr "Проверка за обновление"
 msgid "_Website"
 msgstr "_Уебсайт"
 
-msgid "Visit OliveSet's Website"
+msgid "Visit OrangeArk's Website"
 msgstr "Посети уебсайта на Cherry Tree"
 
 msgid "_Source Code"
 msgstr "_Иззходен код"
 
-msgid "Browse OliveSet's Source Code Online"
-msgstr "Преглед на OliveSet изходен код онлайн"
+msgid "Browse OrangeArk's Source Code Online"
+msgstr "Преглед на OrangeArk изходен код онлайн"
 
 msgid "_Report a Bug"
 msgstr "_Докладвай за проблем"
 
-msgid "Report a Bug in OliveSet"
-msgstr "Докладвай за проблем в OliveSet"
+msgid "Report a Bug in OrangeArk"
+msgstr "Докладвай за проблем в OrangeArk"
 
 msgid "_Donate"
 msgstr "Дарение"
 
-msgid "Donate to Support OliveSet"
-msgstr "Дарете за поддръжка на OliveSet"
+msgid "Donate to Support OrangeArk"
+msgstr "Дарете за поддръжка на OrangeArk"
 
 msgid "Online _Manual"
 msgstr "Онлайн помощ"
 
-msgid "OliveSet's Online Manual"
+msgid "OrangeArk's Online Manual"
 msgstr "Онлайн ръководство"
 
 msgid "_About"
@@ -2586,11 +2586,11 @@ msgstr "Отхвърляне на връзката"
 msgid "Dismiss the Link Associated to the Image"
 msgstr "Отхвърляне на връзката, свързана с изображението"
 
-msgid "Show/Hide _OliveSet"
-msgstr "Покажи / Скрий _OliveSet"
+msgid "Show/Hide _OrangeArk"
+msgstr "Покажи / Скрий _OrangeArk"
 
-msgid "Toggle Show/Hide OliveSet"
-msgstr "Покажи / Скрий OliveSet"
+msgid "Toggle Show/Hide OrangeArk"
+msgstr "Покажи / Скрий OrangeArk"
 
 msgid "Edit the Underlying Link"
 msgstr "Редактиране на основната връзка"
@@ -3146,11 +3146,11 @@ msgstr ""
 "Невъзможно повторно отваряне на %s - Файлът липсва.\n"
 "Свържете отново USB устройството или мрежовия ресурс."
 
-msgid "OliveSet Hierarchical Note Taking"
-msgstr "Йерархичен бележник OliveSet"
+msgid "OrangeArk Hierarchical Note Taking"
+msgstr "Йерархичен бележник OrangeArk"
 
-msgid "_Exit OliveSet"
-msgstr "Изход от OliveSet"
+msgid "_Exit OrangeArk"
+msgstr "Изход от OrangeArk"
 
 msgid "HTML Document"
 msgstr "HTML документ"
@@ -3187,20 +3187,20 @@ msgstr ""
 #~ "Backup files are by default 3 in the same folder of the corrupted "
 #~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
 #~ "the backup with one tilde: copy the file to another directory, remove the "
-#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "trailing tilde and open with orangeark. If it still fails, try the one "
 #~ "with two tildes and if it still fails try the one with three tildes."
 #~ msgstr ""
 #~ "Архивните файлове по подразбиране са 3 в същата папка на повредения "
 #~ "документ, със същото име плюс тилди в края (~, ~~, ~~~). Опитайте първо "
 #~ "архивирането с една тилда: копирайте файла в друга директория, премахнете "
-#~ "задната тилда и отворете с OliveSet. Ако все пак не успеете, опитайте "
+#~ "задната тилда и отворете с OrangeArk. Ако все пак не успеете, опитайте "
 #~ "този с две тилди и ако пак не успеете, опитайте този с три тилди."
 
 #~ msgid "Application's Online Manual"
 #~ msgstr "Ръководство онлайн"
 
-#~ msgid "OliveSet Document"
-#~ msgstr "OliveSet документ"
+#~ msgid "OrangeArk Document"
+#~ msgstr "OrangeArk документ"
 
 #~ msgid "The Document %s was Not Found"
 #~ msgstr "Документ '%s' не е намерен"
@@ -3229,8 +3229,8 @@ msgstr ""
 #~ msgid "Add a node to the current tree using Pandoc"
 #~ msgstr "Добави клон към текущото дърво чрез Pandoc"
 
-#~ msgid "The New Language will be Available Only After Restarting OliveSet"
-#~ msgstr "Промяната на езика ще се бъде налична след рестарт на OliveSet"
+#~ msgid "The New Language will be Available Only After Restarting OrangeArk"
+#~ msgstr "Промяната на езика ще се бъде налична след рестарт на OrangeArk"
 
 #~ msgid "click me"
 #~ msgstr "щракни тук"

@@ -5,7 +5,7 @@
    viewBox="0 0 16 16"
    version="1.1"
    id="svg4"
-   sodipodi:docname="ct_from_oliveset.svg"
+   sodipodi:docname="ct_from_orangeark.svg"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -55,7 +55,7 @@
      style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.78494;stroke-linecap:round;stroke-opacity:1;stop-color:#000000;opacity:0.5"
      id="path1046" />
   <path
-     style="fill:#232629;fill-opacity:1;stroke:none"
+     style="fill:#eff0f1;fill-opacity:1;stroke:none"
      d="M 13.978824,12 H 9.8929108 l 1.6210602,1.6211 -0.70706,0.707 L 7.9788108,11.5 10.806911,8.67187 11.513971,9.37891 9.8929108,11 h 4.0859132 z"
      id="path5" />
 </svg>

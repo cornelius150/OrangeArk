@@ -104,6 +104,20 @@ private:
 #endif
     void _set_scrollbars_policies();
 
+    // OrangeArk: drag the bottom-right corner with the mouse to resize the codebox
+public:
+    static const int CB_RESIZE_ZONE{18};
+private:
+#if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
+    bool _on_resize_button_press_event(GdkEventButton* event);
+    bool _on_resize_motion_notify_event(GdkEventMotion* event);
+    bool _on_resize_button_release_event(GdkEventButton* event);
+    bool _dragResizeActive{false};
+    double _dragStartX{0.}, _dragStartY{0.};
+    int    _dragStartW{0}, _dragStartH{0};
+    Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
+#endif
+
 private:
     int _frameWidth;
     int _frameHeight;

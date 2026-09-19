@@ -109,10 +109,10 @@ void present_main_window(Gtk::Window* pWindow)
 
 #if GTKMM_MAJOR_VERSION >= 4
 CtApp::CtApp(const Glib::ustring application_id_postfix, Gio::Application::Flags flags)
- : Gtk::Application{Glib::ustring{"net.giuspen.oliveset"} + application_id_postfix, Gio::Application::Flags::HANDLES_OPEN | flags}
+ : Gtk::Application{Glib::ustring{"net.giuspen.orangeark"} + application_id_postfix, Gio::Application::Flags::HANDLES_OPEN | flags}
 #else
 CtApp::CtApp(const Glib::ustring application_id_postfix, Gio::ApplicationFlags flags)
- : Gtk::Application{Glib::ustring{"net.giuspen.oliveset"} + application_id_postfix, Gio::APPLICATION_HANDLES_OPEN | flags}
+ : Gtk::Application{Glib::ustring{"net.giuspen.orangeark"} + application_id_postfix, Gio::APPLICATION_HANDLES_OPEN | flags}
 #endif
  , _pCtConfig{CtConfig::GetCtConfig()}
 {
@@ -193,7 +193,7 @@ void CtApp::_on_startup()
     (void)fs::alter_PATH_env_var();
 #endif // _WIN32
 
-    const fs::path config_dir = fs::get_oliveset_configdir();
+    const fs::path config_dir = fs::get_orangeark_configdir();
     if (not fs::exists(config_dir)) {
         if (g_mkdir_with_parents(config_dir.c_str(), 0755) < 0) {
             spdlog::warn("Could not create config dir {}", config_dir.c_str());
@@ -222,9 +222,9 @@ void CtApp::_on_startup()
     for (auto pPath = pLMSearchPath; *pPath; ++pPath) {
         langSearchPath.push_back(*pPath);
     }
-    fs::path ctLanguageSpecsData = fs::get_oliveset_datadir() / CtConfig::ConfigLanguageSpecsDirname;
+    fs::path ctLanguageSpecsData = fs::get_orangeark_datadir() / CtConfig::ConfigLanguageSpecsDirname;
     langSearchPath.push_back(ctLanguageSpecsData.c_str());
-    fs::path ctLanguageSpecsConfig = fs::get_oliveset_config_language_specs_dirpath();
+    fs::path ctLanguageSpecsConfig = fs::get_orangeark_config_language_specs_dirpath();
     langSearchPath.push_back(ctLanguageSpecsConfig.c_str());
     langSearchPath.push_back(nullptr);
     /* At the moment this function can be called only before the language files are loaded for the first time.
@@ -233,9 +233,9 @@ void CtApp::_on_startup()
     gtk_source_language_manager_set_search_path(_pGtkSourceLanguageManager, (gchar **)langSearchPath.data());
 
     GtkSourceStyleSchemeManager* pGtkSourceStyleSchemeManager = gtk_source_style_scheme_manager_get_default();
-    fs::path ctStylesData = fs::get_oliveset_datadir() / CtConfig::ConfigStylesDirname;
+    fs::path ctStylesData = fs::get_orangeark_datadir() / CtConfig::ConfigStylesDirname;
     gtk_source_style_scheme_manager_append_search_path(pGtkSourceStyleSchemeManager, ctStylesData.c_str());
-    fs::path ctStylesConfig = fs::get_oliveset_config_styles_dirpath();
+    fs::path ctStylesConfig = fs::get_orangeark_config_styles_dirpath();
     gtk_source_style_scheme_manager_append_search_path(pGtkSourceStyleSchemeManager, ctStylesConfig.c_str());
 
     _rCssProvider = Gtk::CssProvider::create();
@@ -608,7 +608,7 @@ void CtApp::close_all_windows(const bool fromKillCallback)
 void CtApp::_add_main_option_entries()
 {
 #if GTKMM_MAJOR_VERSION >= 4
-    add_main_option_entry(Gio::Application::OptionType::BOOL,     "version",            'V', _("Print OliveSet version"));
+    add_main_option_entry(Gio::Application::OptionType::BOOL,     "version",            'V', _("Print OrangeArk version"));
     add_main_option_entry(Gio::Application::OptionType::STRING,   "node",               'n', _("Node name to focus"));
     add_main_option_entry(Gio::Application::OptionType::STRING,   "anchor",             'a', _("Anchor name to scroll to in node"));
     add_main_option_entry(Gio::Application::OptionType::FILENAME, "export_to_html_dir", 'x', _("Export to HTML at specified directory path"));
@@ -620,7 +620,7 @@ void CtApp::_add_main_option_entries()
     add_main_option_entry(Gio::Application::OptionType::BOOL,     "new_window",         'N', _("Create a new window"));
     add_main_option_entry(Gio::Application::OptionType::BOOL,     "secondary_session",  'S', _("Run in secondary session, independent from main session"));
 #else
-    add_main_option_entry(Gio::Application::OPTION_TYPE_BOOL,     "version",            'V', _("Print OliveSet version"));
+    add_main_option_entry(Gio::Application::OPTION_TYPE_BOOL,     "version",            'V', _("Print OrangeArk version"));
     add_main_option_entry(Gio::Application::OPTION_TYPE_STRING,   "node",               'n', _("Node name to focus"));
     add_main_option_entry(Gio::Application::OPTION_TYPE_STRING,   "anchor",             'a', _("Anchor name to scroll to in node"));
     add_main_option_entry(Gio::Application::OPTION_TYPE_FILENAME, "export_to_html_dir", 'x', _("Export to HTML at specified directory path"));
@@ -657,7 +657,7 @@ int CtApp::_on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>& rOpti
     }
 
     if (rOptions->contains("version")) {
-        std::cout << "OliveSet " << CtConst::CT_VERSION << std::endl;
+        std::cout << "OrangeArk " << CtConst::CT_VERSION << std::endl;
         return 0; // to exit app
     }
 

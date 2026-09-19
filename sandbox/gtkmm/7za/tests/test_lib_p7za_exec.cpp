@@ -78,7 +78,7 @@ TEST(P7zaExecGroup, current)
     dom_parser.parse_memory(xml_txt);
     xmlpp::Document* p_document = dom_parser.get_document();
     xmlpp::Element* p_element = p_document->get_root_node();
-    CHECK(0 == p_element->get_name().compare("oliveset"));
+    CHECK(0 == p_element->get_name().compare("orangeark"));
     CHECK(0 == static_cast<xmlpp::Element*>(p_element->find("node")[0])->get_attribute_value("name").compare("NodeName"));
     CHECK(0 == static_cast<xmlpp::Element*>(p_element->find("node/rich_text")[0])->get_child_text()->get_content().compare("NodeContent"));
     _archive(CTD_TMP_PATH.c_str(), CTZ_TMP_PATH.c_str());

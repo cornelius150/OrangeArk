@@ -1,4 +1,4 @@
-Source: oliveset
+Source: orangeark
 Section: editors
 Priority: optional
 Maintainer: Giuseppe Penone <giuspen@gmail.com>
@@ -22,11 +22,11 @@ Build-Depends:
  file,
  libxml2-utils
 Standards-Version: 3.9.5
-Homepage: https://www.giuspen.net/oliveset/
-Vcs-Git: https://github.com/giuspen/oliveset.git
-Vcs-Browser: https://github.com/giuspen/oliveset
+Homepage: https://www.giuspen.net/orangeark/
+Vcs-Git: https://github.com/giuspen/orangeark.git
+Vcs-Browser: https://github.com/giuspen/orangeark
 
-Package: oliveset
+Package: orangeark
 Architecture: any
 Depends:
  libgtkmm-3.0-1v5,
@@ -45,6 +45,6 @@ Recommends:
  texlive-latex-base,
  dvipng
 Description: hierarchical note taking application
- OliveSet is a hierarchical note taking application, featuring rich text,
+ OrangeArk is a hierarchical note taking application, featuring rich text,
  syntax highlighting, images handling, hyperlinks, import/export with support
  for multiple formats, support for multiple languages, and more.

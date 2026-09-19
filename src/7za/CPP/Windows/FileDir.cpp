@@ -220,7 +220,7 @@ bool GetLongPath(CFSTR fileName, UString &res);
 
 namespace NDir {
 
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
 bool SetDirTime(CFSTR fileName, const FILETIME * /* cTime */ , const FILETIME *aTime, const FILETIME *mTime)
 {
   AString  cfilename = UnicodeStringToMultiByte(fileName);
@@ -263,7 +263,7 @@ bool SetDirTime(CFSTR fileName, const FILETIME * /* cTime */ , const FILETIME *a
 
   return true;
 }
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
 
 #ifdef WIN_LONG_PATH
 bool GetLongPaths(CFSTR s1, CFSTR s2, UString &d1, UString &d2)
@@ -279,7 +279,7 @@ bool GetLongPaths(CFSTR s1, CFSTR s2, UString &d1, UString &d2)
 }
 #endif
 
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
 static int convert_to_symlink(const char * name) {
   TRACEN(printf("LINK(%s)\n",name))
   FILE *file = g_fopen(name,"rb");
@@ -370,7 +370,7 @@ bool SetFileAttrib(CFSTR fileName, DWORD fileAttributes,CObjectVector<CDelayedSy
 
   return true;
 }
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
 
 bool RemoveDir(CFSTR path)
 {
@@ -402,7 +402,7 @@ bool MyMoveFile(CFSTR existFileName, CFSTR newFileName)
   int ret = g_rename(src,dst);
   if (ret != 0)
   {
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
     if (errno == EXDEV) // FIXED : bug #1112167 (Temporary directory must be on same partition as target)
     {
       BOOL bret = CopyFile(src,dst);
@@ -419,7 +419,7 @@ bool MyMoveFile(CFSTR existFileName, CFSTR newFileName)
       }
       if (ret == 0) return true;
     }
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
     return false;
   }
   return true;
@@ -543,10 +543,10 @@ bool RemoveDirWithSubItems(const FString &path)
     }
   }
 
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
   if (!SetFileAttrib(path, 0))
     return false;
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
   return RemoveDir(path);
 }
 
@@ -568,10 +568,10 @@ bool RemoveDirectoryWithSubItems(const FString &path)
       if (!RemoveDirectorySubItems2(pathPrefix, fileInfo))
         return false;
   }
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
   if (!SetFileAttrib(path, 0))
     return false;
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
   return RemoveDir(path);
 }
 
@@ -803,7 +803,7 @@ bool CDelayedSymLink::Create()
 
 }}}
 
-bool oliveset_remove_dir_with_subs(const char* path)
+bool orangeark_remove_dir_with_subs(const char* path)
 {
     UString dir = MultiByteToUnicodeString(path, CP_ACP);
     return NWindows::NFile::NDir::RemoveDirWithSubItems(dir);

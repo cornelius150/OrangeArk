@@ -38,7 +38,7 @@ private:
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <title>%s</title>
-  <meta name="generator" content="OliveSet">
+  <meta name="generator" content="OrangeArk">
   <link rel="stylesheet" href="res/styles4.css" type="text/css" />
 </head>
 <body>

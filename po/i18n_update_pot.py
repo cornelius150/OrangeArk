@@ -4,7 +4,7 @@ import os
 import subprocess
 import glob
 
-APP_NAME = "oliveset"
+APP_NAME = "orangeark"
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 SRC_CT_DIR = os.path.join(os.path.dirname(SCRIPT_DIR), "src", "ct")
 CC_FILES = glob.glob(os.path.join(SRC_CT_DIR, "*.cc"))

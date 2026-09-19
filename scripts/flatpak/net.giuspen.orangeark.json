@@ -1,11 +1,11 @@
 {
-    "app-id": "net.giuspen.oliveset",
+    "app-id": "net.giuspen.orangeark",
     "runtime": "org.gnome.Platform",
     "runtime-version": "47",
     "sdk": "org.gnome.Sdk",
-    "command": "oliveset",
-    "rename-desktop-file": "oliveset.desktop",
-    "rename-icon": "oliveset",
+    "command": "orangeark",
+    "rename-desktop-file": "orangeark.desktop",
+    "rename-icon": "orangeark",
     "finish-args": [
         "--share=ipc",
         "--share=network",
@@ -210,7 +210,7 @@
             ]
         },
         {
-            "name": "oliveset",
+            "name": "orangeark",
             "buildsystem": "cmake-ninja",
             "build-options": {
                 "cxxflags": "-D_FLATPAK_BUILD=1"
@@ -218,7 +218,7 @@
             "sources": [
                 {
                     "type" : "archive",
-                    "url" : "https://www.giuspen.net/software/oliveset_1.2.0.tar.xz",
+                    "url" : "https://www.giuspen.net/software/orangeark_1.2.0.tar.xz",
                     "sha256" : "b9d9c9a0d7853e846657ceccdf74730f79190e19af296eeb955e5f4b54425ec2"
                 }
             ]

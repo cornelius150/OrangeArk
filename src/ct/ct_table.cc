@@ -28,6 +28,8 @@
 #include "ct_storage_xml.h"
 #include "ct_logging.h"
 #include "ct_misc_utils.h"
+#include <cmath>
+#include <algorithm>
 
 CtTableCommon::CtTableCommon(CtMainWin* pCtMainWin,
                              const int colWidthDefault,
@@ -318,6 +320,66 @@ std::pair<size_t, size_t> CtTableCommon::get_row_idx_col_idx(const size_t cell_i
     return std::make_pair(rowIdx, colIdx);
 }
 
+#if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
+// OrangeArk: mouse drag-resize support for tables (bottom-right corner scales all columns)
+bool CtTableCommon::_on_resize_button_press_event(GdkEventButton* event)
+{
+    if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
+    const Gtk::Allocation allocation = get_allocation();
+    const bool inCorner = event->x >= allocation.get_width() - TABLE_RESIZE_ZONE
+                      and event->y >= allocation.get_height() - TABLE_RESIZE_ZONE;
+    if (not inCorner) return false;
+    if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
+    _dragResizeActive = true;
+    _dragStartX = event->x_root;
+    _dragStartTotalW = allocation.get_width();
+    _dragStartColWidths = get_col_widths();
+    gtk_grab_add(GTK_WIDGET(gobj()));
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+        rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER));
+    }
+    return true; // do not propagate while resizing
+}
+
+bool CtTableCommon::_on_resize_motion_notify_event(GdkEventMotion* event)
+{
+    if (_dragResizeActive) return true;
+    const Gtk::Allocation allocation = get_allocation();
+    const bool inCorner = event->x >= allocation.get_width() - TABLE_RESIZE_ZONE
+                      and event->y >= allocation.get_height() - TABLE_RESIZE_ZONE;
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+        if (inCorner) {
+            if (not _rHoverCursor) _rHoverCursor = Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER);
+            rWin->set_cursor(_rHoverCursor);
+        }
+        else {
+            rWin->set_cursor();
+        }
+    }
+    return false;
+}
+
+bool CtTableCommon::_on_resize_button_release_event(GdkEventButton* event)
+{
+    if (not _dragResizeActive or 1 != event->button) return false;
+    _dragResizeActive = false;
+    gtk_grab_remove(GTK_WIDGET(gobj()));
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
+
+    const double dx = event->x_root - _dragStartX;
+    const double scale = (_dragStartTotalW + dx) / static_cast<double>(_dragStartTotalW);
+    if (scale > 0.05) {
+        const size_t numColumns = get_num_columns();
+        for (size_t c = 0u; c < numColumns; ++c) {
+            const int newWidth = std::max(16, static_cast<int>(std::lround(_dragStartColWidths.at(c) * scale)));
+            set_col_width(newWidth, c);
+        }
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    }
+    return true;
+}
+#endif /* GTKMM_MAJOR_VERSION < 4 */
+
 CtTableHeavy::CtTableHeavy(CtMainWin* pCtMainWin,
                  CtTableMatrix& tableMatrix,
                  const int colWidthDefault,
@@ -355,6 +417,11 @@ CtTableHeavy::CtTableHeavy(CtMainWin* pCtMainWin,
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
     _grid.signal_button_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::on_table_button_press_event), false);
     _grid.signal_set_focus_child().connect(sigc::mem_fun(*this, &CtTableHeavy::_on_grid_set_focus_child));
+    // OrangeArk: drag the bottom-right corner to resize the table columns
+    signal_button_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_resize_button_press_event), false);
+    signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_resize_motion_notify_event), false);
+    signal_button_release_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_resize_button_release_event), false);
+    add_events(Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
 #endif
 
     _frame.get_style_context()->add_class("ct-table");

@@ -902,7 +902,7 @@ bool CtActions::_find_pattern(CtTreeIter tree_iter,
         if (_s_options.reg_exp) {
             replacer_text = re_pattern->replace(origin_text, 0, replacer_text, static_cast<Glib::RegexMatchFlags>(0));
         }
-        // Collect unique OliveSet formatting tags from the matched range before erasing
+        // Collect unique OrangeArk formatting tags from the matched range before erasing
         auto f_is_ct_tag = [](const Glib::ustring& name)->bool{
             return str::startswith(name, CtConst::TAG_WEIGHT_PREFIX)
                 or str::startswith(name, CtConst::TAG_FOREGROUND_PREFIX)

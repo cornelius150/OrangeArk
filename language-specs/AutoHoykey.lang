@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-   Syntax highligting for AutoHotkey in OliveSet
+   Syntax highligting for AutoHotkey in OrangeArk
    Modified from c.lang
 -->
 <language id="autohotkey" _name="autohotkey" version="2.0" _section="Sources">

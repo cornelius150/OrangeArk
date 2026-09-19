@@ -61,7 +61,7 @@ class TestCTZ(unittest.TestCase):
         self.assertTrue(os.path.isfile(CTD_TMP_PATH))
         xml_txt = open(CTD_TMP_PATH, "r").read()
         root = etree.fromstring(xml_txt)
-        self.assertEqual(root.tag, "oliveset")
+        self.assertEqual(root.tag, "orangeark")
         self.assertEqual(root.xpath("node/@name")[0], "NodeName")
         self.assertEqual(root.xpath("node/rich_text/text()")[0], "NodeContent")
         self._archive(CTD_TMP_PATH, CTZ_TMP_PATH)

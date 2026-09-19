@@ -140,7 +140,7 @@ void CtActions::import_nodes_from_ct_file()
     try {
         CtDialogs::CtFileSelectArgs args{};
         args.curr_folder = _pCtConfig->pickDirImport;
-        args.filter_name = _("OliveSet File");
+        args.filter_name = _("OrangeArk File");
         args.filter_pattern.push_back("*.ctb"); // macos doesn't understand *.ct*
         args.filter_pattern.push_back("*.ctx");
         args.filter_pattern.push_back("*.ctd");

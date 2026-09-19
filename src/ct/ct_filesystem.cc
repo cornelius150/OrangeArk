@@ -145,8 +145,8 @@ void register_exe_path_detect_if_portable(const char* exe_path)
     // spdlog is not up yet here!
     //printf("exePath: %s\nAPPIMAGE=%s\n", _exePath.c_str(), Glib::getenv("APPIMAGE").c_str());
 #if defined(_WIN32)
-    // e.g. oliveset_1.5.0.0_win64_portable\ucrt64\bin\oliveset.exe
-    //      oliveset_1.5.0.0_win64_portable\config.cfg
+    // e.g. orangeark_1.5.0.0_win64_portable\ucrt64\bin\orangeark.exe
+    //      orangeark_1.5.0.0_win64_portable\config.cfg
     _mingw64Dir = _exePath.parent_path().parent_path();
     const fs::path dirname = _mingw64Dir.filename();
     if (dirname != "ucrt64" and dirname != "mingw64") {
@@ -156,8 +156,8 @@ void register_exe_path_detect_if_portable(const char* exe_path)
 #else // !_WIN32
     const fs::path portableConfigDir = _exePath.parent_path() / "config";
     if (not Glib::getenv("APPIMAGE").empty()) {
-        // APPIMAGE=/home/giuspen/git/oliveset/build/OliveSet-825b1d77-x86_64.AppImage
-        // exePath: /tmp/.mount_CherryaUjoTO/usr/bin/oliveset
+        // APPIMAGE=/home/giuspen/git/orangeark/build/OrangeArk-825b1d77-x86_64.AppImage
+        // exePath: /tmp/.mount_CherryaUjoTO/usr/bin/orangeark
         _AppImageUsrDir = _exePath.parent_path().parent_path();
     }
 #endif // !_WIN32
@@ -493,48 +493,48 @@ std::uintmax_t remove_all(const path& dir)
     return count;
 }
 
-fs::path get_oliveset_datadir()
+fs::path get_orangeark_datadir()
 {
     if (_exePath.parent_path() == fs::canonical(_CMAKE_BINARY_DIR)) {
         // we're running from the build sources
         return _CMAKE_SOURCE_DIR;
     }
 #ifdef _WIN32
-    // e.g. oliveset_1.5.0.0_win64_portable\ucrt64\bin\oliveset.exe
-    //      oliveset_1.5.0.0_win64_portable\ucrt64\usr\share\oliveset\language-specs
-    //      oliveset_1.5.0.0_win64_portable\ucrt64\usr\share\oliveset\styles
-    //      oliveset_1.5.0.0_win64_portable\ucrt64\usr\share\oliveset\data
-    //      oliveset_1.5.0.0_win64_portable\ucrt64\usr\share\oliveset\icons
-    return _mingw64Dir / "usr" / "share" / "oliveset";
+    // e.g. orangeark_1.5.0.0_win64_portable\ucrt64\bin\orangeark.exe
+    //      orangeark_1.5.0.0_win64_portable\ucrt64\usr\share\orangeark\language-specs
+    //      orangeark_1.5.0.0_win64_portable\ucrt64\usr\share\orangeark\styles
+    //      orangeark_1.5.0.0_win64_portable\ucrt64\usr\share\orangeark\data
+    //      orangeark_1.5.0.0_win64_portable\ucrt64\usr\share\orangeark\icons
+    return _mingw64Dir / "usr" / "share" / "orangeark";
 #else
     if (not _AppImageUsrDir.empty()) {
-        return _AppImageUsrDir / "share" / "oliveset";
+        return _AppImageUsrDir / "share" / "orangeark";
     }
-    return OLIVESET_DATADIR;
+    return ORANGEARK_DATADIR;
 #endif // _WIN32
 }
 
-fs::path get_oliveset_localedir()
+fs::path get_orangeark_localedir()
 {
     if (_exePath.parent_path() == fs::canonical(_CMAKE_BINARY_DIR)) {
         // we're running from the build sources
         return fs_canonicalize_filename(Glib::build_filename(_CMAKE_SOURCE_DIR, "po"));
     }
 #if defined(_WIN32)
-    // e.g. oliveset_1.5.0.0_win64_portable\ucrt64\bin\oliveset.exe
-    //      oliveset_1.5.0.0_win64_portable\ucrt64\share\locale
+    // e.g. orangeark_1.5.0.0_win64_portable\ucrt64\bin\orangeark.exe
+    //      orangeark_1.5.0.0_win64_portable\ucrt64\share\locale
     return _mingw64Dir / "share" / "locale";
 #elif defined(_FLATPAK_BUILD)
-   return OLIVESET_DATADIR "/locale";
+   return ORANGEARK_DATADIR "/locale";
 #else
     if (not _AppImageUsrDir.empty()) {
         return _AppImageUsrDir / "share" / "locale";
     }
-    return OLIVESET_LOCALEDIR;
+    return ORANGEARK_LOCALEDIR;
 #endif // _WIN32
 }
 
-fs::path get_oliveset_configdir()
+fs::path get_orangeark_configdir()
 {
     if (not _portableConfigDir.empty()) {
         return _portableConfigDir;
@@ -542,15 +542,15 @@ fs::path get_oliveset_configdir()
     return Glib::build_filename(Glib::get_user_config_dir(), CtConst::APP_NAME);
 }
 
-std::optional<fs::path> get_oliveset_logdir()
+std::optional<fs::path> get_orangeark_logdir()
 {
-    const fs::path logcfgFilepath = fs::get_oliveset_logcfg_filepath();
+    const fs::path logcfgFilepath = fs::get_orangeark_logcfg_filepath();
     if (not fs::is_regular_file(logcfgFilepath)) {
         return std::nullopt; // file missing => no log
     }
     const std::string logDirpath = str::trim(Glib::file_get_contents(logcfgFilepath.string()));
     if (logDirpath.empty()) {
-        return get_oliveset_configdir(); // file empty => log in config dir
+        return get_orangeark_configdir(); // file empty => log in config dir
     }
     if (fs::is_directory(logDirpath)) {
         return fs::path{logDirpath}; // valid directory => OK return it
@@ -558,44 +558,44 @@ std::optional<fs::path> get_oliveset_logdir()
     return std::nullopt; // invalid directory => no log
 }
 
-fs::path get_oliveset_print_page_setup_cfg_filepath()
+fs::path get_orangeark_print_page_setup_cfg_filepath()
 {
-    return fs::canonical(get_oliveset_configdir() / CtConfig::PrintPageSetupFilename);
+    return fs::canonical(get_orangeark_configdir() / CtConfig::PrintPageSetupFilename);
 }
 
-fs::path get_oliveset_langcfg_filepath()
+fs::path get_orangeark_langcfg_filepath()
 {
-    return fs::canonical(get_oliveset_configdir() / CtConfig::LangFilename);
+    return fs::canonical(get_orangeark_configdir() / CtConfig::LangFilename);
 }
 
-fs::path get_oliveset_logcfg_filepath()
+fs::path get_orangeark_logcfg_filepath()
 {
-    return fs::canonical(get_oliveset_configdir() / CtConfig::LogFilename);
+    return fs::canonical(get_orangeark_configdir() / CtConfig::LogFilename);
 }
 
-fs::path get_oliveset_config_filepath()
+fs::path get_orangeark_config_filepath()
 {
-    return fs::canonical(get_oliveset_configdir() / CtConfig::ConfigFilename);
+    return fs::canonical(get_orangeark_configdir() / CtConfig::ConfigFilename);
 }
 
-fs::path get_oliveset_config_language_specs_dirpath()
+fs::path get_orangeark_config_language_specs_dirpath()
 {
-    return get_oliveset_configdir() / CtConfig::ConfigLanguageSpecsDirname;
+    return get_orangeark_configdir() / CtConfig::ConfigLanguageSpecsDirname;
 }
 
-fs::path get_oliveset_config_styles_dirpath()
+fs::path get_orangeark_config_styles_dirpath()
 {
-    return get_oliveset_configdir() / CtConfig::ConfigStylesDirname;
+    return get_orangeark_configdir() / CtConfig::ConfigStylesDirname;
 }
 
-fs::path get_oliveset_config_icons_dirpath()
+fs::path get_orangeark_config_icons_dirpath()
 {
-    return get_oliveset_configdir() / CtConfig::ConfigIconsDirname;
+    return get_orangeark_configdir() / CtConfig::ConfigIconsDirname;
 }
 
-fs::path get_oliveset_config_user_style_filepath(const unsigned num)
+fs::path get_orangeark_config_user_style_filepath(const unsigned num)
 {
-    return fs::canonical(get_oliveset_config_styles_dirpath() / ("user-style-" + std::to_string(num) + ".xml"));
+    return fs::canonical(get_orangeark_config_styles_dirpath() / ("user-style-" + std::to_string(num) + ".xml"));
 }
 
 std::string download_file(const std::string& filepath)

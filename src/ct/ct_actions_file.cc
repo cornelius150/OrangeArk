@@ -99,7 +99,7 @@ void CtActions::file_save_as()
             filepath = CtDialogs::folder_save_as_dialog(_pCtMainWin, fileSelArgs);
         }
         else {
-            fileSelArgs.filter_name = _("OliveSet File");
+            fileSelArgs.filter_name = _("OrangeArk File");
             std::string fileExtension = CtMiscUtil::get_doc_extension(storageSelArgs.ctDocType, storageSelArgs.ctDocEncrypt);
             fileSelArgs.filter_pattern.push_back(std::string{CtConst::CHAR_STAR}+fileExtension);
             fileSelArgs.overwrite_confirmation = false; // as not supported for the multifile, we do in both cases elsewhere
@@ -153,7 +153,7 @@ void CtActions::file_open()
 {
     CtDialogs::CtFileSelectArgs args{};
     args.curr_folder = _pCtMainWin->get_ct_storage()->get_file_dir();
-    args.filter_name = _("OliveSet File");
+    args.filter_name = _("OrangeArk File");
     args.filter_pattern.push_back("*.ctb"); // macos doesn't understand *.ct*
     args.filter_pattern.push_back("*.ctx");
     args.filter_pattern.push_back("*.ctd");
@@ -417,7 +417,7 @@ void CtActions::preferences_import()
         _pCtConfig->customCodexecExt[currPair.first] = currPair.second;
     }
 
-    CtDialogs::info_dialog(_("This Change will have Effect Only After Restarting OliveSet."), *_pCtMainWin);
+    CtDialogs::info_dialog(_("This Change will have Effect Only After Restarting OrangeArk."), *_pCtMainWin);
 }
 
 void CtActions::preferences_export()

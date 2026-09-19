@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<oliveset>
+<orangeark>
 <node name="ChatGPT" unique_id="113" master_id="0" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1761266669" ts_lastsave="1761266669">
 <rich_text>
 
@@ -10,4 +10,4 @@ It ends up with invalid unicode characters.
 
 
 
-</rich_text></node></oliveset>
+</rich_text></node></orangeark>

@@ -1,13 +1,13 @@
-class OliveSet < Formula
+class OrangeArk < Formula
   desc "Hierarchical note taking application featuring rich text and syntax highlighting"
-  homepage "https://www.giuspen.net/oliveset/"
-  url "https://www.giuspen.net/software/oliveset_0.99.38.tar.xz"
+  homepage "https://www.giuspen.net/orangeark/"
+  url "https://www.giuspen.net/software/orangeark_0.99.38.tar.xz"
   sha256 "788a64566b14b0f390111cbadc50c6dcb410c4dac90cabffbf0a191f14a46b60"
   license "GPL-3.0-or-later"
 
   livecheck do
     url :homepage
-    regex(/href=.*?oliveset[._-]v?(\d+(?:\.\d+)+)\.t/i)
+    regex(/href=.*?orangeark[._-]v?(\d+(?:\.\d+)+)\.t/i)
   end
 
   bottle do
@@ -40,7 +40,7 @@ class OliveSet < Formula
   test do
     (testpath/"homebrew.ctd").write <<~EOS
       <?xml version="1.0" encoding="UTF-8"?>
-      <oliveset>
+      <orangeark>
         <bookmarks list=""/>
         <node name="rich text" unique_id="1" prog_lang="custom-colors" tags="" readonly="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1611952177" ts_lastsave="1611952932">
           <rich_text>this is a </rich_text>
@@ -57,9 +57,9 @@ class OliveSet < Formula
         <node name="code" unique_id="2" prog_lang="python3" tags="" readonly="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1611952391" ts_lastsave="1611952667">
           <rich_text>print('hello world')</rich_text>
         </node>
-      </oliveset>
+      </orangeark>
     EOS
-    system "#{bin}/oliveset", testpath/"homebrew.ctd", "--export_to_txt_dir", testpath, "--export_single_file"
+    system "#{bin}/orangeark", testpath/"homebrew.ctd", "--export_to_txt_dir", testpath, "--export_single_file"
     assert_predicate testpath/"homebrew.ctd.txt", :exist?
     assert_match "rich text", (testpath/"homebrew.ctd.txt").read
     assert_match "this is a simple command line test for homebrew", (testpath/"homebrew.ctd.txt").read

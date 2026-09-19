@@ -184,7 +184,7 @@ const inline static gchar* STR_KEY_UP                {"Up"};
 const inline static gchar* STR_KEY_DOWN              {"Down"};
 const inline static gchar* STR_KEY_LEFT              {"Left"};
 const inline static gchar* STR_KEY_RIGHT             {"Right"};
-const inline static gchar* STR_STOCK_CT_IMP          {"ct_import_in_oliveset"};
+const inline static gchar* STR_STOCK_CT_IMP          {"ct_import_in_orangeark"};
 
 const inline static int MAX_FILE_NAME_LEN              {142};
 const inline static int WHITE_SPACE_BETW_PIXB_AND_TEXT {3};
@@ -679,7 +679,7 @@ const inline static std::array<std::string_view, 4>  INVALID_HTML_TAGS = {
     "script", "title", "head", "html"
 };
 
-// List of extensions for oliveset save files, for use with gtk FileFilter
+// List of extensions for orangeark save files, for use with gtk FileFilter
 const inline static std::vector<std::string> CT_FILE_EXTENSIONS_FILTER = {
     "*.md", "*.ctb", "*.ctx", "*.ctd", "*.ctz"
 };

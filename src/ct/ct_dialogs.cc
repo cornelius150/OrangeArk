@@ -70,7 +70,7 @@ CtDialogs::CtStartDialogAction CtDialogs::start_dialog(CtMainWin* pCtMainWin,
     recent_filepath.clear();
     dont_show_again = false;
 
-    Gtk::Dialog dialog(_("Start in OliveSet"), *pCtMainWin);
+    Gtk::Dialog dialog(_("Start in OrangeArk"), *pCtMainWin);
 #if GTKMM_MAJOR_VERSION < 4
     dialog.set_position(Gtk::WindowPosition::WIN_POS_CENTER_ON_PARENT);
 #else
@@ -563,7 +563,7 @@ void CtDialogs::bookmarks_handle_dialog(CtMainWin* pCtMainWin)
 #endif
 }
 
-// Choose the OliveSet data storage type and protection
+// Choose the OrangeArk data storage type and protection
 bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelectArgs& args)
 {
 #if GTK_MAJOR_VERSION >= 4
@@ -897,7 +897,7 @@ void CtDialogs::dialog_about(Gtk::Window& parent, Glib::RefPtr<Gdk::Pixbuf> icon
 {
     #if GTK_MAJOR_VERSION >= 4
     auto* dialog = new Gtk::AboutDialog();
-    dialog->set_program_name("OliveSet");
+    dialog->set_program_name("OrangeArk");
     dialog->set_version(CtConst::CT_VERSION);
     dialog->set_copyright("Copyright © 2009-2026\n"
                          "Giuseppe Penone <giuspen@gmail.com>\n"
@@ -919,7 +919,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA 02110-1301, USA.
 )STR"));
-    dialog->set_website("https://www.giuspen.net/oliveset/");
+    dialog->set_website("https://www.giuspen.net/orangeark/");
     dialog->set_authors({"Giuseppe Penone <giuspen@gmail.com>", "Evgenii Gurianov <https://github.com/txe>"});
 #if GTKMM_MAJOR_VERSION >= 4
     if (icon)
@@ -963,7 +963,7 @@ MA 02110-1301, USA.
  _("Turkish")+" (tr) Ferhat Aydin <ferhataydin44@gmail.com>"+CtConst::CHAR_NEWLINE+
  _("Ukrainian")+" (uk) Giuseppe Penone <giuspen@gmail.com>");
     dialog->set_logo(icon);
-    dialog->set_title(_("About OliveSet"));
+    dialog->set_title(_("About OrangeArk"));
 
     dialog->signal_activate_link().connect([](const Glib::ustring& link){
        fs::open_weblink(link);
@@ -987,7 +987,7 @@ MA 02110-1301, USA.
 #endif
     #else
     auto dialog = Gtk::AboutDialog();
-    dialog.set_program_name("OliveSet");
+    dialog.set_program_name("OrangeArk");
     dialog.set_version(CtConst::CT_VERSION);
     dialog.set_copyright("Copyright © 2009-2026\n"
                          "Giuseppe Penone <giuspen@gmail.com>\n"
@@ -1009,7 +1009,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA 02110-1301, USA.
 )STR"));
-    dialog.set_website("https://www.giuspen.net/oliveset/");
+    dialog.set_website("https://www.giuspen.net/orangeark/");
     dialog.set_authors({"Giuseppe Penone <giuspen@gmail.com>", "Evgenii Gurianov <https://github.com/txe>"});
     if (icon)
         dialog.set_logo(icon);
@@ -1048,7 +1048,7 @@ MA 02110-1301, USA.
  _("Turkish")+" (tr) Ferhat Aydin <ferhataydin44@gmail.com>"+CtConst::CHAR_NEWLINE+
  _("Ukrainian")+" (uk) Giuseppe Penone <giuspen@gmail.com>");
     dialog.set_logo(icon);
-    dialog.set_title(_("About OliveSet"));
+    dialog.set_title(_("About OrangeArk"));
 
     dialog.signal_activate_link().connect([](const Glib::ustring& link){
        fs::open_weblink(link);

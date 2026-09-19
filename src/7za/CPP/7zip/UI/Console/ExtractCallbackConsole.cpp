@@ -229,11 +229,11 @@ STDMETHODIMP CExtractCallbackConsole::AskOverwrite(
     PrintFileInfo(_so, newName, newTime, newSize);
   }
 
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
   NUserAnswerMode::EEnum overwriteAnswer = ScanUserYesNoAllQuit(_so);
 #else
   NUserAnswerMode::EEnum overwriteAnswer = NUserAnswerMode::kYesAll;
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
 
   switch (overwriteAnswer)
   {

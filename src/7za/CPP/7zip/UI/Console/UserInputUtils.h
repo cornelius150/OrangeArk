@@ -18,9 +18,9 @@ enum EEnum
 };
 }
 
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
 NUserAnswerMode::EEnum ScanUserYesNoAllQuit(CStdOutStream *outStream);
 UString GetPassword(CStdOutStream *outStream,bool verify = false);
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
 
 #endif

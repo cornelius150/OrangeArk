@@ -210,5 +210,5 @@ void CtActions::toggle_fullscreen()
 void CtActions::_menubar_in_titlebar_set(const bool setOn)
 {
     _pCtConfig->menubarInTitlebar = setOn;
-    CtDialogs::info_dialog(_("This Change will have Effect Only After Restarting OliveSet."), *_pCtMainWin);
+    CtDialogs::info_dialog(_("This Change will have Effect Only After Restarting OrangeArk."), *_pCtMainWin);
 }

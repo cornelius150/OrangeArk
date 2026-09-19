@@ -64,11 +64,11 @@ std::list<gint64> gstring_split2int64(const gchar *in_str, const gchar *delimite
 }
 
 
-class OliveSetDocRead
+class OrangeArkDocRead
 {
 public:
-    OliveSetDocRead(std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore);
-    virtual ~OliveSetDocRead();
+    OrangeArkDocRead(std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore);
+    virtual ~OrangeArkDocRead();
     virtual void tree_walk(Gtk::TreeIter parent_iter)=0;
 protected:
     std::list<gint64> *mp_bookmarks;
@@ -76,11 +76,11 @@ protected:
 };
 
 
-class OliveSetXMLRead : public OliveSetDocRead, public xmlpp::DomParser
+class OrangeArkXMLRead : public OrangeArkDocRead, public xmlpp::DomParser
 {
 public:
-    OliveSetXMLRead(Glib::ustring& filepath, std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore);
-    virtual ~OliveSetXMLRead();
+    OrangeArkXMLRead(Glib::ustring& filepath, std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore);
+    virtual ~OrangeArkXMLRead();
     void tree_walk(Gtk::TreeIter parent_iter);
 private:
     void _xml_tree_walk_iter(xmlpp::Element *p_node_element, Gtk::TreeIter parent_iter);
@@ -89,33 +89,33 @@ private:
 };
 
 
-OliveSetDocRead::OliveSetDocRead(std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore) : mp_bookmarks(p_bookmarks), mr_treestore(r_treestore)
+OrangeArkDocRead::OrangeArkDocRead(std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore) : mp_bookmarks(p_bookmarks), mr_treestore(r_treestore)
 {
 }
 
 
-OliveSetDocRead::~OliveSetDocRead()
+OrangeArkDocRead::~OrangeArkDocRead()
 {
 }
 
 
-OliveSetXMLRead::OliveSetXMLRead(Glib::ustring &filepath, std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore) : OliveSetDocRead(p_bookmarks, r_treestore)
+OrangeArkXMLRead::OrangeArkXMLRead(Glib::ustring &filepath, std::list<gint64> *p_bookmarks, Glib::RefPtr<Gtk::TreeStore> r_treestore) : OrangeArkDocRead(p_bookmarks, r_treestore)
 {
     parse_file(filepath);
 }
 
 
-OliveSetXMLRead::~OliveSetXMLRead()
+OrangeArkXMLRead::~OrangeArkXMLRead()
 {
 }
 
 
-void OliveSetXMLRead::tree_walk(Gtk::TreeIter parent_iter)
+void OrangeArkXMLRead::tree_walk(Gtk::TreeIter parent_iter)
 {
     xmlpp::Document *p_document = get_document();
     assert(p_document != nullptr);
     xmlpp::Element *p_root = p_document->get_root_node();
-    assert(p_root->get_name() == "oliveset");
+    assert(p_root->get_name() == "orangeark");
     for(xmlpp::Node *p_node : p_root->get_children())
     {
         if(p_node->get_name() == "node")
@@ -134,7 +134,7 @@ void OliveSetXMLRead::tree_walk(Gtk::TreeIter parent_iter)
 }
 
 
-void OliveSetXMLRead::_xml_tree_walk_iter(xmlpp::Element *p_node_element, Gtk::TreeIter parent_iter)
+void OrangeArkXMLRead::_xml_tree_walk_iter(xmlpp::Element *p_node_element, Gtk::TreeIter parent_iter)
 {
     Gtk::TreeIter new_iter = _xml_node_process(p_node_element, parent_iter);
 
@@ -148,7 +148,7 @@ void OliveSetXMLRead::_xml_tree_walk_iter(xmlpp::Element *p_node_element, Gtk::T
 }
 
 
-t_node_properties OliveSetXMLRead::_xml_get_node_properties(xmlpp::Element *p_node_element)
+t_node_properties OrangeArkXMLRead::_xml_get_node_properties(xmlpp::Element *p_node_element)
 {
     t_node_properties node_properties;
     node_properties.node_id = gint64_from_gstring(p_node_element->get_attribute_value("unique_id").c_str());
@@ -170,7 +170,7 @@ t_node_properties OliveSetXMLRead::_xml_get_node_properties(xmlpp::Element *p_no
 }
 
 
-Gtk::TreeIter OliveSetXMLRead::_xml_node_process(xmlpp::Element *p_node_element, Gtk::TreeIter parent_iter)
+Gtk::TreeIter OrangeArkXMLRead::_xml_node_process(xmlpp::Element *p_node_element, Gtk::TreeIter parent_iter)
 {
     t_node_properties node_properties = _xml_get_node_properties(p_node_element);
     Gtk::TreeIter new_iter;
@@ -196,6 +196,6 @@ int main(int argc, char *argv[])
     Glib::RefPtr<Gtk::TreeStore> r_treestore;
     Gtk::TreeIter parent_iter;
 
-    OliveSetXMLRead ct_xml_read(filepath, &bookmarks, r_treestore);
+    OrangeArkXMLRead ct_xml_read(filepath, &bookmarks, r_treestore);
     ct_xml_read.tree_walk(parent_iter);
 }

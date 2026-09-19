@@ -1,97 +1,38 @@
-# OliveSet
-A hierarchical note taking application, featuring rich text and syntax highlighting, storing data in either a single file (xml or sqlite) or multiple files and directories.
+# OrangeArk 橙子笔记
 
-> **About OliveSet**: OliveSet is a fork of [CherryTree](https://github.com/giuspen/cherrytree) (v1.4.x, by Giuseppe Penone / giuspen and Evgenii Gurianov / txe), rebranded with a new name and icon. Documents are saved with the `.md` file extension while keeping the original hierarchical document format inside. OliveSet is released under the same GNU GPL-3.0 license; all credit for the original work goes to the CherryTree authors.
+**OrangeArk（橙子笔记）** 是一款层级笔记工具，拥有富文本编辑、代码语法高亮、LaTeX 公式渲染等丰富功能，文档可保存为单一文件或多个文件与目录，默认使用 `.md` 扩展名。
 
-The project home page is [giuspen.net/oliveset](https://www.giuspen.net/oliveset/).
+![OrangeArk main window with text](docs/orangeark-main_window_text.png)
 
-Written by Giuseppe Penone (aka giuspen) and Evgenii Gurianov (aka txe).
+## 核心功能 Features
+- **富文本**：前景色、背景色、粗体、斜体、下划线、删除线、小型文字、h1-h6 标题、下标、上标、等宽字体
+- **语法高亮**：支持数十种编程语言
+- **图片**：插入文本、**鼠标拖拽右下角即可调整大小**、编辑、另存为 PNG
+- **QQ 式截图**：一键区域截图（快捷键 Shift+Alt+X），选区后自动复制到剪贴板并插入笔记
+- **LaTeX 数学公式**渲染
+- **表格**：简单表格与富文本表格，支持**鼠标拖拽整体缩放**，行复制/剪切/粘贴，CSV 导入导出
+- **代码框**：富文本中的代码块（可选语法高亮），支持 **Tab / Shift+Tab 缩进与反缩进**、**鼠标拖拽调整宽高**，代码导入导出
+- **代码执行**：代码节点和代码框可直接运行，终端与命令可在首选项中配置
+- **对齐**：文本、图片、表格、代码框均支持左/中/右/两端对齐
+- **超链接**：文本与图片超链接（网页、节点/锚点、文件、文件夹）
+- **拼写检查**（基于 gspell）
+- **应用内复制/粘贴**：图片、代码框、表格以及富文本混合内容
+- **跨应用复制/粘贴**：与 LibreOffice、Gmail 等互通
+- 从文件管理器复制文件列表粘贴即生成链接，图片文件自动插入
+- **打印与 PDF 导出**：选区/节点/子节点/整棵树
+- **HTML / 纯文本导出**：选区/节点/子节点/整棵树
+- **多层列表**：无序、有序、待办列表互相切换，支持多行
+- **内嵌文件**：插入文本、另存到磁盘
+- 节点搜索、全树搜索、命令面板等高效导航
 
-![OliveSet main window with text](docs/oliveset-main_window_text.png)
+## 保存格式
+文档默认以 `.md` 扩展名保存（内部为层级结构化文档格式）。同时兼容打开多种旧版文档格式。
 
-## Features
-- Rich text (foreground color, background color, bold, italic, underline, strikethrough, small, h1, h2, h3, h4, h5, h6, subscript, superscript, monospace)
-- Syntax highlighting supporting several programming languages
-- Images handling: insertion in the text, edit (resize/rotate), save as png file
-- Latex math equations rendering
-- Embedded files handling: insertion in the text, save to disk
-- Multi-level lists handling (bulleted, numbered, to-do and switch between them, multiline with shift+enter)
-- Simple tables handling (cells with plain text), cut/copy/paste row, import/export as csv file
-- Codeboxes handling: boxes of plain text (optionally with syntax highlighting) into rich text, import/export as text file
-- Execution of the code for code nodes and codeboxes; the terminal and the command per syntax highlighting is configurable in the preferences dialog; an embedded terminal is available on linux and mac os
-- Alignment of text, images, tables and codeboxes (left/center/right/fill)
-- Hyperlinks associated to text and images (links to webpages, links to nodes/nodes + anchors, links to files, links to folders)
-- Spell check (using [gspell](https://gitlab.gnome.org/GNOME/gspell))
-- Intra application copy/paste: supported single images, single codeboxes, single tables and a compound selection of rich text, images, codeboxes and tables
-- Cross application copy/paste (tested with libreoffice and gmail): supported single images, single codeboxes, single tables and a compound selection of rich text, images, codeboxes and tables
-- Copying a list of files from the file manager and pasting in oliveset will create a list of links to files, images are recognized and inserted in the text
-- Print & save as pdf file of a selection / node / node and subnodes / the whole tree
-- Export to html of a selection / node / node and subnodes / the whole tree
-- Export to plain text of a selection / node / node and subnodes / the whole tree
-- Toc generation for a node / node and subnodes / the whole tree, based on headers h1, h2, h3, h4, h5, h6 and text sections between headers collapsible
-- Find a node, find in selected node, find in selected node and subnodes, find in all nodes
-- Replace in nodes names, replace in selected node, replace in selected node and subnodes, replace in all nodes
-- Iteration of the latest find, iteration of the latest replace, iteration of the latest applied text formatting
-- Import from html file, import from folder of html files
-- Import from plain text file, import from folder of plain text files
-- Import from basket, oliveset, epim html, gnote, keepnote, keynote, knowit, mempad, notecase, rednotebook, tomboy, treepad lite, tuxcards, zim
-- Export to oliveset file of a selection / node / node and subnodes / the whole tree
-- Password protection (using https://www.7-zip.org/) available only for storage as single file – NOTE: while a oliveset password protected document is opened, an unprotected copy is extracted to a temporary -folder of the filesystem; this copy is removed when you close oliveset
-- Tree nodes drag and drop
-- Automatic link to web page if writing the URL
-- Automatic link to node if writing node name surrounded by [[node name]]
+## 下载
+前往 [Releases](https://github.com/) 页面下载 Windows 安装版（setup.exe）与便携版（portable.7z）。
 
-## Prebuilt binaries
-Prebuilt binaries can be found on [github.com/giuspen/oliveset/releases](https://github.com/giuspen/oliveset/releases) and [giuspen.net/oliveset/#downl](https://www.giuspen.net/oliveset/#downl).
+## 许可
+本项目基于 GNU GPL-3.0 许可证发布，详见 [license.txt](license.txt)。
 
-## How to build from source code
-To build from the source code, please read [BUILDING.md](BUILDING.md).
-
-## Localization
-The following languages are supported (if you want to help translate to your language, please write me):
-
-– Arabic (ar, Abdulrahman Karajeh)
-– Armenian (hy, Seda Stamboltsyan)
-– Bulgarian (bg, Iliya Nikolaev)
-– Chinese Simplified (zh_CN, Wang Yu)
-– Chinese Traditional (zh_TW, Emer Chen)
-– Croatian (hr, Filip Bakula)
-– Czech (cs, Pavel Fric)
-– Dutch (nl)
-– English (en, default)
-– Finnish (fi)
-– French (fr, Francis Gernet)
-– German (de, Mr.Update)
-– Greek (el, Asterios Siomos)
-– Hindi India (hi_IN)
-– Hungarian (hu, Stiener Norbert)
-– Italian (it, Vincenzo Reale)
-– Japanese (ja, Piyo)
-– Kazakh (kk_KZ, Viktor Polyanskiy)
-– Kazakh (kk_LA, Latin, Viktor Polyanskiy)
-– Korean (ko, Sean Lee)
-– Lithuanian (lt)
-– Persian (fa, Majid Abri)
-– Polish (pl, Mariusz Gasperaniec)
-– Portuguese (pt, Rui Santos)
-– Portuguese Brazil (pt_BR, Raysa Dutra)
-– Romanian (ro, Tudor Sprinceana)
-– Russian (ru, Viktor Polyanskiy)
-– Slovak (sk, Michal Fusatý)
-– Slovenian (sl, Erik Lovrič)
-– Spanish (es, MP)
-– Swedish (sv, Åke Engelbrektson)
-– Turkish (tr, Ferhat Aydin)
-– Ukrainian (uk, Giuseppe Penone)
-
-## Programming with GTKmm3
-https://docs.huihoo.com/gtkmm/programming-with-gtkmm-3/3.17.50/en/
-
-## Third party
-- Outstanding third party Android project: https://github.com/FFDA/SourCherry
-- Enhanced web interface post export to HTML: https://github.com/coregtree/oliveset-notes-web-interface
-
-## Code Signing Policy
-- Free code signing for the Windows binaries provided by [SignPath.io](https://signpath.io/), certificate by [SignPath Foundation](https://signpath.org/)
-- This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it
-- Approver: [Giuseppe Penone](https://github.com/giuspen)
+## 版权
+Copyright (C) 2026 OrangeArk contributors

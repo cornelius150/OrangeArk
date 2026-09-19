@@ -226,6 +226,7 @@ const char* CtMenu::_get_ui_str_menu()
 
   <menu action='InsertMenu'>
     <menuitem action='handle_image'/>
+    <menuitem action='take_screenshot'/>
     <menuitem action='handle_table'/>
     <menuitem action='handle_codebox'/>
     <menuitem action='handle_latex'/>
@@ -472,6 +473,7 @@ const char* CtMenu::_get_popup_menu_ui_str_text()
   </menu>
   <menu action='InsertSubMenu'>
     <menuitem action='handle_image'/>
+    <menuitem action='take_screenshot'/>
     <menuitem action='handle_table'/>
     <menuitem action='handle_codebox'/>
     <menuitem action='handle_latex'/>

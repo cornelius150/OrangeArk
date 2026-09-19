@@ -490,13 +490,13 @@ Gtk::Widget* CtPrefDlg::build_tab_theme()
 #endif
 
     auto f_removeConfigIconsAndCopyFrom = [](const char* folderName){
-        fs::path ConfigIcons_dst = fs::get_oliveset_config_icons_dirpath();
+        fs::path ConfigIcons_dst = fs::get_orangeark_config_icons_dirpath();
         if (fs::exists(ConfigIcons_dst)) {
             fs::remove_all(ConfigIcons_dst);
         }
         if (folderName) {
             g_mkdir(ConfigIcons_dst.c_str(), 0744);
-            fs::path InstalledIcons_src = fs::get_oliveset_datadir() / CtConfig::ConfigIconsDirname / folderName;
+            fs::path InstalledIcons_src = fs::get_orangeark_datadir() / CtConfig::ConfigIconsDirname / folderName;
             for (const auto& filepath : fs::get_dir_entries(InstalledIcons_src)) {
                 fs::copy_file(filepath, ConfigIcons_dst / filepath.filename());
             }

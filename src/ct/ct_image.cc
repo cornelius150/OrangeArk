@@ -29,6 +29,7 @@
 #include "ct_storage_control.h"
 #include "ct_storage_multifile.h"
 #include <regex>
+#include <cmath>
 
 CtImage::CtImage(CtMainWin* pCtMainWin,
                  const std::string& rawBlob,
@@ -109,6 +110,8 @@ CtImagePng::CtImagePng(CtMainWin* pCtMainWin,
 {
 #if GTKMM_MAJOR_VERSION < 4
     signal_button_press_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_button_press_event), false);
+    signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_motion_notify_event), false);
+    signal_button_release_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_button_release_event), false);
 #endif
     update_label_widget();
 }
@@ -123,6 +126,9 @@ CtImagePng::CtImagePng(CtMainWin* pCtMainWin,
 {
 #if GTKMM_MAJOR_VERSION < 4
     signal_button_press_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_button_press_event), false);
+    signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_motion_notify_event), false);
+    signal_button_release_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_button_release_event), false);
+    add_events(Gdk::POINTER_MOTION_MASK | Gdk::BUTTON_RELEASE_MASK);
 #endif
     update_label_widget();
 }
@@ -212,10 +218,97 @@ void CtImagePng::update_label_widget()
 }
 
 #if GTKMM_MAJOR_VERSION < 4
+// OrangeArk: resize corner size in px (bottom-right of the image)
+static const int IMG_RESIZE_ZONE{16};
+
+bool CtImagePng::_in_resize_corner(GdkEventButton* event)
+{
+    if (event->x_root < 0 or event->y_root < 0) return false;
+    const int winX = static_cast<int>(event->x);
+    const int winY = static_cast<int>(event->y);
+    const Gtk::Allocation allocation = get_allocation();
+    return winX >= allocation.get_width() - IMG_RESIZE_ZONE
+       and winY >= allocation.get_height() - IMG_RESIZE_ZONE;
+}
+
+void CtImagePng::_apply_resized_pixbuf(const int newWidth, const int newHeight)
+{
+    try {
+        Glib::RefPtr<Gdk::Pixbuf> rScaled = _rPixbuf->scale_simple(newWidth, newHeight, Gdk::InterpType::INTERP_BILINEAR);
+        if (not rScaled) return;
+        _rPixbuf = rScaled;
+        _image.set(_rPixbuf);
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    }
+    catch (...) {}
+}
+
+bool CtImagePng::_on_motion_notify_event(GdkEventMotion* event)
+{
+    if (_dragResizeActive) {
+        // live cursor feedback while dragging
+        if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+            rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER));
+        }
+        return true;
+    }
+    // hover feedback: change cursor when over the resize corner
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+        const int winX = static_cast<int>(event->x);
+        const int winY = static_cast<int>(event->y);
+        const Gtk::Allocation allocation = get_allocation();
+        if (winX >= allocation.get_width() - IMG_RESIZE_ZONE and winY >= allocation.get_height() - IMG_RESIZE_ZONE) {
+            if (not _rHoverCursor) _rHoverCursor = Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER);
+            rWin->set_cursor(_rHoverCursor);
+        }
+        else {
+            rWin->set_cursor();
+        }
+    }
+    return false;
+}
+
+bool CtImagePng::_on_button_release_event(GdkEventButton* event)
+{
+    if (not _dragResizeActive or 1 != event->button) return false;
+    _dragResizeActive = false;
+    gtk_grab_remove(GTK_WIDGET(gobj()));
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
+
+    const double dx = event->x_root - _dragStartX;
+    const double scale = (_dragStartW + dx) / static_cast<double>(_dragStartW);
+    int newW = static_cast<int>(std::lround(_dragStartW * scale));
+    int newH = static_cast<int>(std::lround(_dragStartH * scale));
+    if (newW < 16) {
+        newH = static_cast<int>(std::lround(newH * (16.0 / newW)));
+        newW = 16;
+    }
+    if (newH < 16) {
+        newW = static_cast<int>(std::lround(newW * (16.0 / newH)));
+        newH = 16;
+    }
+    if (newW != _dragStartW or newH != _dragStartH) {
+        // keep the aspect ratio, let the size grow/shrink with the drag
+        _apply_resized_pixbuf(newW, newH);
+    }
+    return true;
+}
+
 bool CtImagePng::_on_button_press_event(GdkEventButton* event)
 {
     _pCtMainWin->get_ct_actions()->curr_image_anchor = this;
     _pCtMainWin->get_ct_actions()->object_set_selection(this);
+    // OrangeArk: start drag-resize when pressing the bottom-right corner
+    if (1 == event->button and _in_resize_corner(event)) {
+        if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
+        _dragResizeActive = true;
+        _dragStartX = event->x_root;
+        _dragStartY = event->y_root;
+        _dragStartW = _rPixbuf->get_width();
+        _dragStartH = _rPixbuf->get_height();
+        gtk_grab_add(GTK_WIDGET(gobj()));
+        return true;
+    }
     if (1 == event->button || 2 == event->button) {
         if (event->type == GDK_2BUTTON_PRESS) {
             if (_pCtConfig->doubleClickLink and not _link.empty()) {
@@ -492,7 +585,7 @@ void CtImageLatex::update_tooltip()
 #if defined(_FLATPAK_BUILD)
 #define CONSOLE_BIN_PREFIX      "cd /app/bin/.TinyTeX/bin/x86_64-linux && ./"
 #elif defined(_SNAP_BUILD)
-#define CONSOLE_BIN_PREFIX      "cd /snap/oliveset/current/TinyTeX/bin/x86_64-linux && ./"
+#define CONSOLE_BIN_PREFIX      "cd /snap/orangeark/current/TinyTeX/bin/x86_64-linux && ./"
 #else // !_FLATPAK_BUILD && !_SNAP_BUILD
 #define CONSOLE_BIN_PREFIX      fs::get_latex_dvipng_console_bin_prefix()
 #endif // !_FLATPAK_BUILD
@@ -526,7 +619,7 @@ static const char* get_dvipng_bin_cmd()
 
 /*static*/bool CtImageLatex::_is_latex_text_safe(const Glib::ustring& latexText)
 {
-    // https://github.com/giuspen/oliveset/issues/2846
+    // https://github.com/giuspen/orangeark/issues/2846
     // Block LaTeX commands that allow arbitrary file-system reads/writes.
     // The -safer flag passed to latex is not reliable across all TeX distributions;
     // this in-process check is the primary defence.
@@ -581,7 +674,7 @@ static const char* get_dvipng_bin_cmd()
     Glib::file_set_contents(tmp_filepath_tex.string(), latexText);
     const fs::path tmp_dirpath = tmp_filepath_tex.parent_path();
     const fs::path tex_basename = tmp_filepath_tex.filename();
-    // https://github.com/giuspen/oliveset/issues/2846
+    // https://github.com/giuspen/orangeark/issues/2846
     // Enforce TeX-level file access restrictions even if macro-based regex filtering is bypassed.
     // openin_any/openout_any are set to paranoid mode and shell escape is disabled.
     std::string cmd;
@@ -613,7 +706,7 @@ static const char* get_dvipng_bin_cmd()
                    , quoted_tmp_dir, quoted_latex_exe, quoted_tex_basename);
         success = CtMiscUtil::system_cmd(cmd.c_str(), "");
     #elif defined(_SNAP_BUILD)
-        const fs::path latex_exe{ "/snap/oliveset/current/TinyTeX/bin/x86_64-linux/latex" };
+        const fs::path latex_exe{ "/snap/orangeark/current/TinyTeX/bin/x86_64-linux/latex" };
         g_autofree gchar* quoted_tmp_dir = g_shell_quote(tmp_dirpath.c_str());
         g_autofree gchar* quoted_tex_basename = g_shell_quote(tex_basename.c_str());
         g_autofree gchar* quoted_latex_exe = g_shell_quote(latex_exe.c_str());

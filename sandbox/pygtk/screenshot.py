@@ -2,7 +2,7 @@
 #
 #       screenshot.py
 #
-#       Copyright OliveSet 2009-2018 Giuseppe Penone <giuspen@gmail.com>
+#       Copyright OrangeArk 2009-2018 Giuseppe Penone <giuspen@gmail.com>
 #
 #       Copyright screenshot.py 2018 David Holland <davidholland5499@outlook.com>, as long as it is a standalone module and not integrated with Cherry Tree
 #

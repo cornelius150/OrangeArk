@@ -137,7 +137,7 @@ void CtPrefDlg::populate_row_in_toolbar_model(Gtk::TreeModel::iterator row, cons
     }
     else if (key == Glib::ustring{CtConst::CHAR_STAR}) {
         icon = "ct_open";
-        desc = _("Open a OliveSet File");
+        desc = _("Open a OrangeArk File");
     }
     else if (CtMenuAction const* action = _pCtMenu->find_action(key)) {
         icon = action->image;

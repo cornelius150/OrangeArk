@@ -34,6 +34,7 @@
 #include <cstdlib>
 #include "ct_logging.h"
 #include "ct_list.h"
+#include "ct_screenshot.h"
 #ifndef _WIN32
 #include <sys/wait.h> // WEXITSTATUS __FreeBSD__ (#1550)
 #endif // !_WIN32
@@ -288,8 +289,24 @@ void CtActions::latex_delete()
     _pCtMainWin->get_text_view().mm().grab_focus();
 }
 
-void CtActions::image_save()
+// OrangeArk: QQ-style region screenshot - grab a screen region, copy it to the
+// clipboard and insert it into the current node
+void CtActions::screenshot()
 {
+    if (not _node_sel_and_rich_text()) return;
+    if (not _is_curr_node_not_read_only_or_error()) return;
+
+    Glib::RefPtr<Gdk::Pixbuf> rShot = CtScreenshot::take_region_screenshot(_pCtMainWin);
+    if (not rShot) return;
+
+    // copy to the clipboard too, like QQ does
+    Gtk::Clipboard::get()->set_image(rShot);
+
+    image_insert_png(_curr_buffer()->get_insert()->get_iter(), rShot, "", "");
+    _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true/*new_machine_state*/);
+}
+
+void CtActions::image_save(){
     CtDialogs::CtFileSelectArgs args{};
     args.curr_folder = _pCtConfig->pickDirImg;
     args.curr_file_name = "";

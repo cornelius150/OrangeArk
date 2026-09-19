@@ -26,22 +26,22 @@
 
 void CtActions::online_help()
 {
-    fs::open_weblink("https://giuspen.net/olivesetmanual/");
+    fs::open_weblink("https://giuspen.net/orangearkmanual/");
 }
 
 void CtActions::online_home()
 {
-    fs::open_weblink("https://www.giuspen.net/oliveset/");
+    fs::open_weblink("https://www.giuspen.net/orangeark/");
 }
 
 void CtActions::online_code()
 {
-    fs::open_weblink("https://github.com/giuspen/oliveset");
+    fs::open_weblink("https://github.com/giuspen/orangeark");
 }
 
 void CtActions::online_issues()
 {
-    fs::open_weblink("https://github.com/giuspen/oliveset/issues");
+    fs::open_weblink("https://github.com/giuspen/orangeark/issues");
 }
 
 void CtActions::online_donate()
@@ -61,7 +61,7 @@ void CtActions::dialog_about()
 
 void CtActions::folder_cfg_open()
 {
-    fs::open_folderpath(fs::get_oliveset_configdir(), _pCtConfig);
+    fs::open_folderpath(fs::get_orangeark_configdir(), _pCtConfig);
 }
 
 void CtActions::check_for_newer_version()
@@ -74,7 +74,7 @@ void CtActions::check_for_newer_version()
     while (g_main_context_pending(nullptr)) g_main_context_iteration(nullptr, false);
     #endif
 
-    std::string latest_debian_changelog_from_server = fs::download_file("https://raw.githubusercontent.com/giuspen/oliveset/master/debian/changelog");
+    std::string latest_debian_changelog_from_server = fs::download_file("https://raw.githubusercontent.com/giuspen/orangeark/master/debian/changelog");
     std::size_t openp = latest_debian_changelog_from_server.find("(");
     std::size_t closep = latest_debian_changelog_from_server.find(")");
     if (std::string::npos == openp or std::string::npos == closep or closep < openp) {

@@ -543,7 +543,7 @@ HRESULT CArc::GetItemPathToParent(UInt32 index, UInt32 parent, UStringVector &pa
 
 HRESULT CArc::GetItemPath(UInt32 index, UString &result) const
 {
-#ifdef _LIB_FOR_OLIVESET
+#ifdef _LIB_FOR_ORANGEARK
     UStringVector pathParts;
     SplitPathToParts(filePath, pathParts);
     result = pathParts.Back();
@@ -556,7 +556,7 @@ HRESULT CArc::GetItemPath(UInt32 index, UString &result) const
         result.ReplaceOneCharAtPos(result.Len()-1, (wchar_t)'b');
         return S_OK;
     }
-#endif // !_LIB_FOR_OLIVESET
+#endif // !_LIB_FOR_ORANGEARK
 
   #ifdef MY_CPU_LE
   if (GetRawProps)

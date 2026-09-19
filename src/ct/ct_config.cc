@@ -39,7 +39,7 @@ const fs::path CtConfig::UserStyleTemplate{"user-style.xml"};
 
 /* This is the core instance which is unique and lives with the app */
 CtConfig::CtConfig()
- : _configFilepath{fs::get_oliveset_config_filepath()}
+ : _configFilepath{fs::get_orangeark_config_filepath()}
  , _configFilepathTmp{_configFilepath.string() + ".tmp"}
 {
     _initLoadFromFileOk = _load_from_file();
@@ -841,7 +841,7 @@ void CtConfig::_populate_data_from_keyfile()
 void CtConfig::_ensure_user_styles_exist()
 {
     for (unsigned n = 1; n <= CtConst::NUM_USER_STYLES; ++n) {
-        const fs::path userStyleFilepath = fs::get_oliveset_config_user_style_filepath(n);
+        const fs::path userStyleFilepath = fs::get_orangeark_config_user_style_filepath(n);
         if (not fs::is_regular_file(userStyleFilepath)) {
             update_user_style(n);
         }
@@ -855,12 +855,12 @@ std::string CtConfig::get_user_style_id(const unsigned num)
 
 void CtConfig::update_user_style(const unsigned num)
 {
-    const fs::path userStyleTemplateFilepath = fs::get_oliveset_datadir() / "data" / CtConfig::UserStyleTemplate;
+    const fs::path userStyleTemplateFilepath = fs::get_orangeark_datadir() / "data" / CtConfig::UserStyleTemplate;
     if (not fs::is_regular_file(userStyleTemplateFilepath)) {
         spdlog::warn("Unexp missing {}", userStyleTemplateFilepath.c_str());
         return;
     }
-    const fs::path userStyleDirpath = fs::get_oliveset_config_styles_dirpath();
+    const fs::path userStyleDirpath = fs::get_orangeark_config_styles_dirpath();
     if (not fs::is_directory(userStyleDirpath)) {
         if (g_mkdir_with_parents(userStyleDirpath.c_str(), 0755) < 0) {
             spdlog::warn("Could not create config dir {}", userStyleDirpath.c_str());
@@ -878,7 +878,7 @@ void CtConfig::update_user_style(const unsigned num)
     userStyleText = str::replace(userStyleText, "_userStyleCurrentLineBg_", userStyleCurrentLineBg[i]);
     userStyleText = str::replace(userStyleText, "_userStyleLineNumbersFg_", userStyleLineNumbersFg[i]);
     userStyleText = str::replace(userStyleText, "_userStyleLineNumbersBg_", userStyleLineNumbersBg[i]);
-    const fs::path userStyleFilepath = fs::get_oliveset_config_user_style_filepath(num);
+    const fs::path userStyleFilepath = fs::get_orangeark_config_user_style_filepath(num);
     Glib::file_set_contents(userStyleFilepath.string(), userStyleText);
 }
 

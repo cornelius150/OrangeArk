@@ -55,10 +55,10 @@ void CtMenu::init_actions(CtActions* pActions)
     _actions.push_back(CtMenuAction{"", "TreeSortSubMenu", "ct_sort-asc", _("Nod_es Sort"), None, None, [](){}});
     _actions.push_back(CtMenuAction{"", "BookmarksSubMenu", "ct_pin", _("B_ookmarks"), None, None, [](){}});
     _actions.push_back(CtMenuAction{"", "ImportSubMenu", CtConst::STR_STOCK_CT_IMP, _("_Import"), None, None, [](){}});
-    _actions.push_back(CtMenuAction{"", "ExportSubMenu", "ct_export_from_oliveset", _("_Export"), None, None, [](){}});
+    _actions.push_back(CtMenuAction{"", "ExportSubMenu", "ct_export_from_orangeark", _("_Export"), None, None, [](){}});
     _actions.push_back(CtMenuAction{"", "PrefSubMenu", "ct_preferences", _("_Preferences"), None, None, [](){}});
     _actions.push_back(CtMenuAction{"", "RecentDocsSubMenu", "ct_open", _("_Recent Documents"), None,
-        _("Open a Recent OliveSet Document"), [](){}});
+        _("Open a Recent OrangeArk Document"), [](){}});
     _actions.push_back(CtMenuAction{"", "ChangeCaseSubMenu", "ct_case_toggle", _("C_hange Case"), None, None, [](){}});
     _actions.push_back(CtMenuAction{"", "ListSubMenu", "ct_list_bulleted", _("L_ist"), None, None, [](){}});
     _actions.push_back(CtMenuAction{"", "JustifySubMenu", "ct_justify-center", _("_Justify"), None, None, [](){}});
@@ -76,11 +76,11 @@ void CtMenu::init_actions(CtActions* pActions)
     {
         const char* file_cat = _("File");
         _actions.push_back(CtMenuAction{file_cat, "ct_new_inst", "ct_new-instance", _("_New Instance..."), None,
-            _("Start a New Instance of OliveSet"), sigc::mem_fun(*pActions, &CtActions::file_new)});
+            _("Start a New Instance of OrangeArk"), sigc::mem_fun(*pActions, &CtActions::file_new)});
         _actions.push_back(CtMenuAction{file_cat, "ct_open_file", "ct_open", _("_Open File..."), KB_CONTROL+"o",
-            _("Open a OliveSet File"), sigc::mem_fun(*pActions, &CtActions::file_open)});
+            _("Open a OrangeArk File"), sigc::mem_fun(*pActions, &CtActions::file_open)});
         _actions.push_back(CtMenuAction{file_cat, "ct_open_folder", "ct_open", _("Open Fo_lder..."), KB_CONTROL+KB_SHIFT+"o",
-            _("Open a OliveSet Folder"), sigc::mem_fun(*pActions, &CtActions::folder_open)});
+            _("Open a OrangeArk Folder"), sigc::mem_fun(*pActions, &CtActions::folder_open)});
         _actions.push_back(CtMenuAction{file_cat, "ct_save", "ct_save", _("_Save"), KB_CONTROL+"s",
             _("Save File"), sigc::mem_fun(*pActions, &CtActions::file_save)});
         _actions.push_back(CtMenuAction{file_cat, "ct_vacuum", "ct_clear", _("Save and _Vacuum"), None,
@@ -95,7 +95,7 @@ void CtMenu::init_actions(CtActions* pActions)
             _("Preferences"), sigc::mem_fun(*pActions, &CtActions::dialog_preferences) });
         _actions.push_back(CtMenuAction{file_cat, "pref_import", CtConst::STR_STOCK_CT_IMP, _("_Import Preferences..."), None,
             _("Import Preferences"), sigc::mem_fun(*pActions, &CtActions::preferences_import) });
-        _actions.push_back(CtMenuAction{file_cat, "pref_export", "ct_export_from_oliveset", _("_Export Preferences..."), None,
+        _actions.push_back(CtMenuAction{file_cat, "pref_export", "ct_export_from_orangeark", _("_Export Preferences..."), None,
             _("Export Preferences"), sigc::mem_fun(*pActions, &CtActions::preferences_export) });
         _actions.push_back(CtMenuAction{file_cat, "tree_parse_info", "ct_info", _("Tree In_fo"), None,
             _("Tree Summary Information"), sigc::mem_fun(*pActions, &CtActions::tree_info)});
@@ -103,8 +103,8 @@ void CtMenu::init_actions(CtActions* pActions)
             _("Copy Document Path to Clipboard"), sigc::mem_fun(*pActions, &CtActions::doc_path_to_clipboard)});
         _actions.push_back(CtMenuAction{file_cat, "quit_app", "ct_quit-app", _("_Quit"), KB_CONTROL+"q",
             _("Quit the Application"), sigc::mem_fun(*pActions, &CtActions::quit_or_hide_window)});
-        _actions.push_back(CtMenuAction{file_cat, "exit_app", "ct_quit-app", _("E_xit OliveSet"), KB_CONTROL+KB_SHIFT+"q",
-            _("Exit from OliveSet"), sigc::mem_fun(*pActions, &CtActions::quit_window)});
+        _actions.push_back(CtMenuAction{file_cat, "exit_app", "ct_quit-app", _("E_xit OrangeArk"), KB_CONTROL+KB_SHIFT+"q",
+            _("Exit from OrangeArk"), sigc::mem_fun(*pActions, &CtActions::quit_window)});
     }
     {
         const char* editor_cat = _("Edit/Insert");
@@ -114,6 +114,8 @@ void CtMenu::init_actions(CtActions* pActions)
             _("Redo Previously Discarded Operation"), sigc::mem_fun(*pActions, &CtActions::requested_step_ahead)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_image", "ct_image_insert", _("Insert I_mage..."), KB_SHIFT+KB_ALT+"i",
             _("Insert an Image"), sigc::mem_fun(*pActions, &CtActions::image_insert)});
+        _actions.push_back(CtMenuAction{editor_cat, "take_screenshot", "ct_image_insert", _("Region _Screenshot..."), KB_SHIFT+KB_ALT+"x",
+            _("Grab a Screen Region and Insert It as an Image (like QQ screenshot)"), sigc::mem_fun(*pActions, &CtActions::screenshot)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_latex", "ct_latex_insert", _("Insert Late_x..."), KB_SHIFT+KB_ALT+"g",
             _("Insert LatexBox"), sigc::mem_fun(*pActions, &CtActions::latex_insert)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_table", "ct_table_insert", _("Insert _Table..."), KB_SHIFT+KB_ALT+"h",
@@ -461,10 +463,10 @@ void CtMenu::init_actions(CtActions* pActions)
     }
     {
         const char* import_cat = _("Import");
-        _actions.push_back(CtMenuAction{import_cat, "import_ct_file", "ct_from_oliveset", _("From _OliveSet File"), None,
-            _("Add Nodes of a OliveSet File to the Current Tree"), sigc::mem_fun(*pActions, &CtActions::import_nodes_from_ct_file)});
-        _actions.push_back(CtMenuAction{import_cat, "import_ct_folder", "ct_from_oliveset", _("From _OliveSet Folder"), None,
-            _("Add Nodes of a OliveSet Folder to the Current Tree"), sigc::mem_fun(*pActions, &CtActions::import_nodes_from_ct_folder)});
+        _actions.push_back(CtMenuAction{import_cat, "import_ct_file", "ct_from_orangeark", _("From _OrangeArk File"), None,
+            _("Add Nodes of a OrangeArk File to the Current Tree"), sigc::mem_fun(*pActions, &CtActions::import_nodes_from_ct_file)});
+        _actions.push_back(CtMenuAction{import_cat, "import_ct_folder", "ct_from_orangeark", _("From _OrangeArk Folder"), None,
+            _("Add Nodes of a OrangeArk Folder to the Current Tree"), sigc::mem_fun(*pActions, &CtActions::import_nodes_from_ct_folder)});
         _actions.push_back(CtMenuAction{import_cat, "import_indented_list", "ct_from_txt", _("From _Indented List File"), None,
             _("Add Nodes from an Indented List File to the Current Tree"),
             sigc::mem_fun(*pActions, &CtActions::import_nodes_from_indented_list_file)});
@@ -513,25 +515,25 @@ void CtMenu::init_actions(CtActions* pActions)
             _("Export To HTML"), sigc::mem_fun(*pActions, &CtActions::export_to_html)});
         _actions.push_back(CtMenuAction{export_cat, "export_txt", "ct_to_txt", _("Export to Plain _Text"), None,
             _("Export to Plain Text"), sigc::mem_fun(*pActions, &CtActions::export_to_txt)});
-        _actions.push_back(CtMenuAction{export_cat, "export_ct", "ct_to_oliveset", _("_Export To OliveSet"), None,
-            _("Export To OliveSet File or Folder"), sigc::mem_fun(*pActions, &CtActions::export_to_ct)});
+        _actions.push_back(CtMenuAction{export_cat, "export_ct", "ct_to_orangeark", _("_Export To OrangeArk"), None,
+            _("Export To OrangeArk File or Folder"), sigc::mem_fun(*pActions, &CtActions::export_to_ct)});
     }
     {
         const char* help_cat = _("Help");
         _actions.push_back(CtMenuAction{help_cat, "ct_check_newer", "ct_network", _("_Check Newer Version"), None,
             _("Check for a Newer Version Available Online"), sigc::mem_fun(*pActions, &CtActions::check_for_newer_version)});
         _actions.push_back(CtMenuAction{help_cat, "ct_homepage", "ct_globe", _("_Website"), None,
-            _("Visit OliveSet's Website"), sigc::mem_fun(*pActions, &CtActions::online_home)});
+            _("Visit OrangeArk's Website"), sigc::mem_fun(*pActions, &CtActions::online_home)});
         _actions.push_back(CtMenuAction{help_cat, "ct_github", "ct_github", _("_Source Code"), None,
-            _("Browse OliveSet's Source Code Online"), sigc::mem_fun(*pActions, &CtActions::online_code)});
+            _("Browse OrangeArk's Source Code Online"), sigc::mem_fun(*pActions, &CtActions::online_code)});
         _actions.push_back(CtMenuAction{help_cat, "ct_issues", "ct_bug", _("_Report a Bug"), None,
-            _("Report a Bug in OliveSet"), sigc::mem_fun(*pActions, &CtActions::online_issues)});
+            _("Report a Bug in OrangeArk"), sigc::mem_fun(*pActions, &CtActions::online_issues)});
         _actions.push_back(CtMenuAction{help_cat, "ct_donate", "ct_heart", _("_Donate"), None,
-            _("Donate to Support OliveSet"), sigc::mem_fun(*pActions, &CtActions::online_donate)});
+            _("Donate to Support OrangeArk"), sigc::mem_fun(*pActions, &CtActions::online_donate)});
         _actions.push_back(CtMenuAction{help_cat, "ct_help", "ct_help", _("Online _Manual"), "F1",
-            _("OliveSet's Online Manual"), sigc::mem_fun(*pActions, &CtActions::online_help)});
+            _("OrangeArk's Online Manual"), sigc::mem_fun(*pActions, &CtActions::online_help)});
         _actions.push_back(CtMenuAction{help_cat, "ct_about", "ct_about", _("_About"), None,
-            _("About OliveSet"), sigc::mem_fun(*pActions, &CtActions::dialog_about)});
+            _("About OrangeArk"), sigc::mem_fun(*pActions, &CtActions::dialog_about)});
         _actions.push_back(CtMenuAction{help_cat, "open_cfg_folder", "ct_directory", _("_Open Preferences Directory"), None,
             _("Open the Directory with Preferences Files"), sigc::mem_fun(*pActions, &CtActions::folder_cfg_open)});
 
@@ -590,8 +592,8 @@ void CtMenu::init_actions(CtActions* pActions)
             _("Edit the Link Associated to the Image"), sigc::mem_fun(*pActions, &CtActions::image_link_edit)});
         _actions.push_back(CtMenuAction{others_cat, "img_link_dismiss", "ct_clear", _("D_ismiss Link"), None,
             _("Dismiss the Link Associated to the Image"), sigc::mem_fun(*pActions, &CtActions::image_link_dismiss)});
-        _actions.push_back(CtMenuAction{others_cat, "toggle_show_mainwin", CtConst::APP_NAME, _("Show/Hide _OliveSet"), None,
-            _("Toggle Show/Hide OliveSet"), sigc::mem_fun(*pActions, &CtActions::toggle_show_hide_main_window)});
+        _actions.push_back(CtMenuAction{others_cat, "toggle_show_mainwin", CtConst::APP_NAME, _("Show/Hide _OrangeArk"), None,
+            _("Toggle Show/Hide OrangeArk"), sigc::mem_fun(*pActions, &CtActions::toggle_show_hide_main_window)});
     }
     {
         const char* link_cat = "";

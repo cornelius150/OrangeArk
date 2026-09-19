@@ -400,6 +400,7 @@ public:
     void requested_step_back();
     void requested_step_ahead();
     void image_insert();
+    void screenshot();
     void latex_insert();
     void table_insert();
     void codebox_insert();

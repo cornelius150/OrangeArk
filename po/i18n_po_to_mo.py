@@ -4,7 +4,7 @@ import os
 import subprocess
 import glob
 
-APP_NAME = "oliveset"
+APP_NAME = "orangeark"
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 for po_filepath in glob.glob(os.path.join(SCRIPT_DIR, "*.po")):

@@ -29,5 +29,5 @@
 	// If you want to run the container on an external host, you can uncomment and adapt the following properties.
 	// See https://code.visualstudio.com/docs/remote/containers-advanced#_developing-inside-a-container-on-a-remote-docker-host for details.
 	//"workspaceFolder": "/workspace",
-	//"workspaceMount": "source=/home/user/oliveset,target=/workspace,type=bind,consistency=cached",
+	//"workspaceMount": "source=/home/user/orangeark,target=/workspace,type=bind,consistency=cached",
 }

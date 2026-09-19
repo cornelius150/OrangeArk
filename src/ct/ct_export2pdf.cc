@@ -474,7 +474,7 @@ CtPrint::CtPrint(CtMainWin* pCtMainWin)
 {
     _pPrintSettings = Gtk::PrintSettings::create();
     _pPageSetup = Gtk::PageSetup::create();
-    const fs::path printPageSetupFilepath = fs::get_oliveset_print_page_setup_cfg_filepath();
+    const fs::path printPageSetupFilepath = fs::get_orangeark_print_page_setup_cfg_filepath();
     bool pageSetupLoadFromFile{false};
     if (fs::is_regular_file(printPageSetupFilepath)) {
 #if GTKMM_MAJOR_VERSION >= 4
@@ -515,12 +515,12 @@ void CtPrint::run_page_setup_dialog(Gtk::Window* pWin)
     auto keyFile = Glib::KeyFile::create();
     _pPageSetup->save_to_key_file(keyFile);
     _pPrintSettings->save_to_key_file(keyFile);
-    keyFile->save_to_file(fs::get_oliveset_print_page_setup_cfg_filepath().string());
+    keyFile->save_to_file(fs::get_orangeark_print_page_setup_cfg_filepath().string());
 #else
     Glib::KeyFile keyFile;
     _pPageSetup->save_to_key_file(keyFile);
     _pPrintSettings->save_to_key_file(keyFile);
-    keyFile.save_to_file(fs::get_oliveset_print_page_setup_cfg_filepath().string());
+    keyFile.save_to_file(fs::get_orangeark_print_page_setup_cfg_filepath().string());
 #endif
 }
 

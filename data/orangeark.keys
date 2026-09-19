@@ -1,0 +1,20 @@
+application/orangeark-ctd:
+	description=OrangeArk XML Document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=orangeark
+	category=Documents/Data
+application/orangeark-ctz:
+	description=OrangeArk XML Zipped
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=orangeark
+	category=Documents/Data
+application/orangeark-ctb:
+	description=OrangeArk SQLite Document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=orangeark
+	category=Documents/Data
+application/orangeark-ctx:
+	description=OrangeArk SQLite Zipped
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=orangeark
+	category=Documents/Data

@@ -5,7 +5,7 @@
 
   7-Zip Copyright (C) 1999-2016 Igor Pavlov.
 
-  Licenses for *bundled with oliveset* files are:
+  Licenses for *bundled with orangeark* files are:
 
     GNU LGPL
 

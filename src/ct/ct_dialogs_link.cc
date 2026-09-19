@@ -105,7 +105,7 @@ bool CtDialogs::link_handle_dialog(CtMainWin& ctMainWin,
     hbox_folder.append(button_browse_folder);
 
     Gtk::Box hbox_node{Gtk::Orientation::HORIZONTAL, 5};
-    Gtk::Image image_node{"oliveset"};
+    Gtk::Image image_node{"orangeark"};
     Gtk::CheckButton radiobutton_node{_("To Node")};
     radiobutton_node.set_group(radiobutton_webs);
     hbox_node.append(image_node);
@@ -396,7 +396,7 @@ bool CtDialogs::link_handle_dialog(CtMainWin& ctMainWin,
 
     Gtk::Box hbox_node{Gtk::ORIENTATION_HORIZONTAL, 5/*spacing*/};
     Gtk::Image image_node;
-    image_node.set_from_icon_name("oliveset", Gtk::ICON_SIZE_BUTTON);
+    image_node.set_from_icon_name("orangeark", Gtk::ICON_SIZE_BUTTON);
     Gtk::RadioButton radiobutton_node{_("To Node")};
     radiobutton_node.join_group(radiobutton_webs);
     hbox_node.pack_start(image_node, false, false);

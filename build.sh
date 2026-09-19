@@ -143,24 +143,24 @@ if [ -n "${MAKE_DEB}" ]
 then
   cpack -G DEB
   PACKAGE_VERSION="$(grep 'PACKAGE_VERSION ' ../config.h | awk -F\" '{print $2}')"
-  TARGET_PACKAGE_NAME="oliveset-${PACKAGE_VERSION}~${DISTRIB_ID}${DISTRIB_RELEASE}_amd64.deb"
-  mv -v oliveset-${PACKAGE_VERSION}-Linux.deb ${TARGET_PACKAGE_NAME}
-  mv -v oliveset-${PACKAGE_VERSION}-Linux.deb.sha256 ${TARGET_PACKAGE_NAME}.sha256
+  TARGET_PACKAGE_NAME="orangeark-${PACKAGE_VERSION}~${DISTRIB_ID}${DISTRIB_RELEASE}_amd64.deb"
+  mv -v orangeark-${PACKAGE_VERSION}-Linux.deb ${TARGET_PACKAGE_NAME}
+  mv -v orangeark-${PACKAGE_VERSION}-Linux.deb.sha256 ${TARGET_PACKAGE_NAME}.sha256
 fi
 if [ -n "${MAKE_RPM}" ]
 then
   cpack -G RPM
   PACKAGE_VERSION="$(grep 'PACKAGE_VERSION ' ../config.h | awk -F\" '{print $2}')"
-  TARGET_PACKAGE_NAME="oliveset-${PACKAGE_VERSION}~${DISTRIB_ID}${DISTRIB_RELEASE}_amd64.rpm"
-  mv -v oliveset-${PACKAGE_VERSION}-Linux.rpm ${TARGET_PACKAGE_NAME}
-  mv -v oliveset-${PACKAGE_VERSION}-Linux.rpm.sha256 ${TARGET_PACKAGE_NAME}.sha256
+  TARGET_PACKAGE_NAME="orangeark-${PACKAGE_VERSION}~${DISTRIB_ID}${DISTRIB_RELEASE}_amd64.rpm"
+  mv -v orangeark-${PACKAGE_VERSION}-Linux.rpm ${TARGET_PACKAGE_NAME}
+  mv -v orangeark-${PACKAGE_VERSION}-Linux.rpm.sha256 ${TARGET_PACKAGE_NAME}.sha256
 fi
 if [ -n "${MAKE_APPIMAGE}" ]
 then
   # https://github.com/linuxdeploy/linuxdeploy-plugin-gtk
   [ -f linuxdeploy-plugin-gtk.sh ] || wget -c "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh"
   [ -f linuxdeploy-x86_64.AppImage ] || wget -c "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
-  [ -f TinyTeX-1-v2022.04.04.tar.xz ] || wget -c "https://github.com/giuspen/oliveset/releases/download/v1.7.1/TinyTeX-1-v2022.04.04.tar.xz"
+  [ -f TinyTeX-1-v2022.04.04.tar.xz ] || wget -c "https://github.com/giuspen/orangeark/releases/download/v1.7.1/TinyTeX-1-v2022.04.04.tar.xz"
   chmod +x linuxdeploy-x86_64.AppImage linuxdeploy-plugin-gtk.sh
   rm -rf AppDir
   mkdir AppDir
@@ -173,9 +173,9 @@ then
         --appdir AppDir \
         --plugin gtk \
         --output appimage \
-        --icon-file ../icons/oliveset.svg \
-        --desktop-file ../data/oliveset.desktop
+        --icon-file ../icons/orangeark.svg \
+        --desktop-file ../data/orangeark.desktop
   PACKAGE_VERSION="$(grep 'PACKAGE_VERSION ' ../config.h | awk -F\" '{print $2}')"
-  TARGET_PACKAGE_NAME="OliveSet-${PACKAGE_VERSION}-x86_64.AppImage"
-  mv -v OliveSet-x86_64.AppImage ${TARGET_PACKAGE_NAME}
+  TARGET_PACKAGE_NAME="OrangeArk-${PACKAGE_VERSION}-x86_64.AppImage"
+  mv -v OrangeArk-x86_64.AppImage ${TARGET_PACKAGE_NAME}
 fi

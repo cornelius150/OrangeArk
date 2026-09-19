@@ -92,13 +92,13 @@ int main(int argc, char *argv[])
         if ( fs::alter_locale_env_var("LANGUAGE", ct_lang + ":en") and
              fs::alter_locale_env_var("LANG", ct_lang_utf8) and
              fs::alter_locale_env_var("LC_ALL", ct_lang_utf8) ) {
-            g_message("Language overwrite = %s (localedir = %s)", ct_lang.c_str(), fs::get_oliveset_localedir().c_str());
+            g_message("Language overwrite = %s (localedir = %s)", ct_lang.c_str(), fs::get_orangeark_localedir().c_str());
         }
         else {
             g_critical("Couldn't set language %s", ct_lang.c_str());
         }
     }
-    bindtextdomain(GETTEXT_PACKAGE, fs::get_oliveset_localedir().c_str());
+    bindtextdomain(GETTEXT_PACKAGE, fs::get_orangeark_localedir().c_str());
     bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
     textdomain(GETTEXT_PACKAGE);
 #endif /* HAVE_NLS */
@@ -107,13 +107,13 @@ int main(int argc, char *argv[])
     std::vector<spdlog::sink_ptr> sinks;
     sinks.push_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
 
-    std::optional<fs::path> optLogdir = fs::get_oliveset_logdir();
+    std::optional<fs::path> optLogdir = fs::get_orangeark_logdir();
     if (optLogdir.has_value()) {
         try {
             // Create a file rotating logger with 5mb size max and 3 rotated files
             auto max_size = 1048576 * 5;
             auto max_files = 3;
-            fs::path log_path = optLogdir.value() / "oliveset.log";
+            fs::path log_path = optLogdir.value() / "orangeark.log";
             sinks.push_back(std::make_shared<spdlog::sinks::rotating_file_sink_mt>(log_path.c_str(), max_size, max_files));
         }
         catch (const spdlog::spdlog_ex &ex) {
@@ -123,10 +123,10 @@ int main(int argc, char *argv[])
 
     spdlog::drop(""); // remove the default logger (if you want, you can use its name)
     // these two loggers are the same, they just add "[che]" and "[gtk]" in their output
-    auto oliveset_logger = std::make_shared<spdlog::logger>("che", begin(sinks), end(sinks));
+    auto orangeark_logger = std::make_shared<spdlog::logger>("che", begin(sinks), end(sinks));
     auto gtk_logger = std::make_shared<spdlog::logger>("gtk", begin(sinks), end(sinks));
 
-    spdlog::set_default_logger(oliveset_logger);         // make our logger as a default logger
+    spdlog::set_default_logger(orangeark_logger);         // make our logger as a default logger
     spdlog::register_logger(gtk_logger);                   // register it, so we can access it in another place
     spdlog::flush_on(spdlog::level::debug);                // flush when "info" or higher message is logged on all loggers
     spdlog::set_level(spdlog::level::debug);               // Setup spdlog, use debug level by default for now

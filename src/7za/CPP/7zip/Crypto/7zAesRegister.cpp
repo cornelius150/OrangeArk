@@ -16,4 +16,4 @@ REGISTER_FILTER_E(7zAES,
 
 }}
 
-void oliveset_register_7zaes() { }
+void orangeark_register_7zaes() { }

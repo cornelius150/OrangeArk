@@ -41,4 +41,4 @@ STDMETHODIMP_(void) CXzCrc64Hasher::Final(Byte *digest) throw()
 
 REGISTER_HASHER(CXzCrc64Hasher, 0x4, "CRC64", 8)
 
-void oliveset_register_crc64() {}
+void orangeark_register_crc64() {}

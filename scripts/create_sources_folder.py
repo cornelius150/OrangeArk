@@ -10,7 +10,7 @@ ROOT_DIR = os.path.dirname(SCRIPT_DIR)
 DEBIAN_CHANGELOG_PATH = os.path.join(ROOT_DIR, "debian", "changelog")
 PO_DIR = os.path.join(ROOT_DIR, "po")
 ICONS_CC_PATH = os.path.join(ROOT_DIR, "src", "ct", "icons.gresource.cc")
-MANUAL_GZ_PATH = os.path.join(ROOT_DIR, "data", "oliveset.1.gz")
+MANUAL_GZ_PATH = os.path.join(ROOT_DIR, "data", "orangeark.1.gz")
 DEBIAN_FILES_PATH = os.path.join(ROOT_DIR, "debian", "files")
 BLACKLIST = (
     ".git",
@@ -30,12 +30,12 @@ BLACKLIST = (
 VERSION = "?"
 with open(DEBIAN_CHANGELOG_PATH, "r") as fd:
     for fileline in fd:
-        match = re.search(r"oliveset +\(([0-9]+\.[0-9]+\.[0-9]+)[-+]", fileline)
+        match = re.search(r"orangeark +\(([0-9]+\.[0-9]+\.[0-9]+)[-+]", fileline)
         if match is not None:
             VERSION = match.group(1)
             #print(VERSION)
             break
-DEST_DIRNAME = "oliveset_"+VERSION
+DEST_DIRNAME = "orangeark_"+VERSION
 DEST_TAR_XZ_NAME = DEST_DIRNAME+".tar.xz"
 DEST_FOLDERPATH = os.path.dirname(ROOT_DIR)
 DEST_DIRPATH = os.path.join(DEST_FOLDERPATH, DEST_DIRNAME)

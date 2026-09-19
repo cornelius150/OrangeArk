@@ -573,12 +573,12 @@ HRESULT CUpdateCallbackConsole::CryptoGetTextPassword2(Int32 *passwordIsDefined,
   {
     if (AskPassword)
     {
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
       Password = GetPassword(_so,true);
 #else
     printf("!! not supported\n");
     exit(1);
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
       PasswordIsDefined = true;
     }
   }
@@ -597,12 +597,12 @@ HRESULT CUpdateCallbackConsole::CryptoGetTextPassword(BSTR *password)
   if (!PasswordIsDefined)
   {
     {
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
       Password = GetPassword(_so);
 #else
     printf("!! not supported\n");
     exit(1);
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
       PasswordIsDefined = true;
     }
   }

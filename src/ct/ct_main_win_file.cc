@@ -61,7 +61,7 @@ void CtMainWin::window_title_update(std::optional<bool> saveNeeded)
             title += _uCtStorage->get_file_dir().string() + " - ";
         }
     }
-    title += "OliveSet ";
+    title += "OrangeArk 橙子笔记 ";
     title += CtConst::CT_VERSION;
     if (not _pCtConfig->menubarVisible) {
         CtMenuAction* pAction = _uCtMenu->find_action("toggle_show_menubar");
@@ -183,11 +183,11 @@ bool CtMainWin::file_open(const fs::path& filepath,
     }
     const CtDocType doc_type = fs::is_directory(filepath) ? CtDocType::MultiFile : fs::get_doc_type_from_file_ext(filepath);
     if (CtDocType::None == doc_type) {
-        // not a oliveset file but can try and insert plain text content into a new node
+        // not a orangeark file but can try and insert plain text content into a new node
         if (file_insert_plain_text(filepath)) {
             return true;
         }
-        CtDialogs::error_dialog(str::format(_("\"%s\" is Not a OliveSet File"), str::xml_escape(filepath.string())), *this);
+        CtDialogs::error_dialog(str::format(_("\"%s\" is Not a OrangeArk File"), str::xml_escape(filepath.string())), *this);
         return false;
     }
     // check if there is a previous open file with unsaved changes
@@ -202,7 +202,7 @@ bool CtMainWin::file_open(const fs::path& filepath,
     CtStorageControl* new_storage = CtStorageControl::load_from(this, filepath, doc_type, error_or_warning, password);
     if (not new_storage) {
         if (not error_or_warning.empty()) {
-            CtDialogs::error_dialog(str::format(_("Error Parsing the OliveSet Path:\n\"%s\""), str::xml_escape(error_or_warning)), *this);
+            CtDialogs::error_dialog(str::format(_("Error Parsing the OrangeArk Path:\n\"%s\""), str::xml_escape(error_or_warning)), *this);
         }
         // an empty error_or_warning means that the user pressed cancel on the request for password dialog
         if (not error_or_warning.empty() and CtDocType::MultiFile != doc_type) {
@@ -333,7 +333,7 @@ bool CtMainWin::file_save_ask_user()
     if (_uCtActions->get_were_embfiles_opened()) {
         const Glib::ustring message = Glib::ustring{"<b>"} +
             _("Temporary Files were Created and Opened with External Applications.") +
-            "</b>\n\n<b>" + _("Quit the External Applications Before Quit OliveSet.") +
+            "</b>\n\n<b>" + _("Quit the External Applications Before Quit OrangeArk.") +
             "</b>\n\n<b>" + _("Did you Quit the External Applications?") + "</b>";
         if (not CtDialogs::question_dialog(message, *this)) {
             return false;

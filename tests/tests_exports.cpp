@@ -95,7 +95,7 @@ TEST_P(ExportsMultipleParametersTests, ChecksExports)
         tmpFilepath = tmpDirpath / (Glib::path_get_basename(inDocPath)+"_HTML") / "index.html";
     }
     ASSERT_FALSE(ExportType::None == exportType);
-    const std::vector<std::string> vec_args{"oliveset", inDocPath, exportSwitch, tmpDirpath.string(), "--export_single_file"};
+    const std::vector<std::string> vec_args{"orangeark", inDocPath, exportSwitch, tmpDirpath.string(), "--export_single_file"};
     testCtApp.register_args(&vec_args);
     gchar** pp_args = CtStrUtil::vector_to_array(vec_args);
     testCtApp.run(vec_args.size(), pp_args);

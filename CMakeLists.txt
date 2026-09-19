@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(oliveset)
+project(orangeark)
 
 file(READ "debian/changelog" CHANGELOG)
-string(REGEX MATCH "oliveset +\\(([0-9]+)\\.([0-9]+)\\.([0-9]+)[-+]" _ ${CHANGELOG})
+string(REGEX MATCH "orangeark +\\(([0-9]+)\\.([0-9]+)\\.([0-9]+)[-+]" _ ${CHANGELOG})
 set(CT_VERSION ${CMAKE_MATCH_1}.${CMAKE_MATCH_2}.${CMAKE_MATCH_3})
 set(CT_VERSION_WINDOWS_BUILD 1)
 set(CT_VERSION_WINDOWS ${CMAKE_MATCH_1},${CMAKE_MATCH_2},${CMAKE_MATCH_3},${CT_VERSION_WINDOWS_BUILD})
@@ -47,15 +47,15 @@ endif()
 if(NOT SHARE_INSTALL)
   set(SHARE_INSTALL "share" CACHE STRING "Data file install path. Must be a relative path (from CMAKE_INSTALL_PREFIX), with no trailing slash.")
 endif(NOT SHARE_INSTALL)
-set(OLIVESET_SHARE_INSTALL "${SHARE_INSTALL}/oliveset")
+set(ORANGEARK_SHARE_INSTALL "${SHARE_INSTALL}/orangeark")
 
-set(CPACK_PACKAGE_NAME "oliveset")
+set(CPACK_PACKAGE_NAME "orangeark")
 set(CPACK_PACKAGE_CONTACT "Giuseppe Penone <giuspen@gmail.com>")
 set(CPACK_PACKAGE_VENDOR ${CPACK_PACKAGE_CONTACT})
 set(CPACK_PACKAGE_VERSION ${CT_VERSION})
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A Hierarchical Note Taking Application, featuring Rich Text and Syntax Highlighting.")
 set(CPACK_PACKAGE_DESCRIPTION "A hierarchical note taking application, featuring rich text and syntax highlighting, storing data in either a single file (xml or sqlite) or multiple files and directories
-   OliveSet is not just about having a place to write notes and to-do items and keeping them organized, it's also a place you can store links, pictures, tables, even entire documents. It can be your one program for all the miscellaneous information you have and want to keep. All those little bits of information you have scattered around your hard drive can be conveniently placed into a OliveSet document where you can easily find it.")
+   OrangeArk is not just about having a place to write notes and to-do items and keeping them organized, it's also a place you can store links, pictures, tables, even entire documents. It can be your one program for all the miscellaneous information you have and want to keep. All those little bits of information you have scattered around your hard drive can be conveniently placed into a OrangeArk document where you can easily find it.")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/license.txt")
 set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
 set(CPACK_PACKAGE_CHECKSUM "SHA256")
@@ -77,8 +77,8 @@ else()
     set(CPACK_RPM_PACKAGE_REQUIRES "${CPACK_RPM_PACKAGE_REQUIRES}, libvte-2_91-0")
   endif()
 endif()
-set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://www.giuspen.net/oliveset/")
-set(CPACK_RPM_PACKAGE_URL "https://www.giuspen.net/oliveset/")
+set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://www.giuspen.net/orangeark/")
+set(CPACK_RPM_PACKAGE_URL "https://www.giuspen.net/orangeark/")
 set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_SOURCE_DIR}/debian/postinst")
 set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE "${CMAKE_CURRENT_SOURCE_DIR}/debian/postinst")
 
@@ -251,7 +251,7 @@ if(BUILD_TESTING AND NOT DEFINED ENV{DEB_BUILD_OPTIONS})
 endif()
 
 # rebuild man pages
-set(MANFILE_FULL "${CMAKE_SOURCE_DIR}/data/oliveset.1")
+set(MANFILE_FULL "${CMAKE_SOURCE_DIR}/data/orangeark.1")
 set(MANFILE_FULL_GZ "${MANFILE_FULL}.gz")
 add_custom_command(
   OUTPUT ${MANFILE_FULL_GZ}
@@ -275,47 +275,47 @@ execute_process(
 
 # set icon on macos
 if(APPLE)
-  install(CODE "execute_process(COMMAND ${PYTHON_EXEC} ${CMAKE_SOURCE_DIR}/scripts/set_icon_macos.py ${CMAKE_SOURCE_DIR}/icons/oliveset.ico ${CMAKE_INSTALL_PREFIX}/bin/oliveset)")
+  install(CODE "execute_process(COMMAND ${PYTHON_EXEC} ${CMAKE_SOURCE_DIR}/scripts/set_icon_macos.py ${CMAKE_SOURCE_DIR}/icons/orangeark.ico ${CMAKE_INSTALL_PREFIX}/bin/orangeark)")
 endif(APPLE)
 
 # install other files
 if(${CMAKE_SYSTEM_NAME} MATCHES Linux|.*BSD|DragonFly|Darwin)
   if(NOT APPLE)
     # share data
-    install(FILES "${CMAKE_SOURCE_DIR}/data/oliveset.desktop"
+    install(FILES "${CMAKE_SOURCE_DIR}/data/orangeark.desktop"
             DESTINATION "${SHARE_INSTALL}/applications")
-    install(FILES "${CMAKE_SOURCE_DIR}/icons/oliveset.svg"
+    install(FILES "${CMAKE_SOURCE_DIR}/icons/orangeark.svg"
             DESTINATION "${SHARE_INSTALL}/icons/hicolor/scalable/apps")
     install(FILES "${MANFILE_FULL_GZ}"
             DESTINATION "${SHARE_INSTALL}/man/man1")
     install(FILES
-            "${CMAKE_SOURCE_DIR}/data/oliveset.mime"
-            "${CMAKE_SOURCE_DIR}/data/oliveset.keys"
+            "${CMAKE_SOURCE_DIR}/data/orangeark.mime"
+            "${CMAKE_SOURCE_DIR}/data/orangeark.keys"
             DESTINATION "${SHARE_INSTALL}/mime-info")
-    install(FILES "${CMAKE_SOURCE_DIR}/data/net.giuspen.oliveset.metainfo.xml"
+    install(FILES "${CMAKE_SOURCE_DIR}/data/net.giuspen.orangeark.metainfo.xml"
             DESTINATION "${SHARE_INSTALL}/metainfo")
   endif(NOT APPLE)
 
-  # share/oliveset language-specs
+  # share/orangeark language-specs
   install(DIRECTORY ${CMAKE_SOURCE_DIR}/language-specs
-          DESTINATION ${OLIVESET_SHARE_INSTALL})
-  # share/oliveset styles
+          DESTINATION ${ORANGEARK_SHARE_INSTALL})
+  # share/orangeark styles
   install(DIRECTORY ${CMAKE_SOURCE_DIR}/styles
-          DESTINATION ${OLIVESET_SHARE_INSTALL})
-  # share/oliveset data
+          DESTINATION ${ORANGEARK_SHARE_INSTALL})
+  # share/orangeark data
   install(FILES
           "${CMAKE_SOURCE_DIR}/data/script3.js"
           "${CMAKE_SOURCE_DIR}/data/styles4.css"
           "${CMAKE_SOURCE_DIR}/data/user-style.xml"
-          DESTINATION "${OLIVESET_SHARE_INSTALL}/data")
-  # share/oliveset icons
+          DESTINATION "${ORANGEARK_SHARE_INSTALL}/data")
+  # share/orangeark icons
   install(FILES
           "${CMAKE_SOURCE_DIR}/icons/ct_home.svg"
-          DESTINATION "${OLIVESET_SHARE_INSTALL}/icons")
+          DESTINATION "${ORANGEARK_SHARE_INSTALL}/icons")
   install(DIRECTORY "${CMAKE_SOURCE_DIR}/icons/Breeze_Dark_icons"
-          DESTINATION "${OLIVESET_SHARE_INSTALL}/icons")
+          DESTINATION "${ORANGEARK_SHARE_INSTALL}/icons")
   install(DIRECTORY "${CMAKE_SOURCE_DIR}/icons/Breeze_Light_icons"
-          DESTINATION "${OLIVESET_SHARE_INSTALL}/icons")
+          DESTINATION "${ORANGEARK_SHARE_INSTALL}/icons")
 
   # locale data
   if(USE_NLS)
@@ -325,7 +325,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES Linux|.*BSD|DragonFly|Darwin)
         if(NOT DEFINED ENV{FLATPAK_BUILDER_BUILDDIR})
           install(DIRECTORY ${child} DESTINATION "${PACKAGE_LOCALE_DIR}")
         else()
-          install(DIRECTORY ${child} DESTINATION "${OLIVESET_SHARE_INSTALL}/locale")
+          install(DIRECTORY ${child} DESTINATION "${ORANGEARK_SHARE_INSTALL}/locale")
         endif()
       endif()
     endforeach()

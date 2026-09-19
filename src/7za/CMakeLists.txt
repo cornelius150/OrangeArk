@@ -7,7 +7,7 @@ add_definitions(-DBREAK_HANDLER)
 add_definitions(-DUNICODE)
 add_definitions(-D_UNICODE)
 add_definitions(-DUNIX_USE_WIN_FILE)
-add_definitions(-D_LIB_FOR_OLIVESET)
+add_definitions(-D_LIB_FOR_ORANGEARK)
 
 include_directories(
   SYSTEM ${GLIBMM_INCLUDE_DIRS}

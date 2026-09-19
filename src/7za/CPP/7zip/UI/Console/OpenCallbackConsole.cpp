@@ -78,12 +78,12 @@ HRESULT COpenCallbackConsole::Open_CryptoGetTextPassword(BSTR *password)
   if (!PasswordIsDefined)
   {
     ClosePercents();
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
     Password = GetPassword(_so);
 #else
     printf("!! not supported\n");
     exit(1);
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
     PasswordIsDefined = true;
   }
   return StringToBstr(Password, password);

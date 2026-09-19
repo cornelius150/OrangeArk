@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           path: |
-            build/OliveSet-*.AppImage
+            build/OrangeArk-*.AppImage
           retention-days: 3
           overwrite: true
           if-no-files-found: error

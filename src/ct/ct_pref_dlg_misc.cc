@@ -117,7 +117,7 @@ Gtk::Widget* CtPrefDlg::build_tab_misc()
     auto debug_log_dir_path = std::make_shared<std::string>();
 #endif
     auto hbox_debug_log = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 4/*spacing*/});
-    std::optional<fs::path> optLogdir = fs::get_oliveset_logdir();
+    std::optional<fs::path> optLogdir = fs::get_orangeark_logdir();
     checkbutton_debug_log->set_active(optLogdir.has_value());
     if (optLogdir.has_value()) {
 #if GTKMM_MAJOR_VERSION < 4
@@ -129,10 +129,10 @@ Gtk::Widget* CtPrefDlg::build_tab_misc()
     }
     else {
 #if GTKMM_MAJOR_VERSION < 4
-        file_chooser_button_debug_log_dir->set_filename(fs::get_oliveset_configdir().string());
+        file_chooser_button_debug_log_dir->set_filename(fs::get_orangeark_configdir().string());
 #else
-        *debug_log_dir_path = fs::get_oliveset_configdir().string();
-        file_chooser_button_debug_log_dir->set_label(fs::get_oliveset_configdir().filename().string());
+        *debug_log_dir_path = fs::get_orangeark_configdir().string();
+        file_chooser_button_debug_log_dir->set_label(fs::get_orangeark_configdir().filename().string());
 #endif
         file_chooser_button_debug_log_dir->set_sensitive(false);
     }
@@ -358,17 +358,17 @@ Gtk::Widget* CtPrefDlg::build_tab_misc()
 #endif
     checkbutton_debug_log->signal_toggled().connect([this, pCheckbutton_debug_log=checkbutton_debug_log, pFile_chooser_button_debug_log_dir=file_chooser_button_debug_log_dir](){
         if (pCheckbutton_debug_log->get_active()) {
-            Glib::file_set_contents(fs::get_oliveset_logcfg_filepath().string(), "");
+            Glib::file_set_contents(fs::get_orangeark_logcfg_filepath().string(), "");
         }
         else {
-            fs::remove(fs::get_oliveset_logcfg_filepath());
+            fs::remove(fs::get_orangeark_logcfg_filepath());
         }
         pFile_chooser_button_debug_log_dir->set_sensitive(pCheckbutton_debug_log->get_active());
         need_restart(RESTART_REASON::DEBUG_LOG);
     });
 #if GTKMM_MAJOR_VERSION < 4
     file_chooser_button_debug_log_dir->signal_file_set().connect([this, pFile_chooser_button_debug_log_dir=file_chooser_button_debug_log_dir](){
-        Glib::file_set_contents(fs::get_oliveset_logcfg_filepath().string(),
+        Glib::file_set_contents(fs::get_orangeark_logcfg_filepath().string(),
                                 pFile_chooser_button_debug_log_dir->get_filename());
         need_restart(RESTART_REASON::DEBUG_LOG);
     });
@@ -386,7 +386,7 @@ Gtk::Widget* CtPrefDlg::build_tab_misc()
                 auto folder = dialog->select_folder_finish(result);
                 if (folder) {
                     *debug_log_dir_path = folder->get_path();
-                    Glib::file_set_contents(fs::get_oliveset_logcfg_filepath().string(), *debug_log_dir_path);
+                    Glib::file_set_contents(fs::get_orangeark_logcfg_filepath().string(), *debug_log_dir_path);
                     pFile_chooser_button_debug_log_dir->set_label(fs::path(*debug_log_dir_path).filename().string());
                     need_restart(RESTART_REASON::DEBUG_LOG);
                 }
@@ -480,7 +480,7 @@ Gtk::Widget* CtPrefDlg::build_tab_misc()
             pButton_country_language->set_image(*_pCtMainWin->new_managed_image_from_stock(f_getStockId(selLangId), Gtk::ICON_SIZE_MENU));
 #endif
             need_restart(RESTART_REASON::LANG);
-            g_file_set_contents(fs::get_oliveset_langcfg_filepath().c_str(),
+            g_file_set_contents(fs::get_orangeark_langcfg_filepath().c_str(),
                                 selLangId.c_str(), (gssize)selLangId.bytes(), nullptr);
         }
     });

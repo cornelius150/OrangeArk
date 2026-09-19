@@ -9,11 +9,11 @@ execute_process(
 
 # Generating rc file (with icon) for windows
 if(MINGW)
-  add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/oliveset_rc.o
+  add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/orangeark_rc.o
                      COMMAND windres.exe -I${CMAKE_SOURCE_DIR}/icons 
                                          -i${CMAKE_SOURCE_DIR}/data/windows.rc
-                                         -o ${CMAKE_CURRENT_BINARY_DIR}/oliveset_rc.o )
-  set(CHERRY_EXE_RC ${CMAKE_CURRENT_BINARY_DIR}/oliveset_rc.o)
+                                         -o ${CMAKE_CURRENT_BINARY_DIR}/orangeark_rc.o )
+  set(CHERRY_EXE_RC ${CMAKE_CURRENT_BINARY_DIR}/orangeark_rc.o)
 endif(MINGW)
 
 set(CT_SHARED_FILES
@@ -43,6 +43,7 @@ set(CT_SHARED_FILES
   ct_export2pdf.cc
   ct_export2txt.cc
   ct_image.cc
+  ct_screenshot.cc
   ct_imports.cc
   ct_list.cc
   ct_main_win.cc
@@ -83,8 +84,8 @@ set(CT_SHARED_FILES
   ct_column_edit.cc
 )
 
-add_library(oliveset_shared STATIC ${CT_SHARED_FILES})
-target_link_libraries(oliveset_shared
+add_library(orangeark_shared STATIC ${CT_SHARED_FILES})
+target_link_libraries(orangeark_shared
   ${GTKMM_LIBRARIES}
   ${GTKSV_LIBRARIES}
   ${GLIBMM_LIBRARIES}
@@ -98,41 +99,41 @@ target_link_libraries(oliveset_shared
   7za_static
 )
 if(CT_USE_GSPELL)
-  target_link_libraries(oliveset_shared
+  target_link_libraries(orangeark_shared
     ${GSPELL_LIBRARIES}
   )
 endif()
 if(CT_USE_LIBSPELLING)
-  target_link_libraries(oliveset_shared
+  target_link_libraries(orangeark_shared
     ${LIBSPELLING_LIBRARIES}
   )
 endif()
 if(USE_SHARED_FMT_SPDLOG)
-  target_link_libraries(oliveset_shared
+  target_link_libraries(orangeark_shared
     ${FMT_LIBRARIES}
     ${SPDLOG_LIBRARIES}
   )
 else()
-  target_link_libraries(oliveset_shared
+  target_link_libraries(orangeark_shared
     spdlog::spdlog
   )
 endif()
 if(USE_VTE)
-  target_link_libraries(oliveset_shared
+  target_link_libraries(orangeark_shared
     ${VTE_LIBRARIES}
   )
 endif()
 
-add_executable(oliveset ct_main.cc icons.gresource.cc ${CHERRY_EXE_RC})
-target_link_libraries(oliveset oliveset_shared)
+add_executable(orangeark ct_main.cc icons.gresource.cc ${CHERRY_EXE_RC})
+target_link_libraries(orangeark orangeark_shared)
 
 if(APPLE)
-  target_link_libraries(oliveset "-framework Foundation -framework AppKit")
+  target_link_libraries(orangeark "-framework Foundation -framework AppKit")
 elseif(WIN32)
-  target_link_libraries(oliveset "-mwindows")
+  target_link_libraries(orangeark "-mwindows")
 endif()
 
-set_target_properties(oliveset PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+set_target_properties(orangeark PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 
-# install oliveset
-install(TARGETS oliveset RUNTIME DESTINATION bin)
+# install orangeark
+install(TARGETS orangeark RUNTIME DESTINATION bin)

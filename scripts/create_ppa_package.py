@@ -29,11 +29,11 @@ def f_changelog_setup_for(package_num):
 
     changes_filename = ""
     for i in range(len(changelog_lines)):
-        # oliveset (1.0.2-2) focal; urgency=low
-        match = re.search(r"oliveset +\(([0-9]+\.[0-9]+\.[0-9]+)-[0-9]+\)", changelog_lines[i])
+        # orangeark (1.0.2-2) focal; urgency=low
+        match = re.search(r"orangeark +\(([0-9]+\.[0-9]+\.[0-9]+)-[0-9]+\)", changelog_lines[i])
         if match is not None:
-            changelog_lines[i] = "oliveset ({}-{}) {}; urgency=low\n".format(match.group(1), package_num, CONTROL_DICT[package_num][0])
-            changes_filename = "oliveset_{}-{}_source.changes".format(match.group(1), package_num)
+            changelog_lines[i] = "orangeark ({}-{}) {}; urgency=low\n".format(match.group(1), package_num, CONTROL_DICT[package_num][0])
+            changes_filename = "orangeark_{}-{}_source.changes".format(match.group(1), package_num)
             break
     else:
         print("!! changelog version not found")

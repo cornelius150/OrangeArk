@@ -72,7 +72,7 @@ TEST(TmpP7zipGroup, P7zaIfaceMisc)
     dom_parser.parse_memory(xml_txt);
     xmlpp::Document* p_document = dom_parser.get_document();
     xmlpp::Element* p_element = p_document->get_root_node();
-    ASSERT_STREQ("oliveset", p_element->get_name().c_str());
+    ASSERT_STREQ("orangeark", p_element->get_name().c_str());
     ASSERT_STREQ("NodeName", static_cast<xmlpp::Element*>(p_element->find("node")[0])->get_attribute_value("name").c_str());
     ASSERT_STREQ("NodeContent", static_cast<xmlpp::Element*>(p_element->find("node/rich_text")[0])->get_child_text()->get_content().c_str());
 

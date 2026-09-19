@@ -20,4 +20,4 @@ REGISTER_ARC_IO_DECREMENT_SIG(
 
 }}
 
-void oliveset_register_7z() {}
+void orangeark_register_7z() {}

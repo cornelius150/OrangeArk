@@ -1,7 +1,7 @@
 
 - This was largely copied from Inkscape's https://gitlab.com/inkscape/inkscape/-/blob/master/snap/snapcraft.yaml
 
-- OliveSet's snap repo is at https://snapcraft.io/oliveset
+- OrangeArk's snap repo is at https://snapcraft.io/orangeark
 
 
 
@@ -18,14 +18,14 @@ snapcraft
 
 - Install
 
-sudo snap install oliveset_1.2.0_amd64.snap --dangerous --devmode
+sudo snap install orangeark_1.2.0_amd64.snap --dangerous --devmode
 
 
 
 - Upload
 
 snapcraft login
-snapcraft upload --release=stable oliveset_1.2.0_amd64.snap
+snapcraft upload --release=stable orangeark_1.2.0_amd64.snap
 snapcraft logout
 
 NOTE: if it fails login with craft-store error: Credentials found for 'snapcraft' on 'dashboard.snapcraft.io'

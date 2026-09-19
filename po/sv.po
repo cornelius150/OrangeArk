@@ -1,11 +1,11 @@
-# Swedish translations for oliveset package.
-# Copyright (C) 2020 THE oliveset'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the oliveset package.
+# Swedish translations for orangeark package.
+# Copyright (C) 2020 THE orangeark'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the orangeark package.
 # Åke Engelbrektson <eson@svenskasprakfiler.se>, 2020, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: oliveset 0.38.11\n"
+"Project-Id-Version: orangeark 0.38.11\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-10 22:26+0100\n"
 "PO-Revision-Date: 2024-09-22 08:35+0200\n"
@@ -53,8 +53,8 @@ msgstr "Rader rensade"
 msgid "No Text is Selected."
 msgstr "Ingen text markerad."
 
-msgid "OliveSet File"
-msgstr "OliveSet-fil"
+msgid "OrangeArk File"
+msgstr "OrangeArk-fil"
 
 msgid ""
 "The file/folder in use cannot be overwritten!\n"
@@ -94,8 +94,8 @@ msgstr "Har systemfältet visats på panelen?"
 msgid "Your system does not support the System Tray"
 msgstr "Ditt system stödjer inte systemfältet"
 
-msgid "This Change will have Effect Only After Restarting OliveSet."
-msgstr "Denna ändring blir tillgängligt först efter omstart av OliveSet."
+msgid "This Change will have Effect Only After Restarting OrangeArk."
+msgstr "Denna ändring blir tillgängligt först efter omstart av OrangeArk."
 
 msgid "Replace in Current Node"
 msgstr "Ersätt i aktuell post"
@@ -308,8 +308,8 @@ msgstr "Storleken på verktygsfältets ikoner är redan största möjliga."
 msgid "The Size of the Toolbar Icons is already at the Minimum Value."
 msgstr "Storleken på verktygsfältets ikoner är redan minsta möjliga."
 
-msgid "Print OliveSet version"
-msgstr "Skriv ut OliveSet-version"
+msgid "Print OrangeArk version"
+msgstr "Skriv ut OrangeArk-version"
 
 msgid "Node name to focus"
 msgstr "Postnamn att fokusera"
@@ -350,8 +350,8 @@ msgstr "Kopiera kod"
 msgid "Change CodeBox Properties"
 msgstr "Ändra kodboxegenskaper"
 
-msgid "Start in OliveSet"
-msgstr "Starta i OliveSet"
+msgid "Start in OrangeArk"
+msgstr "Starta i OrangeArk"
 
 msgid "New Document"
 msgstr "Nytt dokument"
@@ -601,8 +601,8 @@ msgstr "Turkiska"
 msgid "Ukrainian"
 msgstr "Ukrainska"
 
-msgid "About OliveSet"
-msgstr "Om OliveSet"
+msgid "About OrangeArk"
+msgstr "Om OrangeArk"
 
 msgid "Tree Summary Information"
 msgstr "Sammanfattad trädinformation"
@@ -1041,8 +1041,8 @@ msgstr "Nerladdning"
 msgid "The Path %s does Not Exist"
 msgstr "Sökvägen %s finns inte"
 
-msgid "Open a Recent OliveSet Document"
-msgstr "Öppna ett tidigare OliveSet-dokument"
+msgid "Open a Recent OrangeArk Document"
+msgstr "Öppna ett tidigare OrangeArk-dokument"
 
 msgid "_Hide"
 msgstr "_Dölj"
@@ -1085,15 +1085,15 @@ msgid "Show Menubar:"
 msgstr "Visa menyfält:"
 
 #, c-format
-msgid "\"%s\" is Not a OliveSet File"
-msgstr "\"%s\" är inte en OliveSet-fil"
+msgid "\"%s\" is Not a OrangeArk File"
+msgstr "\"%s\" är inte en OrangeArk-fil"
 
 #, c-format
 msgid ""
-"Error Parsing the OliveSet Path:\n"
+"Error Parsing the OrangeArk Path:\n"
 "\"%s\""
 msgstr ""
-"Fel vid tolkning av OliveSet-sökvägen:\n"
+"Fel vid tolkning av OrangeArk-sökvägen:\n"
 "\"%s\""
 
 msgid "Do you want to Open the Last Backup?"
@@ -1109,8 +1109,8 @@ msgstr "Ingen post kallad \"%s\" hittades."
 msgid "Temporary Files were Created and Opened with External Applications."
 msgstr "Temporära filer skapades och öppnades med externa program."
 
-msgid "Quit the External Applications Before Quit OliveSet."
-msgstr "Avsluta externa program innan OliveSet avslutas."
+msgid "Quit the External Applications Before Quit OrangeArk."
+msgstr "Avsluta externa program innan OrangeArk avslutas."
 
 msgid "Did you Quit the External Applications?"
 msgstr "Har du avslutat de externa programmen?"
@@ -1224,20 +1224,20 @@ msgstr "Arkiv"
 msgid "_New Instance..."
 msgstr "Ny _instans..."
 
-msgid "Start a New Instance of OliveSet"
-msgstr "Starta en ny instans av OliveSet"
+msgid "Start a New Instance of OrangeArk"
+msgstr "Starta en ny instans av OrangeArk"
 
 msgid "_Open File..."
 msgstr "_Öppna fil..."
 
-msgid "Open a OliveSet File"
-msgstr "Öppna en OliveSet-fil"
+msgid "Open a OrangeArk File"
+msgstr "Öppna en OrangeArk-fil"
 
 msgid "Open Fo_lder..."
 msgstr "_Öppna mapp..."
 
-msgid "Open a OliveSet Folder"
-msgstr "Öppna en OliveSet-mapp"
+msgid "Open a OrangeArk Folder"
+msgstr "Öppna en OrangeArk-mapp"
 
 msgid "_Save"
 msgstr "_Spara"
@@ -1293,11 +1293,11 @@ msgstr "_Dokumentsökväg till urklipp"
 msgid "Copy Document Path to Clipboard"
 msgstr "Kopiera dokumentsökväg till urklipp"
 
-msgid "E_xit OliveSet"
-msgstr "A_vsluta OliveSet"
+msgid "E_xit OrangeArk"
+msgstr "A_vsluta OrangeArk"
 
-msgid "Exit from OliveSet"
-msgstr "Avsluta OliveSet"
+msgid "Exit from OrangeArk"
+msgstr "Avsluta OrangeArk"
 
 msgid "Edit/Insert"
 msgstr "Redigera/Infoga"
@@ -2259,17 +2259,17 @@ msgstr "Placera inte menyfältet i namnlisten"
 msgid "Import"
 msgstr "Importera"
 
-msgid "From _OliveSet File"
-msgstr "Från _OliveSet-fil"
+msgid "From _OrangeArk File"
+msgstr "Från _OrangeArk-fil"
 
-msgid "Add Nodes of a OliveSet File to the Current Tree"
-msgstr "Lägg till poster från en OliveSet-fil till aktuellt träd"
+msgid "Add Nodes of a OrangeArk File to the Current Tree"
+msgstr "Lägg till poster från en OrangeArk-fil till aktuellt träd"
 
-msgid "From _OliveSet Folder"
-msgstr "Från _OliveSet-mapp"
+msgid "From _OrangeArk Folder"
+msgstr "Från _OrangeArk-mapp"
 
-msgid "Add Nodes of a OliveSet Folder to the Current Tree"
-msgstr "Lägg till poster från en OliveSet-mapp till aktuellt träd"
+msgid "Add Nodes of a OrangeArk Folder to the Current Tree"
+msgstr "Lägg till poster från en OrangeArk-mapp till aktuellt träd"
 
 msgid "From _Indented List File"
 msgstr "Från i_ndragen listfil-fil"
@@ -2389,11 +2389,11 @@ msgstr "Exportera till oformaterad _text"
 msgid "Export to Plain Text"
 msgstr "Exportera till oformaterad text"
 
-msgid "_Export To OliveSet"
-msgstr "_Exportera till OliveSet"
+msgid "_Export To OrangeArk"
+msgstr "_Exportera till OrangeArk"
 
-msgid "Export To OliveSet File or Folder"
-msgstr "Exportera till OliveSet-fil eller -mapp"
+msgid "Export To OrangeArk File or Folder"
+msgstr "Exportera till OrangeArk-fil eller -mapp"
 
 msgid "Help"
 msgstr "Hjälp"
@@ -2407,32 +2407,32 @@ msgstr "Sök efter en nyare version online"
 msgid "_Website"
 msgstr "_Webbsida"
 
-msgid "Visit OliveSet's Website"
-msgstr "Besök OliveSet's webbplats"
+msgid "Visit OrangeArk's Website"
+msgstr "Besök OrangeArk's webbplats"
 
 msgid "_Source Code"
 msgstr "_Källkod"
 
-msgid "Browse OliveSet's Source Code Online"
-msgstr "Bläddra i OliveSet's källkod online"
+msgid "Browse OrangeArk's Source Code Online"
+msgstr "Bläddra i OrangeArk's källkod online"
 
 msgid "_Report a Bug"
 msgstr "_Rapportera ett fel"
 
-msgid "Report a Bug in OliveSet"
-msgstr "Rapportera ett fel i OliveSet"
+msgid "Report a Bug in OrangeArk"
+msgstr "Rapportera ett fel i OrangeArk"
 
 msgid "_Donate"
 msgstr "_Donera"
 
-msgid "Donate to Support OliveSet"
-msgstr "Donera för att stödja OliveSet"
+msgid "Donate to Support OrangeArk"
+msgstr "Donera för att stödja OrangeArk"
 
 msgid "Online _Manual"
 msgstr "Online-_manual"
 
-msgid "OliveSet's Online Manual"
-msgstr "OliveSet's online-manual"
+msgid "OrangeArk's Online Manual"
+msgstr "OrangeArk's online-manual"
 
 msgid "_About"
 msgstr "_Om"
@@ -2572,11 +2572,11 @@ msgstr "A_vfärda länk"
 msgid "Dismiss the Link Associated to the Image"
 msgstr "Avfärda länken som associeras med bilden"
 
-msgid "Show/Hide _OliveSet"
-msgstr "Visa/Dölj _OliveSet"
+msgid "Show/Hide _OrangeArk"
+msgstr "Visa/Dölj _OrangeArk"
 
-msgid "Toggle Show/Hide OliveSet"
-msgstr "Visa/Dölj OliveSet"
+msgid "Toggle Show/Hide OrangeArk"
+msgstr "Visa/Dölj OrangeArk"
 
 msgid "Edit the Underlying Link"
 msgstr "Redigera den underliggande länken"
@@ -3130,11 +3130,11 @@ msgstr ""
 "%s återöppning misslyckades - Filen saknas. Återanslut USB-disk eller delad "
 "resurs!"
 
-msgid "OliveSet Hierarchical Note Taking"
-msgstr "OliveSet hierarkiska anteckningar"
+msgid "OrangeArk Hierarchical Note Taking"
+msgstr "OrangeArk hierarkiska anteckningar"
 
-msgid "_Exit OliveSet"
-msgstr "Avsluta OliveSet"
+msgid "_Exit OrangeArk"
+msgstr "Avsluta OrangeArk"
 
 msgid "HTML Document"
 msgstr "HTML-dokument"
@@ -3170,21 +3170,21 @@ msgstr "Vill du verkligen återställa till standardvärden?"
 #~ "Backup files are by default 3 in the same folder of the corrupted "
 #~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
 #~ "the backup with one tilde: copy the file to another directory, remove the "
-#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "trailing tilde and open with orangeark. If it still fails, try the one "
 #~ "with two tildes and if it still fails try the one with three tildes."
 #~ msgstr ""
 #~ "Säkerhetskopieringsfiler finns som standard 3 i samma mapp som det "
 #~ "skadade dokumentet, med samma namn plus efterföljande tilder (~, ~~, "
 #~ "~~~). Prova först säkerhetskopian med en tilde: Kopiera filen till en "
-#~ "annan katalog, ta bort den efterföljande tilde och öppna med oliveset. "
+#~ "annan katalog, ta bort den efterföljande tilde och öppna med orangeark. "
 #~ "Om det fortfarande misslyckas, prova den med två tilder och om det "
 #~ "fortfarande misslyckas prova den med tre tilder."
 
 #~ msgid "Application's Online Manual"
 #~ msgstr "Programmets online-manual"
 
-#~ msgid "OliveSet Document"
-#~ msgstr "OliveSet-dokument"
+#~ msgid "OrangeArk Document"
+#~ msgstr "OrangeArk-dokument"
 
 #~ msgid "Not Protected"
 #~ msgstr "Inte skyddad"
@@ -3211,8 +3211,8 @@ msgstr "Vill du verkligen återställa till standardvärden?"
 #~ msgid "Add a node to the current tree using Pandoc"
 #~ msgstr "Lägg till en post till aktuellt träd, med hjälp av Pandoc"
 
-#~ msgid "The New Language will be Available Only After Restarting OliveSet"
-#~ msgstr "Det nya språket blir tillgängligt först efter omstart av OliveSet"
+#~ msgid "The New Language will be Available Only After Restarting OrangeArk"
+#~ msgstr "Det nya språket blir tillgängligt först efter omstart av OrangeArk"
 
 #~ msgid "click me"
 #~ msgstr "klicka mig"

@@ -111,7 +111,7 @@ void CtActions::export_to_ct()
             new_filepath = CtDialogs::folder_save_as_dialog(_pCtMainWin, fileSelArgs);
         }
         else {
-            fileSelArgs.filter_name = _("OliveSet File");
+            fileSelArgs.filter_name = _("OrangeArk File");
             fileSelArgs.filter_pattern.push_back(std::string{CtConst::CHAR_STAR}+fileExtension);
             fileSelArgs.overwrite_confirmation = false; // as not supported for the multifile, we do in both cases elsewhere
             new_filepath = CtDialogs::file_save_as_dialog(_pCtMainWin, fileSelArgs);

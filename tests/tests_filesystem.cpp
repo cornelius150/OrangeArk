@@ -53,16 +53,16 @@ TEST(FileSystemGroup, path_extension)
     ASSERT_STREQ("", fs::path("/home/foo/.config").extension().c_str());
 }
 
-TEST(FileSystemGroup, get_oliveset_datadir)
+TEST(FileSystemGroup, get_orangeark_datadir)
 {
     // we expect the unit test to be run from the built sources
-    ASSERT_STREQ(_CMAKE_SOURCE_DIR, fs::get_oliveset_datadir().c_str());
+    ASSERT_STREQ(_CMAKE_SOURCE_DIR, fs::get_orangeark_datadir().c_str());
 }
 
-TEST(FileSystemGroup, get_oliveset_localedir)
+TEST(FileSystemGroup, get_orangeark_localedir)
 {
     // we expect the unit test to be run from the built sources
-    ASSERT_STREQ(fs::canonical(Glib::build_filename(_CMAKE_SOURCE_DIR, "po")).c_str(), fs::get_oliveset_localedir().c_str());
+    ASSERT_STREQ(fs::canonical(Glib::build_filename(_CMAKE_SOURCE_DIR, "po")).c_str(), fs::get_orangeark_localedir().c_str());
 }
 
 TEST(FileSystemGroup, is_regular_file)

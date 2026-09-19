@@ -164,7 +164,7 @@ std::vector<CtTextParser::token_schema> CtMDParser::_token_schemas()
         }, "\n"},
         // Table header divider
         {"| -", true, false, [](const std::string&){
-            // Since oliveset tables don't use headers, this is not needed
+            // Since orangeark tables don't use headers, this is not needed
         }, "- |\n"},
         // Image link
         {"![", true, false, [this](const std::string& data){

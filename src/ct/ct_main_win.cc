@@ -1285,7 +1285,7 @@ void CtMainWin::menu_set_items_recent_documents()
                                                                            recent_doc_rm_action));
     }
     if (_pRecentDocsMenuToolButton) {
-        _pRecentDocsMenuToolButton->set_arrow_tooltip_text(_("Open a Recent OliveSet Document"));
+        _pRecentDocsMenuToolButton->set_arrow_tooltip_text(_("Open a Recent OrangeArk Document"));
         Gtk::Menu* pMenu = _pRecentDocsMenuToolButton->get_menu();
         delete pMenu;
         _pRecentDocsMenuToolButton->set_menu(*_uCtMenu->build_recent_docs_menu(_pCtConfig->recentDocsFilepaths,

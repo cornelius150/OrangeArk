@@ -87,6 +87,15 @@ public:
 private:
 #if GTKMM_MAJOR_VERSION < 4
     bool _on_button_press_event(GdkEventButton* event);
+    // OrangeArk: drag the bottom-right corner with the mouse to resize the image
+    bool _on_motion_notify_event(GdkEventMotion* event);
+    bool _on_button_release_event(GdkEventButton* event);
+    bool _in_resize_corner(GdkEventButton* event);
+    void _apply_resized_pixbuf(const int newWidth, const int newHeight);
+    bool   _dragResizeActive{false};
+    double _dragStartX{0.}, _dragStartY{0.};
+    int    _dragStartW{0}, _dragStartH{0};
+    Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
 #endif
 
 protected:

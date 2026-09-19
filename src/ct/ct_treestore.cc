@@ -775,7 +775,7 @@ void CtTreeIter::pending_new_db_node()
     _pCtMainWin->get_ct_storage()->pending_new_db_node(get_node_id());
 }
 
-const char* CtTreeIter::get_oliveset_filepath() const
+const char* CtTreeIter::get_orangeark_filepath() const
 {
     CtStorageControl* pCtStorageControl = _pCtMainWin->get_ct_storage();
     return pCtStorageControl ? pCtStorageControl->get_file_path().c_str() : "";

@@ -28,6 +28,8 @@
 #include "ct_actions.h"
 #include "ct_storage_sqlite.h"
 #include "ct_logging.h"
+#include <cmath>
+#include <algorithm>
 
 const constexpr int MIN_SCROLL_HEIGHT = 47;
 
@@ -178,6 +180,11 @@ CtCodebox::CtCodebox(CtMainWin* pCtMainWin,
         _pCtMainWin->get_ct_menu().build_popup_menu(menu, CtMenu::POPUP_MENU_TYPE::Codebox);
     });
     _ctTextview.mm().signal_key_press_event().connect(sigc::mem_fun(*this, &CtCodebox::_on_key_press_event), false);
+    // OrangeArk: drag the bottom-right corner to resize the codebox
+    signal_button_press_event().connect(sigc::mem_fun(*this, &CtCodebox::_on_resize_button_press_event), false);
+    signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtCodebox::_on_resize_motion_notify_event), false);
+    signal_button_release_event().connect(sigc::mem_fun(*this, &CtCodebox::_on_resize_button_release_event), false);
+    add_events(Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
     _ctTextview.mm().signal_button_press_event().connect([this](GdkEventButton* event){
         if (not _pCtMainWin->user_active()) return false;
         _pCtMainWin->get_ct_actions()->curr_codebox_anchor = this;
@@ -381,6 +388,69 @@ void CtCodebox::set_width_height(int newWidth, int newHeight)
     apply_width_height(_pCtMainWin->get_text_view().mm().get_allocation().get_width());
 }
 
+#if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
+// OrangeArk: mouse drag-resize support for the codebox (bottom-right corner)
+bool CtCodebox::_on_resize_button_press_event(GdkEventButton* event)
+{
+    if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
+    const Gtk::Allocation allocation = get_allocation();
+    const bool inCorner = event->x >= allocation.get_width() - CB_RESIZE_ZONE
+                      and event->y >= allocation.get_height() - CB_RESIZE_ZONE;
+    if (not inCorner) return false;
+    if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
+    _pCtMainWin->get_ct_actions()->curr_codebox_anchor = this;
+    _pCtMainWin->get_ct_actions()->object_set_selection(this);
+    _dragResizeActive = true;
+    _dragStartX = event->x_root;
+    _dragStartY = event->y_root;
+    _dragStartW = get_allocation().get_width();
+    _dragStartH = get_allocation().get_height();
+    gtk_grab_add(GTK_WIDGET(gobj()));
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+        rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER));
+    }
+    return true; // do not propagate while resizing
+}
+
+bool CtCodebox::_on_resize_motion_notify_event(GdkEventMotion* event)
+{
+    if (_dragResizeActive) return true;
+    const Gtk::Allocation allocation = get_allocation();
+    const bool inCorner = event->x >= allocation.get_width() - CB_RESIZE_ZONE
+                      and event->y >= allocation.get_height() - CB_RESIZE_ZONE;
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+        if (inCorner) {
+            if (not _rHoverCursor) _rHoverCursor = Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER);
+            rWin->set_cursor(_rHoverCursor);
+        }
+        else {
+            rWin->set_cursor();
+        }
+    }
+    return false;
+}
+
+bool CtCodebox::_on_resize_button_release_event(GdkEventButton* event)
+{
+    if (not _dragResizeActive or 1 != event->button) return false;
+    _dragResizeActive = false;
+    gtk_grab_remove(GTK_WIDGET(gobj()));
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
+
+    const double dx = event->x_root - _dragStartX;
+    const double dy = event->y_root - _dragStartY;
+    int newW = std::max(static_cast<int>(CB_WIDTH_LIMIT_MIN), static_cast<int>(std::lround(_dragStartW + dx)));
+    int newH = std::max(static_cast<int>(CB_HEIGHT_LIMIT_MIN), static_cast<int>(std::lround(_dragStartH + dy)));
+    if (not get_width_in_pixels()) {
+        // switch to pixel width so the dragged size is applied as-is
+        set_width_in_pixels(true);
+    }
+    set_width_height(newW, newH);
+    _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    return true;
+}
+#endif /* GTKMM_MAJOR_VERSION < 4 */
+
 void CtCodebox::set_highlight_brackets(const bool highlightBrackets)
 {
     _highlightBrackets = highlightBrackets;
@@ -426,10 +496,10 @@ bool CtCodebox::_on_key_press_event(GdkEventKey* event)
     }
     if (GDK_KEY_Tab == event->keyval or GDK_KEY_ISO_Left_Tab == event->keyval) {
         auto text_buffer = _ctTextview.get_buffer();
+        const bool backward = event->state & Gdk::SHIFT_MASK;
         if (not text_buffer->get_has_selection()) {
             Gtk::TextIter iter_insert = text_buffer->get_insert()->get_iter();
             CtListInfo list_info = CtList{_pCtConfig, text_buffer}.get_paragraph_list_info(iter_insert);
-            bool backward = event->state & Gdk::SHIFT_MASK;
             if (list_info) {
                 if (backward and list_info.level) {
                     _ctTextview.list_change_level(iter_insert, list_info, false);
@@ -439,6 +509,69 @@ bool CtCodebox::_on_key_press_event(GdkEventKey* event)
                     _ctTextview.list_change_level(iter_insert, list_info, true);
                     return true;
                 }
+            }
+        }
+        // OrangeArk: Tab indents with spaces, Shift+Tab unindents (QQ/IDE-like behaviour)
+        {
+            static const Glib::ustring indentUnit{"    "};
+            auto _line_indent_remove = [&text_buffer](Gtk::TextIter lineStart) -> bool {
+                // remove up to 4 leading spaces on the line; returns true if changed
+                int removed = 0;
+                while (removed < 4 and lineStart.get_char() == ' ') {
+                    Gtk::TextIter next = lineStart;
+                    next.forward_char();
+                    text_buffer->erase(lineStart, next);
+                    removed++;
+                }
+                return removed > 0;
+            };
+            if (text_buffer->get_has_selection()) {
+                Gtk::TextIter selStart, selEnd;
+                text_buffer->get_selection_bounds(selStart, selEnd);
+                
+                Gtk::TextIter lineStart = selStart;
+                lineStart.set_line_offset(0);
+                const bool multiline = selStart.get_line() != selEnd.get_line();
+                text_buffer->begin_user_action();
+                if (multiline) {
+                    while (true) {
+                        if (not backward) {
+                            text_buffer->insert(lineStart, indentUnit);
+                        }
+                        else {
+                            _line_indent_remove(lineStart);
+                        }
+                        if (lineStart.is_end() or not lineStart.forward_line()) break;
+                        if (lineStart.get_line() > selEnd.get_line()) break;
+                    }
+                }
+                else {
+                    if (not backward) {
+                        text_buffer->insert(lineStart, indentUnit);
+                    }
+                    else {
+                        _line_indent_remove(lineStart);
+                    }
+                }
+                text_buffer->end_user_action();
+                return true;
+            }
+            else if (not backward) {
+                // no selection: insert indentation spaces at the cursor
+                text_buffer->begin_user_action();
+                text_buffer->insert_at_cursor(indentUnit);
+                text_buffer->end_user_action();
+                return true;
+            }
+            else {
+                // Shift+Tab with no selection: unindent the current line
+                Gtk::TextIter iter_insert = text_buffer->get_insert()->get_iter();
+                Gtk::TextIter lineStart = iter_insert;
+                lineStart.set_line_offset(0);
+                text_buffer->begin_user_action();
+                const bool changed = _line_indent_remove(lineStart);
+                text_buffer->end_user_action();
+                return changed;
             }
         }
     }

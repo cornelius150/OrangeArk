@@ -119,7 +119,7 @@ std::string CtCSV::table_to_csv(const CtStringTable& table)
 std::string CtMiscUtil::get_ct_language()
 {
     std::string retLang{CtConst::LANG_DEFAULT};
-    const fs::path langcfgFilepath = fs::get_oliveset_langcfg_filepath();
+    const fs::path langcfgFilepath = fs::get_orangeark_langcfg_filepath();
     if (fs::is_regular_file(langcfgFilepath)) {
         const std::string langTxt = str::trim(Glib::file_get_contents(langcfgFilepath.string()));
         if (vec::exists(CtConst::AVAILABLE_LANGS, langTxt)) {
@@ -1784,7 +1784,7 @@ Glib::ustring str::swapcase(const Glib::ustring& text)
 
 Glib::ustring str::replace_xml_body(const Glib::ustring& xml_content, const std::string& replacement_text)
 {
-    const auto xmlregex = "(.*?<oliveset>.*?<node.*?>).*(</node>.*?</oliveset>.*?)";
+    const auto xmlregex = "(.*?<orangeark>.*?<node.*?>).*(</node>.*?</orangeark>.*?)";
 #if GTKMM_MAJOR_VERSION >= 4
     static Glib::RefPtr<Glib::Regex> re_pattern = Glib::Regex::create(xmlregex, Glib::Regex::CompileFlags::DOTALL);
     const Glib::ustring replacement = std::string{"\\1"} + replacement_text + "\\2";

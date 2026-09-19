@@ -104,18 +104,18 @@ std::uintmax_t remove_all(const path& dir);
 */
 bool remove(const path& p);
 
-path get_oliveset_datadir();
-path get_oliveset_localedir();
-path get_oliveset_configdir();
-path get_oliveset_print_page_setup_cfg_filepath();
-path get_oliveset_langcfg_filepath();
-path get_oliveset_logcfg_filepath();
-std::optional<path> get_oliveset_logdir();
-path get_oliveset_config_filepath();
-path get_oliveset_config_language_specs_dirpath();
-path get_oliveset_config_styles_dirpath();
-path get_oliveset_config_icons_dirpath();
-path get_oliveset_config_user_style_filepath(const unsigned num);
+path get_orangeark_datadir();
+path get_orangeark_localedir();
+path get_orangeark_configdir();
+path get_orangeark_print_page_setup_cfg_filepath();
+path get_orangeark_langcfg_filepath();
+path get_orangeark_logcfg_filepath();
+std::optional<path> get_orangeark_logdir();
+path get_orangeark_config_filepath();
+path get_orangeark_config_language_specs_dirpath();
+path get_orangeark_config_styles_dirpath();
+path get_orangeark_config_icons_dirpath();
+path get_orangeark_config_user_style_filepath(const unsigned num);
 // Filepath is a url so not an fs::path
 std::string download_file(const std::string& filepath);
 

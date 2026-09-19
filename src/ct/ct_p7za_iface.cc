@@ -31,26 +31,26 @@
 #include <thread>
 
 extern int p7za_exec(int numArgs, char *args[]);
-extern void oliveset_register_7zaes();
-extern void oliveset_register_crc32();
-extern void oliveset_register_crc_table();
-extern void oliveset_register_crc64();
-extern void oliveset_register_7z();
-extern void oliveset_register_lzma2();
-extern void oliveset_register_lzma();
+extern void orangeark_register_7zaes();
+extern void orangeark_register_crc32();
+extern void orangeark_register_crc_table();
+extern void orangeark_register_crc64();
+extern void orangeark_register_7z();
+extern void orangeark_register_lzma2();
+extern void orangeark_register_lzma();
 
 static void register_codecs()
 {
     // to fix linker and remove '-whole-archive'
     // call dummy functions in 7z obj files
     // they could be called once, but make it simpler, call every time
-    oliveset_register_7zaes();
-    oliveset_register_crc32();
-    oliveset_register_crc_table();
-    oliveset_register_crc64();
-    oliveset_register_7z();
-    oliveset_register_lzma2();
-    oliveset_register_lzma();
+    orangeark_register_7zaes();
+    orangeark_register_crc32();
+    orangeark_register_crc_table();
+    orangeark_register_crc64();
+    orangeark_register_7z();
+    orangeark_register_lzma2();
+    orangeark_register_lzma();
 }
 
 int CtP7zaIface::p7za_extract(const gchar* input_path, const gchar* out_dir, const gchar* passwd, bool suppress_error)

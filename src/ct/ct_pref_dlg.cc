@@ -772,7 +772,7 @@ void CtPrefDlg::need_restart(RESTART_REASON reason, const gchar* msg /*= nullptr
 {
     if (!(_restartReasons & (int)reason)) {
         _restartReasons |= (int)reason;
-        CtDialogs::info_dialog(msg ? msg : _("This Change will have Effect Only After Restarting OliveSet."), *this);
+        CtDialogs::info_dialog(msg ? msg : _("This Change will have Effect Only After Restarting OrangeArk."), *this);
     }
 }
 

@@ -1,5 +1,5 @@
 #!/bin/sh
-# postinst script for oliveset
+# postinst script for orangeark
 
 update-desktop-database &
 

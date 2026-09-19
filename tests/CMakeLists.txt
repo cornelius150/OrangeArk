@@ -41,14 +41,14 @@ macro(package_add_test TESTNAME)
     target_link_libraries(${TESTNAME}
       ${GTEST_LIBRARIES}
       ${GMOCK_LIBRARIES}
-      oliveset_shared
+      orangeark_shared
     )
   else()
     target_link_libraries(${TESTNAME}
       gtest
       gmock
       gtest_main
-      oliveset_shared
+      orangeark_shared
     )
   endif()
 

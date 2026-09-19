@@ -82,7 +82,7 @@ jobs:
         if: ${{ github.event.inputs.sign_build == 'true' }}
         uses: actions/upload-artifact@v7
         with:
-          name: oliveset-portable-unsigned
+          name: orangeark-portable-unsigned
           path: build/*_win64_portable*/
           retention-days: 3
           overwrite: true
@@ -93,17 +93,17 @@ jobs:
         with:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
           organization-id: '${{ vars.SIGNPATH_ORGANIZATION_ID }}'
-          project-slug: 'oliveset'
+          project-slug: 'orangeark'
           signing-policy-slug: 'release-signing'
           github-artifact-id: '${{ steps.upload-portable-files.outputs.artifact-id }}'
           wait-for-completion: true
-          output-artifact-directory: oliveset-portable-signed
+          output-artifact-directory: orangeark-portable-signed
       - name: Replace Portable Files with Signed Copies
         if: ${{ github.event.inputs.sign_build == 'true' }}
         shell: powershell
         run: |
           $buildDir = Join-Path $env:GITHUB_WORKSPACE 'build'
-          $signedDir = Join-Path $env:GITHUB_WORKSPACE 'oliveset-portable-signed'
+          $signedDir = Join-Path $env:GITHUB_WORKSPACE 'orangeark-portable-signed'
           $portableDirs = Get-ChildItem $buildDir -Directory -Filter '*_win64_portable*'
           foreach ($portableDir in $portableDirs) {
             $signedPortableDir = Join-Path $signedDir $portableDir.Name
@@ -131,10 +131,10 @@ jobs:
         run: |
           $buildDir = Join-Path $env:GITHUB_WORKSPACE 'build'
           $portableDirs = @(Get-ChildItem $buildDir -Directory -Filter '*_win64_portable*')
-          $version = (Get-Item (Join-Path $buildDir 'oliveset.exe')).VersionInfo.FileVersion
+          $version = (Get-Item (Join-Path $buildDir 'orangeark.exe')).VersionInfo.FileVersion
           $expectedPortableDirs = @(
-            Join-Path $buildDir "oliveset_${version}_win64_portable"
-            Join-Path $buildDir "oliveset_${version}_win64_portable_nolatex"
+            Join-Path $buildDir "orangeark_${version}_win64_portable"
+            Join-Path $buildDir "orangeark_${version}_win64_portable_nolatex"
           )
           Write-Host "Build directory: $buildDir"
           Write-Host "Executable version: $version"
@@ -162,7 +162,7 @@ jobs:
           if (!(Test-Path $isccExe)) {
             throw "ISCC not found at $isccExe"
           }
-          & $isccExe "/Q" "scripts\oliveset_nolatex.iss"
+          & $isccExe "/Q" "scripts\orangeark_nolatex.iss"
       - name: Compile .ISS to .EXE Installer (FULL)
         shell: powershell
         run: |
@@ -170,14 +170,14 @@ jobs:
           if (!(Test-Path $isccExe)) {
             throw "ISCC not found at $isccExe"
           }
-          & $isccExe "/Q" "scripts\oliveset.iss"
+          & $isccExe "/Q" "scripts\orangeark.iss"
       - name: Upload Unsigned Artifact
         id: upload-unsigned-artifact
         uses: actions/upload-artifact@v7
         with:
-          name: oliveset-unsigned
+          name: orangeark-unsigned
           path: |
-            build/oliveset*_win64_setup*.exe
+            build/orangeark*_win64_setup*.exe
           retention-days: 3
           overwrite: true
           if-no-files-found: error
@@ -187,23 +187,23 @@ jobs:
         with:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
           organization-id: '${{ vars.SIGNPATH_ORGANIZATION_ID }}'
-          project-slug: 'oliveset'
+          project-slug: 'orangeark'
           signing-policy-slug: 'release-signing'
           github-artifact-id: '${{ steps.upload-unsigned-artifact.outputs.artifact-id }}'
           wait-for-completion: true
-          output-artifact-directory: oliveset-signed
+          output-artifact-directory: orangeark-signed
       - name: Stage Signed Release Files
         if: ${{ github.event.inputs.sign_build == 'true' }}
         run: |
-          rm -rf oliveset-final
-          mkdir -p oliveset-final
-          cp oliveset-signed/*.exe build/*_win64_portable.7z build/*_win64_portable_nolatex.7z oliveset-final/
+          rm -rf orangeark-final
+          mkdir -p orangeark-final
+          cp orangeark-signed/*.exe build/*_win64_portable.7z build/*_win64_portable_nolatex.7z orangeark-final/
       - name: Upload Signed Artifact
         if: ${{ github.event.inputs.sign_build == 'true' }}
         uses: actions/upload-artifact@v7
         with:
-          name: oliveset-signed
-          path: oliveset-final/*
+          name: orangeark-signed
+          path: orangeark-final/*
           retention-days: 3
           overwrite: true
           if-no-files-found: error

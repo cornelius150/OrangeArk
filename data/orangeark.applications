@@ -1,0 +1,7 @@
+orangeark
+	command=orangeark
+	name=OrangeArk
+	can_open_multiple_files=true
+	expects_uris=false
+	requires_terminal=false
+	mime_types=application/orangeark-ctd;application/orangeark-ctz;application/orangeark-ctb;application/orangeark-ctx;

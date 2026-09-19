@@ -97,4 +97,4 @@ STDMETHODIMP_(void) CCrcHasher::Final(Byte *digest) throw()
 
 REGISTER_HASHER(CCrcHasher, 0x1, "CRC32", 4)
 
-void oliveset_register_crc32() {}
+void orangeark_register_crc32() {}

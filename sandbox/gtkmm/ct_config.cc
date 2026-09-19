@@ -313,7 +313,7 @@ protected:
     Glib::ustring _m_current_group;
 };
 
-CTConfig::CTConfig() : _m_filepath(Glib::build_filename(Glib::get_user_config_dir(), "oliveset", "config.cfg")),
+CTConfig::CTConfig() : _m_filepath(Glib::build_filename(Glib::get_user_config_dir(), "orangeark", "config.cfg")),
                        _mp_key_file(nullptr)
 {
     _populate_with_defaults();

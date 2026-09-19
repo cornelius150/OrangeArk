@@ -216,7 +216,7 @@ struct CtStorageSelectArgs
     bool          showAutosaveOptions{false};
 };
 
-// Choose the OliveSet data storage type and protection
+// Choose the OrangeArk data storage type and protection
 bool choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelectArgs& args);
 
 bool node_prop_dialog(const Glib::ustring &title,

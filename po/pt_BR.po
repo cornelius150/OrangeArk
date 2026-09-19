@@ -5,7 +5,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OliveSet 0.30.1\n"
+"Project-Id-Version: OrangeArk 0.30.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-10 22:26+0100\n"
 "PO-Revision-Date: 2026-05-11 11:25-0300\n"
@@ -53,8 +53,8 @@ msgstr "Linhas Retiradas"
 msgid "No Text is Selected."
 msgstr "Nenhum texto foi selecionado."
 
-msgid "OliveSet File"
-msgstr "Arquivo OliveSet"
+msgid "OrangeArk File"
+msgstr "Arquivo OrangeArk"
 
 msgid ""
 "The file/folder in use cannot be overwritten!\n"
@@ -94,8 +94,8 @@ msgstr "A bandeja do sistema apareceu no painel?"
 msgid "Your system does not support the System Tray"
 msgstr "Seu sistema não suporta a bandeja do sistema"
 
-msgid "This Change will have Effect Only After Restarting OliveSet."
-msgstr "Esta mudança só terá efeito após reiniciar o OliveSet."
+msgid "This Change will have Effect Only After Restarting OrangeArk."
+msgstr "Esta mudança só terá efeito após reiniciar o OrangeArk."
 
 msgid "Replace in Current Node"
 msgstr "Substituir no Nó Atual"
@@ -313,8 +313,8 @@ msgstr "O tamanho dos ícones da barra de ferramentas já está no valor máximo
 msgid "The Size of the Toolbar Icons is already at the Minimum Value."
 msgstr "O tamanho dos ícones da barra de ferramentas já está no valor mínimo."
 
-msgid "Print OliveSet version"
-msgstr "Mostrar versão OliveSet"
+msgid "Print OrangeArk version"
+msgstr "Mostrar versão OrangeArk"
 
 msgid "Node name to focus"
 msgstr "Nome do nó para destacar"
@@ -355,8 +355,8 @@ msgstr "Copiar Código"
 msgid "Change CodeBox Properties"
 msgstr "Alterar as propriedades da caixa de código"
 
-msgid "Start in OliveSet"
-msgstr "Iniciar no OliveSet"
+msgid "Start in OrangeArk"
+msgstr "Iniciar no OrangeArk"
 
 msgid "New Document"
 msgstr "Novo Documento"
@@ -614,8 +614,8 @@ msgstr "Turco"
 msgid "Ukrainian"
 msgstr "Ucraniano"
 
-msgid "About OliveSet"
-msgstr "Sobre o OliveSet"
+msgid "About OrangeArk"
+msgstr "Sobre o OrangeArk"
 
 msgid "Tree Summary Information"
 msgstr "Informações resumidas da árvore"
@@ -1057,8 +1057,8 @@ msgstr "Baixando"
 msgid "The Path %s does Not Exist"
 msgstr "O caminho %s não existe"
 
-msgid "Open a Recent OliveSet Document"
-msgstr "Abrir um documento recente do OliveSet"
+msgid "Open a Recent OrangeArk Document"
+msgstr "Abrir um documento recente do OrangeArk"
 
 msgid "_Hide"
 msgstr "Ocultar"
@@ -1101,15 +1101,15 @@ msgid "Show Menubar:"
 msgstr "Exibir Barra de Menu:"
 
 #, c-format
-msgid "\"%s\" is Not a OliveSet File"
-msgstr "\"%s\" não é um arquivo do OliveSet"
+msgid "\"%s\" is Not a OrangeArk File"
+msgstr "\"%s\" não é um arquivo do OrangeArk"
 
 #, c-format
 msgid ""
-"Error Parsing the OliveSet Path:\n"
+"Error Parsing the OrangeArk Path:\n"
 "\"%s\""
 msgstr ""
-"Erro ao converter o caminho do OliveSet: \n"
+"Erro ao converter o caminho do OrangeArk: \n"
 "\"%s\""
 
 msgid "Do you want to Open the Last Backup?"
@@ -1125,8 +1125,8 @@ msgstr "Nenhum nó de nome '%s' encontrado."
 msgid "Temporary Files were Created and Opened with External Applications."
 msgstr "Arquivos temporários foram criados e abertos por aplicações externas."
 
-msgid "Quit the External Applications Before Quit OliveSet."
-msgstr "Saia das aplicações externas antes de sair do OliveSet."
+msgid "Quit the External Applications Before Quit OrangeArk."
+msgstr "Saia das aplicações externas antes de sair do OrangeArk."
 
 msgid "Did you Quit the External Applications?"
 msgstr "Você saiu das aplicações externas?"
@@ -1241,20 +1241,20 @@ msgstr "Arquivo"
 msgid "_New Instance..."
 msgstr "_Nova sessão..."
 
-msgid "Start a New Instance of OliveSet"
-msgstr "Iniciar uma nova sessão do OliveSet"
+msgid "Start a New Instance of OrangeArk"
+msgstr "Iniciar uma nova sessão do OrangeArk"
 
 msgid "_Open File..."
 msgstr "Abrir arquivo..."
 
-msgid "Open a OliveSet File"
-msgstr "Abrir um arquivo do OliveSet"
+msgid "Open a OrangeArk File"
+msgstr "Abrir um arquivo do OrangeArk"
 
 msgid "Open Fo_lder..."
 msgstr "Abrir pasta..."
 
-msgid "Open a OliveSet Folder"
-msgstr "Abrir uma pasta do OliveSet"
+msgid "Open a OrangeArk Folder"
+msgstr "Abrir uma pasta do OrangeArk"
 
 msgid "_Save"
 msgstr "_Salvar"
@@ -1310,11 +1310,11 @@ msgstr "Caminho do documento para a área de transferência"
 msgid "Copy Document Path to Clipboard"
 msgstr "Copiar caminho do documento para a área de transferência"
 
-msgid "E_xit OliveSet"
-msgstr "Sair do OliveSet"
+msgid "E_xit OrangeArk"
+msgstr "Sair do OrangeArk"
 
-msgid "Exit from OliveSet"
-msgstr "Sair do OliveSet"
+msgid "Exit from OrangeArk"
+msgstr "Sair do OrangeArk"
 
 msgid "Edit/Insert"
 msgstr "Editar/Inserir"
@@ -2278,17 +2278,17 @@ msgstr "Coloque a Manu Bar na Title Bar"
 msgid "Import"
 msgstr "Importar"
 
-msgid "From _OliveSet File"
-msgstr "De um arquivo _OliveSet"
+msgid "From _OrangeArk File"
+msgstr "De um arquivo _OrangeArk"
 
-msgid "Add Nodes of a OliveSet File to the Current Tree"
-msgstr "Adiciona nós de um arquivo OliveSet para a árvore atual"
+msgid "Add Nodes of a OrangeArk File to the Current Tree"
+msgstr "Adiciona nós de um arquivo OrangeArk para a árvore atual"
 
-msgid "From _OliveSet Folder"
-msgstr "De uma pasta _OliveSet"
+msgid "From _OrangeArk Folder"
+msgstr "De uma pasta _OrangeArk"
 
-msgid "Add Nodes of a OliveSet Folder to the Current Tree"
-msgstr "Adiciona nós de uma pasta OliveSet para a árvore atual"
+msgid "Add Nodes of a OrangeArk Folder to the Current Tree"
+msgstr "Adiciona nós de uma pasta OrangeArk para a árvore atual"
 
 msgid "From _Indented List File"
 msgstr "De um arquivo de lista _Indentado"
@@ -2407,17 +2407,17 @@ msgstr "Exportar para um arquivo de _Texto simples"
 msgid "Export to Plain Text"
 msgstr "Exporta para um arquivo de texto simples"
 
-msgid "_Export To OliveSet"
-msgstr "_Exportar para OliveSet"
+msgid "_Export To OrangeArk"
+msgstr "_Exportar para OrangeArk"
 
-msgid "Export To OliveSet File or Folder"
-msgstr "Exporta Arquivo ou Pasta para o OliveSet"
+msgid "Export To OrangeArk File or Folder"
+msgstr "Exporta Arquivo ou Pasta para o OrangeArk"
 
 msgid "Help"
 msgstr "Ajuda"
 
 msgid "_Check Newer Version"
-msgstr "Atualizar OliveSet"
+msgstr "Atualizar OrangeArk"
 
 msgid "Check for a Newer Version Available Online"
 msgstr "Verificar se há uma versão mais recente"
@@ -2425,32 +2425,32 @@ msgstr "Verificar se há uma versão mais recente"
 msgid "_Website"
 msgstr "Site"
 
-msgid "Visit OliveSet's Website"
-msgstr "Visite OliveSet site"
+msgid "Visit OrangeArk's Website"
+msgstr "Visite OrangeArk site"
 
 msgid "_Source Code"
 msgstr "Código-fonte"
 
-msgid "Browse OliveSet's Source Code Online"
-msgstr "Navegue pelo código-fonte do OliveSet on-line"
+msgid "Browse OrangeArk's Source Code Online"
+msgstr "Navegue pelo código-fonte do OrangeArk on-line"
 
 msgid "_Report a Bug"
 msgstr "Reporte um Bug"
 
-msgid "Report a Bug in OliveSet"
-msgstr "Reportar um Bug no OliveSet"
+msgid "Report a Bug in OrangeArk"
+msgstr "Reportar um Bug no OrangeArk"
 
 msgid "_Donate"
 msgstr "_Doar"
 
-msgid "Donate to Support OliveSet"
-msgstr "Faça uma doação para apoiar a OliveSet"
+msgid "Donate to Support OrangeArk"
+msgstr "Faça uma doação para apoiar a OrangeArk"
 
 msgid "Online _Manual"
 msgstr "_Manual Online"
 
-msgid "OliveSet's Online Manual"
-msgstr "Manual Online do OliveSet"
+msgid "OrangeArk's Online Manual"
+msgstr "Manual Online do OrangeArk"
 
 msgid "_About"
 msgstr "Sobre"
@@ -2590,11 +2590,11 @@ msgstr "Remover link"
 msgid "Dismiss the Link Associated to the Image"
 msgstr "Remover o link associado à imagem"
 
-msgid "Show/Hide _OliveSet"
-msgstr "Exibir/Ocultar _OliveSet"
+msgid "Show/Hide _OrangeArk"
+msgstr "Exibir/Ocultar _OrangeArk"
 
-msgid "Toggle Show/Hide OliveSet"
-msgstr "Alterna Exibir/Ocultar OliveSet"
+msgid "Toggle Show/Hide OrangeArk"
+msgstr "Alterna Exibir/Ocultar OrangeArk"
 
 msgid "Edit the Underlying Link"
 msgstr "Edita o link selecionado"
@@ -3157,11 +3157,11 @@ msgstr ""
 "%s reabrir falhou - arquivo ausente. Reconecte a unidade USB ou recurso "
 "compartilhado."
 
-msgid "OliveSet Hierarchical Note Taking"
-msgstr "OliveSet - Gerenciador de notas hierárquicas"
+msgid "OrangeArk Hierarchical Note Taking"
+msgstr "OrangeArk - Gerenciador de notas hierárquicas"
 
-msgid "_Exit OliveSet"
-msgstr "Sair do OliveSet"
+msgid "_Exit OrangeArk"
+msgstr "Sair do OrangeArk"
 
 msgid "HTML Document"
 msgstr "Documento HTML"
@@ -3197,21 +3197,21 @@ msgstr "Você realmente quer restaurar aos valores padrão?"
 #~ "Backup files are by default 3 in the same folder of the corrupted "
 #~ "document, with the same name plus trailing tildes (~, ~~, ~~~). Try first "
 #~ "the backup with one tilde: copy the file to another directory, remove the "
-#~ "trailing tilde and open with oliveset. If it still fails, try the one "
+#~ "trailing tilde and open with orangeark. If it still fails, try the one "
 #~ "with two tildes and if it still fails try the one with three tildes."
 #~ msgstr ""
 #~ "Os ficheiros de cópia de segurança estão, por padrão, na mesma pasta do "
 #~ "documento corrompido, com o mesmo nome mais tis à direita (~, ~~, ~~~). "
 #~ "Tente primeiro a cópia de segurança com um til: copie o arquivo para "
-#~ "outra pasta, remova o til à direita e abra com oliveset. Se ainda "
+#~ "outra pasta, remova o til à direita e abra com orangeark. Se ainda "
 #~ "falhar, tente aquele com dois tis e se ainda falhar, tente aquele com "
 #~ "três tis."
 
 #~ msgid "Application's Online Manual"
 #~ msgstr "Manual online do aplicativo"
 
-#~ msgid "OliveSet Document"
-#~ msgstr "Documentação do OliveSet"
+#~ msgid "OrangeArk Document"
+#~ msgstr "Documentação do OrangeArk"
 
 #~ msgid "Not Protected"
 #~ msgstr "Não protegido"
@@ -3240,8 +3240,8 @@ msgstr "Você realmente quer restaurar aos valores padrão?"
 #~ msgid "Add a node to the current tree using Pandoc"
 #~ msgstr "Adiciona nós de uma árvore atual usando o Pandoc"
 
-#~ msgid "The New Language will be Available Only After Restarting OliveSet"
-#~ msgstr "O novo idioma estará disponível somente após reiniciar o OliveSet"
+#~ msgid "The New Language will be Available Only After Restarting OrangeArk"
+#~ msgstr "O novo idioma estará disponível somente após reiniciar o OrangeArk"
 
 #~ msgid "click me"
 #~ msgstr "clique aqui"

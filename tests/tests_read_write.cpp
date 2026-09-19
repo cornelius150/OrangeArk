@@ -687,7 +687,7 @@ TEST_P(ReadWriteMultipleParametersTests, ChecksReadWrite)
     const std::string in_doc_path = std::get<0>(GetParam());
     const std::string out_doc_path = std::get<1>(GetParam());
     const bool test_save = std::get<2>(GetParam());
-    const std::vector<std::string> vec_args{"oliveset", in_doc_path, "-t", out_doc_path};
+    const std::vector<std::string> vec_args{"orangeark", in_doc_path, "-t", out_doc_path};
     gchar** pp_args = CtStrUtil::vector_to_array(vec_args);
     TestCtApp testCtApp{vec_args, test_save};
     testCtApp.run(vec_args.size(), pp_args);

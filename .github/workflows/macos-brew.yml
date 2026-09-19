@@ -46,14 +46,14 @@ jobs:
                 -DCMAKE_EXE_LINKER_FLAGS="-L${BREW_PREFIX}/lib"
           VERBOSE=1 cmake --build build
           mkdir -p artifact
-          cp build/oliveset artifact/
-          file artifact/oliveset > artifact/oliveset.file.txt
-          otool -L artifact/oliveset > artifact/oliveset.otool.txt
+          cp build/orangeark artifact/
+          file artifact/orangeark > artifact/orangeark.file.txt
+          otool -L artifact/orangeark > artifact/orangeark.otool.txt
           pip3 install --break-system-packages pyobjc-framework-Cocoa
-      - name: Upload oliveset artifact
+      - name: Upload orangeark artifact
         uses: actions/upload-artifact@v7
         with:
-          name: oliveset-macos-brew-${{ github.sha }}
+          name: orangeark-macos-brew-${{ github.sha }}
           path: |
             artifact/
           retention-days: 3

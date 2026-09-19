@@ -4,7 +4,7 @@ import argparse
 import os
 import subprocess
 
-APP_NAME = "oliveset"
+APP_NAME = "orangeark"
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 parser = argparse.ArgumentParser()

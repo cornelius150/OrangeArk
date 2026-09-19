@@ -228,7 +228,7 @@ Gtk::StatusIcon* CtStatusIcon::get()
     if (not _rStatusIcon) {
         _rStatusIcon = Gtk::StatusIcon::create(CtConst::APP_NAME);
         _rStatusIcon->set_title(CtConst::APP_NAME);
-        _rStatusIcon->set_tooltip_markup(_("OliveSet Hierarchical Note Taking"));
+        _rStatusIcon->set_tooltip_markup(_("OrangeArk Hierarchical Note Taking"));
         _rStatusIcon->signal_button_press_event().connect([&](GdkEventButton* event) {
             if (event->button == 1) { _ctApp.systray_show_hide_windows(); }
             return false;
@@ -237,14 +237,14 @@ Gtk::StatusIcon* CtStatusIcon::get()
             if (not _uStatusIconMenu) {
                 _uStatusIconMenu = std::make_unique<Gtk::Menu>();
                 auto item1 = CtMenu::create_menu_item(_uStatusIconMenu.get(),
-                                                      _("Show/Hide _OliveSet"),
+                                                      _("Show/Hide _OrangeArk"),
                                                       CtConst::APP_NAME,
-                                                      _pCtConfig->menusTooltips ? _("Toggle Show/Hide OliveSet") : nullptr);
+                                                      _pCtConfig->menusTooltips ? _("Toggle Show/Hide OrangeArk") : nullptr);
                 item1->signal_activate().connect([&](){ _ctApp.systray_show_hide_windows(); });
                 auto item2 = CtMenu::create_menu_item(_uStatusIconMenu.get(),
-                                                      _("_Exit OliveSet"),
+                                                      _("_Exit OrangeArk"),
                                                       "ct_quit-app",
-                                                      _pCtConfig->menusTooltips ? _("Exit from OliveSet") : nullptr);
+                                                      _pCtConfig->menusTooltips ? _("Exit from OrangeArk") : nullptr);
                 item2->signal_activate().connect([&](){ _ctApp.close_all_windows(false/*fromKillCallback*/); });
             }
             _uStatusIconMenu->show_all();

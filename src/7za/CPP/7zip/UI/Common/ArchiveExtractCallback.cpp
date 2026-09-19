@@ -955,12 +955,12 @@ if (askExtractMode == NArchive::NExtract::NAskMode::kExtract && !_testMode)
         {
           _extractedFolderPaths.Add(fullPathNew);
           _extractedFolderIndices.Add(index);
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
           SetDirTime(fullPathNew,
             (WriteCTime && _fi.CTimeDefined) ? &_fi.CTime : NULL,
             (WriteATime && _fi.ATimeDefined) ? &_fi.ATime : NULL,
             (WriteMTime && _fi.MTimeDefined) ? &_fi.MTime : (_arc->MTimeDefined ? &_arc->MTime : NULL));
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
         }
       }
     }
@@ -1402,10 +1402,10 @@ STDMETHODIMP CArchiveExtractCallback::SetOperationResult(Int32 opRes)
   else
     NumFiles++;
 
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
   if (!_stdOutMode && _extractMode && _fi.AttribDefined)
     SetFileAttrib(_diskFilePath, _fi.Attrib, &_delayedSymLinks);
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
 
   RINOK(_extractCallback2->SetOperationResult(opRes, BoolToInt(_encrypted)));
 
@@ -1520,13 +1520,13 @@ HRESULT CArchiveExtractCallback::SetDirsTimes()
     RINOK(GetTime(index, kpidATime, ATime, ATimeDefined));
     RINOK(GetTime(index, kpidMTime, MTime, MTimeDefined));
 
-#ifndef _LIB_FOR_OLIVESET
+#ifndef _LIB_FOR_ORANGEARK
     // printf("\n%S", _extractedFolderPaths[pairIndex]);
     SetDirTime(_extractedFolderPaths[pairIndex],
       (WriteCTime && CTimeDefined) ? &CTime : NULL,
       (WriteATime && ATimeDefined) ? &ATime : NULL,
       (WriteMTime && MTimeDefined) ? &MTime : (_arc->MTimeDefined ? &_arc->MTime : NULL));
-#endif // _LIB_FOR_OLIVESET
+#endif // _LIB_FOR_ORANGEARK
   }
 
   for (int i = 0; i != _delayedSymLinks.Size(); ++i)

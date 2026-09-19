@@ -1,0 +1,10 @@
+application/orangeark-md
+	ext: md
+application/orangeark-ctd
+	ext: ctd
+application/orangeark-ctz
+	ext: ctz
+application/orangeark-ctb
+	ext: ctb
+application/orangeark-ctx
+	ext: ctx

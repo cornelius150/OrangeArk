@@ -6,4 +6,4 @@
 
 struct CCRCTableInit { CCRCTableInit() { CrcGenerateTable(); } } g_CRCTableInit;
 
-void oliveset_register_crc_table() {};
+void orangeark_register_crc_table() {};
