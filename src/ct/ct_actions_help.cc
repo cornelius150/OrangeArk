@@ -26,27 +26,18 @@
 
 void CtActions::online_help()
 {
-    fs::open_weblink("https://giuspen.net/orangearkmanual/");
-}
-
-void CtActions::online_home()
-{
-    fs::open_weblink("https://www.giuspen.net/orangeark/");
-}
-
-void CtActions::online_code()
-{
-    fs::open_weblink("https://github.com/giuspen/orangeark");
-}
-
-void CtActions::online_issues()
-{
-    fs::open_weblink("https://github.com/giuspen/orangeark/issues");
-}
-
-void CtActions::online_donate()
-{
-    fs::open_weblink("https://www.giuspen.net/supporters/");
+    // OrangeArk: show a local usage guide instead of an online manual
+    const Glib::ustring tips =
+        "<b>OrangeArk 橙子笔记 使用说明</b>\n\n"
+        "• 左侧树面板：右键可新建/整理节点，节点支持层级结构\n"
+        "• 保存：文档保存为 Markdown（.md）文件，其他编辑器也能打开；Ctrl+S 快速保存\n"
+        "• 截图：工具栏相机按钮（Shift+Alt+X），拖框选区后弹出工具栏，"
+        "可用画笔/箭头/矩形/椭圆/文字标注，可撤销/重做，可保存 PNG；"
+        "确认后自动复制到剪贴板并插入笔记\n"
+        "• 调整大小：图片/表格/代码框右下角有拖拽手柄，按住拖动即可调整大小\n"
+        "• 缩进：编辑框内 Tab 缩进、Shift+Tab 反缩进\n"
+        "• 书签：右键节点可添加/移除书签，书签显示在顶部菜单";
+    CtDialogs::info_dialog(tips, *_pCtMainWin);
 }
 
 void CtActions::dialog_about()

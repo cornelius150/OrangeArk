@@ -71,82 +71,47 @@ void CtActions::file_vacuum()
     _file_save(true);
 }
 
-// Save the file providing a new name
+// Save the file providing a new name (OrangeArk: documents are always saved as Markdown .md)
 void CtActions::file_save_as()
 {
     if (not _is_tree_not_empty_or_error()) {
         return;
     }
-    CtDialogs::CtStorageSelectArgs storageSelArgs{};
-    storageSelArgs.showAutosaveOptions = true;
     const fs::path& currDocFilepath = _pCtMainWin->get_ct_storage()->get_file_path();
-    if (not currDocFilepath.empty()) {
-        storageSelArgs.ctDocType = fs::get_doc_type_from_file_ext(currDocFilepath);
-        storageSelArgs.ctDocEncrypt = fs::get_doc_encrypt_from_file_ext(currDocFilepath);
-        storageSelArgs.ctDocMd = CtConst::CTDOC_MD == currDocFilepath.extension();
-    }
-    if (not CtDialogs::choose_data_storage_dialog(_pCtMainWin, storageSelArgs)) {
-        return;
-    }
     CtDialogs::CtFileSelectArgs fileSelArgs{};
     if (not currDocFilepath.empty()) {
         fileSelArgs.curr_folder = currDocFilepath.parent_path();
-        fs::path suggested_basename = currDocFilepath.filename();
-        fileSelArgs.curr_file_name = suggested_basename.stem() + (storageSelArgs.ctDocMd ? CtConst::CTDOC_MD : CtMiscUtil::get_doc_extension(storageSelArgs.ctDocType, storageSelArgs.ctDocEncrypt));
+        fileSelArgs.curr_file_name = currDocFilepath.stem() + CtConst::CTDOC_MD;
     }
-    std::string filepath;
-    do {
-        if (CtDocType::MultiFile == storageSelArgs.ctDocType) {
-            filepath = CtDialogs::folder_save_as_dialog(_pCtMainWin, fileSelArgs);
-        }
-        else {
-            fileSelArgs.filter_name = storageSelArgs.ctDocMd ? _("Markdown File") : _("OrangeArk File");
-            std::string fileExtension = storageSelArgs.ctDocMd ? CtConst::CTDOC_MD : CtMiscUtil::get_doc_extension(storageSelArgs.ctDocType, storageSelArgs.ctDocEncrypt);
-            fileSelArgs.filter_pattern.push_back(std::string{CtConst::CHAR_STAR}+fileExtension);
-            fileSelArgs.overwrite_confirmation = false; // as not supported for the multifile, we do in both cases elsewhere
-            filepath = CtDialogs::file_save_as_dialog(_pCtMainWin, fileSelArgs);
-        }
-        if (filepath.empty()) {
+    else {
+        fileSelArgs.curr_folder = _pCtMainWin->get_ct_storage()->get_file_dir();
+        fileSelArgs.curr_file_name = std::string{_("Untitled")} + CtConst::CTDOC_MD;
+    }
+    fileSelArgs.filter_name = _("Markdown File");
+    fileSelArgs.filter_pattern.push_back(std::string{CtConst::CHAR_STAR} + CtConst::CTDOC_MD);
+    fileSelArgs.overwrite_confirmation = false;
+
+    std::string filepath = CtDialogs::file_save_as_dialog(_pCtMainWin, fileSelArgs);
+    if (filepath.empty()) {
+        return;
+    }
+    // OrangeArk: make sure the chosen path ends with the markdown extension
+    if (not Glib::str_has_suffix(filepath, CtConst::CTDOC_MD)) {
+        filepath += CtConst::CTDOC_MD;
+    }
+    if (currDocFilepath == filepath) {
+        CtDialogs::warning_dialog(_("The file/folder in use cannot be overwritten!\nPlease use a different name or location."), *_pCtMainWin);
+        return;
+    }
+    if (Glib::file_test(filepath, Glib::FILE_TEST_EXISTS)) {
+        const std::string message = str::format(_("A file '%s' already exists in '%s'.\n<b>Do you want to replace it?</b>"),
+            str::xml_escape(Glib::path_get_basename(filepath)), str::xml_escape(Glib::path_get_dirname(filepath)));
+        if (not CtDialogs::question_dialog(message, *_pCtMainWin)) {
             return;
         }
-        if (storageSelArgs.ctDocMd) {
-            // OrangeArk: make sure the chosen path ends with the markdown extension
-            if (not Glib::str_has_suffix(filepath, CtConst::CTDOC_MD)) {
-                filepath += CtConst::CTDOC_MD;
-            }
-        }
-        else {
-            CtMiscUtil::filepath_extension_fix(storageSelArgs.ctDocType, storageSelArgs.ctDocEncrypt, filepath);
-        }
-        if (currDocFilepath == filepath) {
-            CtDialogs::warning_dialog(_("The file/folder in use cannot be overwritten!\nPlease use a different name or location."), *_pCtMainWin);
-        }
+        (void)fs::remove_all(filepath);
     }
-    while (currDocFilepath == filepath);
-    if (Glib::file_test(filepath, Glib::FILE_TEST_EXISTS)) {
-        // overwrite confirmation here
-        std::string message;
-        if (Glib::file_test(filepath, Glib::FILE_TEST_IS_DIR)) {
-            // if the output is multifile and the folder is empty, then we are good, otherwise we need to ask
-            if (CtDocType::MultiFile != storageSelArgs.ctDocType or
-                fs::get_dir_entries(filepath).size())
-            {
-                message = str::format(_("A folder '%s' already exists in '%s'.\n<b>Do you want to replace it?</b>"),
-                    str::xml_escape(Glib::path_get_basename(filepath)), str::xml_escape(Glib::path_get_dirname(filepath)));
-            }
-        }
-        else {
-            message = str::format(_("A file '%s' already exists in '%s'.\n<b>Do you want to replace it?</b>"),
-                str::xml_escape(Glib::path_get_basename(filepath)), str::xml_escape(Glib::path_get_dirname(filepath)));
-        }
-        if (message.size()) {
-            if (not CtDialogs::question_dialog(message, *_pCtMainWin)) {
-                return;
-            }
-            (void)fs::remove_all(filepath);
-        }
-    }
-    _pCtMainWin->file_save_as(filepath, storageSelArgs.ctDocType, storageSelArgs.password);
+    _pCtMainWin->file_save_as(filepath, CtDocType::XML, "");
 }
 
 void CtActions::folder_open()

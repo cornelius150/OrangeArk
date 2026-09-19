@@ -708,6 +708,13 @@ Gtk::Menu* CtMenu::build_bookmarks_menu(std::list<std::tuple<gint64, Glib::ustri
     }
     _add_menu_item(pMenu, find_action("handle_bookmarks"));
     _add_menu_separator(pMenu);
+    if (bookmarks.empty()) {
+        // OrangeArk: show a placeholder so the menu is never blank
+        auto* pEmptyItem = Gtk::manage(new Gtk::MenuItem("（暂无书签：右键节点可添加书签）"));
+        pEmptyItem->set_sensitive(false);
+        pEmptyItem->show_all();
+        pMenu->append(*pEmptyItem);
+    }
     for (const auto& bookmark : bookmarks) {
         const gint64& node_id = std::get<0>(bookmark);
         const Glib::ustring& node_name = std::get<1>(bookmark);

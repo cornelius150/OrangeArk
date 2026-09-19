@@ -316,6 +316,7 @@ CtMainWin::CtMainWin(bool                            no_gui,
     config_apply();
 
     menu_set_items_recent_documents();
+    menu_set_bookmark_menu_items();
     #if GTKMM_MAJOR_VERSION >= 4
     if (auto a = _uCtMenu->find_action("ct_vacuum")) {
         if (a->signal_set_visible) {

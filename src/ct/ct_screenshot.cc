@@ -1,5 +1,5 @@
 /*
- * ct_screenshot.cc - OrangeArk QQ-style region screenshot
+ * ct_screenshot.cc - OrangeArk QQ-style region screenshot with annotation toolbar
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -9,13 +9,27 @@
 #include "ct_screenshot.h"
 #include "ct_main_win.h"
 #include "ct_logging.h"
+#include <gdkmm/general.h>
 #include <cairo.h>
 #include <cmath>
+#include <vector>
 
 namespace CtScreenshot
 {
 
-// The full-screen overlay where the user drags a rectangle to select the region
+// One annotation drawn by the user on top of the selection
+struct CtAnnoShape
+{
+    enum class Type { Pen, Arrow, Rect, Ellipse, Text };
+    Type                  type{Type::Pen};
+    std::vector<Gdk::Point> pts;          // for Pen
+    int                   x1{0}, y1{0}, x2{0}, y2{0}; // bounding for others
+    Glib::ustring         text;
+    int                   fontSize{16};
+};
+
+// The full-screen overlay where the user drags a rectangle to select the region,
+// then annotates it QQ-style with a floating toolbar
 class CtScreenshotSelector : public Gtk::Window
 {
 public:
@@ -29,14 +43,30 @@ public:
         set_type_hint(Gdk::WindowTypeHint::WINDOW_TYPE_HINT_NORMAL);
         set_default_size(_rShot->get_width(), _rShot->get_height());
 
-        signal_draw().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_own_draw), false);
-        signal_button_press_event().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_button_press), false);
-        signal_button_release_event().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_button_release), false);
-        signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_motion_notify), false);
-        signal_key_press_event().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_key_press), false);
+        _pArea = Gtk::manage(new Gtk::DrawingArea());
+        _pArea->set_size_request(_rShot->get_width(), _rShot->get_height());
+        _pArea->signal_draw().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_own_draw), false);
+        _pArea->signal_button_press_event().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_button_press), false);
+        _pArea->signal_button_release_event().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_button_release), false);
+        _pArea->signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_motion_notify), false);
+        _pArea->add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
 
-        add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK
-                 | Gdk::POINTER_MOTION_MASK | Gdk::KEY_PRESS_MASK);
+        signal_key_press_event().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_key_press), false);
+        add_events(Gdk::KEY_PRESS_MASK);
+
+        // annotation toolbar (QQ style)
+        _build_toolbar();
+        _pEntry = Gtk::manage(new Gtk::Entry());
+        _pEntry->set_no_show_all(true);
+        _pEntry->signal_activate().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_text_commit));
+        _pEntry->signal_key_press_event().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_entry_key_press), false);
+
+        // the fixed container lets us position area/toolbar/entry freely
+        _pFixed = Gtk::manage(new Gtk::Fixed());
+        _pFixed->put(*_pArea, 0, 0);
+        _pFixed->put(*_pToolbar, 10, 10);
+        _pFixed->put(*_pEntry, 0, 0);
+        add(*_pFixed);
 
         _rCursorCross = Gdk::Cursor::create(Gdk::CursorType::CROSSHAIR);
     }
@@ -47,13 +77,183 @@ public:
     {
         fullscreen();
         show_all();
-        if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+        _pEntry->hide();
+        _pToolbar->hide();
+        if (Glib::RefPtr<Gdk::Window> rWin = _pArea->get_window()) {
             rWin->set_cursor(_rCursorCross);
         }
-        grab_focus();
+        _pArea->grab_focus();
     }
 
 protected:
+    void _build_toolbar()
+    {
+        _pToolbar = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 2});
+        _pToolbar->get_style_context()->add_class("toolbar");
+        _pToolbar->set_margin_top(4);
+        _pToolbar->set_margin_bottom(4);
+        _pToolbar->set_margin_start(4);
+        _pToolbar->set_margin_end(4);
+
+        struct ToolDef { const char* label; const char* tip; };
+        const std::vector<ToolDef> tools = {
+            {"画笔", "自由绘制"}, {"箭头", "绘制箭头"}, {"矩形", "绘制矩形"},
+            {"椭圆", "绘制椭圆"}, {"文字", "插入文字"},
+            {"撤销", "撤销上一个标注"}, {"重做", "重做标注"},
+        };
+        for (const ToolDef& td : tools) {
+            auto* pBtn = Gtk::manage(new Gtk::Button(td.label));
+            pBtn->set_tooltip_text(td.tip);
+            pBtn->signal_clicked().connect([this, td]() { _on_tool_clicked(td.label); });
+            _pToolbar->pack_start(*pBtn, Gtk::PACK_SHRINK);
+        }
+        auto* pSep = Gtk::manage(new Gtk::Separator{Gtk::ORIENTATION_VERTICAL});
+        _pToolbar->pack_start(*pSep, Gtk::PACK_SHRINK);
+
+        auto* pBtnSave = Gtk::manage(new Gtk::Button("保存"));
+        pBtnSave->set_tooltip_text("把截图保存为 PNG 文件");
+        pBtnSave->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_save_clicked));
+        _pToolbar->pack_start(*pBtnSave, Gtk::PACK_SHRINK);
+
+        auto* pBtnCancel = Gtk::manage(new Gtk::Button("取消"));
+        pBtnCancel->set_tooltip_text("放弃本次截图");
+        pBtnCancel->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_cancel_clicked));
+        _pToolbar->pack_start(*pBtnCancel, Gtk::PACK_SHRINK);
+
+        auto* pBtnOk = Gtk::manage(new Gtk::Button("✓ 确认"));
+        pBtnOk->set_tooltip_text("复制到剪贴板并插入笔记");
+        pBtnOk->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_confirm));
+        _pToolbar->pack_start(*pBtnOk, Gtk::PACK_SHRINK);
+    }
+
+    void _on_tool_clicked(const char* label)
+    {
+        const std::string lab{label};
+        if ("撤销" == lab) {
+            if (not _shapes.empty()) {
+                _redoShapes.push_back(_shapes.back());
+                _shapes.pop_back();
+                _pArea->queue_draw();
+            }
+            return;
+        }
+        if ("重做" == lab) {
+            if (not _redoShapes.empty()) {
+                _shapes.push_back(_redoShapes.back());
+                _redoShapes.pop_back();
+                _pArea->queue_draw();
+            }
+            return;
+        }
+        if ("画笔" == lab)    { _tool = Tool::Pen; }
+        if ("箭头" == lab)    { _tool = Tool::Arrow; }
+        if ("矩形" == lab)    { _tool = Tool::Rect; }
+        if ("椭圆" == lab)    { _tool = Tool::Ellipse; }
+        if ("文字" == lab)    { _tool = Tool::Text; }
+        _pArea->grab_focus();
+    }
+
+    void _on_save_clicked()
+    {
+        if (_sel_w() < 3 or _sel_h() < 3) return;
+        Gtk::FileChooserDialog dialog(*this, "保存截图", Gtk::FILE_CHOOSER_ACTION_SAVE);
+        dialog.add_button("取消", Gtk::RESPONSE_CANCEL);
+        dialog.add_button("保存", Gtk::RESPONSE_ACCEPT);
+        dialog.set_current_name("screenshot.png");
+        dialog.set_do_overwrite_confirmation();
+        Glib::RefPtr<Gtk::FileFilter> rFilter = Gtk::FileFilter::create();
+        rFilter->set_name("PNG 图片");
+        rFilter->add_pattern("*.png");
+        dialog.add_filter(rFilter);
+        if (Gtk::RESPONSE_ACCEPT != dialog.run()) return;
+        const std::string filename = dialog.get_filename();
+        dialog.hide();
+        Glib::RefPtr<Gdk::Pixbuf> rSnap = _compose_result();
+        if (rSnap) {
+            try { rSnap->save(filename, "png"); }
+            catch (const Glib::Error& e) { spdlog::warn("CtScreenshot: save failed: {}", e.what().c_str()); }
+        }
+    }
+
+    void _on_cancel_clicked()
+    {
+        _rResult.reset();
+        hide();
+    }
+
+    // -- geometry -------------------------------------------------------------
+    int _sel_x() const { return std::min(_selX1, _selX2); }
+    int _sel_y() const { return std::min(_selY1, _selY2); }
+    int _sel_w() const { return std::abs(_selX2 - _selX1); }
+    int _sel_h() const { return std::abs(_selY2 - _selY1); }
+    bool _in_selection(double x, double y) const
+    {
+        return x >= _sel_x() and x <= _sel_x() + _sel_w()
+           and y >= _sel_y() and y <= _sel_y() + _sel_h();
+    }
+
+    // -- drawing --------------------------------------------------------------
+    void _draw_shapes(const Cairo::RefPtr<Cairo::Context>& cr, const double dx, const double dy) const
+    {
+        cr->set_source_rgba(1.0, 0.13, 0.1, 0.95); // QQ-like red pen
+        for (const CtAnnoShape& shape : _shapes) {
+            cr->set_line_width(3.0);
+            cr->set_line_cap(Cairo::LINE_CAP_ROUND);
+            cr->set_line_join(Cairo::LINE_JOIN_ROUND);
+            switch (shape.type) {
+                case CtAnnoShape::Type::Pen: {
+                    bool first = true;
+                    for (const Gdk::Point& pt : shape.pts) {
+                        if (first) { cr->move_to(pt.get_x() + dx, pt.get_y() + dy); first = false; }
+                        else       { cr->line_to(pt.get_x() + dx, pt.get_y() + dy); }
+                    }
+                    cr->stroke();
+                    break;
+                }
+                case CtAnnoShape::Type::Arrow: {
+                    const double x1 = shape.x1 + dx, y1 = shape.y1 + dy;
+                    const double x2 = shape.x2 + dx, y2 = shape.y2 + dy;
+                    cr->move_to(x1, y1);
+                    cr->line_to(x2, y2);
+                    cr->stroke();
+                    const double angle = std::atan2(y2 - y1, x2 - x1);
+                    const double head = 14.0;
+                    cr->move_to(x2, y2);
+                    cr->line_to(x2 - head * std::cos(angle - 0.45), y2 - head * std::sin(angle - 0.45));
+                    cr->line_to(x2 - head * std::cos(angle + 0.45), y2 - head * std::sin(angle + 0.45));
+                    cr->close_path();
+                    cr->fill();
+                    break;
+                }
+                case CtAnnoShape::Type::Rect: {
+                    cr->rectangle(std::min(shape.x1, shape.x2) + dx, std::min(shape.y1, shape.y2) + dy,
+                                  std::abs(shape.x2 - shape.x1), std::abs(shape.y2 - shape.y1));
+                    cr->stroke();
+                    break;
+                }
+                case CtAnnoShape::Type::Ellipse: {
+                    const double rx = std::abs(shape.x2 - shape.x1) / 2.0;
+                    const double ry = std::abs(shape.y2 - shape.y1) / 2.0;
+                    cr->save();
+                    cr->translate(std::min(shape.x1, shape.x2) + dx + rx, std::min(shape.y1, shape.y2) + dy + ry);
+                    cr->scale(rx, ry);
+                    cr->arc(0.0, 0.0, 1.0, 0.0, 2.0 * M_PI);
+                    cr->restore();
+                    cr->stroke();
+                    break;
+                }
+                case CtAnnoShape::Type::Text: {
+                    cr->select_font_face("Sans", Cairo::FontSlant::FONT_SLANT_NORMAL, Cairo::FontWeight::FONT_WEIGHT_NORMAL);
+                    cr->set_font_size(shape.fontSize);
+                    cr->move_to(shape.x1 + dx, shape.y1 + dy);
+                    cr->show_text(shape.text.c_str());
+                    cr->stroke();
+                    break;
+                }
+            }
+        }
+    }
+
     bool _on_own_draw(const Cairo::RefPtr<Cairo::Context>& cr)
     {
         if (not _rShot) return true;
@@ -63,16 +263,14 @@ protected:
         Gdk::Cairo::set_source_pixbuf(cr, _rShot, 0.0, 0.0);
         cr->paint();
 
-        // normalize selection rectangle
-        const int selX = std::min(_selX1, _selX2);
-        const int selY = std::min(_selY1, _selY2);
-        const int selW = std::abs(_selX2 - _selX1);
-        const int selH = std::abs(_selY2 - _selY1);
+        const int selX = _sel_x();
+        const int selY = _sel_y();
+        const int selW = _sel_w();
+        const int selH = _sel_h();
 
         // darken everything outside the selection (QQ-like effect)
         if (selW > 0 and selH > 0) {
             cr->set_source_rgba(0.0, 0.0, 0.0, 0.45);
-            // top / bottom / left / right strips
             cr->rectangle(0.0, 0.0, scrW, selY);
             cr->rectangle(0.0, selY + selH, scrW, scrH - selY - selH);
             cr->rectangle(0.0, selY, selX, selH);
@@ -82,6 +280,13 @@ protected:
             Gdk::Cairo::set_source_pixbuf(cr, _rShot, 0.0, 0.0);
             cr->rectangle(selX, selY, selW, selH);
             cr->fill();
+
+            // annotations clipped to the selection
+            cr->save();
+            cr->rectangle(selX, selY, selW, selH);
+            cr->clip();
+            _draw_shapes(cr, 0.0, 0.0);
+            cr->restore();
 
             // orange selection border (QQ style)
             cr->set_source_rgba(1.0, 0.55, 0.1, 1.0);
@@ -108,8 +313,9 @@ protected:
         }
 
         // bottom hint banner
-        const Glib::ustring banner
-            = _("Drag to select a region") + Glib::ustring{"   |   "}
+        const Glib::ustring banner = _toolbar_shown
+            ? Glib::ustring{"选择工具进行标注   |   Enter 确认   |   Esc 取消"}
+            : _("Drag to select a region") + Glib::ustring{"   |   "}
             + _("Enter or double-click: confirm") + "   |   " + _("Esc: cancel");
         cr->select_font_face("Sans", Cairo::FontSlant::FONT_SLANT_NORMAL, Cairo::FontWeight::FONT_WEIGHT_NORMAL);
         cr->set_font_size(14.0);
@@ -127,6 +333,7 @@ protected:
         return true;
     }
 
+    // -- mouse / keyboard ------------------------------------------------------
     bool _on_button_press(GdkEventButton* event)
     {
         if (1 != event->button) return false;
@@ -134,35 +341,158 @@ protected:
             _confirm();
             return true;
         }
+        if (_toolbar_shown and _in_selection(event->x, event->y)) {
+            if (Tool::Text == _tool) {
+                _show_text_entry(static_cast<int>(event->x), static_cast<int>(event->y));
+                return true;
+            }
+            // start a new annotation
+            _annotating = true;
+            _currShape = CtAnnoShape{};
+            switch (_tool) {
+                case Tool::Pen:    _currShape.type = CtAnnoShape::Type::Pen; break;
+                case Tool::Arrow:  _currShape.type = CtAnnoShape::Type::Arrow; break;
+                case Tool::Rect:   _currShape.type = CtAnnoShape::Type::Rect; break;
+                case Tool::Ellipse:_currShape.type = CtAnnoShape::Type::Ellipse; break;
+                default: _annotating = false; return true;
+            }
+            _currShape.x1 = _currShape.x2 = static_cast<int>(event->x);
+            _currShape.y1 = _currShape.y2 = static_cast<int>(event->y);
+            _currShape.fontSize = std::max(16, _sel_h() / 15);
+            if (Tool::Pen == _tool) {
+                _currShape.pts.push_back(Gdk::Point(_currShape.x1, _currShape.y1));
+            }
+            _pArea->queue_draw();
+            return true;
+        }
         // start (re)selecting
         _selecting = true;
+        _toolbar_shown = false;
+        _pToolbar->hide();
+        _shapes.clear();
+        _redoShapes.clear();
         _selX1 = _selX2 = static_cast<int>(event->x);
         _selY1 = _selY2 = static_cast<int>(event->y);
-        queue_draw();
+        _pArea->queue_draw();
         return true;
     }
 
     bool _on_motion_notify(GdkEventMotion* event)
     {
-        if (not _selecting) return false;
-        _selX2 = static_cast<int>(event->x);
-        _selY2 = static_cast<int>(event->y);
-        queue_draw();
-        return true;
+        if (_selecting) {
+            _selX2 = static_cast<int>(event->x);
+            _selY2 = static_cast<int>(event->y);
+            _pArea->queue_draw();
+            return true;
+        }
+        if (_annotating) {
+            _currShape.x2 = static_cast<int>(event->x);
+            _currShape.y2 = static_cast<int>(event->y);
+            if (CtAnnoShape::Type::Pen == _currShape.type) {
+                _currShape.pts.push_back(Gdk::Point(_currShape.x2, _currShape.y2));
+            }
+            // live preview: temporarily draw the in-progress shape
+            _shapes.push_back(_currShape);
+            _pArea->queue_draw();
+            _shapes.pop_back();
+            return true;
+        }
+        return false;
     }
 
     bool _on_button_release(GdkEventButton* event)
     {
-        if (not _selecting or 1 != event->button) return false;
-        _selecting = false;
-        _selX2 = static_cast<int>(event->x);
-        _selY2 = static_cast<int>(event->y);
-        queue_draw();
-        return true;
+        if (1 != event->button) return false;
+        if (_annotating) {
+            _annotating = false;
+            _currShape.x2 = static_cast<int>(event->x);
+            _currShape.y2 = static_cast<int>(event->y);
+            const bool tiny = CtAnnoShape::Type::Pen != _currShape.type
+                          and std::abs(_currShape.x2 - _currShape.x1) < 3
+                          and std::abs(_currShape.y2 - _currShape.y1) < 3;
+            if (not tiny and CtAnnoShape::Type::Pen != _currShape.type) {
+                _shapes.push_back(_currShape);
+                _redoShapes.clear();
+            }
+            else if (CtAnnoShape::Type::Pen == _currShape.type and _currShape.pts.size() > 1) {
+                _shapes.push_back(_currShape);
+                _redoShapes.clear();
+            }
+            _pArea->queue_draw();
+            return true;
+        }
+        if (_selecting) {
+            _selecting = false;
+            _selX2 = static_cast<int>(event->x);
+            _selY2 = static_cast<int>(event->y);
+            _pArea->queue_draw();
+            if (_sel_w() >= 3 and _sel_h() >= 3) {
+                _show_toolbar();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    void _show_toolbar()
+    {
+        _toolbar_shown = true;
+        _pToolbar->show_all();
+        // position the toolbar below the right edge of the selection (QQ style)
+        _pToolbar->get_allocation(); // force size request computation on show
+        int tbW = 560, tbH = 40;
+        _pToolbar->get_preferred_width(tbW, tbW);
+        int tbHmin = 0;
+        _pToolbar->get_preferred_height(tbHmin, tbH);
+        const int scrH = _rShot->get_height();
+        int tx = _sel_x() + _sel_w() - tbW;
+        int ty = _sel_y() + _sel_h() + 10;
+        if (tx < 4) tx = _sel_x();
+        if (ty + tbH > scrH - 30) ty = _sel_y() - tbH - 10;
+        if (ty < 4) ty = std::max(4, scrH - tbH - 30);
+        _pFixed->move(*_pToolbar, tx, ty);
+    }
+
+    void _show_text_entry(int x, int y)
+    {
+        _textAnnoX = x;
+        _textAnnoY = y;
+        _pFixed->move(*_pEntry, x, y);
+        _pEntry->set_text("");
+        _pEntry->show();
+        _pEntry->grab_focus();
+    }
+
+    void _on_text_commit()
+    {
+        const Glib::ustring text = _pEntry->get_text();
+        _pEntry->hide();
+        _pArea->grab_focus();
+        if (text.empty()) return;
+        CtAnnoShape shape{};
+        shape.type = CtAnnoShape::Type::Text;
+        shape.x1 = _textAnnoX;
+        shape.y1 = _textAnnoY + std::max(16, _sel_h() / 15); // baseline
+        shape.fontSize = std::max(16, _sel_h() / 15);
+        shape.text = text;
+        _shapes.push_back(shape);
+        _redoShapes.clear();
+        _pArea->queue_draw();
+    }
+
+    bool _on_entry_key_press(GdkEventKey* event)
+    {
+        if (GDK_KEY_Escape == event->keyval) {
+            _pEntry->hide();
+            _pArea->grab_focus();
+            return true;
+        }
+        return false;
     }
 
     bool _on_key_press(GdkEventKey* event)
     {
+        if (_pEntry->is_visible()) return false; // let the entry handle typing
         if (GDK_KEY_Escape == event->keyval) {
             _rResult.reset();
             hide();
@@ -175,26 +505,51 @@ protected:
         return false;
     }
 
-private:
+    // -- result ----------------------------------------------------------------
+    Glib::RefPtr<Gdk::Pixbuf> _compose_result() const
+    {
+        const int selX = _sel_x();
+        const int selY = _sel_y();
+        const int selW = _sel_w();
+        const int selH = _sel_h();
+        Cairo::RefPtr<Cairo::ImageSurface> rSurface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, selW, selH);
+        Cairo::RefPtr<Cairo::Context> cr = Cairo::Context::create(rSurface);
+        Gdk::Cairo::set_source_pixbuf(cr, _rShot, -static_cast<double>(selX), -static_cast<double>(selY));
+        cr->paint();
+        _draw_shapes(cr, -static_cast<double>(selX), -static_cast<double>(selY));
+        GdkPixbuf* pRaw = gdk_pixbuf_get_from_surface(rSurface->cobj(), 0, 0, selW, selH);
+        return Glib::wrap(pRaw);
+    }
+
     void _confirm()
     {
-        const int selX = std::min(_selX1, _selX2);
-        const int selY = std::min(_selY1, _selY2);
-        const int selW = std::abs(_selX2 - _selX1);
-        const int selH = std::abs(_selY2 - _selY1);
-        if (selW < 3 or selH < 3) return; // too small, keep selecting
-        _rResult = Gdk::Pixbuf::create(_rShot->get_colorspace(), true/*has_alpha*/,
-                                       _rShot->get_bits_per_sample(), selW, selH);
-        _rShot->copy_area(selX, selY, selW, selH, _rResult, 0, 0);
+        if (_sel_w() < 3 or _sel_h() < 3) return; // too small, keep selecting
+        _rResult = _compose_result();
         hide();
     }
 
 private:
+    enum class Tool { None, Pen, Arrow, Rect, Ellipse, Text };
+
     Glib::RefPtr<Gdk::Pixbuf> _rShot;
     Glib::RefPtr<Gdk::Pixbuf> _rResult;
     Glib::RefPtr<Gdk::Cursor> _rCursorCross;
+
+    Gtk::Fixed*        _pFixed{nullptr};
+    Gtk::DrawingArea*  _pArea{nullptr};
+    Gtk::Box*          _pToolbar{nullptr};
+    Gtk::Entry*        _pEntry{nullptr};
+
     bool _selecting{false};
+    bool _annotating{false};
+    bool _toolbar_shown{false};
+    Tool _tool{Tool::Pen};
     int  _selX1{0}, _selY1{0}, _selX2{-1}, _selY2{-1};
+    int  _textAnnoX{0}, _textAnnoY{0};
+
+    std::vector<CtAnnoShape> _shapes;
+    std::vector<CtAnnoShape> _redoShapes;
+    CtAnnoShape _currShape;
 };
 
 Glib::RefPtr<Gdk::Pixbuf> take_region_screenshot(CtMainWin* /*pCtMainWin*/)
