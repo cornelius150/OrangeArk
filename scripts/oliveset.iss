@@ -50,6 +50,10 @@ Root: HKCR; Subkey: ".ctz"; ValueType: string; ValueName: ""; ValueData: "OliveS
 Root: HKCR; Subkey: "OliveSetZ"; ValueType: string; ValueName: ""; ValueData: "OliveSet XML Zipped"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "OliveSetZ\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\ucrt64\bin\{#MyAppExeName},0"
 Root: HKCR; Subkey: "OliveSetZ\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\ucrt64\bin\{#MyAppExeName}"" ""%1"""
+Root: HKCR; Subkey: ".md"; ValueType: string; ValueName: ""; ValueData: "OliveSetMD"; Flags: uninsdeletevalue
+Root: HKCR; Subkey: "OliveSetMD"; ValueType: string; ValueName: ""; ValueData: "OliveSet Document"; Flags: uninsdeletekey
+Root: HKCR; Subkey: "OliveSetMD\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\ucrt64\bin\{#MyAppExeName},0"
+Root: HKCR; Subkey: "OliveSetMD\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\ucrt64\bin\{#MyAppExeName}"" ""%1"""
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
