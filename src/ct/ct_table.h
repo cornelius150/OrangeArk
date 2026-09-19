@@ -25,6 +25,7 @@
 
 #include "ct_codebox.h"
 #include "ct_widgets.h"
+#include <cairomm/cairomm.h>
 #include <optional>
 
 class CtAnchoredWidgetState_TableCommon;
@@ -109,14 +110,22 @@ public:
     bool on_cell_key_press_event(GdkEventKey* event);
     #endif
 
-    // OrangeArk: drag the bottom-right corner with the mouse to resize the table columns
+    // OrangeArk: drag the bottom-right grip (or the wide corner zone) with the mouse to resize the table columns
 public:
-    static const int TABLE_RESIZE_ZONE{18};
+    static const int TABLE_RESIZE_ZONE{32};
     bool _on_resize_button_press_event(GdkEventButton* event);
     bool _on_resize_motion_notify_event(GdkEventMotion* event);
     bool _on_resize_button_release_event(GdkEventButton* event);
 protected:
+    void _setup_resize_grip();  // creates the visible corner grip; subclasses place it on an overlay
+    bool _on_grip_draw(const Cairo::RefPtr<Cairo::Context>& cr);
+    bool _on_grip_button_press_event(GdkEventButton* event);
+    void _resize_drag_begin(const double xRoot);
+    void _resize_drag_update(const double xRoot);
+    void _resize_drag_end();
+    Gtk::DrawingArea* _pResizeGrip{nullptr};
     bool _dragResizeActive{false};
+    bool _dragResizeChanged{false};
     double _dragStartX{0.};
     int    _dragStartTotalW{0};
     CtTableColWidths _dragStartColWidths;

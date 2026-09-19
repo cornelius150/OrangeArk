@@ -321,7 +321,96 @@ std::pair<size_t, size_t> CtTableCommon::get_row_idx_col_idx(const size_t cell_i
 }
 
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
-// OrangeArk: mouse drag-resize support for tables (bottom-right corner scales all columns)
+// OrangeArk: mouse drag-resize support for tables (visible grip at the bottom-right corner)
+
+void CtTableCommon::_setup_resize_grip()
+{
+    if (_pResizeGrip) return;
+    _pResizeGrip = Gtk::manage(new Gtk::DrawingArea());
+    _pResizeGrip->set_size_request(18, 18);
+    _pResizeGrip->set_halign(Gtk::ALIGN_END);
+    _pResizeGrip->set_valign(Gtk::ALIGN_END);
+    _pResizeGrip->set_tooltip_text(_("Drag to resize the table"));
+    _pResizeGrip->add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
+    _pResizeGrip->signal_draw().connect(sigc::mem_fun(*this, &CtTableCommon::_on_grip_draw), false);
+    _pResizeGrip->signal_button_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_grip_button_press_event), false);
+}
+
+bool CtTableCommon::_on_grip_draw(const Cairo::RefPtr<Cairo::Context>& cr)
+{
+    if (nullptr == _pResizeGrip) return true;
+    const Gtk::Allocation allocation = _pResizeGrip->get_allocation();
+    const double w = allocation.get_width();
+    const double h = allocation.get_height();
+    // grip triangle in the bottom-right corner
+    cr->move_to(w, 0.0);
+    cr->line_to(w, h);
+    cr->line_to(0.0, h);
+    cr->close_path();
+    cr->set_source_rgba(0.53, 0.53, 0.53, 0.85);
+    cr->fill();
+    // white diagonal grip lines
+    cr->set_line_width(1.4);
+    cr->set_source_rgba(1.0, 1.0, 1.0, 0.95);
+    for (int i = 1; i <= 3; ++i) {
+        const double o = 4.0 * i;
+        cr->move_to(w - o + 3.0, h - 3.0);
+        cr->line_to(w - 3.0, h - o + 3.0);
+        cr->stroke();
+    }
+    return true;
+}
+
+bool CtTableCommon::_on_grip_button_press_event(GdkEventButton* event)
+{
+    if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
+    if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
+    _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
+    _resize_drag_begin(event->x_root);
+    return true;
+}
+
+void CtTableCommon::_resize_drag_begin(const double xRoot)
+{
+    _dragResizeActive = true;
+    _dragResizeChanged = false;
+    _dragStartX = xRoot;
+    _dragStartTotalW = get_allocation().get_width();
+    _dragStartColWidths = get_col_widths();
+    gtk_grab_add(GTK_WIDGET(gobj()));
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+        rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER));
+    }
+}
+
+void CtTableCommon::_resize_drag_update(const double xRoot)
+{
+    if (not _dragResizeActive) return;
+    const double dx = xRoot - _dragStartX;
+    const double scale = (_dragStartTotalW + dx) / static_cast<double>(_dragStartTotalW);
+    if (scale > 0.05) {
+        const size_t numColumns = get_num_columns();
+        for (size_t c = 0u; c < numColumns; ++c) {
+            const int newWidth = std::max(16, static_cast<int>(std::lround(_dragStartColWidths.at(c) * scale)));
+            if (newWidth != get_col_width(c)) {
+                set_col_width(newWidth, c);
+                _dragResizeChanged = true;
+            }
+        }
+    }
+}
+
+void CtTableCommon::_resize_drag_end()
+{
+    if (not _dragResizeActive) return;
+    _dragResizeActive = false;
+    gtk_grab_remove(GTK_WIDGET(gobj()));
+    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
+    if (_dragResizeChanged) {
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    }
+}
+
 bool CtTableCommon::_on_resize_button_press_event(GdkEventButton* event)
 {
     if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
@@ -330,20 +419,16 @@ bool CtTableCommon::_on_resize_button_press_event(GdkEventButton* event)
                       and event->y >= allocation.get_height() - TABLE_RESIZE_ZONE;
     if (not inCorner) return false;
     if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
-    _dragResizeActive = true;
-    _dragStartX = event->x_root;
-    _dragStartTotalW = allocation.get_width();
-    _dragStartColWidths = get_col_widths();
-    gtk_grab_add(GTK_WIDGET(gobj()));
-    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
-        rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER));
-    }
+    _resize_drag_begin(event->x_root);
     return true; // do not propagate while resizing
 }
 
 bool CtTableCommon::_on_resize_motion_notify_event(GdkEventMotion* event)
 {
-    if (_dragResizeActive) return true;
+    if (_dragResizeActive) {
+        _resize_drag_update(event->x_root); // live preview while dragging
+        return true;
+    }
     const Gtk::Allocation allocation = get_allocation();
     const bool inCorner = event->x >= allocation.get_width() - TABLE_RESIZE_ZONE
                       and event->y >= allocation.get_height() - TABLE_RESIZE_ZONE;
@@ -362,20 +447,7 @@ bool CtTableCommon::_on_resize_motion_notify_event(GdkEventMotion* event)
 bool CtTableCommon::_on_resize_button_release_event(GdkEventButton* event)
 {
     if (not _dragResizeActive or 1 != event->button) return false;
-    _dragResizeActive = false;
-    gtk_grab_remove(GTK_WIDGET(gobj()));
-    if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
-
-    const double dx = event->x_root - _dragStartX;
-    const double scale = (_dragStartTotalW + dx) / static_cast<double>(_dragStartTotalW);
-    if (scale > 0.05) {
-        const size_t numColumns = get_num_columns();
-        for (size_t c = 0u; c < numColumns; ++c) {
-            const int newWidth = std::max(16, static_cast<int>(std::lround(_dragStartColWidths.at(c) * scale)));
-            set_col_width(newWidth, c);
-        }
-        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
-    }
+    _resize_drag_end();
     return true;
 }
 #endif /* GTKMM_MAJOR_VERSION < 4 */
@@ -429,7 +501,13 @@ CtTableHeavy::CtTableHeavy(CtMainWin* pCtMainWin,
     _frame.set_child(_grid);
     show();
 #else
-    _frame.add(_grid);
+    // OrangeArk: overlay a visible resize grip at the bottom-right corner
+    _setup_resize_grip();
+    Gtk::Overlay* pOverlay = Gtk::manage(new Gtk::Overlay());
+    pOverlay->add(_grid);
+    pOverlay->add_overlay(*_pResizeGrip);
+    _frame.add(*pOverlay);
+    pOverlay->show_all();
     _frame.signal_size_allocate().connect(sigc::mem_fun(*this, &CtTableHeavy::_on_frame_size_allocate));
     show_all();
 #endif

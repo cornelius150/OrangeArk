@@ -132,8 +132,13 @@ void CtTableLight::_reset(CtTableMatrix& tableMatrix)
     _frame.set_child(*_pManagedTreeView);
     show();
 #else
-    _frame.add(*_pManagedTreeView);
-    show_all();
+    // OrangeArk: overlay a visible resize grip at the bottom-right corner
+    _setup_resize_grip();
+    Gtk::Overlay* pOverlay = Gtk::manage(new Gtk::Overlay());
+    pOverlay->add(*_pManagedTreeView);
+    pOverlay->add_overlay(*_pResizeGrip);
+    _frame.add(*pOverlay);
+    pOverlay->show_all();
 #endif
 }
 

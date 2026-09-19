@@ -26,6 +26,7 @@
 #include "ct_storage_xml.h"
 #include "ct_storage_sqlite.h"
 #include "ct_storage_multifile.h"
+#include "ct_storage_md.h"
 #include "ct_p7za_iface.h"
 #include "ct_main_win.h"
 #include "ct_logging.h"
@@ -97,6 +98,18 @@ static bool _move_dir_with_fallback(const fs::path& dir_from, const fs::path& di
         return std::make_unique<CtStorageMultiFile>(pCtMainWin);
     }
     return nullptr;
+}
+
+// OrangeArk: pick the storage entity by file path (a .md file is a Markdown document)
+/*static*/std::unique_ptr<CtStorageEntity> CtStorageControl::_get_entity_by_path(CtMainWin* pCtMainWin, const fs::path& file_path)
+{
+    if (fs::is_directory(file_path)) {
+        return std::make_unique<CtStorageMultiFile>(pCtMainWin);
+    }
+    if (CtConst::CTDOC_MD == file_path.extension()) {
+        return std::make_unique<CtStorageMd>(pCtMainWin);
+    }
+    return _get_entity_by_type(pCtMainWin, fs::get_doc_type_from_file_ext(file_path));
 }
 
 /*static*/CtStorageControl* CtStorageControl::create_dummy_storage(CtMainWin* pCtMainWin)
@@ -287,7 +300,9 @@ static bool _move_dir_with_fallback(const fs::path& dir_from, const fs::path& di
         }
         f_cleanup();
 
-        std::unique_ptr<CtStorageEntity> storage = CtStorageControl::_get_entity_by_type(pCtMainWin, doc_type);
+        std::unique_ptr<CtStorageEntity> storage = CtDocType::MultiFile == doc_type
+            ? CtStorageControl::_get_entity_by_type(pCtMainWin, doc_type)
+            : CtStorageControl::_get_entity_by_path(pCtMainWin, file_path);
         if (not storage) throw std::runtime_error("no storage");
 
         // will save all data because it's the first time
@@ -869,7 +884,7 @@ void CtStorageControl::add_nodes_from_storage(const fs::path& file_path,
         pStorage = CtStorageControl::_get_entity_by_type(_pCtMainWin, CtDocType::MultiFile);
     }
     else {
-        pStorage = CtStorageControl::_get_entity_by_type(_pCtMainWin, fs::get_doc_type_from_file_ext(extracted_file_path));
+        pStorage = CtStorageControl::_get_entity_by_path(_pCtMainWin, extracted_file_path);
     }
 
     if (not pStorage) throw std::runtime_error("no storage");

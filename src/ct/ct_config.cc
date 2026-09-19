@@ -787,6 +787,10 @@ void CtConfig::_populate_data_from_keyfile()
     // [misc]
     _currentGroup = "misc";
     _populate_string_from_keyfile("toolbar_ui_list", &toolbarUiList);
+    // OrangeArk: upgrade configs still on the previous default toolbar so that the screenshot button appears
+    if (toolbarUiList == CtConst::TOOLBAR_VEC_DEFAULT_PREV) {
+        toolbarUiList = CtConst::TOOLBAR_VEC_DEFAULT;
+    }
     _populate_bool_from_keyfile("systray", &systrayOn);
     _populate_bool_from_keyfile("start_on_systray", &startOnSystray);
     if (savedFromPyGtk) {

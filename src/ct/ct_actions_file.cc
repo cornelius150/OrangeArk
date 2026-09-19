@@ -83,6 +83,7 @@ void CtActions::file_save_as()
     if (not currDocFilepath.empty()) {
         storageSelArgs.ctDocType = fs::get_doc_type_from_file_ext(currDocFilepath);
         storageSelArgs.ctDocEncrypt = fs::get_doc_encrypt_from_file_ext(currDocFilepath);
+        storageSelArgs.ctDocMd = CtConst::CTDOC_MD == currDocFilepath.extension();
     }
     if (not CtDialogs::choose_data_storage_dialog(_pCtMainWin, storageSelArgs)) {
         return;
@@ -91,7 +92,7 @@ void CtActions::file_save_as()
     if (not currDocFilepath.empty()) {
         fileSelArgs.curr_folder = currDocFilepath.parent_path();
         fs::path suggested_basename = currDocFilepath.filename();
-        fileSelArgs.curr_file_name = suggested_basename.stem() + CtMiscUtil::get_doc_extension(storageSelArgs.ctDocType, storageSelArgs.ctDocEncrypt);
+        fileSelArgs.curr_file_name = suggested_basename.stem() + (storageSelArgs.ctDocMd ? CtConst::CTDOC_MD : CtMiscUtil::get_doc_extension(storageSelArgs.ctDocType, storageSelArgs.ctDocEncrypt));
     }
     std::string filepath;
     do {
@@ -99,8 +100,8 @@ void CtActions::file_save_as()
             filepath = CtDialogs::folder_save_as_dialog(_pCtMainWin, fileSelArgs);
         }
         else {
-            fileSelArgs.filter_name = _("OrangeArk File");
-            std::string fileExtension = CtMiscUtil::get_doc_extension(storageSelArgs.ctDocType, storageSelArgs.ctDocEncrypt);
+            fileSelArgs.filter_name = storageSelArgs.ctDocMd ? _("Markdown File") : _("OrangeArk File");
+            std::string fileExtension = storageSelArgs.ctDocMd ? CtConst::CTDOC_MD : CtMiscUtil::get_doc_extension(storageSelArgs.ctDocType, storageSelArgs.ctDocEncrypt);
             fileSelArgs.filter_pattern.push_back(std::string{CtConst::CHAR_STAR}+fileExtension);
             fileSelArgs.overwrite_confirmation = false; // as not supported for the multifile, we do in both cases elsewhere
             filepath = CtDialogs::file_save_as_dialog(_pCtMainWin, fileSelArgs);
@@ -108,7 +109,15 @@ void CtActions::file_save_as()
         if (filepath.empty()) {
             return;
         }
-        CtMiscUtil::filepath_extension_fix(storageSelArgs.ctDocType, storageSelArgs.ctDocEncrypt, filepath);
+        if (storageSelArgs.ctDocMd) {
+            // OrangeArk: make sure the chosen path ends with the markdown extension
+            if (not Glib::str_has_suffix(filepath, CtConst::CTDOC_MD)) {
+                filepath += CtConst::CTDOC_MD;
+            }
+        }
+        else {
+            CtMiscUtil::filepath_extension_fix(storageSelArgs.ctDocType, storageSelArgs.ctDocEncrypt, filepath);
+        }
         if (currDocFilepath == filepath) {
             CtDialogs::warning_dialog(_("The file/folder in use cannot be overwritten!\nPlease use a different name or location."), *_pCtMainWin);
         }
@@ -154,6 +163,7 @@ void CtActions::file_open()
     CtDialogs::CtFileSelectArgs args{};
     args.curr_folder = _pCtMainWin->get_ct_storage()->get_file_dir();
     args.filter_name = _("OrangeArk File");
+    args.filter_pattern.push_back("*.md");
     args.filter_pattern.push_back("*.ctb"); // macos doesn't understand *.ct*
     args.filter_pattern.push_back("*.ctx");
     args.filter_pattern.push_back("*.ctd");

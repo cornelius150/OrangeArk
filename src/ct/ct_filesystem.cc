@@ -664,6 +664,11 @@ CtDocType get_doc_type_from_file_ext(const fs::path& filename)
     {
         return CtDocType::SQLite;
     }
+    // OrangeArk: a Markdown document behaves like a single-file (xml-like) document
+    if (CtConst::CTDOC_MD == file_ext)
+    {
+        return CtDocType::XML;
+    }
     return CtDocType::None;
 }
 

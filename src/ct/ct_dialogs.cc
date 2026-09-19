@@ -580,13 +580,15 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     dialog.set_default_size(350, -1);
     dialog.set_position(Gtk::WIN_POS_CENTER_ON_PARENT);
 
-    Gtk::RadioButton radiobutton_sqlite_not_protected(Glib::ustring{_("Single SQLite File")} + " (.ctb)");
-    Gtk::RadioButton::Group rbGroup = radiobutton_sqlite_not_protected.get_group();
+    Gtk::RadioButton radiobutton_md(Glib::ustring{_("Single Markdown File")} + " (.md)");
+    Gtk::RadioButton::Group rbGroup = radiobutton_md.get_group();
+    Gtk::RadioButton radiobutton_sqlite_not_protected(rbGroup, Glib::ustring{_("Single SQLite File")} + " (.ctb)");
     Gtk::RadioButton radiobutton_sqlite_pass_protected(rbGroup, Glib::ustring{_("Single SQLite File, 7-zip Encrypted and Password Protected")} + " (.ctx)");
     Gtk::RadioButton radiobutton_xml_not_protected(rbGroup, Glib::ustring{_("Single XML File")}  + " (.ctd)");
     Gtk::RadioButton radiobutton_xml_pass_protected(rbGroup, Glib::ustring{_("Single XML File, 7-zip Encrypted and Password Protected")} + " (.ctz)");
     Gtk::RadioButton radiobutton_multifile(rbGroup, Glib::ustring{_("Multiple Files in Hierarchical Folder Structure")});
 
+    Gtk::Image* image_md = pCtMainWin->new_managed_image_from_stock("ct_markdown", Gtk::ICON_SIZE_MENU);
     Gtk::Image* image_sqlite_not_protected = pCtMainWin->new_managed_image_from_stock("ct_db", Gtk::ICON_SIZE_MENU);
     Gtk::Image* image_sqlite_pass_protected = pCtMainWin->new_managed_image_from_stock("ct_7zip", Gtk::ICON_SIZE_MENU);
     Gtk::Image* image_xml_not_protected = pCtMainWin->new_managed_image_from_stock("ct_xml", Gtk::ICON_SIZE_MENU);
@@ -598,17 +600,19 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     grid_type->set_column_spacing(4);
     grid_type->set_row_homogeneous(true);
 
-    grid_type->attach(*image_sqlite_not_protected,          0, 0, 1, 1);
-    grid_type->attach(*image_sqlite_pass_protected,         0, 1, 1, 1);
-    grid_type->attach(*image_xml_not_protected,             0, 2, 1, 1);
-    grid_type->attach(*image_xml_pass_protected,            0, 3, 1, 1);
-    grid_type->attach(*image_multifile,                     0, 4, 1, 1);
+    grid_type->attach(*image_md,                             0, 0, 1, 1);
+    grid_type->attach(*image_sqlite_not_protected,           0, 1, 1, 1);
+    grid_type->attach(*image_sqlite_pass_protected,          0, 2, 1, 1);
+    grid_type->attach(*image_xml_not_protected,              0, 3, 1, 1);
+    grid_type->attach(*image_xml_pass_protected,             0, 4, 1, 1);
+    grid_type->attach(*image_multifile,                      0, 5, 1, 1);
 
-    grid_type->attach(radiobutton_sqlite_not_protected,     1, 0, 1, 1);
-    grid_type->attach(radiobutton_sqlite_pass_protected,    1, 1, 1, 1);
-    grid_type->attach(radiobutton_xml_not_protected,        1, 2, 1, 1);
-    grid_type->attach(radiobutton_xml_pass_protected,       1, 3, 1, 1);
-    grid_type->attach(radiobutton_multifile,                1, 4, 1, 1);
+    grid_type->attach(radiobutton_md,                        1, 0, 1, 1);
+    grid_type->attach(radiobutton_sqlite_not_protected,      1, 1, 1, 1);
+    grid_type->attach(radiobutton_sqlite_pass_protected,     1, 2, 1, 1);
+    grid_type->attach(radiobutton_xml_not_protected,         1, 3, 1, 1);
+    grid_type->attach(radiobutton_xml_pass_protected,        1, 4, 1, 1);
+    grid_type->attach(radiobutton_multifile,                 1, 5, 1, 1);
 
     Gtk::Frame type_frame(Glib::ustring("<b>")+_("Storage Type")+"</b>");
     dynamic_cast<Gtk::Label*>(type_frame.get_label_widget())->set_use_markup(true);
@@ -632,7 +636,11 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     passw_frame.set_shadow_type(Gtk::SHADOW_NONE);
     passw_frame.add(vbox_passw);
 
-    if (args.ctDocEncrypt == CtDocEncrypt::False) {
+    if (args.ctDocMd) {
+        passw_frame.set_sensitive(false);
+        radiobutton_md.set_active(true);
+    }
+    else if (args.ctDocEncrypt == CtDocEncrypt::False) {
         passw_frame.set_sensitive(false);
         if (args.ctDocType == CtDocType::SQLite) {
             radiobutton_sqlite_not_protected.set_active(true);
@@ -654,7 +662,8 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
         }
     }
     else {
-        radiobutton_sqlite_not_protected.set_active(true);
+        // OrangeArk: Markdown (.md) is the default storage type for new documents
+        radiobutton_md.set_active(true);
         passw_frame.set_sensitive(false);
     }
 
@@ -721,6 +730,7 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     radiobutton_xml_not_protected.signal_toggled().connect(on_radiobutton_savetype_toggled);
     radiobutton_xml_pass_protected.signal_toggled().connect(on_radiobutton_savetype_toggled);
     radiobutton_multifile.signal_toggled().connect(on_radiobutton_savetype_toggled);
+    radiobutton_md.signal_toggled().connect(on_radiobutton_savetype_toggled);
     dialog.signal_key_press_event().connect(on_key_press_edit_data_storage_type_dialog, false/*call me before other*/);
 
     const int response = dialog.run();

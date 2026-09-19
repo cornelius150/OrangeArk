@@ -92,6 +92,7 @@ public:
 
 private:
     static std::unique_ptr<CtStorageEntity> _get_entity_by_type(CtMainWin* pCtMainWin, CtDocType file_type);
+    static std::unique_ptr<CtStorageEntity> _get_entity_by_path(CtMainWin* pCtMainWin, const fs::path& file_path);
     static fs::path _extract_file(CtMainWin* pCtMainWin, const fs::path& file_path, Glib::ustring& password);
     static bool     _package_file(const fs::path& file_from, const fs::path& file_to, const Glib::ustring& password);
 
