@@ -574,22 +574,21 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
                        *pCtMainWin,
                        Gtk::DialogFlags::DIALOG_MODAL | Gtk::DialogFlags::DIALOG_DESTROY_WITH_PARENT};
 
-    Gtk::Button* pButtonCancel = CtMiscUtil::dialog_add_button(&dialog, _("Cancel"), Gtk::RESPONSE_REJECT, "ct_cancel");
-    Gtk::Button* pButtonOk = CtMiscUtil::dialog_add_button(&dialog, _("OK"), Gtk::RESPONSE_ACCEPT, "ct_done");
+    Gtk::Button* pButtonCancel = CtMiscUtil::dialog_add_button(&dialog, "取消(C)", Gtk::RESPONSE_REJECT, "ct_cancel");
+    Gtk::Button* pButtonOk = CtMiscUtil::dialog_add_button(&dialog, "确定(O)", Gtk::RESPONSE_ACCEPT, "ct_done");
 
     dialog.set_default_size(350, -1);
     dialog.set_position(Gtk::WIN_POS_CENTER_ON_PARENT);
 
-    Gtk::RadioButton radiobutton_md(Glib::ustring{_("Single Markdown File")} + " (.md)");
+    // OrangeArk: keep the original storage-type list, every entry now saves .md
+    Gtk::RadioButton radiobutton_md(Glib::ustring{_("Single SQLite File")} + " (.md)");
     Gtk::RadioButton::Group rbGroup = radiobutton_md.get_group();
-    Gtk::RadioButton radiobutton_sqlite_not_protected(rbGroup, Glib::ustring{_("Single SQLite File")} + " (.ctb)");
-    Gtk::RadioButton radiobutton_sqlite_pass_protected(rbGroup, Glib::ustring{_("Single SQLite File, 7-zip Encrypted and Password Protected")} + " (.ctx)");
-    Gtk::RadioButton radiobutton_xml_not_protected(rbGroup, Glib::ustring{_("Single XML File")}  + " (.ctd)");
-    Gtk::RadioButton radiobutton_xml_pass_protected(rbGroup, Glib::ustring{_("Single XML File, 7-zip Encrypted and Password Protected")} + " (.ctz)");
+    Gtk::RadioButton radiobutton_sqlite_pass_protected(rbGroup, Glib::ustring{_("Single SQLite File, 7-zip Encrypted and Password Protected")} + " (.md)");
+    Gtk::RadioButton radiobutton_xml_not_protected(rbGroup, Glib::ustring{_("Single XML File")}  + " (.md)");
+    Gtk::RadioButton radiobutton_xml_pass_protected(rbGroup, Glib::ustring{_("Single XML File, 7-zip Encrypted and Password Protected")} + " (.md)");
     Gtk::RadioButton radiobutton_multifile(rbGroup, Glib::ustring{_("Multiple Files in Hierarchical Folder Structure")});
 
-    Gtk::Image* image_md = pCtMainWin->new_managed_image_from_stock("ct_markdown", Gtk::ICON_SIZE_MENU);
-    Gtk::Image* image_sqlite_not_protected = pCtMainWin->new_managed_image_from_stock("ct_db", Gtk::ICON_SIZE_MENU);
+    Gtk::Image* image_md = pCtMainWin->new_managed_image_from_stock("ct_db", Gtk::ICON_SIZE_MENU);
     Gtk::Image* image_sqlite_pass_protected = pCtMainWin->new_managed_image_from_stock("ct_7zip", Gtk::ICON_SIZE_MENU);
     Gtk::Image* image_xml_not_protected = pCtMainWin->new_managed_image_from_stock("ct_xml", Gtk::ICON_SIZE_MENU);
     Gtk::Image* image_xml_pass_protected = pCtMainWin->new_managed_image_from_stock("ct_7zip", Gtk::ICON_SIZE_MENU);
@@ -601,18 +600,16 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     grid_type->set_row_homogeneous(true);
 
     grid_type->attach(*image_md,                             0, 0, 1, 1);
-    grid_type->attach(*image_sqlite_not_protected,           0, 1, 1, 1);
-    grid_type->attach(*image_sqlite_pass_protected,          0, 2, 1, 1);
-    grid_type->attach(*image_xml_not_protected,              0, 3, 1, 1);
-    grid_type->attach(*image_xml_pass_protected,             0, 4, 1, 1);
-    grid_type->attach(*image_multifile,                      0, 5, 1, 1);
+    grid_type->attach(*image_sqlite_pass_protected,          0, 1, 1, 1);
+    grid_type->attach(*image_xml_not_protected,              0, 2, 1, 1);
+    grid_type->attach(*image_xml_pass_protected,             0, 3, 1, 1);
+    grid_type->attach(*image_multifile,                      0, 4, 1, 1);
 
     grid_type->attach(radiobutton_md,                        1, 0, 1, 1);
-    grid_type->attach(radiobutton_sqlite_not_protected,      1, 1, 1, 1);
-    grid_type->attach(radiobutton_sqlite_pass_protected,     1, 2, 1, 1);
-    grid_type->attach(radiobutton_xml_not_protected,         1, 3, 1, 1);
-    grid_type->attach(radiobutton_xml_pass_protected,        1, 4, 1, 1);
-    grid_type->attach(radiobutton_multifile,                 1, 5, 1, 1);
+    grid_type->attach(radiobutton_sqlite_pass_protected,     1, 1, 1, 1);
+    grid_type->attach(radiobutton_xml_not_protected,         1, 2, 1, 1);
+    grid_type->attach(radiobutton_xml_pass_protected,        1, 3, 1, 1);
+    grid_type->attach(radiobutton_multifile,                 1, 4, 1, 1);
 
     Gtk::Frame type_frame(Glib::ustring("<b>")+_("Storage Type")+"</b>");
     dynamic_cast<Gtk::Label*>(type_frame.get_label_widget())->set_use_markup(true);
@@ -649,7 +646,7 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     else if (args.ctDocEncrypt == CtDocEncrypt::False) {
         passw_frame.set_sensitive(false);
         if (args.ctDocType == CtDocType::SQLite) {
-            radiobutton_sqlite_not_protected.set_active(true);
+            radiobutton_md.set_active(true);
         }
         else if (args.ctDocType == CtDocType::XML) {
             radiobutton_xml_not_protected.set_active(true);
@@ -701,9 +698,7 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     pContentArea->set_margin_start(5);
     pContentArea->set_margin_end(5);
     pContentArea->pack_start(type_frame);
-    if (not args.mdOnly) {
-        pContentArea->pack_start(passw_frame);
-    }
+    pContentArea->pack_start(passw_frame);
     if (args.showAutosaveOptions) {
         pContentArea->pack_start(*hbox_autosave);
     }
@@ -733,7 +728,7 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
         }
         return false;
     };
-    radiobutton_sqlite_not_protected.signal_toggled().connect(on_radiobutton_savetype_toggled);
+    radiobutton_md.signal_toggled().connect(on_radiobutton_savetype_toggled);
     radiobutton_sqlite_pass_protected.signal_toggled().connect(on_radiobutton_savetype_toggled);
     radiobutton_xml_not_protected.signal_toggled().connect(on_radiobutton_savetype_toggled);
     radiobutton_xml_pass_protected.signal_toggled().connect(on_radiobutton_savetype_toggled);
