@@ -320,9 +320,14 @@ bool CtImagePng::_compute_resize(const double xRoot, const double yRoot, int& ne
     else if (_dragEdges & 4) dy = _dragStartY - yRoot;   // top edge
 
     // keep the aspect ratio: grow/shrink with the dominant dragged axis
-    double scale = 1.0;
-    if (dx != 0.0) scale = std::max(scale, (_dragStartW + dx) / static_cast<double>(_dragStartW));
-    if (dy != 0.0) scale = std::max(scale, (_dragStartH + dy) / static_cast<double>(_dragStartH));
+    // (no 1.0 floor here — dragging inwards must be able to shrink the image)
+    double scale = 0.0;
+    if (dx != 0.0) scale = (_dragStartW + dx) / static_cast<double>(_dragStartW);
+    if (dy != 0.0) {
+        const double scaleY = (_dragStartH + dy) / static_cast<double>(_dragStartH);
+        scale = scale > 0.0 ? std::max(scale, scaleY) : scaleY;
+    }
+    if (scale <= 0.0) return false;
     newW = static_cast<int>(std::lround(_dragStartW * scale));
     newH = static_cast<int>(std::lround(_dragStartH * scale));
     if (newW < 16) {

@@ -21,6 +21,7 @@
 
 class CtMainWin;
 class CtTreeIter;
+class CtStorageXml;
 
 class CtStorageMd : public CtStorageEntity
 {
@@ -28,6 +29,7 @@ public:
     CtStorageMd(CtMainWin* pCtMainWin)
      : _pCtMainWin{pCtMainWin}
     {}
+    ~CtStorageMd() override;
 
     void close_connect() override {}
     void reopen_connect() override {}
@@ -58,7 +60,15 @@ private:
     std::string _rich_text_to_markdown(xmlpp::Element* p_rich_text_element);
     std::string _table_to_markdown(xmlpp::Element* p_table_element);
 
+    // OrangeArk: hybrid .md document format = human readable Markdown body
+    // + an embedded lossless XML snapshot (base64 inside a trailing HTML comment).
+    // The snapshot keeps the full node tree/rich text on reopen; foreign Markdown
+    // files (without the snapshot) still load through the Markdown importer.
+    std::string _get_embedded_xml_snapshot(const std::string& file_contents) const;
+    static std::string _wrap_embedded_xml_snapshot(const std::string& xml_content);
+
 private:
     CtMainWin* const _pCtMainWin;
     mutable CtDelayedTextBufferMap _delayed_text_buffers;
+    std::unique_ptr<CtStorageXml> _pXmlStorage; // alive for the whole session (owns delayed buffers)
 };

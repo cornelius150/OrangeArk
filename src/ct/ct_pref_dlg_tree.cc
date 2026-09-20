@@ -33,7 +33,7 @@ Gtk::Widget* CtPrefDlg::build_tab_tree()
 #else
     auto vbox_nodes_icons = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL});
 
-    auto radiobutton_node_icon_cherry = Gtk::manage(new Gtk::RadioButton{_("Use Different Cherries per Level")});
+    auto radiobutton_node_icon_cherry = Gtk::manage(new Gtk::RadioButton{_("Use Different Oranges per Level")});
     auto radiobutton_node_icon_custom = Gtk::manage(new Gtk::RadioButton{_("Use Selected Icon")});
     radiobutton_node_icon_custom->join_group(*radiobutton_node_icon_cherry);
     auto radiobutton_node_icon_none = Gtk::manage(new Gtk::RadioButton{_("No Icon")});

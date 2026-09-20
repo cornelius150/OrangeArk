@@ -347,6 +347,14 @@ std::string CtMainWin::get_text_tag_name_exist_or_create(const std::string& prop
                 rTextTag->property_family() = CtConst::TAG_PROP_VAL_MONOSPACE;
             }
         }
+        else if (CtConst::TAG_FONT_FAMILY == propertyName) {
+            // OrangeArk: custom text font family (toolbar font combo)
+            rTextTag->property_family() = propertyValue;
+        }
+        else if (CtConst::TAG_FONT_SIZE == propertyName) {
+            // OrangeArk: custom text font size in points (toolbar size combo)
+            rTextTag->property_size() = std::stoi(propertyValue) * Pango::SCALE;
+        }
         else if (CtConst::TAG_STRIKETHROUGH == propertyName and CtConst::TAG_PROP_VAL_TRUE == propertyValue) {
             rTextTag->property_strikethrough() = true;
         }

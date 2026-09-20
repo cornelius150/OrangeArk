@@ -413,13 +413,13 @@ msgid "Storage Type"
 msgstr "存储类型"
 
 msgid ""
-"CT saves the document in an encrypted 7zip archive. When viewing or editing "
-"the document, CT extracts the encrypted archive to a temporary folder, and "
+"OrangeArk saves the document in an encrypted 7zip archive. When viewing or editing "
+"the document, OrangeArk extracts the encrypted archive to a temporary folder, and "
 "works on the unencrypted copy. When closing, the unencrypted copy is deleted "
 "from the temporary directory. Note that in the case of application or system "
 "crash, the unencrypted document will remain in the temporary folder."
 msgstr ""
-"CT将文档保存在加密的7zip存档中。在查看或编辑文档时，CT会将加密的存档提取到临"
+"OrangeArk将文档保存在加密的7zip存档中。在查看或编辑文档时，OrangeArk会将加密的存档提取到临"
 "时文件夹中，然后处理未加密的副本。关闭时，未加密的副本将从临时目录中删除。请"
 "注意，在应用程序或系统崩溃的情况下，未加密的文档将保留在临时文件夹中。"
 
@@ -1104,8 +1104,8 @@ msgstr "要退出外部程序吗？"
 msgid "Cannot Save: \"%s\" is Read-Only"
 msgstr "无法保存：\"%s\" 是只读的"
 
-msgid "The Document was Reloaded After External Update to CT* File."
-msgstr "因CT*文件在外部被修改，文档已重载"
+msgid "The Document was Reloaded After External Update to the File."
+msgstr "因文档文件在外部被修改，文档已重载"
 
 msgid "Copy Selection or All"
 msgstr "复制已选中内容或所有内容"
@@ -1645,7 +1645,16 @@ msgid "Format"
 msgstr "格式化"
 
 msgid "Format Clo_ne"
-msgstr "单独格式化(_n)"
+msgstr "格式刷(_F)"
+
+msgid "Repeat _Last Format"
+msgstr "重复上次格式(_L)"
+
+msgid "Font"
+msgstr "字体"
+
+msgid "Font Size"
+msgstr "字号"
 
 msgid "Clone the Text Format Type at Cursor"
 msgstr "在光标处克隆文本格式类型"
@@ -1657,7 +1666,7 @@ msgid "Memory of Latest Text Format Type"
 msgstr "上次所操作的文字格式类型"
 
 msgid "_Remove Formatting"
-msgstr "移除格式化(_R)"
+msgstr "清除格式(_R)"
 
 msgid "Remove the Formatting from the Selected Text"
 msgstr "移除已选择文字格式化"
@@ -1699,19 +1708,19 @@ msgid "Toggle Strikethrough Property of the Selected Text"
 msgstr "切换已选文字的删除线属性"
 
 msgid "Toggle h_1 Property"
-msgstr "切换h_1属性"
+msgstr "切换标题 1(_1)"
 
 msgid "Toggle h1 Property of the Selected Text"
 msgstr "切换选定文本的h1属性"
 
 msgid "Toggle h_2 Property"
-msgstr "切换h_2属性"
+msgstr "切换标题 2(_2)"
 
 msgid "Toggle h2 Property of the Selected Text"
 msgstr "切换选定文本的h2属性"
 
 msgid "Toggle h_3 Property"
-msgstr "切换h_3属性"
+msgstr "切换标题 3(_3)"
 
 msgid "Toggle h3 Property of the Selected Text"
 msgstr "切换选定文本的h3属性"
@@ -2754,8 +2763,8 @@ msgstr "重载上一次会话中的文档"
 msgid "Show Start Dialog When No Document Is Loaded"
 msgstr "未加载文档时显示开始对话框"
 
-msgid "Reload After External Update to CT* File"
-msgstr "将重载，因CT*文件在外部被修改"
+msgid "Reload After External Update to the File"
+msgstr "因文档文件在外部被修改，将重载"
 
 msgid "Enable Debug Log"
 msgstr "开启调试日志"
@@ -3024,8 +3033,8 @@ msgstr "图标主题"
 msgid "Split Toolbar"
 msgstr "分割工具栏"
 
-msgid "Use Different Cherries per Level"
-msgstr "每层及使用不同的樱桃图标"
+msgid "Use Different Oranges per Level"
+msgstr "每层使用不同的橙子图标"
 
 msgid "No Icon"
 msgstr "无图标"

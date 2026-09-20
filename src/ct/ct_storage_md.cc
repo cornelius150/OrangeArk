@@ -13,13 +13,60 @@
 #include "ct_main_win.h"
 #include "ct_logging.h"
 
+CtStorageMd::~CtStorageMd() = default;
+
+// OrangeArk: wrap the lossless XML snapshot as a trailing HTML comment so the
+// document stays a perfectly valid, human readable Markdown file
+std::string CtStorageMd::_wrap_embedded_xml_snapshot(const std::string& xml_content)
+{
+    std::string b64 = Glib::Base64::encode(xml_content);
+    // split the base64 payload into reasonably short lines
+    std::string chunked;
+    const size_t chunkLen = 76;
+    for (size_t i = 0; i < b64.size(); i += chunkLen) {
+        chunked += b64.substr(i, chunkLen);
+        chunked += "\n";
+    }
+    return "<!-- OrangeArk:document-data v1\n" + chunked + "-->";
+}
+
+std::string CtStorageMd::_get_embedded_xml_snapshot(const std::string& file_contents) const
+{
+    const std::string markerStart = "<!-- OrangeArk:document-data";
+    const size_t markerPos = file_contents.rfind(markerStart);
+    if (markerPos == std::string::npos) return "";
+    const size_t dataStart = file_contents.find('\n', markerPos);
+    if (dataStart == std::string::npos) return "";
+    const size_t markerEnd = file_contents.find("-->", dataStart);
+    if (markerEnd == std::string::npos) return "";
+    std::string b64 = file_contents.substr(dataStart + 1, markerEnd - dataStart - 1);
+    // strip the whitespace the line splitting may have introduced
+    b64 = str::replace(str::replace(str::replace(b64, "\r", ""), "\n", ""), " ", "");
+    if (b64.empty()) return "";
+    try {
+        return Glib::Base64::decode(b64);
+    }
+    catch (std::exception& e) {
+        spdlog::warn("failed to decode the embedded OrangeArk document snapshot: {}", e.what());
+        return "";
+    }
+}
+
 bool CtStorageMd::populate_treestore(const fs::path& file_path, Glib::ustring& error)
 {
     try {
         if (not fs::is_regular_file(file_path)) {
             throw std::runtime_error(str::format(_("'%s' is Not a Regular File"), file_path.string()));
         }
-        // parse the markdown file into an imported node (cherry-like xml content)
+        const std::string fileContents = Glib::file_get_contents(file_path.string());
+        // 1) OrangeArk documents carry a lossless XML snapshot: restore the full node tree from it
+        const std::string xmlContent = _get_embedded_xml_snapshot(fileContents);
+        if (not xmlContent.empty()) {
+            _pXmlStorage = std::make_unique<CtStorageXml>(_pCtMainWin);
+            if (_isDryRun) _pXmlStorage->set_is_dry_run();
+            return _pXmlStorage->populate_treestore_from_xml_string(xmlContent, error);
+        }
+        // 2) foreign Markdown file: parse it into an imported node (cherry-like xml content)
         CtMDImport importer{_pCtMainWin->get_ct_config()};
         std::unique_ptr<CtImportedNode> pNode = importer.import_file(file_path);
         if (not pNode or not pNode->xml_content or not pNode->xml_content->get_root_node()) {
@@ -60,7 +107,7 @@ bool CtStorageMd::populate_treestore(const fs::path& file_path, Glib::ustring& e
 }
 
 bool CtStorageMd::save_treestore(const fs::path& file_path,
-                                 const CtStorageSyncPending& /*syncPending*/,
+                                 const CtStorageSyncPending& syncPending,
                                  Glib::ustring& error,
                                  const CtExporting /*export_type*/,
                                  const std::map<gint64, gint64>* /*pExpoMasterReassign*/,
@@ -68,8 +115,23 @@ bool CtStorageMd::save_treestore(const fs::path& file_path,
                                  const int /*end_offset*/)
 {
     try {
+        // 1) human readable Markdown body
         const std::string mdContent = _tree_to_markdown();
-        Glib::file_set_contents(file_path.string(), mdContent);
+        // 2) lossless XML snapshot (full node tree + rich text) built on a hidden temp file
+        fs::path tmpXmlPath = _pCtMainWin->get_ct_tmp()->getHiddenFilePath(file_path);
+        tmpXmlPath += ".snapshot.ctd";
+        auto pXmlStorage = std::make_unique<CtStorageXml>(_pCtMainWin);
+        if (not pXmlStorage->save_treestore(tmpXmlPath, syncPending, error, CtExporting::NONESAVE)) {
+            throw std::runtime_error(error.empty() ? "failed to build the embedded document snapshot" : error);
+        }
+        const std::string xmlContent = Glib::file_get_contents(tmpXmlPath.string());
+        (void)fs::remove(tmpXmlPath);
+        std::string out = mdContent;
+        if (not str::endswith(out, "\n")) out += "\n";
+        out += "\n";
+        out += _wrap_embedded_xml_snapshot(xmlContent);
+        out += "\n";
+        Glib::file_set_contents(file_path.string(), out);
         return true;
     }
     catch (std::exception& e) {
@@ -116,11 +178,15 @@ void CtStorageMd::import_nodes(const fs::path& path, const Gtk::TreeModel::itera
     }
 }
 
-Glib::RefPtr<Gtk::TextBuffer> CtStorageMd::get_delayed_text_buffer(const gint64 /*node_id*/,
-                                                                   const std::string& /*syntax*/,
-                                                                   std::list<CtAnchoredWidget*>& /*widgets*/) const
+Glib::RefPtr<Gtk::TextBuffer> CtStorageMd::get_delayed_text_buffer(const gint64 node_id,
+                                                                   const std::string& syntax,
+                                                                   std::list<CtAnchoredWidget*>& widgets) const
 {
-    // buffers are created eagerly while populating, this is just a safety net
+    if (_pXmlStorage) {
+        // the xml snapshot path owns the delayed buffers created while populating
+        return _pXmlStorage->get_delayed_text_buffer(node_id, syntax, widgets);
+    }
+    // buffers are created eagerly while importing plain markdown, this is just a safety net
     return const_cast<CtMainWin*>(_pCtMainWin)->get_new_text_buffer();
 }
 

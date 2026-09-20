@@ -147,7 +147,11 @@ static bool _move_dir_with_fallback(const fs::path& dir_from, const fs::path& di
         }
 
         // detect storage type
-        std::unique_ptr<CtStorageEntity> pStorage = CtStorageControl::_get_entity_by_type(pCtMainWin, doc_type);
+        // OrangeArk: pick by file path so that .md documents use the Markdown storage
+        // (matching save_as; a doc_type-derived entity would try to parse .md as xml)
+        std::unique_ptr<CtStorageEntity> pStorage = CtDocType::MultiFile == doc_type
+            ? CtStorageControl::_get_entity_by_type(pCtMainWin, doc_type)
+            : CtStorageControl::_get_entity_by_path(pCtMainWin, extracted_file_path);
         if (not pStorage) throw std::runtime_error("no storage");
 
         // load from file / folder
@@ -174,7 +178,10 @@ static bool _move_dir_with_fallback(const fs::path& dir_from, const fs::path& di
 
 /*static*/bool CtStorageControl::document_integrity_check_pass(CtMainWin* pCtMainWin, const fs::path& file_path, Glib::ustring& error)
 {
-    std::unique_ptr<CtStorageEntity> storage = CtStorageControl::_get_entity_by_type(pCtMainWin, fs::get_doc_type_from_file_ext(file_path));
+    // OrangeArk: pick by file path so that .md documents use the Markdown storage
+    std::unique_ptr<CtStorageEntity> storage = fs::is_directory(file_path)
+        ? CtStorageControl::_get_entity_by_type(pCtMainWin, CtDocType::MultiFile)
+        : CtStorageControl::_get_entity_by_path(pCtMainWin, file_path);
     if (not storage) throw std::runtime_error("no storage");
 
     storage->set_is_dry_run();

@@ -846,6 +846,16 @@ void CtExport2Html::_html_get_from_treestore_node(CtTreeIter tree_iter,
             monospace_active = true;
             continue;
         }
+        else if (tag_property == CtConst::TAG_FONT_FAMILY) {
+            // OrangeArk: custom text font family
+            tag_property = "font-family";
+            property_value = "'" + property_value + "'";
+        }
+        else if (tag_property == CtConst::TAG_FONT_SIZE) {
+            // OrangeArk: custom text font size, stored in points
+            tag_property = "font-size";
+            property_value = property_value + "pt";
+        }
         else if (tag_property == CtConst::TAG_JUSTIFICATION) {
             // text-align:center/left/right
             // tag_property = "text-align"

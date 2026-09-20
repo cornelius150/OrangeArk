@@ -121,7 +121,6 @@ public:
     bool _resize_press_at(const double x, const double y, GdkEventButton* event);
     bool _resize_motion_at(const double x, const double y, GdkEventMotion* event);
     bool _resize_release(GdkEventButton* event);
-    void _connect_resize_widget(Gtk::Widget* pWidget); // hook resize into an inner widget (cells/treeview)
 protected:
     void _setup_resize_grip();  // creates the visible corner grip; subclasses place it on an overlay
     bool _on_grip_draw(const Cairo::RefPtr<Cairo::Context>& cr);
@@ -138,6 +137,7 @@ protected:
     double _dragStartX{0.};
     double _dragStartY{0.};
     int    _dragStartTotalW{0};
+    int    _dragStartMinHeight{0}; // OrangeArk: row min-height at drag start (avoids cumulative drift)
     CtTableColWidths _dragStartColWidths;
     Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
 

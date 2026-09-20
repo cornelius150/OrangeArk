@@ -365,6 +365,9 @@ public:
     void apply_tag_justify_center();
     void apply_tag_justify_right();
     void apply_tag_justify_fill();
+    // OrangeArk: toolbar font family / size combos
+    void apply_tag_font_family(const Glib::ustring& font_family);
+    void apply_tag_font_size(const Glib::ustring& font_size);
 
 private:
     // helper for edit actions
@@ -378,6 +381,7 @@ private:
     int  _find_previous_indent_margin();
     void _apply_tag_hN(const char* tagPropScaleVal);
     void _remove_text_formatting(const bool dismiss_link);
+    void _apply_tag_font_property(const gchar* tag_property, const Glib::ustring& property_value);
 
 public:
     void image_insert_png(Gtk::TextIter iter_insert,
@@ -569,6 +573,10 @@ public:
     // help actions
     void check_for_newer_version();
     void online_help();
+    void help_website();      // OrangeArk: open the project website
+    void help_source_code();  // OrangeArk: open the GitHub repository
+    void help_report_bug();   // OrangeArk: open the GitHub issue tracker
+    void help_donate();       // OrangeArk: open the donation page
     void folder_cfg_open();
     void dialog_about();
 

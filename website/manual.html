@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在线手册 — 橙子笔记 OrangeArk</title>
+<meta name="description" content="橙子笔记（OrangeArk）在线使用手册：入门、节点管理、富文本、表格、代码框、截图、导出与快捷键。">
+<style>
+  :root {
+    --orange: #fb8c00;
+    --orange-dark: #bf5f0a;
+    --orange-light: #fff3e0;
+    --ink: #2d2a26;
+    --muted: #6f6a63;
+    --bg: #fffdf9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+    color: var(--ink); background: var(--bg); line-height: 1.75;
+  }
+  a { color: var(--orange-dark); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header.site {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1080px; margin: 0 auto; padding: 18px 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; }
+  .brand svg { width: 34px; height: 34px; }
+  nav a { margin-left: 22px; color: var(--ink); font-size: 15px; }
+  nav a:hover { color: var(--orange-dark); }
+  .page-title {
+    text-align: center; padding: 52px 24px 32px;
+    background: linear-gradient(180deg, var(--orange-light) 0%, var(--bg) 100%);
+  }
+  .page-title h1 { font-size: 36px; margin-bottom: 8px; }
+  .page-title p { color: var(--muted); font-size: 16px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 30px 24px 60px; display: grid; grid-template-columns: 220px 1fr; gap: 36px; }
+  aside.toc { position: sticky; top: 18px; align-self: start; font-size: 14.5px; }
+  aside.toc .inner { background: #fff; border: 1px solid #f0e6d8; border-radius: 12px; padding: 18px 20px; }
+  aside.toc h4 { font-size: 15px; margin-bottom: 10px; color: var(--orange-dark); }
+  aside.toc a { display: block; padding: 5px 0; color: var(--ink); }
+  aside.toc a:hover { color: var(--orange-dark); text-decoration: none; }
+  main h2 { font-size: 26px; margin: 38px 0 14px; padding-top: 8px; }
+  main h2:first-child { margin-top: 0; }
+  main h3 { font-size: 19px; margin: 22px 0 10px; }
+  main p, main li { font-size: 15px; }
+  main p { margin-bottom: 10px; }
+  main ul, main ol { padding-left: 24px; margin-bottom: 12px; }
+  main li { margin-bottom: 6px; }
+  main table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; background: #fff; font-size: 14px; }
+  main th, main td { border: 1px solid #e8dcc8; padding: 9px 12px; text-align: left; }
+  main th { background: var(--orange-light); color: var(--orange-dark); }
+  kbd {
+    display: inline-block; padding: 1px 7px; border: 1px solid #d8c9ad; border-bottom-width: 2px;
+    border-radius: 5px; background: #fff; font-size: 12.5px; font-family: Consolas, monospace; color: var(--ink);
+  }
+  .tip {
+    background: var(--orange-light); border-left: 4px solid var(--orange);
+    border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 14.5px;
+  }
+  footer.site {
+    border-top: 1px solid #f0e6d8; margin-top: 40px; padding: 28px 24px;
+    text-align: center; color: var(--muted); font-size: 14px;
+  }
+  footer.site a { margin: 0 8px; }
+  @media (max-width: 860px) {
+    .wrap { grid-template-columns: 1fr; }
+    aside.toc { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a class="brand" href="index.html">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="25.4" y="3.2" width="3.4" height="7.6" rx="1.6" fill="#7a4a12" transform="rotate(14 27 7)"/>
+      <path d="M27.5 6.5 C 31.5 3.2, 36.5 4.2, 38.8 5.4 C 36.0 8.8, 31.6 9.9, 28.2 8.6 Z" fill="#8bc34a"/>
+      <circle cx="24" cy="28" r="17" fill="#fb8c00" stroke="#bf5f0a" stroke-width="2"/>
+      <ellipse cx="17.5" cy="20.5" rx="4.6" ry="3.0" fill="#ffffff" opacity="0.35" transform="rotate(-24 17.5 20.5)"/>
+    </svg>
+    橙子笔记
+  </a>
+  <nav>
+    <a href="index.html">首页</a>
+    <a href="manual.html">在线手册</a>
+    <a href="donate.html">捐赠</a>
+    <a href="https://github.com/oliveset/OrangeArk" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<div class="page-title">
+  <h1>在线手册</h1>
+  <p>从零开始了解橙子笔记的各项功能。</p>
+</div>
+
+<div class="wrap">
+  <aside class="toc">
+    <div class="inner">
+      <h4>目录</h4>
+      <a href="#start">一、快速入门</a>
+      <a href="#nodes">二、节点管理</a>
+      <a href="#rich">三、富文本编辑</a>
+      <a href="#table">四、表格</a>
+      <a href="#code">五、代码框</a>
+      <a href="#image">六、图片</a>
+      <a href="#shot">七、截图标注</a>
+      <a href="#export">八、导入与导出</a>
+      <a href="#hotkey">九、快捷键</a>
+    </div>
+  </aside>
+
+  <main>
+    <h2 id="start">一、快速入门</h2>
+    <p>橙子笔记是一款<strong>树状层级笔记软件</strong>：所有笔记保存在一个文档中，文档内部以无限层级的树状节点组织内容。</p>
+    <ul>
+      <li><strong>新建文档</strong>：菜单「文件 → 新建」，选择保存位置后即创建一个 <code>.md</code> 文档。</li>
+      <li><strong>打开文档</strong>：「文件 → 打开」，选择此前保存的 <code>.md</code> 文档即可完整恢复节点树与全部内容。</li>
+      <li><strong>自动保存</strong>：可在「工具 → 首选项」中开启自动保存，也可以随时按 <kbd>Ctrl</kbd>+<kbd>S</kbd> 手动保存。</li>
+      <li><strong>文档格式</strong>：文档是标准的 Markdown 文本文件，任何文本编辑器都能打开阅读；橙子笔记自身的数据则以内嵌快照形式无损保存，确保重开后树状结构与所有富文本格式完全一致。</li>
+    </ul>
+    <div class="tip">💡 文档是纯文本性质的 <code>.md</code> 文件，方便备份、同步和版本管理，也便于迁移到其他笔记工具。</div>
+
+    <h2 id="nodes">二、节点管理</h2>
+    <h3>节点操作</h3>
+    <ul>
+      <li><strong>新建节点</strong>：<kbd>Ctrl</kbd>+<kbd>N</kbd> 新建同级节点；「节点」菜单或左栏右键可新建子节点。</li>
+      <li><strong>层级与排序</strong>：在左侧树栏拖拽节点即可移动位置、改变层级。</li>
+      <li><strong>节点图标</strong>：右键节点 →「属性」可选择节点图标。</li>
+      <li><strong>书签</strong>：右键节点 →「添加到书签」，常用节点会固定在树栏顶部，右键书签可跳转或移除。</li>
+      <li><strong>搜索</strong>：<kbd>Ctrl</kbd>+<kbd>F</kbd> 在当前节点内查找；「搜索」菜单可跨全部节点全文搜索。</li>
+    </ul>
+    <h3>节点类型</h3>
+    <p>每个节点可选择三种类型：<strong>富文本</strong>（默认，本手册主要介绍）、<strong>纯文本</strong> 与 <strong>代码</strong>（整页代码编辑，带语法高亮）。</p>
+
+    <h2 id="rich">三、富文本编辑</h2>
+    <h3>文字格式</h3>
+    <ul>
+      <li><strong>字体与字号</strong>：工具栏中的字体下拉框列出系统已安装的全部字体（常用中文字体排在前面）；右侧字号下拉框提供 8–72 号字号。选中文字后选择即可应用，也可以不选中文本，在光标处继续输入时生效。</li>
+      <li><strong>常用样式</strong>：加粗 <kbd>Ctrl</kbd>+<kbd>B</kbd>、斜体 <kbd>Ctrl</kbd>+<kbd>I</kbd>、下划线 <kbd>Ctrl</kbd>+<kbd>U</kbd>、删除线 <kbd>Ctrl</kbd>+<kbd>K</kbd>、上下标、等宽字体等。</li>
+      <li><strong>颜色</strong>：工具栏「字体颜色」与「背景色」按钮可给选中文字上色；「高亮色」按钮提供一键荧光标记。</li>
+      <li><strong>标题样式</strong>：<kbd>Ctrl</kbd>+<kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd> 切换一、二、三级标题。</li>
+      <li><strong>格式刷</strong>：工具栏的格式刷按钮（刷子图标）可复制上一个应用的格式，选中文字后点一下即可套用，无需逐项设置。</li>
+      <li><strong>清除格式</strong>：「清除格式」按钮可去掉选中文字上的所有样式。</li>
+    </ul>
+    <h3>段落与缩进</h3>
+    <ul>
+      <li>支持左 / 中 / 右对齐、项目符号列表、编号列表与待办列表。</li>
+      <li>段落缩进支持 <kbd>Tab</kbd> 增加缩进、<kbd>Shift</kbd>+<kbd>Tab</kbd> 减少缩进；列表内 Tab 可逐级下沉。</li>
+      <li>对齐、缩进、颜色、字体等全部格式随文档一起保存，导出 PDF / HTML 时同样保留。</li>
+    </ul>
+
+    <h2 id="table">四、表格</h2>
+    <ul>
+      <li><strong>插入表格</strong>：菜单「插入 → 表格」，设置行列数。</li>
+      <li><strong>编辑单元格</strong>：点击单元格直接输入；<kbd>Tab</kbd> 跳到下一格，<kbd>Shift</kbd>+<kbd>Tab</kbd> 退回上一格。</li>
+      <li><strong>调整大小</strong>：将鼠标移到表格边缘出现调整光标后拖动，即可调整宽度与高度。</li>
+      <li><strong>行列操作</strong>：右键表格可插入 / 删除行列、设置列宽与对齐方式。</li>
+    </ul>
+
+    <h2 id="code">五、代码框</h2>
+    <ul>
+      <li><strong>插入</strong>：「插入 → 代码框」，选择编程语言后获得带语法高亮的代码编辑区。</li>
+      <li>支持数十种主流编程语言的高亮，代码框内 <kbd>Tab</kbd> 输入缩进而非跳出。</li>
+      <li>代码框可像图片一样<strong>拖拽边缘调整大小</strong>。</li>
+      <li>右键代码框可修改语言、自动换行、行号显示等选项。</li>
+    </ul>
+
+    <h2 id="image">六、图片</h2>
+    <ul>
+      <li><strong>插入</strong>：「插入 → 图片」或直接把图片文件拖进编辑区；截图复制的图片也可 <kbd>Ctrl</kbd>+<kbd>V</kbd> 粘贴。</li>
+      <li><strong>调整大小</strong>：鼠标移到图片上出现调整光标后拖动，可<strong>放大也可以缩小</strong>；按住比例拖角可保持宽高比。</li>
+      <li><strong>还原</strong>：右键图片 →「还原大小」可一键恢复原始尺寸。</li>
+      <li><strong>编辑</strong>：右键图片可选择旋转、另存为文件。</li>
+    </ul>
+
+    <h2 id="shot">七、截图标注</h2>
+    <p>橙子笔记内置 QQ 式截图工具，截完即标注、标注完即插入笔记。</p>
+    <ul>
+      <li><strong>开始截图</strong>：点击工具栏相机图标，或使用菜单「工具 → 截图」。窗口自动最小化并稍候抓取屏幕。</li>
+      <li><strong>框选区域</strong>：按住鼠标左键拖出矩形区域，松开即完成框选。</li>
+      <li><strong>标注工具</strong>：确认前的悬浮工具条提供：矩形、椭圆、箭头、画笔、荧光笔、马赛克、文字标注（可直接输入中文）与数字序号标记。</li>
+      <li><strong>移动标注</strong>：画好的标注可以用鼠标拖动位置微调。</li>
+      <li><strong>完成</strong>：点击工具条「✔」确认后，截图<strong>先复制到剪贴板</strong>，回到笔记中 <kbd>Ctrl</kbd>+<kbd>V</kbd> 粘贴插入；也可以直接另存为文件。</li>
+    </ul>
+    <div class="tip">💡 截图工具条的样式与操作习惯与 QQ / 微信截图一致，第一次使用即可上手。</div>
+
+    <h2 id="export">八、导入与导出</h2>
+    <h3>导出</h3>
+    <table>
+      <tr><th>格式</th><th>说明</th></tr>
+      <tr><td>PDF</td><td>当前节点或整个文档导出为 PDF，保留字体、颜色、缩进等富文本格式</td></tr>
+      <tr><td>HTML</td><td>导出为带样式的网页，适合浏览器查看与分享</td></tr>
+      <tr><td>纯文本</td><td>导出为无格式文本</td></tr>
+    </table>
+    <p>菜单「文件 → 导出」可选择导出范围（当前节点 / 当前节点及子节点 / 整个文档）。</p>
+    <h3>导入</h3>
+    <p>支持导入外部 Markdown 文件（<code>.md</code>）与纯文本文件，标题层级会自动转换为节点层级。</p>
+
+    <h2 id="hotkey">九、快捷键</h2>
+    <table>
+      <tr><th>快捷键</th><th>功能</th></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>新建节点</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>保存文档</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>当前节点内查找</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>B</kbd> / <kbd>I</kbd> / <kbd>U</kbd> / <kbd>K</kbd></td><td>加粗 / 斜体 / 下划线 / 删除线</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd></td><td>标题 1 / 2 / 3</td></tr>
+      <tr><td><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></td><td>缩进增加 / 减少</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>V</kbd></td><td>粘贴（含图片与截图）</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Y</kbd></td><td>撤销 / 重做</td></tr>
+      <tr><td><kbd>F6</kbd></td><td>树栏与编辑区焦点切换</td></tr>
+    </table>
+
+  </main>
+</div>
+
+<footer class="site">
+  <p>
+    <a href="index.html">首页</a> ·
+    <a href="manual.html">在线手册</a> ·
+    <a href="donate.html">捐赠支持</a> ·
+    <a href="https://github.com/oliveset/OrangeArk" target="_blank" rel="noopener">源代码（GPL 开源）</a> ·
+    <a href="https://github.com/oliveset/OrangeArk/issues" target="_blank" rel="noopener">反馈缺陷</a>
+  </p>
+  <p>© 2026 OrangeArk 橙子笔记 · 本软件为自由软件，基于 GNU GPL v3+ 授权发布</p>
+</footer>
+
+</body>
+</html>

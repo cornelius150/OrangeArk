@@ -379,6 +379,7 @@ void CtTableCommon::_resize_drag_begin(const double xRoot, const double yRoot)
     _dragStartY = yRoot;
     _dragStartTotalW = get_allocation().get_width();
     _dragStartColWidths = get_col_widths();
+    _dragStartMinHeight = _get_rows_min_height();
     gtk_grab_add(GTK_WIDGET(gobj()));
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
         rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER));
@@ -403,8 +404,9 @@ void CtTableCommon::_resize_drag_update(const double xRoot, const double yRoot)
         }
     }
     const double dy = yRoot - _dragStartY;
-    if (std::abs(dy) > 0.5) {
-        const int rowH = std::max(14, _get_rows_min_height() + static_cast<int>(std::lround(dy)));
+    // OrangeArk: row heights only follow a vertical drag (top/bottom border or grip)
+    if ((_dragEdgesMask & 0xC) and std::abs(dy) > 0.5) {
+        const int rowH = std::max(14, _dragStartMinHeight + static_cast<int>(std::lround(dy)));
         if (rowH != _get_rows_min_height()) {
             _set_rows_min_height(rowH);
             _dragResizeChanged = true;
@@ -460,26 +462,9 @@ static void _table_border_cursor(Gtk::Widget* pWidget, const int edges)
 // OrangeArk: hook the resize handlers into an inner widget (cell text views or
 // the light tree view) — pressing near the table outer border starts resizing
 // even when the event lands on an inner widget
-void CtTableCommon::_connect_resize_widget(Gtk::Widget* pWidget)
-{
-    pWidget->signal_button_press_event().connect(
-        [this, pWidget](GdkEventButton* e) {
-            int tx = 0, ty = 0;
-            if (not pWidget->translate_coordinates(*this, static_cast<int>(e->x), static_cast<int>(e->y), tx, ty)) return false;
-            return _resize_press_at(static_cast<double>(tx), static_cast<double>(ty), e);
-        }, false);
-    pWidget->signal_motion_notify_event().connect(
-        [this, pWidget](GdkEventMotion* e) {
-            int tx = 0, ty = 0;
-            if (not pWidget->translate_coordinates(*this, static_cast<int>(e->x), static_cast<int>(e->y), tx, ty)) return false;
-            return _resize_motion_at(static_cast<double>(tx), static_cast<double>(ty), e);
-        }, false);
-    pWidget->signal_button_release_event().connect(
-        [this](GdkEventButton* e) {
-            return _resize_release(e);
-        }, false);
-    pWidget->add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
-}
+// OrangeArk revert note: relaying border presses through inner widgets made a
+// plain click inside edge cells start a resize (the table "grew on click");
+// resizing now happens only via the visible corner grip or the frame border.
 
 bool CtTableCommon::_on_resize_button_press_event(GdkEventButton* event)
 {
@@ -622,8 +607,6 @@ void CtTableHeavy::_new_text_cell_attach(const size_t rowIdx, const size_t colId
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
     textView.signal_populate_popup().connect(sigc::mem_fun(*this, &CtTableCommon::on_cell_populate_popup));
     textView.signal_key_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::on_cell_key_press_event), false);
-    // OrangeArk: allow starting a table resize from the border of any cell
-    _connect_resize_widget(&textView);
 #endif
 
     _grid.attach(pTextCell->get_text_view().mm(), colIdx, rowIdx, 1/*# cell horiz*/, 1/*# cell vert*/);

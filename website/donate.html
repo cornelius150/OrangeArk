@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>捐赠支持 — 橙子笔记 OrangeArk</title>
+<meta name="description" content="向橙子笔记（OrangeArk）捐赠：所有捐赠完全自愿，用于软件的版本更新与日常维护。">
+<style>
+  :root {
+    --orange: #fb8c00;
+    --orange-dark: #bf5f0a;
+    --orange-light: #fff3e0;
+    --ink: #2d2a26;
+    --muted: #6f6a63;
+    --bg: #fffdf9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+    color: var(--ink); background: var(--bg); line-height: 1.7;
+  }
+  a { color: var(--orange-dark); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header.site {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1080px; margin: 0 auto; padding: 18px 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; }
+  .brand svg { width: 34px; height: 34px; }
+  nav a { margin-left: 22px; color: var(--ink); font-size: 15px; }
+  nav a:hover { color: var(--orange-dark); }
+  .page-title {
+    text-align: center; padding: 56px 24px 34px;
+    background: linear-gradient(180deg, var(--orange-light) 0%, var(--bg) 100%);
+  }
+  .page-title h1 { font-size: 36px; margin-bottom: 10px; }
+  .page-title p { color: var(--muted); max-width: 620px; margin: 0 auto; font-size: 16px; }
+  section { max-width: 1080px; margin: 0 auto; padding: 40px 24px; }
+  .ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .way {
+    background: #fff; border: 1px solid #f0e6d8; border-radius: 12px; padding: 28px;
+    text-align: center; box-shadow: 0 2px 8px rgba(120, 80, 20, 0.05);
+  }
+  .way h3 { font-size: 19px; margin-bottom: 8px; }
+  .way p { font-size: 14.5px; color: var(--muted); margin-bottom: 14px; }
+  .qr {
+    width: 168px; height: 168px; margin: 0 auto 14px; border-radius: 10px;
+    border: 2px dashed #e0cdb0; display: flex; align-items: center; justify-content: center;
+    color: #b9a684; font-size: 14px; background: var(--orange-light);
+  }
+  .btn {
+    display: inline-block; padding: 11px 26px; border-radius: 8px;
+    font-size: 15px; font-weight: 600; border: 2px solid var(--orange);
+  }
+  .btn.primary { background: var(--orange); color: #fff; }
+  .btn.primary:hover { background: var(--orange-dark); border-color: var(--orange-dark); text-decoration: none; }
+  .terms {
+    background: #fff; border: 1px solid #f0e6d8; border-radius: 12px;
+    padding: 30px 34px; max-width: 820px; margin: 0 auto;
+  }
+  .terms h2 { font-size: 24px; margin-bottom: 16px; }
+  .terms ol { padding-left: 22px; }
+  .terms li { margin-bottom: 10px; font-size: 15px; }
+  .terms p.note { margin-top: 16px; font-size: 14px; color: var(--muted); }
+  .usage { max-width: 820px; margin: 0 auto; }
+  .usage ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 18px; }
+  .usage li { background: #fff; border: 1px solid #f0e6d8; border-radius: 10px; padding: 16px 18px; font-size: 14.5px; }
+  .usage li b { color: var(--orange-dark); }
+  footer.site {
+    border-top: 1px solid #f0e6d8; margin-top: 40px; padding: 28px 24px;
+    text-align: center; color: var(--muted); font-size: 14px;
+  }
+  footer.site a { margin: 0 8px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a class="brand" href="index.html">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="25.4" y="3.2" width="3.4" height="7.6" rx="1.6" fill="#7a4a12" transform="rotate(14 27 7)"/>
+      <path d="M27.5 6.5 C 31.5 3.2, 36.5 4.2, 38.8 5.4 C 36.0 8.8, 31.6 9.9, 28.2 8.6 Z" fill="#8bc34a"/>
+      <circle cx="24" cy="28" r="17" fill="#fb8c00" stroke="#bf5f0a" stroke-width="2"/>
+      <ellipse cx="17.5" cy="20.5" rx="4.6" ry="3.0" fill="#ffffff" opacity="0.35" transform="rotate(-24 17.5 20.5)"/>
+    </svg>
+    橙子笔记
+  </a>
+  <nav>
+    <a href="index.html">首页</a>
+    <a href="manual.html">在线手册</a>
+    <a href="donate.html">捐赠</a>
+    <a href="https://github.com/oliveset/OrangeArk" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<div class="page-title">
+  <h1>捐赠支持</h1>
+  <p>橙子笔记是一款免费开源软件，您可以永久免费使用全部功能。如果您愿意支持它的持续更新与维护，可以通过下方的渠道进行捐赠。</p>
+</div>
+
+<section id="ways">
+  <div class="ways">
+    <div class="way">
+      <h3>爱发电</h3>
+      <div class="qr">此处放置<br>爱发电二维码</div>
+      <p>国内便捷渠道，支持微信 / 支付宝。</p>
+      <a class="btn primary" href="#" rel="noopener">前往爱发电主页</a>
+      <p style="margin-top:10px; font-size:12.5px;">（发布前请替换为实际链接与二维码图片）</p>
+    </div>
+    <div class="way">
+      <h3>GitHub Sponsors</h3>
+      <div class="qr">此处放置<br>Sponsors 二维码</div>
+      <p>面向海外用户，支持按月赞助或一次性赞助。</p>
+      <a class="btn primary" href="https://github.com/sponsors/oliveset" target="_blank" rel="noopener">前往 Sponsors 页面</a>
+      <p style="margin-top:10px; font-size:12.5px;">（需先在 GitHub 上开通 Sponsors 账户）</p>
+    </div>
+  </div>
+</section>
+
+<section id="usage">
+  <div class="usage">
+    <h2 style="text-align:center; font-size:26px;">捐赠资金的用途</h2>
+    <p style="text-align:center; color:var(--muted); margin-top:8px;">所有捐赠将用于软件的版本更新与日常维护，包括：</p>
+    <ul>
+      <li><b>开发维护</b> — 功能开发、缺陷修复、版本发布所需的时间与精力</li>
+      <li><b>基础设施</b> — 官网、在线手册与下载服务的托管费用</li>
+      <li><b>开发工具</b> — 代码签名证书、开发测试环境等必要开支</li>
+      <li><b>回馈上游</b> — 向本软件所依赖的开源社区回馈贡献</li>
+    </ul>
+  </div>
+</section>
+
+<section id="terms">
+  <div class="terms">
+    <h2>捐赠条款</h2>
+    <ol>
+      <li><b>完全自愿</b>：捐赠是您在完全自愿前提下的支持行为，不存在任何强制或诱导。是否捐赠、捐赠多少均不影响您使用本软件的全部功能。</li>
+      <li><b>非购买行为</b>：捐赠不构成任何商品或服务的购买，不形成任何债权债务关系，捐赠方不会因此获得除公开致谢之外的特殊权利或回报。</li>
+      <li><b>用途声明</b>：捐赠资金将全部用于本软件的版本更新、日常维护及相关基础设施建设，不以营利为目的。</li>
+      <li><b>不予退还</b>：捐赠一经完成即不可撤销、不可退还，请在捐赠前确认金额与意愿。</li>
+      <li><b>税务说明</b>：捐赠不属于公益慈善捐赠，无法开具公益捐赠票据或用于税前扣除。</li>
+      <li><b>未成年人</b>：未成年人进行捐赠应事先取得监护人同意。</li>
+      <li><b>条款变更</b>：本页条款如有更新，将在本页面公布，更新后立即生效。</li>
+    </ol>
+    <p class="note">本软件基于 GNU GPL v3+ 授权发布，任何人都有免费使用、学习和分发的权利。即使不捐赠，您依然拥有完整的软件使用体验。</p>
+  </div>
+</section>
+
+<footer class="site">
+  <p>
+    <a href="index.html">首页</a> ·
+    <a href="manual.html">在线手册</a> ·
+    <a href="donate.html">捐赠支持</a> ·
+    <a href="https://github.com/oliveset/OrangeArk" target="_blank" rel="noopener">源代码（GPL 开源）</a> ·
+    <a href="https://github.com/oliveset/OrangeArk/issues" target="_blank" rel="noopener">反馈缺陷</a>
+  </p>
+  <p>© 2026 OrangeArk 橙子笔记 · 本软件为自由软件，基于 GNU GPL v3+ 授权发布</p>
+</footer>
+
+</body>
+</html>

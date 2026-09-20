@@ -48,7 +48,42 @@ bool CtStorageXml::populate_treestore(const fs::path& file_path, Glib::ustring& 
     try {
         // open file
         std::unique_ptr<xmlpp::DomParser> parser = CtStorageXml::get_parser(file_path);
+        return _populate_treestore_from_parser(std::move(parser), error);
+    }
+    catch (std::exception& e) {
+        error = e.what();
+        return false;
+    }
+}
 
+// OrangeArk: populate the tree from an in-memory OrangeArk XML document
+bool CtStorageXml::populate_treestore_from_xml_string(const std::string& xml_content, Glib::ustring& error)
+{
+    try {
+        auto parser = std::make_unique<xmlpp::DomParser>();
+        if (not CtXmlHelper::safe_parse_memory(*parser, xml_content)) {
+            throw std::runtime_error("xml parse fail");
+        }
+        if (not parser->get_document() or not parser->get_document()->get_root_node()) {
+            throw std::runtime_error("document is null");
+        }
+        if (parser->get_document()->get_root_node()->get_name() != CtConst::APP_NAME) {
+            throw std::runtime_error("document contains the wrong node root");
+        }
+        return _populate_treestore_from_parser(std::move(parser), error);
+    }
+    catch (std::exception& e) {
+        error = e.what();
+        return false;
+    }
+}
+
+bool CtStorageXml::_populate_treestore_from_parser(std::unique_ptr<xmlpp::DomParser> parser, Glib::ustring& error)
+{
+    try {
+        if (not parser or not parser->get_document() or not parser->get_document()->get_root_node()) {
+            throw std::runtime_error("document is null");
+        }
         CtTreeStore& ct_tree_store = _pCtMainWin->get_tree_store();
 
         // load bookmarks

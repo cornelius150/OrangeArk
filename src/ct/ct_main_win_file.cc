@@ -485,7 +485,7 @@ void CtMainWin::mod_time_sentinel_restart()
                 spdlog::debug("mod time was {} now {}", _uCtStorage->get_mod_time(), currModTime);
                 fs::path file_path = _uCtStorage->get_file_path();
                 if (file_open(file_path, ""/*node*/, ""/*anchor*/, ""/*password*/, true/*is_reload*/)) {
-                    _ctStatusBar.update_status(_("The Document was Reloaded After External Update to CT* File."));
+                    _ctStatusBar.update_status(_("The Document was Reloaded After External Update to the File."));
                 }
             }
         }

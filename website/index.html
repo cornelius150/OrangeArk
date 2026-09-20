@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>橙子笔记 OrangeArk — 层级笔记软件</title>
+<meta name="description" content="橙子笔记（OrangeArk）是一款免费开源的层级笔记软件，支持富文本、表格、代码框、截图标注与 Markdown 文档格式。">
+<style>
+  :root {
+    --orange: #fb8c00;
+    --orange-dark: #bf5f0a;
+    --orange-light: #fff3e0;
+    --ink: #2d2a26;
+    --muted: #6f6a63;
+    --bg: #fffdf9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+    color: var(--ink); background: var(--bg); line-height: 1.7;
+  }
+  a { color: var(--orange-dark); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header.site {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1080px; margin: 0 auto; padding: 18px 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; }
+  .brand svg { width: 34px; height: 34px; }
+  nav a { margin-left: 22px; color: var(--ink); font-size: 15px; }
+  nav a:hover { color: var(--orange-dark); }
+  .hero {
+    text-align: center; padding: 72px 24px 56px;
+    background: linear-gradient(180deg, var(--orange-light) 0%, var(--bg) 100%);
+  }
+  .hero svg { width: 96px; height: 96px; }
+  .hero h1 { font-size: 42px; margin: 14px 0 8px; }
+  .hero h1 span { color: var(--orange); }
+  .hero p.sub { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 auto 30px; }
+  .btn {
+    display: inline-block; padding: 13px 30px; margin: 0 8px 10px; border-radius: 8px;
+    font-size: 16px; font-weight: 600; border: 2px solid var(--orange);
+  }
+  .btn.primary { background: var(--orange); color: #fff; }
+  .btn.primary:hover { background: var(--orange-dark); border-color: var(--orange-dark); text-decoration: none; }
+  .btn.ghost { color: var(--orange-dark); background: transparent; }
+  .btn.ghost:hover { background: var(--orange-light); text-decoration: none; }
+  .hero .ver { margin-top: 14px; font-size: 13px; color: var(--muted); }
+  section { max-width: 1080px; margin: 0 auto; padding: 54px 24px; }
+  section h2 { text-align: center; font-size: 30px; margin-bottom: 10px; }
+  section p.lead { text-align: center; color: var(--muted); margin-bottom: 36px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .card {
+    background: #fff; border: 1px solid #f0e6d8; border-radius: 12px; padding: 24px;
+    box-shadow: 0 2px 8px rgba(120, 80, 20, 0.05);
+  }
+  .card .emoji { font-size: 30px; }
+  .card h3 { font-size: 18px; margin: 10px 0 6px; }
+  .card p { font-size: 14.5px; color: var(--muted); }
+  .download-box {
+    background: #fff; border: 1px solid #f0e6d8; border-radius: 14px;
+    padding: 36px; text-align: center; max-width: 640px; margin: 0 auto;
+  }
+  .download-box .btn { margin-top: 14px; }
+  .download-box small { display: block; color: var(--muted); margin-top: 14px; }
+  footer.site {
+    border-top: 1px solid #f0e6d8; margin-top: 40px; padding: 28px 24px;
+    text-align: center; color: var(--muted); font-size: 14px;
+  }
+  footer.site a { margin: 0 8px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="25.4" y="3.2" width="3.4" height="7.6" rx="1.6" fill="#7a4a12" transform="rotate(14 27 7)"/>
+      <path d="M27.5 6.5 C 31.5 3.2, 36.5 4.2, 38.8 5.4 C 36.0 8.8, 31.6 9.9, 28.2 8.6 Z" fill="#8bc34a"/>
+      <circle cx="24" cy="28" r="17" fill="#fb8c00" stroke="#bf5f0a" stroke-width="2"/>
+      <ellipse cx="17.5" cy="20.5" rx="4.6" ry="3.0" fill="#ffffff" opacity="0.35" transform="rotate(-24 17.5 20.5)"/>
+    </svg>
+    橙子笔记
+  </div>
+  <nav>
+    <a href="index.html">首页</a>
+    <a href="manual.html">在线手册</a>
+    <a href="donate.html">捐赠</a>
+    <a href="https://github.com/oliveset/OrangeArk" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="25.4" y="3.2" width="3.4" height="7.6" rx="1.6" fill="#7a4a12" transform="rotate(14 27 7)"/>
+    <path d="M27.5 6.5 C 31.5 3.2, 36.5 4.2, 38.8 5.4 C 36.0 8.8, 31.6 9.9, 28.2 8.6 Z" fill="#8bc34a"/>
+    <circle cx="24" cy="28" r="17" fill="#fb8c00" stroke="#bf5f0a" stroke-width="2"/>
+    <ellipse cx="17.5" cy="20.5" rx="4.6" ry="3.0" fill="#ffffff" opacity="0.35" transform="rotate(-24 17.5 20.5)"/>
+  </svg>
+  <h1>橙子笔记 <span>OrangeArk</span></h1>
+  <p class="sub">免费开源的层级笔记软件：树状节点管理、富文本编辑、表格与代码框、截图标注，文档以 Markdown（.md）格式保存。</p>
+  <a class="btn primary" href="https://github.com/oliveset/OrangeArk/releases/latest" target="_blank" rel="noopener">下载 Windows 版</a>
+  <a class="btn ghost" href="https://github.com/oliveset/OrangeArk" target="_blank" rel="noopener">查看源代码</a>
+  <div class="ver">适用 Windows 10 / 11（64 位）· 安装版与免安装绿色版 · 永久免费</div>
+</div>
+
+<section id="features">
+  <h2>功能特性</h2>
+  <p class="lead">为中文用户打造的本地笔记工具，数据保存在自己手里。</p>
+  <div class="grid">
+    <div class="card"><div class="emoji">🌳</div><h3>树状节点</h3><p>无限层级节点组织笔记，支持节点图标、书签、拖拽排序与快速搜索。</p></div>
+    <div class="card"><div class="emoji">✍️</div><h3>富文本</h3><p>字体、字号、颜色、加粗、下划线、上下标、标题样式，还有格式刷一键复制格式。</p></div>
+    <div class="card"><div class="emoji">📋</div><h3>表格与代码框</h3><p>可编辑表格、带语法高亮的代码框、多行缩进与列表，记录结构化内容。</p></div>
+    <div class="card"><div class="emoji">📷</div><h3>截图标注</h3><p>内置截图工具：矩形、椭圆、箭头、画笔、文字标注与序号标记，QQ 式操作习惯。</p></div>
+    <div class="card"><div class="emoji">📝</div><h3>Markdown 文档</h3><p>笔记保存为 .md 文档：人能直接阅读，其他 Markdown 工具也能打开。</p></div>
+    <div class="card"><div class="emoji">📤</div><h3>多格式导出</h3><p>一键导出 PDF、HTML、纯文本，方便分享与打印。</p></div>
+  </div>
+</section>
+
+<section id="download">
+  <h2>下载</h2>
+  <p class="lead">绿色免安装，解压即用；也可选择安装版。</p>
+  <div class="download-box">
+    <h3>Windows 安装包</h3>
+    <p>OrangeArkSetup-x64.exe（推荐）</p>
+    <a class="btn primary" href="https://github.com/oliveset/OrangeArk/releases/latest" target="_blank" rel="noopener">前往 Releases 下载</a>
+    <small>更新日志与历史版本同样发布在 GitHub Releases 页面。</small>
+  </div>
+</section>
+
+<footer class="site">
+  <p>
+    <a href="index.html">首页</a> ·
+    <a href="manual.html">在线手册</a> ·
+    <a href="donate.html">捐赠支持</a> ·
+    <a href="https://github.com/oliveset/OrangeArk" target="_blank" rel="noopener">源代码（GPL 开源）</a> ·
+    <a href="https://github.com/oliveset/OrangeArk/issues" target="_blank" rel="noopener">反馈缺陷</a>
+  </p>
+  <p>© 2026 OrangeArk 橙子笔记 · 本软件为自由软件，基于 GNU GPL v3+ 授权发布</p>
+</footer>
+
+</body>
+</html>

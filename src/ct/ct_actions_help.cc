@@ -24,20 +24,40 @@
 #include "ct_actions.h"
 #include <glib/gstdio.h>
 
+// OrangeArk: project URLs used by the Help menu
+namespace {
+    const char* ORANGEARK_URL_WEB      = "https://oliveset.github.io/OrangeArk/";
+    const char* ORANGEARK_URL_SOURCE   = "https://github.com/oliveset/OrangeArk";
+    const char* ORANGEARK_URL_ISSUES   = "https://github.com/oliveset/OrangeArk/issues";
+    const char* ORANGEARK_URL_RELEASES = "https://github.com/oliveset/OrangeArk/releases";
+    const char* ORANGEARK_URL_DONATE   = "https://oliveset.github.io/OrangeArk/donate.html";
+    const char* ORANGEARK_URL_MANUAL   = "https://oliveset.github.io/OrangeArk/manual.html";
+}
+
 void CtActions::online_help()
 {
-    // OrangeArk: show a local usage guide instead of an online manual
-    const Glib::ustring tips =
-        "<b>OrangeArk 橙子笔记 使用说明</b>\n\n"
-        "• 左侧树面板：右键可新建/整理节点，节点支持层级结构\n"
-        "• 保存：文档保存为 Markdown（.md）文件，其他编辑器也能打开；Ctrl+S 快速保存\n"
-        "• 截图：工具栏相机按钮（Shift+Alt+X），拖框选区后弹出工具栏，"
-        "可用画笔/箭头/矩形/椭圆/文字标注，可撤销/重做，可保存 PNG；"
-        "确认后自动复制到剪贴板并插入笔记\n"
-        "• 调整大小：图片/表格/代码框右下角有拖拽手柄，按住拖动即可调整大小\n"
-        "• 缩进：编辑框内 Tab 缩进、Shift+Tab 反缩进\n"
-        "• 书签：右键节点可添加/移除书签，书签显示在顶部菜单";
-    CtDialogs::info_dialog(tips, *_pCtMainWin);
+    // OrangeArk: the online manual lives on the project website
+    fs::open_weblink(ORANGEARK_URL_MANUAL);
+}
+
+void CtActions::help_website()
+{
+    fs::open_weblink(ORANGEARK_URL_WEB);
+}
+
+void CtActions::help_source_code()
+{
+    fs::open_weblink(ORANGEARK_URL_SOURCE);
+}
+
+void CtActions::help_report_bug()
+{
+    fs::open_weblink(ORANGEARK_URL_ISSUES);
+}
+
+void CtActions::help_donate()
+{
+    fs::open_weblink(ORANGEARK_URL_DONATE);
 }
 
 void CtActions::dialog_about()
@@ -65,15 +85,24 @@ void CtActions::check_for_newer_version()
     while (g_main_context_pending(nullptr)) g_main_context_iteration(nullptr, false);
     #endif
 
-    std::string latest_debian_changelog_from_server = fs::download_file("https://raw.githubusercontent.com/giuspen/orangeark/master/debian/changelog");
-    std::size_t openp = latest_debian_changelog_from_server.find("(");
-    std::size_t closep = latest_debian_changelog_from_server.find(")");
-    if (std::string::npos == openp or std::string::npos == closep or closep < openp) {
+    // OrangeArk: query the latest GitHub release of this project
+    const std::string json_from_server = fs::download_file("https://api.github.com/repos/oliveset/OrangeArk/releases/latest");
+    const std::size_t tagPos = json_from_server.find("\"tag_name\"");
+    if (json_from_server.empty() or std::string::npos == tagPos) {
         statusbar.update_status(_("Failed to Retrieve Latest Version Information - Try Again Later."));
         return;
     }
-    Glib::ustring latest_version_from_server = latest_debian_changelog_from_server.substr(openp + 1, closep - openp - 1);
-    auto re = Glib::Regex::create("(\\d+)\\.(\\d+)\\.(\\d+)-\\d+");
+    const std::size_t openq = json_from_server.find("\"", tagPos + 10);
+    const std::size_t closeq = std::string::npos == openq ? std::string::npos : json_from_server.find("\"", openq + 1);
+    if (std::string::npos == openq or std::string::npos == closeq or closeq < openq) {
+        statusbar.update_status(_("Failed to Retrieve Latest Version Information - Try Again Later."));
+        return;
+    }
+    Glib::ustring latest_version_from_server = json_from_server.substr(openq + 1, closeq - openq - 1);
+    if (not latest_version_from_server.empty() and 'v' == latest_version_from_server[0]) {
+        latest_version_from_server = latest_version_from_server.substr(1);
+    }
+    auto re = Glib::Regex::create("(\\d+)\\.(\\d+)\\.(\\d+)");
     Glib::MatchInfo match;
     if (not re->match(latest_version_from_server, match)) {
         statusbar.update_status(_("Failed to Retrieve Latest Version Information - Try Again Later."));

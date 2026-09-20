@@ -520,11 +520,19 @@ void CtMenu::init_actions(CtActions* pActions)
     }
     {
         const char* help_cat = _("Help");
-        _actions.push_back(CtMenuAction{help_cat, "ct_help", "ct_help", "使用帮助", "F1",
-            "查看 OrangeArk 使用说明", sigc::mem_fun(*pActions, &CtActions::online_help)});
-        _actions.push_back(CtMenuAction{help_cat, "open_cfg_folder", "ct_directory", "打开配置目录", None,
-            "打开存放配置文件的目录", sigc::mem_fun(*pActions, &CtActions::folder_cfg_open)});
-        _actions.push_back(CtMenuAction{help_cat, "ct_about", "ct_about", "关于 OrangeArk", None,
+        _actions.push_back(CtMenuAction{help_cat, "check_new_version", "ct_preferences", "检查新版本(C)", None,
+            "检查 OrangeArk 新版本", sigc::mem_fun(*pActions, &CtActions::check_for_newer_version)});
+        _actions.push_back(CtMenuAction{help_cat, "open_website", "ct_globe", "官网(W)", None,
+            "打开 OrangeArk 官网", sigc::mem_fun(*pActions, &CtActions::help_website)});
+        _actions.push_back(CtMenuAction{help_cat, "open_source_code", "ct_github", "源代码(S)", None,
+            "打开 OrangeArk 源代码仓库", sigc::mem_fun(*pActions, &CtActions::help_source_code)});
+        _actions.push_back(CtMenuAction{help_cat, "report_bug", "ct_bug", "反馈缺陷(R)", None,
+            "反馈 OrangeArk 问题或缺陷", sigc::mem_fun(*pActions, &CtActions::help_report_bug)});
+        _actions.push_back(CtMenuAction{help_cat, "donate", "ct_heart", "捐赠(D)", None,
+            "捐赠支持 OrangeArk 版本更新", sigc::mem_fun(*pActions, &CtActions::help_donate)});
+        _actions.push_back(CtMenuAction{help_cat, "ct_help", "ct_help", "在线手册(M)", "F1",
+            "打开 OrangeArk 在线使用手册", sigc::mem_fun(*pActions, &CtActions::online_help)});
+        _actions.push_back(CtMenuAction{help_cat, "ct_about", "ct_about", "关于(A)", None,
             "关于 OrangeArk 橙子笔记", sigc::mem_fun(*pActions, &CtActions::dialog_about)});
 
         // add actions in the Windows for the toolbar

@@ -28,6 +28,9 @@
 #include "ct_storage_xml.h"
 #include "ct_logging.h"
 
+#include <algorithm>
+#include <pango/pangocairo.h> // OrangeArk: pango_cairo_font_map_get_default for system font enumeration
+
 #if GTKMM_MAJOR_VERSION >= 4
 std::vector<Gtk::Box*> CtMenu::build_toolbars4(Gtk::MenuButton*& pRecentDocsMenuButton, Gtk::Button*& pButtonSave)
 {
@@ -64,6 +67,23 @@ std::vector<Gtk::Box*> CtMenu::build_toolbars4(Gtk::MenuButton*& pRecentDocsMenu
             auto* separator = Gtk::manage(new Gtk::Separator{Gtk::Orientation::VERTICAL});
             separator->get_style_context()->add_class("ct-toolbar4-separator");
             current_toolbar->append(*separator);
+            continue;
+        }
+        if (element == CtConst::TOOLBAR_FONT_FAMILY or element == CtConst::TOOLBAR_FONT_SIZE) {
+            // OrangeArk: font family / size combos on the GTK4 toolbar too
+            auto* pCombo = Gtk::manage(new Gtk::ComboBoxText());
+            if (element == CtConst::TOOLBAR_FONT_FAMILY) {
+                _setup_font_family_combo(pCombo);
+                pCombo->set_size_request(140, -1);
+            }
+            else {
+                _setup_font_size_combo(pCombo);
+                pCombo->set_size_request(72, -1);
+            }
+            pCombo->set_margin_start(2);
+            pCombo->set_margin_end(2);
+            pCombo->set_valign(Gtk::Align::CENTER);
+            current_toolbar->append(*pCombo);
             continue;
         }
         if (element == CtConst::CHAR_STAR) {
@@ -665,6 +685,7 @@ std::vector<Gtk::Toolbar*> CtMenu::build_toolbars(Gtk::MenuToolButton*& pRecentD
 {
     pRecentDocsMenuToolButton = nullptr;
     std::vector<Gtk::Toolbar*> toolbars;
+    _rGtkBuilder = Gtk::Builder::create(); // OrangeArk: rebuild-safe (a second toolbar rebuild must not hit duplicate ids)
     for (const auto& toolbar_str : _get_ui_str_toolbars()) {
         Gtk::Toolbar* pToolbar = nullptr;
         _rGtkBuilder->add_from_string(toolbar_str);
@@ -677,9 +698,107 @@ std::vector<Gtk::Toolbar*> CtMenu::build_toolbars(Gtk::MenuToolButton*& pRecentD
             _rGtkBuilder->get_widget("ct_save", pToolButtonSave);
         }
     }
+    // OrangeArk: populate the font family / size combo placeholders
+    Gtk::ToolItem* pFontFamilyItem = nullptr;
+    _rGtkBuilder->get_widget("FontFamilyCombo", pFontFamilyItem);
+    if (pFontFamilyItem) {
+        auto* pCombo = Gtk::manage(new Gtk::ComboBoxText());
+        pCombo->set_size_request(140, -1);
+        _setup_font_family_combo(pCombo);
+        pFontFamilyItem->add(*pCombo);
+        pFontFamilyItem->show_all();
+    }
+    Gtk::ToolItem* pFontSizeItem = nullptr;
+    _rGtkBuilder->get_widget("FontSizeCombo", pFontSizeItem);
+    if (pFontSizeItem) {
+        auto* pCombo = Gtk::manage(new Gtk::ComboBoxText());
+        pCombo->set_size_request(72, -1);
+        _setup_font_size_combo(pCombo);
+        pFontSizeItem->add(*pCombo);
+        pFontSizeItem->show_all();
+    }
     return toolbars;
 }
 #endif /* GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED) */
+
+// OrangeArk: toolbar font family combo — lists the system fonts (via Pango)
+void CtMenu::_setup_font_family_combo(Gtk::ComboBoxText* pCombo)
+{
+    // enumerate the installed font families straight from the system
+    std::vector<Glib::ustring> familyNames;
+    try {
+        // OrangeArk: use the stable Pango C API (pangomm-1.4 lacks CairoFontMap::get_default)
+        if (PangoFontMap* pFontMap = pango_cairo_font_map_get_default()) {
+            int nFamilies = 0;
+            PangoFontFamily** ppFamilies = nullptr;
+            pango_font_map_list_families(pFontMap, &ppFamilies, &nFamilies);
+            for (int idx = 0; idx < nFamilies; ++idx) {
+                if (const char* pName = pango_font_family_get_name(ppFamilies[idx])) {
+                    if (*pName != '\0') {
+                        familyNames.push_back(pName);
+                    }
+                }
+            }
+            g_free(ppFamilies);
+        }
+    }
+    catch (std::exception& e) {
+        spdlog::warn("font family enumeration failed: {}", e.what());
+    }
+    std::sort(familyNames.begin(), familyNames.end(),
+              [](const Glib::ustring& a, const Glib::ustring& b) { return a.lowercase() < b.lowercase(); });
+    // common desktop fonts (incl. CJK) first, everything else alphabetically after them
+    const std::vector<Glib::ustring> common = {
+        "Microsoft YaHei", "SimSun", "SimHei", "KaiTi", "FangSong", "DengXian",
+        "Arial", "Times New Roman", "Courier New", "Calibri", "Consolas", "Verdana", "Tahoma"};
+    std::vector<Glib::ustring> ordered;
+    for (const auto& preferred : common) {
+        for (const auto& name : familyNames) {
+            if (name.lowercase() == preferred.lowercase()) {
+                ordered.push_back(name);
+                break;
+            }
+        }
+    }
+    for (const auto& name : familyNames) {
+        bool isCommon{false};
+        for (const auto& preferred : common) {
+            if (name.lowercase() == preferred.lowercase()) {
+                isCommon = true;
+                break;
+            }
+        }
+        if (not isCommon) {
+            ordered.push_back(name);
+        }
+    }
+    pCombo->append(_("Font")); // prompt row (row 0)
+    for (const auto& name : ordered) {
+        pCombo->append(name);
+    }
+    pCombo->set_active(0);
+    pCombo->signal_changed().connect([this, pCombo]() {
+        if (pCombo->get_active_row_number() > 0) {
+            _pCtMainWin->get_ct_actions()->apply_tag_font_family(pCombo->get_active_text());
+        }
+    });
+}
+
+// OrangeArk: toolbar font size combo
+void CtMenu::_setup_font_size_combo(Gtk::ComboBoxText* pCombo)
+{
+    const std::vector<int> sizes = {8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 22, 24, 28, 32, 36, 48, 72};
+    pCombo->append(_("Font Size")); // prompt row (row 0)
+    for (const int size : sizes) {
+        pCombo->append(std::to_string(size));
+    }
+    pCombo->set_active(0);
+    pCombo->signal_changed().connect([this, pCombo]() {
+        if (pCombo->get_active_row_number() > 0) {
+            _pCtMainWin->get_ct_actions()->apply_tag_font_size(pCombo->get_active_text());
+        }
+    });
+}
 
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
 Gtk::MenuBar* CtMenu::build_menubar()

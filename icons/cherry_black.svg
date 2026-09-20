@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-  <path d="M 7.9 5.2 C 7.9 5.2 7.6 3.0 6.4 1.8" stroke="#7a4a12" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-  <path d="M 8.2 5.3 C 8.7 3.6 10.4 2.6 12.5 2.8 C 12.5 4.9 11.0 6.5 8.9 6.7 C 8.6 6.6 8.4 6.0 8.2 5.3 Z" fill="#4d4d4d"/>
-  <circle cx="8" cy="10.2" r="4.9" fill="#f57f17" stroke="#bf5f0a" stroke-width="0.9"/>
-  <ellipse cx="6.3" cy="8.5" rx="1.8" ry="1.2" fill="#ffffff" opacity="0.35" transform="rotate(-25 6.3 8.5)"/>
+  <!-- OrangeArk: single orange (replaces the legacy cherry node icon) -->
+  <path d="M 8.3 4.4 C 8.3 4.4 8.1 3.2 7.2 2.5" stroke="#7a4a12" stroke-width="1" fill="none" stroke-linecap="round"/>
+  <path d="M 8.6 4.5 C 9.0 3.3 10.3 2.7 11.9 2.8 C 11.9 4.4 10.9 5.6 9.2 5.7 C 9.0 5.6 8.8 5.1 8.6 4.5 Z" fill="#8bc34a"/>
+  <circle cx="8" cy="9.8" r="5.2" fill="#fb8c00" stroke="#bf5f0a" stroke-width="1"/>
+  <ellipse cx="6.1" cy="7.9" rx="1.9" ry="1.2" fill="#ffffff" opacity="0.35" transform="rotate(-25 6.1 7.9)"/>
 </svg>

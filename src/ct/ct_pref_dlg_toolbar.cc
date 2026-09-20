@@ -139,6 +139,16 @@ void CtPrefDlg::populate_row_in_toolbar_model(Gtk::TreeModel::iterator row, cons
         icon = "ct_open";
         desc = _("Open a OrangeArk File");
     }
+    else if (key == Glib::ustring{CtConst::TOOLBAR_FONT_FAMILY}) {
+        // OrangeArk: font family combo placeholder
+        icon = "ct_fonts";
+        desc = _("Font");
+    }
+    else if (key == Glib::ustring{CtConst::TOOLBAR_FONT_SIZE}) {
+        // OrangeArk: font size combo placeholder
+        icon = "ct_fonts";
+        desc = _("Font Size");
+    }
     else if (CtMenuAction const* action = _pCtMenu->find_action(key)) {
         icon = action->image;
         desc = action->desc;

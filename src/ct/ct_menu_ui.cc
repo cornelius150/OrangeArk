@@ -34,6 +34,13 @@ std::vector<std::string> CtMenu::_get_ui_str_toolbars()
             if (*element == CtConst::TAG_SEPARATOR) {
                 str_buff += "<child><object class='GtkSeparatorToolItem'/></child>";
             }
+            else if (*element == CtConst::TOOLBAR_FONT_FAMILY or *element == CtConst::TOOLBAR_FONT_SIZE) {
+                // OrangeArk: font family / size combo placeholders, populated in build_toolbars
+                const std::string comboId = (*element == CtConst::TOOLBAR_FONT_FAMILY) ? "FontFamilyCombo" : "FontSizeCombo";
+                str_buff += std::string{"<child><object class='GtkToolItem' id='"} + comboId + "'>";
+                str_buff += "<property name='visible'>True</property>";
+                str_buff += "</object></child>";
+            }
             else {
                 const bool isOpenRecent{*element == CtConst::CHAR_STAR};
                 CtMenuAction const* pAction = isOpenRecent ? find_action("ct_open_file") : find_action(*element);
@@ -394,8 +401,12 @@ const char* CtMenu::_get_ui_str_menu()
   </menu>
 
   <menu action='HelpMenu'>
+    <menuitem action='check_new_version'/>
+    <menuitem action='open_website'/>
+    <menuitem action='open_source_code'/>
+    <menuitem action='report_bug'/>
+    <menuitem action='donate'/>
     <menuitem action='ct_help'/>
-    <menuitem action='open_cfg_folder'/>
     <separator/>
     <menuitem action='ct_about'/>
   </menu>

@@ -107,7 +107,7 @@ Gtk::Widget* CtPrefDlg::build_tab_misc()
     auto checkbutton_newer_version = Gtk::manage(new Gtk::CheckButton{_("Automatically Check for Newer Version")});
     auto checkbutton_reload_doc_last = Gtk::manage(new Gtk::CheckButton{_("Reload Document From Last Session")});
     auto checkbutton_start_dialog = Gtk::manage(new Gtk::CheckButton{_("Show Start Dialog When No Document Is Loaded")});
-    auto checkbutton_mod_time_sentinel = Gtk::manage(new Gtk::CheckButton{_("Reload After External Update to CT* File")});
+    auto checkbutton_mod_time_sentinel = Gtk::manage(new Gtk::CheckButton{_("Reload After External Update to the File")});
     auto checkbutton_debug_log = Gtk::manage(new Gtk::CheckButton{_("Enable Debug Log")});
 #if GTKMM_MAJOR_VERSION < 4
     auto file_chooser_button_debug_log_dir = Gtk::manage(new Gtk::FileChooserButton{_("Debug Log Directory"),

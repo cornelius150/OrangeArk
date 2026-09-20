@@ -620,7 +620,7 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     entry_passw_1.set_visibility(false);
     Gtk::Entry entry_passw_2;
     entry_passw_2.set_visibility(false);
-    Gtk::Label label_passwd(_("CT saves the document in an encrypted 7zip archive. When viewing or editing the document, CT extracts the encrypted archive to a temporary folder, and works on the unencrypted copy. When closing, the unencrypted copy is deleted from the temporary directory. Note that in the case of application or system crash, the unencrypted document will remain in the temporary folder."));
+    Gtk::Label label_passwd(_("OrangeArk saves the document in an encrypted 7zip archive. When viewing or editing the document, OrangeArk extracts the encrypted archive to a temporary folder, and works on the unencrypted copy. When closing, the unencrypted copy is deleted from the temporary directory. Note that in the case of application or system crash, the unencrypted document will remain in the temporary folder."));
     label_passwd.set_width_chars(70);
     label_passwd.set_line_wrap(true);
     Gtk::Box vbox_passw{Gtk::ORIENTATION_VERTICAL};

@@ -10,6 +10,9 @@
 #include "ct_main_win.h"
 #include "ct_logging.h"
 #include <gdkmm/general.h>
+#include <pangomm/layout.h>
+#include <pangomm/fontdescription.h>
+#include <gtkmm/cssprovider.h>
 #include <cairo.h>
 #include <cmath>
 #include <vector>
@@ -71,6 +74,7 @@ public:
         add(*_pFixed);
 
         _rCursorCross = Gdk::Cursor::create(Gdk::CursorType::CROSSHAIR);
+        _rCursorMove = Gdk::Cursor::create(Gdk::CursorType::FLEUR);
     }
 
     Glib::RefPtr<Gdk::Pixbuf> get_result() const { return _rResult; }
@@ -90,25 +94,60 @@ public:
 protected:
     void _build_toolbar()
     {
-        _pToolbar = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 2});
+        _pToolbar = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 0});
         _pToolbar->get_style_context()->add_class("toolbar");
-        _pToolbar->set_margin_top(4);
-        _pToolbar->set_margin_bottom(4);
-        _pToolbar->set_margin_start(4);
-        _pToolbar->set_margin_end(4);
 
-        struct ToolDef { const char* label; const char* tip; };
-        const std::vector<ToolDef> tools = {
-            {"画笔", "自由绘制"}, {"箭头", "绘制箭头"}, {"矩形", "绘制矩形"},
-            {"椭圆", "绘制椭圆"}, {"文字", "插入文字"}, {"序号", "插入自动递增的序号"},
-            {"移动", "拖动已画的标注"}, {"撤销", "撤销上一个标注"}, {"重做", "重做标注"},
+        // QQ style: compact dark floating bar with flat icon buttons
+        try {
+            auto rCss = Gtk::CssProvider::create();
+            rCss->load_from_data(
+                ".screenshot-bar { background: rgba(40,40,40,0.96); border-radius: 8px; padding: 3px; }\n"
+                ".screenshot-bar button { background: transparent; border: none; border-radius: 6px;"
+                " min-width: 30px; min-height: 28px; padding: 2px 5px; }\n"
+                ".screenshot-bar button:hover { background: rgba(255,255,255,0.18); }\n"
+                ".screenshot-bar button label { color: #ffffff; font-size: 15px; }\n"
+                ".screenshot-bar separator { background: rgba(255,255,255,0.28); min-width: 1px;"
+                " min-height: 22px; margin-left: 4px; margin-right: 4px; }\n");
+            _pToolbar->get_style_context()->add_class("screenshot-bar");
+            _pToolbar->get_style_context()->add_provider(rCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+        }
+        catch (const Glib::Error& e) {
+            spdlog::warn("CtScreenshot: toolbar css failed: {}", e.what().c_str());
+        }
+
+        // annotation tools: compact icon buttons (QQ style)
+        struct ToolDef { const char* glyph; const char* tip; Tool tool; };
+        const std::vector<ToolDef> annTools = {
+            {"✏️", "自由绘制", Tool::Pen},
+            {"↗️", "绘制箭头", Tool::Arrow},
+            {"▭", "绘制矩形", Tool::Rect},
+            {"◯", "绘制椭圆", Tool::Ellipse},
+            {"T", "插入文字", Tool::Text},
+            {"①", "插入自动递增的序号", Tool::Counter},
+            {"✛", "拖动已画的标注", Tool::Move},
         };
-        for (const ToolDef& td : tools) {
-            auto* pBtn = Gtk::manage(new Gtk::Button(td.label));
+        for (const ToolDef& td : annTools) {
+            auto* pBtn = Gtk::manage(new Gtk::Button(td.glyph));
             pBtn->set_tooltip_text(td.tip);
-            pBtn->signal_clicked().connect([this, td]() { _on_tool_clicked(td.label); });
+            pBtn->set_relief(Gtk::RELIEF_NONE);
+            pBtn->set_focus_on_click(false);
+            pBtn->signal_clicked().connect([this, td]() { _tool = td.tool; _pArea->grab_focus(); });
             _pToolbar->pack_start(*pBtn, Gtk::PACK_SHRINK);
         }
+
+        auto* pBtnUndo = Gtk::manage(new Gtk::Button("↶"));
+        pBtnUndo->set_tooltip_text("撤销上一个标注");
+        pBtnUndo->set_relief(Gtk::RELIEF_NONE);
+        pBtnUndo->set_focus_on_click(false);
+        pBtnUndo->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_undo));
+        _pToolbar->pack_start(*pBtnUndo, Gtk::PACK_SHRINK);
+
+        auto* pBtnRedo = Gtk::manage(new Gtk::Button("↷"));
+        pBtnRedo->set_tooltip_text("重做标注");
+        pBtnRedo->set_relief(Gtk::RELIEF_NONE);
+        pBtnRedo->set_focus_on_click(false);
+        pBtnRedo->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_redo));
+        _pToolbar->pack_start(*pBtnRedo, Gtk::PACK_SHRINK);
 
         // OrangeArk: font family and size pickers for the text/counter annotations
         struct FontDef { const char* label; const char* family; };
@@ -141,49 +180,44 @@ protected:
         auto* pSep = Gtk::manage(new Gtk::Separator{Gtk::ORIENTATION_VERTICAL});
         _pToolbar->pack_start(*pSep, Gtk::PACK_SHRINK);
 
-        auto* pBtnSave = Gtk::manage(new Gtk::Button("保存"));
+        auto* pBtnSave = Gtk::manage(new Gtk::Button("💾"));
         pBtnSave->set_tooltip_text("把截图保存为 PNG 文件");
+        pBtnSave->set_relief(Gtk::RELIEF_NONE);
+        pBtnSave->set_focus_on_click(false);
         pBtnSave->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_save_clicked));
         _pToolbar->pack_start(*pBtnSave, Gtk::PACK_SHRINK);
 
-        auto* pBtnCancel = Gtk::manage(new Gtk::Button("取消"));
+        auto* pBtnCancel = Gtk::manage(new Gtk::Button("❌"));
         pBtnCancel->set_tooltip_text("放弃本次截图");
+        pBtnCancel->set_relief(Gtk::RELIEF_NONE);
+        pBtnCancel->set_focus_on_click(false);
         pBtnCancel->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_cancel_clicked));
         _pToolbar->pack_start(*pBtnCancel, Gtk::PACK_SHRINK);
 
-        auto* pBtnOk = Gtk::manage(new Gtk::Button("✓ 确认"));
-        pBtnOk->set_tooltip_text("复制到剪贴板并插入笔记");
+        auto* pBtnOk = Gtk::manage(new Gtk::Button("✅"));
+        pBtnOk->set_tooltip_text("复制到剪贴板（回笔记后 Ctrl+V 粘贴）");
+        pBtnOk->set_relief(Gtk::RELIEF_NONE);
+        pBtnOk->set_focus_on_click(false);
         pBtnOk->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_confirm));
         _pToolbar->pack_start(*pBtnOk, Gtk::PACK_SHRINK);
     }
 
-    void _on_tool_clicked(const char* label)
+    void _undo()
     {
-        const std::string lab{label};
-        if ("撤销" == lab) {
-            if (not _shapes.empty()) {
-                _redoShapes.push_back(_shapes.back());
-                _shapes.pop_back();
-                _pArea->queue_draw();
-            }
-            return;
+        if (not _shapes.empty()) {
+            _redoShapes.push_back(_shapes.back());
+            _shapes.pop_back();
+            _pArea->queue_draw();
         }
-        if ("重做" == lab) {
-            if (not _redoShapes.empty()) {
-                _shapes.push_back(_redoShapes.back());
-                _redoShapes.pop_back();
-                _pArea->queue_draw();
-            }
-            return;
+    }
+
+    void _redo()
+    {
+        if (not _redoShapes.empty()) {
+            _shapes.push_back(_redoShapes.back());
+            _redoShapes.pop_back();
+            _pArea->queue_draw();
         }
-        if ("画笔" == lab)    { _tool = Tool::Pen; }
-        if ("箭头" == lab)    { _tool = Tool::Arrow; }
-        if ("矩形" == lab)    { _tool = Tool::Rect; }
-        if ("椭圆" == lab)    { _tool = Tool::Ellipse; }
-        if ("文字" == lab)    { _tool = Tool::Text; }
-        if ("序号" == lab)    { _tool = Tool::Counter; }
-        if ("移动" == lab)    { _tool = Tool::Move; }
-        _pArea->grab_focus();
     }
 
     void _on_save_clicked()
@@ -249,11 +283,16 @@ protected:
     }
 
     // -- drawing --------------------------------------------------------------
-    // OrangeArk: pick a font that renders CJK on Windows (Sans alone shows boxes)
-    static void _apply_font(const Cairo::RefPtr<Cairo::Context>& cr, const double size,
-                            const Cairo::FontWeight weight = Cairo::FontWeight::FONT_WEIGHT_NORMAL,
-                            const std::string& fontName = std::string())
+    // OrangeArk: Pango layouts render all overlay text — Pango falls back across
+    // installed fonts, so CJK and any user font never turn into hollow boxes
+    static Glib::RefPtr<Pango::Layout> _make_layout(const Cairo::RefPtr<Cairo::Context>& cr,
+                                                    const Glib::ustring& text,
+                                                    const std::string& fontName,
+                                                    const double fontSizePx,
+                                                    const bool bold = false)
     {
+        Glib::RefPtr<Pango::Layout> rLayout = Pango::Layout::create(cr);
+        Pango::FontDescription fd;
         std::string face = fontName;
         if (face.empty()) {
 #ifdef _WIN32
@@ -262,8 +301,12 @@ protected:
             face = "Sans";
 #endif
         }
-        cr->select_font_face(face, Cairo::FontSlant::FONT_SLANT_NORMAL, weight);
-        cr->set_font_size(size);
+        fd.set_family(face);
+        fd.set_weight(bold ? Pango::Weight::WEIGHT_BOLD : Pango::Weight::WEIGHT_NORMAL);
+        fd.set_absolute_size(static_cast<int>(fontSizePx * Pango::SCALE));
+        rLayout->set_font_description(fd);
+        rLayout->set_text(text);
+        return rLayout;
     }
 
     // bounding box of a shape (for hit-testing when moving)
@@ -281,15 +324,16 @@ protected:
             }
             case CtAnnoShape::Type::Text: {
                 // estimate the drawn width: CJK glyphs are about one em wide,
-                // ASCII glyphs about 0.55 em (shape.text is UTF-8 encoded)
+                // ASCII glyphs about 0.55 em (shape.text is UTF-8 encoded);
+                // shape.y1 is the TOP edge of the text
                 double textW = 0.0;
                 for (const gunichar ch : Glib::ustring(shape.text)) {
                     textW += (ch > 0x7F ? 1.0 : 0.55) * shape.fontSize;
                 }
                 bx = shape.x1 - 2;
-                by = shape.y1 - shape.fontSize;
+                by = shape.y1 - 4;
                 bw = static_cast<int>(textW) + 8;
-                bh = shape.fontSize + 6;
+                bh = shape.fontSize + 8;
                 break;
             }
             case CtAnnoShape::Type::Counter:
@@ -333,76 +377,78 @@ protected:
     {
         cr->set_source_rgba(1.0, 0.13, 0.1, 0.95); // QQ-like red pen
         cr->set_line_width(3.0);
-            cr->set_line_cap(Cairo::LINE_CAP_ROUND);
-            cr->set_line_join(Cairo::LINE_JOIN_ROUND);
-            switch (shape.type) {
-                case CtAnnoShape::Type::Pen: {
-                    bool first = true;
-                    for (const Gdk::Point& pt : shape.pts) {
-                        if (first) { cr->move_to(pt.get_x() + dx, pt.get_y() + dy); first = false; }
-                        else       { cr->line_to(pt.get_x() + dx, pt.get_y() + dy); }
-                    }
-                    cr->stroke();
-                    break;
+        cr->set_line_cap(Cairo::LINE_CAP_ROUND);
+        cr->set_line_join(Cairo::LINE_JOIN_ROUND);
+        switch (shape.type) {
+            case CtAnnoShape::Type::Pen: {
+                bool first = true;
+                for (const Gdk::Point& pt : shape.pts) {
+                    if (first) { cr->move_to(pt.get_x() + dx, pt.get_y() + dy); first = false; }
+                    else       { cr->line_to(pt.get_x() + dx, pt.get_y() + dy); }
                 }
-                case CtAnnoShape::Type::Arrow: {
-                    const double x1 = shape.x1 + dx, y1 = shape.y1 + dy;
-                    const double x2 = shape.x2 + dx, y2 = shape.y2 + dy;
-                    cr->move_to(x1, y1);
-                    cr->line_to(x2, y2);
-                    cr->stroke();
-                    const double angle = std::atan2(y2 - y1, x2 - x1);
-                    const double head = 14.0;
-                    cr->move_to(x2, y2);
-                    cr->line_to(x2 - head * std::cos(angle - 0.45), y2 - head * std::sin(angle - 0.45));
-                    cr->line_to(x2 - head * std::cos(angle + 0.45), y2 - head * std::sin(angle + 0.45));
-                    cr->close_path();
-                    cr->fill();
-                    break;
-                }
-                case CtAnnoShape::Type::Rect: {
-                    cr->rectangle(std::min(shape.x1, shape.x2) + dx, std::min(shape.y1, shape.y2) + dy,
-                                  std::abs(shape.x2 - shape.x1), std::abs(shape.y2 - shape.y1));
-                    cr->stroke();
-                    break;
-                }
-                case CtAnnoShape::Type::Ellipse: {
-                    const double rx = std::abs(shape.x2 - shape.x1) / 2.0;
-                    const double ry = std::abs(shape.y2 - shape.y1) / 2.0;
-                    cr->save();
-                    cr->translate(std::min(shape.x1, shape.x2) + dx + rx, std::min(shape.y1, shape.y2) + dy + ry);
-                    cr->scale(std::max(rx, 1.0), std::max(ry, 1.0));
-                    cr->arc(0.0, 0.0, 1.0, 0.0, 2.0 * M_PI);
-                    cr->restore();
-                    cr->stroke();
-                    break;
-                }
-                case CtAnnoShape::Type::Text: {
-                    _apply_font(cr, shape.fontSize, Cairo::FontWeight::FONT_WEIGHT_NORMAL, shape.fontName);
-                    cr->move_to(shape.x1 + dx, shape.y1 + dy);
-                    cr->show_text(shape.text.c_str());
-                    cr->stroke();
-                    break;
-                }
-                case CtAnnoShape::Type::Counter: {
-                    // QQ-style auto-increment numbered badge: red circle + white number
-                    const double cx = shape.x1 + dx, cy = shape.y1 + dy;
-                    const double r = std::max(10.0, shape.fontSize * 0.9);
-                    cr->set_source_rgba(1.0, 0.13, 0.1, 0.95);
-                    cr->arc(cx, cy, r, 0.0, 2.0 * M_PI);
-                    cr->fill();
-                    const std::string label = std::to_string(shape.number);
-                    _apply_font(cr, r * 0.95, Cairo::FontWeight::FONT_WEIGHT_BOLD, shape.fontName);
-                    Cairo::TextExtents te;
-                    cr->get_text_extents(label, te);
-                    // center the glyph bounding box on the circle centre
-                    cr->set_source_rgba(1.0, 1.0, 1.0, 1.0);
-                    cr->move_to(cx - te.x_bearing - te.width / 2.0, cy - te.y_bearing - te.height / 2.0);
-                    cr->show_text(label);
-                    cr->stroke();
-                    break;
-                }
+                cr->stroke();
+                break;
             }
+            case CtAnnoShape::Type::Arrow: {
+                const double x1 = shape.x1 + dx, y1 = shape.y1 + dy;
+                const double x2 = shape.x2 + dx, y2 = shape.y2 + dy;
+                cr->move_to(x1, y1);
+                cr->line_to(x2, y2);
+                cr->stroke();
+                const double angle = std::atan2(y2 - y1, x2 - x1);
+                const double head = 14.0;
+                cr->move_to(x2, y2);
+                cr->line_to(x2 - head * std::cos(angle - 0.45), y2 - head * std::sin(angle - 0.45));
+                cr->line_to(x2 - head * std::cos(angle + 0.45), y2 - head * std::sin(angle + 0.45));
+                cr->close_path();
+                cr->fill();
+                break;
+            }
+            case CtAnnoShape::Type::Rect: {
+                cr->rectangle(std::min(shape.x1, shape.x2) + dx, std::min(shape.y1, shape.y2) + dy,
+                              std::abs(shape.x2 - shape.x1), std::abs(shape.y2 - shape.y1));
+                cr->stroke();
+                break;
+            }
+            case CtAnnoShape::Type::Ellipse: {
+                const double rx = std::abs(shape.x2 - shape.x1) / 2.0;
+                const double ry = std::abs(shape.y2 - shape.y1) / 2.0;
+                cr->save();
+                cr->translate(std::min(shape.x1, shape.x2) + dx + rx, std::min(shape.y1, shape.y2) + dy + ry);
+                cr->scale(std::max(rx, 1.0), std::max(ry, 1.0));
+                cr->arc(0.0, 0.0, 1.0, 0.0, 2.0 * M_PI);
+                cr->restore();
+                cr->stroke();
+                break;
+            }
+            case CtAnnoShape::Type::Text: {
+                // shape.x1/y1 is the TOP-left corner of the text block
+                Glib::RefPtr<Pango::Layout> rLayout =
+                    _make_layout(cr, shape.text, shape.fontName, shape.fontSize, false);
+                cr->set_source_rgba(1.0, 0.13, 0.1, 0.95);
+                cr->move_to(shape.x1 + dx, shape.y1 + dy);
+                rLayout->show_in_cairo_context(cr);
+                break;
+            }
+            case CtAnnoShape::Type::Counter: {
+                // QQ-style auto-increment numbered badge: red circle + white number,
+                // the glyph bounding box (ink extents) centred on the circle centre
+                const double cx = shape.x1 + dx, cy = shape.y1 + dy;
+                const double r = std::max(10.0, shape.fontSize * 0.9);
+                cr->set_source_rgba(1.0, 0.13, 0.1, 0.95);
+                cr->arc(cx, cy, r, 0.0, 2.0 * M_PI);
+                cr->fill();
+                const Glib::ustring label = Glib::ustring::format(shape.number);
+                Glib::RefPtr<Pango::Layout> rLayout =
+                    _make_layout(cr, label, shape.fontName, std::lround(r), true);
+                const Pango::Rectangle ink = rLayout->get_pixel_ink_extents();
+                cr->set_source_rgba(1.0, 1.0, 1.0, 1.0);
+                cr->move_to(cx - ink.get_x() - ink.get_width() / 2.0,
+                            cy - ink.get_y() - ink.get_height() / 2.0);
+                rLayout->show_in_cairo_context(cr);
+                break;
+            }
+        }
     }
 
     bool _on_own_draw(const Cairo::RefPtr<Cairo::Context>& cr)
@@ -466,40 +512,37 @@ protected:
                 cr->fill();
             }
 
-            // size hint text
-            const std::string hint = std::to_string(selW) + " x " + std::to_string(selH);
-            cr->select_font_face("Sans", Cairo::FontSlant::FONT_SLANT_NORMAL, Cairo::FontWeight::FONT_WEIGHT_BOLD);
-            cr->set_font_size(13.0);
-            Cairo::TextExtents te;
-            cr->get_text_extents(hint, te);
-            double tx = selX + selW - te.width - 10.0;
-            double ty = selY + selH + te.height + 8.0;
-            if (ty + te.height > scrH) ty = selY + selH - te.height - 8.0;
+            // size hint text (Pango: correct metrics and CJK safety)
+            const Glib::ustring hint = Glib::ustring::format(selW, " x ", selH);
+            Glib::RefPtr<Pango::Layout> rHint = _make_layout(cr, hint, "", 13.0, true);
+            const Pango::Rectangle hink = rHint->get_pixel_ink_extents();
+            double tx = selX + selW - hink.get_width() - 10.0;
+            double ty = selY + selH + 8.0;
+            if (ty + hink.get_height() > scrH) ty = selY + selH - hink.get_height() - 8.0;
             if (tx < 4.0) tx = selX + 6.0;
-            cr->set_source_rgba(1.0, 1.0, 1.0, 0.9);
-            cr->move_to(tx + 1, ty + 1);
-            cr->show_text(hint);
-            cr->set_source_rgba(0.9, 0.4, 0.0, 1.0);
+            cr->set_source_rgba(0.0, 0.0, 0.0, 0.55);
+            cr->rectangle(tx - 4.0, ty - 2.0, hink.get_width() + 8.0, hink.get_height() + 4.0);
+            cr->fill();
+            cr->set_source_rgba(1.0, 1.0, 1.0, 0.95);
             cr->move_to(tx, ty);
-            cr->show_text(hint);
+            rHint->show_in_cairo_context(cr);
         }
 
         // bottom hint banner
         const Glib::ustring banner = _toolbar_shown
-            ? Glib::ustring{"选工具标注 · 移动可拖动标注 · Enter 确认 · Esc 取消"}
+            ? Glib::ustring{"选工具标注 · Enter 确认并复制到剪贴板 · Esc 取消"}
             : _("Drag to select a region") + Glib::ustring{"   |   "}
             + _("Enter or double-click: confirm") + "   |   " + _("Esc: cancel");
-        _apply_font(cr, 14.0);
-        Cairo::TextExtents be;
-        cr->get_text_extents(banner, be);
-        const double bx = (scrW - be.width) / 2.0;
-        const double by = scrH - 16.0;
+        Glib::RefPtr<Pango::Layout> rBanner = _make_layout(cr, banner, "", 14.0, false);
+        const Pango::Rectangle bink = rBanner->get_pixel_ink_extents();
+        const double bx = (scrW - bink.get_width()) / 2.0;
+        const double by = scrH - 16.0 - bink.get_height();
         cr->set_source_rgba(0.0, 0.0, 0.0, 0.55);
-        cr->rectangle(bx - 12.0, by - be.height - 6.0, be.width + 24.0, be.height + 12.0);
+        cr->rectangle(bx - 12.0, by - 6.0, bink.get_width() + 24.0, bink.get_height() + 12.0);
         cr->fill();
         cr->set_source_rgba(1.0, 1.0, 1.0, 1.0);
         cr->move_to(bx, by);
-        cr->show_text(banner);
+        rBanner->show_in_cairo_context(cr);
 
         return true;
     }
@@ -711,8 +754,7 @@ protected:
         _toolbar_shown = true;
         _pToolbar->show_all();
         // position the toolbar below the right edge of the selection (QQ style)
-        _pToolbar->get_allocation(); // force size request computation on show
-        int tbW = 560, tbH = 40;
+        int tbW = 420, tbH = 40;
         _pToolbar->get_preferred_width(tbW, tbW);
         int tbHmin = 0;
         _pToolbar->get_preferred_height(tbHmin, tbH);
@@ -744,7 +786,7 @@ protected:
         CtAnnoShape shape{};
         shape.type = CtAnnoShape::Type::Text;
         shape.x1 = _textAnnoX;
-        shape.y1 = _textAnnoY + _annoFontSize; // baseline
+        shape.y1 = _textAnnoY; // top-left corner (Pango layouts anchor at the top)
         shape.fontSize = _annoFontSize;
         shape.fontName = _annoFontName;
         shape.text = text;
@@ -836,8 +878,20 @@ private:
     CtAnnoShape _currShape;
 };
 
-Glib::RefPtr<Gdk::Pixbuf> take_region_screenshot(CtMainWin* /*pCtMainWin*/)
+Glib::RefPtr<Gdk::Pixbuf> take_region_screenshot(CtMainWin* pCtMainWin)
 {
+    // OrangeArk: minimize the main window first (it lands in the taskbar) so the
+    // capture cannot contain the notes app itself, then let the animation finish
+    if (pCtMainWin) {
+        pCtMainWin->iconify();
+#if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
+        while (gtk_events_pending()) gtk_main_iteration();
+#else
+        while (g_main_context_pending(nullptr)) g_main_context_iteration(nullptr, false);
+#endif
+        g_usleep(400000); // 400 ms for the minimize animation to settle
+    }
+
     // grab the whole screen BEFORE showing the overlay
     Glib::RefPtr<Gdk::Window> rRoot = Gdk::Screen::get_default()->get_root_window();
     if (not rRoot) return Glib::RefPtr<Gdk::Pixbuf>{};
@@ -847,6 +901,10 @@ Glib::RefPtr<Gdk::Pixbuf> take_region_screenshot(CtMainWin* /*pCtMainWin*/)
     }
     catch (...) {
         spdlog::warn("CtScreenshot: failed to grab the screen");
+        if (pCtMainWin) {
+            pCtMainWin->deiconify();
+            pCtMainWin->present();
+        }
         return Glib::RefPtr<Gdk::Pixbuf>{};
     }
     if (not rShot) return Glib::RefPtr<Gdk::Pixbuf>{};
@@ -856,6 +914,12 @@ Glib::RefPtr<Gdk::Pixbuf> take_region_screenshot(CtMainWin* /*pCtMainWin*/)
     Glib::RefPtr<Glib::MainLoop> rLoop = Glib::MainLoop::create();
     selector.signal_hide().connect([&rLoop]() { rLoop->quit(); });
     rLoop->run();
+
+    // OrangeArk: bring the notes window back once the screenshot flow is over
+    if (pCtMainWin) {
+        pCtMainWin->deiconify();
+        pCtMainWin->present();
+    }
     return selector.get_result();
 }
 

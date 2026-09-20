@@ -478,7 +478,9 @@ void CtActions::apply_tag(const Glib::ustring& tag_property,
                or (tag_property == CtConst::TAG_STYLE and str::startswith(curr_tag_name, CtConst::TAG_STYLE_PREFIX))
                or (tag_property == CtConst::TAG_UNDERLINE and str::startswith(curr_tag_name, CtConst::TAG_UNDERLINE_PREFIX))
                or (tag_property == CtConst::TAG_STRIKETHROUGH and str::startswith(curr_tag_name, CtConst::TAG_STRIKETHROUGH_PREFIX))
-               or (tag_property == CtConst::TAG_FAMILY and str::startswith(curr_tag_name, CtConst::TAG_FAMILY_PREFIX)))
+               or (tag_property == CtConst::TAG_FAMILY and str::startswith(curr_tag_name, CtConst::TAG_FAMILY_PREFIX))
+               or (tag_property == CtConst::TAG_FONT_FAMILY and str::startswith(curr_tag_name, CtConst::TAG_FONT_FAMILY_PREFIX))
+               or (tag_property == CtConst::TAG_FONT_SIZE and str::startswith(curr_tag_name, CtConst::TAG_FONT_SIZE_PREFIX)))
             {
                 text_buffer->remove_tag(curr_tag, it_sel_start, it_sel_end);
             }
@@ -520,6 +522,35 @@ void CtActions::apply_tag(const Glib::ustring& tag_property,
         _save_tags_at_cursor_as_latest(text_buffer, sel_start_offset);
         _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true/*new_machine_state*/);
     }
+}
+
+// OrangeArk: apply the toolbar font family / font size property.
+// With a selection the property goes to the selection; without one it is applied
+// to the zero-width cursor range so that the next typed text picks it up.
+void CtActions::_apply_tag_font_property(const gchar* tag_property, const Glib::ustring& property_value)
+{
+    if (property_value.empty()) return;
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    Glib::RefPtr<Gtk::TextBuffer> text_buffer = _curr_buffer();
+    Gtk::TextIter iter_sel_start, iter_sel_end;
+    if (text_buffer->get_has_selection()) {
+        text_buffer->get_selection_bounds(iter_sel_start, iter_sel_end);
+    }
+    else {
+        iter_sel_start = text_buffer->get_insert()->get_iter();
+        iter_sel_end = iter_sel_start;
+    }
+    apply_tag(tag_property, property_value, iter_sel_start, iter_sel_end, text_buffer);
+}
+
+void CtActions::apply_tag_font_family(const Glib::ustring& font_family)
+{
+    _apply_tag_font_property(CtConst::TAG_FONT_FAMILY, font_family);
+}
+
+void CtActions::apply_tag_font_size(const Glib::ustring& font_size)
+{
+    _apply_tag_font_property(CtConst::TAG_FONT_SIZE, font_size);
 }
 
 CtActions::text_view_n_buffer_codebox_proof CtActions::_get_text_view_n_buffer_codebox_proof()

@@ -787,7 +787,11 @@ void CtConfig::_populate_data_from_keyfile()
     // [misc]
     _currentGroup = "misc";
     _populate_string_from_keyfile("toolbar_ui_list", &toolbarUiList);
-    // OrangeArk: upgrade configs still on the previous default toolbar so that the screenshot button appears
+    // OrangeArk: upgrade configs still on a previous default toolbar
+    // (chained: pre-screenshot default -> screenshot default -> font combos + format painter default)
+    if (toolbarUiList == CtConst::TOOLBAR_VEC_DEFAULT_PREV2) {
+        toolbarUiList = CtConst::TOOLBAR_VEC_DEFAULT_PREV;
+    }
     if (toolbarUiList == CtConst::TOOLBAR_VEC_DEFAULT_PREV) {
         toolbarUiList = CtConst::TOOLBAR_VEC_DEFAULT;
     }

@@ -289,8 +289,8 @@ void CtActions::latex_delete()
     _pCtMainWin->get_text_view().mm().grab_focus();
 }
 
-// OrangeArk: QQ-style region screenshot - grab a screen region, copy it to the
-// clipboard and insert it into the current node
+// OrangeArk: QQ-style region screenshot - grab a screen region and copy it to
+// the clipboard; pasting into the note is up to the user (Ctrl+V / context menu)
 void CtActions::screenshot()
 {
     if (not _node_sel_and_rich_text()) return;
@@ -299,11 +299,9 @@ void CtActions::screenshot()
     Glib::RefPtr<Gdk::Pixbuf> rShot = CtScreenshot::take_region_screenshot(_pCtMainWin);
     if (not rShot) return;
 
-    // copy to the clipboard too, like QQ does
     Gtk::Clipboard::get()->set_image(rShot);
-
-    image_insert_png(_curr_buffer()->get_insert()->get_iter(), rShot, "", "");
-    _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true/*new_machine_state*/);
+    auto& statusbar = _pCtMainWin->get_status_bar();
+    statusbar.update_status(_("Screenshot Copied to Clipboard - Paste It with Ctrl+V."));
 }
 
 void CtActions::image_save(){

@@ -189,6 +189,9 @@ private:
     const char*              _get_popup_menu_ui_str_anchor();
     const char*              _get_popup_menu_ui_str_embfile();
     const char*              _get_popup_menu_ui_str_terminal();
+    // OrangeArk: toolbar font family / size combos (shared by GTK3 and GTK4 toolbars)
+    void                     _setup_font_family_combo(Gtk::ComboBoxText* pCombo);
+    void                     _setup_font_size_combo(Gtk::ComboBoxText* pCombo);
 
 private:
     CtMainWin*                    const _pCtMainWin;

@@ -154,6 +154,11 @@ const inline static gchar* TAG_INVISIBLE           {"invisible"};
 const inline static Glib::ustring TAG_INVISIBLE_PREFIX      {"invisible_"};
 const inline static gchar* TAG_FAMILY              {"family"};
 const inline static Glib::ustring TAG_FAMILY_PREFIX         {"family_"};
+// OrangeArk: custom text font family/size tags (toolbar font and size combos)
+const inline static gchar* TAG_FONT_FAMILY         {"font_family"};
+const inline static Glib::ustring TAG_FONT_FAMILY_PREFIX    {"font_family_"};
+const inline static gchar* TAG_FONT_SIZE           {"font_size"};
+const inline static Glib::ustring TAG_FONT_SIZE_PREFIX      {"font_size_"};
 const inline static gchar* TAG_JUSTIFICATION       {"justification"};
 const inline static Glib::ustring TAG_JUSTIFICATION_PREFIX  {"justification_"};
 const inline static gchar* TAG_LINK                {"link"};
@@ -236,7 +241,7 @@ const inline static std::array<std::string_view, 4> WEB_LINK_STARTERS {
 // https://stackoverflow.com/questions/1547899/which-characters-make-a-url-invalid
 const inline static char URL_INVALID_CHARS[]{" \n\r\t\"<>\\^`{}"};
 
-const inline static std::array<std::string_view, 12> TAG_PROPERTIES {
+const inline static std::array<std::string_view, 14> TAG_PROPERTIES {
     TAG_WEIGHT,
     TAG_FOREGROUND,
     TAG_BACKGROUND,
@@ -248,7 +253,9 @@ const inline static std::array<std::string_view, 12> TAG_PROPERTIES {
     TAG_FAMILY,
     TAG_JUSTIFICATION,
     TAG_LINK,
-    TAG_INDENT
+    TAG_INDENT,
+    TAG_FONT_FAMILY,
+    TAG_FONT_SIZE
 };
 
 const inline static std::array<const gchar*, 4> TAG_ALIGNMENTS {
@@ -259,7 +266,20 @@ const inline static std::array<const gchar*, 4> TAG_ALIGNMENTS {
 };
 
 const inline static gchar* TOOLBAR_SPLIT {"toolbar_split"};
+// OrangeArk: toolbar elements for the font family / font size combos
+const inline static gchar* TOOLBAR_FONT_FAMILY {"font_family"};
+const inline static gchar* TOOLBAR_FONT_SIZE {"font_size"};
 const inline static gchar* TOOLBAR_VEC_DEFAULT {
+    "tree_add_node,tree_add_subnode,separator,go_node_prev,go_node_next,"
+    "separator,ct_open_folder,*,ct_save,export_pdf,separator,"
+    "find_in_allnodes,separator,handle_bull_list,handle_num_list,handle_todo_list,fmt_indent,fmt_unindent,"
+    "separator,handle_image,take_screenshot,handle_table,handle_codebox,handle_latex,handle_embfile,"
+    "handle_link,handle_anchor,separator,fmt_clone,font_family,font_size,fmt_color_fg,"
+    "fmt_color_bg,fmt_bold,fmt_italic,fmt_underline,fmt_strikethrough,"
+    "fmt_h1,fmt_h2,fmt_h3,fmt_small,fmt_subscript,fmt_superscript,fmt_monospace"
+};
+// OrangeArk: toolbar defaults used to upgrade existing configs (chained in ct_config.cc)
+const inline static gchar* TOOLBAR_VEC_DEFAULT_PREV {
     "tree_add_node,tree_add_subnode,separator,go_node_prev,go_node_next,"
     "separator,ct_open_folder,*,ct_save,export_pdf,separator,"
     "find_in_allnodes,separator,handle_bull_list,handle_num_list,handle_todo_list,fmt_indent,fmt_unindent,"
@@ -268,8 +288,7 @@ const inline static gchar* TOOLBAR_VEC_DEFAULT {
     "fmt_color_bg,fmt_bold,fmt_italic,fmt_underline,fmt_strikethrough,"
     "fmt_h1,fmt_h2,fmt_h3,fmt_small,fmt_subscript,fmt_superscript,fmt_monospace"
 };
-// OrangeArk: toolbar default before the screenshot button was added (used to upgrade existing configs)
-const inline static gchar* TOOLBAR_VEC_DEFAULT_PREV {
+const inline static gchar* TOOLBAR_VEC_DEFAULT_PREV2 {
     "tree_add_node,tree_add_subnode,separator,go_node_prev,go_node_next,"
     "separator,ct_open_folder,*,ct_save,export_pdf,separator,"
     "find_in_allnodes,separator,handle_bull_list,handle_num_list,handle_todo_list,fmt_indent,fmt_unindent,"

@@ -274,6 +274,10 @@ void CtExport2Pango::_pango_text_serialize(const Gtk::TextIter& start_iter,
                     property_value = CtConst::TAG_PROP_VAL_MONOSPACE;
                 }
             }
+            else if (tag_property == CtConst::TAG_FONT_SIZE) {
+                // OrangeArk: the stored value is in points, the Pango markup size is in Pango units
+                property_value = std::to_string(std::stoi(property_value) * PANGO_SCALE);
+            }
             else if (tag_property == CtConst::TAG_INDENT) {
                 indent = not property_value.empty() ? CtConst::INDENT_MARGIN * std::stoi(property_value) : 0;
                 continue;

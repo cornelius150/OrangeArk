@@ -60,6 +60,8 @@ public:
     static std::unique_ptr<xmlpp::DomParser> get_parser_header_only(const fs::path &file_path);
 
     bool populate_treestore(const fs::path& file_path, Glib::ustring& error) override;
+    // OrangeArk: populate the tree from an in-memory OrangeArk XML document (used by the .md hybrid storage)
+    bool populate_treestore_from_xml_string(const std::string& xml_content, Glib::ustring& error);
     bool save_treestore(const fs::path& file_path,
                         const CtStorageSyncPending& syncPending,
                         Glib::ustring& error,
@@ -83,6 +85,8 @@ private:
                        const std::map<gint64, gint64>* pExpoMasterReassign = nullptr,
                        const int start_offset = 0,
                        const int end_offset =-1);
+
+    bool _populate_treestore_from_parser(std::unique_ptr<xmlpp::DomParser> parser, Glib::ustring& error);
 
 private:
     CtMainWin* const _pCtMainWin;
