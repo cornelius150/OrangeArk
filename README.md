@@ -6,6 +6,8 @@
 
 ## 核心功能 Features
 - **富文本**：前景色、背景色、粗体、斜体、下划线、删除线、小型文字、h1-h6 标题、下标、上标、等宽字体
+- **字体与字号**：工具栏字体下拉框列出系统已安装的全部字体（常用中文字体置顶），字号 8–72 号一键选择，格式随文档保存并在 PDF/HTML 导出中保留
+- **格式刷**：一键把上一个应用的格式复制到选中文字
 - **语法高亮**：支持数十种编程语言
 - **图片**：插入文本、**鼠标拖拽右下角即可调整大小**、编辑、另存为 PNG
 - **QQ 式截图**：一键区域截图（快捷键 Shift+Alt+X），选区后自动复制到剪贴板并插入笔记
@@ -29,7 +31,12 @@
 文档默认以 `.md` 扩展名保存（内部为层级结构化文档格式）。同时兼容打开多种旧版文档格式。
 
 ## 下载
-前往 [Releases](https://github.com/) 页面下载 Windows 安装版（setup.exe）与便携版（portable.7z）。
+前往 [Releases](https://github.com/oliveset/OrangeArk/releases/latest) 页面下载 Windows 安装版（setup.exe）与便携版（portable.7z）。
+
+## 在线手册与官网
+- 官网：<https://oliveset.github.io/OrangeArk/>
+- 在线手册：<https://oliveset.github.io/OrangeArk/manual.html>
+- 捐赠支持：<https://oliveset.github.io/OrangeArk/donate.html>
 
 ## 许可
 本项目基于 GNU GPL-3.0 许可证发布，详见 [license.txt](license.txt)。
