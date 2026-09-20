@@ -97,16 +97,18 @@ protected:
         _pToolbar = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 0});
         _pToolbar->get_style_context()->add_class("toolbar");
 
-        // QQ style: compact dark floating bar with flat icon buttons
+        // OneNote-like style: light floating bar so every tool stays visible
+        // (a dark bar made the single-color glyphs indistinguishable)
         try {
             auto rCss = Gtk::CssProvider::create();
             rCss->load_from_data(
-                ".screenshot-bar { background: rgba(40,40,40,0.96); border-radius: 8px; padding: 3px; }\n"
+                ".screenshot-bar { background: rgba(250,250,250,0.98); border: 1px solid #c8c8c8;"
+                " border-radius: 8px; padding: 3px; }\n"
                 ".screenshot-bar button { background: transparent; border: none; border-radius: 6px;"
                 " min-width: 30px; min-height: 28px; padding: 2px 5px; }\n"
-                ".screenshot-bar button:hover { background: rgba(255,255,255,0.18); }\n"
-                ".screenshot-bar button label { color: #ffffff; font-size: 15px; }\n"
-                ".screenshot-bar separator { background: rgba(255,255,255,0.28); min-width: 1px;"
+                ".screenshot-bar button:hover { background: rgba(0,0,0,0.08); }\n"
+                ".screenshot-bar button label { color: #303030; font-size: 15px; }\n"
+                ".screenshot-bar separator { background: rgba(0,0,0,0.25); min-width: 1px;"
                 " min-height: 22px; margin-left: 4px; margin-right: 4px; }\n");
             _pToolbar->get_style_context()->add_class("screenshot-bar");
             _pToolbar->get_style_context()->add_provider(rCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);

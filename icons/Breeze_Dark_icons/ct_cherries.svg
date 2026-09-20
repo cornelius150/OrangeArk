@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-  <path d="M 8 3.2 C 8 3.2 7.6 1.6 6.6 0.9" stroke="#7a4a12" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-  <path d="M 8.4 3.4 C 8.9 1.9 10.5 1.0 12.4 1.2 C 12.4 3.0 11.1 4.5 9.2 4.7 C 8.8 4.7 8.6 4.1 8.4 3.4 Z" fill="#4caf50"/>
-  <path d="M 7.8 3.4 C 7.1 2.2 5.5 1.6 3.8 2.0 C 4.0 3.6 5.2 4.8 6.9 4.8 C 7.3 4.7 7.6 4.1 7.8 3.4 Z" fill="#66bb6a"/>
-  <circle cx="8" cy="9.6" r="5.7" fill="#f57f17" stroke="#bf5f0a" stroke-width="0.9"/>
-  <ellipse cx="5.9" cy="7.6" rx="2.1" ry="1.4" fill="#ffffff" opacity="0.35" transform="rotate(-25 5.9 7.6)"/>
+<!-- OrangeArk: tree explorer panel, dark theme (replaces the legacy two-fruits icon) -->
+<svg viewBox="0 0 16 16" width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1.5" y="2.0" width="13.0" height="12.0" rx="1.6" fill="#3a3630" stroke="#e0a25e" stroke-width="1.1"/>
+  <line x1="6.2" y1="2.0" x2="6.2" y2="14.0" stroke="#e0a25e" stroke-width="1.0"/>
+  <circle cx="3.8" cy="4.9" r="1.0" fill="#fb8c00"/>
+  <line x1="3.8" y1="5.9" x2="3.8" y2="10.4" stroke="#fb8c00" stroke-width="0.9"/>
+  <circle cx="4.9" cy="7.6" r="0.85" fill="#ffb74d"/>
+  <circle cx="4.9" cy="10.0" r="0.85" fill="#ffb74d"/>
+  <rect x="7.6" y="4.4" width="5.4" height="1.3" rx="0.6" fill="#e0a25e" opacity="0.8"/>
+  <rect x="7.6" y="7.2" width="5.4" height="1.3" rx="0.6" fill="#e0a25e" opacity="0.55"/>
+  <rect x="7.6" y="10.0" width="5.4" height="1.3" rx="0.6" fill="#e0a25e" opacity="0.55"/>
 </svg>

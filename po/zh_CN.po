@@ -3161,3 +3161,9 @@ msgstr "您确定要重置为默认值吗？"
 
 #~ msgid "Find in Multiple Nodes..."
 #~ msgstr "在多个节点中搜索..."
+
+msgid "Single File Document"
+msgstr "单文件文档"
+
+msgid "Documents are saved as standard Markdown (.md) text files: the note text stays readable in any editor or Markdown tool, while an invisible comment block at the end keeps the full tree and formatting for OrangeArk itself."
+msgstr "文档以标准 Markdown（.md）纯文本保存：笔记正文在任何编辑器或 Markdown 工具中都可读，文件末尾有一段不可见的注释块，橙子笔记用它无损保存完整的树结构和格式。"

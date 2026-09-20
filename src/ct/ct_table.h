@@ -127,7 +127,9 @@ protected:
     bool _on_grip_button_press_event(GdkEventButton* event);
     void _resize_drag_begin(const double xRoot, const double yRoot);
     void _resize_drag_update(const double xRoot, const double yRoot);
+    void _resize_drag_apply(const double xRoot, const double yRoot); // OrangeArk: unthrottled layout apply
     void _resize_drag_end();
+    int  _column_separator_at(const double x) const; // OrangeArk: hit test for a column separator (-1 = none)
     virtual void _set_rows_min_height(const int height) = 0; // OrangeArk: row height control
     virtual int  _get_rows_min_height() const = 0;
     Gtk::DrawingArea* _pResizeGrip{nullptr};
@@ -139,6 +141,10 @@ protected:
     int    _dragStartTotalW{0};
     int    _dragStartMinHeight{0}; // OrangeArk: row min-height at drag start (avoids cumulative drift)
     CtTableColWidths _dragStartColWidths;
+    int    _dragColIdx{-1};        // OrangeArk: column dragged by its separator (-1 = whole-table drag)
+    gint64 _lastLiveUpdateUs{0};   // OrangeArk: throttle timestamp for the live relayout
+    double _lastMotionXRoot{0.};   // OrangeArk: latest pointer position (final exact apply on release)
+    double _lastMotionYRoot{0.};
     Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
 
 protected:

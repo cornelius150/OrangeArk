@@ -1,4 +1,4 @@
-orangeark (1.7.2-2) focal; urgency=low
+orangeark (1.0.0-1) focal; urgency=low
 
   * fixed crash introduced with word count changes in v1.7.1 (#2890)
   * moved tree explorer auxiliary icon (e.g. indicating read only) between node icon and node name (#2458)

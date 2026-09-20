@@ -93,7 +93,8 @@ private:
     int  _resize_edges(const double x, const double y) const; // bit mask: 1=left 2=right 4=top 8=bottom
     void _set_hover_cursor(const int edges);
     bool _compute_resize(const double xRoot, const double yRoot, int& newW, int& newH) const;
-    void _resize_live(const double xRoot, const double yRoot); // apply the size while dragging
+    void _resize_live(const double xRoot, const double yRoot); // throttled apply while dragging
+    void _resize_live_apply(const double xRoot, const double yRoot); // OrangeArk: unthrottled apply
     void _apply_resized_pixbuf(const int newWidth, const int newHeight);
     bool _on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr); // visible resize grip
     void _connect_resize_events();
@@ -102,6 +103,9 @@ private:
     double _dragStartX{0.}, _dragStartY{0.};
     int    _dragStartW{0}, _dragStartH{0};
     int    _liveW{0}, _liveH{0};
+    gint64 _lastLiveUpdateUs{0};    // OrangeArk: throttle timestamp for live re-scaling
+    double _lastMotionXRoot{0.};    // OrangeArk: latest pointer position (final exact apply)
+    double _lastMotionYRoot{0.};
     Glib::RefPtr<Gdk::Pixbuf> _dragOrigPixbuf; // original image while dragging (lossless re-scale)
     Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
     int    _hoverCursorType{-1};

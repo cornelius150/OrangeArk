@@ -367,6 +367,7 @@ bool CtTableCommon::_on_grip_button_press_event(GdkEventButton* event)
     if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
     _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
     _dragEdgesMask = 2 | 8; // the grip sits in the bottom-right corner
+    _dragColIdx = -1;
     _resize_drag_begin(event->x_root, event->y_root);
     return true;
 }
@@ -380,6 +381,9 @@ void CtTableCommon::_resize_drag_begin(const double xRoot, const double yRoot)
     _dragStartTotalW = get_allocation().get_width();
     _dragStartColWidths = get_col_widths();
     _dragStartMinHeight = _get_rows_min_height();
+    _lastMotionXRoot = xRoot;
+    _lastMotionYRoot = yRoot;
+    _lastLiveUpdateUs = 0;
     gtk_grab_add(GTK_WIDGET(gobj()));
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
         rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER));
@@ -389,21 +393,52 @@ void CtTableCommon::_resize_drag_begin(const double xRoot, const double yRoot)
 void CtTableCommon::_resize_drag_update(const double xRoot, const double yRoot)
 {
     if (not _dragResizeActive) return;
-    // OrangeArk: horizontal drag scales the column widths,
-    // vertical drag changes the row heights
+    // OrangeArk: throttle the live relayout — re-laying the whole grid out on
+    // every motion event made the resize feel laggy and let it keep growing
+    // for a while after the mouse button was released
+    const gint64 nowUs = g_get_monotonic_time();
+    if (_lastLiveUpdateUs != 0 and nowUs - _lastLiveUpdateUs < 20000) return; // max ~50 relayouts/sec
+    _lastLiveUpdateUs = nowUs;
+    _resize_drag_apply(xRoot, yRoot);
+}
+
+// OrangeArk: the actual (unthrottled) layout update — also used for the final
+// exact apply with the latest pointer position when the drag ends
+void CtTableCommon::_resize_drag_apply(const double xRoot, const double yRoot)
+{
+    if (not _dragResizeActive) return;
     const double dx = xRoot - _dragStartX;
-    const double scale = (_dragStartTotalW + dx) / static_cast<double>(_dragStartTotalW);
-    if (scale > 0.05) {
-        const size_t numColumns = get_num_columns();
-        for (size_t c = 0u; c < numColumns; ++c) {
-            const int newWidth = std::max(16, static_cast<int>(std::lround(_dragStartColWidths.at(c) * scale)));
-            if (newWidth != get_col_width(c)) {
-                set_col_width(newWidth, c);
+    const double dy = yRoot - _dragStartY;
+
+    if (_dragColIdx >= 0) {
+        // OrangeArk: dragging a column separator resizes that single column only
+        if (_dragColIdx < static_cast<int>(_dragStartColWidths.size())) {
+            const int startW = _dragStartColWidths.at(static_cast<size_t>(_dragColIdx));
+            const int newWidth = std::max(16, static_cast<int>(std::lround(startW + dx)));
+            if (newWidth != get_col_width(static_cast<size_t>(_dragColIdx))) {
+                set_col_width(newWidth, static_cast<size_t>(_dragColIdx));
                 _dragResizeChanged = true;
             }
         }
+        return;
     }
-    const double dy = yRoot - _dragStartY;
+
+    // OrangeArk: horizontal drag scales the column widths ONLY when a left/right
+    // border or the corner grip is dragged; vertical drag changes the row heights
+    // ONLY when a top/bottom border or the grip is dragged
+    if (_dragEdgesMask & 0x3) {
+        const double scale = (_dragStartTotalW + dx) / static_cast<double>(_dragStartTotalW);
+        if (scale > 0.05) {
+            const size_t numColumns = get_num_columns();
+            for (size_t c = 0u; c < numColumns; ++c) {
+                const int newWidth = std::max(16, static_cast<int>(std::lround(_dragStartColWidths.at(c) * scale)));
+                if (newWidth != get_col_width(c)) {
+                    set_col_width(newWidth, c);
+                    _dragResizeChanged = true;
+                }
+            }
+        }
+    }
     // OrangeArk: row heights only follow a vertical drag (top/bottom border or grip)
     if ((_dragEdgesMask & 0xC) and std::abs(dy) > 0.5) {
         const int rowH = std::max(14, _dragStartMinHeight + static_cast<int>(std::lround(dy)));
@@ -417,12 +452,31 @@ void CtTableCommon::_resize_drag_update(const double xRoot, const double yRoot)
 void CtTableCommon::_resize_drag_end()
 {
     if (not _dragResizeActive) return;
+    // OrangeArk: one final exact apply — the throttling may have skipped the
+    // last motion events, so the table could otherwise stop short of the cursor
+    _resize_drag_apply(_lastMotionXRoot, _lastMotionYRoot);
     _dragResizeActive = false;
     gtk_grab_remove(GTK_WIDGET(gobj()));
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
     if (_dragResizeChanged) {
         _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
     }
+}
+
+// OrangeArk: hit test for the column separators (the vertical lines between
+// columns) — returns the index of the column whose right separator sits under
+// x, or -1 when x is not near any separator
+int CtTableCommon::_column_separator_at(const double x) const
+{
+    const CtTableColWidths colWidths = get_col_widths();
+    double acc = 0.0;
+    for (size_t c = 0u; c + 1u < colWidths.size(); ++c) { // inner separators only
+        acc += colWidths.at(c);
+        if (std::abs(x - acc) <= 4.0) {
+            return static_cast<int>(c);
+        }
+    }
+    return -1;
 }
 
 // OrangeArk: bit mask of the table borders under the cursor
@@ -475,10 +529,22 @@ bool CtTableCommon::_resize_press_at(const double x, const double y, GdkEventBut
 {
     if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
     const int edges = _table_border_edges(x, y, get_allocation());
-    if (0 == edges) return false;
+    if (0 == edges) {
+        // OrangeArk: pressing near an inner column separator starts a drag that
+        // resizes that single column (OneNote-like per-column resizing)
+        const int colIdx = _column_separator_at(x);
+        if (colIdx < 0) return false;
+        if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
+        _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
+        _dragColIdx = colIdx;
+        _dragEdgesMask = 2; // behaves like a right-edge (width) drag
+        _resize_drag_begin(event->x_root, event->y_root);
+        return true;
+    }
     if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
     _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
     _dragEdgesMask = edges;
+    _dragColIdx = -1;
     _resize_drag_begin(event->x_root, event->y_root);
     return true; // do not propagate while resizing
 }
@@ -491,11 +557,28 @@ bool CtTableCommon::_on_resize_motion_notify_event(GdkEventMotion* event)
 bool CtTableCommon::_resize_motion_at(const double x, const double y, GdkEventMotion* event)
 {
     if (_dragResizeActive) {
+        // OrangeArk: end the drag automatically when the mouse button is no
+        // longer held — a lost release event must not leave the drag stuck
+        // active (the table kept resizing after the mouse-up)
+        if ((event->state & GDK_BUTTON1_MASK) == 0) {
+            _lastMotionXRoot = event->x_root;
+            _lastMotionYRoot = event->y_root;
+            _resize_drag_end();
+            return true;
+        }
+        _lastMotionXRoot = event->x_root;
+        _lastMotionYRoot = event->y_root;
         _resize_drag_update(event->x_root, event->y_root); // live preview while dragging
-        _table_border_cursor(this, _dragEdgesMask);
+        _table_border_cursor(this, _dragColIdx >= 0 ? 0x2 : _dragEdgesMask);
         return true;
     }
-    _table_border_cursor(this, _table_border_edges(x, y, get_allocation()));
+    // hover feedback: column separators behave like a right-edge width drag
+    if (_column_separator_at(x) >= 0) {
+        _table_border_cursor(this, 0x2);
+    }
+    else {
+        _table_border_cursor(this, _table_border_edges(x, y, get_allocation()));
+    }
     return false;
 }
 

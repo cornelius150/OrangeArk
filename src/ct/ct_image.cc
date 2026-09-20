@@ -319,30 +319,57 @@ bool CtImagePng::_compute_resize(const double xRoot, const double yRoot, int& ne
     if (_dragEdges & 8)      dy = yRoot - _dragStartY;   // bottom edge
     else if (_dragEdges & 4) dy = _dragStartY - yRoot;   // top edge
 
-    // keep the aspect ratio: grow/shrink with the dominant dragged axis
-    // (no 1.0 floor here — dragging inwards must be able to shrink the image)
-    double scale = 0.0;
-    if (dx != 0.0) scale = (_dragStartW + dx) / static_cast<double>(_dragStartW);
-    if (dy != 0.0) {
-        const double scaleY = (_dragStartH + dy) / static_cast<double>(_dragStartH);
-        scale = scale > 0.0 ? std::max(scale, scaleY) : scaleY;
+    const bool hasHoriz = (_dragEdges & 0x3) != 0;
+    const bool hasVert = (_dragEdges & 0xC) != 0;
+
+    if (hasHoriz and not hasVert) {
+        // single-axis drag: change the width only, keep the height
+        newW = static_cast<int>(std::lround(_dragStartW + dx));
+        newH = _dragStartH;
+        if (newW < 16) newW = 16;
     }
-    if (scale <= 0.0) return false;
-    newW = static_cast<int>(std::lround(_dragStartW * scale));
-    newH = static_cast<int>(std::lround(_dragStartH * scale));
-    if (newW < 16) {
-        newH = static_cast<int>(std::lround(newH * (16.0 / newW)));
-        newW = 16;
+    else if (hasVert and not hasHoriz) {
+        // single-axis drag: change the height only, keep the width
+        newW = _dragStartW;
+        newH = static_cast<int>(std::lround(_dragStartH + dy));
+        if (newH < 16) newH = 16;
     }
-    if (newH < 16) {
-        newW = static_cast<int>(std::lround(newW * (16.0 / newH)));
-        newH = 16;
+    else {
+        // corner drag: keep the aspect ratio, grow/shrink with the dominant axis
+        // (no 1.0 floor here — dragging inwards must be able to shrink the image)
+        double scale = 0.0;
+        if (dx != 0.0) scale = (_dragStartW + dx) / static_cast<double>(_dragStartW);
+        if (dy != 0.0) {
+            const double scaleY = (_dragStartH + dy) / static_cast<double>(_dragStartH);
+            scale = scale > 0.0 ? std::max(scale, scaleY) : scaleY;
+        }
+        if (scale <= 0.0) return false;
+        newW = static_cast<int>(std::lround(_dragStartW * scale));
+        newH = static_cast<int>(std::lround(_dragStartH * scale));
+        if (newW < 16) {
+            newH = static_cast<int>(std::lround(newH * (16.0 / newW)));
+            newW = 16;
+        }
+        if (newH < 16) {
+            newW = static_cast<int>(std::lround(newW * (16.0 / newH)));
+            newH = 16;
+        }
     }
     return newW != _dragStartW or newH != _dragStartH;
 }
 
 // OrangeArk: apply the resized size while dragging (re-scaled from the original pixbuf)
 void CtImagePng::_resize_live(const double xRoot, const double yRoot)
+{
+    // OrangeArk: throttle the live re-scaling — resampling the whole pixbuf on
+    // every motion event made the resize feel laggy on large images
+    const gint64 nowUs = g_get_monotonic_time();
+    if (_lastLiveUpdateUs != 0 and nowUs - _lastLiveUpdateUs < 20000) return; // max ~50 rescales/sec
+    _lastLiveUpdateUs = nowUs;
+    _resize_live_apply(xRoot, yRoot);
+}
+
+void CtImagePng::_resize_live_apply(const double xRoot, const double yRoot)
 {
     int newW = 0, newH = 0;
     if (not _compute_resize(xRoot, yRoot, newW, newH)) return;
@@ -362,6 +389,17 @@ void CtImagePng::_resize_live(const double xRoot, const double yRoot)
 bool CtImagePng::_on_motion_notify_event(GdkEventMotion* event)
 {
     if (_dragResizeActive) {
+        // OrangeArk: end the drag automatically when the mouse button is no
+        // longer held (a lost release event must not leave the drag stuck)
+        if ((event->state & GDK_BUTTON1_MASK) == 0) {
+            GdkEventButton synthetic{};
+            synthetic.type = GDK_BUTTON_RELEASE;
+            synthetic.button = 1;
+            synthetic.state = event->state;
+            return _on_button_release_event(&synthetic);
+        }
+        _lastMotionXRoot = event->x_root;
+        _lastMotionYRoot = event->y_root;
         // live cursor feedback and live resizing while dragging
         _set_hover_cursor(_dragEdges);
         _resize_live(event->x_root, event->y_root);
@@ -379,6 +417,11 @@ bool CtImagePng::_on_button_release_event(GdkEventButton* event)
     gtk_grab_remove(GTK_WIDGET(gobj()));
     _hoverCursorType = -1;
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
+    // OrangeArk: one final exact apply — throttling may have skipped the last
+    // motion events, so the image could otherwise stop short of the cursor
+    if (_dragOrigPixbuf) {
+        _resize_live_apply(_lastMotionXRoot, _lastMotionYRoot);
+    }
     // the live resize has already applied the final size
     _dragOrigPixbuf.reset();
     return true;
@@ -401,6 +444,9 @@ bool CtImagePng::_on_button_press_event(GdkEventButton* event)
         _dragOrigPixbuf = _rPixbuf; // keep the original for lossless live re-scaling
         _liveW = _dragStartW;
         _liveH = _dragStartH;
+        _lastMotionXRoot = event->x_root;
+        _lastMotionYRoot = event->y_root;
+        _lastLiveUpdateUs = 0;
         gtk_grab_add(GTK_WIDGET(gobj()));
         return true;
     }

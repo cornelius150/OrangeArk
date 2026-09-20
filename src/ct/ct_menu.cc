@@ -30,6 +30,71 @@
 
 #include <algorithm>
 #include <pango/pangocairo.h> // OrangeArk: pango_cairo_font_map_get_default for system font enumeration
+#include <gdkmm/screen.h>
+#include <gdkmm/pixbuf.h>
+#include <cairomm/surface.h>
+#include <cairomm/context.h>
+
+// OrangeArk: make the combobox dropdown arrow and popup scrollbar thumbs clearly
+// visible under the win32 GTK theme (the arrow can be blank when its symbolic
+// icon is unavailable, and the scrollbar slider can be nearly invisible)
+static void _apply_global_gtk_css()
+{
+    static bool sDone = false;
+    if (sDone) {
+        return;
+    }
+    sDone = true;
+    try {
+        auto rCss = Gtk::CssProvider::create();
+        rCss->load_from_data(
+            "combobox arrow { min-width: 14px; min-height: 14px; }\n"
+            "scrollbar { background-color: #f0f0f0; }\n"
+            "scrollbar slider { background-color: #b8b8b8; min-width: 12px; min-height: 24px; border-radius: 4px; }\n"
+            "scrollbar slider:hover { background-color: #9a9a9a; }\n");
+        auto rScreen = Gdk::Screen::get_default();
+        if (rScreen) {
+            Gtk::StyleContext::add_provider_for_screen(rScreen, rCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+        }
+    }
+    catch (const Glib::Error& e) {
+        spdlog::warn("global gtk css failed: {}", e.what().c_str());
+    }
+}
+
+// OrangeArk: the win32 GTK theme can render the combobox dropdown arrow blank
+// (its pan-down-symbolic icon may be unavailable in the trimmed-down icon set);
+// replace it with a self-drawn caret pixbuf so the arrow is always visible
+static void _force_combo_arrow_visible(Gtk::Widget* pWidget)
+{
+    if (GTK_IS_IMAGE(pWidget->gobj())) {
+        // OrangeArk: use the C API — the matching gtkmm get_icon_name overload
+        // is declared but not exported by libgtkmm
+        const gchar* pIconName = nullptr;
+        GtkIconSize iconSize{GTK_ICON_SIZE_MENU};
+        gtk_image_get_icon_name(GTK_IMAGE(pWidget->gobj()), &pIconName, &iconSize);
+        if (pIconName and std::string(pIconName).find("pan-down") != std::string::npos) {
+            const int kSize = 12;
+            auto rSurface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, kSize, kSize);
+            auto rCr = Cairo::Context::create(rSurface);
+            rCr->set_source_rgba(0.25, 0.25, 0.25, 1.0);
+            rCr->move_to(1.0, 3.0);
+            rCr->line_to(11.0, 3.0);
+            rCr->line_to(6.0, 9.0);
+            rCr->close_path();
+            rCr->fill();
+            rSurface->flush();
+            GdkPixbuf* pPixbuf = gdk_pixbuf_get_from_surface(rSurface->cobj(), 0, 0, kSize, kSize);
+            if (pPixbuf) {
+                Glib::wrap(GTK_IMAGE(pWidget->gobj()))->set(Glib::wrap(pPixbuf));
+            }
+        }
+        return;
+    }
+    if (auto* pContainer = dynamic_cast<Gtk::Container*>(pWidget)) {
+        pContainer->foreach([](Gtk::Widget& rChild) { _force_combo_arrow_visible(&rChild); });
+    }
+}
 
 #if GTKMM_MAJOR_VERSION >= 4
 std::vector<Gtk::Box*> CtMenu::build_toolbars4(Gtk::MenuButton*& pRecentDocsMenuButton, Gtk::Button*& pButtonSave)
@@ -699,6 +764,7 @@ std::vector<Gtk::Toolbar*> CtMenu::build_toolbars(Gtk::MenuToolButton*& pRecentD
         }
     }
     // OrangeArk: populate the font family / size combo placeholders
+    _apply_global_gtk_css();
     Gtk::ToolItem* pFontFamilyItem = nullptr;
     _rGtkBuilder->get_widget("FontFamilyCombo", pFontFamilyItem);
     if (pFontFamilyItem) {
@@ -707,6 +773,7 @@ std::vector<Gtk::Toolbar*> CtMenu::build_toolbars(Gtk::MenuToolButton*& pRecentD
         _setup_font_family_combo(pCombo);
         pFontFamilyItem->add(*pCombo);
         pFontFamilyItem->show_all();
+        _force_combo_arrow_visible(pCombo);
     }
     Gtk::ToolItem* pFontSizeItem = nullptr;
     _rGtkBuilder->get_widget("FontSizeCombo", pFontSizeItem);
@@ -716,6 +783,7 @@ std::vector<Gtk::Toolbar*> CtMenu::build_toolbars(Gtk::MenuToolButton*& pRecentD
         _setup_font_size_combo(pCombo);
         pFontSizeItem->add(*pCombo);
         pFontSizeItem->show_all();
+        _force_combo_arrow_visible(pCombo);
     }
     return toolbars;
 }
@@ -747,28 +815,54 @@ void CtMenu::_setup_font_family_combo(Gtk::ComboBoxText* pCombo)
     }
     std::sort(familyNames.begin(), familyNames.end(),
               [](const Glib::ustring& a, const Glib::ustring& b) { return a.lowercase() < b.lowercase(); });
-    // common desktop fonts (incl. CJK) first, everything else alphabetically after them
-    const std::vector<Glib::ustring> common = {
-        "Microsoft YaHei", "SimSun", "SimHei", "KaiTi", "FangSong", "DengXian",
-        "Arial", "Times New Roman", "Courier New", "Calibri", "Consolas", "Verdana", "Tahoma"};
+    // OrangeArk: drop the fonts that would render CJK text as boxes/garbage —
+    // symbol/dingbat fonts, Japanese-only families and ExtB glyph extensions
+    static const char* kExcluded[] = {
+        "symbol", "wingdings", "wingdings 2", "wingdings 3", "webdings", "marlett",
+        "mt extra", "ms gothic", "ms pgothic", "ms ui gothic", "yu gothic", "yu gothic ui",
+        "meiryo", "meiryo ui", "malgun gothic", "gulim", "dotum", "batang", "mingliu",
+        "eudc", "system", "fixedsys", "terminal", "small fonts", "ms sans serif", "ms serif",
+        "modern", "roman", "script", "802", "outlook"};
+    auto isExcluded = [](const Glib::ustring& name) {
+        const Glib::ustring lower = name.lowercase();
+        for (const char* bad : kExcluded) {
+            if (lower == bad) return true;
+        }
+        // partial matches: glyph extension subsets and vertical variants
+        if (lower.find("extb") != Glib::ustring::npos or lower.find("exta") != Glib::ustring::npos) return true;
+        if (lower.rfind("@", 0) == 0) return true;
+        return false;
+    };
+    familyNames.erase(std::remove_if(familyNames.begin(), familyNames.end(), isExcluded), familyNames.end());
+    // common desktop fonts (incl. CJK) first, everything else alphabetically after
+    // them — each preferred font matches either its English or localized name
+    const std::vector<std::pair<const char*, const char*>> common = {
+        {"Microsoft YaHei", "微软雅黑"}, {"SimSun", "宋体"}, {"NSimSun", "新宋体"},
+        {"SimHei", "黑体"}, {"KaiTi", "楷体"}, {"FangSong", "仿宋"}, {"DengXian", "等线"},
+        {"Segoe UI", nullptr}, {"Arial", nullptr}, {"Times New Roman", nullptr},
+        {"Courier New", nullptr}, {"Calibri", nullptr}, {"Consolas", nullptr},
+        {"Verdana", nullptr}, {"Tahoma", nullptr}};
+    auto matchesCommon = [&common](const Glib::ustring& name) -> bool {
+        const Glib::ustring lower = name.lowercase();
+        for (const auto& preferred : common) {
+            if (lower == Glib::ustring(preferred.first).lowercase()) return true;
+            if (preferred.second and lower == Glib::ustring(preferred.second)) return true;
+        }
+        return false;
+    };
     std::vector<Glib::ustring> ordered;
     for (const auto& preferred : common) {
         for (const auto& name : familyNames) {
-            if (name.lowercase() == preferred.lowercase()) {
+            const Glib::ustring lower = name.lowercase();
+            if (lower == Glib::ustring(preferred.first).lowercase() or
+                (preferred.second and lower == Glib::ustring(preferred.second))) {
                 ordered.push_back(name);
                 break;
             }
         }
     }
     for (const auto& name : familyNames) {
-        bool isCommon{false};
-        for (const auto& preferred : common) {
-            if (name.lowercase() == preferred.lowercase()) {
-                isCommon = true;
-                break;
-            }
-        }
-        if (not isCommon) {
+        if (not matchesCommon(name)) {
             ordered.push_back(name);
         }
     }
