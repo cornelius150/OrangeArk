@@ -26,12 +26,12 @@
 
 // OrangeArk: project URLs used by the Help menu
 namespace {
-    const char* ORANGEARK_URL_WEB      = "https://oliveset.github.io/OrangeArk/";
-    const char* ORANGEARK_URL_SOURCE   = "https://github.com/oliveset/OrangeArk";
-    const char* ORANGEARK_URL_ISSUES   = "https://github.com/oliveset/OrangeArk/issues";
-    const char* ORANGEARK_URL_RELEASES = "https://github.com/oliveset/OrangeArk/releases";
-    const char* ORANGEARK_URL_DONATE   = "https://oliveset.github.io/OrangeArk/donate.html";
-    const char* ORANGEARK_URL_MANUAL   = "https://oliveset.github.io/OrangeArk/manual.html";
+    const char* ORANGEARK_URL_WEB      = "https://cornelius150.github.io/OrangeArk/";
+    const char* ORANGEARK_URL_SOURCE   = "https://github.com/cornelius150/OrangeArk";
+    const char* ORANGEARK_URL_ISSUES   = "https://github.com/cornelius150/OrangeArk/issues";
+    const char* ORANGEARK_URL_RELEASES = "https://github.com/cornelius150/OrangeArk/releases";
+    const char* ORANGEARK_URL_DONATE   = "https://cornelius150.github.io/OrangeArk/donate.html";
+    const char* ORANGEARK_URL_MANUAL   = "https://cornelius150.github.io/OrangeArk/manual.html";
 }
 
 void CtActions::online_help()
@@ -86,7 +86,7 @@ void CtActions::check_for_newer_version()
     #endif
 
     // OrangeArk: query the latest GitHub release of this project
-    const std::string json_from_server = fs::download_file("https://api.github.com/repos/oliveset/OrangeArk/releases/latest");
+    const std::string json_from_server = fs::download_file("https://api.github.com/repos/cornelius150/OrangeArk/releases/latest");
     const std::size_t tagPos = json_from_server.find("\"tag_name\"");
     if (json_from_server.empty() or std::string::npos == tagPos) {
         statusbar.update_status(_("Failed to Retrieve Latest Version Information - Try Again Later."));

@@ -31,12 +31,12 @@
 文档默认以 `.md` 扩展名保存（内部为层级结构化文档格式）。同时兼容打开多种旧版文档格式。
 
 ## 下载
-前往 [Releases](https://github.com/oliveset/OrangeArk/releases/latest) 页面下载 Windows 安装版（setup.exe）与便携版（portable.7z）。
+前往 [Releases](https://github.com/cornelius150/OrangeArk/releases/latest) 页面下载 Windows 安装版（setup.exe）与便携版（portable.7z）。
 
 ## 在线手册与官网
-- 官网：<https://oliveset.github.io/OrangeArk/>
-- 在线手册：<https://oliveset.github.io/OrangeArk/manual.html>
-- 捐赠支持：<https://oliveset.github.io/OrangeArk/donate.html>
+- 官网：<https://cornelius150.github.io/OrangeArk/>
+- 在线手册：<https://cornelius150.github.io/OrangeArk/manual.html>
+- 捐赠支持：<https://cornelius150.github.io/OrangeArk/donate.html>
 
 ## 许可
 本项目基于 GNU GPL-3.0 许可证发布，详见 [license.txt](license.txt)。
