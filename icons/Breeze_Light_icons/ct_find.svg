@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OrangeArk: search / browse - orange magnifier with a handle -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-  <!-- OrangeArk: orange magnifier with a handle -->
-  <circle cx="6.7" cy="6.7" r="4.6" fill="none" stroke="#fb8c00" stroke-width="1.9"/>
-  <line x1="10.3" y1="10.3" x2="14" y2="14" stroke="#fb8c00" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="6.9" cy="6.3" r="4.3" fill="none" stroke="#fb8c00" stroke-width="1.9"/>
+  <line x1="10.2" y1="9.6" x2="13.9" y2="13.3" stroke="#fb8c00" stroke-width="2.2" stroke-linecap="round"/>
 </svg>

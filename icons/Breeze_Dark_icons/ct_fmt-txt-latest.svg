@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- OrangeArk: repeat-last-format — format painter with a repeat arrow -->
-<svg viewBox="0 0 16 16" width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <g>
-    <path d="M 2.6 4.6 A 3.2 3.2 0 0 1 7.4 2.3" fill="none" stroke="#fb8c00" stroke-width="1.4" stroke-linecap="round"/>
-    <path d="M 8.2 0.7 L 8.3 3.6 L 5.6 2.8 Z" fill="#fb8c00"/>
-    <path d="M 9.4 5.0 L 14.1 9.7 C 14.7 10.3, 14.7 11.1, 14.1 11.7 C 13.5 12.3, 12.7 12.3, 12.1 11.7 L 7.4 7.0 Z" fill="#c8a272"/>
-    <path d="M 7.4 7.0 L 9.4 9.0 L 8.0 10.4 L 6.0 8.4 Z" fill="#9e9e9e"/>
-    <path d="M 6.0 8.4 L 8.0 10.4 L 5.2 13.2 C 4.4 14.0, 3.2 14.1, 2.5 13.4 C 1.8 12.7, 1.9 11.5, 2.7 10.7 Z" fill="#ffb74d"/>
-  </g>
+<!-- OrangeArk: repeat last format - a small brush with a repeat arrow -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+  <path d="M 2.6 4.6 A 3.2 3.2 0 0 1 7.4 2.3" fill="none" stroke="#fb8c00" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M 8.2 0.7 L 8.3 3.6 L 5.6 2.8 Z" fill="#fb8c00"/>
+  <path d="M 9.4 5.0 L 14.1 9.7 C 14.7 10.3, 14.7 11.1, 14.1 11.7 C 13.5 12.3, 12.7 12.3, 12.1 11.7 L 7.4 7.0 Z" fill="#d6a877"/>
+  <path d="M 7.4 7.0 L 9.4 9.0 L 8.0 10.4 L 6.0 8.4 Z" fill="#9e9e9e"/>
+  <path d="M 6.0 8.4 L 8.0 10.4 L 5.2 13.2 C 4.4 14.0, 3.2 14.1, 2.5 13.4 C 1.8 12.7, 1.9 11.5, 2.7 10.7 Z" fill="#ffb74d"/>
 </svg>

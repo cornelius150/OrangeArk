@@ -9,10 +9,18 @@ execute_process(
 
 # Generating rc file (with icon) for windows
 if(MINGW)
+  # OrangeArk: the version resource used to be compiled exactly once — without
+  # DEPENDS, editing data/windows.rc never forced a rebuild, so the "Product
+  # name" shown by Explorer / Task Manager / the installer kept the old value.
+  # -c 65001 because windows.rc is UTF-8 and carries Chinese text.
   add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/orangeark_rc.o
-                     COMMAND windres.exe -I${CMAKE_SOURCE_DIR}/icons 
+                     COMMAND windres.exe --codepage=65001
+                                         -I${CMAKE_SOURCE_DIR}/icons
                                          -i${CMAKE_SOURCE_DIR}/data/windows.rc
-                                         -o ${CMAKE_CURRENT_BINARY_DIR}/orangeark_rc.o )
+                                         -o ${CMAKE_CURRENT_BINARY_DIR}/orangeark_rc.o
+                     DEPENDS ${CMAKE_SOURCE_DIR}/data/windows.rc
+                             ${CMAKE_SOURCE_DIR}/icons/orangeark.ico
+                     VERBATIM)
   set(CHERRY_EXE_RC ${CMAKE_CURRENT_BINARY_DIR}/orangeark_rc.o)
 endif(MINGW)
 
