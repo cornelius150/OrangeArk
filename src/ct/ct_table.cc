@@ -396,6 +396,11 @@ void CtTableCommon::_resize_drag_begin(const double xRoot, const double yRoot)
 // every motion event was what made resizing laggy and could even swallow the
 // mouse-up (the table then kept resizing after the button was released); now
 // the grid is re-laid-out exactly once, on release, at the final position.
+// OrangeArk: the guide strips are created ONCE per table instance and only
+// hidden between drags — they are never destroyed/recreated. The previous
+// create/destroy-every-drag cycle repeatedly allocated and freed native
+// override-redirect windows at high frequency, which crashed inside
+// gdk_window_get_display() with a freed GdkWindow (libgdk 0xc0000005).
 void CtTableCommon::_guide_ensure()
 {
     if (_rGuideV and _rGuideH) return;
@@ -423,10 +428,9 @@ void CtTableCommon::_guide_ensure()
 
 void CtTableCommon::_guide_destroy()
 {
-    // OrangeArk: use the C API — this gtkmm build does not wrap
-    // gdk_window_destroy() on Gdk::Window
-    if (_rGuideV) { gdk_window_destroy(_rGuideV->gobj()); _rGuideV.reset(); }
-    if (_rGuideH) { gdk_window_destroy(_rGuideH->gobj()); _rGuideH.reset(); }
+    // OrangeArk: hide, never destroy — see _guide_ensure() above
+    if (_rGuideV) _rGuideV->hide();
+    if (_rGuideH) _rGuideH->hide();
 }
 
 void CtTableCommon::_guide_update(const double xRoot, const double yRoot)

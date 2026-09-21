@@ -151,6 +151,13 @@ public:
         _pFixed->put(*_pArea, 0, 0);
         _pFixed->put(*_pToolbar, 10, 10);
         _pFixed->put(*_pEntry, 0, 0);
+        // OrangeArk: the tool-options panel MUST become a child of _pFixed
+        // before any _pFixed->move() touches it — GTK 3.24.52's
+        // gtk_fixed_move dereferences a NULL GtkFixedChild for a widget that
+        // is not a child (no assertion, straight segfault in libgtk).
+        // This was the crash on every screenshot tool click.
+        _pFixed->put(*_pPanel, 0, 0);
+        _pPanel->hide();
         add(*_pFixed);
 
         _rCursorCross = Gdk::Cursor::create(Gdk::CursorType::CROSSHAIR);

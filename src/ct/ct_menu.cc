@@ -59,11 +59,10 @@ static void _apply_global_gtk_css()
         rCss->load_from_data(
             // OrangeArk: force LIST mode for combobox popups. In the default
             // MENU mode the popup is a GtkMenu — it has NO classic scrollbar
-            // (only blank scroll-arrow areas at top/bottom), which is exactly
             // the "no slider + blank strip on top" the user kept seeing on
-            // the font/size dropdowns. List mode = treeview in a
-            // ScrolledWindow, so the classic scrollbar below applies.
-            "combobox { -GtkComboBox-appears-as-list: true; }\n"
+            // the font/size dropdowns. In GTK3 those popups are GtkMenu and
+            // cannot show scrollbars at all; the pickers are now popover
+            // lists (CtListPickerButton below) with a real ScrolledWindow.
             "combobox arrow { min-width: 14px; min-height: 14px; }\n"
             "scrollbar { -GtkScrollbar-has-backward-stepper: true;\n"
             "  -GtkScrollbar-has-forward-stepper: true;\n"
@@ -125,6 +124,89 @@ static void _force_combo_arrow_visible(Gtk::Widget* pWidget)
     }
 }
 
+#if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
+// OrangeArk: toolbar font/size picker — a MenuButton whose popover holds a
+// Gtk::ListBox inside a Gtk::ScrolledWindow, so the popup has a REAL classic
+// scrollbar (draggable slider + up/down stepper arrows). GTK3 renders
+// ComboBoxText popups as GtkMenu, which can never show a scrollbar (the
+// -GtkComboBox-appears-as-list style property is ignored in GTK3) — that was
+// exactly the "no slider + blank strip on top" dropdown complaint.
+class CtListPickerButton : public Gtk::MenuButton
+{
+public:
+    CtListPickerButton(const std::vector<Glib::ustring>& items, int viewWidthPx)
+    {
+        set_relief(Gtk::RELIEF_NONE);
+        set_size_request(viewWidthPx, -1);
+        set_halign(Gtk::Align::ALIGN_FILL);
+        _pLabel = Gtk::manage(new Gtk::Label(items.empty() ? Glib::ustring{} : items.front()));
+        _pLabel->set_halign(Gtk::Align::ALIGN_START);
+        _pLabel->set_ellipsize(Pango::ELLIPSIZE_END);
+        _pLabel->set_margin_start(4);
+        add(*_pLabel);
+
+        for (const Glib::ustring& text : items) {
+            auto* pRow = Gtk::manage(new Gtk::ListBoxRow());
+            auto* pL = Gtk::manage(new Gtk::Label(text));
+            pL->set_halign(Gtk::Align::ALIGN_START);
+            pL->set_margin_top(2);
+            pL->set_margin_bottom(2);
+            pL->set_margin_start(8);
+            pRow->add(*pL);
+            _pListBox->append(*pRow);
+            _pRowText.push_back(text);
+        }
+        _pListBox->set_activate_on_single_click(true);
+        _pListBox->signal_row_activated().connect([this](Gtk::ListBoxRow* pRow) {
+            if (not pRow) return;
+            const int idx = pRow->get_index();
+            if (idx < 0 or idx >= static_cast<int>(_pRowText.size())) return;
+            _activeIdx = idx;
+            _pLabel->set_text(_pRowText.at(static_cast<size_t>(idx)));
+            if (_pPopover) _pPopover->popdown();
+            _sigSelected.emit(idx, _pRowText.at(static_cast<size_t>(idx)));
+        });
+
+        auto* pScroll = Gtk::manage(new Gtk::ScrolledWindow());
+        pScroll->set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_ALWAYS);
+        // ~10 visible rows, but never taller than the item list itself
+        const int rowH = 30;
+        const int wantH = static_cast<int>(_pRowText.size()) * rowH + 8;
+        pScroll->set_min_content_height(std::min(320, std::max(rowH, wantH)));
+        pScroll->set_min_content_width(viewWidthPx + 40);
+        pScroll->add(*_pListBox);
+
+        _pPopover = Gtk::manage(new Gtk::Popover(*this));
+        _pPopover->add(*pScroll);
+        _pPopover->set_position(Gtk::POS_BOTTOM);
+        set_popover(*_pPopover);
+    }
+
+    int active_index() const { return _activeIdx; }
+    Glib::ustring active_text() const
+    {
+        return (_activeIdx >= 0 and _activeIdx < static_cast<int>(_pRowText.size()))
+            ? _pRowText.at(static_cast<size_t>(_activeIdx)) : Glib::ustring{};
+    }
+    void set_active_index(int idx)
+    {
+        _activeIdx = idx;
+        if (idx >= 0 and idx < static_cast<int>(_pRowText.size())) {
+            _pLabel->set_text(_pRowText.at(static_cast<size_t>(idx)));
+        }
+    }
+    sigc::signal<void(int, const Glib::ustring&)>& signal_selected() { return _sigSelected; }
+
+private:
+    Gtk::Popover* _pPopover{nullptr};
+    Gtk::ListBox* _pListBox{Gtk::manage(new Gtk::ListBox())};
+    Gtk::Label*   _pLabel{nullptr};
+    std::vector<Glib::ustring> _pRowText;
+    int _activeIdx{-1};
+    sigc::signal<void(int, const Glib::ustring&)> _sigSelected;
+};
+#endif
+
 #if GTKMM_MAJOR_VERSION >= 4
 std::vector<Gtk::Box*> CtMenu::build_toolbars4(Gtk::MenuButton*& pRecentDocsMenuButton, Gtk::Button*& pButtonSave)
 {
@@ -164,14 +246,20 @@ std::vector<Gtk::Box*> CtMenu::build_toolbars4(Gtk::MenuButton*& pRecentDocsMenu
             continue;
         }
         if (element == CtConst::TOOLBAR_FONT_FAMILY or element == CtConst::TOOLBAR_FONT_SIZE) {
-            // OrangeArk: font family / size combos on the GTK4 toolbar too
+            // OrangeArk: GTK4 fallback toolbar keeps the plain ComboBoxText
+            // (the scrolled popover picker is a GTK3-only improvement)
             auto* pCombo = Gtk::manage(new Gtk::ComboBoxText());
             if (element == CtConst::TOOLBAR_FONT_FAMILY) {
-                _setup_font_family_combo(pCombo);
+                pCombo->append(_("Font"));
+                pCombo->set_active(0);
                 pCombo->set_size_request(140, -1);
             }
             else {
-                _setup_font_size_combo(pCombo);
+                pCombo->append(_("Font Size"));
+                for (const int size : {8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 22, 24, 28, 32, 36, 48, 72}) {
+                    pCombo->append(std::to_string(size));
+                }
+                pCombo->set_active(0);
                 pCombo->set_size_request(72, -1);
             }
             pCombo->set_margin_start(2);
@@ -797,29 +885,26 @@ std::vector<Gtk::Toolbar*> CtMenu::build_toolbars(Gtk::MenuToolButton*& pRecentD
     Gtk::ToolItem* pFontFamilyItem = nullptr;
     _rGtkBuilder->get_widget("FontFamilyCombo", pFontFamilyItem);
     if (pFontFamilyItem) {
-        auto* pCombo = Gtk::manage(new Gtk::ComboBoxText());
-        pCombo->set_size_request(140, -1);
-        _setup_font_family_combo(pCombo);
-        pFontFamilyItem->add(*pCombo);
-        pFontFamilyItem->show_all();
-        _force_combo_arrow_visible(pCombo);
+        if (auto* pPicker = _setup_font_family_combo()) {
+            pFontFamilyItem->add(*pPicker);
+            pFontFamilyItem->show_all();
+        }
     }
     Gtk::ToolItem* pFontSizeItem = nullptr;
     _rGtkBuilder->get_widget("FontSizeCombo", pFontSizeItem);
     if (pFontSizeItem) {
-        auto* pCombo = Gtk::manage(new Gtk::ComboBoxText());
-        pCombo->set_size_request(72, -1);
-        _setup_font_size_combo(pCombo);
-        pFontSizeItem->add(*pCombo);
-        pFontSizeItem->show_all();
-        _force_combo_arrow_visible(pCombo);
+        if (auto* pPicker = _setup_font_size_combo()) {
+            pFontSizeItem->add(*pPicker);
+            pFontSizeItem->show_all();
+        }
     }
     return toolbars;
 }
 #endif /* GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED) */
 
-// OrangeArk: toolbar font family combo — lists the system fonts (via Pango)
-void CtMenu::_setup_font_family_combo(Gtk::ComboBoxText* pCombo)
+#if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
+// OrangeArk: toolbar font family picker — lists the system fonts (via Pango)
+Gtk::MenuButton* CtMenu::_setup_font_family_combo()
 {
     // enumerate the installed font families straight from the system
     std::vector<Glib::ustring> familyNames;
@@ -895,33 +980,38 @@ void CtMenu::_setup_font_family_combo(Gtk::ComboBoxText* pCombo)
             ordered.push_back(name);
         }
     }
-    pCombo->append(_("Font")); // prompt row (row 0)
+    std::vector<Glib::ustring> items;
+    items.push_back(_("Font")); // prompt row (row 0)
     for (const auto& name : ordered) {
-        pCombo->append(name);
+        items.push_back(name);
     }
-    pCombo->set_active(0);
-    pCombo->signal_changed().connect([this, pCombo]() {
-        if (pCombo->get_active_row_number() > 0) {
-            _pCtMainWin->get_ct_actions()->apply_tag_font_family(pCombo->get_active_text());
+    auto* pPicker = Gtk::manage(new CtListPickerButton(items, 140));
+    pPicker->signal_selected().connect([this](int idx, const Glib::ustring& text) {
+        if (idx > 0) {
+            _pCtMainWin->get_ct_actions()->apply_tag_font_family(text);
         }
     });
+    return pPicker;
 }
 
-// OrangeArk: toolbar font size combo
-void CtMenu::_setup_font_size_combo(Gtk::ComboBoxText* pCombo)
+// OrangeArk: toolbar font size picker (scrolled popover list, see CtListPickerButton)
+Gtk::MenuButton* CtMenu::_setup_font_size_combo()
 {
     const std::vector<int> sizes = {8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 22, 24, 28, 32, 36, 48, 72};
-    pCombo->append(_("Font Size")); // prompt row (row 0)
+    std::vector<Glib::ustring> items;
+    items.push_back(_("Font Size")); // prompt row (row 0)
     for (const int size : sizes) {
-        pCombo->append(std::to_string(size));
+        items.push_back(std::to_string(size));
     }
-    pCombo->set_active(0);
-    pCombo->signal_changed().connect([this, pCombo]() {
-        if (pCombo->get_active_row_number() > 0) {
-            _pCtMainWin->get_ct_actions()->apply_tag_font_size(pCombo->get_active_text());
+    auto* pPicker = Gtk::manage(new CtListPickerButton(items, 72));
+    pPicker->signal_selected().connect([this](int idx, const Glib::ustring& text) {
+        if (idx > 0) {
+            _pCtMainWin->get_ct_actions()->apply_tag_font_size(text);
         }
     });
+    return pPicker;
 }
+#endif /* GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED) */
 
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
 Gtk::MenuBar* CtMenu::build_menubar()
