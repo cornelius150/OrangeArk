@@ -46,12 +46,26 @@ static void _apply_global_gtk_css()
     }
     sDone = true;
     try {
+        // OrangeArk: classic (non-overlay) scrollbars so the font list popup gets
+        // a Word-style scrollbar with draggable slider AND up/down arrow buttons
+        if (GtkSettings* pSettings = gtk_settings_get_default()) {
+            g_object_set(pSettings, "gtk-overlay-scrolling", FALSE, nullptr);
+        }
         auto rCss = Gtk::CssProvider::create();
         rCss->load_from_data(
             "combobox arrow { min-width: 14px; min-height: 14px; }\n"
-            "scrollbar { background-color: #f0f0f0; }\n"
-            "scrollbar slider { background-color: #b8b8b8; min-width: 12px; min-height: 24px; border-radius: 4px; }\n"
-            "scrollbar slider:hover { background-color: #9a9a9a; }\n");
+            "scrollbar { background-color: #f0f0f0; min-width: 15px; min-height: 15px; }\n"
+            "scrollbar slider { background-color: #b8b8b8; min-width: 13px; min-height: 24px; border-radius: 2px; }\n"
+            "scrollbar slider:hover { background-color: #9a9a9a; }\n"
+            "scrollbar button { min-width: 15px; min-height: 15px; padding: 0px; margin: 0px;\n"
+            "  background-color: #e2e2e2; border: 1px solid #c0c0c0; color: #404040;\n"
+            "  -gtk-icon-shadow: none; }\n"
+            "scrollbar button.up { -gtk-icon-source: -gtk-icontheme(\"pan-up-symbolic\"); }\n"
+            "scrollbar button.down { -gtk-icon-source: -gtk-icontheme(\"pan-down-symbolic\"); }\n"
+            "scrollbar button.left { -gtk-icon-source: -gtk-icontheme(\"pan-start-symbolic\"); }\n"
+            "scrollbar button.right { -gtk-icon-source: -gtk-icontheme(\"pan-end-symbolic\"); }\n"
+            "scrollbar button:hover { background-color: #d2d2d2; }\n"
+            "scrollbar button:active { background-color: #b8b8b8; }\n");
         auto rScreen = Gdk::Screen::get_default();
         if (rScreen) {
             Gtk::StyleContext::add_provider_for_screen(rScreen, rCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);

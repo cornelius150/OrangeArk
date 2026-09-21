@@ -38,6 +38,8 @@ struct CtAnnoShape
 class CtScreenshotSelector : public Gtk::Window
 {
 public:
+    enum class Tool { None, Pen, Arrow, Rect, Ellipse, Text, Counter, Move };
+
     CtScreenshotSelector(Glib::RefPtr<Gdk::Pixbuf> rShot)
      : _rShot{rShot}
     {
@@ -105,11 +107,15 @@ protected:
                 ".screenshot-bar { background: rgba(250,250,250,0.98); border: 1px solid #c8c8c8;"
                 " border-radius: 8px; padding: 3px; }\n"
                 ".screenshot-bar button { background: transparent; border: none; border-radius: 6px;"
-                " min-width: 30px; min-height: 28px; padding: 2px 5px; }\n"
+                " min-width: 34px; min-height: 32px; padding: 2px 6px; }\n"
                 ".screenshot-bar button:hover { background: rgba(0,0,0,0.08); }\n"
-                ".screenshot-bar button label { color: #303030; font-size: 15px; }\n"
+                ".screenshot-bar button label { color: #303030; font-size: 17px; font-weight: bold; }\n"
+                ".screenshot-bar button.anno-active { background: rgba(255,136,0,0.30); }\n"
+                ".screenshot-bar button.anno-ok label { color: #2e7d32; }\n"
+                ".screenshot-bar button.anno-cancel label { color: #c62828; }\n"
+                ".screenshot-bar combobox, .screenshot-bar entry { min-height: 30px; }\n"
                 ".screenshot-bar separator { background: rgba(0,0,0,0.25); min-width: 1px;"
-                " min-height: 22px; margin-left: 4px; margin-right: 4px; }\n");
+                " min-height: 24px; margin-left: 4px; margin-right: 4px; }\n");
             _pToolbar->get_style_context()->add_class("screenshot-bar");
             _pToolbar->get_style_context()->add_provider(rCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
         }
@@ -117,39 +123,53 @@ protected:
             spdlog::warn("CtScreenshot: toolbar css failed: {}", e.what().c_str());
         }
 
-        // annotation tools: compact icon buttons (QQ style)
+        // annotation tools: QQ-like grouped layout, big clear glyphs.
+        // Clicking any toolbar button first commits a pending text annotation.
         struct ToolDef { const char* glyph; const char* tip; Tool tool; };
         const std::vector<ToolDef> annTools = {
-            {"✏️", "自由绘制", Tool::Pen},
-            {"↗️", "绘制箭头", Tool::Arrow},
             {"▭", "绘制矩形", Tool::Rect},
             {"◯", "绘制椭圆", Tool::Ellipse},
-            {"T", "插入文字", Tool::Text},
+            {"↗", "绘制箭头", Tool::Arrow},
+            {"✎", "自由绘制", Tool::Pen},
+            {"T", "插入文字（点空白处落字，点其他位置可继续写）", Tool::Text},
             {"①", "插入自动递增的序号", Tool::Counter},
-            {"✛", "拖动已画的标注", Tool::Move},
+            {"✥", "拖动已画的标注", Tool::Move},
         };
         for (const ToolDef& td : annTools) {
             auto* pBtn = Gtk::manage(new Gtk::Button(td.glyph));
             pBtn->set_tooltip_text(td.tip);
             pBtn->set_relief(Gtk::RELIEF_NONE);
             pBtn->set_focus_on_click(false);
-            pBtn->signal_clicked().connect([this, td]() { _tool = td.tool; _pArea->grab_focus(); });
+            pBtn->signal_clicked().connect([this, td, pBtn]() {
+                _finish_text_entry();
+                _select_tool(td.tool, pBtn);
+                _pArea->grab_focus();
+            });
+            _pToolButtons.push_back({td.tool, pBtn});
             _pToolbar->pack_start(*pBtn, Gtk::PACK_SHRINK);
         }
+        // highlight the default tool so the active tool is visible from the start
+        for (auto& pair : _pToolButtons) {
+            if (pair.first == _tool) { _select_tool(_tool, pair.second); break; }
+        }
+
+        _toolbar_add_separator();
 
         auto* pBtnUndo = Gtk::manage(new Gtk::Button("↶"));
         pBtnUndo->set_tooltip_text("撤销上一个标注");
         pBtnUndo->set_relief(Gtk::RELIEF_NONE);
         pBtnUndo->set_focus_on_click(false);
-        pBtnUndo->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_undo));
+        pBtnUndo->signal_clicked().connect([this]() { _finish_text_entry(); _undo(); });
         _pToolbar->pack_start(*pBtnUndo, Gtk::PACK_SHRINK);
 
         auto* pBtnRedo = Gtk::manage(new Gtk::Button("↷"));
         pBtnRedo->set_tooltip_text("重做标注");
         pBtnRedo->set_relief(Gtk::RELIEF_NONE);
         pBtnRedo->set_focus_on_click(false);
-        pBtnRedo->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_redo));
+        pBtnRedo->signal_clicked().connect([this]() { _finish_text_entry(); _redo(); });
         _pToolbar->pack_start(*pBtnRedo, Gtk::PACK_SHRINK);
+
+        _toolbar_add_separator();
 
         // OrangeArk: font family and size pickers for the text/counter annotations
         struct FontDef { const char* label; const char* family; };
@@ -162,6 +182,7 @@ protected:
         pFontCombo->set_active(0);
         pFontCombo->set_tooltip_text("文字标注字体");
         pFontCombo->signal_changed().connect([this, pFontCombo, fonts]() {
+            _finish_text_entry();
             const Glib::ustring label = pFontCombo->get_active_text();
             for (const FontDef& f : fonts) {
                 if (label == f.label) { _annoFontName = f.family; break; }
@@ -174,34 +195,65 @@ protected:
         pSizeCombo->set_active(3); // 18
         pSizeCombo->set_tooltip_text("文字标注字号");
         pSizeCombo->signal_changed().connect([this, pSizeCombo]() {
+            _finish_text_entry();
             const Glib::ustring text = pSizeCombo->get_active_text();
             if (not text.empty()) _annoFontSize = std::atoi(text.c_str());
         });
         _pToolbar->pack_start(*pSizeCombo, Gtk::PACK_SHRINK);
 
-        auto* pSep = Gtk::manage(new Gtk::Separator{Gtk::ORIENTATION_VERTICAL});
-        _pToolbar->pack_start(*pSep, Gtk::PACK_SHRINK);
+        _toolbar_add_separator();
 
         auto* pBtnSave = Gtk::manage(new Gtk::Button("💾"));
         pBtnSave->set_tooltip_text("把截图保存为 PNG 文件");
         pBtnSave->set_relief(Gtk::RELIEF_NONE);
         pBtnSave->set_focus_on_click(false);
-        pBtnSave->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_save_clicked));
+        pBtnSave->signal_clicked().connect([this]() { _finish_text_entry(); _on_save_clicked(); });
         _pToolbar->pack_start(*pBtnSave, Gtk::PACK_SHRINK);
 
-        auto* pBtnCancel = Gtk::manage(new Gtk::Button("❌"));
+        auto* pBtnCancel = Gtk::manage(new Gtk::Button("✕"));
+        pBtnCancel->get_style_context()->add_class("anno-cancel");
         pBtnCancel->set_tooltip_text("放弃本次截图");
         pBtnCancel->set_relief(Gtk::RELIEF_NONE);
         pBtnCancel->set_focus_on_click(false);
         pBtnCancel->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_cancel_clicked));
         _pToolbar->pack_start(*pBtnCancel, Gtk::PACK_SHRINK);
 
-        auto* pBtnOk = Gtk::manage(new Gtk::Button("✅"));
+        auto* pBtnOk = Gtk::manage(new Gtk::Button("✓"));
+        pBtnOk->get_style_context()->add_class("anno-ok");
         pBtnOk->set_tooltip_text("复制到剪贴板（回笔记后 Ctrl+V 粘贴）");
         pBtnOk->set_relief(Gtk::RELIEF_NONE);
         pBtnOk->set_focus_on_click(false);
-        pBtnOk->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_confirm));
+        pBtnOk->signal_clicked().connect([this]() { _finish_text_entry(); _confirm(); });
         _pToolbar->pack_start(*pBtnOk, Gtk::PACK_SHRINK);
+    }
+
+    void _toolbar_add_separator()
+    {
+        auto* pSep = Gtk::manage(new Gtk::Separator{Gtk::ORIENTATION_VERTICAL});
+        _pToolbar->pack_start(*pSep, Gtk::PACK_SHRINK);
+    }
+
+    // OrangeArk: switch the active annotation tool and highlight its button,
+    // so the user can always tell which tool is in use
+    void _select_tool(Tool tool, Gtk::Button* pBtn)
+    {
+        _tool = tool;
+        for (auto& pair : _pToolButtons) {
+            pair.second->get_style_context()->remove_class("anno-active");
+        }
+        if (pBtn) {
+            pBtn->get_style_context()->add_class("anno-active");
+        }
+    }
+
+    // OrangeArk: a click anywhere (canvas or toolbar) finishes the pending text
+    // annotation — no Enter required. Clicking empty ground with the Text tool
+    // then starts a new entry at that point.
+    void _finish_text_entry()
+    {
+        if (_pEntry and _pEntry->get_visible()) {
+            _on_text_commit();
+        }
     }
 
     void _undo()
@@ -557,6 +609,10 @@ protected:
             _confirm();
             return true;
         }
+        // OrangeArk: any click on the canvas commits the pending text annotation
+        // first (no Enter needed); the click then behaves normally — clicking
+        // empty ground with the Text tool starts a new entry at that point
+        _finish_text_entry();
         // OrangeArk: selection border handles work just outside the selection too
         const int selHandle = _toolbar_shown ? _sel_handle_at(event->x, event->y) : 0;
         if (_toolbar_shown and (_in_selection(event->x, event->y) or selHandle != 0)) {
@@ -849,8 +905,6 @@ protected:
     }
 
 private:
-    enum class Tool { None, Pen, Arrow, Rect, Ellipse, Text, Counter, Move };
-
     Glib::RefPtr<Gdk::Pixbuf> _rShot;
     Glib::RefPtr<Gdk::Pixbuf> _rResult;
     Glib::RefPtr<Gdk::Cursor> _rCursorCross;
@@ -868,6 +922,7 @@ private:
     bool _selResizing{false};   // OrangeArk: dragging a selection border handle
     int  _selEdges{0};
     Tool _tool{Tool::Pen};
+    std::vector<std::pair<Tool, Gtk::Button*>> _pToolButtons; // OrangeArk: tool buttons for active highlight
     Glib::ustring _annoFontName{"Microsoft YaHei"}; // OrangeArk: text annotation font
     int  _annoFontSize{18};                         // OrangeArk: text annotation size
     int  _selX1{0}, _selY1{0}, _selX2{-1}, _selY2{-1};
