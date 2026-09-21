@@ -580,15 +580,18 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     dialog.set_default_size(350, -1);
     dialog.set_position(Gtk::WIN_POS_CENTER_ON_PARENT);
 
-    // OrangeArk: only the two layouts that genuinely exist — a single .md file
-    // holding the whole document, or one .md file per node inside a folder
-    // hierarchy. (The old "SQLite"/"XML" wording was inherited from the storage
-    // engines and made users think the saved .md was a database file.)
-    Gtk::RadioButton radiobutton_md(_("Single File Document") + std::string(" (.md)"));
+    // OrangeArk: keep the original storage-type list, every entry now saves .md
+    Gtk::RadioButton radiobutton_md(Glib::ustring{_("Single SQLite File")} + " (.md)");
     Gtk::RadioButton::Group rbGroup = radiobutton_md.get_group();
-    Gtk::RadioButton radiobutton_multifile(rbGroup, _("Multiple Files in Hierarchical Folder Structure"));
+    Gtk::RadioButton radiobutton_sqlite_pass_protected(rbGroup, Glib::ustring{_("Single SQLite File, 7-zip Encrypted and Password Protected")} + " (.md)");
+    Gtk::RadioButton radiobutton_xml_not_protected(rbGroup, Glib::ustring{_("Single XML File")}  + " (.md)");
+    Gtk::RadioButton radiobutton_xml_pass_protected(rbGroup, Glib::ustring{_("Single XML File, 7-zip Encrypted and Password Protected")} + " (.md)");
+    Gtk::RadioButton radiobutton_multifile(rbGroup, Glib::ustring{_("Multiple Files in Hierarchical Folder Structure")});
 
     Gtk::Image* image_md = pCtMainWin->new_managed_image_from_stock("ct_db", Gtk::ICON_SIZE_MENU);
+    Gtk::Image* image_sqlite_pass_protected = pCtMainWin->new_managed_image_from_stock("ct_7zip", Gtk::ICON_SIZE_MENU);
+    Gtk::Image* image_xml_not_protected = pCtMainWin->new_managed_image_from_stock("ct_xml", Gtk::ICON_SIZE_MENU);
+    Gtk::Image* image_xml_pass_protected = pCtMainWin->new_managed_image_from_stock("ct_7zip", Gtk::ICON_SIZE_MENU);
     Gtk::Image* image_multifile = pCtMainWin->new_managed_image_from_stock("ct_directory", Gtk::ICON_SIZE_MENU);
 
     auto grid_type = Gtk::manage(new Gtk::Grid{});
@@ -597,41 +600,74 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     grid_type->set_row_homogeneous(true);
 
     grid_type->attach(*image_md,                             0, 0, 1, 1);
-    grid_type->attach(*image_multifile,                      0, 1, 1, 1);
+    grid_type->attach(*image_sqlite_pass_protected,          0, 1, 1, 1);
+    grid_type->attach(*image_xml_not_protected,              0, 2, 1, 1);
+    grid_type->attach(*image_xml_pass_protected,             0, 3, 1, 1);
+    grid_type->attach(*image_multifile,                      0, 4, 1, 1);
 
     grid_type->attach(radiobutton_md,                        1, 0, 1, 1);
-    grid_type->attach(radiobutton_multifile,                 1, 1, 1, 1);
+    grid_type->attach(radiobutton_sqlite_pass_protected,     1, 1, 1, 1);
+    grid_type->attach(radiobutton_xml_not_protected,         1, 2, 1, 1);
+    grid_type->attach(radiobutton_xml_pass_protected,        1, 3, 1, 1);
+    grid_type->attach(radiobutton_multifile,                 1, 4, 1, 1);
 
     Gtk::Frame type_frame(Glib::ustring("<b>")+_("Storage Type")+"</b>");
     dynamic_cast<Gtk::Label*>(type_frame.get_label_widget())->set_use_markup(true);
     type_frame.set_shadow_type(Gtk::SHADOW_NONE);
     type_frame.add(*grid_type);
 
-    Gtk::Label label_md_note(_("Documents are saved as standard Markdown (.md) text files: the note text stays readable in any editor or Markdown tool, while an invisible comment block at the end keeps the full tree and formatting for OrangeArk itself."));
-    label_md_note.set_width_chars(70);
-    label_md_note.set_line_wrap(true);
-    label_md_note.get_style_context()->add_class("dim-label");
+    Gtk::Entry entry_passw_1;
+    entry_passw_1.set_visibility(false);
+    Gtk::Entry entry_passw_2;
+    entry_passw_2.set_visibility(false);
+    Gtk::Label label_passwd(_("OrangeArk saves the document in an encrypted 7zip archive. When viewing or editing the document, OrangeArk extracts the encrypted archive to a temporary folder, and works on the unencrypted copy. When closing, the unencrypted copy is deleted from the temporary directory. Note that in the case of application or system crash, the unencrypted document will remain in the temporary folder."));
+    label_passwd.set_width_chars(70);
+    label_passwd.set_line_wrap(true);
+    Gtk::Box vbox_passw{Gtk::ORIENTATION_VERTICAL};
+    vbox_passw.pack_start(entry_passw_1);
+    vbox_passw.pack_start(entry_passw_2);
+    vbox_passw.pack_start(label_passwd);
+
+    Gtk::Frame passw_frame(Glib::ustring("<b>")+_("Enter the New Password Twice")+"</b>");
+    dynamic_cast<Gtk::Label*>(passw_frame.get_label_widget())->set_use_markup(true);
+    passw_frame.set_shadow_type(Gtk::SHADOW_NONE);
+    passw_frame.add(vbox_passw);
 
     if (args.mdOnly) {
-        // OrangeArk: .md is the preselected target (the save flow always
-        // writes a Markdown file)
+        // OrangeArk: keep the full storage-type layout, but .md is the preselected
+        // target (the save flow always writes a Markdown file)
         radiobutton_md.set_active(true);
+        passw_frame.set_sensitive(false);
     }
     else if (args.ctDocMd) {
+        passw_frame.set_sensitive(false);
         radiobutton_md.set_active(true);
     }
     else if (args.ctDocEncrypt == CtDocEncrypt::False) {
-        if (args.ctDocType == CtDocType::MultiFile) {
+        passw_frame.set_sensitive(false);
+        if (args.ctDocType == CtDocType::SQLite) {
+            radiobutton_md.set_active(true);
+        }
+        else if (args.ctDocType == CtDocType::XML) {
+            radiobutton_xml_not_protected.set_active(true);
+        }
+        else if (args.ctDocType == CtDocType::MultiFile) {
             radiobutton_multifile.set_active(true);
         }
+    }
+    else if (args.ctDocEncrypt == CtDocEncrypt::True) {
+        passw_frame.set_sensitive(true);
+        if (args.ctDocType == CtDocType::SQLite) {
+            radiobutton_sqlite_pass_protected.set_active(true);
+        }
         else {
-            // SQLite and XML layouts are both a single .md file now
-            radiobutton_md.set_active(true);
+            radiobutton_xml_pass_protected.set_active(true);
         }
     }
     else {
         // OrangeArk: Markdown (.md) is the default storage type for new documents
         radiobutton_md.set_active(true);
+        passw_frame.set_sensitive(false);
     }
 
     auto pCtConfig = pCtMainWin->get_ct_config();
@@ -662,12 +698,23 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     pContentArea->set_margin_start(5);
     pContentArea->set_margin_end(5);
     pContentArea->pack_start(type_frame);
-    pContentArea->pack_start(label_md_note);
+    pContentArea->pack_start(passw_frame);
     if (args.showAutosaveOptions) {
         pContentArea->pack_start(*hbox_autosave);
     }
     pContentArea->show_all();
 
+    auto on_radiobutton_savetype_toggled = [&](){
+        if ( radiobutton_sqlite_pass_protected.get_active() ||
+             radiobutton_xml_pass_protected.get_active() )
+        {
+            passw_frame.set_sensitive(true);
+            entry_passw_1.grab_focus();
+        }
+        else {
+            passw_frame.set_sensitive(false);
+        }
+    };
     auto on_key_press_edit_data_storage_type_dialog = [&](GdkEventKey* pEventKey)->bool{
         if (GDK_KEY_Return == pEventKey->keyval or GDK_KEY_KP_Enter == pEventKey->keyval) {
             pButtonOk->grab_focus();
@@ -681,6 +728,12 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
         }
         return false;
     };
+    radiobutton_md.signal_toggled().connect(on_radiobutton_savetype_toggled);
+    radiobutton_sqlite_pass_protected.signal_toggled().connect(on_radiobutton_savetype_toggled);
+    radiobutton_xml_not_protected.signal_toggled().connect(on_radiobutton_savetype_toggled);
+    radiobutton_xml_pass_protected.signal_toggled().connect(on_radiobutton_savetype_toggled);
+    radiobutton_multifile.signal_toggled().connect(on_radiobutton_savetype_toggled);
+    radiobutton_md.signal_toggled().connect(on_radiobutton_savetype_toggled);
     dialog.signal_key_press_event().connect(on_key_press_edit_data_storage_type_dialog, false/*call me before other*/);
 
     const int response = dialog.run();
@@ -691,11 +744,25 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
         if (radiobutton_multifile.get_active()) {
             args.ctDocType = CtDocType::MultiFile;
         }
+        else if (radiobutton_xml_not_protected.get_active() or radiobutton_xml_pass_protected.get_active()) {
+            args.ctDocType = CtDocType::XML;
+        }
         else {
-            // both single-file layouts are written as one plain .md document
             args.ctDocType = CtDocType::SQLite;
         }
-        args.ctDocEncrypt = CtDocEncrypt::False; // OrangeArk: .md is plain text, no password support
+        args.ctDocEncrypt = radiobutton_sqlite_pass_protected.get_active() or radiobutton_xml_pass_protected.get_active() ?
+                            CtDocEncrypt::True : CtDocEncrypt::False;
+        if (CtDocEncrypt::True == args.ctDocEncrypt) {
+            args.password = entry_passw_1.get_text();
+            if (args.password.empty()) {
+                error_dialog(_("The Password Fields Must be Filled."), *pCtMainWin);
+                retVal = false;
+            }
+            else if (args.password != entry_passw_2.get_text()) {
+                error_dialog(_("The Two Inserted Passwords Do Not Match."), *pCtMainWin);
+                retVal = false;
+            }
+        }
     }
     return retVal;
 #endif
