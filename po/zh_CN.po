@@ -1657,7 +1657,7 @@ msgid "Font Size"
 msgstr "字号"
 
 msgid "Clone the Text Format Type at Cursor"
-msgstr "在光标处克隆文本格式类型"
+msgstr "格式刷"
 
 msgid "Format _Latest"
 msgstr "上次格式(_L)"

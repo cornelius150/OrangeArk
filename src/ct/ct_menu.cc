@@ -57,6 +57,13 @@ static void _apply_global_gtk_css()
         // properties the scrollbar buttons are never instantiated, no matter
         // how they are styled (that is why the arrows did not appear before)
         rCss->load_from_data(
+            // OrangeArk: force LIST mode for combobox popups. In the default
+            // MENU mode the popup is a GtkMenu — it has NO classic scrollbar
+            // (only blank scroll-arrow areas at top/bottom), which is exactly
+            // the "no slider + blank strip on top" the user kept seeing on
+            // the font/size dropdowns. List mode = treeview in a
+            // ScrolledWindow, so the classic scrollbar below applies.
+            "combobox { -GtkComboBox-appears-as-list: true; }\n"
             "combobox arrow { min-width: 14px; min-height: 14px; }\n"
             "scrollbar { -GtkScrollbar-has-backward-stepper: true;\n"
             "  -GtkScrollbar-has-forward-stepper: true;\n"

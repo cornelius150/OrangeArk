@@ -261,6 +261,17 @@ done
 rm -rf ${LOCALE}
 mv ${LOCALE_TMP} ${LOCALE}
 
+# OrangeArk: (re)compile the app's own translations straight from po/*.po —
+# the .mo files are NOT tracked by git (*.mo is ignored) and the copies that
+# live in the msys2 tree can go stale, which shipped an old tooltip text once
+# ("在光标处克隆文本格式类型" instead of "格式刷"). Always rebuild them here.
+echo "rebuilding orangeark.mo from po/*.po ..."
+for po_file in ${IN_CT_LANGUAGES_FOLDER}/*.po
+do
+  lang_name=$(basename "${po_file}" .po)
+  msgfmt -o "${LOCALE}/${lang_name}/LC_MESSAGES/orangeark.mo" "${po_file}"
+done
+
 # strip the binaries to reduce the size
 find ${OUT_UCRT64_FOLDER} -name *.dll | xargs strip
 find ${OUT_UCRT64_FOLDER} -name *.exe | xargs strip

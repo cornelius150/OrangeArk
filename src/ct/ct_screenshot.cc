@@ -52,6 +52,13 @@ static Glib::RefPtr<Gdk::Pixbuf> _svg_icon(const char* pSvg, const int sizePx)
     }
 }
 
+// OrangeArk: font families offered for text/counter annotations
+struct FontDef { const char* label; const char* family; };
+static const FontDef kAnnoFonts[] = {
+    {"雅黑", "Microsoft YaHei"}, {"宋体", "SimSun"}, {"黑体", "SimHei"},
+    {"楷体", "KaiTi"}, {"仿宋", "FangSong"}, {"Arial", "Arial"}, {"Times", "Times New Roman"},
+};
+
 // toolbar icon artwork (16x16 viewBox, ink #444, the arrow in QQ blue)
 static const char* kSvgRect =
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
@@ -174,9 +181,6 @@ protected:
         auto* pRow1 = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 0});
         _pRow1 = pRow1;
         _pToolbar->pack_start(*pRow1, Gtk::PACK_SHRINK);
-        auto* pRow2 = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 8});
-        pRow2->get_style_context()->add_class("anno-row2");
-        _pToolbar->pack_start(*pRow2, Gtk::PACK_SHRINK);
 
         // OneNote-like style: light floating bar so every tool stays visible
         try {
@@ -212,7 +216,7 @@ protected:
             {kSvgEllipse, "绘制椭圆", Tool::Ellipse},
             {kSvgArrow,   "绘制箭头", Tool::Arrow},
             {kSvgPen,     "自由绘制", Tool::Pen},
-            {kSvgText,    "插入文字（点空白处落字，点其他位置可继续写）", Tool::Text},
+            {kSvgText,    "文字：点空白处落字；点已写的文字可重新调整字体字号颜色", Tool::Text},
             {kSvgCounter, "插入自动递增的序号", Tool::Counter},
         };
         for (const ToolDef& td : annTools) {
@@ -231,6 +235,11 @@ protected:
             pBtn->signal_clicked().connect([this, td, pBtn]() {
                 _finish_text_entry();
                 _select_tool(td.tool, pBtn);
+                _editIdx = -1;
+                // OrangeArk: clicking a tool pops up ITS options below the
+                // toolbar (QQ screenshot style) — shapes get 粗细+颜色,
+                // text/counter get 字体+字号+颜色
+                _show_tool_panel(td.tool);
                 _pArea->grab_focus();
             });
             _pToolButtons.push_back({td.tool, pBtn});
@@ -266,38 +275,6 @@ protected:
         else pBtnRedo->set_label("↷");
         pBtnRedo->signal_clicked().connect([this]() { _finish_text_entry(); _redo(); });
         _pRow1->pack_start(*pBtnRedo, Gtk::PACK_SHRINK);
-
-        _toolbar_add_separator();
-
-        // OrangeArk: font family and size pickers for the text/counter annotations
-        struct FontDef { const char* label; const char* family; };
-        const std::vector<FontDef> fonts = {
-            {"雅黑", "Microsoft YaHei"}, {"宋体", "SimSun"}, {"黑体", "SimHei"},
-            {"楷体", "KaiTi"}, {"仿宋", "FangSong"}, {"Arial", "Arial"}, {"Times", "Times New Roman"},
-        };
-        auto* pFontCombo = Gtk::manage(new Gtk::ComboBoxText());
-        for (const FontDef& f : fonts) pFontCombo->append(f.label);
-        pFontCombo->set_active(0);
-        pFontCombo->set_tooltip_text("文字标注字体");
-        pFontCombo->signal_changed().connect([this, pFontCombo, fonts]() {
-            _finish_text_entry();
-            const Glib::ustring label = pFontCombo->get_active_text();
-            for (const FontDef& f : fonts) {
-                if (label == f.label) { _annoFontName = f.family; break; }
-            }
-        });
-        _pRow1->pack_start(*pFontCombo, Gtk::PACK_SHRINK);
-
-        auto* pSizeCombo = Gtk::manage(new Gtk::ComboBoxText());
-        for (const int s : {12, 14, 16, 18, 20, 24, 28, 36, 48}) pSizeCombo->append(std::to_string(s));
-        pSizeCombo->set_active(3); // 18
-        pSizeCombo->set_tooltip_text("文字标注字号");
-        pSizeCombo->signal_changed().connect([this, pSizeCombo]() {
-            _finish_text_entry();
-            const Glib::ustring text = pSizeCombo->get_active_text();
-            if (not text.empty()) _annoFontSize = std::atoi(text.c_str());
-        });
-        _pRow1->pack_start(*pSizeCombo, Gtk::PACK_SHRINK);
 
         _toolbar_add_separator();
 
@@ -337,34 +314,92 @@ protected:
         pBtnOk->signal_clicked().connect([this]() { _finish_text_entry(); _confirm(); });
         _pRow1->pack_start(*pBtnOk, Gtk::PACK_SHRINK);
 
-        // -- row 2: thickness slider + colour swatch (QQ screenshot layout) ----
-        auto* pThickLabel = Gtk::manage(new Gtk::Label("粗细"));
-        pRow2->pack_start(*pThickLabel, Gtk::PACK_SHRINK);
+        // -- OrangeArk: contextual options panel --------------------------------
+        // Clicking a tool button pops this up right below the toolbar:
+        //   shapes (rect/ellipse/arrow/pen) -> 粗细 slider + 颜色
+        //   text / counter                  -> 字体 + 字号 slider + 颜色
+        // Changes apply to NEW annotations and, when one is selected with the
+        // text tool, live-edit that annotation.
+        _pPanel = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 2});
+        _pPanel->get_style_context()->add_class("screenshot-bar");
+        _pPanel->set_no_show_all(true);
 
-        auto* pScale = Gtk::manage(new Gtk::Scale(Gtk::ORIENTATION_HORIZONTAL));
-        pScale->set_range(1, 48);
-        pScale->set_increments(1, 4);
-        pScale->set_value(_annoThickness);
-        pScale->set_draw_value(false);
-        pScale->set_tooltip_text("线条粗细（箭头/矩形/椭圆/画笔通用）");
-        auto* pValueLabel = Gtk::manage(new Gtk::Label(std::to_string(_annoThickness)));
-        pValueLabel->set_size_request(24, -1);
-        pScale->signal_value_changed().connect([this, pValueLabel, pScale]() {
-            _finish_text_entry();
-            _annoThickness = static_cast<int>(pScale->get_value());
-            pValueLabel->set_text(std::to_string(_annoThickness));
-        });
-        pRow2->pack_start(*pScale, Gtk::PACK_SHRINK);
-        pRow2->pack_start(*pValueLabel, Gtk::PACK_SHRINK);
+        _pPanelShape = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 8});
+        _pPanelShape->get_style_context()->add_class("anno-row2");
+        {
+            auto* pLabel = Gtk::manage(new Gtk::Label("粗细"));
+            _pPanelShape->pack_start(*pLabel, Gtk::PACK_SHRINK);
+            _pShapeScale = Gtk::manage(new Gtk::Scale(Gtk::ORIENTATION_HORIZONTAL));
+            _pShapeScale->set_range(1, 48);
+            _pShapeScale->set_increments(1, 4);
+            _pShapeScale->set_draw_value(false);
+            _pShapeScale->set_size_request(140, -1);
+            _pShapeScale->set_tooltip_text("线条粗细（箭头/矩形/椭圆/画笔）");
+            _pShapeVal = Gtk::manage(new Gtk::Label());
+            _pShapeVal->set_size_request(24, -1);
+            _pShapeScale->signal_value_changed().connect([this]() {
+                _annoThickness = static_cast<int>(_pShapeScale->get_value());
+                _pShapeVal->set_text(std::to_string(_annoThickness));
+                _apply_panel_edit();
+            });
+            _pPanelShape->pack_start(*_pShapeScale, Gtk::PACK_SHRINK);
+            _pPanelShape->pack_start(*_pShapeVal, Gtk::PACK_SHRINK);
+            _pShapeColorBtn = Gtk::manage(new Gtk::ColorButton(Gdk::RGBA(_annoColor)));
+            _pShapeColorBtn->set_tooltip_text("标注颜色");
+            _pShapeColorBtn->set_title("标注颜色");
+            _pShapeColorBtn->signal_color_set().connect([this]() {
+                _annoColor = _pShapeColorBtn->get_rgba().to_string();
+                _pTextColorBtn->set_rgba(_pShapeColorBtn->get_rgba());
+                _apply_panel_edit();
+            });
+            _pPanelShape->pack_start(*_pShapeColorBtn, Gtk::PACK_SHRINK);
+        }
+        _pPanel->pack_start(*_pPanelShape, Gtk::PACK_SHRINK);
 
-        auto* pColorBtn = Gtk::manage(new Gtk::ColorButton(Gdk::RGBA(_annoColor)));
-        pColorBtn->set_tooltip_text("标注颜色（箭头/矩形/椭圆/画笔/文字通用）");
-        pColorBtn->set_title("标注颜色");
-        pColorBtn->signal_color_set().connect([this, pColorBtn]() {
-            _finish_text_entry();
-            _annoColor = pColorBtn->get_rgba().to_string();
-        });
-        pRow2->pack_start(*pColorBtn, Gtk::PACK_SHRINK);
+        _pPanelText = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 8});
+        _pPanelText->get_style_context()->add_class("anno-row2");
+        {
+            _pFontCombo = Gtk::manage(new Gtk::ComboBoxText());
+            for (const FontDef& f : kAnnoFonts) _pFontCombo->append(f.label);
+            _pFontCombo->set_tooltip_text("文字字体");
+            _pFontCombo->signal_changed().connect([this]() {
+                const Glib::ustring label = _pFontCombo->get_active_text();
+                for (const FontDef& f : kAnnoFonts) {
+                    if (label == f.label) { _annoFontName = f.family; break; }
+                }
+                _apply_panel_edit();
+            });
+            _pPanelText->pack_start(*_pFontCombo, Gtk::PACK_SHRINK);
+
+            auto* pSizeLabel = Gtk::manage(new Gtk::Label("字号"));
+            _pPanelText->pack_start(*pSizeLabel, Gtk::PACK_SHRINK);
+            _pTextSizeScale = Gtk::manage(new Gtk::Scale(Gtk::ORIENTATION_HORIZONTAL));
+            _pTextSizeScale->set_range(8, 72);
+            _pTextSizeScale->set_increments(1, 4);
+            _pTextSizeScale->set_draw_value(false);
+            _pTextSizeScale->set_size_request(140, -1);
+            _pTextSizeScale->set_tooltip_text("文字大小");
+            _pTextSizeVal = Gtk::manage(new Gtk::Label());
+            _pTextSizeVal->set_size_request(24, -1);
+            _pTextSizeScale->signal_value_changed().connect([this]() {
+                _annoFontSize = static_cast<int>(_pTextSizeScale->get_value());
+                _pTextSizeVal->set_text(std::to_string(_annoFontSize));
+                _apply_panel_edit();
+            });
+            _pPanelText->pack_start(*_pTextSizeScale, Gtk::PACK_SHRINK);
+            _pPanelText->pack_start(*_pTextSizeVal, Gtk::PACK_SHRINK);
+
+            _pTextColorBtn = Gtk::manage(new Gtk::ColorButton(Gdk::RGBA(_annoColor)));
+            _pTextColorBtn->set_tooltip_text("文字颜色");
+            _pTextColorBtn->set_title("文字颜色");
+            _pTextColorBtn->signal_color_set().connect([this]() {
+                _annoColor = _pTextColorBtn->get_rgba().to_string();
+                _pShapeColorBtn->set_rgba(_pTextColorBtn->get_rgba());
+                _apply_panel_edit();
+            });
+            _pPanelText->pack_start(*_pTextColorBtn, Gtk::PACK_SHRINK);
+        }
+        _pPanel->pack_start(*_pPanelText, Gtk::PACK_SHRINK);
     }
 
     void _toolbar_add_separator()
@@ -384,6 +419,94 @@ protected:
         if (pBtn) {
             pBtn->get_style_context()->add_class("anno-active");
         }
+    }
+
+    // -- OrangeArk: contextual options panel -----------------------------------
+    // pops up right below the toolbar and shows the options of the active tool
+    void _show_tool_panel(Tool tool)
+    {
+        _panelTool = tool;
+        if (Tool::Text == tool or Tool::Counter == tool) {
+            _pPanelShape->hide();
+            _pPanelText->show_all();
+            if (_pFontCombo->get_active_row_number() < 0) _pFontCombo->set_active(0);
+        }
+        else {
+            _pPanelText->hide();
+            _pPanelShape->show_all();
+        }
+        _pShapeScale->set_value(_annoThickness);
+        _pShapeVal->set_text(std::to_string(_annoThickness));
+        _pTextSizeScale->set_value(_annoFontSize);
+        _pTextSizeVal->set_text(std::to_string(_annoFontSize));
+        _pShapeColorBtn->set_rgba(Gdk::RGBA(_annoColor));
+        _pTextColorBtn->set_rgba(Gdk::RGBA(_annoColor));
+        _pPanel->show_all();
+        // reposition: right below the toolbar, QQ style
+        int panW = 10, panH = 10, panHmin = 0;
+        _pPanel->get_preferred_width(panW, panW);
+        _pPanel->get_preferred_height(panHmin, panH);
+        int tbW = 10, tbH = 10, tbHmin = 0;
+        _pToolbar->get_preferred_width(tbW, tbW);
+        _pToolbar->get_preferred_height(tbHmin, tbH);
+        const int scrH = _rShot->get_height();
+        const int scrW = _rShot->get_width();
+        int px = _toolbarX;
+        int py = _toolbarY + tbH + 2;
+        if (py + panH > scrH - 30) py = std::max(4, _toolbarY - panH - 2);
+        if (px + panW > scrW - 4) px = std::max(4, scrW - panW - 4);
+        _pFixed->move(*_pPanel, px, py);
+    }
+
+    void _hide_tool_panel()
+    {
+        _pPanel->hide();
+        _panelTool = Tool::None;
+    }
+
+    // OrangeArk: load an existing annotation into the panel controls so the
+    // user can tweak a text that was already written
+    void _sync_panel_from_shape(const int idx)
+    {
+        const CtAnnoShape& shape = _shapes.at(static_cast<size_t>(idx));
+        _annoFontSize = shape.fontSize > 0 ? shape.fontSize : _annoFontSize;
+        _annoColor = shape.color;
+        if (not shape.fontName.empty()) {
+            for (const FontDef& f : kAnnoFonts) {
+                if (shape.fontName == f.family) {
+                    _pFontCombo->set_active(&f - kAnnoFonts);
+                    break;
+                }
+            }
+        }
+        _annoFontName = shape.fontName.empty() ? _annoFontName : Glib::ustring(shape.fontName);
+        if (CtAnnoShape::Type::Text == shape.type or CtAnnoShape::Type::Counter == shape.type) {
+            _show_tool_panel(Tool::Text);
+        }
+        else {
+            _annoThickness = shape.thickness;
+            _show_tool_panel(shape.type == CtAnnoShape::Type::Pen ? Tool::Pen : Tool::Rect);
+        }
+    }
+
+    // OrangeArk: when an annotation is selected for editing, panel changes
+    // apply to it immediately (in addition to becoming the new defaults)
+    void _apply_panel_edit()
+    {
+        if (_editIdx < 0 or _editIdx >= static_cast<int>(_shapes.size())) {
+            _pArea->queue_draw();
+            return;
+        }
+        CtAnnoShape& shape = _shapes.at(static_cast<size_t>(_editIdx));
+        shape.color = _annoColor;
+        if (CtAnnoShape::Type::Text == shape.type or CtAnnoShape::Type::Counter == shape.type) {
+            shape.fontSize = _annoFontSize;
+            shape.fontName = _annoFontName;
+        }
+        else {
+            shape.thickness = _annoThickness;
+        }
+        _pArea->queue_draw();
     }
 
     // OrangeArk: a click anywhere (canvas or toolbar) finishes the pending text
@@ -688,6 +811,18 @@ protected:
             if (_previewing) {
                 _draw_one_shape(cr, 0.0, 0.0, _currShape);
             }
+            // OrangeArk: dashed orange box around the annotation being edited
+            if (_editIdx >= 0 and _editIdx < static_cast<int>(_shapes.size())) {
+                int bx = 0, by = 0, bw = 0, bh = 0;
+                _shape_bbox(_shapes.at(static_cast<size_t>(_editIdx)), bx, by, bw, bh);
+                std::valarray<double> dashes{4.0, 3.0};
+                cr->set_source_rgba(1.0, 0.55, 0.0, 0.95);
+                cr->set_dash(dashes, 0.0);
+                cr->set_line_width(1.4);
+                cr->rectangle(bx, by, bw, bh);
+                cr->stroke();
+                cr->unset_dash();
+            }
             cr->restore();
 
             // orange selection border (QQ style)
@@ -775,16 +910,32 @@ protected:
             {
                 const int px = static_cast<int>(event->x);
                 const int py = static_cast<int>(event->y);
+                // OrangeArk: with the Text tool, clicking an existing text or
+                // counter selects it for editing instead of moving it — the
+                // options panel loads its font/size/colour for live tweaking
+                if (Tool::Text == _tool) {
+                    for (int i = static_cast<int>(_shapes.size()) - 1; i >= 0; --i) {
+                        const CtAnnoShape& shape = _shapes.at(static_cast<size_t>(i));
+                        if ((CtAnnoShape::Type::Text == shape.type or CtAnnoShape::Type::Counter == shape.type)
+                            and _shape_hit(shape, px, py)) {
+                            _editIdx = i;
+                            _sync_panel_from_shape(i);
+                            return true;
+                        }
+                    }
+                }
                 for (int i = static_cast<int>(_shapes.size()) - 1; i >= 0; --i) {
                     if (_shape_hit(_shapes.at(static_cast<size_t>(i)), px, py)) {
                         _movingIdx = i;
                         _moveLastX = px;
                         _moveLastY = py;
+                        _editIdx = -1; // dragging moves, it does not edit
                         return true;
                     }
                 }
             }
             if (Tool::Text == _tool) {
+                _editIdx = -1; // clicking empty ground starts a new text
                 _show_text_entry(static_cast<int>(event->x), static_cast<int>(event->y));
                 return true;
             }
@@ -796,6 +947,8 @@ protected:
                 shape.y1 = static_cast<int>(event->y);
                 shape.fontSize = _annoFontSize;
                 shape.fontName = _annoFontName;
+                shape.color = _annoColor;
+                shape.thickness = _annoThickness;
                 int num = 1;
                 for (const CtAnnoShape& s : _shapes) {
                     if (CtAnnoShape::Type::Counter == s.type) ++num;
@@ -835,6 +988,9 @@ protected:
             _currShape.y1 = _currShape.y2 = static_cast<int>(event->y);
             _currShape.fontSize = _annoFontSize;
             _currShape.fontName = _annoFontName;
+            // OrangeArk: apply the panel's colour/thickness to the new shape
+            _currShape.color = _annoColor;
+            _currShape.thickness = _annoThickness;
             if (Tool::Pen == _tool) {
                 _currShape.pts.push_back(Gdk::Point(_currShape.x1, _currShape.y1));
             }
@@ -1062,6 +1218,16 @@ private:
     Gtk::DrawingArea*  _pArea{nullptr};
     Gtk::Box*          _pToolbar{nullptr};
     Gtk::Box*          _pRow1{nullptr};   // OrangeArk: toolbar icon row
+    Gtk::Box*          _pPanel{nullptr};      // OrangeArk: contextual options panel
+    Gtk::Box*          _pPanelShape{nullptr}; // OrangeArk: 粗细+颜色 (shape tools)
+    Gtk::Box*          _pPanelText{nullptr};  // OrangeArk: 字体+字号+颜色 (text tools)
+    Gtk::Scale*        _pShapeScale{nullptr};
+    Gtk::Label*        _pShapeVal{nullptr};
+    Gtk::ColorButton*  _pShapeColorBtn{nullptr};
+    Gtk::ComboBoxText* _pFontCombo{nullptr};
+    Gtk::Scale*        _pTextSizeScale{nullptr};
+    Gtk::Label*        _pTextSizeVal{nullptr};
+    Gtk::ColorButton*  _pTextColorBtn{nullptr};
     Gtk::Entry*        _pEntry{nullptr};
 
     bool _selecting{false};
@@ -1080,6 +1246,9 @@ private:
     int  _textAnnoX{0}, _textAnnoY{0};
     int  _movingIdx{-1};
     int  _moveLastX{0}, _moveLastY{0};
+    int  _editIdx{-1};        // OrangeArk: index of the annotation being edited
+    Tool _panelTool{Tool::None};
+    int  _toolbarX{10}, _toolbarY{10}; // OrangeArk: current toolbar position (panel anchors below it)
 
     std::vector<CtAnnoShape> _shapes;
     std::vector<CtAnnoShape> _redoShapes;
