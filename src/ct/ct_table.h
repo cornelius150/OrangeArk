@@ -129,6 +129,9 @@ protected:
     void _resize_drag_update(const double xRoot, const double yRoot);
     void _resize_drag_apply(const double xRoot, const double yRoot); // OrangeArk: unthrottled layout apply
     void _resize_drag_end();
+    void _guide_ensure();    // OrangeArk: create the root-level guide-line strips
+    void _guide_destroy();   // OrangeArk: remove the guide-line strips
+    void _guide_update(const double xRoot, const double yRoot); // OrangeArk: move the guide lines while dragging
     int  _column_separator_at(const double x) const; // OrangeArk: hit test for a column separator (-1 = none)
     virtual void _set_rows_min_height(const int height) = 0; // OrangeArk: row height control
     virtual int  _get_rows_min_height() const = 0;
@@ -141,8 +144,10 @@ protected:
     int    _dragStartTotalW{0};
     int    _dragStartMinHeight{0}; // OrangeArk: row min-height at drag start (avoids cumulative drift)
     CtTableColWidths _dragStartColWidths;
+    int    _dragStartH{0};         // OrangeArk: widget height at drag start (guide line)
     int    _dragColIdx{-1};        // OrangeArk: column dragged by its separator (-1 = whole-table drag)
-    gint64 _lastLiveUpdateUs{0};   // OrangeArk: throttle timestamp for the live relayout
+    Glib::RefPtr<Gdk::Window> _rGuideV; // OrangeArk: vertical guide strip shown while dragging
+    Glib::RefPtr<Gdk::Window> _rGuideH; // OrangeArk: horizontal guide strip shown while dragging
     double _lastMotionXRoot{0.};   // OrangeArk: latest pointer position (final exact apply on release)
     double _lastMotionYRoot{0.};
     Glib::RefPtr<Gdk::Cursor> _rHoverCursor;

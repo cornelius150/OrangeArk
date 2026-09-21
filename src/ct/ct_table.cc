@@ -29,6 +29,7 @@
 #include "ct_logging.h"
 #include "ct_misc_utils.h"
 #include <cmath>
+#include <cstring>
 #include <algorithm>
 
 CtTableCommon::CtTableCommon(CtMainWin* pCtMainWin,
@@ -379,27 +380,113 @@ void CtTableCommon::_resize_drag_begin(const double xRoot, const double yRoot)
     _dragStartX = xRoot;
     _dragStartY = yRoot;
     _dragStartTotalW = get_allocation().get_width();
+    _dragStartH = get_allocation().get_height();
     _dragStartColWidths = get_col_widths();
     _dragStartMinHeight = _get_rows_min_height();
     _lastMotionXRoot = xRoot;
     _lastMotionYRoot = yRoot;
-    _lastLiveUpdateUs = 0;
     gtk_grab_add(GTK_WIDGET(gobj()));
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
         rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER));
     }
 }
 
+// OrangeArk: the drag guide lines — two thin solid-orange root-level strips that
+// follow the pointer at full frame rate. Relaying-out the whole Gtk::Grid on
+// every motion event was what made resizing laggy and could even swallow the
+// mouse-up (the table then kept resizing after the button was released); now
+// the grid is re-laid-out exactly once, on release, at the final position.
+void CtTableCommon::_guide_ensure()
+{
+    if (_rGuideV and _rGuideH) return;
+    Glib::RefPtr<Gdk::Window> rParent = get_window();
+    if (not rParent) return;
+    Glib::RefPtr<Gdk::Window> rRoot = rParent->get_screen()->get_root_window();
+    const Gdk::RGBA guideColor{"#fb8c00"};
+    struct StripDef { bool vertical; Glib::RefPtr<Gdk::Window>& rWin; };
+    for (StripDef def : {StripDef{true, _rGuideV}, StripDef{false, _rGuideH}}) {
+        if (def.rWin) continue;
+        // OrangeArk: this gtkmm build has no Gdk::WindowAttr wrapper — fill the
+        // plain C struct and let Gdk::Window::create wrap the result
+        GdkWindowAttr attr;
+        std::memset(&attr, 0, sizeof(attr));
+        attr.width = def.vertical ? 3 : 8000;
+        attr.height = def.vertical ? 8000 : 3;
+        attr.window_type = GDK_WINDOW_TEMP;
+        attr.wclass = GDK_INPUT_OUTPUT;
+        attr.override_redirect = TRUE;
+        attr.event_mask = 0;
+        def.rWin = Gdk::Window::create(rRoot, &attr, 0);
+        def.rWin->set_background(guideColor);
+    }
+}
+
+void CtTableCommon::_guide_destroy()
+{
+    // OrangeArk: use the C API — this gtkmm build does not wrap
+    // gdk_window_destroy() on Gdk::Window
+    if (_rGuideV) { gdk_window_destroy(_rGuideV->gobj()); _rGuideV.reset(); }
+    if (_rGuideH) { gdk_window_destroy(_rGuideH->gobj()); _rGuideH.reset(); }
+}
+
+void CtTableCommon::_guide_update(const double xRoot, const double yRoot)
+{
+    _guide_ensure();
+    if (not _rGuideV or not _rGuideH) return;
+    Glib::RefPtr<Gdk::Window> rWin = get_window();
+    if (not rWin) return;
+    int orgX = 0, orgY = 0;
+    rWin->get_origin(orgX, orgY);
+    const Gtk::Allocation alloc = get_allocation();
+    const double dx = xRoot - _dragStartX;
+    const double dy = yRoot - _dragStartY;
+
+    // vertical guide: the prospective position of the dragged column separator
+    // or of the table right edge
+    bool showV = false;
+    double gx = 0.0;
+    if (_dragColIdx >= 0) {
+        if (_dragColIdx < static_cast<int>(_dragStartColWidths.size())) {
+            double acc = 0.0;
+            for (int c = 0; c < _dragColIdx; ++c) acc += _dragStartColWidths.at(static_cast<size_t>(c));
+            gx = acc + std::max(16.0, _dragStartColWidths.at(static_cast<size_t>(_dragColIdx)) + dx);
+            showV = true;
+        }
+    }
+    else if (_dragEdgesMask & 0x3) {
+        const double minW = 16.0 * std::max<size_t>(1, get_num_columns());
+        gx = std::max(minW, _dragStartTotalW + dx);
+        showV = true;
+    }
+
+    // horizontal guide: the prospective table bottom edge (row heights drag)
+    bool showH = (_dragEdgesMask & 0xC) != 0 and not showV;
+    double gy = std::max(14.0 * std::max<size_t>(1, get_num_rows()), _dragStartH + dy);
+    // the corner grip drags both edges at once
+    const bool bothDiag = _dragColIdx < 0 and (_dragEdgesMask & 0x3) and (_dragEdgesMask & 0xC);
+
+    if (showV) {
+        _rGuideV->move(orgX + static_cast<int>(gx) - 1, orgY);
+        _rGuideV->resize(3, std::max(3, alloc.get_height() + 800));
+        _rGuideV->show();
+    }
+    else {
+        _rGuideV->hide();
+    }
+    if (showH or bothDiag) {
+        _rGuideH->move(orgX, orgY + static_cast<int>(gy) - 1);
+        _rGuideH->resize(std::max(3, alloc.get_width() + 800), 3);
+        _rGuideH->show();
+    }
+    else {
+        _rGuideH->hide();
+    }
+}
+
 void CtTableCommon::_resize_drag_update(const double xRoot, const double yRoot)
 {
     if (not _dragResizeActive) return;
-    // OrangeArk: throttle the live relayout — re-laying the whole grid out on
-    // every motion event made the resize feel laggy and let it keep growing
-    // for a while after the mouse button was released
-    const gint64 nowUs = g_get_monotonic_time();
-    if (_lastLiveUpdateUs != 0 and nowUs - _lastLiveUpdateUs < 20000) return; // max ~50 relayouts/sec
-    _lastLiveUpdateUs = nowUs;
-    _resize_drag_apply(xRoot, yRoot);
+    _guide_update(xRoot, yRoot);
 }
 
 // OrangeArk: the actual (unthrottled) layout update — also used for the final
@@ -452,9 +539,10 @@ void CtTableCommon::_resize_drag_apply(const double xRoot, const double yRoot)
 void CtTableCommon::_resize_drag_end()
 {
     if (not _dragResizeActive) return;
-    // OrangeArk: one final exact apply — the throttling may have skipped the
-    // last motion events, so the table could otherwise stop short of the cursor
+    // OrangeArk: one final exact apply — the drag showed guide lines only, so
+    // the grid is re-laid-out here, at the last pointer position
     _resize_drag_apply(_lastMotionXRoot, _lastMotionYRoot);
+    _guide_destroy();
     _dragResizeActive = false;
     gtk_grab_remove(GTK_WIDGET(gobj()));
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();

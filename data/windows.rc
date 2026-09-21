@@ -13,14 +13,14 @@ BEGIN
         BLOCK "040904E4"
         BEGIN
             VALUE "CompanyName",      ""
-            VALUE "FileDescription",  ""
+            VALUE "FileDescription",  "OrangeArk 橙子笔记"
             VALUE "FileVersion",      PACKAGE_VERSION_WINDOWS_STR
             VALUE "InternalName",     "orangeark"
             VALUE "LegalCopyright",   "GPL3"
             VALUE "LegalTrademarks1", ""
             VALUE "LegalTrademarks2", ""
             VALUE "OriginalFilename", "orangeark.exe"
-            VALUE "ProductName",      "orangeark"
+            VALUE "ProductName",      "OrangeArk"
             VALUE "ProductVersion",   PACKAGE_VERSION_WINDOWS_STR
         END
     END

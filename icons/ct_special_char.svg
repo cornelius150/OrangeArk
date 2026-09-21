@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+  <!-- OrangeArk: special character picker icon (Greek Omega on orange) -->
+  <rect x="0.8" y="0.8" width="14.4" height="14.4" rx="3" fill="#fb8c00"/>
+  <path d="M 11.6 4.6
+           C 11.6 2.9 10.0 2.1 8.0 2.1
+           C 6.0 2.1 4.4 2.9 4.4 4.6
+           C 4.4 6.0 5.3 6.7 6.2 7.2
+           C 5.1 8.4 4.6 9.8 4.6 11.2
+           C 4.6 12.5 5.5 13.9 8.0 13.9
+           C 10.5 13.9 11.4 12.5 11.4 11.2
+           L 9.9 11.2
+           C 9.9 12.0 9.3 12.6 8.0 12.6
+           C 6.7 12.6 6.1 12.0 6.1 11.2
+           C 6.1 9.9 6.7 8.7 7.9 7.6
+           C 7.0 7.1 6.0 6.4 6.0 4.9
+           C 6.0 3.7 6.9 3.3 8.0 3.3
+           C 9.1 3.3 10.0 3.7 10.0 4.9
+           Z"
+        fill="#ffffff"/>
+</svg>

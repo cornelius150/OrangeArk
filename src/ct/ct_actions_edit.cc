@@ -524,28 +524,16 @@ void CtActions::special_char_insert()
     text_view_n_buffer_codebox_proof proof = _get_text_view_n_buffer_codebox_proof();
     if (not proof.text_view->get_buffer()) return;
 
-    auto itemStore = CtChooseDialogListStore::create();
-    unsigned pathSelectIdx{0};
-    unsigned pathCurrIdx{0};
-    const Glib::ustring lastSpecialChar = _pCtConfig->lastSpecialChar;
+    // OrangeArk: one toolbar button opens a paged grid picker with a large
+    // symbol palette; the user-configured frequent chars get their own tab
+    Glib::ustring frequentChars;
     for (gunichar ch : _pCtConfig->specialChars.item()) {
-        const Glib::ustring specialChar{1, ch};
-        itemStore->add_row("", "", specialChar);
-        if (lastSpecialChar == specialChar) {
-            pathSelectIdx = pathCurrIdx;
-        }
-        ++pathCurrIdx;
+        frequentChars += Glib::ustring{1, ch};
     }
-    const Gtk::TreeModel::iterator treeIter = CtDialogs::choose_item_dialog(*_pCtMainWin,
-                                                                 _("Special Characters"),
-                                                                 itemStore,
-                                                                 nullptr/*single_column_name*/,
-                                                                 std::to_string(pathSelectIdx));
-    if (treeIter) {
-        const Glib::ustring specialChar = treeIter->get_value(itemStore->columns.desc);
-        proof.text_view->get_buffer()->insert_at_cursor(specialChar);
-        _pCtConfig->lastSpecialChar = specialChar;
-    }
+    const Glib::ustring specialChar = CtDialogs::special_char_pick_dialog(*_pCtMainWin, frequentChars);
+    if (specialChar.empty()) return;
+    proof.text_view->get_buffer()->insert_at_cursor(specialChar);
+    _pCtConfig->lastSpecialChar = specialChar;
 }
 
 // Insert a Horizontal Line

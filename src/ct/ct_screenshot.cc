@@ -13,6 +13,7 @@
 #include <pangomm/layout.h>
 #include <pangomm/fontdescription.h>
 #include <gtkmm/cssprovider.h>
+#include <giomm/memoryinputstream.h>
 #include <cairo.h>
 #include <cmath>
 #include <vector>
@@ -27,11 +28,81 @@ struct CtAnnoShape
     Type                  type{Type::Pen};
     std::vector<Gdk::Point> pts;          // for Pen
     int                   x1{0}, y1{0}, x2{0}, y2{0}; // bounding for others
+    int                   thickness{6};   // OrangeArk: line thickness chosen in the toolbar
+    Glib::ustring         color{"#e53935"}; // OrangeArk: annotation colour chosen in the toolbar
     Glib::ustring         text;
     std::string           fontName;       // font family used by Text/Counter
     int                   fontSize{16};
     int                   number{0};      // for Counter
 };
+
+// OrangeArk: render a small inline SVG into a pixbuf for the toolbar icons —
+// real vector shapes (rounded rectangles, a solid arrow head, …) instead of
+// text glyphs, so the toolbar reads like the QQ screenshot toolbar
+static Glib::RefPtr<Gdk::Pixbuf> _svg_icon(const char* pSvg, const int sizePx)
+{
+    try {
+        Glib::RefPtr<Gio::MemoryInputStream> rStream = Gio::MemoryInputStream::create();
+        rStream->add_data(pSvg, std::strlen(pSvg));
+        return Gdk::Pixbuf::create_from_stream_at_scale(rStream, sizePx, sizePx, true);
+    }
+    catch (const Glib::Error& e) {
+        spdlog::warn("CtScreenshot: svg icon failed: {}", e.what().c_str());
+        return Glib::RefPtr<Gdk::Pixbuf>{};
+    }
+}
+
+// toolbar icon artwork (16x16 viewBox, ink #444, the arrow in QQ blue)
+static const char* kSvgRect =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<rect x='1.8' y='3.4' width='12.4' height='9.2' rx='1.8' fill='none' stroke='#444444' stroke-width='1.6'/>"
+    "</svg>";
+static const char* kSvgEllipse =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<circle cx='8' cy='8' r='5.7' fill='none' stroke='#444444' stroke-width='1.6'/>"
+    "</svg>";
+static const char* kSvgArrow =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<path d='M2.6 13.4 L10.0 6.0' stroke='#2196f3' stroke-width='2.1' stroke-linecap='round' fill='none'/>"
+    "<path d='M13.4 2.6 L13.4 9.4 L6.6 2.6 Z' fill='#2196f3' stroke='none'/>"
+    "</svg>";
+static const char* kSvgPen =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<path d='M10.6 2.9 l2.5 2.5 -7.6 7.6 -3.3 0.8 0.8 -3.3 z' fill='none' stroke='#444444' stroke-width='1.5' stroke-linejoin='round'/>"
+    "<path d='M9.2 4.3 l2.5 2.5' stroke='#444444' stroke-width='1.4'/>"
+    "</svg>";
+static const char* kSvgText =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<path d='M3.2 12.6 L8 3.4 L12.8 12.6 M5.1 9.4 H10.9' stroke='#444444' stroke-width='1.7' fill='none' stroke-linecap='round'/>"
+    "</svg>";
+static const char* kSvgCounter =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<circle cx='8' cy='8' r='5.9' fill='none' stroke='#444444' stroke-width='1.5'/>"
+    "<path d='M6.9 6.3 L8.4 5.3 V10.9' stroke='#444444' stroke-width='1.5' fill='none' stroke-linecap='round'/>"
+    "</svg>";
+static const char* kSvgUndo =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<path d='M5 3.8 L2.4 6.4 L5 9' stroke='#444444' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/>"
+    "<path d='M2.8 6.4 H9.8 A3.4 3.4 0 0 1 9.8 13.2 H6.8' stroke='#444444' stroke-width='1.6' fill='none' stroke-linecap='round'/>"
+    "</svg>";
+static const char* kSvgRedo =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<path d='M11 3.8 L13.6 6.4 L11 9' stroke='#444444' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/>"
+    "<path d='M13.2 6.4 H6.2 A3.4 3.4 0 0 0 6.2 13.2 H9.2' stroke='#444444' stroke-width='1.6' fill='none' stroke-linecap='round'/>"
+    "</svg>";
+static const char* kSvgSave =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<path d='M8 2.2 V9.4 M4.9 6.6 L8 9.7 L11.1 6.6' stroke='#444444' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/>"
+    "<path d='M2.6 10.8 V13.4 H13.4 V10.8' stroke='#444444' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/>"
+    "</svg>";
+static const char* kSvgCancel =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<path d='M4 4 L12 12 M12 4 L4 12' stroke='#e53935' stroke-width='1.9' stroke-linecap='round'/>"
+    "</svg>";
+static const char* kSvgOk =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<path d='M2.8 8.6 L6.4 12.2 L13.2 4.6' stroke='#2e7d32' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/>"
+    "</svg>";
 
 // The full-screen overlay where the user drags a rectangle to select the region,
 // then annotates it QQ-style with a floating toolbar
@@ -96,11 +167,18 @@ public:
 protected:
     void _build_toolbar()
     {
-        _pToolbar = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 0});
+        // QQ-style two-row floating bar: row 1 = tool icons, row 2 = thickness
+        // slider + colour swatch (like the QQ screenshot toolbar)
+        _pToolbar = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 2});
         _pToolbar->get_style_context()->add_class("toolbar");
+        auto* pRow1 = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 0});
+        _pRow1 = pRow1;
+        _pToolbar->pack_start(*pRow1, Gtk::PACK_SHRINK);
+        auto* pRow2 = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 8});
+        pRow2->get_style_context()->add_class("anno-row2");
+        _pToolbar->pack_start(*pRow2, Gtk::PACK_SHRINK);
 
         // OneNote-like style: light floating bar so every tool stays visible
-        // (a dark bar made the single-color glyphs indistinguishable)
         try {
             auto rCss = Gtk::CssProvider::create();
             rCss->load_from_data(
@@ -109,11 +187,13 @@ protected:
                 ".screenshot-bar button { background: transparent; border: none; border-radius: 6px;"
                 " min-width: 34px; min-height: 32px; padding: 2px 6px; }\n"
                 ".screenshot-bar button:hover { background: rgba(0,0,0,0.08); }\n"
-                ".screenshot-bar button label { color: #303030; font-size: 17px; font-weight: bold; }\n"
+                ".screenshot-bar button image { min-width: 20px; min-height: 20px; }\n"
                 ".screenshot-bar button.anno-active { background: rgba(255,136,0,0.30); }\n"
-                ".screenshot-bar button.anno-ok label { color: #2e7d32; }\n"
-                ".screenshot-bar button.anno-cancel label { color: #c62828; }\n"
                 ".screenshot-bar combobox, .screenshot-bar entry { min-height: 30px; }\n"
+                ".screenshot-bar label { color: #303030; }\n"
+                ".screenshot-bar .anno-row2 { padding: 1px 6px 3px 6px; }\n"
+                ".screenshot-bar .anno-row2 label { font-size: 12px; color: #303030; }\n"
+                ".screenshot-bar .anno-row2 scale { min-width: 140px; }\n"
                 ".screenshot-bar separator { background: rgba(0,0,0,0.25); min-width: 1px;"
                 " min-height: 24px; margin-left: 4px; margin-right: 4px; }\n");
             _pToolbar->get_style_context()->add_class("screenshot-bar");
@@ -123,30 +203,38 @@ protected:
             spdlog::warn("CtScreenshot: toolbar css failed: {}", e.what().c_str());
         }
 
-        // annotation tools: QQ-like grouped layout, big clear glyphs.
+        // annotation tools, laid out exactly like the QQ screenshot bar:
+        // rect / ellipse / arrow / pen / text / counter
         // Clicking any toolbar button first commits a pending text annotation.
-        struct ToolDef { const char* glyph; const char* tip; Tool tool; };
+        struct ToolDef { const char* svg; const char* tip; Tool tool; };
         const std::vector<ToolDef> annTools = {
-            {"▭", "绘制矩形", Tool::Rect},
-            {"◯", "绘制椭圆", Tool::Ellipse},
-            {"↗", "绘制箭头", Tool::Arrow},
-            {"✎", "自由绘制", Tool::Pen},
-            {"T", "插入文字（点空白处落字，点其他位置可继续写）", Tool::Text},
-            {"①", "插入自动递增的序号", Tool::Counter},
-            {"✥", "拖动已画的标注", Tool::Move},
+            {kSvgRect,    "绘制矩形", Tool::Rect},
+            {kSvgEllipse, "绘制椭圆", Tool::Ellipse},
+            {kSvgArrow,   "绘制箭头", Tool::Arrow},
+            {kSvgPen,     "自由绘制", Tool::Pen},
+            {kSvgText,    "插入文字（点空白处落字，点其他位置可继续写）", Tool::Text},
+            {kSvgCounter, "插入自动递增的序号", Tool::Counter},
         };
         for (const ToolDef& td : annTools) {
-            auto* pBtn = Gtk::manage(new Gtk::Button(td.glyph));
+            auto* pBtn = Gtk::manage(new Gtk::Button());
             pBtn->set_tooltip_text(td.tip);
             pBtn->set_relief(Gtk::RELIEF_NONE);
             pBtn->set_focus_on_click(false);
+            if (Glib::RefPtr<Gdk::Pixbuf> rPix = _svg_icon(td.svg, 20)) {
+                auto* pImg = Gtk::manage(new Gtk::Image(rPix));
+                pBtn->set_image(*pImg);
+                pBtn->set_always_show_image(true);
+            }
+            else {
+                pBtn->set_label("·");
+            }
             pBtn->signal_clicked().connect([this, td, pBtn]() {
                 _finish_text_entry();
                 _select_tool(td.tool, pBtn);
                 _pArea->grab_focus();
             });
             _pToolButtons.push_back({td.tool, pBtn});
-            _pToolbar->pack_start(*pBtn, Gtk::PACK_SHRINK);
+            _pRow1->pack_start(*pBtn, Gtk::PACK_SHRINK);
         }
         // highlight the default tool so the active tool is visible from the start
         for (auto& pair : _pToolButtons) {
@@ -155,19 +243,29 @@ protected:
 
         _toolbar_add_separator();
 
-        auto* pBtnUndo = Gtk::manage(new Gtk::Button("↶"));
+        auto* pBtnUndo = Gtk::manage(new Gtk::Button());
         pBtnUndo->set_tooltip_text("撤销上一个标注");
         pBtnUndo->set_relief(Gtk::RELIEF_NONE);
         pBtnUndo->set_focus_on_click(false);
+        if (Glib::RefPtr<Gdk::Pixbuf> rPix = _svg_icon(kSvgUndo, 18)) {
+            pBtnUndo->set_image(*Gtk::manage(new Gtk::Image(rPix)));
+            pBtnUndo->set_always_show_image(true);
+        }
+        else pBtnUndo->set_label("↶");
         pBtnUndo->signal_clicked().connect([this]() { _finish_text_entry(); _undo(); });
-        _pToolbar->pack_start(*pBtnUndo, Gtk::PACK_SHRINK);
+        _pRow1->pack_start(*pBtnUndo, Gtk::PACK_SHRINK);
 
-        auto* pBtnRedo = Gtk::manage(new Gtk::Button("↷"));
+        auto* pBtnRedo = Gtk::manage(new Gtk::Button());
         pBtnRedo->set_tooltip_text("重做标注");
         pBtnRedo->set_relief(Gtk::RELIEF_NONE);
         pBtnRedo->set_focus_on_click(false);
+        if (Glib::RefPtr<Gdk::Pixbuf> rPix = _svg_icon(kSvgRedo, 18)) {
+            pBtnRedo->set_image(*Gtk::manage(new Gtk::Image(rPix)));
+            pBtnRedo->set_always_show_image(true);
+        }
+        else pBtnRedo->set_label("↷");
         pBtnRedo->signal_clicked().connect([this]() { _finish_text_entry(); _redo(); });
-        _pToolbar->pack_start(*pBtnRedo, Gtk::PACK_SHRINK);
+        _pRow1->pack_start(*pBtnRedo, Gtk::PACK_SHRINK);
 
         _toolbar_add_separator();
 
@@ -188,7 +286,7 @@ protected:
                 if (label == f.label) { _annoFontName = f.family; break; }
             }
         });
-        _pToolbar->pack_start(*pFontCombo, Gtk::PACK_SHRINK);
+        _pRow1->pack_start(*pFontCombo, Gtk::PACK_SHRINK);
 
         auto* pSizeCombo = Gtk::manage(new Gtk::ComboBoxText());
         for (const int s : {12, 14, 16, 18, 20, 24, 28, 36, 48}) pSizeCombo->append(std::to_string(s));
@@ -199,38 +297,80 @@ protected:
             const Glib::ustring text = pSizeCombo->get_active_text();
             if (not text.empty()) _annoFontSize = std::atoi(text.c_str());
         });
-        _pToolbar->pack_start(*pSizeCombo, Gtk::PACK_SHRINK);
+        _pRow1->pack_start(*pSizeCombo, Gtk::PACK_SHRINK);
 
         _toolbar_add_separator();
 
-        auto* pBtnSave = Gtk::manage(new Gtk::Button("💾"));
+        auto* pBtnSave = Gtk::manage(new Gtk::Button());
         pBtnSave->set_tooltip_text("把截图保存为 PNG 文件");
         pBtnSave->set_relief(Gtk::RELIEF_NONE);
         pBtnSave->set_focus_on_click(false);
+        if (Glib::RefPtr<Gdk::Pixbuf> rPix = _svg_icon(kSvgSave, 18)) {
+            pBtnSave->set_image(*Gtk::manage(new Gtk::Image(rPix)));
+            pBtnSave->set_always_show_image(true);
+        }
+        else pBtnSave->set_label("💾");
         pBtnSave->signal_clicked().connect([this]() { _finish_text_entry(); _on_save_clicked(); });
-        _pToolbar->pack_start(*pBtnSave, Gtk::PACK_SHRINK);
+        _pRow1->pack_start(*pBtnSave, Gtk::PACK_SHRINK);
 
-        auto* pBtnCancel = Gtk::manage(new Gtk::Button("✕"));
-        pBtnCancel->get_style_context()->add_class("anno-cancel");
+        auto* pBtnCancel = Gtk::manage(new Gtk::Button());
         pBtnCancel->set_tooltip_text("放弃本次截图");
         pBtnCancel->set_relief(Gtk::RELIEF_NONE);
         pBtnCancel->set_focus_on_click(false);
+        if (Glib::RefPtr<Gdk::Pixbuf> rPix = _svg_icon(kSvgCancel, 18)) {
+            pBtnCancel->set_image(*Gtk::manage(new Gtk::Image(rPix)));
+            pBtnCancel->set_always_show_image(true);
+        }
+        else pBtnCancel->set_label("✕");
         pBtnCancel->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_cancel_clicked));
-        _pToolbar->pack_start(*pBtnCancel, Gtk::PACK_SHRINK);
+        _pRow1->pack_start(*pBtnCancel, Gtk::PACK_SHRINK);
 
-        auto* pBtnOk = Gtk::manage(new Gtk::Button("✓"));
-        pBtnOk->get_style_context()->add_class("anno-ok");
+        auto* pBtnOk = Gtk::manage(new Gtk::Button());
         pBtnOk->set_tooltip_text("复制到剪贴板（回笔记后 Ctrl+V 粘贴）");
         pBtnOk->set_relief(Gtk::RELIEF_NONE);
         pBtnOk->set_focus_on_click(false);
+        if (Glib::RefPtr<Gdk::Pixbuf> rPix = _svg_icon(kSvgOk, 18)) {
+            pBtnOk->set_image(*Gtk::manage(new Gtk::Image(rPix)));
+            pBtnOk->set_always_show_image(true);
+        }
+        else pBtnOk->set_label("✓");
         pBtnOk->signal_clicked().connect([this]() { _finish_text_entry(); _confirm(); });
-        _pToolbar->pack_start(*pBtnOk, Gtk::PACK_SHRINK);
+        _pRow1->pack_start(*pBtnOk, Gtk::PACK_SHRINK);
+
+        // -- row 2: thickness slider + colour swatch (QQ screenshot layout) ----
+        auto* pThickLabel = Gtk::manage(new Gtk::Label("粗细"));
+        pRow2->pack_start(*pThickLabel, Gtk::PACK_SHRINK);
+
+        auto* pScale = Gtk::manage(new Gtk::Scale(Gtk::ORIENTATION_HORIZONTAL));
+        pScale->set_range(1, 48);
+        pScale->set_increments(1, 4);
+        pScale->set_value(_annoThickness);
+        pScale->set_draw_value(false);
+        pScale->set_tooltip_text("线条粗细（箭头/矩形/椭圆/画笔通用）");
+        auto* pValueLabel = Gtk::manage(new Gtk::Label(std::to_string(_annoThickness)));
+        pValueLabel->set_size_request(24, -1);
+        pScale->signal_value_changed().connect([this, pValueLabel, pScale]() {
+            _finish_text_entry();
+            _annoThickness = static_cast<int>(pScale->get_value());
+            pValueLabel->set_text(std::to_string(_annoThickness));
+        });
+        pRow2->pack_start(*pScale, Gtk::PACK_SHRINK);
+        pRow2->pack_start(*pValueLabel, Gtk::PACK_SHRINK);
+
+        auto* pColorBtn = Gtk::manage(new Gtk::ColorButton(Gdk::RGBA(_annoColor)));
+        pColorBtn->set_tooltip_text("标注颜色（箭头/矩形/椭圆/画笔/文字通用）");
+        pColorBtn->set_title("标注颜色");
+        pColorBtn->signal_color_set().connect([this, pColorBtn]() {
+            _finish_text_entry();
+            _annoColor = pColorBtn->get_rgba().to_string();
+        });
+        pRow2->pack_start(*pColorBtn, Gtk::PACK_SHRINK);
     }
 
     void _toolbar_add_separator()
     {
         auto* pSep = Gtk::manage(new Gtk::Separator{Gtk::ORIENTATION_VERTICAL});
-        _pToolbar->pack_start(*pSep, Gtk::PACK_SHRINK);
+        _pRow1->pack_start(*pSep, Gtk::PACK_SHRINK);
     }
 
     // OrangeArk: switch the active annotation tool and highlight its button,
@@ -429,8 +569,10 @@ protected:
 
     void _draw_one_shape(const Cairo::RefPtr<Cairo::Context>& cr, const double dx, const double dy, const CtAnnoShape& shape) const
     {
-        cr->set_source_rgba(1.0, 0.13, 0.1, 0.95); // QQ-like red pen
-        cr->set_line_width(3.0);
+        // OrangeArk: annotation colour and thickness come from the toolbar
+        const Gdk::RGBA annoColor{shape.color};
+        cr->set_source_rgba(annoColor.get_red(), annoColor.get_green(), annoColor.get_blue(), 0.95);
+        cr->set_line_width(std::max(1.0, static_cast<double>(shape.thickness)));
         cr->set_line_cap(Cairo::LINE_CAP_ROUND);
         cr->set_line_join(Cairo::LINE_JOIN_ROUND);
         switch (shape.type) {
@@ -444,16 +586,22 @@ protected:
                 break;
             }
             case CtAnnoShape::Type::Arrow: {
+                // QQ-style solid arrow: a thick shaft plus a filled triangular
+                // head that scales with the chosen thickness
                 const double x1 = shape.x1 + dx, y1 = shape.y1 + dy;
                 const double x2 = shape.x2 + dx, y2 = shape.y2 + dy;
-                cr->move_to(x1, y1);
-                cr->line_to(x2, y2);
-                cr->stroke();
                 const double angle = std::atan2(y2 - y1, x2 - x1);
-                const double head = 14.0;
+                const double t = std::max(1.0, static_cast<double>(shape.thickness));
+                const double head = 2.4 * t + 6.0;
+                const double backX = x2 - head * std::cos(angle);
+                const double backY = y2 - head * std::sin(angle);
+                // shaft stops where the head begins
+                cr->move_to(x1, y1);
+                cr->line_to(backX, backY);
+                cr->stroke();
                 cr->move_to(x2, y2);
-                cr->line_to(x2 - head * std::cos(angle - 0.45), y2 - head * std::sin(angle - 0.45));
-                cr->line_to(x2 - head * std::cos(angle + 0.45), y2 - head * std::sin(angle + 0.45));
+                cr->line_to(backX - head * 0.5 * std::sin(angle), backY + head * 0.5 * std::cos(angle));
+                cr->line_to(backX + head * 0.5 * std::sin(angle), backY - head * 0.5 * std::cos(angle));
                 cr->close_path();
                 cr->fill();
                 break;
@@ -479,17 +627,17 @@ protected:
                 // shape.x1/y1 is the TOP-left corner of the text block
                 Glib::RefPtr<Pango::Layout> rLayout =
                     _make_layout(cr, shape.text, shape.fontName, shape.fontSize, false);
-                cr->set_source_rgba(1.0, 0.13, 0.1, 0.95);
+                cr->set_source_rgba(annoColor.get_red(), annoColor.get_green(), annoColor.get_blue(), 0.95);
                 cr->move_to(shape.x1 + dx, shape.y1 + dy);
                 rLayout->show_in_cairo_context(cr);
                 break;
             }
             case CtAnnoShape::Type::Counter: {
-                // QQ-style auto-increment numbered badge: red circle + white number,
+                // QQ-style auto-increment numbered badge: circle + white number,
                 // the glyph bounding box (ink extents) centred on the circle centre
                 const double cx = shape.x1 + dx, cy = shape.y1 + dy;
                 const double r = std::max(10.0, shape.fontSize * 0.9);
-                cr->set_source_rgba(1.0, 0.13, 0.1, 0.95);
+                cr->set_source_rgba(annoColor.get_red(), annoColor.get_green(), annoColor.get_blue(), 0.95);
                 cr->arc(cx, cy, r, 0.0, 2.0 * M_PI);
                 cr->fill();
                 const Glib::ustring label = Glib::ustring::format(shape.number);
@@ -913,6 +1061,7 @@ private:
     Gtk::Fixed*        _pFixed{nullptr};
     Gtk::DrawingArea*  _pArea{nullptr};
     Gtk::Box*          _pToolbar{nullptr};
+    Gtk::Box*          _pRow1{nullptr};   // OrangeArk: toolbar icon row
     Gtk::Entry*        _pEntry{nullptr};
 
     bool _selecting{false};
@@ -925,6 +1074,8 @@ private:
     std::vector<std::pair<Tool, Gtk::Button*>> _pToolButtons; // OrangeArk: tool buttons for active highlight
     Glib::ustring _annoFontName{"Microsoft YaHei"}; // OrangeArk: text annotation font
     int  _annoFontSize{18};                         // OrangeArk: text annotation size
+    int  _annoThickness{6};                         // OrangeArk: annotation line thickness (toolbar slider)
+    Glib::ustring _annoColor{"#e53935"};            // OrangeArk: annotation colour (toolbar swatch)
     int  _selX1{0}, _selY1{0}, _selX2{-1}, _selY2{-1};
     int  _textAnnoX{0}, _textAnnoY{0};
     int  _movingIdx{-1};

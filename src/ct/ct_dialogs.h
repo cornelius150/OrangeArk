@@ -105,6 +105,10 @@ Gtk::TreeModel::iterator choose_item_dialog(Gtk::Window& parent,
                                  std::optional<std::pair<int,int>> use_size = std::nullopt,
                                  const bool column_is_colour = false);
 
+// OrangeArk: paged grid picker for special characters — returns the picked
+// character or an empty string when cancelled
+Glib::ustring special_char_pick_dialog(Gtk::Window& parent, const Glib::ustring& frequentChars);
+
 // Dialog to select between the Selected Node/Selected Node + Subnodes/All Tree
 CtExporting selnode_selnodeandsub_alltree_dialog(Gtk::Window& parent,
                                                  bool also_selection,

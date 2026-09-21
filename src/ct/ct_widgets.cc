@@ -227,7 +227,7 @@ Gtk::StatusIcon* CtStatusIcon::get()
 {
     if (not _rStatusIcon) {
         _rStatusIcon = Gtk::StatusIcon::create(CtConst::APP_NAME);
-        _rStatusIcon->set_title(CtConst::APP_NAME);
+        _rStatusIcon->set_title(CtConst::APP_NAME_DISPLAY);
         _rStatusIcon->set_tooltip_markup(_("OrangeArk Hierarchical Note Taking"));
         _rStatusIcon->signal_button_press_event().connect([&](GdkEventButton* event) {
             if (event->button == 1) { _ctApp.systray_show_hide_windows(); }

@@ -132,7 +132,7 @@ void CtMenu::init_actions(CtActions* pActions)
             _("Insert Table of Contents and Headers Collapsors/Expanders"), sigc::mem_fun(*pActions, &CtActions::toc_insert)});
         _actions.push_back(CtMenuAction{editor_cat, "insert_timestamp", "ct_timestamp", _("Insert Timestam_p"), KB_SHIFT+KB_ALT+"m",
             _("Insert Timestamp"), sigc::mem_fun(*pActions, &CtActions::timestamp_insert)});
-        _actions.push_back(CtMenuAction{editor_cat, "insert_special_char", "ct_insert", _("Insert _Special Character..."), None,
+        _actions.push_back(CtMenuAction{editor_cat, "insert_special_char", "ct_special_char", _("Insert _Special Character..."), None,
             _("Insert a Special Character"), sigc::mem_fun(*pActions, &CtActions::special_char_insert)});
         _actions.push_back(CtMenuAction{editor_cat, "insert_horiz_rule", "ct_horiz_rule", _("Insert _Horizontal Rule"), KB_CONTROL+"r",
             _("Insert Horizontal Rule"), sigc::mem_fun(*pActions, &CtActions::horizontal_rule_insert)});

@@ -284,13 +284,14 @@ std::string CtMainWin::get_text_tag_name_exist_or_create(const std::string& prop
             }
             else if (CtConst::TAG_PROP_VAL_SUB == propertyValue or CtConst::TAG_PROP_VAL_SUP == propertyValue) {
                 rTextTag->property_scale() = PANGO_SCALE_X_SMALL;
+                // OrangeArk: rise is based on the rich-text font size; when the
+                // font string carries no usable size fall back to 11pt so the
+                // superscript is clearly RAISED (subscript clearly lowered)
                 int propRise = Pango::FontDescription(_pCtConfig->rtFont).get_size();
-                if (CtConst::TAG_PROP_VAL_SUB == propertyValue) {
-                    propRise /= -4;
+                if (propRise <= 0) {
+                    propRise = 11 * PANGO_SCALE;
                 }
-                else {
-                    propRise /= 2;
-                }
+                propRise = (CtConst::TAG_PROP_VAL_SUB == propertyValue) ? -propRise / 4 : propRise / 2;
                 rTextTag->property_rise() = propRise;
             }
             else {

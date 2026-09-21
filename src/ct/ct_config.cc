@@ -795,6 +795,12 @@ void CtConfig::_populate_data_from_keyfile()
     if (toolbarUiList == CtConst::TOOLBAR_VEC_DEFAULT_PREV) {
         toolbarUiList = CtConst::TOOLBAR_VEC_DEFAULT;
     }
+    // OrangeArk: make sure the single special-character picker button exists
+    // (it replaces the several per-symbol quick buttons)
+    if (toolbarUiList.find("insert_special_char") == std::string::npos) {
+        if (not toolbarUiList.empty()) toolbarUiList += ",";
+        toolbarUiList += "insert_special_char";
+    }
     _populate_bool_from_keyfile("systray", &systrayOn);
     _populate_bool_from_keyfile("start_on_systray", &startOnSystray);
     if (savedFromPyGtk) {

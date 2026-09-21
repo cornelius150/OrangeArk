@@ -52,9 +52,17 @@ static void _apply_global_gtk_css()
             g_object_set(pSettings, "gtk-overlay-scrolling", FALSE, nullptr);
         }
         auto rCss = Gtk::CssProvider::create();
+        // OrangeArk: -GtkScrollbar-has-{backward,forward}-stepper tells GTK3 to
+        // actually CREATE the up/down arrow buttons — without these style
+        // properties the scrollbar buttons are never instantiated, no matter
+        // how they are styled (that is why the arrows did not appear before)
         rCss->load_from_data(
             "combobox arrow { min-width: 14px; min-height: 14px; }\n"
-            "scrollbar { background-color: #f0f0f0; min-width: 15px; min-height: 15px; }\n"
+            "scrollbar { -GtkScrollbar-has-backward-stepper: true;\n"
+            "  -GtkScrollbar-has-forward-stepper: true;\n"
+            "  -GtkScrollbar-has-secondary-backward-stepper: false;\n"
+            "  -GtkScrollbar-has-secondary-forward-stepper: false;\n"
+            "  background-color: #f0f0f0; min-width: 15px; min-height: 15px; }\n"
             "scrollbar slider { background-color: #b8b8b8; min-width: 13px; min-height: 24px; border-radius: 2px; }\n"
             "scrollbar slider:hover { background-color: #9a9a9a; }\n"
             "scrollbar button { min-width: 15px; min-height: 15px; padding: 0px; margin: 0px;\n"

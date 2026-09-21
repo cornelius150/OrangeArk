@@ -237,6 +237,94 @@ Gtk::TreeModel::iterator CtDialogs::choose_item_dialog(Gtk::Window& parent,
 #endif
 }
 
+// OrangeArk: paged grid picker for special characters (WPS/Word style):
+// one notebook tab per symbol category, each page a FlowBox grid of tiles
+Glib::ustring CtDialogs::special_char_pick_dialog(Gtk::Window& parent, const Glib::ustring& frequentChars)
+{
+    static const std::vector<std::pair<const char*, const char*>> kCategories = {
+        {"标点符号", "“”„‘’•…—–§¶†‡©®™°℃℉№‰"},
+        {"数学单位", "±×÷≈≠≤≥√∑∏∫µ½⅓⅔¼¾⅛⅜⅝⅞¹²³"},
+        {"箭头", "←↑→↓↔↵⇐⇒⇔⇑⇓➔➜➤▶◀▲▼◄►"},
+        {"希腊字母", "αβγδεζηθικλμνξοπρστυφχψωΓΔΘΛΞΠΣΦΨΩ"},
+        {"数字序号", "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾❿㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩"},
+        {"图形符号", "○●◎⊙◇◆□■△▲▽▼☆★♡♥♣♦♠☐☑☒✓✔✗✘"},
+        {"货币拉丁", "€£¥₩₽¢¤æÆœŒßØøåÅðÐþ"},
+        {"音乐星象", "♪♫♬♩☉☀☁☂☃"},
+    };
+    Glib::ustring pickedChar;
+
+#if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
+    Gtk::Dialog dialog{_("Special Characters"), parent,
+                       Gtk::DialogFlags::DIALOG_MODAL | Gtk::DialogFlags::DIALOG_DESTROY_WITH_PARENT};
+    dialog.set_transient_for(parent);
+    (void)CtMiscUtil::dialog_add_button(&dialog, _("Cancel"), Gtk::RESPONSE_REJECT, "ct_cancel");
+    (void)CtMiscUtil::dialog_add_button(&dialog, _("OK"), Gtk::RESPONSE_ACCEPT, "ct_done", true/*isDefault*/);
+    dialog.set_position(Gtk::WindowPosition::WIN_POS_CENTER_ON_PARENT);
+#else
+    Gtk::Dialog dialog{_("Special Characters"), parent, true/*modal*/};
+    dialog.set_transient_for(parent);
+    dialog.add_button(_("Cancel"), Gtk::ResponseType::REJECT);
+    dialog.add_button(_("OK"), Gtk::ResponseType::ACCEPT);
+    dialog.set_default_response(Gtk::ResponseType::ACCEPT);
+#endif
+    dialog.set_default_size(620, 440);
+
+    auto f_add_page = [&](Gtk::Notebook* pBook, const Glib::ustring& chars, const Glib::ustring& title) {
+        auto pScrolled = Gtk::manage(new Gtk::ScrolledWindow{});
+#if GTKMM_MAJOR_VERSION < 4
+        pScrolled->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
+#else
+        pScrolled->set_policy(Gtk::PolicyType::AUTOMATIC, Gtk::PolicyType::AUTOMATIC);
+#endif
+        auto pFlowBox = Gtk::manage(new Gtk::FlowBox{});
+        pFlowBox->set_max_children_per_line(14);
+        pFlowBox->set_min_children_per_line(8);
+        pFlowBox->set_homogeneous(true);
+        pFlowBox->set_selection_mode(Gtk::SELECTION_NONE);
+        for (gunichar ch : Glib::ustring{chars}) {
+            const Glib::ustring oneChar{1, ch};
+            auto pLabel = Gtk::manage(new Gtk::Label(oneChar));
+            pLabel->set_size_request(38, 34);
+            pLabel->set_halign(Gtk::ALIGN_CENTER);
+            pLabel->set_valign(Gtk::ALIGN_CENTER);
+#if GTKMM_MAJOR_VERSION < 4
+            pLabel->override_font(Pango::FontDescription("14"));
+#else
+            pLabel->set_font(Pango::FontDescription("14"));
+#endif
+            pFlowBox->insert(*pLabel, -1);
+        }
+        pFlowBox->signal_child_activated().connect([&](Gtk::FlowBoxChild* pChild) {
+            if (auto* pLbl = dynamic_cast<Gtk::Label*>(pChild->get_child())) {
+                pickedChar = pLbl->get_text();
+                dialog.response(Gtk::RESPONSE_ACCEPT);
+            }
+        });
+        pScrolled->add(*pFlowBox);
+        pBook->append_page(*pScrolled, title);
+    };
+
+    auto pBook = Gtk::manage(new Gtk::Notebook{});
+    pBook->set_scrollable(true);
+    if (not frequentChars.empty()) {
+        f_add_page(pBook, frequentChars, "常用");
+    }
+    for (const auto& category : kCategories) {
+        f_add_page(pBook, category.second, category.first);
+    }
+#if GTKMM_MAJOR_VERSION < 4
+    Gtk::Box* pContentArea = dialog.get_content_area();
+    pContentArea->pack_start(*pBook);
+#else
+    dialog.get_content_area()->append(*pBook);
+#endif
+    pBook->show_all();
+    if (Gtk::RESPONSE_ACCEPT == dialog.run() and not pickedChar.empty()) {
+        return pickedChar;
+    }
+    return Glib::ustring{};
+}
+
 Glib::ustring CtDialogs::img_n_entry_dialog(Gtk::Window& parent,
                                             const Glib::ustring& title,
                                             const Glib::ustring& entry_content,

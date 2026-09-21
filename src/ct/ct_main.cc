@@ -133,6 +133,10 @@ int main(int argc, char *argv[])
 
     g_log_set_default_handler(glib_log_handler, gtk_logger.get()); // Redirect Gtk log messages to spdlog
 
+    // OrangeArk: user-visible application name (taskbar / tray / window manager),
+    // keep in sync with APP_NAME_DISPLAY in ct_const.h
+    Glib::set_application_name("OrangeArk 橙子笔记");
+
     bool is_secondary_session{false};
     for (int i = 1; i < argc; ++i) {
         if (0 == strcmp("-S", argv[i]) or

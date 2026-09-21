@@ -33,6 +33,9 @@ struct CtConst {
 
 const inline static gchar* CT_VERSION  {PACKAGE_VERSION};
 const inline static gchar* APP_NAME    {PACKAGE_NAME};
+// OrangeArk: user-visible display name (tray title etc.) — APP_NAME doubles as
+// the document XML root tag / config dir name and must stay lowercase
+const inline static gchar* APP_NAME_DISPLAY {"OrangeArk"};
 
 const inline static std::string CTDOC_XML_NOENC     {".ctd"};
 const inline static std::string CTDOC_XML_ENC       {".ctz"};
@@ -276,7 +279,7 @@ const inline static gchar* TOOLBAR_VEC_DEFAULT {
     "separator,handle_image,take_screenshot,handle_table,handle_codebox,handle_latex,handle_embfile,"
     "handle_link,handle_anchor,separator,fmt_clone,font_family,font_size,fmt_color_fg,"
     "fmt_color_bg,fmt_bold,fmt_italic,fmt_underline,fmt_strikethrough,"
-    "fmt_h1,fmt_h2,fmt_h3,fmt_small,fmt_subscript,fmt_superscript,fmt_monospace"
+    "fmt_h1,fmt_h2,fmt_h3,fmt_small,fmt_subscript,fmt_superscript,fmt_monospace,insert_special_char"
 };
 // OrangeArk: toolbar defaults used to upgrade existing configs (chained in ct_config.cc)
 const inline static gchar* TOOLBAR_VEC_DEFAULT_PREV {
