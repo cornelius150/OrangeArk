@@ -124,88 +124,9 @@ static void _force_combo_arrow_visible(Gtk::Widget* pWidget)
     }
 }
 
-#if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
-// OrangeArk: toolbar font/size picker — a MenuButton whose popover holds a
-// Gtk::ListBox inside a Gtk::ScrolledWindow, so the popup has a REAL classic
-// scrollbar (draggable slider + up/down stepper arrows). GTK3 renders
-// ComboBoxText popups as GtkMenu, which can never show a scrollbar (the
-// -GtkComboBox-appears-as-list style property is ignored in GTK3) — that was
-// exactly the "no slider + blank strip on top" dropdown complaint.
-class CtListPickerButton : public Gtk::MenuButton
-{
-public:
-    CtListPickerButton(const std::vector<Glib::ustring>& items, int viewWidthPx)
-    {
-        set_relief(Gtk::RELIEF_NONE);
-        set_size_request(viewWidthPx, -1);
-        set_halign(Gtk::Align::ALIGN_FILL);
-        _pLabel = Gtk::manage(new Gtk::Label(items.empty() ? Glib::ustring{} : items.front()));
-        _pLabel->set_halign(Gtk::Align::ALIGN_START);
-        _pLabel->set_ellipsize(Pango::ELLIPSIZE_END);
-        _pLabel->set_margin_start(4);
-        add(*_pLabel);
-
-        for (const Glib::ustring& text : items) {
-            auto* pRow = Gtk::manage(new Gtk::ListBoxRow());
-            auto* pL = Gtk::manage(new Gtk::Label(text));
-            pL->set_halign(Gtk::Align::ALIGN_START);
-            pL->set_margin_top(2);
-            pL->set_margin_bottom(2);
-            pL->set_margin_start(8);
-            pRow->add(*pL);
-            _pListBox->append(*pRow);
-            _pRowText.push_back(text);
-        }
-        _pListBox->set_activate_on_single_click(true);
-        _pListBox->signal_row_activated().connect([this](Gtk::ListBoxRow* pRow) {
-            if (not pRow) return;
-            const int idx = pRow->get_index();
-            if (idx < 0 or idx >= static_cast<int>(_pRowText.size())) return;
-            _activeIdx = idx;
-            _pLabel->set_text(_pRowText.at(static_cast<size_t>(idx)));
-            if (_pPopover) _pPopover->popdown();
-            _sigSelected.emit(idx, _pRowText.at(static_cast<size_t>(idx)));
-        });
-
-        auto* pScroll = Gtk::manage(new Gtk::ScrolledWindow());
-        pScroll->set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_ALWAYS);
-        // ~10 visible rows, but never taller than the item list itself
-        const int rowH = 30;
-        const int wantH = static_cast<int>(_pRowText.size()) * rowH + 8;
-        pScroll->set_min_content_height(std::min(320, std::max(rowH, wantH)));
-        pScroll->set_min_content_width(viewWidthPx + 40);
-        pScroll->add(*_pListBox);
-
-        _pPopover = Gtk::manage(new Gtk::Popover(*this));
-        _pPopover->add(*pScroll);
-        _pPopover->set_position(Gtk::POS_BOTTOM);
-        set_popover(*_pPopover);
-    }
-
-    int active_index() const { return _activeIdx; }
-    Glib::ustring active_text() const
-    {
-        return (_activeIdx >= 0 and _activeIdx < static_cast<int>(_pRowText.size()))
-            ? _pRowText.at(static_cast<size_t>(_activeIdx)) : Glib::ustring{};
-    }
-    void set_active_index(int idx)
-    {
-        _activeIdx = idx;
-        if (idx >= 0 and idx < static_cast<int>(_pRowText.size())) {
-            _pLabel->set_text(_pRowText.at(static_cast<size_t>(idx)));
-        }
-    }
-    sigc::signal<void(int, const Glib::ustring&)>& signal_selected() { return _sigSelected; }
-
-private:
-    Gtk::Popover* _pPopover{nullptr};
-    Gtk::ListBox* _pListBox{Gtk::manage(new Gtk::ListBox())};
-    Gtk::Label*   _pLabel{nullptr};
-    std::vector<Glib::ustring> _pRowText;
-    int _activeIdx{-1};
-    sigc::signal<void(int, const Glib::ustring&)> _sigSelected;
-};
-#endif
+// OrangeArk: toolbar font/size picker + system-font enumeration live in the
+// shared header (also used by the screenshot text panel)
+#include "ct_list_picker.h"
 
 #if GTKMM_MAJOR_VERSION >= 4
 std::vector<Gtk::Box*> CtMenu::build_toolbars4(Gtk::MenuButton*& pRecentDocsMenuButton, Gtk::Button*& pButtonSave)
@@ -903,89 +824,17 @@ std::vector<Gtk::Toolbar*> CtMenu::build_toolbars(Gtk::MenuToolButton*& pRecentD
 #endif /* GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED) */
 
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
-// OrangeArk: toolbar font family picker — lists the system fonts (via Pango)
-Gtk::MenuButton* CtMenu::_setup_font_family_combo()
+// OrangeArk: toolbar font family picker — lists the system fonts (via Pango,
+// shared enumeration in ct_list_picker.h)
+Gtk::Button* CtMenu::_setup_font_family_combo()
 {
-    // enumerate the installed font families straight from the system
-    std::vector<Glib::ustring> familyNames;
-    try {
-        // OrangeArk: use the stable Pango C API (pangomm-1.4 lacks CairoFontMap::get_default)
-        if (PangoFontMap* pFontMap = pango_cairo_font_map_get_default()) {
-            int nFamilies = 0;
-            PangoFontFamily** ppFamilies = nullptr;
-            pango_font_map_list_families(pFontMap, &ppFamilies, &nFamilies);
-            for (int idx = 0; idx < nFamilies; ++idx) {
-                if (const char* pName = pango_font_family_get_name(ppFamilies[idx])) {
-                    if (*pName != '\0') {
-                        familyNames.push_back(pName);
-                    }
-                }
-            }
-            g_free(ppFamilies);
-        }
-    }
-    catch (std::exception& e) {
-        spdlog::warn("font family enumeration failed: {}", e.what());
-    }
-    std::sort(familyNames.begin(), familyNames.end(),
-              [](const Glib::ustring& a, const Glib::ustring& b) { return a.lowercase() < b.lowercase(); });
-    // OrangeArk: drop the fonts that would render CJK text as boxes/garbage —
-    // symbol/dingbat fonts, Japanese-only families and ExtB glyph extensions
-    static const char* kExcluded[] = {
-        "symbol", "wingdings", "wingdings 2", "wingdings 3", "webdings", "marlett",
-        "mt extra", "ms gothic", "ms pgothic", "ms ui gothic", "yu gothic", "yu gothic ui",
-        "meiryo", "meiryo ui", "malgun gothic", "gulim", "dotum", "batang", "mingliu",
-        "eudc", "system", "fixedsys", "terminal", "small fonts", "ms sans serif", "ms serif",
-        "modern", "roman", "script", "802", "outlook"};
-    auto isExcluded = [](const Glib::ustring& name) {
-        const Glib::ustring lower = name.lowercase();
-        for (const char* bad : kExcluded) {
-            if (lower == bad) return true;
-        }
-        // partial matches: glyph extension subsets and vertical variants
-        if (lower.find("extb") != Glib::ustring::npos or lower.find("exta") != Glib::ustring::npos) return true;
-        if (lower.rfind("@", 0) == 0) return true;
-        return false;
-    };
-    familyNames.erase(std::remove_if(familyNames.begin(), familyNames.end(), isExcluded), familyNames.end());
-    // common desktop fonts (incl. CJK) first, everything else alphabetically after
-    // them — each preferred font matches either its English or localized name
-    const std::vector<std::pair<const char*, const char*>> common = {
-        {"Microsoft YaHei", "微软雅黑"}, {"SimSun", "宋体"}, {"NSimSun", "新宋体"},
-        {"SimHei", "黑体"}, {"KaiTi", "楷体"}, {"FangSong", "仿宋"}, {"DengXian", "等线"},
-        {"Segoe UI", nullptr}, {"Arial", nullptr}, {"Times New Roman", nullptr},
-        {"Courier New", nullptr}, {"Calibri", nullptr}, {"Consolas", nullptr},
-        {"Verdana", nullptr}, {"Tahoma", nullptr}};
-    auto matchesCommon = [&common](const Glib::ustring& name) -> bool {
-        const Glib::ustring lower = name.lowercase();
-        for (const auto& preferred : common) {
-            if (lower == Glib::ustring(preferred.first).lowercase()) return true;
-            if (preferred.second and lower == Glib::ustring(preferred.second)) return true;
-        }
-        return false;
-    };
-    std::vector<Glib::ustring> ordered;
-    for (const auto& preferred : common) {
-        for (const auto& name : familyNames) {
-            const Glib::ustring lower = name.lowercase();
-            if (lower == Glib::ustring(preferred.first).lowercase() or
-                (preferred.second and lower == Glib::ustring(preferred.second))) {
-                ordered.push_back(name);
-                break;
-            }
-        }
-    }
-    for (const auto& name : familyNames) {
-        if (not matchesCommon(name)) {
-            ordered.push_back(name);
-        }
-    }
+    const std::vector<Glib::ustring> ordered = CtListPicker::ordered_font_families();
     std::vector<Glib::ustring> items;
     items.push_back(_("Font")); // prompt row (row 0)
     for (const auto& name : ordered) {
         items.push_back(name);
     }
-    auto* pPicker = Gtk::manage(new CtListPickerButton(items, 140));
+    auto* pPicker = Gtk::manage(new CtListPicker::CtListPickerButton(items, 140));
     pPicker->signal_selected().connect([this](int idx, const Glib::ustring& text) {
         if (idx > 0) {
             _pCtMainWin->get_ct_actions()->apply_tag_font_family(text);
@@ -994,8 +843,8 @@ Gtk::MenuButton* CtMenu::_setup_font_family_combo()
     return pPicker;
 }
 
-// OrangeArk: toolbar font size picker (scrolled popover list, see CtListPickerButton)
-Gtk::MenuButton* CtMenu::_setup_font_size_combo()
+// OrangeArk: toolbar font size picker (scrolled popover list, see ct_list_picker.h)
+Gtk::Button* CtMenu::_setup_font_size_combo()
 {
     const std::vector<int> sizes = {8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 22, 24, 28, 32, 36, 48, 72};
     std::vector<Glib::ustring> items;
@@ -1003,7 +852,7 @@ Gtk::MenuButton* CtMenu::_setup_font_size_combo()
     for (const int size : sizes) {
         items.push_back(std::to_string(size));
     }
-    auto* pPicker = Gtk::manage(new CtListPickerButton(items, 72));
+    auto* pPicker = Gtk::manage(new CtListPicker::CtListPickerButton(items, 72));
     pPicker->signal_selected().connect([this](int idx, const Glib::ustring& text) {
         if (idx > 0) {
             _pCtMainWin->get_ct_actions()->apply_tag_font_size(text);

@@ -293,7 +293,16 @@ void CtApp::on_activate()
         }
         pAppWindow->maybe_show_start_dialog();
         present_main_window(pAppWindow);
-    }
+        // OrangeArk: GUI self-test hook — setting ORANGEARK_SCREENSHOT_SELFTEST=1
+        // auto-opens the region screenshot overlay a few seconds after startup,
+        // so automated tests do not need the Shift+Alt+X accelerator
+        if (Glib::getenv("ORANGEARK_SCREENSHOT_SELFTEST") == "1") {
+            CtMainWin* pSelfTestWin = pAppWindow;
+            Glib::signal_timeout().connect_once([pSelfTestWin]() {
+                spdlog::info("selftest: auto-opening the screenshot overlay");
+                pSelfTestWin->get_ct_actions()->screenshot();
+            }, 4000);
+        }    }
     else {
         // start of the second instance
         if (_new_window) {

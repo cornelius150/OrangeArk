@@ -77,7 +77,11 @@ def main():
         out.append("</div>")
     out.append("</body></html>")
 
-    dest = ROOT / "icon-preview.html"
+    # written into build/ on purpose: build is gitignored, so the preview never
+    # ends up in a commit
+    dest_dir = ROOT / "build"
+    dest_dir.mkdir(exist_ok=True)
+    dest = dest_dir / "icon-preview.html"
     dest.write_text("\n".join(out), encoding="utf-8")
     print("wrote", dest)
 

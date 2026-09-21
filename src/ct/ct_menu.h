@@ -191,8 +191,8 @@ private:
     const char*              _get_popup_menu_ui_str_terminal();
     // OrangeArk: toolbar font family / size pickers (GTK3 popover lists with a
     // real scrolled popup; the old ComboBoxText menu popup cannot scroll)
-    Gtk::MenuButton*         _setup_font_family_combo();
-    Gtk::MenuButton*         _setup_font_size_combo();
+    Gtk::Button*             _setup_font_family_combo();
+    Gtk::Button*             _setup_font_size_combo();
 
 private:
     CtMainWin*                    const _pCtMainWin;

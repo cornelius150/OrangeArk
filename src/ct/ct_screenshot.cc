@@ -9,12 +9,14 @@
 #include "ct_screenshot.h"
 #include "ct_main_win.h"
 #include "ct_logging.h"
+#include "ct_list_picker.h" // OrangeArk: shared scrolling picker + system fonts
 #include <gdkmm/general.h>
 #include <pangomm/layout.h>
 #include <pangomm/fontdescription.h>
 #include <gtkmm/cssprovider.h>
 #include <giomm/memoryinputstream.h>
 #include <cairo.h>
+#include <algorithm>
 #include <cmath>
 #include <vector>
 
@@ -24,7 +26,7 @@ namespace CtScreenshot
 // One annotation drawn by the user on top of the selection
 struct CtAnnoShape
 {
-    enum class Type { Pen, Arrow, Rect, Ellipse, Text, Counter };
+    enum class Type { Pen, Arrow, Rect, Ellipse, Text, Counter, Mosaic, Blur };
     Type                  type{Type::Pen};
     std::vector<Gdk::Point> pts;          // for Pen
     int                   x1{0}, y1{0}, x2{0}, y2{0}; // bounding for others
@@ -52,12 +54,8 @@ static Glib::RefPtr<Gdk::Pixbuf> _svg_icon(const char* pSvg, const int sizePx)
     }
 }
 
-// OrangeArk: font families offered for text/counter annotations
-struct FontDef { const char* label; const char* family; };
-static const FontDef kAnnoFonts[] = {
-    {"雅黑", "Microsoft YaHei"}, {"宋体", "SimSun"}, {"黑体", "SimHei"},
-    {"楷体", "KaiTi"}, {"仿宋", "FangSong"}, {"Arial", "Arial"}, {"Times", "Times New Roman"},
-};
+// OrangeArk: the screenshot text panel offers the REAL system fonts (same
+// Pango enumeration as the main toolbar font picker, shared in ct_list_picker.h)
 
 // toolbar icon artwork (16x16 viewBox, ink #444, the arrow in QQ blue)
 static const char* kSvgRect =
@@ -86,6 +84,19 @@ static const char* kSvgCounter =
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
     "<circle cx='8' cy='8' r='5.9' fill='none' stroke='#444444' stroke-width='1.5'/>"
     "<path d='M6.9 6.3 L8.4 5.3 V10.9' stroke='#444444' stroke-width='1.5' fill='none' stroke-linecap='round'/>"
+    "</svg>";
+static const char* kSvgMosaic =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<rect x='2' y='2' width='5' height='5' fill='#8a8a8a'/>"
+    "<rect x='9' y='2' width='5' height='5' fill='#c9c9c9'/>"
+    "<rect x='2' y='9' width='5' height='5' fill='#c9c9c9'/>"
+    "<rect x='9' y='9' width='5' height='5' fill='#8a8a8a'/>"
+    "</svg>";
+static const char* kSvgBlur =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<path d='M3 13 L13 3' stroke='#444444' stroke-width='2.2' stroke-linecap='round' opacity='0.9'/>"
+    "<path d='M3 8.5 L8.5 3' stroke='#444444' stroke-width='2.0' stroke-linecap='round' opacity='0.55'/>"
+    "<path d='M8 13 L13 8' stroke='#444444' stroke-width='2.0' stroke-linecap='round' opacity='0.55'/>"
     "</svg>";
 static const char* kSvgUndo =
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
@@ -116,7 +127,8 @@ static const char* kSvgOk =
 class CtScreenshotSelector : public Gtk::Window
 {
 public:
-    enum class Tool { None, Pen, Arrow, Rect, Ellipse, Text, Counter, Move };
+    enum class Tool { None, Pen, Arrow, Rect, Ellipse, Text, Counter, Mosaic, Blur, Move };
+    struct ToolDef { const char* svg; const char* tip; Tool tool; };
 
     CtScreenshotSelector(Glib::RefPtr<Gdk::Pixbuf> rShot)
      : _rShot{rShot}
@@ -145,6 +157,9 @@ public:
         _pEntry->set_no_show_all(true);
         _pEntry->signal_activate().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_text_commit));
         _pEntry->signal_key_press_event().connect(sigc::mem_fun(*this, &CtScreenshotSelector::_on_entry_key_press), false);
+        if (_rToolbarCss) {
+            _pEntry->get_style_context()->add_provider(_rToolbarCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+        }
 
         // the fixed container lets us position area/toolbar/entry freely
         _pFixed = Gtk::manage(new Gtk::Fixed());
@@ -169,6 +184,10 @@ public:
     void start()
     {
         fullscreen();
+        // the screenshot overlay must float above every other window —
+        // otherwise whatever the user has focused covers it and the
+        // selection never receives the drag
+        set_keep_above(true);
         show_all();
         _pEntry->hide();
         _pToolbar->hide();
@@ -190,8 +209,9 @@ protected:
         _pToolbar->pack_start(*pRow1, Gtk::PACK_SHRINK);
 
         // OneNote-like style: light floating bar so every tool stays visible
+        _rToolbarCss = Gtk::CssProvider::create();
         try {
-            auto rCss = Gtk::CssProvider::create();
+            auto rCss = _rToolbarCss;
             rCss->load_from_data(
                 ".screenshot-bar { background: rgba(250,250,250,0.98); border: 1px solid #c8c8c8;"
                 " border-radius: 8px; padding: 3px; }\n"
@@ -215,49 +235,32 @@ protected:
         }
 
         // annotation tools, laid out exactly like the QQ screenshot bar:
-        // rect / ellipse / arrow / pen / text / counter
+        // rect / ellipse / arrow / pen / text / counter | mosaic / blur
         // Clicking any toolbar button first commits a pending text annotation.
-        struct ToolDef { const char* svg; const char* tip; Tool tool; };
         const std::vector<ToolDef> annTools = {
             {kSvgRect,    "绘制矩形", Tool::Rect},
             {kSvgEllipse, "绘制椭圆", Tool::Ellipse},
             {kSvgArrow,   "绘制箭头", Tool::Arrow},
             {kSvgPen,     "自由绘制", Tool::Pen},
-            {kSvgText,    "文字：点空白处落字；点已写的文字可重新调整字体字号颜色", Tool::Text},
+            {kSvgText,    "文字：点空白处落字；点住已写的文字拖动可移动，单击选中后可在下方调整字体字号颜色", Tool::Text},
             {kSvgCounter, "插入自动递增的序号", Tool::Counter},
         };
+        const std::vector<ToolDef> hideTools = {
+            {kSvgMosaic, "马赛克：拖动框住需要打码的区域", Tool::Mosaic},
+            {kSvgBlur,   "模糊：拖动框住需要模糊的区域", Tool::Blur},
+        };
         for (const ToolDef& td : annTools) {
-            auto* pBtn = Gtk::manage(new Gtk::Button());
-            pBtn->set_tooltip_text(td.tip);
-            pBtn->set_relief(Gtk::RELIEF_NONE);
-            pBtn->set_focus_on_click(false);
-            if (Glib::RefPtr<Gdk::Pixbuf> rPix = _svg_icon(td.svg, 20)) {
-                auto* pImg = Gtk::manage(new Gtk::Image(rPix));
-                pBtn->set_image(*pImg);
-                pBtn->set_always_show_image(true);
-            }
-            else {
-                pBtn->set_label("·");
-            }
-            pBtn->signal_clicked().connect([this, td, pBtn]() {
-                _finish_text_entry();
-                _select_tool(td.tool, pBtn);
-                _editIdx = -1;
-                // OrangeArk: clicking a tool pops up ITS options below the
-                // toolbar (QQ screenshot style) — shapes get 粗细+颜色,
-                // text/counter get 字体+字号+颜色
-                _show_tool_panel(td.tool);
-                _pArea->grab_focus();
-            });
-            _pToolButtons.push_back({td.tool, pBtn});
-            _pRow1->pack_start(*pBtn, Gtk::PACK_SHRINK);
+            _toolbar_add_tool_button(td);
         }
+        _toolbar_add_separator();
+        for (const ToolDef& td : hideTools) {
+            _toolbar_add_tool_button(td);
+        }
+        _toolbar_add_separator();
         // highlight the default tool so the active tool is visible from the start
         for (auto& pair : _pToolButtons) {
             if (pair.first == _tool) { _select_tool(_tool, pair.second); break; }
         }
-
-        _toolbar_add_separator();
 
         auto* pBtnUndo = Gtk::manage(new Gtk::Button());
         pBtnUndo->set_tooltip_text("撤销上一个标注");
@@ -329,13 +332,21 @@ protected:
         // text tool, live-edit that annotation.
         _pPanel = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 2});
         _pPanel->get_style_context()->add_class("screenshot-bar");
+        // OrangeArk: give the panel an explicit size — a freshly-shown widget
+        // measured 0x0 in GTK 3.24.52 and GtkFixed sizes children by their
+        // requisition, so without this the options panel stayed invisible
+        // (the "点工具没反应 / 字体字号面板不见了" bug)
+        _pPanel->set_size_request(560, 44);
         _pPanel->set_no_show_all(true);
+        if (_rToolbarCss) {
+            _pPanel->get_style_context()->add_provider(_rToolbarCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+        }
 
         _pPanelShape = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 8});
         _pPanelShape->get_style_context()->add_class("anno-row2");
         {
-            auto* pLabel = Gtk::manage(new Gtk::Label("粗细"));
-            _pPanelShape->pack_start(*pLabel, Gtk::PACK_SHRINK);
+            _pThicknessLabel = Gtk::manage(new Gtk::Label("粗细"));
+            _pPanelShape->pack_start(*_pThicknessLabel, Gtk::PACK_SHRINK);
             _pShapeScale = Gtk::manage(new Gtk::Scale(Gtk::ORIENTATION_HORIZONTAL));
             _pShapeScale->set_range(1, 48);
             _pShapeScale->set_increments(1, 4);
@@ -366,17 +377,23 @@ protected:
         _pPanelText = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 8});
         _pPanelText->get_style_context()->add_class("anno-row2");
         {
-            _pFontCombo = Gtk::manage(new Gtk::ComboBoxText());
-            for (const FontDef& f : kAnnoFonts) _pFontCombo->append(f.label);
-            _pFontCombo->set_tooltip_text("文字字体");
-            _pFontCombo->signal_changed().connect([this]() {
-                const Glib::ustring label = _pFontCombo->get_active_text();
-                for (const FontDef& f : kAnnoFonts) {
-                    if (label == f.label) { _annoFontName = f.family; break; }
-                }
-                _apply_panel_edit();
+            // OrangeArk: REAL system fonts (enumerated via Pango, shared with
+            // the main toolbar picker) — common desktop/CJK fonts first.
+            // The list opens INSIDE the overlay (a Gtk::Fixed child placed
+            // above the panel): a separate popup Gtk::Window floating over
+            // the fullscreen overlay never receives input on this GTK/Windows
+            // build, while in-overlay widgets demonstrably do.
+            _fontFamilies = CtListPicker::ordered_font_families();
+            spdlog::info("selftest: system font families found: {}", _fontFamilies.size());
+            _pFontPicker = Gtk::manage(new Gtk::Button("字体"));
+            _pFontPicker->set_size_request(120, -1);
+            _pFontPicker->set_relief(Gtk::RELIEF_NONE);
+            _pFontPicker->set_tooltip_text("文字字体（系统全部字体）");
+            _pFontPicker->signal_clicked().connect([this]() {
+                if (_pFontList) _hide_font_list();
+                else _show_font_list();
             });
-            _pPanelText->pack_start(*_pFontCombo, Gtk::PACK_SHRINK);
+            _pPanelText->pack_start(*_pFontPicker, Gtk::PACK_SHRINK);
 
             auto* pSizeLabel = Gtk::manage(new Gtk::Label("字号"));
             _pPanelText->pack_start(*pSizeLabel, Gtk::PACK_SHRINK);
@@ -415,6 +432,49 @@ protected:
         _pRow1->pack_start(*pSep, Gtk::PACK_SHRINK);
     }
 
+    // OrangeArk: one tool button in the toolbar row — clicking it selects the
+    // tool and pops up ITS options panel right below the toolbar
+    void _toolbar_add_tool_button(const ToolDef& td)
+    {
+        auto* pBtn = Gtk::manage(new Gtk::Button());
+        pBtn->set_tooltip_text(td.tip);
+        pBtn->set_relief(Gtk::RELIEF_NONE);
+        pBtn->set_focus_on_click(false);
+        if (Glib::RefPtr<Gdk::Pixbuf> rPix = _svg_icon(td.svg, 20)) {
+            auto* pImg = Gtk::manage(new Gtk::Image(rPix));
+            pBtn->set_image(*pImg);
+            pBtn->set_always_show_image(true);
+        }
+        else {
+            pBtn->set_label("·");
+        }
+        pBtn->signal_clicked().connect([this, td, pBtn]() {
+            spdlog::info("selftest: tool button clicked: {}", static_cast<int>(td.tool));
+            _finish_text_entry();
+            _select_tool(td.tool, pBtn);
+            _editIdx = -1;
+            // OrangeArk: clicking a tool pops up ITS options below the
+            // toolbar (QQ screenshot style) — shapes get 粗细/强度+颜色,
+            // text/counter get 字体+字号+颜色
+            _show_tool_panel(td.tool);
+            _pArea->grab_focus();
+        });
+        _pToolButtons.push_back({td.tool, pBtn});
+        _pRow1->pack_start(*pBtn, Gtk::PACK_SHRINK);
+    }
+
+    // OrangeArk: is this tool a text-ish tool (font/size/colour panel)?
+    static bool _is_text_tool(Tool tool)
+    {
+        return Tool::Text == tool or Tool::Counter == tool;
+    }
+
+    // OrangeArk: is this tool a hide/filter tool (strength slider panel)?
+    static bool _is_filter_tool(Tool tool)
+    {
+        return Tool::Mosaic == tool or Tool::Blur == tool;
+    }
+
     // OrangeArk: switch the active annotation tool and highlight its button,
     // so the user can always tell which tool is in use
     void _select_tool(Tool tool, Gtk::Button* pBtn)
@@ -432,15 +492,25 @@ protected:
     // pops up right below the toolbar and shows the options of the active tool
     void _show_tool_panel(Tool tool)
     {
+        _hide_font_list(); // OrangeArk: switching tools dismisses the font list
         _panelTool = tool;
-        if (Tool::Text == tool or Tool::Counter == tool) {
+        if (_is_text_tool(tool)) {
             _pPanelShape->hide();
             _pPanelText->show_all();
-            if (_pFontCombo->get_active_row_number() < 0) _pFontCombo->set_active(0);
         }
         else {
             _pPanelText->hide();
             _pPanelShape->show_all();
+            // OrangeArk: the slider means thickness for shape tools and
+            // strength (mosaic block size / blur amount) for the hide tools
+            if (_is_filter_tool(tool)) {
+                _pThicknessLabel->set_text("强度");
+                _pShapeScale->set_tooltip_text(Tool::Mosaic == tool ? "马赛克块大小" : "模糊强度");
+            }
+            else {
+                _pThicknessLabel->set_text("粗细");
+                _pShapeScale->set_tooltip_text("线条粗细（箭头/矩形/椭圆/画笔）");
+            }
         }
         _pShapeScale->set_value(_annoThickness);
         _pShapeVal->set_text(std::to_string(_annoThickness));
@@ -448,11 +518,19 @@ protected:
         _pTextSizeVal->set_text(std::to_string(_annoFontSize));
         _pShapeColorBtn->set_rgba(Gdk::RGBA(_annoColor));
         _pTextColorBtn->set_rgba(Gdk::RGBA(_annoColor));
-        _pPanel->show_all();
+        // OrangeArk: show() (not show_all()) — the panel has no_show_all set
+        // (so the initial fullscreen show_all() keeps it hidden), and
+        // gtk_widget_show_all() skips a no_show_all widget ITSELF, which kept
+        // the options panel invisible no matter what
+        _pPanel->show();
         // reposition: right below the toolbar, QQ style
         int panW = 10, panH = 10, panHmin = 0;
         _pPanel->get_preferred_width(panW, panW);
         _pPanel->get_preferred_height(panHmin, panH);
+        // OrangeArk: defensive fallback — some GTK builds measure a freshly
+        // shown widget as 0x0 before its first allocation
+        if (panW < 60) panW = 560;
+        if (panH < 20) panH = 44;
         int tbW = 10, tbH = 10, tbHmin = 0;
         _pToolbar->get_preferred_width(tbW, tbW);
         _pToolbar->get_preferred_height(tbHmin, tbH);
@@ -463,6 +541,7 @@ protected:
         if (py + panH > scrH - 30) py = std::max(4, _toolbarY - panH - 2);
         if (px + panW > scrW - 4) px = std::max(4, scrW - panW - 4);
         _pFixed->move(*_pPanel, px, py);
+        spdlog::info("selftest: panel at {},{} size {}x{}", px, py, panW, panH);
     }
 
     void _hide_tool_panel()
@@ -479,20 +558,75 @@ protected:
         _annoFontSize = shape.fontSize > 0 ? shape.fontSize : _annoFontSize;
         _annoColor = shape.color;
         if (not shape.fontName.empty()) {
-            for (const FontDef& f : kAnnoFonts) {
-                if (shape.fontName == f.family) {
-                    _pFontCombo->set_active(&f - kAnnoFonts);
-                    break;
-                }
-            }
+            _pFontPicker->set_label(Glib::ustring(shape.fontName));
         }
         _annoFontName = shape.fontName.empty() ? _annoFontName : Glib::ustring(shape.fontName);
-        if (CtAnnoShape::Type::Text == shape.type or CtAnnoShape::Type::Counter == shape.type) {
+        const bool isText = CtAnnoShape::Type::Text == shape.type or CtAnnoShape::Type::Counter == shape.type;
+        if (isText) {
             _show_tool_panel(Tool::Text);
         }
         else {
             _annoThickness = shape.thickness;
-            _show_tool_panel(shape.type == CtAnnoShape::Type::Pen ? Tool::Pen : Tool::Rect);
+            if (CtAnnoShape::Type::Mosaic == shape.type)      _show_tool_panel(Tool::Mosaic);
+            else if (CtAnnoShape::Type::Blur == shape.type)   _show_tool_panel(Tool::Blur);
+            else                                              _show_tool_panel(Tool::Rect);
+        }
+    }
+
+    // OrangeArk: in-overlay font list — a Gtk::Fixed child placed right above
+    // the font button. A separate toplevel popup window never receives input
+    // while the fullscreen overlay is up on this GTK/Windows build.
+    void _hide_font_list()
+    {
+        if (not _pFontList) return;
+        _pFixed->remove(*_pFontList); // managed — removed means destroyed
+        _pFontList = nullptr;
+    }
+
+    void _show_font_list()
+    {
+        _hide_font_list();
+        _pFontList = Gtk::manage(new Gtk::ScrolledWindow());
+        _pFontList->set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_ALWAYS);
+        _pFontList->set_size_request(240, 320);
+        auto* pList = Gtk::manage(new Gtk::ListBox());
+        pList->set_activate_on_single_click(true);
+        for (const Glib::ustring& fam : _fontFamilies) {
+            auto* pRow = Gtk::manage(new Gtk::ListBoxRow());
+            auto* pL = Gtk::manage(new Gtk::Label(fam));
+            pL->set_halign(Gtk::Align::ALIGN_START);
+            pL->set_margin_top(2);
+            pL->set_margin_bottom(2);
+            pL->set_margin_start(8);
+            pRow->add(*pL);
+            pList->append(*pRow);
+        }
+        pList->signal_row_activated().connect([this](Gtk::ListBoxRow* pRow) {
+            if (not pRow) return;
+            const int idx = pRow->get_index();
+            if (idx < 0 or idx >= static_cast<int>(_fontFamilies.size())) return;
+            _annoFontName = _fontFamilies.at(static_cast<size_t>(idx));
+            _pFontPicker->set_label(_annoFontName);
+            _hide_font_list();
+            _apply_panel_edit();
+        });
+        _pFontList->add(*pList);
+        // place right above the font button (the panel sits near the bottom)
+        int rx = 0, ry = 0;
+        if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+            rWin->get_origin(rx, ry);
+        }
+        const Gtk::Allocation alloc = _pFontPicker->get_allocation();
+        const int bx = rx + alloc.get_x();
+        const int by = ry + alloc.get_y();
+        int px = bx - 8;
+        int py = by - 320 - 4;
+        if (py < 4) py = 4;
+        if (px < 4) px = 4;
+        _pFixed->put(*_pFontList, px, py);
+        _pFontList->show_all();
+        if (Glib::RefPtr<Gdk::Window> rLWin = _pFontList->get_window()) {
+            rLWin->raise();
         }
     }
 
@@ -697,6 +831,89 @@ protected:
         }
     }
 
+    // OrangeArk: hide/filter shapes (mosaic / blur) — both sample the ORIGINAL
+    // screen capture, so undo/redo and the final compose stay pixel-accurate
+    void _draw_filter(const Cairo::RefPtr<Cairo::Context>& cr, const double dx, const double dy,
+                      const CtAnnoShape& shape) const
+    {
+        int rx1 = static_cast<int>(std::min(shape.x1, shape.x2) + dx);
+        int ry1 = static_cast<int>(std::min(shape.y1, shape.y2) + dy);
+        int w = std::abs(shape.x2 - shape.x1);
+        int h = std::abs(shape.y2 - shape.y1);
+        if (w < 2 or h < 2) return;
+        const int scrW = _rShot->get_width();
+        const int scrH = _rShot->get_height();
+        // the SOURCE region in shot coordinates is the same rect minus the offset
+        int sx = static_cast<int>(std::min(shape.x1, shape.x2) - dx);
+        int sy = static_cast<int>(std::min(shape.y1, shape.y2) - dy);
+        if (sx < 0) { rx1 -= sx; w += sx; sx = 0; }
+        if (sy < 0) { ry1 -= sy; h += sy; sy = 0; }
+        if (sx + w > scrW) w = scrW - sx;
+        if (sy + h > scrH) h = scrH - sy;
+        if (w < 2 or h < 2) return;
+
+        if (CtAnnoShape::Type::Mosaic == shape.type) {
+            // pixelate: fill each block with the colour of the original pixel
+            // at the centre of that block
+            const int block = std::min(60, std::max(6, shape.thickness * 2));
+            const guint8* pPixels = _rShot->get_pixels();
+            const int rowstride = _rShot->get_rowstride();
+            const int nch = _rShot->get_n_channels();
+            for (int by = 0; by < h; by += block) {
+                for (int bx = 0; bx < w; bx += block) {
+                    const int cx = sx + std::min(bx + block / 2, w - 1);
+                    const int cy = sy + std::min(by + block / 2, h - 1);
+                    const guint8* p = pPixels + cy * rowstride + cx * nch;
+                    cr->set_source_rgba(p[0] / 255.0, p[1] / 255.0, p[2] / 255.0, 1.0);
+                    cr->rectangle(rx1 + bx, ry1 + by, std::min(block, w - bx), std::min(block, h - by));
+                    cr->fill();
+                }
+            }
+        }
+        else {
+            // gaussian-like blur: downscale the region, then upscale it back
+            const int f = std::min(16, std::max(2, shape.thickness / 2));
+            try {
+                Glib::RefPtr<Gdk::Pixbuf> rRegion = Gdk::Pixbuf::create_subpixbuf(_rShot, sx, sy, w, h);
+                const int w2 = std::max(1, w / f);
+                const int h2 = std::max(1, h / f);
+                Glib::RefPtr<Gdk::Pixbuf> rSmall =
+                    Gdk::Pixbuf::create(rRegion->get_colorspace(), rRegion->get_has_alpha(), 8, w2, h2);
+                if (rSmall) {
+                    rSmall->fill(0);
+                    rRegion->scale(rSmall, 0, 0, w2, h2, 0.0, 0.0,
+                                   static_cast<double>(w2) / w, static_cast<double>(h2) / h,
+                                   Gdk::INTERP_BILINEAR);
+                    Glib::RefPtr<Gdk::Pixbuf> rBig =
+                        Gdk::Pixbuf::create(rRegion->get_colorspace(), rRegion->get_has_alpha(), 8, w, h);
+                    rBig->fill(0);
+                    rSmall->scale(rBig, 0, 0, w, h, 0.0, 0.0,
+                                  static_cast<double>(w) / w2, static_cast<double>(h) / h2,
+                                  Gdk::INTERP_BILINEAR);
+                    cr->save();
+                    cr->rectangle(rx1, ry1, w, h);
+                    cr->clip();
+                    Gdk::Cairo::set_source_pixbuf(cr, rBig, rx1, ry1);
+                    cr->paint();
+                    cr->restore();
+                }
+            }
+            catch (const Glib::Error& e) {
+                spdlog::warn("CtScreenshot: blur failed: {}", e.what().c_str());
+            }
+        }
+        // dashed orange outline while the region is being dragged (live preview)
+        if (_previewing and &shape == &_currShape) {
+            std::valarray<double> dashes{4.0, 3.0};
+            cr->set_source_rgba(1.0, 0.55, 0.0, 0.9);
+            cr->set_dash(dashes, 0.0);
+            cr->set_line_width(1.2);
+            cr->rectangle(rx1, ry1, w, h);
+            cr->stroke();
+            cr->unset_dash();
+        }
+    }
+
     void _draw_one_shape(const Cairo::RefPtr<Cairo::Context>& cr, const double dx, const double dy, const CtAnnoShape& shape) const
     {
         // OrangeArk: annotation colour and thickness come from the toolbar
@@ -753,6 +970,10 @@ protected:
                 cr->stroke();
                 break;
             }
+            case CtAnnoShape::Type::Mosaic:
+            case CtAnnoShape::Type::Blur:
+                _draw_filter(cr, dx, dy, shape);
+                break;
             case CtAnnoShape::Type::Text: {
                 // shape.x1/y1 is the TOP-left corner of the text block
                 Glib::RefPtr<Pango::Layout> rLayout =
@@ -902,6 +1123,7 @@ protected:
         // OrangeArk: any click on the canvas commits the pending text annotation
         // first (no Enter needed); the click then behaves normally — clicking
         // empty ground with the Text tool starts a new entry at that point
+        _hide_font_list(); // OrangeArk: clicking the canvas dismisses the font list
         _finish_text_entry();
         // OrangeArk: selection border handles work just outside the selection too
         const int selHandle = _toolbar_shown ? _sel_handle_at(event->x, event->y) : 0;
@@ -917,16 +1139,24 @@ protected:
             {
                 const int px = static_cast<int>(event->x);
                 const int py = static_cast<int>(event->y);
-                // OrangeArk: with the Text tool, clicking an existing text or
-                // counter selects it for editing instead of moving it — the
-                // options panel loads its font/size/colour for live tweaking
+                // OrangeArk: with the Text tool, pressing an existing text or
+                // counter starts a DRAG (move it); if the mouse is released
+                // without moving, that very press turns into "select for
+                // editing" (the options panel loads its font/size/colour).
+                // The old behaviour (click = edit, never move) made existing
+                // text impossible to reposition with the text tool.
                 if (Tool::Text == _tool) {
                     for (int i = static_cast<int>(_shapes.size()) - 1; i >= 0; --i) {
                         const CtAnnoShape& shape = _shapes.at(static_cast<size_t>(i));
                         if ((CtAnnoShape::Type::Text == shape.type or CtAnnoShape::Type::Counter == shape.type)
                             and _shape_hit(shape, px, py)) {
-                            _editIdx = i;
-                            _sync_panel_from_shape(i);
+                            _movingIdx = i;
+                            _moveLastX = px;
+                            _moveLastY = py;
+                            _pressIdx = i;          // candidate for click-to-edit
+                            _pressOriginX = px;
+                            _pressOriginY = py;
+                            _editIdx = -1;
                             return true;
                         }
                     }
@@ -936,13 +1166,15 @@ protected:
                         _movingIdx = i;
                         _moveLastX = px;
                         _moveLastY = py;
-                        _editIdx = -1; // dragging moves, it does not edit
+                        _pressIdx = -1; // drag moves, it does not edit
+                        _editIdx = -1;
                         return true;
                     }
                 }
             }
             if (Tool::Text == _tool) {
                 _editIdx = -1; // clicking empty ground starts a new text
+                _pressIdx = -1;
                 _show_text_entry(static_cast<int>(event->x), static_cast<int>(event->y));
                 return true;
             }
@@ -981,6 +1213,7 @@ protected:
                 return true; // nothing under the cursor; do not start a new selection
             }
             // start a new annotation
+            _pressIdx = -1;
             _annotating = true;
             _previewing = true;
             _currShape = CtAnnoShape{};
@@ -989,6 +1222,8 @@ protected:
                 case Tool::Arrow:  _currShape.type = CtAnnoShape::Type::Arrow; break;
                 case Tool::Rect:   _currShape.type = CtAnnoShape::Type::Rect; break;
                 case Tool::Ellipse:_currShape.type = CtAnnoShape::Type::Ellipse; break;
+                case Tool::Mosaic: _currShape.type = CtAnnoShape::Type::Mosaic; break;
+                case Tool::Blur:   _currShape.type = CtAnnoShape::Type::Blur; break;
                 default: _annotating = false; _previewing = false; return true;
             }
             _currShape.x1 = _currShape.x2 = static_cast<int>(event->x);
@@ -1056,6 +1291,12 @@ protected:
             // translate the picked annotation
             const int px = static_cast<int>(event->x);
             const int py = static_cast<int>(event->y);
+            // OrangeArk: if the press that started this drag has moved more than
+            // a few pixels it is a real move, no longer a click-to-edit candidate
+            if (_pressIdx == _movingIdx
+                and std::abs(px - _pressOriginX) + std::abs(py - _pressOriginY) > 4) {
+                _pressIdx = -1;
+            }
             _translate_shape(_shapes.at(static_cast<size_t>(_movingIdx)), px - _moveLastX, py - _moveLastY);
             _moveLastX = px;
             _moveLastY = py;
@@ -1079,6 +1320,17 @@ protected:
         if (1 != event->button) return false;
         if (_selResizing) {
             _selResizing = false;
+            _pArea->queue_draw();
+            return true;
+        }
+        // OrangeArk: a press on an existing text/counter with the Text tool that
+        // ended WITHOUT a drag was a click — select it for editing (its font,
+        // size and colour load into the options panel for live tweaking)
+        if (_movingIdx >= 0 and _pressIdx >= 0) {
+            _movingIdx = -1;
+            _editIdx = _pressIdx;
+            _pressIdx = -1;
+            _sync_panel_from_shape(_editIdx);
             _pArea->queue_draw();
             return true;
         }
@@ -1134,6 +1386,14 @@ protected:
         if (ty + tbH > scrH - 30) ty = _sel_y() - tbH - 10;
         if (ty < 4) ty = std::max(4, scrH - tbH - 30);
         _pFixed->move(*_pToolbar, tx, ty);
+        // OrangeArk: remember where the toolbar really is — the options panel
+        // anchors right below it. (Not storing these made the panel pop up at
+        // the stale initial position in the top-left corner of the screen,
+        // which looked like "font/size panel missing, tools broken".)
+        _toolbarX = tx;
+        _toolbarY = ty;
+        spdlog::info("selftest: toolbar at {},{} size {}x{} (screen {}x{})",
+                     tx, ty, tbW, tbH, scrH > 0 ? _rShot->get_width() : 0, scrH);
     }
 
     void _show_text_entry(int x, int y)
@@ -1158,6 +1418,7 @@ protected:
         shape.y1 = _textAnnoY; // top-left corner (Pango layouts anchor at the top)
         shape.fontSize = _annoFontSize;
         shape.fontName = _annoFontName;
+        shape.color = _annoColor; // OrangeArk: honour the panel colour
         shape.text = text;
         _shapes.push_back(shape);
         _redoShapes.clear();
@@ -1220,6 +1481,7 @@ private:
     Glib::RefPtr<Gdk::Pixbuf> _rResult;
     Glib::RefPtr<Gdk::Cursor> _rCursorCross;
     Glib::RefPtr<Gdk::Cursor> _rCursorMove;
+    Glib::RefPtr<Gtk::CssProvider> _rToolbarCss; // OrangeArk: shared toolbar/panel/entry CSS
 
     Gtk::Fixed*        _pFixed{nullptr};
     Gtk::DrawingArea*  _pArea{nullptr};
@@ -1230,8 +1492,11 @@ private:
     Gtk::Box*          _pPanelText{nullptr};  // OrangeArk: 字体+字号+颜色 (text tools)
     Gtk::Scale*        _pShapeScale{nullptr};
     Gtk::Label*        _pShapeVal{nullptr};
+    Gtk::Label*        _pThicknessLabel{nullptr}; // OrangeArk: 粗细/强度 (per tool)
     Gtk::ColorButton*  _pShapeColorBtn{nullptr};
-    Gtk::ComboBoxText* _pFontCombo{nullptr};
+    Gtk::Button*       _pFontPicker{nullptr}; // OrangeArk: font button (label = current font)
+    std::vector<Glib::ustring> _fontFamilies; // OrangeArk: Pango system fonts
+    Gtk::ScrolledWindow* _pFontList{nullptr}; // OrangeArk: in-overlay font list
     Gtk::Scale*        _pTextSizeScale{nullptr};
     Gtk::Label*        _pTextSizeVal{nullptr};
     Gtk::ColorButton*  _pTextColorBtn{nullptr};
@@ -1254,6 +1519,8 @@ private:
     int  _movingIdx{-1};
     int  _moveLastX{0}, _moveLastY{0};
     int  _editIdx{-1};        // OrangeArk: index of the annotation being edited
+    int  _pressIdx{-1};       // OrangeArk: press on text/counter — click-to-edit candidate
+    int  _pressOriginX{0}, _pressOriginY{0}; // OrangeArk: where that press started
     Tool _panelTool{Tool::None};
     int  _toolbarX{10}, _toolbarY{10}; // OrangeArk: current toolbar position (panel anchors below it)
 
