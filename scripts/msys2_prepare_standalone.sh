@@ -300,8 +300,15 @@ do
   cp -v ${IN_CT_DATA_FOLDER}/${element_rel} ${OUT_ORANGEARK_SHARE}/data/
 done
 # share icons
+# NOTE (OrangeArk): `cp -r src/dst` merges into an *existing* dst directory and
+# will NOT refresh files that are already there under nested sub-paths. Because
+# this output folder may be reused (e.g. cloned from a previous version's tree),
+# stale icons could silently survive. Remove the destinations first so the copy
+# is always authoritative.
 mkdir -p ${OUT_ORANGEARK_SHARE}/icons
 cp -v ${IN_CT_ICONS_FOLDER}/ct_home.svg ${OUT_ORANGEARK_SHARE}/icons/
+rm -rf ${OUT_ORANGEARK_SHARE}/icons/Breeze_Dark_icons
+rm -rf ${OUT_ORANGEARK_SHARE}/icons/Breeze_Light_icons
 cp -r -v ${IN_CT_ICONS_FOLDER}/Breeze_Dark_icons ${OUT_ORANGEARK_SHARE}/icons/
 cp -r -v ${IN_CT_ICONS_FOLDER}/Breeze_Light_icons ${OUT_ORANGEARK_SHARE}/icons/
 # i18n languages
@@ -341,6 +348,28 @@ do
   cp -v "${element_abs}" ${OUT_UCRT64_FOLDER}/bin/
 done
 cp -v ${OLD_UCRT64_FOLDER}/var/lib/texmf/fonts/map/dvips/updmap/ps2pk.map ${OUT_UCRT64_FOLDER}/bin/
+
+# OrangeArk post-packaging integrity gate: the shipped icon set must be byte
+# identical to icons/ in the source tree. Guards against the silent regression
+# where a reused output folder kept stale icons.
+echo "verifying packaged icons against source..."
+for icons_sub in Breeze_Dark_icons Breeze_Light_icons; do
+  if ! diff <(cd "${IN_CT_ICONS_FOLDER}/${icons_sub}" && md5sum * | sort -k2) \
+            <(cd "${OUT_ORANGEARK_SHARE}/icons/${icons_sub}" && md5sum * | sort -k2) > /dev/null; then
+    echo "ERROR: packaged ${icons_sub} differs from ${IN_CT_ICONS_FOLDER}/${icons_sub}"
+    diff <(cd "${IN_CT_ICONS_FOLDER}/${icons_sub}" && md5sum * | sort -k2) \
+         <(cd "${OUT_ORANGEARK_SHARE}/icons/${icons_sub}" && md5sum * | sort -k2) | head -20
+    exit 1
+  fi
+  echo "  ${icons_sub}: OK ($(ls "${OUT_ORANGEARK_SHARE}/icons/${icons_sub}" | wc -l) files)"
+done
+if [ "$(md5sum < "${IN_CT_ICONS_FOLDER}/ct_home.svg" | awk '{print $1}')" != \
+     "$(md5sum < "${OUT_ORANGEARK_SHARE}/icons/ct_home.svg" | awk '{print $1}')" ]; then
+  echo "ERROR: packaged ct_home.svg differs from source"
+  exit 1
+fi
+echo "  ct_home.svg: OK"
+echo "icon integrity check passed"
 
 if [ "${SIGN_BUILD:-false}" = "true" ]; then
   echo "signing build: skipping portable archives until after signing"
