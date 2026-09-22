@@ -23,12 +23,21 @@
 namespace CtScreenshot
 {
 
+// OrangeArk: plain POD point — Gdk::Point deletes its copy-assignment (it has
+// a move ctor), which makes std::vector<Gdk::Point> non-copy-assignable and
+// therefore breaks copying CtAnnoShape (needed for the resize snapshot).
+struct CtPt
+{
+    int x{0};
+    int y{0};
+};
+
 // One annotation drawn by the user on top of the selection
 struct CtAnnoShape
 {
     enum class Type { Pen, Arrow, Rect, Ellipse, Text, Counter, Mosaic, Blur };
     Type                  type{Type::Pen};
-    std::vector<Gdk::Point> pts;          // for Pen
+    std::vector<CtPt> pts;                // for Pen
     int                   x1{0}, y1{0}, x2{0}, y2{0}; // bounding for others
     int                   thickness{6};   // OrangeArk: line thickness chosen in the toolbar
     Glib::ustring         color{"#e53935"}; // OrangeArk: annotation colour chosen in the toolbar
@@ -68,8 +77,8 @@ static const char* kSvgEllipse =
     "</svg>";
 static const char* kSvgArrow =
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
-    "<path d='M2.6 13.4 L10.0 6.0' stroke='#2196f3' stroke-width='2.1' stroke-linecap='round' fill='none'/>"
-    "<path d='M13.4 2.6 L13.4 9.4 L6.6 2.6 Z' fill='#2196f3' stroke='none'/>"
+    "<path d='M2.5 13.5 L8.9 7.1' stroke='#2196f3' stroke-width='3.4' stroke-linecap='round' fill='none'/>"
+    "<path d='M13.7 2.3 L5.8 4.3 L11.7 10.2 Z' fill='#2196f3' stroke='none'/>"
     "</svg>";
 static const char* kSvgPen =
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
@@ -768,14 +777,14 @@ protected:
     }
 
     // bounding box of a shape (for hit-testing when moving)
-    void _shape_bbox(const CtAnnoShape& shape, int& bx, int& by, int& bw, int& bh) const
+    void _shape_raw_bbox(const CtAnnoShape& shape, int& bx, int& by, int& bw, int& bh) const
     {
         switch (shape.type) {
             case CtAnnoShape::Type::Pen: {
                 int minX = INT_MAX, minY = INT_MAX, maxX = INT_MIN, maxY = INT_MIN;
-                for (const Gdk::Point& pt : shape.pts) {
-                    minX = std::min(minX, pt.get_x()); minY = std::min(minY, pt.get_y());
-                    maxX = std::max(maxX, pt.get_x()); maxY = std::max(maxY, pt.get_y());
+                for (const CtPt& pt : shape.pts) {
+                    minX = std::min(minX, pt.x); minY = std::min(minY, pt.y);
+                    maxX = std::max(maxX, pt.x); maxY = std::max(maxY, pt.y);
                 }
                 bx = minX; by = minY; bw = maxX - minX; bh = maxY - minY;
                 break;
@@ -803,6 +812,11 @@ protected:
                 bw = std::abs(shape.x2 - shape.x1); bh = std::abs(shape.y2 - shape.y1);
                 break;
         }
+    }
+
+    void _shape_bbox(const CtAnnoShape& shape, int& bx, int& by, int& bw, int& bh) const
+    {
+        _shape_raw_bbox(shape, bx, by, bw, bh);
         // generous margin for easier grabbing
         const int margin = 8;
         bx -= margin; by -= margin; bw += 2 * margin; bh += 2 * margin;
@@ -815,11 +829,35 @@ protected:
         return x >= bx and x <= bx + bw and y >= by and y <= by + bh;
     }
 
+    // OrangeArk: hit-test the resize handles of the SELECTED annotation.
+    // Mask bits match the selection handles: 1=left 2=right 4=top 8=bottom.
+    // Arrows expose two endpoint handles (1=start, 2=end); text and counter
+    // badges are resized via the panel font-size slider instead.
+    int _shape_handle_at(const double x, const double y) const
+    {
+        if (_editIdx < 0 or _editIdx >= static_cast<int>(_shapes.size())) return 0;
+        const CtAnnoShape& s = _shapes.at(static_cast<size_t>(_editIdx));
+        const double hs = 7.0;
+        if (CtAnnoShape::Type::Arrow == s.type) {
+            if (std::abs(x - s.x1) <= hs and std::abs(y - s.y1) <= hs) return 1;
+            if (std::abs(x - s.x2) <= hs and std::abs(y - s.y2) <= hs) return 2;
+            return 0;
+        }
+        if (CtAnnoShape::Type::Text == s.type or CtAnnoShape::Type::Counter == s.type) return 0;
+        int bx = 0, by = 0, bw = 0, bh = 0;
+        _shape_raw_bbox(s, bx, by, bw, bh);
+        if (std::abs(x - bx) <= hs and std::abs(y - by) <= hs) return 1 | 4;
+        if (std::abs(x - (bx + bw)) <= hs and std::abs(y - by) <= hs) return 2 | 4;
+        if (std::abs(x - bx) <= hs and std::abs(y - (by + bh)) <= hs) return 1 | 8;
+        if (std::abs(x - (bx + bw)) <= hs and std::abs(y - (by + bh)) <= hs) return 2 | 8;
+        return 0;
+    }
+
     static void _translate_shape(CtAnnoShape& shape, const int dx, const int dy)
     {
-        for (Gdk::Point& pt : shape.pts) {
-            pt.set_x(pt.get_x() + dx);
-            pt.set_y(pt.get_y() + dy);
+        for (CtPt& pt : shape.pts) {
+            pt.x += dx;
+            pt.y += dy;
         }
         shape.x1 += dx; shape.y1 += dy; shape.x2 += dx; shape.y2 += dy;
     }
@@ -925,32 +963,39 @@ protected:
         switch (shape.type) {
             case CtAnnoShape::Type::Pen: {
                 bool first = true;
-                for (const Gdk::Point& pt : shape.pts) {
-                    if (first) { cr->move_to(pt.get_x() + dx, pt.get_y() + dy); first = false; }
-                    else       { cr->line_to(pt.get_x() + dx, pt.get_y() + dy); }
+                for (const CtPt& pt : shape.pts) {
+                    if (first) { cr->move_to(pt.x + dx, pt.y + dy); first = false; }
+                    else       { cr->line_to(pt.x + dx, pt.y + dy); }
                 }
                 cr->stroke();
                 break;
             }
             case CtAnnoShape::Type::Arrow: {
-                // QQ-style solid arrow: a thick shaft plus a filled triangular
-                // head that scales with the chosen thickness
+                // OrangeArk: bold arrow like the user's reference artwork —
+                // a thick shaft merging into a large solid triangular head
+                cr->save();
                 const double x1 = shape.x1 + dx, y1 = shape.y1 + dy;
                 const double x2 = shape.x2 + dx, y2 = shape.y2 + dy;
                 const double angle = std::atan2(y2 - y1, x2 - x1);
                 const double t = std::max(1.0, static_cast<double>(shape.thickness));
-                const double head = 2.4 * t + 6.0;
-                const double backX = x2 - head * std::cos(angle);
-                const double backY = y2 - head * std::sin(angle);
-                // shaft stops where the head begins
+                const double shaftW = 2.2 * t + 2.0;               // bold shaft
+                const double headL  = 2.2 * shaftW + 5.0;          // head length
+                const double headHW = (2.8 * shaftW + 6.0) / 2.0;  // head half width
+                const double backX = x2 - headL * std::cos(angle);
+                const double backY = y2 - headL * std::sin(angle);
+                // thick shaft with round caps, stopping where the head begins
+                cr->set_line_width(shaftW);
+                cr->set_line_cap(Cairo::LINE_CAP_ROUND);
                 cr->move_to(x1, y1);
                 cr->line_to(backX, backY);
                 cr->stroke();
+                // large solid triangular head
                 cr->move_to(x2, y2);
-                cr->line_to(backX - head * 0.5 * std::sin(angle), backY + head * 0.5 * std::cos(angle));
-                cr->line_to(backX + head * 0.5 * std::sin(angle), backY - head * 0.5 * std::cos(angle));
+                cr->line_to(backX - headHW * std::sin(angle), backY + headHW * std::cos(angle));
+                cr->line_to(backX + headHW * std::sin(angle), backY - headHW * std::cos(angle));
                 cr->close_path();
                 cr->fill();
+                cr->restore();
                 break;
             }
             case CtAnnoShape::Type::Rect: {
@@ -1050,6 +1095,55 @@ protected:
                 cr->rectangle(bx, by, bw, bh);
                 cr->stroke();
                 cr->unset_dash();
+                // OrangeArk: white resize handles on the selected annotation —
+                // corners for shapes, endpoints for arrows (drag to resize)
+                const CtAnnoShape& s = _shapes.at(static_cast<size_t>(_editIdx));
+                std::vector<std::pair<double, double>> handlePts;
+                if (CtAnnoShape::Type::Arrow == s.type) {
+                    handlePts.emplace_back(s.x1, s.y1);
+                    handlePts.emplace_back(s.x2, s.y2);
+                }
+                else if (CtAnnoShape::Type::Text != s.type and CtAnnoShape::Type::Counter != s.type) {
+                    int rx = 0, ry = 0, rw = 0, rh = 0;
+                    _shape_raw_bbox(s, rx, ry, rw, rh);
+                    handlePts.emplace_back(rx, ry);
+                    handlePts.emplace_back(rx + rw, ry);
+                    handlePts.emplace_back(rx, ry + rh);
+                    handlePts.emplace_back(rx + rw, ry + rh);
+                }
+                if (not handlePts.empty()) {
+                    const double hhs = 5.0;
+                    if (CtAnnoShape::Type::Arrow == s.type) {
+                        // OrangeArk: round endpoint handles like the reference
+                        // artwork — white circles with a soft blue rim
+                        for (const auto& h : handlePts) {
+                            cr->begin_new_sub_path();
+                            cr->arc(h.first, h.second, hhs, 0.0, 2.0 * M_PI);
+                        }
+                        cr->set_source_rgba(1.0, 1.0, 1.0, 0.97);
+                        cr->fill();
+                        for (const auto& h : handlePts) {
+                            cr->begin_new_sub_path();
+                            cr->arc(h.first, h.second, hhs, 0.0, 2.0 * M_PI);
+                        }
+                        cr->set_source_rgba(0.55, 0.75, 0.95, 1.0);
+                        cr->set_line_width(1.4);
+                        cr->stroke();
+                    }
+                    else {
+                        cr->set_source_rgba(1.0, 1.0, 1.0, 0.95);
+                        for (const auto& h : handlePts) {
+                            cr->rectangle(h.first - hhs, h.second - hhs, 2 * hhs, 2 * hhs);
+                        }
+                        cr->fill();
+                        cr->set_source_rgba(1.0, 0.55, 0.0, 0.95);
+                        cr->set_line_width(1.0);
+                        for (const auto& h : handlePts) {
+                            cr->rectangle(h.first - hhs, h.second - hhs, 2 * hhs, 2 * hhs);
+                        }
+                        cr->stroke();
+                    }
+                }
             }
             cr->restore();
 
@@ -1134,6 +1228,17 @@ protected:
                 _selEdges = selHandle;
                 return true;
             }
+            // OrangeArk: dragging a handle of the SELECTED annotation resizes
+            // that annotation (corner handles for shapes, endpoints for arrows)
+            if (_editIdx >= 0 and _editIdx < static_cast<int>(_shapes.size())) {
+                const int shapeHandle = _shape_handle_at(event->x, event->y);
+                if (shapeHandle != 0) {
+                    _shapeResizing = true;
+                    _shapeEdge = shapeHandle;
+                    _resizeOrig = _shapes.at(static_cast<size_t>(_editIdx));
+                    return true;
+                }
+            }
             // QQ style: pressing an existing annotation always starts moving it,
             // whatever the active tool is (no need to switch to the Move tool)
             {
@@ -1156,7 +1261,10 @@ protected:
                             _pressIdx = i;          // candidate for click-to-edit
                             _pressOriginX = px;
                             _pressOriginY = py;
-                            _editIdx = -1;
+                            if (_editIdx != i) {
+                                _editIdx = i;       // select right away: the panel
+                                _sync_panel_from_shape(i); // loads its font/size/colour
+                            }
                             return true;
                         }
                     }
@@ -1166,8 +1274,13 @@ protected:
                         _movingIdx = i;
                         _moveLastX = px;
                         _moveLastY = py;
-                        _pressIdx = -1; // drag moves, it does not edit
-                        _editIdx = -1;
+                        _pressIdx = i;          // click without drag = select for editing
+                        _pressOriginX = px;
+                        _pressOriginY = py;
+                        if (_editIdx != i) {
+                            _editIdx = i;       // OrangeArk: ANY tool can select an
+                            _sync_panel_from_shape(i); // annotation to tweak it
+                        }
                         return true;
                     }
                 }
@@ -1214,6 +1327,7 @@ protected:
             }
             // start a new annotation
             _pressIdx = -1;
+            _editIdx = -1; // drawing a new shape deselects the edited one
             _annotating = true;
             _previewing = true;
             _currShape = CtAnnoShape{};
@@ -1234,7 +1348,7 @@ protected:
             _currShape.color = _annoColor;
             _currShape.thickness = _annoThickness;
             if (Tool::Pen == _tool) {
-                _currShape.pts.push_back(Gdk::Point(_currShape.x1, _currShape.y1));
+                _currShape.pts.push_back(CtPt{_currShape.x1, _currShape.y1});
             }
             _pArea->queue_draw();
             return true;
@@ -1264,13 +1378,54 @@ protected:
             _pArea->queue_draw();
             return true;
         }
+        // OrangeArk: dragging a handle of the SELECTED annotation resizes it —
+        // arrows move the dragged endpoint, shapes move the dragged bbox corner,
+        // freehand pen scales its points around the fixed opposite corner
+        if (_shapeResizing and _editIdx >= 0 and _editIdx < static_cast<int>(_shapes.size())) {
+            const int px = static_cast<int>(event->x);
+            const int py = static_cast<int>(event->y);
+            CtAnnoShape& s = _shapes.at(static_cast<size_t>(_editIdx));
+            if (CtAnnoShape::Type::Arrow == s.type) {
+                if (_shapeEdge & 1) { s.x1 = px; s.y1 = py; }
+                if (_shapeEdge & 2) { s.x2 = px; s.y2 = py; }
+            }
+            else if (CtAnnoShape::Type::Pen == s.type) {
+                int bx = 0, by = 0, bw = 0, bh = 0;
+                _shape_raw_bbox(_resizeOrig, bx, by, bw, bh);
+                if (bw > 2 and bh > 2) {
+                    const double anchorX = (_shapeEdge & 1) ? bx + bw : bx;
+                    const double anchorY = (_shapeEdge & 4) ? by + bh : by;
+                    double sx = 1.0, sy = 1.0;
+                    if (_shapeEdge & 1) sx = (anchorX - px) / static_cast<double>(bw);
+                    if (_shapeEdge & 2) sx = (px - anchorX) / static_cast<double>(bw);
+                    if (_shapeEdge & 4) sy = (anchorY - py) / static_cast<double>(bh);
+                    if (_shapeEdge & 8) sy = (py - anchorY) / static_cast<double>(bh);
+                    sx = std::max(0.05, std::min(sx, 40.0));
+                    sy = std::max(0.05, std::min(sy, 40.0));
+                    for (size_t k = 0; k < s.pts.size() and k < _resizeOrig.pts.size(); ++k) {
+                        s.pts.at(k).x = static_cast<int>(anchorX + (_resizeOrig.pts.at(k).x - anchorX) * sx);
+                        s.pts.at(k).y = static_cast<int>(anchorY + (_resizeOrig.pts.at(k).y - anchorY) * sy);
+                    }
+                }
+            }
+            else {
+                const int nx1 = (_shapeEdge & 1) ? px : s.x1;
+                const int nx2 = (_shapeEdge & 2) ? px : s.x2;
+                const int ny1 = (_shapeEdge & 4) ? py : s.y1;
+                const int ny2 = (_shapeEdge & 8) ? py : s.y2;
+                if (std::abs(nx2 - nx1) >= 3) { s.x1 = nx1; s.x2 = nx2; }
+                if (std::abs(ny2 - ny1) >= 3) { s.y1 = ny1; s.y2 = ny2; }
+            }
+            _pArea->queue_draw();
+            return true;
+        }
         // hover feedback: show the move cursor over an existing annotation
         if (_toolbar_shown and not _selecting and not _annotating and _movingIdx < 0 and not _selResizing) {
             if (Glib::RefPtr<Gdk::Window> rWin = _pArea->get_window()) {
                 const int px = static_cast<int>(event->x);
                 const int py = static_cast<int>(event->y);
                 Glib::RefPtr<Gdk::Cursor> rCursor;
-                if (_sel_handle_at(px, py) != 0) {
+                if (_sel_handle_at(px, py) != 0 or _shape_handle_at(px, py) != 0) {
                     rCursor = _rCursorMove;
                 }
                 else {
@@ -1307,7 +1462,7 @@ protected:
             _currShape.x2 = static_cast<int>(event->x);
             _currShape.y2 = static_cast<int>(event->y);
             if (CtAnnoShape::Type::Pen == _currShape.type) {
-                _currShape.pts.push_back(Gdk::Point(_currShape.x2, _currShape.y2));
+                _currShape.pts.push_back(CtPt{_currShape.x2, _currShape.y2});
             }
             _pArea->queue_draw(); // _currShape is drawn as a live preview
             return true;
@@ -1320,6 +1475,12 @@ protected:
         if (1 != event->button) return false;
         if (_selResizing) {
             _selResizing = false;
+            _pArea->queue_draw();
+            return true;
+        }
+        // OrangeArk: a handle drag on the selected annotation ends here
+        if (_shapeResizing) {
+            _shapeResizing = false;
             _pArea->queue_draw();
             return true;
         }
@@ -1521,6 +1682,9 @@ private:
     int  _editIdx{-1};        // OrangeArk: index of the annotation being edited
     int  _pressIdx{-1};       // OrangeArk: press on text/counter — click-to-edit candidate
     int  _pressOriginX{0}, _pressOriginY{0}; // OrangeArk: where that press started
+    bool _shapeResizing{false}; // OrangeArk: dragging a handle of the selected annotation
+    int  _shapeEdge{0};         // OrangeArk: which handle (1=left/start 2=right/end 4=top 8=bottom)
+    CtAnnoShape _resizeOrig{};  // OrangeArk: shape snapshot when the resize started
     Tool _panelTool{Tool::None};
     int  _toolbarX{10}, _toolbarY{10}; // OrangeArk: current toolbar position (panel anchors below it)
 

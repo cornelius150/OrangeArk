@@ -29,6 +29,7 @@
 #endif
 #include "ct_pref_dlg.h"
 #include "ct_storage_control.h"
+#include "ct_screenshot.h"
 #include "config.h"
 #include "ct_logging.h"
 #include <iostream>
@@ -300,7 +301,10 @@ void CtApp::on_activate()
             CtMainWin* pSelfTestWin = pAppWindow;
             Glib::signal_timeout().connect_once([pSelfTestWin]() {
                 spdlog::info("selftest: auto-opening the screenshot overlay");
-                pSelfTestWin->get_ct_actions()->screenshot();
+                // OrangeArk: open the overlay directly, bypassing the document
+                // gate in CtActions::screenshot() — the selftest runs with no
+                // document loaded, and the overlay is document-independent
+                CtScreenshot::take_region_screenshot(pSelfTestWin);
             }, 4000);
         }    }
     else {

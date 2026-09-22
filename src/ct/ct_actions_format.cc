@@ -67,7 +67,96 @@ void CtActions::_save_tags_at_cursor_as_latest(Glib::RefPtr<Gtk::TextBuffer> pTe
 
 void CtActions::save_tags_at_cursor_as_latest()
 {
-    _save_tags_at_cursor_as_latest(_curr_buffer(), -1);
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = _curr_buffer();
+    if (pTextBuffer->get_has_selection()) {
+        // OrangeArk: format painter (格式刷) — the style source is the
+        // SELECTION: read the tags of its first character and arm the brush,
+        // so the next selection the user makes receives that style
+        Gtk::TextIter iter_sel_start, iter_sel_end;
+        pTextBuffer->get_selection_bounds(iter_sel_start, iter_sel_end);
+        _save_tags_at_cursor_as_latest(pTextBuffer, iter_sel_start.get_offset());
+        _arm_format_painter();
+        // 选中源内容后点格式刷：样式已复制，提示刷向下一个选区
+        _pCtMainWin->get_status_bar().update_status(
+            "格式刷：已复制所选样式，现在选中目标文字即可应用（Esc 取消）");
+        return;
+    }
+    // no selection: fall back to the legacy behaviour (clone the cursor style)
+    _save_tags_at_cursor_as_latest(pTextBuffer, -1);
+    _arm_format_painter();
+    _pCtMainWin->get_status_bar().update_status(
+        "格式刷：已复制光标处样式，选中目标文字即可应用（Esc 取消）");
+}
+
+// OrangeArk: format painter — disconnect the one-shot handlers
+void CtActions::_disarm_format_painter()
+{
+    _paintArmed = false;
+    if (_paintReleaseConn.connected()) _paintReleaseConn.disconnect();
+    if (_paintKeyConn.connected()) _paintKeyConn.disconnect();
+}
+
+// OrangeArk: format painter — arm the brush: watch for the next selection
+void CtActions::_arm_format_painter()
+{
+    _disarm_format_painter();
+    _paintArmed = true;
+    auto& rTextView = _pCtMainWin->get_text_view().mm();
+    // Escape disarms the brush (before-handler so it can swallow the key)
+    _paintKeyConn = rTextView.signal_key_press_event().connect(
+        sigc::mem_fun(*this, &CtActions::_on_paint_key_press), false);
+    // button release AFTER the default handler, so the new selection is final
+    _paintReleaseConn = rTextView.signal_button_release_event().connect(
+        sigc::mem_fun(*this, &CtActions::_on_paint_button_release), true);
+}
+
+bool CtActions::_on_paint_key_press(GdkEventKey* pEvent)
+{
+    if (not _paintArmed) return false;
+    if (pEvent and GDK_KEY_Escape == pEvent->keyval) {
+        _disarm_format_painter();
+        _pCtMainWin->get_status_bar().update_status("格式刷：已取消");
+        return true;
+    }
+    return false;
+}
+
+bool CtActions::_on_paint_button_release(GdkEventButton* pEvent)
+{
+    if (not _paintArmed) return false;
+    if (pEvent and pEvent->button != 1) return false;
+    Glib::RefPtr<Gtk::TextBuffer> pTextBuffer = _curr_buffer();
+    if (not pTextBuffer) return false;
+    if (pTextBuffer->get_has_selection()) {
+        Gtk::TextIter iter_sel_start, iter_sel_end;
+        pTextBuffer->get_selection_bounds(iter_sel_start, iter_sel_end);
+        if (iter_sel_start.get_offset() != iter_sel_end.get_offset()) {
+            // the user picked the target: paint the stored style onto it
+            _paint_apply_to_selection();
+        }
+    }
+    return false;
+}
+
+void CtActions::_paint_apply_to_selection()
+{
+    _disarm_format_painter();
+    if (not _is_there_selected_node_or_error()) return;
+    if (not _is_curr_node_not_syntax_highlighting_or_error()) return;
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    if (_pCtConfig->latestTagProp.empty()) {
+        // the style source carried no formatting: the brush paints "plain"
+        _remove_text_formatting(false/*dismiss_link*/);
+        _pCtMainWin->get_status_bar().update_status("格式刷：已应用（清除目标格式）");
+        return;
+    }
+    remove_text_formatting();
+    std::vector<std::string> tagProperties = str::split(_pCtConfig->latestTagProp, ",");
+    std::vector<std::string> tagValues = str::split(_pCtConfig->latestTagVal, ",");
+    for (size_t i = 0; i < tagProperties.size(); ++i) {
+        apply_tag(tagProperties.at(i), tagValues.at(i));
+    }
+    _pCtMainWin->get_status_bar().update_status("格式刷：样式已应用");
 }
 
 // The Iterate Tagging Button was Pressed

@@ -1157,6 +1157,12 @@ void CtMainWin::menu_update_doc_path_menu_item()
 
 void CtMainWin::maybe_show_start_dialog()
 {
+    // OrangeArk: never show the start dialog in GUI self-test runs — it is
+    // modal (gtk_dialog_run grabs all input) and would swallow the events the
+    // automated screenshot-overlay test sends
+    if (Glib::getenv("ORANGEARK_SCREENSHOT_SELFTEST") == "1") {
+        return;
+    }
     if (_startDialogShown || _no_gui || not _pCtConfig->showStartDialog) {
         return;
     }

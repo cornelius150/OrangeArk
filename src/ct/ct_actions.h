@@ -330,6 +330,17 @@ private:
     CtTableCommon* _table_in_use();
     void _save_tags_at_cursor_as_latest(Glib::RefPtr<Gtk::TextBuffer> pTextBuffer,
                                         int cursorOffset);
+    // OrangeArk: format painter (格式刷) — pick up the style of the selected
+    // text, then the NEXT selection the user makes receives that style
+    // (style only, no text is copied). Escape disarms the brush.
+    bool _paintArmed{false};
+    sigc::connection _paintReleaseConn;
+    sigc::connection _paintKeyConn;
+    void _disarm_format_painter();
+    void _arm_format_painter();
+    bool _on_paint_button_release(GdkEventButton* pEvent);
+    bool _on_paint_key_press(GdkEventKey* pEvent);
+    void _paint_apply_to_selection();
     bool _links_entries_pre_dialog(const Glib::ustring& curr_link,
                                    CtLinkEntry& link_entry);
 

@@ -1,3 +1,17 @@
+orangeark (1.1.0-1) focal; urgency=low
+
+  * OrangeArk: screenshot annotation second-pass editing — click a drawn shape
+    to select it, drag corner/endpoint handles to resize, adjust thickness and
+    colour of the selected shape from the toolbar panel
+  * OrangeArk: format painter (格式刷) — pick up the style of the selected
+    text (font, size, colour, bold, italic, background, ...) and paint it onto
+    the next selection; style only, no text is copied
+  * OrangeArk: format painter icon refreshed (yellow bristles, navy handle)
+  * OrangeArk: system font list shows localized names (中文字体显示中文名)
+  * OrangeArk: table rows and columns can be resized independently
+
+ -- OrangeArk <orangeark@localhost>  Tue, 22 Sep 2026 09:00:00 +0800
+
 orangeark (1.0.0-1) focal; urgency=low
 
   * fixed crash introduced with word count changes in v1.7.1 (#2890)
