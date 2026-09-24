@@ -578,11 +578,15 @@ void CtConfig::_populate_data_from_keyfile()
         toolbarIconSize = 3;
         _uKeyFile->set_integer(_currentGroup, "toolbar_icon_size_v3", 1);
     }
-    // OrangeArk 1.1.2 hotfix: 24px turned out too bulky — settle on a custom 20px
-    // size (config value 2). One-time move for installs sitting on the 24px default.
     if (toolbarIconSize == 3 and not _uKeyFile->has_key(_currentGroup, "toolbar_icon_size_v4")) {
         toolbarIconSize = 2;
         _uKeyFile->set_integer(_currentGroup, "toolbar_icon_size_v4", 1);
+    }
+    // OrangeArk 1.1.2 hotfix 2: 20px also felt too large — settle back on the
+    // original 16px. One-time move for installs sitting on the 20px default.
+    if (toolbarIconSize == 2 and not _uKeyFile->has_key(_currentGroup, "toolbar_icon_size_v5")) {
+        toolbarIconSize = 1;
+        _uKeyFile->set_integer(_currentGroup, "toolbar_icon_size_v5", 1);
     }
     _populate_int_from_keyfile("search_multi_words", &multipleWordsSearchType);
     _populate_string_from_keyfile("fg", &currColour_fg);

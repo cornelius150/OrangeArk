@@ -29,10 +29,14 @@
 #include "ct_logging.h"
 
 #include <algorithm>
+#include <cstdio> // OrangeArk: std::snprintf for colour hex formatting
 #include <pango/pangocairo.h> // OrangeArk: pango_cairo_font_map_get_default for system font enumeration
 #include <gdkmm/screen.h>
 #include <gdkmm/pixbuf.h>
 #include <cairomm/surface.h>
+#ifdef G_OS_WIN32
+#include <windows.h> // OrangeArk: screen eyedropper (GetCursorPos/GetPixel)
+#endif
 #include <cairomm/context.h>
 
 // OrangeArk: make the combobox dropdown arrow and popup scrollbar thumbs clearly
@@ -929,6 +933,43 @@ Glib::RefPtr<Gdk::Pixbuf> make_colour_swatch(const Glib::ustring& colour, const 
     return rPix;
 }
 
+// OrangeArk: vertical gradient swatch (Word "渐变填充" section)
+Glib::RefPtr<Gdk::Pixbuf> make_gradient_swatch(const Glib::ustring& colourFrom, const Glib::ustring& colourTo, const int width, const int height)
+{
+    Gdk::RGBA rgbaFrom{colourFrom.empty() ? Glib::ustring{"#000000"} : colourFrom};
+    Gdk::RGBA rgbaTo{colourTo.empty() ? Glib::ustring{"#ffffff"} : colourTo};
+    Glib::RefPtr<Gdk::Pixbuf> rPix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, false/*has_alpha*/, 8, width, height);
+    if (not rPix) return rPix;
+    const int stride = rPix->get_rowstride();
+    const int nCh = rPix->get_n_channels();
+    guint8* pPixels = rPix->get_pixels();
+    const double from[3] = {rgbaFrom.get_red(), rgbaFrom.get_green(), rgbaFrom.get_blue()};
+    const double to[3]   = {rgbaTo.get_red(),   rgbaTo.get_green(),   rgbaTo.get_blue()};
+    for (int y = 0; y < height; ++y) {
+        const double t = (height > 1) ? static_cast<double>(y) / (height - 1) : 0.0;
+        guint8* pRow = pPixels + y * stride;
+        for (int x = 0; x < width; ++x) {
+            guint8* p = pRow + x * nCh;
+            for (int i = 0; i < 3; ++i) {
+                p[i] = static_cast<guint8>((from[i] + (to[i] - from[i]) * t) * 255.0 + 0.5);
+            }
+        }
+    }
+    // 1px frame so that white / very light swatches stay visible
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            if (0 == x or 0 == y or width - 1 == x or height - 1 == y) {
+                guint8* p = pPixels + y * stride + x * nCh;
+                p[0] = 0x60; p[1] = 0x60; p[2] = 0x60;
+            }
+        }
+    }
+    return rPix;
+}
+//    ┌────────┬───┐
+//    │   A    │ ▾ │   <- main part applies the current colour, arrow opens the palette
+//    │ ▬▬▬▬▬  │   │   <- live colour swatch, redrawn whenever the colour changes
+//    └────────┴───┘
 // OrangeArk: Word-style split colour button for the format toolbar
 //    ┌────────┬───┐
 //    │   A    │ ▾ │   <- main part applies the current colour, arrow opens the palette
@@ -940,8 +981,10 @@ public:
     CtColourToolButton(const std::string& iconName,
                        const Glib::ustring& mainTooltip,
                        const Glib::ustring& arrowTooltip,
-                       Gtk::BuiltinIconSize iconSize)
+                       Gtk::BuiltinIconSize iconSize,
+                       const bool isForeground)
     : Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 0}
+    , _isForeground{isForeground}
     {
         get_style_context()->add_class("linked");
 
@@ -995,54 +1038,170 @@ public:
 private:
     void _build_palette()
     {
-        static const std::vector<std::pair<const char*, const char*>> palette{
-            {"#000000", "黑色"}, {"#c00000", "深红"}, {"#ff0000", "红色"},
-            {"#ed7d31", "橙色"}, {"#ffc000", "黄色"},
-            {"#a9d08e", "浅绿"}, {"#00b050", "绿色"}, {"#00b0f0", "青色"},
-            {"#0070c0", "蓝色"}, {"#7030a0", "紫色"},
-            {"#ffffff", "白色"}, {"#d9d9d9", "浅灰"}, {"#808080", "灰色"},
-            {"#404040", "深灰"}, {"#7f6000", "褐色"}};
+        // OrangeArk: colour helpers — tint toward white / shade toward black
+        struct RGB { double r, g, b; };
+        auto hexToRgb = [](const Glib::ustring& hex)->RGB {
+            Gdk::RGBA rgba{hex};
+            return {rgba.get_red(), rgba.get_green(), rgba.get_blue()};
+        };
+        auto rgbToHex = [](const RGB& c)->Glib::ustring {
+            char buf[8];
+            std::snprintf(buf, sizeof(buf), "#%02x%02x%02x",
+                static_cast<int>(c.r * 255.0 + 0.5),
+                static_cast<int>(c.g * 255.0 + 0.5),
+                static_cast<int>(c.b * 255.0 + 0.5));
+            return buf;
+        };
+        auto mixWhite = [&](const Glib::ustring& hex, double f)->Glib::ustring {
+            const RGB c = hexToRgb(hex);
+            return rgbToHex({c.r + (1.0 - c.r) * f, c.g + (1.0 - c.g) * f, c.b + (1.0 - c.b) * f});
+        };
+        auto mixBlack = [&](const Glib::ustring& hex, double f)->Glib::ustring {
+            const RGB c = hexToRgb(hex);
+            return rgbToHex({c.r * (1.0 - f), c.g * (1.0 - f), c.b * (1.0 - f)});
+        };
+
+        static const std::vector<Glib::ustring> themeBase{
+            "#ffffff", "#000000", "#e7e6e6", "#44546a", "#4472c4",
+            "#ed7d31", "#a5a5a5", "#ffc000", "#5b9bd5", "#70ad47"};
+        static const std::vector<Glib::ustring> standard{
+            "#c00000", "#ff0000", "#ffc000", "#ffff00", "#92d050",
+            "#00b050", "#00b0f0", "#0070c0", "#002060", "#7030a0"};
 
         _pPopover = Gtk::manage(new Gtk::Popover{});
-        auto* pVBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 4});
-        pVBox->set_border_width(6);
-        auto* pGrid = Gtk::manage(new Gtk::Grid{});
-        pGrid->set_row_spacing(3);
-        pGrid->set_column_spacing(3);
-        int col{0}, row{0};
-        for (const auto& swatch : palette) {
-            const Glib::ustring hex{swatch.first};
-            auto* pBtn = Gtk::manage(new Gtk::Button{});
-            pBtn->set_image(*Gtk::manage(new Gtk::Image{make_colour_swatch(hex, 24, 18)}));
-            pBtn->set_tooltip_text(_(swatch.second));
+        auto* pVBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 3});
+        pVBox->set_border_width(8);
+
+        auto f_addColourButton = [this](Gtk::Button* pBtn, const Glib::ustring& hex){
             pBtn->signal_clicked().connect([this, hex](){
                 _pPopover->popdown();
                 set_colour(hex);
                 _signalApply.emit(hex);
             });
-            pGrid->attach(*pBtn, col, row, 1, 1);
-            if (++col >= 5) { col = 0; ++row; }
+        };
+        auto f_sectionLabel = [pVBox](const Glib::ustring& text){
+            auto* pLbl = Gtk::manage(new Gtk::Label{text});
+            pLbl->set_halign(Gtk::ALIGN_START);
+            pVBox->pack_start(*pLbl, false, false);
+        };
+
+        // "自动" (font colour) / "无颜色" (highlight) — "-" removes the tag in CtActions::apply_tag
+        auto* pBtnAuto = Gtk::manage(new Gtk::Button{});
+        pBtnAuto->set_label(_isForeground ? _("自动") : _("无颜色"));
+        pBtnAuto->set_image(*Gtk::manage(new Gtk::Image{make_colour_swatch(_isForeground ? "#000000" : "#ffffff", 20, 14)}));
+        pBtnAuto->set_always_show_image(true);
+        pBtnAuto->signal_clicked().connect([this](){
+            _pPopover->popdown();
+            _signalApply.emit("-");
+        });
+        pVBox->pack_start(*pBtnAuto, false, false);
+
+        // 主题颜色: 10 columns × (base + 5 tints/shades), light→dark downwards
+        f_sectionLabel(_("主题颜色"));
+        auto* pGridTheme = Gtk::manage(new Gtk::Grid{});
+        pGridTheme->set_row_spacing(2);
+        pGridTheme->set_column_spacing(2);
+        for (size_t col = 0; col < themeBase.size(); ++col) {
+            const std::vector<Glib::ustring> shades{
+                themeBase[col],
+                mixWhite(themeBase[col], 0.8),
+                mixWhite(themeBase[col], 0.6),
+                mixWhite(themeBase[col], 0.4),
+                mixBlack(themeBase[col], 0.25),
+                mixBlack(themeBase[col], 0.5)};
+            for (size_t row = 0; row < shades.size(); ++row) {
+                auto* pBtn = Gtk::manage(new Gtk::Button{});
+                pBtn->set_image(*Gtk::manage(new Gtk::Image{make_colour_swatch(shades[row], 20, 14)}));
+                pBtn->set_relief(Gtk::RELIEF_NONE);
+                pBtn->set_tooltip_text(shades[row]);
+                f_addColourButton(pBtn, shades[row]);
+                pGridTheme->attach(*pBtn, static_cast<int>(col), static_cast<int>(row), 1, 1);
+            }
         }
-        pVBox->pack_start(*pGrid, false, false);
+        pVBox->pack_start(*pGridTheme, false, false);
+
+        // 标准色: 10 vivid colours
+        f_sectionLabel(_("标准色"));
+        auto* pGridStd = Gtk::manage(new Gtk::Grid{});
+        pGridStd->set_row_spacing(2);
+        pGridStd->set_column_spacing(2);
+        for (size_t col = 0; col < standard.size(); ++col) {
+            auto* pBtn = Gtk::manage(new Gtk::Button{});
+            pBtn->set_image(*Gtk::manage(new Gtk::Image{make_colour_swatch(standard[col], 20, 14)}));
+            pBtn->set_relief(Gtk::RELIEF_NONE);
+            pBtn->set_tooltip_text(standard[col]);
+            f_addColourButton(pBtn, standard[col]);
+            pGridStd->attach(*pBtn, static_cast<int>(col), 0, 1, 1);
+        }
+        pVBox->pack_start(*pGridStd, false, false);
+
+        // 渐变填充: vertical light→dark gradients of the standard colours
+        f_sectionLabel(_("渐变填充"));
+        auto* pGridGrad = Gtk::manage(new Gtk::Grid{});
+        pGridGrad->set_row_spacing(2);
+        pGridGrad->set_column_spacing(2);
+        for (size_t col = 0; col < standard.size(); ++col) {
+            auto* pBtn = Gtk::manage(new Gtk::Button{});
+            pBtn->set_image(*Gtk::manage(new Gtk::Image{make_gradient_swatch(mixWhite(standard[col], 0.35), mixBlack(standard[col], 0.35), 20, 14)}));
+            pBtn->set_relief(Gtk::RELIEF_NONE);
+            pBtn->set_tooltip_text(standard[col]);
+            f_addColourButton(pBtn, standard[col]);
+            pGridGrad->attach(*pBtn, static_cast<int>(col), 0, 1, 1);
+        }
+        pVBox->pack_start(*pGridGrad, false, false);
+
         pVBox->pack_start(*Gtk::manage(new Gtk::Separator{Gtk::ORIENTATION_HORIZONTAL}), false, false);
 
-        auto* pBtnNone = Gtk::manage(new Gtk::Button{_("无颜色")});
-        pBtnNone->signal_clicked().connect([this](){
-            _pPopover->popdown();
-            _signalApply.emit("-"); // "-" removes the colour, see CtActions::apply_tag
-        });
-        pVBox->pack_start(*pBtnNone, false, false);
-
+        auto* pHBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 6});
         auto* pBtnMore = Gtk::manage(new Gtk::Button{_("其他颜色…")});
         pBtnMore->signal_clicked().connect([this](){
             _pPopover->popdown();
             _signalPickCustom.emit();
         });
-        pVBox->pack_start(*pBtnMore, false, false);
+        pHBox->pack_start(*pBtnMore, false, false);
+#ifdef G_OS_WIN32
+        // 取色器: sample any pixel on the screen (next left-click anywhere)
+        auto* pBtnPick = Gtk::manage(new Gtk::Button{_("取色器")});
+        pBtnPick->signal_clicked().connect([this](){
+            _pPopover->popdown();
+            static bool sPicking = false;
+            if (sPicking) return;
+            sPicking = true;
+            static bool sReleased = false; // the trigger click must be released first
+            static int  sElapsedMs = 0;
+            sReleased = false;
+            sElapsedMs = 0;
+            Glib::signal_timeout().connect([this]() -> bool {
+                sElapsedMs += 40;
+                const bool down = 0 != (GetAsyncKeyState(VK_LBUTTON) & 0x8000);
+                if (not sReleased) {
+                    if (not down) sReleased = true; // wait for the trigger click to be released
+                    return sElapsedMs < 10000;
+                }
+                if (down) {
+                    POINT pt{};
+                    GetCursorPos(&pt);
+                    HDC hdc = GetDC(nullptr);
+                    const COLORREF c = GetPixel(hdc, pt.x, pt.y);
+                    ReleaseDC(nullptr, hdc);
+                    char hex[16];
+                    std::snprintf(hex, sizeof(hex), "#%02x%02x%02x", GetRValue(c), GetGValue(c), GetBValue(c));
+                    sPicking = false;
+                    set_colour(hex);
+                    _signalApply.emit(hex);
+                    return false; // stop polling
+                }
+                return sElapsedMs < 10000; // give up after 10s
+            }, 40);
+        });
+        pHBox->pack_start(*pBtnPick, false, false);
+#endif /* G_OS_WIN32 */
+        pVBox->pack_start(*pHBox, false, false);
 
         _pPopover->add(*pVBox);
     }
 
+    const bool     _isForeground;
     Gtk::Button    _btnMain;
     Gtk::MenuButton _btnArrow;
     Gtk::Popover*  _pPopover{nullptr};
@@ -1160,7 +1319,8 @@ Gtk::Widget* CtMenu::_setup_colour_tool_button(const bool isForeground)
         isForeground ? "ct_color_fg" : "ct_color_bg",
         isForeground ? _("字体颜色：按当前颜色着色") : _("突出显示：按当前颜色着色"),
         _("选择颜色"),
-        CtMiscUtil::getIconSize(_pCtConfig->toolbarIconSize)});
+        CtMiscUtil::getIconSize(_pCtConfig->toolbarIconSize),
+        isForeground});
     pBtn->signal_apply().connect([this, isForeground](const Glib::ustring& colour){
         if (isForeground) _pCtMainWin->get_ct_actions()->apply_tag_foreground_colour(colour);
         else              _pCtMainWin->get_ct_actions()->apply_tag_background_colour(colour);

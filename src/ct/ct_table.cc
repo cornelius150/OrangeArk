@@ -573,6 +573,9 @@ void CtTableCommon::_resize_drag_update(const double xRoot, const double yRoot)
     _lastGuideX = xRoot;
     _lastGuideY = yRoot;
     _guide_update(xRoot, yRoot);
+    // OrangeArk: live resize — the grid follows the pointer WHILE dragging
+    // (guide-only preview felt rigid; the table only snapped into shape on release)
+    _resize_drag_apply(xRoot, yRoot);
 }
 
 // OrangeArk: the actual (unthrottled) layout update — also used for the final
@@ -663,7 +666,7 @@ int CtTableCommon::_column_separator_at(const double x) const
     double acc = 0.0;
     for (size_t c = 0u; c + 1u < colWidths.size(); ++c) { // inner separators only
         acc += colWidths.at(c);
-        if (std::abs(x - acc) <= 6.0) { // OrangeArk: wider grab zone (was 4)
+        if (std::abs(x - acc) <= 8.0) { // OrangeArk: wider grab zone (was 4, then 6)
             return static_cast<int>(c);
         }
     }
@@ -1378,7 +1381,7 @@ int CtTableHeavy::_row_separator_at(const double y) const
     for (size_t r = 0u; r + 1u < numRows; ++r) { // inner separators only
         CtTextCell* pCell = static_cast<CtTextCell*>(_tableMatrix.at(r).front());
         nextTop += pCell->get_text_view().mm().get_allocation().get_height() + spacing;
-        if (std::abs(y - nextTop) <= 6.0) { // OrangeArk: wider grab zone (was 4)
+        if (std::abs(y - nextTop) <= 8.0) { // OrangeArk: wider grab zone (was 4, then 6)
             return static_cast<int>(r);
         }
     }
