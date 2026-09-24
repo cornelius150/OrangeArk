@@ -215,11 +215,15 @@ std::string CtMiscUtil::clean_from_chars_not_for_filename(std::string filename)
 Gtk::BuiltinIconSize CtMiscUtil::getIconSize(int size)
 {
     switch (size) {
-        case 1:  return Gtk::BuiltinIconSize::ICON_SIZE_MENU;
-        case 2:  return Gtk::BuiltinIconSize::ICON_SIZE_SMALL_TOOLBAR;
-        case 3:  return Gtk::BuiltinIconSize::ICON_SIZE_LARGE_TOOLBAR;
-        case 4:  return Gtk::BuiltinIconSize::ICON_SIZE_DND;
-        case 5:  return Gtk::BuiltinIconSize::ICON_SIZE_DIALOG;
+        case 1:  return Gtk::BuiltinIconSize::ICON_SIZE_MENU;           // 16px
+        case 2:                                                          // 20px (OrangeArk: between the 16px and 24px built-ins)
+        {
+            static const GtkIconSize sIconSize20 = gtk_icon_size_register("orangeark-toolbar-20", 20, 20);
+            return static_cast<Gtk::BuiltinIconSize>(sIconSize20);
+        }
+        case 3:  return Gtk::BuiltinIconSize::ICON_SIZE_LARGE_TOOLBAR;  // 24px
+        case 4:  return Gtk::BuiltinIconSize::ICON_SIZE_DND;            // 32px
+        case 5:  return Gtk::BuiltinIconSize::ICON_SIZE_DIALOG;         // 48px
         default: return Gtk::BuiltinIconSize::ICON_SIZE_MENU;
     }
 }

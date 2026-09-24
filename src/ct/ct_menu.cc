@@ -972,7 +972,15 @@ public:
 
         _build_palette();
         _btnArrow.set_popover(*_pPopover);
+        _pPopover->show_all(); // OrangeArk fix: without this the popup opens but its contents stay invisible (blank popover)
         show_all();
+        // OrangeArk: automated-verification hook — auto-open the popover (no input injection)
+        if (g_getenv("ORANGEARK_POPOVER_SELFTEST")) {
+            static int sSelfTestSeq = 0;
+            Gtk::Popover* pPop = _pPopover;
+            const int delayMs = 6000 + 5000 * (sSelfTestSeq++);
+            Glib::signal_timeout().connect_once([pPop]() { if (pPop) pPop->popup(); }, delayMs);
+        }
     }
 
     void set_colour(const Glib::ustring& colour)
@@ -1082,7 +1090,15 @@ public:
 
         _build_library();
         _btnArrow.set_popover(*_pPopover);
+        _pPopover->show_all(); // OrangeArk fix: without this the popup opens but its contents stay invisible (blank popover)
         show_all();
+        // OrangeArk: automated-verification hook — auto-open the popover (no input injection)
+        if (g_getenv("ORANGEARK_POPOVER_SELFTEST")) {
+            static int sSelfTestSeq = 2; // colour fg/bg popovers take slots 0/1, bullet/number take 2/3
+            Gtk::Popover* pPop = _pPopover;
+            const int delayMs = 6000 + 5000 * (sSelfTestSeq++);
+            Glib::signal_timeout().connect_once([pPop]() { if (pPop) pPop->popup(); }, delayMs);
+        }
     }
 
     sigc::signal<void>& signal_toggle() { return _signalToggle; }
