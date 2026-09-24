@@ -23,6 +23,8 @@
 
 #include "ct_table.h"
 #include "ct_main_win.h"
+
+#include <map> // OrangeArk: row-height remap on sort
 #include "ct_actions.h"
 #include "ct_storage_sqlite.h"
 #include "ct_storage_xml.h"
@@ -46,8 +48,9 @@ CtTableLight::CtTableLight(CtMainWin* pCtMainWin,
                            const std::string& justification,
                            const CtTableColWidths& colWidths,
                            const size_t currRow,
-                           const size_t currCol)
- : CtTableCommon{pCtMainWin, colWidthDefault, charOffset, justification, colWidths, currRow, currCol}
+                           const size_t currCol,
+                           const CtTableColWidths& rowHeights)
+ : CtTableCommon{pCtMainWin, colWidthDefault, charOffset, justification, colWidths, currRow, currCol, rowHeights}
 {
     _reset(tableMatrix);
 }
@@ -258,6 +261,7 @@ void CtTableLight::row_add(const size_t afterRowIdx, const std::vector<Glib::ust
     }
     Gtk::TreeModel::Row newRow = *newIter;
     newRow[_pColumns->columnWeight] = CtTreeIter::get_pango_weight_from_is_bold(false);
+    _row_heights_insert(afterRowIdx + 1u); // OrangeArk: keep per-row heights aligned
     if (pNewRow) {
         const size_t numColsTo = get_num_columns();
         const size_t numColsFrom = pNewRow->size();
@@ -293,6 +297,7 @@ void CtTableLight::row_delete(const size_t rowIdx)
     //    treeIter->get_value(cols.columnsText.at(3)));
     exit_cell_edit();
     (void)_pListStore->erase(treeIter);
+    _row_heights_erase(rowIdx); // OrangeArk: keep per-row heights aligned
     if (_currentRow == get_num_rows()) {
         --_currentRow;
     }
@@ -341,6 +346,9 @@ void CtTableLight::row_move_up(const size_t rowIdx, const bool from_move_down)
     }
     exit_cell_edit();
     _pListStore->iter_swap(treeIter, treeIterUp);
+    if (rowIdx < _rowHeights.size() and rowIdxUp < _rowHeights.size()) {
+        std::swap(_rowHeights[rowIdx], _rowHeights[rowIdxUp]); // OrangeArk: heights follow rows
+    }
     _currentRow = rowIdxUp;
     if (not from_move_down) {
         grab_focus();
@@ -372,10 +380,46 @@ bool CtTableLight::_row_sort(const bool sortAsc)
         return false; // no swap needed as equal
     };
     exit_cell_edit();
+    // OrangeArk: capture row keys so per-row heights can follow the sorted rows
+    std::multimap<Glib::ustring, int> heightByKey;
+    {
+        auto children = _pListStore->children();
+        size_t r = 0;
+        for (auto it = children.begin(); it; ++it, ++r) {
+            if (0u == r) continue; // header
+            Glib::ustring key;
+            for (size_t c = 0; c < get_num_columns(); ++c) {
+                key += (*it)[_pColumns->columnsText.at(c)];
+                key += "\x1f";
+            }
+            heightByKey.emplace(key, r < _rowHeights.size() ? _rowHeights[r] : 0);
+        }
+    }
     const bool retVal = CtMiscUtil::node_siblings_sort(_pListStore,
                                                        _pListStore->children(),
                                                        f_need_swap,
                                                        1u/*start_offset*/);
+    if (retVal) { // OrangeArk: remap heights by row content after the sort
+        auto children = _pListStore->children();
+        size_t r = 0;
+        for (auto it = children.begin(); it; ++it, ++r) {
+            if (0u == r) continue; // header
+            Glib::ustring key;
+            for (size_t c = 0; c < get_num_columns(); ++c) {
+                key += (*it)[_pColumns->columnsText.at(c)];
+                key += "\x1f";
+            }
+            int h{0};
+            auto hit = heightByKey.find(key);
+            if (hit != heightByKey.end()) {
+                h = hit->second;
+                heightByKey.erase(hit);
+            }
+            if (r < _rowHeights.size()) {
+                _rowHeights[r] = h;
+            }
+        }
+    }
     return retVal;
 }
 
@@ -699,7 +743,9 @@ void CtTableLight::_on_treeview_event_after(GdkEvent* event)
 // OrangeArk: row height control (vertical drag of the resize grip)
 void CtTableLight::_set_rows_min_height(const int height)
 {
-    _rowsMinHeight = std::max(0, height);
+    const int clamped = std::max(0, height);
+    if (clamped == _rowsMinHeight) return; // no-op: skip the layout storm
+    _rowsMinHeight = clamped;
     if (not _pManagedTreeView) return;
     for (Gtk::TreeViewColumn* pCol : _pManagedTreeView->get_columns()) {
         for (Gtk::CellRenderer* pRenderer : pCol->get_cells()) {
@@ -712,4 +758,16 @@ void CtTableLight::_set_rows_min_height(const int height)
 int CtTableLight::_get_rows_min_height() const
 {
     return _rowsMinHeight > 0 ? _rowsMinHeight : 24;
+}
+
+// OrangeArk: the light table is a single TreeView — per-row heights are not
+// supported by Gtk::TreeView's uniform cell renderers, so a painted row height
+// degrades to the uniform minimum here. The heavy table (default) applies true
+// per-row heights.
+void CtTableLight::_apply_row_height(const size_t rowIdx)
+{
+    const int perRow = get_row_height(rowIdx);
+    if (perRow > 0 and perRow != _rowsMinHeight) {
+        _set_rows_min_height(perRow);
+    }
 }

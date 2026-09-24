@@ -585,14 +585,16 @@ Glib::RefPtr<Gtk::TextBuffer> CtStorageXmlHelper::create_buffer_no_widgets(const
 bool CtStorageXmlHelper::populate_table_matrix(CtTableMatrix& tableMatrix,
                                                const char* xml_content,
                                                CtTableColWidths& tableColWidths,
-                                               bool& is_light)
+                                               bool& is_light,
+                                               CtTableColWidths* tableRowHeights)
 {
     xmlpp::DomParser parser;
     if (CtXmlHelper::safe_parse_memory(parser, xml_content)) {
         return populate_table_matrix(tableMatrix,
                                      parser.get_document()->get_root_node(),
                                      tableColWidths,
-                                     is_light);
+                                     is_light,
+                                     tableRowHeights);
     }
     return false;
 }
@@ -600,7 +602,8 @@ bool CtStorageXmlHelper::populate_table_matrix(CtTableMatrix& tableMatrix,
 bool CtStorageXmlHelper::populate_table_matrix(CtTableMatrix& tableMatrix,
                                                xmlpp::Element* xml_element,
                                                CtTableColWidths& tableColWidths,
-                                               bool& is_light)
+                                               bool& is_light,
+                                               CtTableColWidths* tableRowHeights)
 {
     const Glib::ustring isLightStr = xml_element->get_attribute_value("is_light");
     if (not isLightStr.empty()) {
@@ -637,6 +640,12 @@ bool CtStorageXmlHelper::populate_table_matrix(CtTableMatrix& tableMatrix,
     const Glib::ustring colWidthsStr = xml_element->get_attribute_value("col_widths");
     if (not colWidthsStr.empty()) {
         tableColWidths = CtStrUtil::gstring_split_to_int(colWidthsStr.c_str(), ",");
+    }
+    if (tableRowHeights) { // OrangeArk: per-row heights, aligned with matrix (header first)
+        const Glib::ustring rowHeightsStr = xml_element->get_attribute_value("row_heights");
+        if (not rowHeightsStr.empty()) {
+            *tableRowHeights = CtStrUtil::gstring_split_to_int(rowHeightsStr.c_str(), ",");
+        }
     }
     return true;
 }
@@ -787,15 +796,16 @@ CtAnchoredWidget* CtStorageXmlHelper::_create_table_from_xml(xmlpp::Element* xml
 
     CtTableMatrix tableMatrix;
     CtTableColWidths tableColWidths;
+    CtTableColWidths tableRowHeights; // OrangeArk
     bool is_light{false};
-    if (not populate_table_matrix(tableMatrix, xml_element, tableColWidths, is_light)) {
+    if (not populate_table_matrix(tableMatrix, xml_element, tableColWidths, is_light, &tableRowHeights)) {
         spdlog::error("!! empty table xml");
         return nullptr;
     }
     if (is_light) {
-        return new CtTableLight{_pCtMainWin, tableMatrix, colWidthDefault, charOffset, justification, tableColWidths};
+        return new CtTableLight{_pCtMainWin, tableMatrix, colWidthDefault, charOffset, justification, tableColWidths, 0, 0, tableRowHeights};
     }
-    return new CtTableHeavy{_pCtMainWin, tableMatrix, colWidthDefault, charOffset, justification, tableColWidths};
+    return new CtTableHeavy{_pCtMainWin, tableMatrix, colWidthDefault, charOffset, justification, tableColWidths, 0, 0, tableRowHeights};
 }
 
 void CtXmlHelper::table_to_xml(xmlpp::Element* p_parent,
@@ -804,7 +814,8 @@ void CtXmlHelper::table_to_xml(xmlpp::Element* p_parent,
                                const Glib::ustring justification,
                                const int defaultWidth,
                                const Glib::ustring colWidths,
-                               const bool is_light)
+                               const bool is_light,
+                               const Glib::ustring rowHeights)
 {
     xmlpp::Element* p_table_node = p_parent->add_child("table");
     p_table_node->set_attribute("char_offset", std::to_string(char_offset));
@@ -812,6 +823,9 @@ void CtXmlHelper::table_to_xml(xmlpp::Element* p_parent,
     p_table_node->set_attribute("col_min", std::to_string(defaultWidth)); // todo get rid of column min
     p_table_node->set_attribute("col_max", std::to_string(defaultWidth));
     p_table_node->set_attribute("col_widths", colWidths);
+    if (not rowHeights.empty()) { // OrangeArk: per-row heights
+        p_table_node->set_attribute("row_heights", rowHeights);
+    }
     if (is_light) {
         p_table_node->set_attribute("is_light", "1");
     }

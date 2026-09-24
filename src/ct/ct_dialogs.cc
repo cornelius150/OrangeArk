@@ -581,9 +581,11 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     dialog.set_position(Gtk::WIN_POS_CENTER_ON_PARENT);
 
     // OrangeArk: keep the original storage-type list, every entry now saves .md
-    Gtk::RadioButton radiobutton_md(Glib::ustring{_("Single SQLite File")} + " (.md)");
+    // OrangeArk: the first two entries used to read "Single SQLite File ..." —
+    // the storage engine detail must not leak into the UI, wording is now neutral
+    Gtk::RadioButton radiobutton_md(Glib::ustring{_("Single File")} + " (.md)");
     Gtk::RadioButton::Group rbGroup = radiobutton_md.get_group();
-    Gtk::RadioButton radiobutton_sqlite_pass_protected(rbGroup, Glib::ustring{_("Single SQLite File, 7-zip Encrypted and Password Protected")} + " (.md)");
+    Gtk::RadioButton radiobutton_sqlite_pass_protected(rbGroup, Glib::ustring{_("Single File, 7-zip Encrypted and Password Protected")} + " (.md)");
     Gtk::RadioButton radiobutton_xml_not_protected(rbGroup, Glib::ustring{_("Single XML File")}  + " (.md)");
     Gtk::RadioButton radiobutton_xml_pass_protected(rbGroup, Glib::ustring{_("Single XML File, 7-zip Encrypted and Password Protected")} + " (.md)");
     Gtk::RadioButton radiobutton_multifile(rbGroup, Glib::ustring{_("Multiple Files in Hierarchical Folder Structure")});

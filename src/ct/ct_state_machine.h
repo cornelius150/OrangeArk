@@ -133,6 +133,7 @@ public:
 
     int colWidthDefault;
     CtTableColWidths colWidths;
+    CtTableColWidths rowHeights; // OrangeArk: per-row heights (0 = auto), for undo/redo round-trip
     std::vector<std::vector<Glib::ustring>> rows;
     size_t currRow;
     size_t currCol;

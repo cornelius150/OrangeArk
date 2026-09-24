@@ -1,3 +1,11 @@
+orangeark (1.1.1-1) focal; urgency=low
+
+  * OrangeArk: format painter toolbar button now shows icon + Chinese label "格式刷" (both-horiz style, only this button)
+  * OrangeArk: save dialog no longer shows the "SQLite" wording in the first two options (underlying storage unchanged)
+  * OrangeArk: tables — dragging a single edge now resizes only that row/column; per-row heights are stored (row_heights), survive save/load and undo/redo; resize lag reduced (change-checked set_size_request, guide-line drag, per-row touch only)
+
+ -- OrangeArk <orangeark@localhost>  Tue, 22 Sep 2026 12:55:00 +0800
+
 orangeark (1.1.0-1) focal; urgency=low
 
   * OrangeArk: screenshot annotation second-pass editing — click a drawn shape

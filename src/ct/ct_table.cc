@@ -38,13 +38,67 @@ CtTableCommon::CtTableCommon(CtMainWin* pCtMainWin,
                              const std::string& justification,
                              const CtTableColWidths& colWidths,
                              const size_t currRow,
-                             const size_t currCol)
+                             const size_t currCol,
+                             const CtTableColWidths& rowHeights)
  : CtAnchoredWidget{pCtMainWin, charOffset, justification}
+ , _rowHeights{rowHeights}
  , _colWidthDefault{colWidthDefault}
  , _colWidths{colWidths}
  , _currentRow{currRow}
  , _currentColumn{currCol}
 {
+}
+
+// OrangeArk: per-row heights — 0 means "auto" (follow the cell content);
+// get_effective_row_height() folds in the legacy uniform min-height
+int CtTableCommon::get_row_height(const size_t rowIdx) const
+{
+    if (rowIdx < _rowHeights.size()) return _rowHeights.at(rowIdx);
+    return 0;
+}
+
+int CtTableCommon::get_effective_row_height(const size_t rowIdx) const
+{
+    const int perRow = get_row_height(rowIdx);
+    if (perRow > 0) return perRow;
+    // OrangeArk: use the RAW uniform minimum (0 = not set) — the estimated
+    // fallback in _get_rows_min_height() must not pin auto rows to a fixed
+    // height, e.g. while a table is being constructed
+    const int uniform = _get_rows_min_height_raw();
+    return uniform > 0 ? uniform : 0;
+}
+
+void CtTableCommon::set_row_height(const int height, const size_t rowIdx)
+{
+    if (rowIdx >= get_num_rows()) return;
+    while (_rowHeights.size() < get_num_rows()) _rowHeights.push_back(0);
+    const int clamped = height <= 0 ? 0 : std::max(14, height);
+    if (_rowHeights.at(rowIdx) == clamped) return; // no-op: skip the layout storm
+    _rowHeights.at(rowIdx) = clamped;
+    _apply_row_height(rowIdx);
+}
+
+void CtTableCommon::_row_heights_insert(const size_t atIdx)
+{
+    while (_rowHeights.size() < get_num_rows()) _rowHeights.push_back(0);
+    if (atIdx < _rowHeights.size()) {
+        _rowHeights.insert(_rowHeights.begin() + atIdx, 0);
+    }
+}
+
+void CtTableCommon::_row_heights_erase(const size_t atIdx)
+{
+    if (atIdx < _rowHeights.size()) {
+        _rowHeights.erase(_rowHeights.begin() + atIdx);
+    }
+}
+
+void CtTableCommon::_row_heights_move(const size_t fromIdx, const size_t toIdx)
+{
+    if (fromIdx >= _rowHeights.size() or toIdx >= _rowHeights.size() or fromIdx == toIdx) return;
+    const int h = _rowHeights.at(fromIdx);
+    _rowHeights.erase(_rowHeights.begin() + fromIdx);
+    _rowHeights.insert(_rowHeights.begin() + toIdx, h);
 }
 
 bool CtTableCommon::get_is_light() const
@@ -278,7 +332,8 @@ void CtTableCommon::to_xml(xmlpp::Element* p_node_parent, const int offset_adjus
                               _justification,
                               _colWidthDefault,
                               str::join_numbers(_colWidths, ","),
-                              CtAnchWidgType::TableLight == get_type());
+                              CtAnchWidgType::TableLight == get_type(),
+                              str::join_numbers(_rowHeights, ",")); // OrangeArk: per-row heights
 }
 
 bool CtTableCommon::to_sqlite(sqlite3* pDb, const gint64 node_id, const int offset_adjustment, CtStorageCache*)
@@ -293,6 +348,7 @@ bool CtTableCommon::to_sqlite(sqlite3* pDb, const gint64 node_id, const int offs
         xmlpp::Document xml_doc;
         xml_doc.create_root_node("table");
         xml_doc.get_root_node()->set_attribute("col_widths", str::join_numbers(_colWidths, ","));
+        xml_doc.get_root_node()->set_attribute("row_heights", str::join_numbers(_rowHeights, ",")); // OrangeArk
         if (CtAnchWidgType::TableLight == get_type()) {
             xml_doc.get_root_node()->set_attribute("is_light", "1");
         }
@@ -383,6 +439,13 @@ void CtTableCommon::_resize_drag_begin(const double xRoot, const double yRoot)
     _dragStartH = get_allocation().get_height();
     _dragStartColWidths = get_col_widths();
     _dragStartMinHeight = _get_rows_min_height();
+    // OrangeArk: snapshot the dragged row's effective height (per-row drags and
+    // top/bottom border drags); falls back to the uniform min height
+    _dragStartRowH = 0;
+    if (_dragRowIdx >= 0 and _dragRowIdx < static_cast<int>(get_num_rows())) {
+        _dragStartRowH = get_effective_row_height(static_cast<size_t>(_dragRowIdx));
+        if (_dragStartRowH <= 0) _dragStartRowH = _dragStartMinHeight > 0 ? _dragStartMinHeight : 24;
+    }
     _lastMotionXRoot = xRoot;
     _lastMotionYRoot = yRoot;
     gtk_grab_add(GTK_WIDGET(gobj()));
@@ -446,14 +509,15 @@ void CtTableCommon::_guide_update(const double xRoot, const double yRoot)
     const double dy = yRoot - _dragStartY;
 
     // vertical guide: the prospective position of the dragged column separator
-    // or of the table right edge
+    // or of the table right edge (grip only)
     bool showV = false;
     double gx = 0.0;
     if (_dragColIdx >= 0) {
         if (_dragColIdx < static_cast<int>(_dragStartColWidths.size())) {
+            const int dir = (_dragEdgesMask & 1) ? -1 : 1;
             double acc = 0.0;
             for (int c = 0; c < _dragColIdx; ++c) acc += _dragStartColWidths.at(static_cast<size_t>(c));
-            gx = acc + std::max(16.0, _dragStartColWidths.at(static_cast<size_t>(_dragColIdx)) + dx);
+            gx = acc + std::max(16.0, _dragStartColWidths.at(static_cast<size_t>(_dragColIdx)) + dir * dx);
             showV = true;
         }
     }
@@ -463,11 +527,24 @@ void CtTableCommon::_guide_update(const double xRoot, const double yRoot)
         showV = true;
     }
 
-    // horizontal guide: the prospective table bottom edge (row heights drag)
-    bool showH = (_dragEdgesMask & 0xC) != 0 and not showV;
-    double gy = std::max(14.0 * std::max<size_t>(1, get_num_rows()), _dragStartH + dy);
+    // horizontal guide: the prospective position of the dragged row separator,
+    // or of the table bottom edge (grip only)
+    bool showH = false;
+    double gy = 0.0;
+    if (_dragRowIdx >= 0) {
+        const int dir = (_dragEdgesMask & 4) ? -1 : 1;
+        const double rowTop = _row_top_at(static_cast<size_t>(_dragRowIdx));
+        const double base = rowTop >= 0.0 ? rowTop
+                                          : 14.0 * static_cast<double>(_dragRowIdx); // fallback estimate
+        gy = base + std::max(14.0, static_cast<double>(_dragStartRowH) + dir * dy);
+        showH = true;
+    }
+    else if (_dragEdgesMask & 0xC) {
+        gy = std::max(14.0 * std::max<size_t>(1, get_num_rows()), _dragStartH + dy);
+        showH = not showV; // pure vertical grip drag shows H; diagonal shows both
+    }
     // the corner grip drags both edges at once
-    const bool bothDiag = _dragColIdx < 0 and (_dragEdgesMask & 0x3) and (_dragEdgesMask & 0xC);
+    const bool bothDiag = _dragColIdx < 0 and _dragRowIdx < 0 and (_dragEdgesMask & 0x3) and (_dragEdgesMask & 0xC);
 
     if (showV) {
         _rGuideV->move(orgX + static_cast<int>(gx) - 1, orgY);
@@ -502,10 +579,13 @@ void CtTableCommon::_resize_drag_apply(const double xRoot, const double yRoot)
     const double dy = yRoot - _dragStartY;
 
     if (_dragColIdx >= 0) {
-        // OrangeArk: dragging a column separator resizes that single column only
+        // OrangeArk: dragging a column separator (or a left/right border) resizes
+        // that single column only. A left-edge drag grows the first column when
+        // the pointer moves LEFT, hence the sign flip.
         if (_dragColIdx < static_cast<int>(_dragStartColWidths.size())) {
+            const int dir = (_dragEdgesMask & 1) ? -1 : 1;
             const int startW = _dragStartColWidths.at(static_cast<size_t>(_dragColIdx));
-            const int newWidth = std::max(16, static_cast<int>(std::lround(startW + dx)));
+            const int newWidth = std::max(16, static_cast<int>(std::lround(startW + dir * dx)));
             if (newWidth != get_col_width(static_cast<size_t>(_dragColIdx))) {
                 set_col_width(newWidth, static_cast<size_t>(_dragColIdx));
                 _dragResizeChanged = true;
@@ -514,9 +594,22 @@ void CtTableCommon::_resize_drag_apply(const double xRoot, const double yRoot)
         return;
     }
 
-    // OrangeArk: horizontal drag scales the column widths ONLY when a left/right
-    // border or the corner grip is dragged; vertical drag changes the row heights
-    // ONLY when a top/bottom border or the grip is dragged
+    if (_dragRowIdx >= 0) {
+        // OrangeArk: dragging a row separator (or a top/bottom border) resizes
+        // that single row only. A top-edge drag grows the first row when the
+        // pointer moves UP, hence the sign flip.
+        const int dir = (_dragEdgesMask & 4) ? -1 : 1;
+        const int newH = std::max(14, static_cast<int>(std::lround(_dragStartRowH + dir * dy)));
+        if (newH != get_row_height(static_cast<size_t>(_dragRowIdx))) {
+            set_row_height(newH, static_cast<size_t>(_dragRowIdx));
+            _dragResizeChanged = true;
+        }
+        return;
+    }
+
+    // OrangeArk: whole-table scale — only the corner grip reaches this branch.
+    // Horizontal drag scales the column widths proportionally; vertical drag
+    // changes the uniform row min-height.
     if (_dragEdgesMask & 0x3) {
         const double scale = (_dragStartTotalW + dx) / static_cast<double>(_dragStartTotalW);
         if (scale > 0.05) {
@@ -625,18 +718,49 @@ bool CtTableCommon::_resize_press_at(const double x, const double y, GdkEventBut
         // OrangeArk: pressing near an inner column separator starts a drag that
         // resizes that single column (OneNote-like per-column resizing)
         const int colIdx = _column_separator_at(x);
-        if (colIdx < 0) return false;
+        if (colIdx >= 0) {
+            if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
+            _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
+            _dragColIdx = colIdx;
+            _dragRowIdx = -1;
+            _dragEdgesMask = 2; // behaves like a right-edge (width) drag
+            _resize_drag_begin(event->x_root, event->y_root);
+            return true;
+        }
+        // OrangeArk: pressing near an inner row separator starts a drag that
+        // resizes that single row (the row above the separator)
+        const int rowIdx = _row_separator_at(y);
+        if (rowIdx < 0) return false;
         if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
         _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
-        _dragColIdx = colIdx;
-        _dragEdgesMask = 2; // behaves like a right-edge (width) drag
+        _dragColIdx = -1;
+        _dragRowIdx = rowIdx;
+        _dragEdgesMask = 8; // behaves like a bottom-edge (height) drag
         _resize_drag_begin(event->x_root, event->y_root);
         return true;
     }
     if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
     _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
     _dragEdgesMask = edges;
-    _dragColIdx = -1;
+    // OrangeArk: edge drags now target ONE row/column instead of scaling the
+    // whole table (user feedback: "调一行/一列结果整表都变了"). The bottom-right
+    // corner grip keeps the whole-table scale behaviour as the explicit
+    // "resize everything" gesture.
+    //   right border (pure)  -> last column only      left border  -> first column only
+    //   bottom border (pure) -> last row only         top border   -> first row only
+    const bool grip = (edges & 0x3) and (edges & 0xC);
+    if (grip) {
+        _dragColIdx = -1;
+        _dragRowIdx = -1;
+    }
+    else if (edges & 0x3) {
+        _dragColIdx = (edges & 2) ? static_cast<int>(get_num_columns()) - 1 : 0;
+        _dragRowIdx = -1;
+    }
+    else {
+        _dragColIdx = -1;
+        _dragRowIdx = (edges & 8) ? static_cast<int>(get_num_rows()) - 1 : 0;
+    }
     _resize_drag_begin(event->x_root, event->y_root);
     return true; // do not propagate while resizing
 }
@@ -664,9 +788,13 @@ bool CtTableCommon::_resize_motion_at(const double x, const double y, GdkEventMo
         _table_border_cursor(this, _dragColIdx >= 0 ? 0x2 : _dragEdgesMask);
         return true;
     }
-    // hover feedback: column separators behave like a right-edge width drag
+    // hover feedback: column separators behave like a right-edge width drag,
+    // row separators like a bottom-edge height drag
     if (_column_separator_at(x) >= 0) {
         _table_border_cursor(this, 0x2);
+    }
+    else if (_row_separator_at(y) >= 0) {
+        _table_border_cursor(this, 0x8);
     }
     else {
         _table_border_cursor(this, _table_border_edges(x, y, get_allocation()));
@@ -694,8 +822,9 @@ CtTableHeavy::CtTableHeavy(CtMainWin* pCtMainWin,
                  const std::string& justification,
                  const CtTableColWidths& colWidths,
                  const size_t currRow,
-                 const size_t currCol)
- : CtTableCommon{pCtMainWin, colWidthDefault, charOffset, justification, colWidths, currRow, currCol}
+                 const size_t currCol,
+                 const CtTableColWidths& rowHeights)
+ : CtTableCommon{pCtMainWin, colWidthDefault, charOffset, justification, colWidths, currRow, currCol, rowHeights}
  , _tableMatrix{tableMatrix}
 {
     // enforce same number of columns per row
@@ -712,6 +841,10 @@ CtTableHeavy::CtTableHeavy(CtMainWin* pCtMainWin,
     // so we don't need to check it again and again
     while (_colWidths.size() < numCols) {
         _colWidths.push_back(0); // 0 means we use default width
+    }
+    // OrangeArk: same sanitation for per-row heights (0 = auto)
+    while (_rowHeights.size() < numRows) {
+        _rowHeights.push_back(0);
     }
     for (size_t r = 0u; r < numRows; ++r) {
         for (size_t c = 0u; c < numCols; ++c) {
@@ -774,7 +907,9 @@ void CtTableHeavy::_new_text_cell_attach(const size_t rowIdx, const size_t colId
     CtTextView& ctTextView = pTextCell->get_text_view();
     auto& textView = ctTextView.mm();
     const bool is_header = 0 == rowIdx;
-    textView.set_size_request(get_col_width(colIdx), -1);
+    // OrangeArk: honour the row's painted height (0 = auto) when attaching a cell
+    const int effH = get_effective_row_height(rowIdx);
+    textView.set_size_request(get_col_width(colIdx), effH > 0 ? effH : -1);
     gtk_source_view_set_highlight_current_line(GTK_SOURCE_VIEW(ctTextView.gobj()), false);
     if (is_header) {
         _apply_remove_header_style(true/*isApply*/, ctTextView);
@@ -919,6 +1054,7 @@ void CtTableHeavy::row_add(const size_t afterRowIdx, const std::vector<Glib::ust
 {
     const size_t newRowIdx = afterRowIdx + 1;
     _tableMatrix.insert(_tableMatrix.begin()+newRowIdx, CtTableRow{});
+    _row_heights_insert(newRowIdx); // OrangeArk: keep per-row heights aligned
     _grid.insert_row(newRowIdx);
     const Glib::ustring emptyCell;
     const size_t num_columns = get_num_columns();
@@ -940,6 +1076,7 @@ void CtTableHeavy::row_delete(const size_t rowIdx)
         delete static_cast<CtTextCell*>(pTextCell);
     }
     _tableMatrix.erase(_tableMatrix.begin()+rowIdx);
+    _row_heights_erase(rowIdx); // OrangeArk: keep per-row heights aligned
     if (_currentRow == get_num_rows()) {
         --_currentRow;
     }
@@ -984,6 +1121,8 @@ void CtTableHeavy::row_move_up(const size_t rowIdx, const bool/*from_move_down*/
     _grid.remove_row(rowIdxUp);
     _grid.insert_row(rowIdx);
     std::swap(_tableMatrix[rowIdxUp], _tableMatrix[rowIdx]);
+    // OrangeArk: keep per-row heights aligned with the swapped rows
+    if (rowIdx < _rowHeights.size()) std::swap(_rowHeights[rowIdxUp], _rowHeights[rowIdx]);
     const size_t num_cols = get_num_columns();
     for (size_t colIdx = 0u; colIdx < num_cols; ++colIdx) {
         CtTextView& textView = static_cast<CtTextCell*>(_tableMatrix.at(rowIdx).at(colIdx))->get_text_view();
@@ -1012,7 +1151,21 @@ bool CtTableHeavy::_row_sort(const bool sortAsc)
         return false; // no swap needed as equal
     };
     auto pPrevState = std::static_pointer_cast<CtAnchoredWidgetState_TableHeavy>(get_state());
-    std::sort(_tableMatrix.begin()+1, _tableMatrix.end(), f_need_swap);
+    // OrangeArk: zip each row with its painted height so per-row heights follow
+    // the data through the sort (header row 0 stays put)
+    while (_rowHeights.size() < _tableMatrix.size()) _rowHeights.push_back(0);
+    std::vector<std::pair<int, CtTableRow>> zipped;
+    zipped.reserve(_tableMatrix.size() - 1);
+    for (size_t i = 1; i < _tableMatrix.size(); ++i) {
+        zipped.emplace_back(_rowHeights.at(i), _tableMatrix.at(i));
+    }
+    std::sort(zipped.begin(), zipped.end(), [&f_need_swap](const auto& l, const auto& r){
+        return f_need_swap(l.second, r.second);
+    });
+    for (size_t i = 1; i < _tableMatrix.size(); ++i) {
+        _rowHeights.at(i) = zipped.at(i - 1).first;
+        _tableMatrix.at(i) = zipped.at(i - 1).second;
+    }
     auto pCurrState = std::static_pointer_cast<CtAnchoredWidgetState_TableHeavy>(get_state());
     std::list<size_t> changed;
     const size_t num_rows = get_num_rows();
@@ -1057,12 +1210,16 @@ void CtTableHeavy::set_col_width_default(const int colWidthDefault)
 void CtTableHeavy::set_col_width(const int colWidth, std::optional<size_t> optColIdx/*= std::nullopt*/)
 {
     const size_t c = optColIdx.value_or(_currentColumn);
+    if (colWidth == get_col_width(c)) return; // no-op: skip the layout storm
     _colWidths[c] = colWidth;
     const size_t numRows = get_num_rows();
     for (size_t r = 0u; r < numRows; ++r) {
         CtTextCell* pTextCell = static_cast<CtTextCell*>(_tableMatrix[r][c]);
         CtTextView& textView = pTextCell->get_text_view();
-        textView.mm().set_size_request(colWidth, -1);
+        // OrangeArk: keep the row's effective height — set_size_request(w, -1)
+        // here used to wipe a previously painted row height
+        const int effH = get_effective_row_height(r);
+        textView.mm().set_size_request(colWidth, effH > 0 ? effH : -1);
     }
 }
 
@@ -1143,12 +1300,16 @@ void CtTableHeavy::_on_grid_set_focus_child(Gtk::Widget* pWidget)
 // OrangeArk: row height control (vertical drag of the resize grip)
 void CtTableHeavy::_set_rows_min_height(const int height)
 {
-    _rowsMinHeight = std::max(0, height);
+    const int clamped = std::max(0, height);
+    if (clamped == _rowsMinHeight) return; // no-op: skip the layout storm
+    _rowsMinHeight = clamped;
     for (size_t r = 0u; r < _tableMatrix.size(); ++r) {
         for (size_t c = 0u; c < _tableMatrix.at(r).size(); ++c) {
             CtTextCell* pCell = static_cast<CtTextCell*>(_tableMatrix.at(r).at(c));
             CtTextView& ctTextView = pCell->get_text_view();
-            ctTextView.mm().set_size_request(get_col_width(c), _rowsMinHeight > 0 ? _rowsMinHeight : -1);
+            // OrangeArk: a per-row painted height wins over the uniform minimum
+            const int effH = get_effective_row_height(r);
+            ctTextView.mm().set_size_request(get_col_width(c), effH > 0 ? effH : -1);
         }
     }
 }
@@ -1158,4 +1319,47 @@ int CtTableHeavy::_get_rows_min_height() const
     if (_rowsMinHeight > 0) return _rowsMinHeight;
     const int numRows = static_cast<int>(std::max<size_t>(1, get_num_rows()));
     return std::max(20, get_allocation().get_height() / numRows);
+}
+
+// OrangeArk: apply one row's effective height to that row's cells only —
+// this is what makes single-row resizing cheap (no full-table layout pass)
+void CtTableHeavy::_apply_row_height(const size_t rowIdx)
+{
+    if (rowIdx >= _tableMatrix.size()) return;
+    const int effH = get_effective_row_height(rowIdx);
+    for (size_t c = 0u; c < _tableMatrix.at(rowIdx).size(); ++c) {
+        CtTextCell* pCell = static_cast<CtTextCell*>(_tableMatrix.at(rowIdx).at(c));
+        CtTextView& ctTextView = pCell->get_text_view();
+        ctTextView.mm().set_size_request(get_col_width(c), effH > 0 ? effH : -1);
+    }
+}
+
+// OrangeArk: y coordinate (relative to the grid) of a row's top edge, derived
+// from the first column's cell allocations — rows can have different heights
+double CtTableHeavy::_row_top_at(const size_t rowIdx) const
+{
+    if (_tableMatrix.empty() or _tableMatrix.front().empty()) return -1.0;
+    double top = 0.0;
+    const int spacing = _grid.get_row_spacing();
+    for (size_t r = 0u; r < rowIdx and r < _tableMatrix.size(); ++r) {
+        CtTextCell* pCell = static_cast<CtTextCell*>(_tableMatrix.at(r).front());
+        top += pCell->get_text_view().mm().get_allocation().get_height() + spacing;
+    }
+    return top;
+}
+
+// OrangeArk: hit test for the row separators (the horizontal lines between
+// rows) — returns the index of the row ABOVE the separator under y, or -1
+int CtTableHeavy::_row_separator_at(const double y) const
+{
+    const size_t numRows = get_num_rows();
+    if (numRows < 2) return -1;
+    for (size_t r = 0u; r + 1u < numRows; ++r) { // inner separators only
+        const double nextTop = _row_top_at(r + 1u);
+        if (nextTop < 0.0) return -1;
+        if (std::abs(y - nextTop) <= 4.0) {
+            return static_cast<int>(r);
+        }
+    }
+    return -1;
 }

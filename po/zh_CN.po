@@ -394,11 +394,8 @@ msgstr "书签升序排序"
 msgid "Choose Storage Type"
 msgstr "选择存储类型"
 
-msgid "Single SQLite File"
-msgstr "单个SQLite文件"
-
-msgid "Single SQLite File, 7-zip Encrypted and Password Protected"
-msgstr "单个SQLite文件，7-zip加密并受密码保护"
+msgid "Single File, 7-zip Encrypted and Password Protected"
+msgstr "单个文件，7-zip加密并受密码保护"
 
 msgid "Single XML File"
 msgstr "单个XML文件"
@@ -985,7 +982,7 @@ msgid "New Node in New Page"
 msgstr "在新页面建立新节点"
 
 msgid "Single File"
-msgstr "单独的文件"
+msgstr "单个文件"
 
 msgid "Index"
 msgstr "索引"

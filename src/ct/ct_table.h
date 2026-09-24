@@ -38,7 +38,8 @@ public:
                   const std::string& justification,
                   const CtTableColWidths& colWidths,
                   const size_t currRow,
-                  const size_t currCol);
+                  const size_t currCol,
+                  const CtTableColWidths& rowHeights = {});
 
     std::shared_ptr<CtAnchoredWidgetState_TableCommon> get_state_common() const;
 
@@ -46,6 +47,8 @@ public:
 
     const CtTableColWidths& get_col_widths_raw() const { return _colWidths; }
     int get_col_width_default() const { return _colWidthDefault; }
+    // OrangeArk: per-row heights (0 = auto), parallel to _colWidths
+    const CtTableColWidths& get_row_heights_raw() const { return _rowHeights; }
     bool get_is_light() const;
     int get_col_width(const std::optional<size_t> optColIdx = std::nullopt) const {
         const size_t colIdx = optColIdx.value_or(_currentColumn);
@@ -135,6 +138,18 @@ protected:
     int  _column_separator_at(const double x) const; // OrangeArk: hit test for a column separator (-1 = none)
     virtual void _set_rows_min_height(const int height) = 0; // OrangeArk: row height control
     virtual int  _get_rows_min_height() const = 0;
+    virtual int  _get_rows_min_height_raw() const = 0; // OrangeArk: 0 = not set (no fallback estimate)
+    // OrangeArk: per-row height — set_row_height() is the public entry; it stores
+    // the value and calls the subclass hook that applies it to the widgets
+    void set_row_height(const int height, const size_t rowIdx);
+    int  get_row_height(const size_t rowIdx) const; // 0 = auto
+    int  get_effective_row_height(const size_t rowIdx) const; // per-row wins, else uniform min, else 0
+    void _row_heights_insert(const size_t atIdx);
+    void _row_heights_erase(const size_t atIdx);
+    void _row_heights_move(const size_t fromIdx, const size_t toIdx);
+    virtual void _apply_row_height(const size_t rowIdx) = 0; // subclass: push the height into widgets
+    virtual int  _row_separator_at(const double y) const { (void)y; return -1; } // OrangeArk: hit test for a row separator (-1 = none)
+    virtual double _row_top_at(const size_t rowIdx) const { (void)rowIdx; return -1.0; } // OrangeArk: y of a row's top edge (-1 = n/a)
     Gtk::DrawingArea* _pResizeGrip{nullptr};
     bool _dragResizeActive{false};
     bool _dragResizeChanged{false};
@@ -146,6 +161,9 @@ protected:
     CtTableColWidths _dragStartColWidths;
     int    _dragStartH{0};         // OrangeArk: widget height at drag start (guide line)
     int    _dragColIdx{-1};        // OrangeArk: column dragged by its separator (-1 = whole-table drag)
+    int    _dragRowIdx{-1};        // OrangeArk: row dragged by its separator (-1 = not a per-row drag)
+    int    _dragStartRowH{0};      // OrangeArk: effective height of the dragged row at drag start
+    CtTableColWidths _rowHeights;  // OrangeArk: per-row heights (0 = auto), size == numRows
     Glib::RefPtr<Gdk::Window> _rGuideV; // OrangeArk: vertical guide strip shown while dragging
     Glib::RefPtr<Gdk::Window> _rGuideH; // OrangeArk: horizontal guide strip shown while dragging
     double _lastMotionXRoot{0.};   // OrangeArk: latest pointer position (final exact apply on release)
@@ -186,7 +204,8 @@ public:
                  const std::string& justification,
                  const CtTableColWidths& colWidths,
                  const size_t currRow = 0,
-                 const size_t currCol = 0);
+                 const size_t currCol = 0,
+                 const CtTableColWidths& rowHeights = {});
 
     const CtTableLightColumns& get_columns() const { return *_pColumns; }
 
@@ -237,6 +256,8 @@ protected:
     // OrangeArk: row height control
     void _set_rows_min_height(const int height) override;
     int  _get_rows_min_height() const override;
+    int  _get_rows_min_height_raw() const override { return _rowsMinHeight; }
+    void _apply_row_height(const size_t rowIdx) override;
     int  _rowsMinHeight{0};
 
     #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
@@ -262,7 +283,8 @@ public:
             const std::string& justification,
             const CtTableColWidths& colWidths,
             const size_t currRow = 0,
-            const size_t currCol = 0);
+            const size_t currCol = 0,
+            const CtTableColWidths& rowHeights = {});
     ~CtTableHeavy() override;
 
     void apply_syntax_highlighting(const bool forceReApply) override;
@@ -303,6 +325,10 @@ public:
 protected:
     void _set_rows_min_height(const int height) override;
     int  _get_rows_min_height() const override;
+    int  _get_rows_min_height_raw() const override { return _rowsMinHeight; }
+    void _apply_row_height(const size_t rowIdx) override;
+    int  _row_separator_at(const double y) const override; // OrangeArk: per-row resize hit test
+    double _row_top_at(const size_t rowIdx) const override;
     int  _rowsMinHeight{0};
 
 protected:

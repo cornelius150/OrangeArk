@@ -138,11 +138,13 @@ public:
     bool populate_table_matrix(CtTableMatrix& tableMatrix,
                                const char* xml_content,
                                CtTableColWidths& tableColWidths,
-                               bool& is_light);
+                               bool& is_light,
+                               CtTableColWidths* tableRowHeights = nullptr); // OrangeArk: per-row heights (0 = auto)
     bool populate_table_matrix(CtTableMatrix& tableMatrix,
                                xmlpp::Element* xml_element,
                                CtTableColWidths& tableColWidths,
-                               bool& is_light);
+                               bool& is_light,
+                               CtTableColWidths* tableRowHeights = nullptr); // OrangeArk: per-row heights (0 = auto)
     void save_buffer_no_widgets_to_xml(xmlpp::Element* p_node_parent,
                                        Glib::RefPtr<Gtk::TextBuffer> buffer,
                                        int start_offset,
@@ -167,7 +169,8 @@ void table_to_xml(xmlpp::Element* parent,
                   const Glib::ustring justification,
                   const int defaultWidth,
                   const Glib::ustring colWidths,
-                  const bool is_light);
+                  const bool is_light,
+                  const Glib::ustring rowHeights = Glib::ustring{}); // OrangeArk: per-row heights ("" = all auto)
 
 bool safe_parse_memory(xmlpp::DomParser& parser, const Glib::ustring& xml_content);
 

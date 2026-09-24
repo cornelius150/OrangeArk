@@ -171,6 +171,7 @@ CtAnchoredWidgetState_TableCommon::CtAnchoredWidgetState_TableCommon(const CtTab
  : CtAnchoredWidgetState{table->getOffset(), table->getJustification()}
  , colWidthDefault{table->get_col_width_default()}
  , colWidths{table->get_col_widths_raw()}
+ , rowHeights{table->get_row_heights_raw()} // OrangeArk
  , currRow{table->current_row()}
  , currCol{table->current_column()}
 {
@@ -185,6 +186,7 @@ bool CtAnchoredWidgetState_TableCommon::equal(std::shared_ptr<CtAnchoredWidgetSt
            justification == other_state->justification and
            colWidthDefault == other_state->colWidthDefault and
            colWidths == other_state->colWidths and
+           rowHeights == other_state->rowHeights and
            currRow == other_state->currRow and
            currCol == other_state->currCol and
            rows == other_state->rows;
@@ -208,7 +210,8 @@ CtTableLight* CtAnchoredWidgetState_TableCommon::to_widget_light(CtMainWin* pCtM
                             justification,
                             colWidths,
                             currRow,
-                            currCol};
+                            currCol,
+                            rowHeights};
 }
 
 CtTableHeavy* CtAnchoredWidgetState_TableCommon::to_widget_heavy(CtMainWin* pCtMainWin) const
@@ -229,7 +232,8 @@ CtTableHeavy* CtAnchoredWidgetState_TableCommon::to_widget_heavy(CtMainWin* pCtM
                             justification,
                             colWidths,
                             currRow,
-                            currCol};
+                            currCol,
+                            rowHeights};
 }
 
 CtStateMachine::CtStateMachine(CtMainWin *pCtMainWin)

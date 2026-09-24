@@ -43,6 +43,10 @@ std::vector<std::string> CtMenu::_get_ui_str_toolbars()
             }
             else {
                 const bool isOpenRecent{*element == CtConst::CHAR_STAR};
+                // OrangeArk: the format painter button shows its label next to the icon
+                // (icon + "格式刷" text, per user request) — is_important only matters
+                // when the toolbar style is both/both-horiz, set on the toolbar below
+                const bool isFmtClone{*element == "fmt_clone"};
                 CtMenuAction const* pAction = isOpenRecent ? find_action("ct_open_file") : find_action(*element);
                 if (pAction) {
                     if (isOpenRecent) str_buff += "<child><object class='GtkMenuToolButton' id='RecentDocs'>";
@@ -50,6 +54,7 @@ std::vector<std::string> CtMenu::_get_ui_str_toolbars()
                     str_buff += "<property name='action-name'>win." + pAction->id + "</property>"; // 'win.' is a default action group in Window
                     str_buff += "<property name='icon-name'>" + pAction->image + "</property>";
                     str_buff += "<property name='label'>" + pAction->name + "</property>";
+                    if (isFmtClone) str_buff += "<property name='is_important'>True</property>";
                     std::string kb_shortcut = pAction->get_shortcut(_pCtConfig);
                     std::string tooltip;
                     if (not _pCtConfig->toolbarTooltips) {
@@ -85,6 +90,9 @@ std::vector<std::string> CtMenu::_get_ui_str_toolbars()
         str_buff = "<interface><object class='GtkToolbar' id='ToolBar" + std::to_string(id) + "'>"
                    "<property name='visible'>True</property>"
                    "<property name='can_focus'>False</property>"
+                   // OrangeArk: both-horiz so that is_important items (format painter)
+                   // render as icon + text while every other button stays icon-only
+                   "<property name='toolbar-style'>both-horiz</property>"
                    + str_buff +
                    "</object></interface>";
         return str_buff;
