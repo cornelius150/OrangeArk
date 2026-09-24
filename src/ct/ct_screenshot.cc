@@ -179,6 +179,7 @@ private:
 
         add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK | Gdk::KEY_PRESS_MASK);
         signal_button_press_event().connect(sigc::mem_fun(*this, &CtScreenshotPinWindow::_on_press), false);
+        signal_button_release_event().connect(sigc::mem_fun(*this, &CtScreenshotPinWindow::_on_release), false);
         signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtScreenshotPinWindow::_on_motion), false);
         signal_key_press_event().connect(sigc::mem_fun(*this, &CtScreenshotPinWindow::_on_key), false);
 
@@ -196,6 +197,7 @@ private:
     bool _on_press(GdkEventButton* event)
     {
         if (event->type == GDK_2BUTTON_PRESS and event->button == 1) {
+            _end_drag();
             close_self();
             return true;
         }
@@ -207,6 +209,24 @@ private:
             _dragDY = static_cast<int>(event->y_root) - wy;
             if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
                 rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::FLEUR));
+                // OrangeArk: grab the pointer at the DEVICE level while the
+                // button is held — the pin then follows the mouse even when
+                // the pointer leaves the image; on release the image stops
+                // dead ("按住才跟随，松开即钉住")
+                GdkDevice* pPointer = gtk_get_current_event_device();
+                if (pPointer) {
+                    _pGrabSeat = gdk_device_get_seat(pPointer);
+                    if (_pGrabSeat) {
+                        GdkCursor* pGrabCursor = gdk_cursor_new_for_display(
+                            gdk_window_get_display(rWin->gobj()), static_cast<GdkCursorType>(Gdk::CursorType::FLEUR));
+                        if (gdk_seat_grab(_pGrabSeat, rWin->gobj(), GDK_SEAT_CAPABILITY_ALL_POINTING,
+                                          TRUE /*ownerEvents*/, pGrabCursor, nullptr, nullptr, nullptr)
+                            != GDK_GRAB_SUCCESS) {
+                            _pGrabSeat = nullptr;
+                        }
+                        if (pGrabCursor) gdk_cursor_unref(pGrabCursor);
+                    }
+                }
             }
             return true;
         }
@@ -217,9 +237,34 @@ private:
         return false;
     }
 
+    // OrangeArk: mouse-up stops the pin dead — without this handler _dragging
+    // stayed true forever and the image followed every mouse move over it
+    bool _on_release(GdkEventButton* event)
+    {
+        if (1 != event->button or not _dragging) return false;
+        _end_drag();
+        return true;
+    }
+
+    void _end_drag()
+    {
+        _dragging = false;
+        if (_pGrabSeat) {
+            gdk_seat_ungrab(_pGrabSeat);
+            _pGrabSeat = nullptr;
+        }
+        if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
+    }
+
     bool _on_motion(GdkEventMotion* event)
     {
         if (not _dragging) return false;
+        // OrangeArk: safety net — a lost release must not leave the pin stuck
+        // in follow mode
+        if ((event->state & GDK_BUTTON1_MASK) == 0) {
+            _end_drag();
+            return true;
+        }
         move(static_cast<int>(event->x_root) - _dragDX, static_cast<int>(event->y_root) - _dragDY);
         return true;
     }
@@ -282,6 +327,7 @@ private:
     bool _dragging{false};
     int  _dragDX{0};
     int  _dragDY{0};
+    GdkSeat* _pGrabSeat{nullptr};  // OrangeArk: device-level pointer grab held while dragging the pin
     Glib::RefPtr<Gdk::Pixbuf> _rPix;
 };
 

@@ -1015,7 +1015,11 @@ public:
 
         _build_palette();
         _btnArrow.set_popover(*_pPopover);
-        _pPopover->show_all(); // OrangeArk fix: without this the popup opens but its contents stay invisible (blank popover)
+        // OrangeArk fix: the popover's CHILD widgets must be visible or the
+        // popup opens blank — but showing the POPOVER itself here would pop it
+        // up immediately at startup (it popped up on every launch since the
+        // blank-popover hotfix); only reveal the child content
+        if (Gtk::Widget* pPopChild = _pPopover->get_child()) pPopChild->show_all();
         show_all();
         // OrangeArk: automated-verification hook — auto-open the popover (no input injection)
         if (g_getenv("ORANGEARK_POPOVER_SELFTEST")) {
@@ -1249,7 +1253,9 @@ public:
 
         _build_library();
         _btnArrow.set_popover(*_pPopover);
-        _pPopover->show_all(); // OrangeArk fix: without this the popup opens but its contents stay invisible (blank popover)
+        // OrangeArk fix: reveal only the popover CHILD content — showing the
+        // popover itself popped it up at every startup (see the colour button)
+        if (Gtk::Widget* pPopChild = _pPopover->get_child()) pPopChild->show_all();
         show_all();
         // OrangeArk: automated-verification hook — auto-open the popover (no input injection)
         if (g_getenv("ORANGEARK_POPOVER_SELFTEST")) {

@@ -451,6 +451,36 @@ void CtTableCommon::_resize_drag_begin(const double xRoot, const double yRoot)
     gtk_grab_add(GTK_WIDGET(gobj()));
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
         rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::BOTTOM_RIGHT_CORNER));
+        // OrangeArk: gtk_grab_add only redirects events INSIDE the OrangeArk
+        // toplevel. A fast drag that left the app window stopped receiving
+        // motion events and missed the mouse-up ("拖拽老是脱了") — the drag
+        // then stuck active and the next click jumped the table around.
+        // Grab the pointer at the DEVICE level with owner_events=TRUE so
+        // motion/release keep flowing while the pointer is anywhere on the
+        // desktop; within the toplevel gtk_grab_add keeps doing its job.
+        GdkDevice* pPointer = gtk_get_current_event_device();
+        if (nullptr == pPointer) {
+            GdkDisplay* pDisplay = gdk_window_get_display(rWin->gobj());
+            if (pDisplay) {
+                GdkDeviceManager* pDevManager = gdk_display_get_device_manager(pDisplay);
+                if (pDevManager) pPointer = gdk_device_manager_get_client_pointer(pDevManager);
+            }
+        }
+        if (pPointer) {
+            _pGrabSeat = gdk_device_get_seat(pPointer);
+            if (_pGrabSeat) {
+                const GdkCursorType cursorType = static_cast<GdkCursorType>(
+                    (_dragColIdx >= 0) ? Gdk::CursorType::SB_H_DOUBLE_ARROW
+                    : (_dragRowIdx >= 0) ? Gdk::CursorType::SB_V_DOUBLE_ARROW
+                    : Gdk::CursorType::BOTTOM_RIGHT_CORNER);
+                GdkCursor* pGrabCursor = gdk_cursor_new_for_display(gdk_window_get_display(rWin->gobj()), cursorType);
+                const GdkGrabStatus grabStatus = gdk_seat_grab(
+                    _pGrabSeat, rWin->gobj(), GDK_SEAT_CAPABILITY_ALL_POINTING,
+                    TRUE /*ownerEvents*/, pGrabCursor, nullptr, nullptr, nullptr);
+                if (GDK_GRAB_SUCCESS != grabStatus) _pGrabSeat = nullptr;
+                if (pGrabCursor) gdk_cursor_unref(pGrabCursor);
+            }
+        }
     }
 }
 
@@ -649,6 +679,11 @@ void CtTableCommon::_resize_drag_end()
     _resize_drag_apply(_lastMotionXRoot, _lastMotionYRoot);
     _guide_destroy();
     _dragResizeActive = false;
+    // OrangeArk: release the device-level pointer grab taken in _resize_drag_begin
+    if (_pGrabSeat) {
+        gdk_seat_ungrab(_pGrabSeat);
+        _pGrabSeat = nullptr;
+    }
     gtk_grab_remove(GTK_WIDGET(gobj()));
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
     _lastCursorEdges = -999; // OrangeArk: force a fresh cursor on the next hover

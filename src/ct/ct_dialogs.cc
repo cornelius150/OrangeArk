@@ -587,7 +587,7 @@ bool CtDialogs::choose_data_storage_dialog(CtMainWin* pCtMainWin, CtStorageSelec
     // produces a .mdz package; reopening it asks for the password
     Gtk::RadioButton radiobutton_md(Glib::ustring{_("Single File")} + " (.md)");
     Gtk::RadioButton::Group rbGroup = radiobutton_md.get_group();
-    Gtk::RadioButton radiobutton_sqlite_pass_protected(rbGroup, Glib::ustring{_("Single File, Encrypted and Password Protected")} + " (" + CtConst::CTDOC_MD_ENC + ")");
+    Gtk::RadioButton radiobutton_sqlite_pass_protected(rbGroup, Glib::ustring{"单独的文件，加密并受密码保护"} + " (" + CtConst::CTDOC_MD_ENC + ")");
     Gtk::RadioButton radiobutton_xml_not_protected(rbGroup, Glib::ustring{_("Single XML File")}  + " (.md)");
     Gtk::RadioButton radiobutton_xml_pass_protected(rbGroup, Glib::ustring{_("Single XML File, 7-zip Encrypted and Password Protected")} + " (.md)");
     Gtk::RadioButton radiobutton_multifile(rbGroup, Glib::ustring{_("Multiple Files in Hierarchical Folder Structure")});

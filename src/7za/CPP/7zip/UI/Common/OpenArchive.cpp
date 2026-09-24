@@ -549,7 +549,20 @@ HRESULT CArc::GetItemPath(UInt32 index, UString &result) const
     result = pathParts.Back();
     //wprintf(L"GetItemPath archiveName=%S\n", result.Ptr());
     if (result.Back() == (wchar_t)'z') {
-        result.ReplaceOneCharAtPos(result.Len()-1, (wchar_t)'d');
+        // OrangeArk: ".mdz" packages carry a plain ".md" document inside —
+        // strip the trailing 'z' (the legacy mapping z->d would produce the
+        // nonsense extension ".mdd" and the document could never be found
+        // after extraction, which looked like "wrong password / cannot open")
+        if (result.Len() >= 4 &&
+            result[result.Len()-4] == (wchar_t)'.' &&
+            result[result.Len()-3] == (wchar_t)'m' &&
+            result[result.Len()-2] == (wchar_t)'d')
+        {
+            result.DeleteBack();
+        }
+        else {
+            result.ReplaceOneCharAtPos(result.Len()-1, (wchar_t)'d');
+        }
         return S_OK;
     }
     if (result.Back() == (wchar_t)'x') {

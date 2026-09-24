@@ -925,12 +925,25 @@ void CtTreeStore::tree_view_connect(Gtk::TreeView* pTreeView)
                     *pCellRendererText,
                     [this](Gtk::CellRenderer* pCell, const Gtk::TreeModel::iterator& treeIter){
                         Gtk::TreeRow row = *treeIter;
-                        if (row.get_value(_columns.colForeground).empty()) {
-                            dynamic_cast<Gtk::CellRendererText*>(pCell)->property_foreground() = _pCtMainWin->get_ct_config()->ttDefFg;
+                        Glib::ustring fg = row.get_value(_columns.colForeground);
+                        if (fg.empty()) {
+                            // OrangeArk: auto node-name colours by depth —
+                            // root nodes are orange (the OrangeArk accent) and
+                            // child levels cycle through a fixed palette so a
+                            // hierarchy reads at a glance; a user-set node
+                            // colour (colForeground) always wins
+                            static const char* const kAutoDepthColors[] = {
+                                "#fb8c00", // level 0: orange
+                                "#1e88e5", // level 1: blue
+                                "#43a047", // level 2: green
+                                "#8e24aa", // level 3: purple
+                                "#e53935", // level 4: red
+                                "#00897b", // level 5: teal
+                            };
+                            const size_t depth = static_cast<size_t>(_rTreeStore->iter_depth(treeIter));
+                            fg = kAutoDepthColors[depth % (sizeof(kAutoDepthColors) / sizeof(kAutoDepthColors[0]))];
                         }
-                        else {
-                            dynamic_cast<Gtk::CellRendererText*>(pCell)->property_foreground() = row.get_value(_columns.colForeground);
-                        }
+                        dynamic_cast<Gtk::CellRendererText*>(pCell)->property_foreground() = fg;
                     }
                 );
             }

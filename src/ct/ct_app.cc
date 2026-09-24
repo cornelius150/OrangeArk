@@ -688,6 +688,17 @@ int CtApp::_on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>& rOpti
     rOptions->lookup_value("password", _password);
     rOptions->lookup_value("new_window", new_window);
 
+    // OrangeArk: log the parsed options — the password option used to silently
+    // disappear, which made opening an encrypted doc hang on the prompt
+    spdlog::debug("{} options: has_password={} password_len={} html_dir='{}' txt_dir='{}' pdf_dir='{}' remote={}",
+                  __FUNCTION__,
+                  rOptions->contains("password"),
+                  static_cast<unsigned>(_password.size()),
+                  _export_to_html_dir,
+                  _export_to_txt_dir,
+                  _export_to_pdf_dir,
+                  is_remote());
+
     if (is_remote() && (not _node_to_focus.empty() || not _anchor_to_focus.empty())) {
         // Forward node focus request from remote to primary instance via action
         std::vector<Glib::ustring> args{_node_to_focus, _anchor_to_focus};

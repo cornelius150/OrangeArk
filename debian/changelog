@@ -1,3 +1,15 @@
+orangeark (1.1.3-1) focal; urgency=low
+
+  * OrangeArk: storage-type dialog entry is now Chinese "单独的文件，加密并受密码保护 (.mdz)" (was untranslated English)
+  * OrangeArk: node tree names are auto-coloured by depth — root nodes orange (OrangeArk accent), child levels cycle blue/green/purple/red/teal; a user-set node colour still wins
+  * OrangeArk: table resize drag no longer "escapes" — the pointer is grabbed at the device level during the drag so motion/mouse-up keep flowing even when the pointer leaves the app window (was the cause of stuck/lost drags)
+  * OrangeArk: CRITICAL fix for opening password-protected .mdz — the bundled 7za name-mangling patch turned the extracted document into ".mdd", so opening always failed and re-prompted forever; .mdz now extracts to the proper ".md" and the round-trip (save → reopen with password) is verified
+  * OrangeArk: wrong-password retry now says "密码错误，请重新输入 …" instead of silently re-prompting
+  * OrangeArk: pin-to-desktop (贴图) follows the mouse only WHILE the button is held — mouse-up pins the image dead in place; double-click/Esc/right-click still closes
+  * OrangeArk: the colour palette / bullet / number popovers no longer pop up by themselves at startup (they opened on every launch since the blank-popover hotfix; only the child content is pre-shown now)
+
+ -- OrangeArk <orangeark@localhost>  Thu, 24 Sep 2026 23:40:00 +0800
+
 orangeark (1.1.2-1) focal; urgency=low
 
   * OrangeArk: format painter icon is now the user-provided original brush artwork (embedded verbatim, no redraw)

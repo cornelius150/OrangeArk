@@ -526,9 +526,14 @@ fs::path CtStorageControl::get_embedded_filepath(const CtTreeIter& ct_tree_iter,
     fs::path temp_dir = pCtMainWin->get_ct_tmp()->getHiddenDirPath(file_path);
     fs::path temp_file_path = pCtMainWin->get_ct_tmp()->getHiddenFilePath(file_path);
     Glib::ustring title = str::format(_("Enter Password for %s"), file_path.filename().string());
+    bool wrongPasswordHint = false;
     while (true) {
         if (password.empty()) {
-            CtDialogTextEntry dialogTextEntry(title, true/*forPassword*/, pCtMainWin);
+            Glib::ustring promptTitle = title;
+            if (wrongPasswordHint) {
+                promptTitle = Glib::ustring{str::format("密码错误，请重新输入 %s 的密码", file_path.filename().string())};
+            }
+            CtDialogTextEntry dialogTextEntry(promptTitle, true/*forPassword*/, pCtMainWin);
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
             auto on_scope_exit = scope_guard([pCtMainWin](void*) {
                 pCtMainWin->set_systray_can_hide(true);
@@ -554,11 +559,15 @@ fs::path CtStorageControl::get_embedded_filepath(const CtTreeIter& ct_tree_iter,
             password = dialogTextEntry.get_entry_text();
         }
         const int retVal = CtP7zaIface::p7za_extract(file_path.c_str(), temp_dir.c_str(), password.c_str(), false);
+        spdlog::debug("{} p7za_extract retVal={} temp_dir='{}' expect='{}'", __FUNCTION__, retVal, temp_dir.string(), temp_file_path.filename().string());
         if (0 == retVal) {
             if (fs::is_regular_file(temp_file_path)) {
                 return temp_file_path;
             }
             const std::list<fs::path> filesInTmpDir = fs::get_dir_entries(temp_file_path.parent_path());
+            for (const fs::path& currFile : filesInTmpDir) {
+                spdlog::debug("{} extracted entry '{}'", __FUNCTION__, currFile.filename().string());
+            }
             if (filesInTmpDir.size() == 1 and
                 fs::get_doc_type_from_file_ext(filesInTmpDir.front()) == fs::get_doc_type_from_file_ext(temp_file_path) and
                 fs::move_file(filesInTmpDir.front(), temp_file_path))
@@ -566,6 +575,11 @@ fs::path CtStorageControl::get_embedded_filepath(const CtTreeIter& ct_tree_iter,
                 spdlog::debug("encrypt doc renamed {} -> {}", filesInTmpDir.front().filename().string(), temp_file_path.filename().string());
                 return temp_file_path;
             }
+            // OrangeArk: the archive decrypted fine but did not yield the
+            // expected document — do NOT loop back into the password prompt
+            // (that used to look like "enter password, cannot open, forever")
+            spdlog::warn("{} decrypted ok but no matching document inside, giving up", __FUNCTION__);
+            return fs::path{BAD_ARCHIVE};
         }
         else {
             spdlog::debug("!! CtP7zaIface::p7za_extract retVal={}", retVal);

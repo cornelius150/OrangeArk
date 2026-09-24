@@ -3167,6 +3167,3 @@ msgstr "文档以标准 Markdown（.md）纯文本保存：笔记正文在任何
 
 msgid "Grab a Screen Region and Insert It as an Image (like QQ screenshot)"
 msgstr "截图工具：框选屏幕区域，截图作为图片插入（类似QQ截图）"
-
-msgid "Single File, Encrypted and Password Protected"
-msgstr "单个文件，加密并受密码保护"

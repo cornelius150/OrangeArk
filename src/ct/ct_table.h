@@ -173,6 +173,7 @@ protected:
     double _lastGuideY{-1e9};
     int    _lastCursorEdges{-999}; // OrangeArk: last cursor zone (-999 = force refresh)
     Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
+    GdkSeat* _pGrabSeat{nullptr};  // OrangeArk: device-level pointer grab held during a resize drag (keeps events flowing outside the app window)
 
 protected:
     virtual void _populate_xml_rows_cells(xmlpp::Element* p_table_node) const = 0;
