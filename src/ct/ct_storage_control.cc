@@ -106,7 +106,9 @@ static bool _move_dir_with_fallback(const fs::path& dir_from, const fs::path& di
     if (fs::is_directory(file_path)) {
         return std::make_unique<CtStorageMultiFile>(pCtMainWin);
     }
-    if (CtConst::CTDOC_MD == file_path.extension()) {
+    if (CtConst::CTDOC_MD == file_path.extension() or
+        CtConst::CTDOC_MD_ENC == file_path.extension()) // OrangeArk: encrypted Markdown keeps the Markdown storage
+    {
         return std::make_unique<CtStorageMd>(pCtMainWin);
     }
     return _get_entity_by_type(pCtMainWin, fs::get_doc_type_from_file_ext(file_path));

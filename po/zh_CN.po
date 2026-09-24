@@ -3164,3 +3164,9 @@ msgstr "单文件文档"
 
 msgid "Documents are saved as standard Markdown (.md) text files: the note text stays readable in any editor or Markdown tool, while an invisible comment block at the end keeps the full tree and formatting for OrangeArk itself."
 msgstr "文档以标准 Markdown（.md）纯文本保存：笔记正文在任何编辑器或 Markdown 工具中都可读，文件末尾有一段不可见的注释块，橙子笔记用它无损保存完整的树结构和格式。"
+
+msgid "Grab a Screen Region and Insert It as an Image (like QQ screenshot)"
+msgstr "截图工具：框选屏幕区域，截图作为图片插入（类似QQ截图）"
+
+msgid "Single File, Encrypted and Password Protected"
+msgstr "单个文件，加密并受密码保护"

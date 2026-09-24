@@ -83,18 +83,24 @@ void CtActions::file_save_as()
     if (not CtDialogs::choose_data_storage_dialog(_pCtMainWin, storageSelArgs)) {
         return;
     }
+    // OrangeArk: the encrypted option produces a password-protected .mdz
+    // (a 7z/AES-256 package holding the plain .md); reopening it asks for
+    // the password. The dialog already enforced a non-empty password.
+    const bool encrypt = CtDocEncrypt::True == storageSelArgs.ctDocEncrypt;
+    const std::string& docExt = encrypt ? CtConst::CTDOC_MD_ENC : CtConst::CTDOC_MD;
     const fs::path& currDocFilepath = _pCtMainWin->get_ct_storage()->get_file_path();
     CtDialogs::CtFileSelectArgs fileSelArgs{};
     if (not currDocFilepath.empty()) {
         fileSelArgs.curr_folder = currDocFilepath.parent_path();
-        fileSelArgs.curr_file_name = currDocFilepath.stem() + CtConst::CTDOC_MD;
+        fileSelArgs.curr_file_name = currDocFilepath.stem() + docExt;
     }
     else {
         fileSelArgs.curr_folder = _pCtMainWin->get_ct_storage()->get_file_dir();
-        fileSelArgs.curr_file_name = std::string{_("Untitled")} + CtConst::CTDOC_MD;
+        fileSelArgs.curr_file_name = std::string{_("Untitled")} + docExt;
     }
     fileSelArgs.filter_name = _("Markdown File");
     fileSelArgs.filter_pattern.push_back(std::string{CtConst::CHAR_STAR} + CtConst::CTDOC_MD);
+    fileSelArgs.filter_pattern.push_back(std::string{CtConst::CHAR_STAR} + CtConst::CTDOC_MD_ENC);
     fileSelArgs.overwrite_confirmation = false;
 
     std::string filepath = CtDialogs::file_save_as_dialog(_pCtMainWin, fileSelArgs);
@@ -102,7 +108,18 @@ void CtActions::file_save_as()
         return;
     }
     // OrangeArk: make sure the chosen path ends with the markdown extension
-    if (not Glib::str_has_suffix(filepath, CtConst::CTDOC_MD)) {
+    if (encrypt) {
+        if (Glib::str_has_suffix(filepath, CtConst::CTDOC_MD_ENC)) {
+            // already correct
+        }
+        else if (Glib::str_has_suffix(filepath, CtConst::CTDOC_MD)) {
+            filepath = filepath.substr(0, filepath.length() - CtConst::CTDOC_MD.length()) + CtConst::CTDOC_MD_ENC;
+        }
+        else {
+            filepath += CtConst::CTDOC_MD_ENC;
+        }
+    }
+    else if (not Glib::str_has_suffix(filepath, CtConst::CTDOC_MD)) {
         filepath += CtConst::CTDOC_MD;
     }
     if (currDocFilepath == filepath) {
@@ -117,7 +134,7 @@ void CtActions::file_save_as()
         }
         (void)fs::remove_all(filepath);
     }
-    _pCtMainWin->file_save_as(filepath, CtDocType::XML, "");
+    _pCtMainWin->file_save_as(filepath, CtDocType::XML, encrypt ? storageSelArgs.password : "");
 }
 
 void CtActions::folder_open()
@@ -135,6 +152,7 @@ void CtActions::file_open()
     args.curr_folder = _pCtMainWin->get_ct_storage()->get_file_dir();
     args.filter_name = _("OrangeArk File");
     args.filter_pattern.push_back("*.md");
+    args.filter_pattern.push_back("*.mdz"); // OrangeArk: password-protected Markdown
     args.filter_pattern.push_back("*.ctb"); // macos doesn't understand *.ct*
     args.filter_pattern.push_back("*.ctx");
     args.filter_pattern.push_back("*.ctd");

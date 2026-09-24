@@ -586,19 +586,19 @@ void CtExport2Html::_html_get_from_treestore_node(CtTreeIter tree_iter,
     auto f_increase_level_ol = [&](){
         curr_html_text += (CtConst::TAG_OL_START + CtConst::TAG_LI_START);
         nested_list_types.push_back(pListInfoTo->type);
-        ret_forward_start = 3*pListInfoTo->level + CtList::get_leading_chars_num(pListInfoTo->type, pListInfoTo->num_seq);
+        ret_forward_start = 3*pListInfoTo->level + CtList::get_leading_chars_num(pListInfoTo->type, pListInfoTo->num_seq, pListInfoTo->aux);
     };
     auto f_increase_level_ul = [&](){
         curr_html_text += (CtConst::TAG_UL_START + CtConst::TAG_LI_START);
         nested_list_types.push_back(pListInfoTo->type);
         if (CtListType::Bullet == pListInfoTo->type) {
             // we don't want to remove the TODO status character, only if bullet
-            ret_forward_start = 3*pListInfoTo->level + CtList::get_leading_chars_num(pListInfoTo->type, pListInfoTo->num_seq);
+            ret_forward_start = 3*pListInfoTo->level + CtList::get_leading_chars_num(pListInfoTo->type, pListInfoTo->num_seq, pListInfoTo->aux);
         }
     };
     auto f_new_li = [&](){
         curr_html_text += (CtConst::TAG_LI_END + CtConst::TAG_LI_START);
-        ret_forward_start = 3*pListInfoTo->level + CtList::get_leading_chars_num(pListInfoTo->type, pListInfoTo->num_seq);
+        ret_forward_start = 3*pListInfoTo->level + CtList::get_leading_chars_num(pListInfoTo->type, pListInfoTo->num_seq, pListInfoTo->aux);
     };
     auto f_same_li_new_line = [&](){
         ret_forward_start = 3*(pListInfoTo->level + 1) - 1;

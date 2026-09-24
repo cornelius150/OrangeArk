@@ -14,6 +14,7 @@
 #include <pangomm/layout.h>
 #include <pangomm/fontdescription.h>
 #include <gtkmm/cssprovider.h>
+#include <gtkmm/menu.h> // OrangeArk: pin-to-desktop context menu
 #include <giomm/memoryinputstream.h>
 #include <cairo.h>
 #include <algorithm>
@@ -130,6 +131,159 @@ static const char* kSvgOk =
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
     "<path d='M2.8 8.6 L6.4 12.2 L13.2 4.6' stroke='#2e7d32' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/>"
     "</svg>";
+// OrangeArk: pin-to-desktop (贴图) — a map-pin shape
+static const char* kSvgPin =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>"
+    "<path d='M8 1.6 A4.4 4.4 0 0 1 12.4 6 C12.4 9.2 8 14.4 8 14.4 C8 14.4 3.6 9.2 3.6 6 A4.4 4.4 0 0 1 8 1.6 Z' fill='#e53935'/>"
+    "<circle cx='8' cy='6' r='1.8' fill='#ffffff'/>"
+    "</svg>";
+
+// OrangeArk: a small always-on-top borderless window that pins a finished
+// screenshot to the desktop (Snipaste-style 贴图): drag to move, double-click
+// or Esc to close, right-click for 复制/保存/关闭
+class CtScreenshotPinWindow : public Gtk::Window
+{
+public:
+    static void pin(Glib::RefPtr<Gdk::Pixbuf> rPix, const int x, const int y)
+    {
+        if (not rPix) return;
+        // deliberately NOT Gtk::manage()d: the window must outlive the
+        // screenshot selector (and its MainLoop); it deletes itself on close
+        (new CtScreenshotPinWindow{rPix})->place_at(x, y);
+    }
+
+private:
+    explicit CtScreenshotPinWindow(Glib::RefPtr<Gdk::Pixbuf> rPix)
+     : _rPix{rPix}
+    {
+        set_title("OrangeArk 贴图");
+        set_decorated(false);
+        set_keep_above(true);
+        set_skip_taskbar_hint(true);
+        set_skip_pager_hint(true);
+        set_type_hint(Gdk::WindowTypeHint::WINDOW_TYPE_HINT_UTILITY);
+        set_resizable(false);
+
+        auto rCss = Gtk::CssProvider::create();
+        try {
+            rCss->load_from_data(
+                ".pin-frame { border: 1px solid rgba(0,0,0,0.35); background: #ffffff; }\n"
+                ".pin-frame:hover { border: 2px solid #ff8800; }\n");
+            get_style_context()->add_provider(rCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+        }
+        catch (...) {}
+        get_style_context()->add_class("pin-frame");
+
+        auto* pImage = Gtk::manage(new Gtk::Image{_rPix});
+        add(*pImage);
+
+        add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK | Gdk::KEY_PRESS_MASK);
+        signal_button_press_event().connect(sigc::mem_fun(*this, &CtScreenshotPinWindow::_on_press), false);
+        signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtScreenshotPinWindow::_on_motion), false);
+        signal_key_press_event().connect(sigc::mem_fun(*this, &CtScreenshotPinWindow::_on_key), false);
+
+        signal_hide().connect([this]() {
+            Glib::signal_idle().connect_once([this]() { delete this; });
+        });
+    }
+
+    void place_at(const int x, const int y)
+    {
+        show_all();
+        move(x, y);
+    }
+
+    bool _on_press(GdkEventButton* event)
+    {
+        if (event->type == GDK_2BUTTON_PRESS and event->button == 1) {
+            close_self();
+            return true;
+        }
+        if (event->button == 1) {
+            _dragging = true;
+            int wx{0}, wy{0};
+            get_position(wx, wy);
+            _dragDX = static_cast<int>(event->x_root) - wx;
+            _dragDY = static_cast<int>(event->y_root) - wy;
+            if (Glib::RefPtr<Gdk::Window> rWin = get_window()) {
+                rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::FLEUR));
+            }
+            return true;
+        }
+        if (event->button == 3) {
+            _popup_menu(event);
+            return true;
+        }
+        return false;
+    }
+
+    bool _on_motion(GdkEventMotion* event)
+    {
+        if (not _dragging) return false;
+        move(static_cast<int>(event->x_root) - _dragDX, static_cast<int>(event->y_root) - _dragDY);
+        return true;
+    }
+
+    bool _on_key(GdkEventKey* event)
+    {
+        if (GDK_KEY_Escape == event->keyval) {
+            close_self();
+            return true;
+        }
+        if ((GDK_KEY_c == event->keyval or GDK_KEY_C == event->keyval) and (event->state & GDK_CONTROL_MASK)) {
+            _copy();
+            return true;
+        }
+        return false;
+    }
+
+    void _copy()
+    {
+        Gtk::Clipboard::get()->set_image(_rPix);
+    }
+
+    void _save()
+    {
+        Gtk::FileChooserDialog dlg{*this, "保存贴图为 PNG", Gtk::FILE_CHOOSER_ACTION_SAVE};
+        dlg.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
+        dlg.add_button("_Save", Gtk::RESPONSE_ACCEPT);
+        dlg.set_do_overwrite_confirmation(true);
+        dlg.set_current_name("orangeark_pin.png");
+        if (Gtk::RESPONSE_ACCEPT == dlg.run()) {
+            try {
+                _rPix->save(dlg.get_filename(), "png");
+            }
+            catch (const Glib::Error& e) {
+                spdlog::warn("CtScreenshotPinWindow: save failed: {}", std::string(e.what()));
+            }
+        }
+    }
+
+    void _popup_menu(GdkEventButton* event)
+    {
+        Gtk::Menu* pMenu = Gtk::manage(new Gtk::Menu{});
+        auto add_item = [pMenu](const char* label, sigc::slot<void()> slot) {
+            Gtk::MenuItem* pItem = Gtk::manage(new Gtk::MenuItem{label});
+            pItem->signal_activate().connect(slot);
+            pMenu->append(*pItem);
+        };
+        add_item("复制到剪贴板", sigc::mem_fun(*this, &CtScreenshotPinWindow::_copy));
+        add_item("保存为 PNG...", sigc::mem_fun(*this, &CtScreenshotPinWindow::_save));
+        add_item("关闭贴图", sigc::mem_fun(*this, &CtScreenshotPinWindow::close_self));
+        pMenu->show_all();
+        pMenu->popup(event->button, event->time);
+    }
+
+    void close_self()
+    {
+        hide(); // signal_hide deletes this
+    }
+
+    bool _dragging{false};
+    int  _dragDX{0};
+    int  _dragDY{0};
+    Glib::RefPtr<Gdk::Pixbuf> _rPix;
+};
 
 // The full-screen overlay where the user drags a rectangle to select the region,
 // then annotates it QQ-style with a floating toolbar
@@ -332,6 +486,28 @@ protected:
         else pBtnOk->set_label("✓");
         pBtnOk->signal_clicked().connect([this]() { _finish_text_entry(); _confirm(); });
         _pRow1->pack_start(*pBtnOk, Gtk::PACK_SHRINK);
+
+        // OrangeArk: pin the finished shot to the desktop (Snipaste-style 贴图)
+        auto* pBtnPin = Gtk::manage(new Gtk::Button());
+        pBtnPin->set_tooltip_text("钉在桌面：把当前截图变成桌面置顶贴图（拖动移动，双击或 Esc 关闭，右键菜单）");
+        pBtnPin->set_relief(Gtk::RELIEF_NONE);
+        pBtnPin->set_focus_on_click(false);
+        if (Glib::RefPtr<Gdk::Pixbuf> rPix = _svg_icon(kSvgPin, 18)) {
+            pBtnPin->set_image(*Gtk::manage(new Gtk::Image(rPix)));
+            pBtnPin->set_always_show_image(true);
+        }
+        else pBtnPin->set_label("钉");
+        pBtnPin->signal_clicked().connect([this]() {
+            _finish_text_entry();
+            if (_sel_w() >= 3 and _sel_h() >= 3) {
+                if (Glib::RefPtr<Gdk::Pixbuf> rPin = _compose_result()) {
+                    CtScreenshotPinWindow::pin(rPin, _sel_x(), _sel_y());
+                }
+            }
+            _rResult.reset(); // the pinned shot is not inserted into the note
+            hide();
+        });
+        _pRow1->pack_start(*pBtnPin, Gtk::PACK_SHRINK);
 
         // -- OrangeArk: contextual options panel --------------------------------
         // Clicking a tool button pops this up right below the toolbar:

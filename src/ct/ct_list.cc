@@ -27,7 +27,31 @@
 #include <gtkmm/textbuffer.h>
 #include <set>
 
-void CtList::list_handler(CtListType target_list_num_id)
+// OrangeArk: parse a Chinese-numeral string (一/十/百 combinations, 1..999)
+static int _chinese_numeral_to_int(const Glib::ustring& s)
+{
+    static const Glib::ustring s_cn_digits{"一二三四五六七八九"};
+    int result = 0;
+    int curr = 0;
+    for (gunichar ch : s) {
+        const int d = str::indexOf(s_cn_digits, ch);
+        if (d != -1) {
+            curr = d + 1;
+        }
+        else if (ch == Glib::ustring("十")[0]) {
+            result += (curr ? curr : 1) * 10;
+            curr = 0;
+        }
+        else if (ch == Glib::ustring("百")[0]) {
+            result += (curr ? curr : 1) * 100;
+            curr = 0;
+        }
+        // 零 and anything else: ignored
+    }
+    return result + curr;
+}
+
+void CtList::list_handler(CtListType target_list_num_id, int aux)
 {
     struct LevelCount {
         int level;
@@ -58,7 +82,10 @@ void CtList::list_handler(CtListType target_list_num_id)
                 range.iter_start = _curr_buffer->get_insert()->get_iter();
                 if (target_list_num_id == CtListType::Todo)        _curr_buffer->insert(range.iter_start, _pCtConfig->charsTodo[0] + CtConst::CHAR_SPACE);
                 else if (target_list_num_id == CtListType::Bullet) _curr_buffer->insert(range.iter_start, _pCtConfig->charsListbul[0] + CtConst::CHAR_SPACE);
-                else                                                          _curr_buffer->insert(range.iter_start, "1. ");
+                else {
+                    // OrangeArk: honour an explicit numbered style picked in the dropdown
+                    _curr_buffer->insert(range.iter_start, (aux >= 0) ? number_leading_string(1, aux) : Glib::ustring{"1. "});
+                }
             }
             break;
         }
@@ -69,7 +96,9 @@ void CtList::list_handler(CtListType target_list_num_id)
         else {
             range = list_check_n_remove_old_list_type_leading(range.iter_start, range.iter_end);
             end_offset -= range.leading_chars_num;
-            if (!list_info or list_info.type != target_list_num_id) {
+            // OrangeArk: also re-apply the leading when the same list type is
+            // targeted with an explicit marker from the dropdown library
+            if (!list_info or list_info.type != target_list_num_id or (aux >= 0 and list_info.aux != aux)) {
                 // the target list type differs from this paragraph list type
                 while (CtTextIterUtil::startswith(range.iter_start, Glib::ustring(3, CtConst::CHAR_SPACE[0]).c_str()))
                     range.iter_start.forward_chars(3);
@@ -81,20 +110,25 @@ void CtList::list_handler(CtListType target_list_num_id)
                 else if (target_list_num_id == CtListType::Bullet) {
                     new_par_offset = range.iter_end.get_offset() + 2;
                     end_offset += 2;
-                    int bull_idx = (!list_info) ? 0 : (list_info.level % (int)_pCtConfig->charsListbul.size());
+                    int bull_idx = (aux >= 0) ? (aux % (int)_pCtConfig->charsListbul.size()) : ((!list_info) ? 0 : (list_info.level % (int)_pCtConfig->charsListbul.size()));
                     _curr_buffer->insert(range.iter_start, _pCtConfig->charsListbul[bull_idx] + CtConst::CHAR_SPACE);
                 }
                 else {
                     int index;
                     if (!list_info) {
-                        index = 0;
+                        index = (aux >= 0) ? aux % number_fmt_count() : 0;
                         if (leading_num_count.empty()) leading_num_count = {LevelCount{0, 1}};
                         else                           leading_num_count = {LevelCount{0, leading_num_count.front().count+1}};
                     }
                     else {
                         int level = list_info.level;
-                        index = level % CtConst::CHARS_LISTNUM.size();
-                        if (leading_num_count.empty())
+                        index = (aux >= 0) ? aux % number_fmt_count() : level % number_fmt_count();
+                        if (list_info.type == target_list_num_id) {
+                            // OrangeArk: same list type, only the marker style changed —
+                            // keep the paragraph's own number
+                            leading_num_count = {LevelCount{level, list_info.num_seq}};
+                        }
+                        else if (leading_num_count.empty())
                             leading_num_count = {LevelCount{level, 1}};
                         else {
                             while (true) {
@@ -114,7 +148,7 @@ void CtList::list_handler(CtListType target_list_num_id)
                             }
                         }
                     }
-                    Glib::ustring leading_str = std::to_string(leading_num_count.back().count) + Glib::ustring(1, CtConst::CHARS_LISTNUM[index]) + CtConst::CHAR_SPACE;
+                    Glib::ustring leading_str = number_leading_string(leading_num_count.back().count, index);
                     new_par_offset = range.iter_end.get_offset() + (int)leading_str.size();
                     end_offset += leading_str.size();
                     _curr_buffer->insert(range.iter_start, leading_str);
@@ -135,7 +169,7 @@ CtTextRange CtList::list_check_n_remove_old_list_type_leading(Gtk::TextIter iter
     int leading_chars_num = 0;
     CtListInfo list_info = get_paragraph_list_info(iter_start);
     if (list_info) {
-        leading_chars_num = get_leading_chars_num(list_info.type, list_info.num_seq);
+        leading_chars_num = get_leading_chars_num(list_info.type, list_info.num_seq, list_info.aux);
         start_offset += 3 * list_info.level;
         iter_start = _curr_buffer->get_iter_at_offset(start_offset);
         iter_end = iter_start;
@@ -148,10 +182,51 @@ CtTextRange CtList::list_check_n_remove_old_list_type_leading(Gtk::TextIter iter
     return CtTextRange{iter_start, iter_end, leading_chars_num};
 }
 
-/*static*/int CtList::get_leading_chars_num(CtListType type, int list_info_num)
+/*static*/int CtList::number_fmt_count()
+{
+    return 6; // "1." "1)" "1-" "1>" "(1)" "一、"
+}
+
+/*static*/Glib::ustring CtList::chinese_numeral(int num)
+{
+    // OrangeArk: Chinese numerals for the "一、" numbered-list style, 1..999
+    static const char* digits[] = {"", "一", "二", "三", "四", "五", "六", "七", "八", "九"};
+    if (num < 1 or num > 999) return std::to_string(num);
+    Glib::ustring ret;
+    const int hundreds = num / 100;
+    const int tens = (num % 100) / 10;
+    const int ones = num % 10;
+    if (hundreds) {
+        ret += digits[hundreds];
+        ret += "百";
+        if (tens == 0 and ones != 0) ret += "零";
+    }
+    if (tens) {
+        if (tens > 1 or hundreds) ret += digits[tens];
+        ret += "十";
+    }
+    if (ones) ret += digits[ones];
+    return ret;
+}
+
+/*static*/Glib::ustring CtList::number_leading_string(int num, int aux)
+{
+    // OrangeArk: render the numbered-list prefix for a style index
+    // (index == CtListInfo.aux). Trailing space keeps the parser happy.
+    switch (aux) {
+        case 4:  return "(" + std::to_string(num) + ") ";
+        case 5:  return chinese_numeral(num) + "、 ";
+        default: // 0..3 — legacy CHARS_LISTNUM suffixes '.', ')', '-', '>'
+            if (aux >= 0 and aux < static_cast<int>(CtConst::CHARS_LISTNUM.size()))
+                return std::to_string(num) + Glib::ustring(1, CtConst::CHARS_LISTNUM[(size_t)aux]) + CtConst::CHAR_SPACE;
+            return std::to_string(num) + ". ";
+    }
+}
+
+/*static*/int CtList::get_leading_chars_num(CtListType type, int list_info_num, int aux)
 {
     if (CtListType::Number == type)
-        return static_cast<int>(std::to_string(list_info_num).size()) + 2; // '1. '
+        return static_cast<int>(number_leading_string(list_info_num, aux).size()); // '1. '
     return 2;
 }
 
@@ -185,6 +260,39 @@ CtListInfo CtList::list_get_number_n_level(const Gtk::TextIter iter_first_paragr
             }
         }
         else {
+            // OrangeArk: "(1) " numbered style
+            if (ch == '(') {
+                Gtk::TextIter iter_check{iter_start};
+                if (not iter_check.forward_char()) break;
+                if (not (iter_check.get_char() >= '1' and iter_check.get_char() <= '9')) break;
+                Glib::ustring number_str(1, iter_check.get_char());
+                while (iter_check.forward_char() and iter_check.get_char() >= '0' and iter_check.get_char() <= '9') {
+                    number_str += iter_check.get_char();
+                }
+                if (iter_check.get_char() != ')') break;
+                if (not iter_check.forward_char() or iter_check.get_char() != ' ') break;
+                iter_start = iter_check;
+                return CtListInfo{CtListType::Number, std::stoi(number_str), level, 4, -1};
+            }
+            // OrangeArk: "一、" Chinese-numeral numbered style
+            {
+                static const Glib::ustring s_cn_digits{"一二三四五六七八九"};
+                if (str::indexOf(s_cn_digits, ch) != -1 or ch == Glib::ustring("十")[0] or ch == Glib::ustring("百")[0]) {
+                    Glib::ustring cn_str(1, ch);
+                    Gtk::TextIter iter_check{iter_start};
+                    while (iter_check.forward_char()
+                           and (str::indexOf(s_cn_digits, iter_check.get_char()) != -1
+                                or iter_check.get_char() == Glib::ustring("十")[0]
+                                or iter_check.get_char() == Glib::ustring("百")[0]
+                                or iter_check.get_char() == Glib::ustring("零")[0])) {
+                        cn_str += iter_check.get_char();
+                    }
+                    if (iter_check.get_char() != Glib::ustring("、")[0]) break;
+                    if (not iter_check.forward_char() or iter_check.get_char() != ' ') break;
+                    iter_start = iter_check;
+                    return CtListInfo{CtListType::Number, _chinese_numeral_to_int(cn_str), level, 5, -1};
+                }
+            }
             if (not (ch >= '1' and ch <= '9')) {
                 break;
             }
@@ -466,8 +574,9 @@ void CtList::renumber_following_numbered_items(Gtk::TextIter iter_from, int star
         CtTextRange range = list_check_n_remove_old_list_type_leading(iter_start, iter_end);
         end_offset -= range.leading_chars_num;
         int index = list_info.aux;
-        _curr_buffer->insert(range.iter_start, std::to_string(curr_num) + Glib::ustring(1, CtConst::CHARS_LISTNUM[(size_t)index]) + CtConst::CHAR_SPACE);
-        end_offset += get_leading_chars_num(list_info.type, curr_num);
+        const Glib::ustring leading_str = number_leading_string(curr_num, index);
+        _curr_buffer->insert(range.iter_start, leading_str);
+        end_offset += get_leading_chars_num(list_info.type, curr_num, index);
         iter_start = _curr_buffer->get_iter_at_offset(end_offset);
         curr_num += 1;
         list_info = get_next_list_info_on_level(iter_start, level);
@@ -507,11 +616,11 @@ void CtList::list_change_level(Gtk::TextIter iter_insert, const CtListInfo& list
             else {
                 this_num = 1;
                 int idx_old = list_info.aux;
-                int idx_offset = idx_old - curr_level % CtConst::CHARS_LISTNUM.size();
-                index = (next_level + idx_offset) % CtConst::CHARS_LISTNUM.size();
+                int idx_offset = idx_old - curr_level % number_fmt_count();
+                index = (next_level + idx_offset) % number_fmt_count();
             }
-            Glib::ustring text_to = std::to_string(this_num) + Glib::ustring(1, CtConst::CHARS_LISTNUM[(size_t)index]) + CtConst::CHAR_SPACE;
-            int lead_num = get_leading_chars_num(list_info.type, list_info.num_seq);
+            Glib::ustring text_to = number_leading_string(this_num, index);
+            int lead_num = get_leading_chars_num(list_info.type, list_info.num_seq, index);
             _curr_buffer->erase(_curr_buffer->get_iter_at_offset(bull_offset), _curr_buffer->get_iter_at_offset(bull_offset + lead_num));
             _curr_buffer->insert(_curr_buffer->get_iter_at_offset(bull_offset), text_to);
         }

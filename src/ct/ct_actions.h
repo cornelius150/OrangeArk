@@ -351,6 +351,10 @@ public:
     void remove_text_formatting() { _remove_text_formatting(false/*dismiss_link*/); }
     void apply_tag_foreground();
     void apply_tag_background();
+    // OrangeArk: apply a colour picked from the toolbar palette straight away
+    // (no chooser dialog); "-" removes the colour
+    void apply_tag_foreground_colour(const Glib::ustring& colour);
+    void apply_tag_background_colour(const Glib::ustring& colour);
     void apply_tag_bold();
     void apply_tag_italic();
     void apply_tag_underline();
@@ -369,8 +373,10 @@ public:
     void apply_tag_superscript();
     void apply_tag_subscript();
     void apply_tag_monospace();
-    void list_bulleted_handler();
-    void list_numbered_handler();
+    void list_bulleted_handler(); // toolbar/menu action entry (toggles the list)
+    void list_numbered_handler(); // toolbar/menu action entry (toggles the list)
+    void apply_bullet_list(int aux); // OrangeArk: apply a marker picked from the bullet library dropdown
+    void apply_number_list(int aux); // OrangeArk: apply a style picked from the number library dropdown
     void list_todo_handler();
     void apply_tag_justify_left();
     void apply_tag_justify_center();

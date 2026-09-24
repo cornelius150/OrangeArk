@@ -38,9 +38,16 @@ public:
      , _curr_buffer{curr_buffer}
     {}
 
-    static int  get_leading_chars_num(CtListType type, int list_info_num);
+    // OrangeArk: numbered-list styles (index == CtListInfo.aux for numbers).
+    // 0..3 keep the legacy CHARS_LISTNUM chars, 4/5 are new "(1)" / "一、".
+    static int              number_fmt_count();
+    static Glib::ustring    number_leading_string(int num, int aux);
+    static Glib::ustring    chinese_numeral(int num); // 1..999
+    static int  get_leading_chars_num(CtListType type, int list_info_num, int aux = 0);
 
-    void        list_handler(CtListType target_list_num_id);
+    // aux: -1 = pick automatically (legacy level-based behaviour);
+    //      >=0 = force a marker from the toolbar dropdown library
+    void        list_handler(CtListType target_list_num_id, int aux = -1);
     CtTextRange list_check_n_remove_old_list_type_leading(Gtk::TextIter iter_start, Gtk::TextIter iter_end);
     CtListInfo  list_get_number_n_level(const Gtk::TextIter iter_first_paragraph);
     int         get_multiline_list_element_end_offset(Gtk::TextIter curr_iter, CtListInfo list_info);

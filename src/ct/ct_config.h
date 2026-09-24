@@ -89,7 +89,9 @@ public:
     bool                                        showNodeNameHeader{true};
     int                                         nodesOnNodeNameHeader{3};
     int                                         maxMatchesInPage{500};
-    int                                         toolbarIconSize{1};
+    // OrangeArk: 3 = Gtk::ICON_SIZE_LARGE_TOOLBAR (24px) — the old default of 1
+    // (ICON_SIZE_MENU, 16px) was too small on modern high-DPI screens
+    int                                         toolbarIconSize{3};
     int                                         multipleWordsSearchType{0}; // 0: exact match, 1: disregard order (AND), 2: match any (OR)
     Glib::ustring                               currColour_fg;
     Glib::ustring                               currColour_bg;

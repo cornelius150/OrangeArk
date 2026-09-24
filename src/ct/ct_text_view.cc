@@ -583,7 +583,7 @@ void CtTextView::for_event_after_key_press(GdkEvent* event, const Glib::ustring&
             }
             // possible enter on empty list element
             int insert_offset = iter_insert.get_offset();
-            int chars_to_startoffs = 1 + CtList{_pCtConfig, text_buffer}.get_leading_chars_num(list_info.type, list_info.num_seq) + 3*list_info.level;
+            int chars_to_startoffs = 1 + CtList{_pCtConfig, text_buffer}.get_leading_chars_num(list_info.type, list_info.num_seq, list_info.aux) + 3*list_info.level;
             if ((insert_offset - list_info.startoffs) == chars_to_startoffs) {
                 if (iter_insert.ends_line()) {
                     // enter on empty list element
@@ -621,7 +621,7 @@ void CtTextView::for_event_after_key_press(GdkEvent* event, const Glib::ustring&
             else {
                 int new_num = list_info.num_seq + 1;
                 int index = list_info.aux;
-                text_buffer->insert(iter_insert, pre_spaces + std::to_string(new_num) + CtConst::CHARS_LISTNUM[(size_t)index] + CtConst::CHAR_SPACE);
+                text_buffer->insert(iter_insert, pre_spaces + CtList::number_leading_string(new_num, index));
                 iter_start = text_buffer->get_iter_at_offset(insert_offset);
                 CtList{_pCtConfig, text_buffer}.char_iter_forward_to_newline(iter_start);
                 CtList{_pCtConfig, text_buffer}.renumber_following_numbered_items(iter_start, new_num + 1, curr_level);

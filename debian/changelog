@@ -1,3 +1,17 @@
+orangeark (1.1.2-1) focal; urgency=low
+
+  * OrangeArk: format painter icon is now the user-provided original brush artwork (embedded verbatim, no redraw)
+  * OrangeArk: font/highlight colour buttons are now Word-style split buttons — uppercase A with a *live* colour swatch underneath; the main part applies the current colour at once, the arrow opens a palette (15 standard colours + 无颜色 + 其他颜色…) and the swatch follows the picked colour
+  * OrangeArk: toolbar icons are bigger by default (24px LARGE_TOOLBAR instead of 16px); existing installations are bumped once, the 视图 menu can still shrink/enlarge
+  * OrangeArk: screenshot toolbar gains "钉在桌面" (pin to desktop) — Snipaste-style always-on-top pin: drag to move, double-click/Esc to close, right-click for copy/save/close
+  * OrangeArk: screenshot button tooltip is now Chinese ("截图工具")
+  * OrangeArk: password protection actually works — choosing "单个文件，加密并受密码保护" saves a real 7z/AES-256 package (.mdz) and reopening it asks for the password (wrong password retries)
+  * OrangeArk: table resize is much lighter — row separator hit test is now single pass (was O(rows^2) per mouse move), wider grab zone (6px), cursor/guide updates deduplicated
+  * OrangeArk: bulleted-list and numbered-list toolbar buttons are now split buttons with a marker library dropdown — bullets offer the full bullet library (•◇▪-→⇒●○■□◆△▲▽★☆✓✗♥♦), numbers offer 1. / 1) / 1- / 1> / (1) / 一、 (Chinese numerals), picking one applies that marker to the selection
+  * OrangeArk: list icons redrawn — bullets are 3 markers + 3 bars, numbers are 1/2/3 + 3 bars
+
+ -- OrangeArk <orangeark@localhost>  Thu, 24 Sep 2026 16:10:00 +0800
+
 orangeark (1.1.1-1) focal; urgency=low
 
   * OrangeArk: format painter toolbar button now shows icon + Chinese label "格式刷" (both-horiz style, only this button)

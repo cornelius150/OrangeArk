@@ -41,6 +41,24 @@ std::vector<std::string> CtMenu::_get_ui_str_toolbars()
                 str_buff += "<property name='visible'>True</property>";
                 str_buff += "</object></child>";
             }
+            else if (*element == "fmt_color_fg" or *element == "fmt_color_bg") {
+                // OrangeArk: Word-style split colour button (uppercase A + a live
+                // colour swatch + a palette dropdown). Built as an empty GtkToolItem
+                // here and populated in CtMenu::build_toolbars, like the font combos.
+                const std::string colourId = (*element == "fmt_color_fg") ? "ColorFgItem" : "ColorBgItem";
+                str_buff += std::string{"<child><object class='GtkToolItem' id='"} + colourId + "'>";
+                str_buff += "<property name='visible'>True</property>";
+                str_buff += "</object></child>";
+            }
+            else if (*element == "handle_bull_list" or *element == "handle_num_list") {
+                // OrangeArk: list-style split button (icon + dropdown library with
+                // bullet chars / number styles). Empty GtkToolItem placeholder,
+                // populated in CtMenu::build_toolbars like the colour buttons.
+                const std::string listId = (*element == "handle_bull_list") ? "BulletListItem" : "NumberListItem";
+                str_buff += std::string{"<child><object class='GtkToolItem' id='"} + listId + "'>";
+                str_buff += "<property name='visible'>True</property>";
+                str_buff += "</object></child>";
+            }
             else {
                 const bool isOpenRecent{*element == CtConst::CHAR_STAR};
                 // OrangeArk: the format painter button shows its label next to the icon

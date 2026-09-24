@@ -819,6 +819,40 @@ std::vector<Gtk::Toolbar*> CtMenu::build_toolbars(Gtk::MenuToolButton*& pRecentD
             pFontSizeItem->show_all();
         }
     }
+    // OrangeArk: Word-style font colour / highlight buttons (A + live swatch + palette)
+    Gtk::ToolItem* pColorFgItem = nullptr;
+    _rGtkBuilder->get_widget("ColorFgItem", pColorFgItem);
+    if (pColorFgItem) {
+        if (auto* pPicker = _setup_colour_tool_button(true/*isForeground*/)) {
+            pColorFgItem->add(*pPicker);
+            pColorFgItem->show_all();
+        }
+    }
+    Gtk::ToolItem* pColorBgItem = nullptr;
+    _rGtkBuilder->get_widget("ColorBgItem", pColorBgItem);
+    if (pColorBgItem) {
+        if (auto* pPicker = _setup_colour_tool_button(false/*isForeground*/)) {
+            pColorBgItem->add(*pPicker);
+            pColorBgItem->show_all();
+        }
+    }
+    // OrangeArk: bullet / numbered list-style buttons (icon + marker library dropdown)
+    Gtk::ToolItem* pBulletListItem = nullptr;
+    _rGtkBuilder->get_widget("BulletListItem", pBulletListItem);
+    if (pBulletListItem) {
+        if (auto* pPicker = _setup_list_style_tool_button(true/*isBullet*/)) {
+            pBulletListItem->add(*pPicker);
+            pBulletListItem->show_all();
+        }
+    }
+    Gtk::ToolItem* pNumberListItem = nullptr;
+    _rGtkBuilder->get_widget("NumberListItem", pNumberListItem);
+    if (pNumberListItem) {
+        if (auto* pPicker = _setup_list_style_tool_button(false/*isBullet*/)) {
+            pNumberListItem->add(*pPicker);
+            pNumberListItem->show_all();
+        }
+    }
     return toolbars;
 }
 #endif /* GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED) */
@@ -859,6 +893,293 @@ Gtk::Button* CtMenu::_setup_font_size_combo()
         }
     });
     return pPicker;
+}
+
+namespace {
+// OrangeArk: a solid colour rectangle as a pixbuf (plain Gdk::Pixbuf, no CSS
+// provider and no deprecated colour API — works on every GTK3 build)
+Glib::RefPtr<Gdk::Pixbuf> make_colour_swatch(const Glib::ustring& colour, const int width, const int height)
+{
+    Gdk::RGBA rgba{colour.empty() ? Glib::ustring{"#000000"} : colour};
+    auto to8 = [](const double v)->guint8 {
+        int i = static_cast<int>(v * 255.0 + 0.5);
+        if (i < 0) i = 0;
+        if (i > 255) i = 255;
+        return static_cast<guint8>(i);
+    };
+    const guint32 pixel = (static_cast<guint32>(to8(rgba.get_red())) << 24)
+                        | (static_cast<guint32>(to8(rgba.get_green())) << 16)
+                        | (static_cast<guint32>(to8(rgba.get_blue())) << 8)
+                        | 0xffu;
+    Glib::RefPtr<Gdk::Pixbuf> rPix = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, false/*has_alpha*/, 8, width, height);
+    if (not rPix) return rPix;
+    rPix->fill(pixel);
+    // 1px frame so that white / very light swatches stay visible
+    guint8* pPixels = rPix->get_pixels();
+    const int stride = rPix->get_rowstride();
+    const int nCh = rPix->get_n_channels();
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            if (0 == x or 0 == y or width - 1 == x or height - 1 == y) {
+                guint8* p = pPixels + y * stride + x * nCh;
+                p[0] = 0x60; p[1] = 0x60; p[2] = 0x60;
+            }
+        }
+    }
+    return rPix;
+}
+
+// OrangeArk: Word-style split colour button for the format toolbar
+//    ┌────────┬───┐
+//    │   A    │ ▾ │   <- main part applies the current colour, arrow opens the palette
+//    │ ▬▬▬▬▬  │   │   <- live colour swatch, redrawn whenever the colour changes
+//    └────────┴───┘
+class CtColourToolButton : public Gtk::Box
+{
+public:
+    CtColourToolButton(const std::string& iconName,
+                       const Glib::ustring& mainTooltip,
+                       const Glib::ustring& arrowTooltip,
+                       Gtk::BuiltinIconSize iconSize)
+    : Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 0}
+    {
+        get_style_context()->add_class("linked");
+
+        auto* pIconImg = Gtk::manage(new Gtk::Image{});
+        pIconImg->set_from_icon_name(iconName, iconSize);
+        _pSwatch = Gtk::manage(new Gtk::Image{});
+        auto* pVBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 1});
+        pVBox->pack_start(*pIconImg, false, false);
+        pVBox->pack_start(*_pSwatch, false, false);
+        _btnMain.set_valign(Gtk::ALIGN_CENTER);
+        _btnMain.add(*pVBox);
+        _btnMain.set_tooltip_text(mainTooltip);
+        _btnMain.signal_clicked().connect([this](){
+            if (_colour.empty()) {
+                _signalPickCustom.emit(); // nothing chosen yet — ask the user
+                return;
+            }
+            _signalApply.emit(_colour);
+        });
+        pack_start(_btnMain, false, false);
+
+        auto* pArrowImg = Gtk::manage(new Gtk::Image{});
+        pArrowImg->set_from_icon_name("ct_arrow-down", Gtk::ICON_SIZE_MENU);
+        _btnArrow.set_valign(Gtk::ALIGN_CENTER);
+        _btnArrow.add(*pArrowImg);
+        _btnArrow.set_tooltip_text(arrowTooltip);
+        pack_start(_btnArrow, false, false);
+
+        _build_palette();
+        _btnArrow.set_popover(*_pPopover);
+        show_all();
+    }
+
+    void set_colour(const Glib::ustring& colour)
+    {
+        _colour = colour;
+        _pSwatch->set(make_colour_swatch(colour, 20, 5));
+    }
+
+    sigc::signal<void, const Glib::ustring&>& signal_apply() { return _signalApply; }
+    sigc::signal<void>& signal_pick_custom() { return _signalPickCustom; }
+
+private:
+    void _build_palette()
+    {
+        static const std::vector<std::pair<const char*, const char*>> palette{
+            {"#000000", "黑色"}, {"#c00000", "深红"}, {"#ff0000", "红色"},
+            {"#ed7d31", "橙色"}, {"#ffc000", "黄色"},
+            {"#a9d08e", "浅绿"}, {"#00b050", "绿色"}, {"#00b0f0", "青色"},
+            {"#0070c0", "蓝色"}, {"#7030a0", "紫色"},
+            {"#ffffff", "白色"}, {"#d9d9d9", "浅灰"}, {"#808080", "灰色"},
+            {"#404040", "深灰"}, {"#7f6000", "褐色"}};
+
+        _pPopover = Gtk::manage(new Gtk::Popover{});
+        auto* pVBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 4});
+        pVBox->set_border_width(6);
+        auto* pGrid = Gtk::manage(new Gtk::Grid{});
+        pGrid->set_row_spacing(3);
+        pGrid->set_column_spacing(3);
+        int col{0}, row{0};
+        for (const auto& swatch : palette) {
+            const Glib::ustring hex{swatch.first};
+            auto* pBtn = Gtk::manage(new Gtk::Button{});
+            pBtn->set_image(*Gtk::manage(new Gtk::Image{make_colour_swatch(hex, 24, 18)}));
+            pBtn->set_tooltip_text(_(swatch.second));
+            pBtn->signal_clicked().connect([this, hex](){
+                _pPopover->popdown();
+                set_colour(hex);
+                _signalApply.emit(hex);
+            });
+            pGrid->attach(*pBtn, col, row, 1, 1);
+            if (++col >= 5) { col = 0; ++row; }
+        }
+        pVBox->pack_start(*pGrid, false, false);
+        pVBox->pack_start(*Gtk::manage(new Gtk::Separator{Gtk::ORIENTATION_HORIZONTAL}), false, false);
+
+        auto* pBtnNone = Gtk::manage(new Gtk::Button{_("无颜色")});
+        pBtnNone->signal_clicked().connect([this](){
+            _pPopover->popdown();
+            _signalApply.emit("-"); // "-" removes the colour, see CtActions::apply_tag
+        });
+        pVBox->pack_start(*pBtnNone, false, false);
+
+        auto* pBtnMore = Gtk::manage(new Gtk::Button{_("其他颜色…")});
+        pBtnMore->signal_clicked().connect([this](){
+            _pPopover->popdown();
+            _signalPickCustom.emit();
+        });
+        pVBox->pack_start(*pBtnMore, false, false);
+
+        _pPopover->add(*pVBox);
+    }
+
+    Gtk::Button    _btnMain;
+    Gtk::MenuButton _btnArrow;
+    Gtk::Popover*  _pPopover{nullptr};
+    Gtk::Image*    _pSwatch{nullptr};
+    Glib::ustring  _colour;
+    sigc::signal<void, const Glib::ustring&> _signalApply;
+    sigc::signal<void> _signalPickCustom;
+};
+
+// OrangeArk: list-style split button for the format toolbar
+//    ┌────────┬───┐
+//    │ icon   │ ▾ │   <- main part toggles the list, arrow opens the marker library
+//    └────────┴───┘
+//    bullet library: the configured bullet chars (● ○ ■ ◆ ★ ✓ …)
+//    number library: "1." "1)" "1-" "1>" "(1)" "一、"
+class CtListStyleToolButton : public Gtk::Box
+{
+public:
+    CtListStyleToolButton(const bool isBullet,
+                          const std::string& iconName,
+                          const Glib::ustring& mainTooltip,
+                          const Glib::ustring& arrowTooltip,
+                          Gtk::BuiltinIconSize iconSize,
+                          const CtConfig* pCtConfig)
+    : Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 0}
+    , _isBullet{isBullet}
+    , _pCtConfig{pCtConfig}
+    {
+        get_style_context()->add_class("linked");
+
+        auto* pIconImg = Gtk::manage(new Gtk::Image{});
+        pIconImg->set_from_icon_name(iconName, iconSize);
+        _btnMain.set_valign(Gtk::ALIGN_CENTER);
+        _btnMain.add(*pIconImg);
+        _btnMain.set_tooltip_text(mainTooltip);
+        _btnMain.signal_clicked().connect([this](){ _signalToggle.emit(); });
+        pack_start(_btnMain, false, false);
+
+        auto* pArrowImg = Gtk::manage(new Gtk::Image{});
+        pArrowImg->set_from_icon_name("ct_arrow-down", Gtk::ICON_SIZE_MENU);
+        _btnArrow.set_valign(Gtk::ALIGN_CENTER);
+        _btnArrow.add(*pArrowImg);
+        _btnArrow.set_tooltip_text(arrowTooltip);
+        pack_start(_btnArrow, false, false);
+
+        _build_library();
+        _btnArrow.set_popover(*_pPopover);
+        show_all();
+    }
+
+    sigc::signal<void>& signal_toggle() { return _signalToggle; }
+    sigc::signal<void, int>& signal_pick() { return _signalPick; }
+
+private:
+    void _build_library()
+    {
+        _pPopover = Gtk::manage(new Gtk::Popover{});
+        auto* pVBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 4});
+        pVBox->set_border_width(6);
+        auto* pGrid = Gtk::manage(new Gtk::Grid{});
+        pGrid->set_row_spacing(3);
+        pGrid->set_column_spacing(3);
+        int col{0}, row{0};
+        auto f_attach = [&](Gtk::Button* pBtn, int auxIdx){
+            pBtn->signal_clicked().connect([this, auxIdx](){
+                _pPopover->popdown();
+                _signalPick.emit(auxIdx);
+            });
+            pGrid->attach(*pBtn, col, row, 1, 1);
+            if (++col >= 5) { col = 0; ++row; }
+        };
+        if (_isBullet) {
+            // the configured bullet library (bullet char buttons)
+            for (size_t i = 0; i < _pCtConfig->charsListbul.size(); ++i) {
+                auto* pBtn = Gtk::manage(new Gtk::Button{_pCtConfig->charsListbul[i]});
+                pBtn->set_tooltip_text(Glib::ustring::compose(_("符号 %1"), _pCtConfig->charsListbul[i]));
+                f_attach(pBtn, static_cast<int>(i));
+            }
+        }
+        else {
+            // the numbered-style library, labels mirror CtList::number_leading_string
+            const std::vector<Glib::ustring> labels{"1.", "1)", "1-", "1>", "(1)", "一、"};
+            for (size_t i = 0; i < labels.size(); ++i) {
+                auto* pBtn = Gtk::manage(new Gtk::Button{labels[i]});
+                pBtn->set_tooltip_text(Glib::ustring::compose(_("编号样式 %1"), labels[i]));
+                f_attach(pBtn, static_cast<int>(i));
+            }
+        }
+        pVBox->pack_start(*pGrid, false, false);
+        _pPopover->add(*pVBox);
+    }
+
+    const bool _isBullet;
+    const CtConfig* _pCtConfig;
+    Gtk::Button    _btnMain;
+    Gtk::MenuButton _btnArrow;
+    Gtk::Popover*  _pPopover{nullptr};
+    sigc::signal<void> _signalToggle;
+    sigc::signal<void, int> _signalPick;
+};
+} // anonymous namespace
+
+// OrangeArk: build the Word-style font colour / highlight toolbar button
+Gtk::Widget* CtMenu::_setup_colour_tool_button(const bool isForeground)
+{
+    auto* pBtn = Gtk::manage(new CtColourToolButton{
+        isForeground ? "ct_color_fg" : "ct_color_bg",
+        isForeground ? _("字体颜色：按当前颜色着色") : _("突出显示：按当前颜色着色"),
+        _("选择颜色"),
+        CtMiscUtil::getIconSize(_pCtConfig->toolbarIconSize)});
+    pBtn->signal_apply().connect([this, isForeground](const Glib::ustring& colour){
+        if (isForeground) _pCtMainWin->get_ct_actions()->apply_tag_foreground_colour(colour);
+        else              _pCtMainWin->get_ct_actions()->apply_tag_background_colour(colour);
+    });
+    pBtn->signal_pick_custom().connect([this, isForeground, pBtn](){
+        // open the full colour chooser and remember whatever the user picked
+        if (isForeground) _pCtMainWin->get_ct_actions()->apply_tag_foreground();
+        else              _pCtMainWin->get_ct_actions()->apply_tag_background();
+        pBtn->set_colour(isForeground ? _pCtConfig->currColour_fg : _pCtConfig->currColour_bg);
+    });
+    Glib::ustring startColour = isForeground ? _pCtConfig->currColour_fg : _pCtConfig->currColour_bg;
+    if (startColour.empty()) startColour = isForeground ? "#000000" : "#ffff00";
+    pBtn->set_colour(startColour);
+    return pBtn;
+}
+
+// OrangeArk: bullet / numbered list-style split buttons (icon + marker library)
+Gtk::Widget* CtMenu::_setup_list_style_tool_button(const bool isBullet)
+{
+    auto* pBtn = Gtk::manage(new CtListStyleToolButton{
+        isBullet,
+        isBullet ? "ct_list_bulleted" : "ct_list_numbered",
+        isBullet ? _("设置/取消符号列表") : _("设置/取消编号列表"),
+        isBullet ? _("项目符号库") : _("编号样式库"),
+        CtMiscUtil::getIconSize(_pCtConfig->toolbarIconSize),
+        _pCtConfig});
+    pBtn->signal_toggle().connect([this, isBullet](){
+        if (isBullet) _pCtMainWin->get_ct_actions()->list_bulleted_handler();
+        else          _pCtMainWin->get_ct_actions()->list_numbered_handler();
+    });
+    pBtn->signal_pick().connect([this, isBullet](const int aux){
+        if (isBullet) _pCtMainWin->get_ct_actions()->apply_bullet_list(aux);
+        else          _pCtMainWin->get_ct_actions()->apply_number_list(aux);
+    });
+    return pBtn;
 }
 #endif /* GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED) */
 

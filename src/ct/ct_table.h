@@ -135,6 +135,7 @@ protected:
     void _guide_ensure();    // OrangeArk: create the root-level guide-line strips
     void _guide_destroy();   // OrangeArk: remove the guide-line strips
     void _guide_update(const double xRoot, const double yRoot); // OrangeArk: move the guide lines while dragging
+    void _apply_border_cursor(const int edges); // OrangeArk: set the resize cursor only when the zone changes
     int  _column_separator_at(const double x) const; // OrangeArk: hit test for a column separator (-1 = none)
     virtual void _set_rows_min_height(const int height) = 0; // OrangeArk: row height control
     virtual int  _get_rows_min_height() const = 0;
@@ -168,6 +169,9 @@ protected:
     Glib::RefPtr<Gdk::Window> _rGuideH; // OrangeArk: horizontal guide strip shown while dragging
     double _lastMotionXRoot{0.};   // OrangeArk: latest pointer position (final exact apply on release)
     double _lastMotionYRoot{0.};
+    double _lastGuideX{-1e9};      // OrangeArk: last guide-line position (sub-pixel throttle)
+    double _lastGuideY{-1e9};
+    int    _lastCursorEdges{-999}; // OrangeArk: last cursor zone (-999 = force refresh)
     Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
 
 protected:

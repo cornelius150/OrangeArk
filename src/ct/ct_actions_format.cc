@@ -251,6 +251,30 @@ void CtActions::apply_tag_background()
     apply_tag(CtConst::TAG_BACKGROUND);
 }
 
+// OrangeArk: toolbar colour palette — apply the picked colour without dialog
+void CtActions::apply_tag_foreground_colour(const Glib::ustring& colour)
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    if (colour.empty()) {
+        apply_tag_foreground(); // nothing chosen yet, ask the user
+        return;
+    }
+    if ("-" != colour) _pCtConfig->currColour_fg = colour;
+    apply_tag(CtConst::TAG_FOREGROUND, colour);
+}
+
+// OrangeArk: toolbar colour palette — apply the picked highlight without dialog
+void CtActions::apply_tag_background_colour(const Glib::ustring& colour)
+{
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    if (colour.empty()) {
+        apply_tag_background(); // nothing chosen yet, ask the user
+        return;
+    }
+    if ("-" != colour) _pCtConfig->currColour_bg = colour;
+    apply_tag(CtConst::TAG_BACKGROUND, colour);
+}
+
 // The Bold Button was Pressed
 void CtActions::apply_tag_bold()
 {
@@ -362,19 +386,29 @@ void CtActions::apply_tag_monospace()
 // Handler of the Bulleted List
 void CtActions::list_bulleted_handler()
 {
+    apply_bullet_list(-1);
+}
+
+void CtActions::apply_bullet_list(int aux)
+{
     if (not _is_curr_node_not_read_only_or_error()) return;
     text_view_n_buffer_codebox_proof proof = _get_text_view_n_buffer_codebox_proof();
     if (not proof.text_view->get_buffer()) return;
-    CtList{_pCtConfig, proof.text_view->get_buffer()}.list_handler(CtListType::Bullet);
+    CtList{_pCtConfig, proof.text_view->get_buffer()}.list_handler(CtListType::Bullet, aux);
 }
 
 // Handler of the Numbered List
 void CtActions::list_numbered_handler()
 {
+    apply_number_list(-1);
+}
+
+void CtActions::apply_number_list(int aux)
+{
     if (not _is_curr_node_not_read_only_or_error()) return;
     text_view_n_buffer_codebox_proof proof = _get_text_view_n_buffer_codebox_proof();
     if (not proof.text_view->get_buffer()) return;
-    CtList{_pCtConfig, proof.text_view->get_buffer()}.list_handler(CtListType::Number);
+    CtList{_pCtConfig, proof.text_view->get_buffer()}.list_handler(CtListType::Number, aux);
 }
 
 // Handler of the ToDo List

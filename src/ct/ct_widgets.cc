@@ -64,6 +64,10 @@ fs::path CtTmp::getHiddenFilePath(const fs::path& visiblePath)
             basename = basename.stem();
             basename += ".ctd";
         }
+        else if (basename.extension() == CtConst::CTDOC_MD_ENC) { // OrangeArk: encrypted Markdown unpacks to plain .md
+            basename = basename.stem();
+            basename += CtConst::CTDOC_MD;
+        }
         _mapHiddenFiles[visiblePath.string()] = g_build_filename(tempDir.c_str(), basename.c_str(), nullptr);
     }
     return _mapHiddenFiles.at(visiblePath.string());

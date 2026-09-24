@@ -665,7 +665,7 @@ CtDocType get_doc_type_from_file_ext(const fs::path& filename)
         return CtDocType::SQLite;
     }
     // OrangeArk: a Markdown document behaves like a single-file (xml-like) document
-    if (CtConst::CTDOC_MD == file_ext)
+    if (CtConst::CTDOC_MD == file_ext or CtConst::CTDOC_MD_ENC == file_ext)
     {
         return CtDocType::XML;
     }
@@ -681,7 +681,8 @@ CtDocEncrypt get_doc_encrypt_from_file_ext(const fs::path& filename)
         return CtDocEncrypt::False;
     }
     if (CtConst::CTDOC_XML_ENC == file_ext or
-        CtConst::CTDOC_SQLITE_ENC == file_ext)
+        CtConst::CTDOC_SQLITE_ENC == file_ext or
+        CtConst::CTDOC_MD_ENC == file_ext) // OrangeArk: password-protected Markdown
     {
         return CtDocEncrypt::True;
     }

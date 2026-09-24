@@ -571,6 +571,13 @@ void CtConfig::_populate_data_from_keyfile()
     _populate_int_from_keyfile("nodes_on_node_name_header", &nodesOnNodeNameHeader);
     _populate_int_from_keyfile("max_matches_in_page", &maxMatchesInPage);
     _populate_int_from_keyfile("toolbar_icon_size", &toolbarIconSize);
+    // OrangeArk 1.1.2: the default toolbar icon size grew from 16px (ICON_SIZE_MENU)
+    // to 24px (ICON_SIZE_LARGE_TOOLBAR). Bump existing installations one time only,
+    // so a user who deliberately shrank the icons afterwards is not overridden.
+    if (toolbarIconSize < 3 and not _uKeyFile->has_key(_currentGroup, "toolbar_icon_size_v3")) {
+        toolbarIconSize = 3;
+        _uKeyFile->set_integer(_currentGroup, "toolbar_icon_size_v3", 1);
+    }
     _populate_int_from_keyfile("search_multi_words", &multipleWordsSearchType);
     _populate_string_from_keyfile("fg", &currColour_fg);
     _populate_string_from_keyfile("bg", &currColour_bg);

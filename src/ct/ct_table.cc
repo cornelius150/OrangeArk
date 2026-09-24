@@ -567,6 +567,11 @@ void CtTableCommon::_guide_update(const double xRoot, const double yRoot)
 void CtTableCommon::_resize_drag_update(const double xRoot, const double yRoot)
 {
     if (not _dragResizeActive) return;
+    // OrangeArk: skip sub-pixel motion — moving the root-level guide windows is
+    // cheap but not free, and motion events can fire far faster than 1px steps
+    if (std::abs(xRoot - _lastGuideX) < 1.0 and std::abs(yRoot - _lastGuideY) < 1.0) return;
+    _lastGuideX = xRoot;
+    _lastGuideY = yRoot;
     _guide_update(xRoot, yRoot);
 }
 
@@ -643,6 +648,7 @@ void CtTableCommon::_resize_drag_end()
     _dragResizeActive = false;
     gtk_grab_remove(GTK_WIDGET(gobj()));
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
+    _lastCursorEdges = -999; // OrangeArk: force a fresh cursor on the next hover
     if (_dragResizeChanged) {
         _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
     }
@@ -657,7 +663,7 @@ int CtTableCommon::_column_separator_at(const double x) const
     double acc = 0.0;
     for (size_t c = 0u; c + 1u < colWidths.size(); ++c) { // inner separators only
         acc += colWidths.at(c);
-        if (std::abs(x - acc) <= 4.0) {
+        if (std::abs(x - acc) <= 6.0) { // OrangeArk: wider grab zone (was 4)
             return static_cast<int>(c);
         }
     }
@@ -696,6 +702,16 @@ static void _table_border_cursor(Gtk::Widget* pWidget, const int edges)
     else type = static_cast<Gdk::CursorType>(-1);
     if (type < 0) rWin->set_cursor();
     else rWin->set_cursor(Gdk::Cursor::create(type));
+}
+
+// OrangeArk: cursor updates are skipped when the zone did not change —
+// Gdk::Cursor::create() allocates a native cursor and was called on EVERY
+// motion event during hover and drag
+void CtTableCommon::_apply_border_cursor(const int edges)
+{
+    if (edges == _lastCursorEdges) return;
+    _lastCursorEdges = edges;
+    _table_border_cursor(this, edges);
 }
 
 // OrangeArk: hook the resize handlers into an inner widget (cell text views or
@@ -785,19 +801,19 @@ bool CtTableCommon::_resize_motion_at(const double x, const double y, GdkEventMo
         _lastMotionXRoot = event->x_root;
         _lastMotionYRoot = event->y_root;
         _resize_drag_update(event->x_root, event->y_root); // live preview while dragging
-        _table_border_cursor(this, _dragColIdx >= 0 ? 0x2 : _dragEdgesMask);
+        _apply_border_cursor(_dragColIdx >= 0 ? 0x2 : _dragEdgesMask);
         return true;
     }
     // hover feedback: column separators behave like a right-edge width drag,
     // row separators like a bottom-edge height drag
     if (_column_separator_at(x) >= 0) {
-        _table_border_cursor(this, 0x2);
+        _apply_border_cursor(0x2);
     }
     else if (_row_separator_at(y) >= 0) {
-        _table_border_cursor(this, 0x8);
+        _apply_border_cursor(0x8);
     }
     else {
-        _table_border_cursor(this, _table_border_edges(x, y, get_allocation()));
+        _apply_border_cursor(_table_border_edges(x, y, get_allocation()));
     }
     return false;
 }
@@ -1349,15 +1365,20 @@ double CtTableHeavy::_row_top_at(const size_t rowIdx) const
 }
 
 // OrangeArk: hit test for the row separators (the horizontal lines between
-// rows) — returns the index of the row ABOVE the separator under y, or -1
+// rows) — returns the index of the row ABOVE the separator under y, or -1.
+// OrangeArk perf: walk the rows ONCE accumulating the first-column cell
+// heights — the previous per-separator _row_top_at() restart made every mouse
+// motion O(numRows²) allocation lookups, which was the resize lag.
 int CtTableHeavy::_row_separator_at(const double y) const
 {
     const size_t numRows = get_num_rows();
-    if (numRows < 2) return -1;
+    if (numRows < 2 or _tableMatrix.empty() or _tableMatrix.front().empty()) return -1;
+    const int spacing = _grid.get_row_spacing();
+    double nextTop = 0.0;
     for (size_t r = 0u; r + 1u < numRows; ++r) { // inner separators only
-        const double nextTop = _row_top_at(r + 1u);
-        if (nextTop < 0.0) return -1;
-        if (std::abs(y - nextTop) <= 4.0) {
+        CtTextCell* pCell = static_cast<CtTextCell*>(_tableMatrix.at(r).front());
+        nextTop += pCell->get_text_view().mm().get_allocation().get_height() + spacing;
+        if (std::abs(y - nextTop) <= 6.0) { // OrangeArk: wider grab zone (was 4)
             return static_cast<int>(r);
         }
     }

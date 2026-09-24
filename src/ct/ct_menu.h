@@ -193,6 +193,11 @@ private:
     // real scrolled popup; the old ComboBoxText menu popup cannot scroll)
     Gtk::Button*             _setup_font_family_combo();
     Gtk::Button*             _setup_font_size_combo();
+    // OrangeArk: Word-style split colour button — uppercase A with a live colour
+    // swatch underneath; the main part applies the current colour, the arrow part
+    // opens a palette of standard colours (plus "no colour" / "more colours…").
+    Gtk::Widget*             _setup_colour_tool_button(bool isForeground);
+    Gtk::Widget*             _setup_list_style_tool_button(bool isBullet); // OrangeArk: bullet/number library dropdown
 
 private:
     CtMainWin*                    const _pCtMainWin;

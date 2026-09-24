@@ -42,6 +42,7 @@ const inline static std::string CTDOC_XML_ENC       {".ctz"};
 const inline static std::string CTDOC_SQLITE_NOENC  {".ctb"};
 const inline static std::string CTDOC_SQLITE_ENC    {".ctx"};
 const inline static std::string CTDOC_MD            {".md"};
+const inline static std::string CTDOC_MD_ENC        {".mdz"}; // OrangeArk: password-protected Markdown (7z/AES-256 package)
 
 const inline static std::string LINK_TYPE_WEBS      {"webs"};
 const inline static std::string LINK_TYPE_FILE      {"file"};
@@ -93,7 +94,10 @@ const inline static Glib::ustring SPECIAL_CHAR_COPYRIGHT     {"©"};
 const inline static Glib::ustring SPECIAL_CHAR_UNREGISTERED_TRADEMARK {"™"};
 const inline static Glib::ustring SPECIAL_CHAR_REGISTERED_TRADEMARK   {"®"};
 const inline static Glib::ustring SELWORD_CHARS_DEFAULT      {"_.-@"};
-const inline static Glib::ustring CHARS_LISTBUL_DEFAULT      {"•◇▪-→⇒"};
+// OrangeArk: bullet library (dropdown picker). The first 6 chars keep the
+// legacy indexes (autoreplace uses [1] ◇, [4] →, [5] ⇒); new chars are appended
+// so aux indexes stored in existing documents stay valid.
+const inline static Glib::ustring CHARS_LISTBUL_DEFAULT      {"•◇▪-→⇒●○■□◆△▲▽★☆✓✗♥♦"};
 const inline static Glib::ustring CHARS_TOC_DEFAULT          {"▸•◇▪"};
 const inline static Glib::ustring CHARS_TODO_DEFAULT         {"☐☑☒"};
 const inline static Glib::ustring CHARS_SMART_DQUOTE_DEFAULT {"“”"};
