@@ -966,6 +966,29 @@ Glib::RefPtr<Gdk::Pixbuf> make_gradient_swatch(const Glib::ustring& colourFrom, 
     }
     return rPix;
 }
+// OrangeArk: OneNote-style palette metrics — small square swatches separated by
+// a hairline gap. A stock Gtk::Button wraps its image in padding + a relief
+// border + focus padding, which is what made the gaps between colours far too
+// wide; the CSS below strips the button down to the bare swatch.
+static const int kPaletteCellSize = 18;
+static const int kPaletteCellGap = 1;
+static const char* const kPaletteCellCssClass = "oa-colour-cell";
+
+static void oa_ensure_colour_cell_css()
+{
+    static bool sDone = false;
+    if (sDone) return;
+    sDone = true;
+    Glib::RefPtr<Gtk::CssProvider> rCss = Gtk::CssProvider::create();
+    rCss->load_from_data(Glib::ustring{
+        ".oa-colour-cell{ padding:0px; margin:0px; border-width:0px; border-radius:0px;"
+        " min-width:0px; min-height:0px; box-shadow:none; outline-width:0px;"
+        " -GtkWidget-focus-padding:0; -GtkWidget-focus-line-width:0; }"});
+    if (Glib::RefPtr<Gdk::Screen> rScreen = Gdk::Screen::get_default()) {
+        Gtk::StyleContext::add_provider_for_screen(rScreen, rCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    }
+}
+
 //    ┌────────┬───┐
 //    │   A    │ ▾ │   <- main part applies the current colour, arrow opens the palette
 //    │ ▬▬▬▬▬  │   │   <- live colour swatch, redrawn whenever the colour changes
@@ -1072,16 +1095,26 @@ private:
             "#c00000", "#ff0000", "#ffc000", "#ffff00", "#92d050",
             "#00b050", "#00b0f0", "#0070c0", "#002060", "#7030a0"};
 
-        _pPopover = Gtk::manage(new Gtk::Popover{});
-        auto* pVBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 3});
-        pVBox->set_border_width(8);
+        oa_ensure_colour_cell_css();
 
-        auto f_addColourButton = [this](Gtk::Button* pBtn, const Glib::ustring& hex){
+        _pPopover = Gtk::manage(new Gtk::Popover{});
+        auto* pVBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 4});
+        pVBox->set_border_width(6);
+
+        // OrangeArk: OneNote lays its swatches out shoulder to shoulder — one
+        // bare square per colour with a hairline gap, no button padding between
+        auto f_cellButton = [this](const Glib::ustring& hex)->Gtk::Button* {
+            auto* pBtn = Gtk::manage(new Gtk::Button{});
+            pBtn->set_image(*Gtk::manage(new Gtk::Image{make_colour_swatch(hex, kPaletteCellSize, kPaletteCellSize)}));
+            pBtn->set_relief(Gtk::RELIEF_NONE);
+            pBtn->set_tooltip_text(hex);
+            pBtn->get_style_context()->add_class(kPaletteCellCssClass);
             pBtn->signal_clicked().connect([this, hex](){
                 _pPopover->popdown();
                 set_colour(hex);
                 _signalApply.emit(hex);
             });
+            return pBtn;
         };
         auto f_sectionLabel = [pVBox](const Glib::ustring& text){
             auto* pLbl = Gtk::manage(new Gtk::Label{text});
@@ -1092,7 +1125,7 @@ private:
         // "自动" (font colour) / "无颜色" (highlight) — "-" removes the tag in CtActions::apply_tag
         auto* pBtnAuto = Gtk::manage(new Gtk::Button{});
         pBtnAuto->set_label(_isForeground ? _("自动") : _("无颜色"));
-        pBtnAuto->set_image(*Gtk::manage(new Gtk::Image{make_colour_swatch(_isForeground ? "#000000" : "#ffffff", 20, 14)}));
+        pBtnAuto->set_image(*Gtk::manage(new Gtk::Image{make_colour_swatch(_isForeground ? "#000000" : "#ffffff", kPaletteCellSize, kPaletteCellSize)}));
         pBtnAuto->set_always_show_image(true);
         pBtnAuto->signal_clicked().connect([this](){
             _pPopover->popdown();
@@ -1100,59 +1133,34 @@ private:
         });
         pVBox->pack_start(*pBtnAuto, false, false);
 
-        // 主题颜色: 10 columns × (base + 5 tints/shades), light→dark downwards
+        // 主题颜色: 10 base colours × 6 rows, light at the top → dark at the bottom
         f_sectionLabel(_("主题颜色"));
         auto* pGridTheme = Gtk::manage(new Gtk::Grid{});
-        pGridTheme->set_row_spacing(2);
-        pGridTheme->set_column_spacing(2);
+        pGridTheme->set_row_spacing(kPaletteCellGap);
+        pGridTheme->set_column_spacing(kPaletteCellGap);
         for (size_t col = 0; col < themeBase.size(); ++col) {
             const std::vector<Glib::ustring> shades{
-                themeBase[col],
                 mixWhite(themeBase[col], 0.8),
                 mixWhite(themeBase[col], 0.6),
                 mixWhite(themeBase[col], 0.4),
-                mixBlack(themeBase[col], 0.25),
+                mixWhite(themeBase[col], 0.2),
+                themeBase[col],
                 mixBlack(themeBase[col], 0.5)};
             for (size_t row = 0; row < shades.size(); ++row) {
-                auto* pBtn = Gtk::manage(new Gtk::Button{});
-                pBtn->set_image(*Gtk::manage(new Gtk::Image{make_colour_swatch(shades[row], 20, 14)}));
-                pBtn->set_relief(Gtk::RELIEF_NONE);
-                pBtn->set_tooltip_text(shades[row]);
-                f_addColourButton(pBtn, shades[row]);
-                pGridTheme->attach(*pBtn, static_cast<int>(col), static_cast<int>(row), 1, 1);
+                pGridTheme->attach(*f_cellButton(shades[row]), static_cast<int>(col), static_cast<int>(row), 1, 1);
             }
         }
         pVBox->pack_start(*pGridTheme, false, false);
 
-        // 标准色: 10 vivid colours
+        // 标准色: 10 vivid colours on a single row
         f_sectionLabel(_("标准色"));
         auto* pGridStd = Gtk::manage(new Gtk::Grid{});
-        pGridStd->set_row_spacing(2);
-        pGridStd->set_column_spacing(2);
+        pGridStd->set_row_spacing(kPaletteCellGap);
+        pGridStd->set_column_spacing(kPaletteCellGap);
         for (size_t col = 0; col < standard.size(); ++col) {
-            auto* pBtn = Gtk::manage(new Gtk::Button{});
-            pBtn->set_image(*Gtk::manage(new Gtk::Image{make_colour_swatch(standard[col], 20, 14)}));
-            pBtn->set_relief(Gtk::RELIEF_NONE);
-            pBtn->set_tooltip_text(standard[col]);
-            f_addColourButton(pBtn, standard[col]);
-            pGridStd->attach(*pBtn, static_cast<int>(col), 0, 1, 1);
+            pGridStd->attach(*f_cellButton(standard[col]), static_cast<int>(col), 0, 1, 1);
         }
         pVBox->pack_start(*pGridStd, false, false);
-
-        // 渐变填充: vertical light→dark gradients of the standard colours
-        f_sectionLabel(_("渐变填充"));
-        auto* pGridGrad = Gtk::manage(new Gtk::Grid{});
-        pGridGrad->set_row_spacing(2);
-        pGridGrad->set_column_spacing(2);
-        for (size_t col = 0; col < standard.size(); ++col) {
-            auto* pBtn = Gtk::manage(new Gtk::Button{});
-            pBtn->set_image(*Gtk::manage(new Gtk::Image{make_gradient_swatch(mixWhite(standard[col], 0.35), mixBlack(standard[col], 0.35), 20, 14)}));
-            pBtn->set_relief(Gtk::RELIEF_NONE);
-            pBtn->set_tooltip_text(standard[col]);
-            f_addColourButton(pBtn, standard[col]);
-            pGridGrad->attach(*pBtn, static_cast<int>(col), 0, 1, 1);
-        }
-        pVBox->pack_start(*pGridGrad, false, false);
 
         pVBox->pack_start(*Gtk::manage(new Gtk::Separator{Gtk::ORIENTATION_HORIZONTAL}), false, false);
 

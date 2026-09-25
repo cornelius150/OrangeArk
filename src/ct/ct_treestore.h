@@ -163,6 +163,8 @@ public:
     virtual ~CtTreeStore();
 
     void          tree_view_connect(Gtk::TreeView* pTreeView);
+    // OrangeArk: (re-)assign the automatic depth colours to every node
+    void          refresh_auto_node_colours();
     void          text_view_apply_textbuffer(CtTreeIter& treeIter, CtTextView* pTextView);
 
     void          get_node_data(const Gtk::TreeModel::iterator& treeIter, CtNodeData& nodeData, const bool loadTextBuffer);

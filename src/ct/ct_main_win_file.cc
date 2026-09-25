@@ -249,6 +249,10 @@ bool CtMainWin::file_open(const fs::path& filepath,
 
     _uCtStorage.reset(new_storage);
 
+    // OrangeArk: colour the node names from their depth right after the document
+    // is loaded (a document saved by an older build carries its old colour)
+    _uCtTreestore->refresh_auto_node_colours();
+
     window_title_update(false/*saveNeeded*/);
     menu_set_bookmark_menu_items();
 #if GTKMM_MAJOR_VERSION >= 4

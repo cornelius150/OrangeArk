@@ -1,3 +1,11 @@
+orangeark (1.1.4-1) focal; urgency=low
+
+  * OrangeArk: node tree auto-colours are now written into the tree model itself when a document loads, and a colour that came from the auto palette counts as "not customised" — previously a document saved by an older build kept its stored colour, so every node stayed the same colour and the feature looked like it did nothing
+  * OrangeArk: colour palette relaid out OneNote-style — square swatches sitting shoulder to shoulder with a hairline gap (button padding/relief/focus padding stripped); theme colours run light→dark top to bottom, standard colours on one row; the Word-only gradient section is gone
+  * OrangeArk: portable package top folder is now "OrangeArk_<version>_win64_portable[_nolatex]" (was all-lowercase)
+
+ -- OrangeArk <orangeark@localhost>  Fri, 25 Sep 2026 17:30:00 +0800
+
 orangeark (1.1.3-1) focal; urgency=low
 
   * OrangeArk: storage-type dialog entry is now Chinese "单独的文件，加密并受密码保护 (.mdz)" (was untranslated English)

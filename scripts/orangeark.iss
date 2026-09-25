@@ -5,7 +5,7 @@
 #define MyAppPublisher "Giuseppe Penone"
 #define MyAppURL "https://www.giuspen.net/orangeark/"
 #define MyAppExeName "orangeark.exe"
-#define MyAppVersion "1.1.3"
+#define MyAppVersion "1.1.4"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -23,10 +23,10 @@ DisableProgramGroupPage=yes
 OutputDir=..\build
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
-LicenseFile=..\build\orangeark_{#MyAppVersion}_win64_portable\license.txt
+LicenseFile=..\build\OrangeArk_{#MyAppVersion}_win64_portable\license.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputBaseFilename=orangeark_{#MyAppVersion}_win64_setup
+OutputBaseFilename=OrangeArk_{#MyAppVersion}_win64_setup
 SetupIconFile=..\icons\orangeark.ico
 Compression=lzma2
 SolidCompression=yes
@@ -84,7 +84,7 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\build\orangeark_{#MyAppVersion}_win64_portable\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\build\OrangeArk_{#MyAppVersion}_win64_portable\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
