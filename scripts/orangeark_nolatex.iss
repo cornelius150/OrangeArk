@@ -23,10 +23,10 @@ DisableProgramGroupPage=yes
 OutputDir=..\build
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
-LicenseFile=..\build\OrangeArk_{#MyAppVersion}_win64_portable\license.txt
+LicenseFile=..\build\OrangeArk_{#MyAppVersion}_win64_portable_nolatex\license.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputBaseFilename=OrangeArk_{#MyAppVersion}_win64_setup
+OutputBaseFilename=OrangeArk_{#MyAppVersion}_win64_setup_nolatex
 SetupIconFile=..\icons\orangeark.ico
 Compression=lzma2
 SolidCompression=yes
@@ -84,7 +84,7 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\build\OrangeArk_{#MyAppVersion}_win64_portable\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\build\OrangeArk_{#MyAppVersion}_win64_portable_nolatex\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

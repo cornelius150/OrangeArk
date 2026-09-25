@@ -168,14 +168,37 @@ private:
         try {
             rCss->load_from_data(
                 ".pin-frame { border: 1px solid rgba(0,0,0,0.35); background: #ffffff; }\n"
-                ".pin-frame:hover { border: 2px solid #ff8800; }\n");
+                ".pin-frame:hover { border: 2px solid #ff8800; }\n"
+                // OrangeArk: the always-visible ✕ close button in the corner
+                ".pin-close { padding:0px; min-width:18px; min-height:18px;"
+                " border-radius:0px; border:none; background:rgba(0,0,0,0.45);"
+                " color:#ffffff; font-size:11px;"
+                " -GtkWidget-focus-padding:0; -GtkWidget-focus-line-width:0; }\n"
+                ".pin-close:hover { background:#e53935; }\n");
             get_style_context()->add_provider(rCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
         }
         catch (...) {}
         get_style_context()->add_class("pin-frame");
 
         auto* pImage = Gtk::manage(new Gtk::Image{_rPix});
-        add(*pImage);
+        // OrangeArk: pin windows had NO visible way to close (right-click menu
+        // only) — add a small ✕ button pinned to the top-right corner
+        auto* pBtnClose = Gtk::manage(new Gtk::Button{});
+        pBtnClose->set_label("✕");
+        pBtnClose->set_halign(Gtk::ALIGN_END);
+        pBtnClose->set_valign(Gtk::ALIGN_START);
+        pBtnClose->set_margin_top(2);
+        pBtnClose->set_margin_end(2);
+        pBtnClose->set_tooltip_text("关闭贴图");
+        pBtnClose->get_style_context()->add_class("pin-close");
+        // swallow presses on the button so they never start a drag on the pin
+        pBtnClose->signal_button_press_event().connect([](GdkEventButton*){ return true; }, false);
+        pBtnClose->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotPinWindow::close_self));
+
+        auto* pLayout = Gtk::manage(new Gtk::Overlay{});
+        pLayout->add(*pImage);
+        pLayout->add_overlay(*pBtnClose);
+        add(*pLayout);
 
         add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK | Gdk::KEY_PRESS_MASK);
         signal_button_press_event().connect(sigc::mem_fun(*this, &CtScreenshotPinWindow::_on_press), false);

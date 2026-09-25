@@ -33,6 +33,9 @@
 #include <pango/pangocairo.h> // OrangeArk: pango_cairo_font_map_get_default for system font enumeration
 #include <gdkmm/screen.h>
 #include <gdkmm/pixbuf.h>
+#include <gdkmm/cursor.h> // OrangeArk: eyedropper cursor
+#include <gdkmm/display.h>
+#include <gdk/gdkkeysyms.h> // OrangeArk: GDK_KEY_Escape for the eyedropper overlay
 #include <cairomm/surface.h>
 #ifdef G_OS_WIN32
 #include <windows.h> // OrangeArk: screen eyedropper (GetCursorPos/GetPixel)
@@ -993,11 +996,101 @@ static void oa_ensure_colour_cell_css()
 //    │   A    │ ▾ │   <- main part applies the current colour, arrow opens the palette
 //    │ ▬▬▬▬▬  │   │   <- live colour swatch, redrawn whenever the colour changes
 //    └────────┴───┘
-// OrangeArk: Word-style split colour button for the format toolbar
-//    ┌────────┬───┐
-//    │   A    │ ▾ │   <- main part applies the current colour, arrow opens the palette
-//    │ ▬▬▬▬▬  │   │   <- live colour swatch, redrawn whenever the colour changes
-//    └────────┴───┘
+#ifdef G_OS_WIN32
+// OrangeArk: fullscreen transparent overlay with an EYEDROPPER cursor — the
+// user asked for a real "取色小吸管" when sampling a colour. The overlay
+// swallows the next click anywhere on the screen and samples that pixel;
+// right-click or Esc cancels. Fully transparent (RGBA), so GetPixel still
+// reads the true colour underneath.
+class OaColourPickOverlay : public Gtk::Window
+{
+public:
+    static void start(sigc::slot<void, const Glib::ustring&> onPicked)
+    {
+        // deliberately not managed: deletes itself once the pick is done
+        (new OaColourPickOverlay{std::move(onPicked)})->run();
+    }
+
+private:
+    explicit OaColourPickOverlay(sigc::slot<void, const Glib::ustring&> onPicked)
+     : _onPicked{std::move(onPicked)}
+    {
+        set_type_hint(Gdk::WINDOW_TYPE_HINT_UTILITY);
+        set_skip_taskbar_hint(true);
+        set_skip_pager_hint(true);
+        set_keep_above(true);
+        set_decorated(false);
+        set_app_paintable(true);
+        if (auto rVisual = get_screen()->get_rgba_visual()) {
+            // gtkmm3 wraps no set_visual — go through the C API (alpha compositing)
+            gtk_widget_set_visual(GTK_WIDGET(gobj()), rVisual->gobj());
+        }
+        signal_draw().connect([](const Cairo::RefPtr<Cairo::Context>& cr){
+            // paint nothing — clear to fully transparent so the screen below
+            // stays visible AND GetPixel returns the real underlying colour
+            cr->set_source_rgba(0.0, 0.0, 0.0, 0.0);
+            cr->set_operator(Cairo::OPERATOR_SOURCE);
+            cr->paint();
+            return true;
+        });
+        add_events(Gdk::BUTTON_PRESS_MASK | Gdk::KEY_PRESS_MASK);
+        signal_button_press_event().connect(sigc::mem_fun(*this, &OaColourPickOverlay::_on_press), false);
+        signal_key_press_event().connect(sigc::mem_fun(*this, &OaColourPickOverlay::_on_key), false);
+    }
+
+    void run()
+    {
+        fullscreen();
+        show_all();
+        grab_focus();
+        // eyedropper cursor from the embedded icon; hotspot = dropper tip
+        Glib::RefPtr<Gdk::Cursor> rCursor;
+        try {
+            auto rPix = Gdk::Pixbuf::create_from_resource("/icons/ct_colour_pick.svg", 24, 24, true);
+            if (rPix and get_screen()->get_display()) {
+                rCursor = Gdk::Cursor::create(get_screen()->get_display(), rPix, 7, 17);
+            }
+        }
+        catch (...) {}
+        if (not rCursor) rCursor = Gdk::Cursor::create(Gdk::CursorType::CROSSHAIR);
+        if (auto rWin = get_window()) rWin->set_cursor(rCursor);
+    }
+
+    bool _on_press(GdkEventButton* event)
+    {
+        if (3 == event->button) { _finish(false); return true; } // right click = cancel
+        if (1 != event->button) return false;
+        POINT pt{};
+        GetCursorPos(&pt);
+        HDC hdc = GetDC(nullptr);
+        const COLORREF c = GetPixel(hdc, pt.x, pt.y);
+        ReleaseDC(nullptr, hdc);
+        char hex[16];
+        std::snprintf(hex, sizeof(hex), "#%02x%02x%02x", GetRValue(c), GetGValue(c), GetBValue(c));
+        _finish(true, Glib::ustring{hex});
+        return true;
+    }
+
+    bool _on_key(GdkEventKey* event)
+    {
+        if (GDK_KEY_Escape == event->keyval) { _finish(false); return true; }
+        return false;
+    }
+
+    void _finish(bool picked, const Glib::ustring& colour = Glib::ustring{})
+    {
+        if (_done) return;
+        _done = true;
+        if (picked) _onPicked(colour);
+        hide();
+        Glib::signal_idle().connect_once([this]() { delete this; });
+    }
+
+    sigc::slot<void, const Glib::ustring&> _onPicked;
+    bool _done{false};
+};
+#endif /* G_OS_WIN32 */
+
 class CtColourToolButton : public Gtk::Box
 {
 public:
@@ -1172,39 +1265,15 @@ private:
         });
         pHBox->pack_start(*pBtnMore, false, false);
 #ifdef G_OS_WIN32
-        // 取色器: sample any pixel on the screen (next left-click anywhere)
+        // 取色器: fullscreen eyedropper — the cursor becomes the little吸管,
+        // the next left-click anywhere samples that pixel, Esc/right-click cancels
         auto* pBtnPick = Gtk::manage(new Gtk::Button{_("取色器")});
         pBtnPick->signal_clicked().connect([this](){
             _pPopover->popdown();
-            static bool sPicking = false;
-            if (sPicking) return;
-            sPicking = true;
-            static bool sReleased = false; // the trigger click must be released first
-            static int  sElapsedMs = 0;
-            sReleased = false;
-            sElapsedMs = 0;
-            Glib::signal_timeout().connect([this]() -> bool {
-                sElapsedMs += 40;
-                const bool down = 0 != (GetAsyncKeyState(VK_LBUTTON) & 0x8000);
-                if (not sReleased) {
-                    if (not down) sReleased = true; // wait for the trigger click to be released
-                    return sElapsedMs < 10000;
-                }
-                if (down) {
-                    POINT pt{};
-                    GetCursorPos(&pt);
-                    HDC hdc = GetDC(nullptr);
-                    const COLORREF c = GetPixel(hdc, pt.x, pt.y);
-                    ReleaseDC(nullptr, hdc);
-                    char hex[16];
-                    std::snprintf(hex, sizeof(hex), "#%02x%02x%02x", GetRValue(c), GetGValue(c), GetBValue(c));
-                    sPicking = false;
-                    set_colour(hex);
-                    _signalApply.emit(hex);
-                    return false; // stop polling
-                }
-                return sElapsedMs < 10000; // give up after 10s
-            }, 40);
+            OaColourPickOverlay::start([this](const Glib::ustring& hex){
+                set_colour(hex);
+                _signalApply.emit(hex);
+            });
         });
         pHBox->pack_start(*pBtnPick, false, false);
 #endif /* G_OS_WIN32 */

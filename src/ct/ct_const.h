@@ -620,17 +620,19 @@ const inline static std::vector<int> NODE_CUSTOM_ICONS_ORDERED {
 };
 
 // former NODES_ICONS
+// OrangeArk: depth order — the ROOT is the OrangeArk orange, then blue, green,
+// purple, red, teal, ... each tree level gets a visibly different fruit
 const inline static std::array<const gchar*, 11> NODE_CHERRY_ICONS {
-    CHERRY_RED,         //  0
+    CHERRY_ORANGE,      //  0 root: OrangeArk orange
     CHERRY_BLUE,        //  1
-    CHERRY_ORANGE,      //  2
-    CHERRY_CYAN,        //  3
-    CHERRY_ORANGE_DARK, //  4
-    CHERRY_SHERBERT,    //  5
+    CHERRY_GREEN,       //  2
+    CHERRY_PURPLE,      //  3
+    CHERRY_RED,         //  4
+    CHERRY_CYAN,        //  5 (teal)
     CHERRY_YELLOW,      //  6
-    CHERRY_GREEN,       //  7
-    CHERRY_PURPLE,      //  8
-    CHERRY_BLACK,       //  9
+    CHERRY_ORANGE_DARK, //  7
+    CHERRY_SHERBERT,    //  8 (pink)
+    CHERRY_BLACK,       //  9 (dark slate)
     CHERRY_GRAY         // 10
 };
 

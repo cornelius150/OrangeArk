@@ -114,8 +114,8 @@ void CtMenu::init_actions(CtActions* pActions)
             _("Redo Previously Discarded Operation"), sigc::mem_fun(*pActions, &CtActions::requested_step_ahead)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_image", "ct_image_insert", _("Insert I_mage..."), KB_SHIFT+KB_ALT+"i",
             _("Insert an Image"), sigc::mem_fun(*pActions, &CtActions::image_insert)});
-        _actions.push_back(CtMenuAction{editor_cat, "take_screenshot", "ct_camera", _("Region _Screenshot..."), KB_SHIFT+KB_ALT+"x",
-            _("Grab a Screen Region and Insert It as an Image (like QQ screenshot)"), sigc::mem_fun(*pActions, &CtActions::screenshot)});
+        _actions.push_back(CtMenuAction{editor_cat, "take_screenshot", "ct_camera", _("截图"), KB_SHIFT+KB_ALT+"x",
+            _("截图"), sigc::mem_fun(*pActions, &CtActions::screenshot)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_latex", "ct_latex_insert", _("Insert Late_x..."), KB_SHIFT+KB_ALT+"g",
             _("Insert LatexBox"), sigc::mem_fun(*pActions, &CtActions::latex_insert)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_table", "ct_table_insert", _("Insert _Table..."), KB_SHIFT+KB_ALT+"h",

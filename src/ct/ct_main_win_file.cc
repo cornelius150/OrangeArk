@@ -249,8 +249,8 @@ bool CtMainWin::file_open(const fs::path& filepath,
 
     _uCtStorage.reset(new_storage);
 
-    // OrangeArk: colour the node names from their depth right after the document
-    // is loaded (a document saved by an older build carries its old colour)
+    // OrangeArk: clear the node-name colours that older builds wrongly wrote
+    // into the document (the per-level colours now live on the node ICON)
     _uCtTreestore->refresh_auto_node_colours();
 
     window_title_update(false/*saveNeeded*/);

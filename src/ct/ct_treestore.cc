@@ -891,15 +891,11 @@ void CtTreeStore::treeview_set_tree_expanded_collapsed_string(const std::string&
     );
 }
 
-// OrangeArk: node-name colours are assigned automatically from the node depth —
-// the root is the OrangeArk orange, each deeper level takes the next palette
-// entry, so a hierarchy reads at a glance.
-//   * a colour the user picked by hand always wins
-//   * a colour that is itself one of the automatic palette entries counts as
-//     "not customised" and is re-assigned from the depth. Without this, a tree
-//     saved by an older build — which wrote the auto colour into the document —
-//     would stay stuck on that one colour forever and the feature would look
-//     like it "did nothing" (which is exactly what was reported).
+// OrangeArk: node colours live on the ICON (cherry_*.svg, one fruit colour per
+// depth — see NODE_CHERRY_ICONS). The palette below is kept ONLY so that
+// documents saved by the intermediate builds — which wrote those colours into
+// the node NAME — can be cleaned up on load: any stored foreground that equals
+// one of them (or the default) counts as "not user-chosen" and is cleared.
 static const char* const kAutoDepthColours[] = {
     "#fb8c00", // depth 0: OrangeArk orange
     "#1e88e5", // depth 1: blue
@@ -909,12 +905,6 @@ static const char* const kAutoDepthColours[] = {
     "#00897b", // depth 5: teal
 };
 static const size_t kNumAutoDepthColours = sizeof(kAutoDepthColours) / sizeof(kAutoDepthColours[0]);
-
-static Glib::ustring oa_auto_depth_colour(const int depth)
-{
-    const int d = (depth < 0) ? 0 : depth;
-    return Glib::ustring{kAutoDepthColours[d % static_cast<int>(kNumAutoDepthColours)]};
-}
 
 // A node counts as "not customised" when it has no colour at all, when it
 // carries the plain default text colour, or when it carries one of the
@@ -959,41 +949,28 @@ void CtTreeStore::tree_view_connect(Gtk::TreeView* pTreeView)
             Gtk::CellRendererText *pCellRendererText = dynamic_cast<Gtk::CellRendererText*>(cellRenderers0[2]);
             if (nullptr != pCellRendererText) {
                 pTVCol0->add_attribute(pCellRendererText->property_weight(), _columns.colWeight);
-                pTVCol0->set_cell_data_func(
-                    *pCellRendererText,
-                    [this](Gtk::CellRenderer* pCell, const Gtk::TreeModel::iterator& treeIter){
-                        Gtk::TreeRow row = *treeIter;
-                        Glib::ustring fg = row.get_value(_columns.colForeground);
-                        if (oa_is_auto_colour(fg, _pCtMainWin->get_ct_config()->ttDefFg)) {
-                            // OrangeArk: colour the node name from its depth —
-                            // a colour the user picked by hand is left alone
-                            fg = oa_auto_depth_colour(_rTreeStore->iter_depth(treeIter));
-                        }
-                        dynamic_cast<Gtk::CellRendererText*>(pCell)->property_foreground() = fg;
-                    }
-                );
+                // OrangeArk: the per-level colours live on the node ICON (the
+                // orange fruit), NOT on the node name — an earlier build wrongly
+                // recoloured the text here, which was reported as a bug
             }
         }
     }
 }
 
-// OrangeArk: write the automatic depth colours into the model itself (the cell
-// data func above only colours what is on screen, and a document saved by an
-// older build carries its old colour in the file — that stored value has to be
-// re-derived from the current tree shape, otherwise every node keeps whatever
-// colour it was saved with and the feature looks like it "did nothing")
+// OrangeArk: clean up the node NAME colours that intermediate builds wrongly
+// wrote into the document — any foreground that equals one of the automatic
+// depth colours (or the plain default) is "not user-chosen" and is cleared, so
+// the node name renders in the default text colour again. Hand-picked colours
+// are left untouched.
 void CtTreeStore::refresh_auto_node_colours()
 {
     if (not _rTreeStore) return;
     const Glib::ustring defaultFg = _pCtMainWin->get_ct_config()->ttDefFg;
     _rTreeStore->foreach([this, &defaultFg](const Gtk::TreePath&, const Gtk::TreeModel::iterator& iter)->bool{
         const Glib::ustring fg = iter->get_value(_columns.colForeground);
-        if (oa_is_auto_colour(fg, defaultFg)) {
-            const Glib::ustring autoFg = oa_auto_depth_colour(_rTreeStore->iter_depth(iter));
-            if (fg != autoFg) {
-                Gtk::TreeRow row = *iter;
-                row[_columns.colForeground] = autoFg;
-            }
+        if (not fg.empty() and oa_is_auto_colour(fg, defaultFg)) {
+            Gtk::TreeRow row = *iter;
+            row[_columns.colForeground] = Glib::ustring{};
         }
         return false; /* false for continue */
     });

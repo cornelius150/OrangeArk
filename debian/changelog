@@ -1,3 +1,13 @@
+orangeark (1.1.5-1) focal; urgency=low
+
+  * OrangeArk: the per-level colours are now on the node ICON itself — the eleven cherry_*.svg fruits each carry their own colour (orange/blue/green/purple/red/teal/...), and the depth→icon order starts at the OrangeArk orange for the root; previously every icon file was the identical orange fruit, so all levels looked the same
+  * OrangeArk: the node NAME is no longer recoloured (that was the wrong element); documents saved by intermediate builds have those auto name-colours cleared on load, hand-picked colours are kept
+  * OrangeArk: the colour-palette 取色器 is now a real eyedropper — a fullscreen transparent overlay shows a little eyedropper cursor (ct_colour_pick icon), the next left-click anywhere samples that pixel, right-click/Esc cancels
+  * OrangeArk: screenshot toolbar tooltip is Chinese "截图" plus the shortcut (Shift+Alt+x) again — the action text had regressed to untranslated English
+  * OrangeArk: pinned screenshot (贴图) windows now have an always-visible ✕ close button in the top-right corner (hover turns it red); presses on it never start a drag
+
+ -- OrangeArk <orangeark@localhost>  Fri, 25 Sep 2026 19:45:00 +0800
+
 orangeark (1.1.4-1) focal; urgency=low
 
   * OrangeArk: node tree auto-colours are now written into the tree model itself when a document loads, and a colour that came from the auto palette counts as "not customised" — previously a document saved by an older build kept its stored colour, so every node stayed the same colour and the feature looked like it did nothing
