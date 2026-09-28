@@ -114,7 +114,11 @@ void CtMenu::init_actions(CtActions* pActions)
             _("Redo Previously Discarded Operation"), sigc::mem_fun(*pActions, &CtActions::requested_step_ahead)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_image", "ct_image_insert", _("Insert I_mage..."), KB_SHIFT+KB_ALT+"i",
             _("Insert an Image"), sigc::mem_fun(*pActions, &CtActions::image_insert)});
-        _actions.push_back(CtMenuAction{editor_cat, "take_screenshot", "ct_camera", _("截图"), KB_SHIFT+KB_ALT+"x",
+        // OrangeArk: the screenshot shortcut was Shift+Alt+x — the SAME combo as
+        // cut_row below, and since the Edit menu registers first, cut_row always
+        // won and the screenshot shortcut appeared dead. Print (PrtSc) is free
+        // and is what a screenshot tool should be bound to anyway.
+        _actions.push_back(CtMenuAction{editor_cat, "take_screenshot", "ct_camera", _("截图"), "Print",
             _("截图"), sigc::mem_fun(*pActions, &CtActions::screenshot)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_latex", "ct_latex_insert", _("Insert Late_x..."), KB_SHIFT+KB_ALT+"g",
             _("Insert LatexBox"), sigc::mem_fun(*pActions, &CtActions::latex_insert)});

@@ -166,6 +166,13 @@ const inline static gchar* TAG_FONT_FAMILY         {"font_family"};
 const inline static Glib::ustring TAG_FONT_FAMILY_PREFIX    {"font_family_"};
 const inline static gchar* TAG_FONT_SIZE           {"font_size"};
 const inline static Glib::ustring TAG_FONT_SIZE_PREFIX      {"font_size_"};
+// OrangeArk: superscript/subscript companion tag — the scale_sup tag alone uses
+// a fixed rise based on the global rich-text font, so a superscript on 22pt text
+// barely rises. This companion carries "<scale_permille>,<rise_pango>" computed
+// from the ACTUAL local font size (font_size tag / h1..h6 heading) and wins the
+// tag merge because it is applied after the scale tag.
+const inline static gchar* TAG_SUPFMT              {"supfmt"};
+const inline static Glib::ustring TAG_SUPFMT_PREFIX          {"supfmt_"};
 const inline static gchar* TAG_JUSTIFICATION       {"justification"};
 const inline static Glib::ustring TAG_JUSTIFICATION_PREFIX  {"justification_"};
 const inline static gchar* TAG_LINK                {"link"};
@@ -248,7 +255,7 @@ const inline static std::array<std::string_view, 4> WEB_LINK_STARTERS {
 // https://stackoverflow.com/questions/1547899/which-characters-make-a-url-invalid
 const inline static char URL_INVALID_CHARS[]{" \n\r\t\"<>\\^`{}"};
 
-const inline static std::array<std::string_view, 14> TAG_PROPERTIES {
+const inline static std::array<std::string_view, 15> TAG_PROPERTIES {
     TAG_WEIGHT,
     TAG_FOREGROUND,
     TAG_BACKGROUND,
@@ -262,7 +269,8 @@ const inline static std::array<std::string_view, 14> TAG_PROPERTIES {
     TAG_LINK,
     TAG_INDENT,
     TAG_FONT_FAMILY,
-    TAG_FONT_SIZE
+    TAG_FONT_SIZE,
+    TAG_SUPFMT
 };
 
 const inline static std::array<const gchar*, 4> TAG_ALIGNMENTS {

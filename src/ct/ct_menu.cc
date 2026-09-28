@@ -1095,7 +1095,8 @@ class CtColourToolButton : public Gtk::Box
 {
 public:
     CtColourToolButton(const std::string& iconName,
-                       const Glib::ustring& mainTooltip,
+                       const Glib::ustring& titleText,
+                       const Glib::ustring& descText,
                        const Glib::ustring& arrowTooltip,
                        Gtk::BuiltinIconSize iconSize,
                        const bool isForeground)
@@ -1112,7 +1113,24 @@ public:
         pVBox->pack_start(*_pSwatch, false, false);
         _btnMain.set_valign(Gtk::ALIGN_CENTER);
         _btnMain.add(*pVBox);
-        _btnMain.set_tooltip_text(mainTooltip);
+        // OrangeArk: two-line rich tooltip — GTK3 set_tooltip_text is plain text
+        // only, so the tooltip window is built from markup Labels: bold title on
+        // the first line, plain description on the second
+        _btnMain.set_has_tooltip();
+        _btnMain.signal_query_tooltip().connect([this, titleText, descText](int, int, bool,
+                const Glib::RefPtr<Gtk::Tooltip>& tooltip){
+            auto* pBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 2});
+            auto* pTitle = Gtk::manage(new Gtk::Label{});
+            pTitle->set_markup(Glib::ustring::compose("<b>%1</b>", titleText));
+            pTitle->set_halign(Gtk::ALIGN_START);
+            auto* pDesc = Gtk::manage(new Gtk::Label{descText});
+            pDesc->set_halign(Gtk::ALIGN_START);
+            pBox->pack_start(*pTitle, false, false);
+            pBox->pack_start(*pDesc, false, false);
+            pBox->show_all();
+            tooltip->set_custom(*pBox);
+            return true;
+        });
         _btnMain.signal_clicked().connect([this](){
             if (_colour.empty()) {
                 _signalPickCustom.emit(); // nothing chosen yet — ask the user
@@ -1267,7 +1285,14 @@ private:
 #ifdef G_OS_WIN32
         // 取色器: fullscreen eyedropper — the cursor becomes the little吸管,
         // the next left-click anywhere samples that pixel, Esc/right-click cancels
-        auto* pBtnPick = Gtk::manage(new Gtk::Button{_("取色器")});
+        // OrangeArk: the button itself carries the eyedropper icon (user request)
+        auto* pBtnPick = Gtk::manage(new Gtk::Button{});
+        auto* pPickImg = Gtk::manage(new Gtk::Image{});
+        pPickImg->set_from_icon_name("ct_colour_pick", Gtk::ICON_SIZE_MENU);
+        pBtnPick->set_image(*pPickImg);
+        pBtnPick->set_always_show_image(true);
+        pBtnPick->set_label(_("取色器"));
+        pBtnPick->set_tooltip_text(_("从屏幕上吸取任意颜色"));
         pBtnPick->signal_clicked().connect([this](){
             _pPopover->popdown();
             OaColourPickOverlay::start([this](const Glib::ustring& hex){
@@ -1374,7 +1399,10 @@ private:
         }
         else {
             // the numbered-style library, labels mirror CtList::number_leading_string
-            const std::vector<Glib::ustring> labels{"1.", "1)", "1-", "1>", "(1)", "一、"};
+            // (index == CtListInfo.aux): 0"1." 1"1)" 2"1-" 3"1>" 4"(1)" 5"一、"
+            // 6"A." 7"a." 8"(一)" 9"①"
+            const std::vector<Glib::ustring> labels{"1.", "1)", "1-", "1>", "(1)", "一、",
+                                                    "A.", "a.", "(一)", "①"};
             for (size_t i = 0; i < labels.size(); ++i) {
                 auto* pBtn = Gtk::manage(new Gtk::Button{labels[i]});
                 pBtn->set_tooltip_text(Glib::ustring::compose(_("编号样式 %1"), labels[i]));
@@ -1400,7 +1428,8 @@ Gtk::Widget* CtMenu::_setup_colour_tool_button(const bool isForeground)
 {
     auto* pBtn = Gtk::manage(new CtColourToolButton{
         isForeground ? "ct_color_fg" : "ct_color_bg",
-        isForeground ? _("字体颜色：按当前颜色着色") : _("突出显示：按当前颜色着色"),
+        isForeground ? _("字体颜色") : _("突出显示"),
+        isForeground ? _("改变字体颜色") : _("给文字加上颜色底纹以凸显文字内容"),
         _("选择颜色"),
         CtMiscUtil::getIconSize(_pCtConfig->toolbarIconSize),
         isForeground});

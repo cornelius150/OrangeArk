@@ -356,6 +356,17 @@ std::string CtMainWin::get_text_tag_name_exist_or_create(const std::string& prop
             // OrangeArk: custom text font size in points (toolbar size combo)
             rTextTag->property_size() = std::stoi(propertyValue) * Pango::SCALE;
         }
+        else if (CtConst::TAG_SUPFMT == propertyName) {
+            // OrangeArk: sup/sub companion — value is "<scale_permille>,<rise_pango>"
+            const size_t commaPos = propertyValue.find(',');
+            if (commaPos != std::string::npos) {
+                try {
+                    rTextTag->property_scale() = std::stoi(propertyValue.substr(0, commaPos)) / 1000.0;
+                    rTextTag->property_rise() = std::stoi(propertyValue.substr(commaPos + 1));
+                }
+                catch (const std::exception&) {}
+            }
+        }
         else if (CtConst::TAG_STRIKETHROUGH == propertyName and CtConst::TAG_PROP_VAL_TRUE == propertyValue) {
             rTextTag->property_strikethrough() = true;
         }
@@ -391,6 +402,70 @@ std::string CtMainWin::get_text_tag_name_exist_or_create(const std::string& prop
         _rGtkTextTagTable->add(rTextTag);
     }
     return tagName;
+}
+
+// OrangeArk: build the "<scale_permille>,<rise_pango>" payload for a sup/sub
+// companion tag. The rise must be PROPORTIONAL to the text's real size: the
+// old fixed rise (rich-text font / 2) made a superscript on 22pt text rise
+// only 5.5pt so it looked vertically centred instead of top-right.
+static std::string oa_sup_sub_fmt_value(const CtConfig* pCtConfig, const bool isSup,
+                                        double basePt, const double localScale)
+{
+    if (basePt <= 0) {
+        basePt = Pango::FontDescription(pCtConfig->rtFont).get_size() / (double)Pango::SCALE;
+        if (basePt <= 0) basePt = 11.0;
+    }
+    const double effPt = basePt * localScale;
+    const int permille = std::max(200, static_cast<int>(std::lround(0.6944 * localScale * 1000)));
+    const int rise = static_cast<int>(std::lround(effPt * (isSup ? 0.33 : -0.17) * Pango::SCALE));
+    return std::to_string(permille) + "," + std::to_string(rise);
+}
+
+std::string CtMainWin::sup_sub_fmt_tag_name(const Gtk::TextIter& iter, const bool isSup)
+{
+    double basePt = Pango::FontDescription(_pCtConfig->rtFont).get_size() / (double)Pango::SCALE;
+    double localScale = 1.0;
+    for (const auto& currTag : iter.get_tags()) {
+        const Glib::ustring tagName = currTag->property_name();
+        if (str::startswith(tagName, CtConst::TAG_FONT_SIZE_PREFIX)) {
+            try {
+                const double pt = std::stod(tagName.substr(CtConst::TAG_FONT_SIZE_PREFIX.size()));
+                if (pt > 0) basePt = pt;
+            }
+            catch (const std::exception&) {}
+        }
+        else if (str::startswith(tagName, CtConst::TAG_SCALE_PREFIX)) {
+            const Glib::ustring scaleVal = tagName.substr(CtConst::TAG_SCALE_PREFIX.size());
+            if      (scaleVal == CtConst::TAG_PROP_VAL_H1)    localScale = _pCtConfig->scalableH1.scale;
+            else if (scaleVal == CtConst::TAG_PROP_VAL_H2)    localScale = _pCtConfig->scalableH2.scale;
+            else if (scaleVal == CtConst::TAG_PROP_VAL_H3)    localScale = _pCtConfig->scalableH3.scale;
+            else if (scaleVal == CtConst::TAG_PROP_VAL_H4)    localScale = _pCtConfig->scalableH4.scale;
+            else if (scaleVal == CtConst::TAG_PROP_VAL_H5)    localScale = _pCtConfig->scalableH5.scale;
+            else if (scaleVal == CtConst::TAG_PROP_VAL_H6)    localScale = _pCtConfig->scalableH6.scale;
+            else if (scaleVal == CtConst::TAG_PROP_VAL_SMALL) localScale = _pCtConfig->scalableSmall.scale;
+        }
+    }
+    return get_text_tag_name_exist_or_create(CtConst::TAG_SUPFMT,
+                                             oa_sup_sub_fmt_value(_pCtConfig, isSup, basePt, localScale));
+}
+
+std::string CtMainWin::sup_sub_fmt_tag_name_from_attrs(const bool isSup, const Glib::ustring& fontSizeVal,
+                                                       const Glib::ustring& scaleVal)
+{
+    double basePt = 0.0;
+    if (not fontSizeVal.empty()) {
+        try { basePt = std::stod(fontSizeVal); } catch (const std::exception&) {}
+    }
+    double localScale = 1.0;
+    if      (scaleVal == CtConst::TAG_PROP_VAL_H1)    localScale = _pCtConfig->scalableH1.scale;
+    else if (scaleVal == CtConst::TAG_PROP_VAL_H2)    localScale = _pCtConfig->scalableH2.scale;
+    else if (scaleVal == CtConst::TAG_PROP_VAL_H3)    localScale = _pCtConfig->scalableH3.scale;
+    else if (scaleVal == CtConst::TAG_PROP_VAL_H4)    localScale = _pCtConfig->scalableH4.scale;
+    else if (scaleVal == CtConst::TAG_PROP_VAL_H5)    localScale = _pCtConfig->scalableH5.scale;
+    else if (scaleVal == CtConst::TAG_PROP_VAL_H6)    localScale = _pCtConfig->scalableH6.scale;
+    else if (scaleVal == CtConst::TAG_PROP_VAL_SMALL) localScale = _pCtConfig->scalableSmall.scale;
+    return get_text_tag_name_exist_or_create(CtConst::TAG_SUPFMT,
+                                             oa_sup_sub_fmt_value(_pCtConfig, isSup, basePt, localScale));
 }
 
 // Get the tooltip for the underlying link

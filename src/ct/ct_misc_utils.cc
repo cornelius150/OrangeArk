@@ -653,6 +653,7 @@ bool CtTextIterUtil::rich_text_attributes_update(const Gtk::TextIter& text_iter,
         else if (str::startswith(tag_name, CtConst::TAG_FAMILY_PREFIX)) delta_attributes[CtConst::TAG_FAMILY].clear();
         else if (str::startswith(tag_name, CtConst::TAG_FONT_FAMILY_PREFIX)) delta_attributes[CtConst::TAG_FONT_FAMILY].clear();
         else if (str::startswith(tag_name, CtConst::TAG_FONT_SIZE_PREFIX)) delta_attributes[CtConst::TAG_FONT_SIZE].clear();
+        else if (str::startswith(tag_name, CtConst::TAG_SUPFMT_PREFIX)) delta_attributes[CtConst::TAG_SUPFMT].clear();
     }
 #if GTKMM_MAJOR_VERSION >= 4
     auto toggled_on = text_iter.get_toggled_tags(true/*toggled_on*/);
@@ -678,6 +679,7 @@ bool CtTextIterUtil::rich_text_attributes_update(const Gtk::TextIter& text_iter,
         else if (str::startswith(tag_name, CtConst::TAG_FAMILY_PREFIX)) delta_attributes[CtConst::TAG_FAMILY] = tag_name.substr(7);
         else if (str::startswith(tag_name, CtConst::TAG_FONT_FAMILY_PREFIX)) delta_attributes[CtConst::TAG_FONT_FAMILY] = tag_name.substr(12);
         else if (str::startswith(tag_name, CtConst::TAG_FONT_SIZE_PREFIX)) delta_attributes[CtConst::TAG_FONT_SIZE] = tag_name.substr(10);
+        else if (str::startswith(tag_name, CtConst::TAG_SUPFMT_PREFIX)) delta_attributes[CtConst::TAG_SUPFMT] = tag_name.substr(7);
     }
     bool anyDelta{false};
     for (const auto& currDelta : delta_attributes) {

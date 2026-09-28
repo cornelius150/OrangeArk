@@ -149,8 +149,10 @@ void CtList::list_handler(CtListType target_list_num_id, int aux)
                         }
                     }
                     Glib::ustring leading_str = number_leading_string(leading_num_count.back().count, index);
-                    new_par_offset = range.iter_end.get_offset() + (int)leading_str.size();
-                    end_offset += leading_str.size();
+                    // OrangeArk fix: iter offsets are CHARACTERS, not bytes
+                    const int leading_chars = static_cast<int>(g_utf8_strlen(leading_str.c_str(), -1));
+                    new_par_offset = range.iter_end.get_offset() + leading_chars;
+                    end_offset += leading_chars;
                     _curr_buffer->insert(range.iter_start, leading_str);
                 }
             }
@@ -184,7 +186,7 @@ CtTextRange CtList::list_check_n_remove_old_list_type_leading(Gtk::TextIter iter
 
 /*static*/int CtList::number_fmt_count()
 {
-    return 6; // "1." "1)" "1-" "1>" "(1)" "一、"
+    return 10; // "1." "1)" "1-" "1>" "(1)" "一、" "A." "a." "(一)" "①"
 }
 
 /*static*/Glib::ustring CtList::chinese_numeral(int num)
@@ -209,6 +211,30 @@ CtTextRange CtList::list_check_n_remove_old_list_type_leading(Gtk::TextIter iter
     return ret;
 }
 
+/*static*/Glib::ustring CtList::excel_letter_num(int num, bool upper)
+{
+    // OrangeArk: 1->A..Z, 27->AA ... (spreadsheet style) for the "A." style
+    Glib::ustring ret;
+    int n = num;
+    while (n > 0) {
+        const int rem = (n - 1) % 26;
+        ret = Glib::ustring(1, static_cast<gchar>((upper ? 'A' : 'a') + rem)) + ret;
+        n = (n - 1) / 26;
+    }
+    if (ret.empty()) ret = std::to_string(num);
+    return ret;
+}
+
+/*static*/int CtList::letter_num_to_int(const Glib::ustring& letters)
+{
+    int ret = 0;
+    for (size_t i = 0; i < letters.size(); ++i) {
+        gunichar ch = letters[i];
+        ret = ret * 26 + (ch - 'A' + 1);
+    }
+    return ret;
+}
+
 /*static*/Glib::ustring CtList::number_leading_string(int num, int aux)
 {
     // OrangeArk: render the numbered-list prefix for a style index
@@ -216,6 +242,13 @@ CtTextRange CtList::list_check_n_remove_old_list_type_leading(Gtk::TextIter iter
     switch (aux) {
         case 4:  return "(" + std::to_string(num) + ") ";
         case 5:  return chinese_numeral(num) + "、 ";
+        case 6:  return excel_letter_num(num, true) + ". ";
+        case 7:  return excel_letter_num(num, false) + ". ";
+        case 8:  return "(" + chinese_numeral(num) + ") ";
+        case 9:
+            if (num >= 1 and num <= 20)
+                return Glib::ustring(1, gunichar(0x2460 + num - 1)) + CtConst::CHAR_SPACE;
+            return "(" + std::to_string(num) + ") "; // beyond the circled range keep counting in (n)
         default: // 0..3 — legacy CHARS_LISTNUM suffixes '.', ')', '-', '>'
             if (aux >= 0 and aux < static_cast<int>(CtConst::CHARS_LISTNUM.size()))
                 return std::to_string(num) + Glib::ustring(1, CtConst::CHARS_LISTNUM[(size_t)aux]) + CtConst::CHAR_SPACE;
@@ -226,7 +259,10 @@ CtTextRange CtList::list_check_n_remove_old_list_type_leading(Gtk::TextIter iter
 /*static*/int CtList::get_leading_chars_num(CtListType type, int list_info_num, int aux)
 {
     if (CtListType::Number == type)
-        return static_cast<int>(number_leading_string(list_info_num, aux).size()); // '1. '
+        // OrangeArk fix: TextIter offsets are CHARACTER offsets — the old
+        // ustring::size() counted BYTES, so "一、 " (7 bytes / 3 chars) ate
+        // into the paragraph content when removing the leading marker
+        return static_cast<int>(g_utf8_strlen(number_leading_string(list_info_num, aux).c_str(), -1));
     return 2;
 }
 
@@ -260,19 +296,40 @@ CtListInfo CtList::list_get_number_n_level(const Gtk::TextIter iter_first_paragr
             }
         }
         else {
-            // OrangeArk: "(1) " numbered style
+            // OrangeArk: "① " circled-number style (U+2460..U+2473 = 1..20)
+            if (ch >= 0x2460 and ch <= 0x2473) {
+                Gtk::TextIter iter_check{iter_start};
+                if (not iter_check.forward_char() or iter_check.get_char() != ' ') break;
+                iter_start = iter_check;
+                return CtListInfo{CtListType::Number, static_cast<int>(ch - 0x2460) + 1, level, 9, -1};
+            }
+            // OrangeArk: "(1) " and "(一) " numbered styles
             if (ch == '(') {
                 Gtk::TextIter iter_check{iter_start};
                 if (not iter_check.forward_char()) break;
-                if (not (iter_check.get_char() >= '1' and iter_check.get_char() <= '9')) break;
-                Glib::ustring number_str(1, iter_check.get_char());
-                while (iter_check.forward_char() and iter_check.get_char() >= '0' and iter_check.get_char() <= '9') {
-                    number_str += iter_check.get_char();
+                const gunichar chInner = iter_check.get_char();
+                if (chInner >= '1' and chInner <= '9') {
+                    Glib::ustring number_str(1, chInner);
+                    while (iter_check.forward_char() and iter_check.get_char() >= '0' and iter_check.get_char() <= '9') {
+                        number_str += iter_check.get_char();
+                    }
+                    if (iter_check.get_char() != ')') break;
+                    if (not iter_check.forward_char() or iter_check.get_char() != ' ') break;
+                    iter_start = iter_check;
+                    return CtListInfo{CtListType::Number, std::stoi(number_str), level, 4, -1};
                 }
-                if (iter_check.get_char() != ')') break;
-                if (not iter_check.forward_char() or iter_check.get_char() != ' ') break;
-                iter_start = iter_check;
-                return CtListInfo{CtListType::Number, std::stoi(number_str), level, 4, -1};
+                static const Glib::ustring s_cn_digits_paren{"一二三四五六七八九十百零"};
+                if (str::indexOf(s_cn_digits_paren, chInner) != -1) {
+                    Glib::ustring cn_str(1, chInner);
+                    while (iter_check.forward_char() and str::indexOf(s_cn_digits_paren, iter_check.get_char()) != -1) {
+                        cn_str += iter_check.get_char();
+                    }
+                    if (iter_check.get_char() != ')') break;
+                    if (not iter_check.forward_char() or iter_check.get_char() != ' ') break;
+                    iter_start = iter_check;
+                    return CtListInfo{CtListType::Number, _chinese_numeral_to_int(cn_str), level, 8, -1};
+                }
+                break;
             }
             // OrangeArk: "一、" Chinese-numeral numbered style
             {
@@ -292,6 +349,22 @@ CtListInfo CtList::list_get_number_n_level(const Gtk::TextIter iter_first_paragr
                     iter_start = iter_check;
                     return CtListInfo{CtListType::Number, _chinese_numeral_to_int(cn_str), level, 5, -1};
                 }
+            }
+            // OrangeArk: "A. " / "a. " spreadsheet-letter numbered styles
+            if ((ch >= 'A' and ch <= 'Z') or (ch >= 'a' and ch <= 'z')) {
+                const bool isUpper = (ch >= 'A' and ch <= 'Z');
+                Glib::ustring letters(1, ch);
+                Gtk::TextIter iter_check{iter_start};
+                while (iter_check.forward_char()) {
+                    const gunichar chLetter = iter_check.get_char();
+                    if (isUpper and chLetter >= 'A' and chLetter <= 'Z') letters += chLetter;
+                    else if (not isUpper and chLetter >= 'a' and chLetter <= 'z') letters += chLetter;
+                    else break;
+                }
+                if (iter_check.get_char() != '.') break;
+                if (not iter_check.forward_char() or iter_check.get_char() != ' ') break;
+                iter_start = iter_check;
+                return CtListInfo{CtListType::Number, letter_num_to_int(letters.uppercase()), level, isUpper ? 6 : 7, -1};
             }
             if (not (ch >= '1' and ch <= '9')) {
                 break;

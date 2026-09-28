@@ -39,10 +39,13 @@ public:
     {}
 
     // OrangeArk: numbered-list styles (index == CtListInfo.aux for numbers).
-    // 0..3 keep the legacy CHARS_LISTNUM chars, 4/5 are new "(1)" / "一、".
+    // 0..3 keep the legacy CHARS_LISTNUM chars, 4/5 are new "(1)" / "一、",
+    // 6/7 "A."/"a." spreadsheet letters, 8 "(一)", 9 "①" circled.
     static int              number_fmt_count();
     static Glib::ustring    number_leading_string(int num, int aux);
     static Glib::ustring    chinese_numeral(int num); // 1..999
+    static Glib::ustring    excel_letter_num(int num, bool upper); // 1->A, 27->AA
+    static int              letter_num_to_int(const Glib::ustring& letters);
     static int  get_leading_chars_num(CtListType type, int list_info_num, int aux = 0);
 
     // aux: -1 = pick automatically (legacy level-based behaviour);

@@ -686,9 +686,46 @@ void CtStorageXmlHelper::_add_rich_text_from_xml(Glib::RefPtr<Gtk::TextBuffer> b
     const Glib::ustring text_content = text_node->get_content();
     if (text_content.empty()) return;
     std::vector<Glib::ustring> tags;
+    Glib::ustring scaleAttrVal, fontSizeAttrVal;
+    bool hasSupSub{false}, hasSupFmt{false};
     for (const xmlpp::Attribute* pAttribute : xml_element->get_attributes()) {
-        if (CtStrUtil::contains(CtConst::TAG_PROPERTIES, pAttribute->get_name().c_str())) {
-            tags.push_back(_pCtMainWin->get_text_tag_name_exist_or_create(pAttribute->get_name(), pAttribute->get_value()));
+        const Glib::ustring attrName = pAttribute->get_name();
+        const Glib::ustring attrValue = pAttribute->get_value();
+        if (not CtStrUtil::contains(CtConst::TAG_PROPERTIES, attrName.c_str())) {
+            continue;
+        }
+        if (CtConst::TAG_SCALE == attrName) {
+            scaleAttrVal = attrValue;
+            hasSupSub = (attrValue == CtConst::TAG_PROP_VAL_SUP or attrValue == CtConst::TAG_PROP_VAL_SUB);
+        }
+        else if (CtConst::TAG_FONT_SIZE == attrName) {
+            fontSizeAttrVal = attrValue;
+        }
+        else if (CtConst::TAG_SUPFMT == attrName) {
+            hasSupFmt = true;
+        }
+        tags.push_back(_pCtMainWin->get_text_tag_name_exist_or_create(attrName, attrValue));
+    }
+    // OrangeArk: the sup/sub companion tag must be applied AFTER the scale tag
+    // to win the tag merge. Fresh documents always store it; older documents
+    // (and foreign imports) don't — synthesize it from the span's own
+    // font_size / scale attributes so a superscript on 22pt text still rises.
+    if (hasSupSub) {
+        const std::string fmtTagName = _pCtMainWin->sup_sub_fmt_tag_name_from_attrs(
+            scaleAttrVal == CtConst::TAG_PROP_VAL_SUP, fontSizeAttrVal, scaleAttrVal);
+        if (not hasSupFmt) {
+            tags.push_back(fmtTagName);
+        }
+        else {
+            // move the existing companion to the end of the apply order
+            for (size_t idx = 0; idx < tags.size(); ++idx) {
+                if (str::startswith(tags[idx], CtConst::TAG_SUPFMT_PREFIX)) {
+                    const Glib::ustring moving = tags[idx];
+                    tags.erase(tags.begin() + static_cast<long>(idx));
+                    tags.push_back(moving);
+                    break;
+                }
+            }
         }
     }
     Gtk::TextIter iter = text_insert_pos ? *text_insert_pos : buffer->end();

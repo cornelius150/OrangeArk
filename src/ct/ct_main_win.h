@@ -179,6 +179,11 @@ public:
     void                      codeboxes_reload_toolbar();
     Glib::RefPtr<Gtk::TextBuffer> get_new_text_buffer(const Glib::ustring& textContent="");
     std::string               get_text_tag_name_exist_or_create(const std::string& propertyName, const std::string& propertyValue);
+    // OrangeArk: proportional superscript/subscript companion tag name for the
+    // text at `iter` (honours a local font_size tag and h1..h6 heading scale)
+    std::string               sup_sub_fmt_tag_name(const Gtk::TextIter& iter, bool isSup);
+    // OrangeArk: same, but for a loaded XML <rich_text> span (attributes instead of tags)
+    std::string               sup_sub_fmt_tag_name_from_attrs(bool isSup, const Glib::ustring& fontSizeVal, const Glib::ustring& scaleVal);
     void                      apply_scalable_properties(Glib::RefPtr<Gtk::TextTag> rTextTag, CtScalableTag* pCtScalableTag);
     Glib::ustring             sourceview_hovering_link_get_tooltip(const Glib::ustring& link);
     bool                      apply_tag_try_automatic_bounds(Glib::RefPtr<Gtk::TextBuffer> text_buffer, Gtk::TextIter iter_start);

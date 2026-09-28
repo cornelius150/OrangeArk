@@ -611,7 +611,8 @@ void CtActions::apply_tag(const Glib::ustring& tag_property,
                 //Remove old tag but don't reset the value (since we're increasing previous indent to a new value, not toggling it off)
                 text_buffer->remove_tag(curr_tag, it_sel_start, it_sel_end);
             }
-            else if (tag_property == CtConst::TAG_SCALE and str::startswith(curr_tag_name, CtConst::TAG_SCALE_PREFIX)) {
+            else if (tag_property == CtConst::TAG_SCALE and (str::startswith(curr_tag_name, CtConst::TAG_SCALE_PREFIX)
+                                                          or str::startswith(curr_tag_name, CtConst::TAG_SUPFMT_PREFIX))) {
                 text_buffer->remove_tag(curr_tag, it_sel_start, it_sel_end);
             }
             else if (tag_property == CtConst::TAG_JUSTIFICATION and str::startswith(curr_tag_name, CtConst::TAG_JUSTIFICATION_PREFIX)) {
@@ -632,10 +633,28 @@ void CtActions::apply_tag(const Glib::ustring& tag_property,
         }
     }
 
+    // OrangeArk: sup/sub gets a proportional companion tag (scale+rise derived
+    // from the REAL local font size). Compute it BEFORE the scale tag lands
+    // (the companion must see the local font_size / h1..h6 tags) and apply it
+    // AFTER the scale tag so it wins the tag merge.
+    const bool isSupSubScale = (tag_property == CtConst::TAG_SCALE and
+        (property_value == CtConst::TAG_PROP_VAL_SUP or property_value == CtConst::TAG_PROP_VAL_SUB));
+    std::string supSubFmtTagName;
+    if (isSupSubScale) {
+        supSubFmtTagName = _pCtMainWin->sup_sub_fmt_tag_name(
+            text_buffer->get_iter_at_offset(sel_start_offset),
+            property_value == CtConst::TAG_PROP_VAL_SUP);
+    }
+
     if (not property_value.empty()) {
         text_buffer->apply_tag_by_name(_pCtMainWin->get_text_tag_name_exist_or_create(tag_property, property_value),
                                        text_buffer->get_iter_at_offset(sel_start_offset),
                                        text_buffer->get_iter_at_offset(sel_end_offset));
+        if (not supSubFmtTagName.empty()) {
+            text_buffer->apply_tag_by_name(supSubFmtTagName,
+                                           text_buffer->get_iter_at_offset(sel_start_offset),
+                                           text_buffer->get_iter_at_offset(sel_end_offset));
+        }
     }
 
     if (restore_cursor_offset != -1) { // remove auto selection and restore cursor placement

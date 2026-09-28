@@ -1,3 +1,14 @@
+orangeark (1.1.6-1) focal; urgency=low
+
+  * OrangeArk: superscript/subscript is now PROPORTIONAL — the rise/scale were fixed values derived from the global rich-text font, so a superscript on 22pt text (toolbar size combo or an h1..h6 heading) barely rose and looked vertically centred; a companion "supfmt" tag carrying <scale_permille>,<rise> is now computed from the ACTUAL local font size, applied after the scale tag so it wins the merge, stored in the document and re-synthesized on load for older files
+  * OrangeArk: the screenshot shortcut was Shift+Alt+x — the same combo as Cut Row, which registered first and always won, so the screenshot shortcut was dead; it is now the Print (PrtSc) key
+  * OrangeArk: font colour / highlight toolbar buttons get two-line tooltips — bold title ("字体颜色" / "突出显示") plus a plain description line ("改变字体颜色" / "给文字加上颜色底纹以凸显文字内容") via a custom query-tooltip window (GTK3 plain-text tooltips cannot be bold)
+  * OrangeArk: the highlight (背景色) icon is a Word-style slanted highlighter pen over a colour band
+  * OrangeArk: the palette 取色器 button now carries the eyedropper icon next to its label
+  * OrangeArk: numbered-style library extended to 10 styles — 1. / 1) / 1- / 1> / (1) / 一、 / A. / a. / (一) / ① (spreadsheet letters, Chinese numerals in parens, circled 1..20), with matching leading-text parsing so lists survive save/reload; fixed a byte-vs-char offset bug that made removing a "一、" marker eat into the paragraph text
+
+ -- OrangeArk <orangeark@localhost>  Mon, 28 Sep 2026 17:10:00 +0800
+
 orangeark (1.1.5-1) focal; urgency=low
 
   * OrangeArk: the per-level colours are now on the node ICON itself — the eleven cherry_*.svg fruits each carry their own colour (orange/blue/green/purple/red/teal/...), and the depth→icon order starts at the OrangeArk orange for the root; previously every icon file was the identical orange fruit, so all levels looked the same
