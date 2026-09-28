@@ -1,3 +1,9 @@
+orangeark (1.1.7-1) focal; urgency=low
+
+  * OrangeArk: the highlight (背景色) toolbar icon is redrawn to match the user's reference picture — a yellow spiral notebook with a navy outline, a thin cover band with a white divider, three binding rings, a page box with two text lines, and a long pencil overlapping the bottom-right corner (v1.1.6 shipped a Word-style highlighter pen because the reference image could not be read that session)
+
+ -- OrangeArk <orangeark@localhost>  Mon, 28 Sep 2026 20:40:00 +0800
+
 orangeark (1.1.6-1) focal; urgency=low
 
   * OrangeArk: superscript/subscript is now PROPORTIONAL — the rise/scale were fixed values derived from the global rich-text font, so a superscript on 22pt text (toolbar size combo or an h1..h6 heading) barely rose and looked vertically centred; a companion "supfmt" tag carrying <scale_permille>,<rise> is now computed from the ACTUAL local font size, applied after the scale tag so it wins the merge, stored in the document and re-synthesized on load for older files
