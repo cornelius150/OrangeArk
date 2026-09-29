@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-  <!-- OrangeArk: orange with an edit pencil (change node properties) -->
-  <path d="M 6.6 4.0 C 6.6 4.0 6.4 2.9 5.6 2.2" stroke="#7a4a12" stroke-width="0.9" fill="none" stroke-linecap="round"/>
-  <path d="M 6.8 4.1 C 7.2 3.0 8.4 2.4 9.9 2.5 C 9.9 4.0 9.0 5.1 7.4 5.2 C 7.2 5.1 7.0 4.7 6.8 4.1 Z" fill="#8bc34a"/>
-  <circle cx="5.8" cy="10" r="4.8" fill="#fb8c00" stroke="#bf5f0a" stroke-width="0.9"/>
-  <ellipse cx="4.0" cy="8.2" rx="1.6" ry="1.0" fill="#ffffff" opacity="0.35" transform="rotate(-25 4.0 8.2)"/>
+  <!-- OrangeArk: node icon + edit pencil (change node properties).
+       Body uses the same citrus silhouette as the cherry_*.svg set so the two
+       icon families stay visually consistent. -->
+  <path d="M 6.45 3.75 C 6.45 3.75 6.35 2.9 5.95 2.5" stroke="#7a4a12" stroke-width="0.85" fill="none" stroke-linecap="round"/>
+  <path d="M 6.7 3.85 C 7.05 3.0 8.05 2.55 9.25 2.62 C 9.25 3.7 8.5 4.5 7.3 4.6 C 7.15 4.5 7.0 4.2 6.7 3.85 Z" fill="#8bc34a"/>
+  <ellipse cx="5.8" cy="10.1" rx="4.85" ry="4.6" fill="#fb8c00" stroke="#bf5f0a" stroke-width="0.85"/>
+  <ellipse cx="5.8" cy="6.75" rx="1.4" ry="1.05" fill="#bf5f0a" opacity="0.5"/>
+  <ellipse cx="5.8" cy="6.75" rx="0.65" ry="0.48" fill="#bf5f0a" opacity="0.75"/>
+  <circle cx="3.5" cy="9.2" r="0.42" fill="#bf5f0a" opacity="0.5"/>
+  <circle cx="8.1" cy="9.4" r="0.42" fill="#bf5f0a" opacity="0.5"/>
+  <circle cx="4.1" cy="12.4" r="0.38" fill="#bf5f0a" opacity="0.45"/>
+  <circle cx="7.9" cy="12.1" r="0.38" fill="#bf5f0a" opacity="0.45"/>
+  <ellipse cx="4.05" cy="8.4" rx="1.7" ry="1.0" fill="#ffffff" opacity="0.34" transform="rotate(-25 4.05 8.4)"/>
   <g transform="translate(7.9,0.4) scale(0.36)">
     <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" fill="#ffd699" stroke="#bf5f0a" stroke-width="2.2" stroke-linejoin="round"/>
   </g>

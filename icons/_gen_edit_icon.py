@@ -1,5 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="48" height="48" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""ct_cherry_edit.svg — same orange silhouette, with an overlay pencil."""
+import io
+import os
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+TARGET = os.path.join(HERE, "ct_cherry_edit.svg")
+
+SVG = """<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
   <!-- OrangeArk: node icon + edit pencil (change node properties).
        Body uses the same citrus silhouette as the cherry_*.svg set so the two
        icon families stay visually consistent. -->
@@ -17,3 +26,15 @@
     <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" fill="#ffd699" stroke="#bf5f0a" stroke-width="2.2" stroke-linejoin="round"/>
   </g>
 </svg>
+"""
+
+
+def main():
+    with io.open(TARGET, "w", encoding="utf-8", newline="\n") as f:
+        f.write(SVG)
+    print("已重画:", TARGET)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

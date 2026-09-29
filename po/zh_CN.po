@@ -1659,8 +1659,8 @@ msgstr "格式刷"
 msgid "Format _Latest"
 msgstr "上次格式(_L)"
 
-msgid "Memory of Latest Text Format Type"
-msgstr "上次所操作的文字格式类型"
+msgid "Repeat Latest Text Format Type"
+msgstr "重复上次所操作的文字格式类型"
 
 msgid "_Remove Formatting"
 msgstr "清除格式(_R)"
@@ -3167,3 +3167,75 @@ msgstr "文档以标准 Markdown（.md）纯文本保存：笔记正文在任何
 
 msgid "Grab a Screen Region and Insert It as an Image (like QQ screenshot)"
 msgstr "截图工具：框选屏幕区域，截图作为图片插入（类似QQ截图）"
+
+msgid "'%s' is Not a Regular File"
+msgstr "'%s' 不是普通文件"
+
+msgid "Bookmarks"
+msgstr "书签"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Discard"
+msgstr "放弃"
+
+msgid "Drag to select a region"
+msgstr "拖动鼠标选择区域"
+
+msgid "Enter or double-click: confirm"
+msgstr "回车或双击：确认"
+
+msgid "Esc: cancel"
+msgstr "Esc：取消"
+
+msgid "Execute"
+msgstr "执行"
+
+msgid "Failed to Parse the Markdown File: %s"
+msgstr "解析 Markdown 文件失败：%s"
+
+msgid "Hide"
+msgstr "隐藏"
+
+msgid "Hide Auxiliary Icon"
+msgstr "隐藏辅助图标"
+
+msgid "Markdown File"
+msgstr "Markdown 文件"
+
+msgid "Menu"
+msgstr "菜单"
+
+msgid "No bookmarks"
+msgstr "暂无书签"
+
+msgid "No recent documents"
+msgstr "暂无最近文档"
+
+msgid "OK"
+msgstr "确定"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Screenshot Copied to Clipboard - Paste It with Ctrl+V."
+msgstr "截图已复制到剪贴板，按 Ctrl+V 粘贴。"
+
+msgid "Select Folder..."
+msgstr "选择文件夹…"
+
+msgid "Text/Code preferences are temporarily limited in GTK4 build."
+msgstr "GTK4 版本中的“文本/代码”设置暂不支持。"
+
+msgid "Toolbar preferences are temporarily limited in GTK4 build."
+msgstr "GTK4 版本中的“工具栏”设置暂不支持。"
+
+msgid "Tree preferences are temporarily limited in GTK4 build."
+msgstr "GTK4 版本中的“节点树”设置暂不支持。"
+
+msgid "Untitled"
+msgstr "无标题"

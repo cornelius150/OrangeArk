@@ -1,3 +1,32 @@
+orangeark (1.1.9-1) focal; urgency=low
+
+  * OrangeArk: the node level icons are redrawn as unmistakable ORANGES. The
+    previous artwork (plain glossy sphere + leaf) read as a cherry or an apple
+    — the user asked for oranges twice. Because the tree recolours the same
+    icon per depth level, "orange" cannot come from colour, so the silhouette
+    now carries the citrus cues: a slightly squat body, a navel crown at the
+    top, peel pores, and a stubby stem (cherries have a long thin one). All 11
+    level files plus the pencil overlay edit icon were regenerated from one
+    template, each keeping its own level colour.
+  * OrangeArk: the 重复上次格式 (repeat last format) toolbar icon is redrawn.
+    The format painter button embeds the user-supplied brush artwork, but this
+    button was hand-drawn (a fat orange arrow plus a tiny shrunken brush at the
+    wrong angle) and looked nothing like its sibling. It now reuses the SAME
+    brush image, slightly smaller and shifted, with a small crisp repeat arrow
+    in the top-left corner.
+  * OrangeArk: dozens of UI strings showed up in English despite being
+    translatable. Two compounding causes: (1) po/zh_CN.po contained 24 DUPLICATE
+    msgid definitions, which makes msgfmt fail outright — and the build calls
+    msgfmt without checking the exit status, so the compiled .mo silently stayed
+    at whatever old version compiled last and EVERY later translation edit was
+    frozen out of the binary; (2) 48 UI strings had no msgid at all in the
+    catalogue (the repeat-last-format tooltip used the pre-rename source string,
+    for example). All duplicates were removed (first occurrence kept), the 48
+    strings were translated, and the catalogue now compiles clean: 1026
+    translated messages.
+
+ -- OrangeArk <orangeark@localhost>  Tue, 29 Sep 2026 14:30:00 +0800
+
 orangeark (1.1.8-1) focal; urgency=low
 
   * OrangeArk: superscript/subscript actually RAISES now — offscreen pixel probing showed two compounding bugs in the v1.1.6 companion-tag design: Pango MULTIPLIES the scale attributes of all applied tags (stock scale_sup 0.78 x supfmt 0.694 shrank the glyph to 0.54) and which tag wins a property is decided by tag-table creation order, not apply order, so the rise was nondeterministic; the stock scale_sup/scale_sub tag is now a pure semantic marker (save/export/toggle only) and all visual work (scale 0.694 + proportional rise) is done by the single supfmt companion tag; also the companion scale factor is now a constant 0.694 because multiplying it by the heading scale made a superscript inside an h1..h6 heading render LARGER than body text
