@@ -606,6 +606,7 @@ void CtMainWin::_reset_CtTreestore_CtTreeview()
     _tree_just_auto_expanded = false;
     _uCtTreeview->signal_cursor_changed().connect(sigc::mem_fun(*this, &CtMainWin::_on_treeview_cursor_changed));
     #if GTKMM_MAJOR_VERSION < 4
+    _uCtTreeview->signal_button_press_event().connect(sigc::mem_fun(*this, &CtMainWin::_on_treeview_button_press_event), false);
     _uCtTreeview->signal_button_release_event().connect(sigc::mem_fun(*this, &CtMainWin::_on_treeview_button_release_event));
     _uCtTreeview->signal_event_after().connect(sigc::mem_fun(*this, &CtMainWin::_on_treeview_event_after));
     _uCtTreeview->signal_row_activated().connect(sigc::mem_fun(*this, &CtMainWin::_on_treeview_row_activated));

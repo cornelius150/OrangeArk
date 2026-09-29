@@ -95,6 +95,58 @@ void CtMainWin::_on_treeview_cursor_changed()
 
 // GTK3 event handlers (not used in GTK4)
 #if GTKMM_MAJOR_VERSION < 4
+// OrangeArk: handle Ctrl/Shift clicks by hand instead of relying on the default
+// GTK3 behaviour. With SELECTION_MULTIPLE the default is easy to break (and the
+// click also moves the focus to the text view, which makes the extra selected
+// rows look unselected), so: Ctrl toggles the clicked row, Shift selects the
+// whole range between the cursor row and the clicked one. Plain clicks keep the
+// default handling (single select + open the node).
+bool CtMainWin::_on_treeview_button_press_event(GdkEventButton* event)
+{
+    if (event->button != 1) return false;
+    const bool ctrl = (event->state & GDK_CONTROL_MASK) != 0;
+    const bool shift = (event->state & GDK_SHIFT_MASK) != 0;
+    if (not ctrl and not shift) return false;   // plain click -> default handling
+
+    Gtk::TreeModel::Path path;
+    if (not _uCtTreeview->get_path_at_pos((int)event->x, (int)event->y, path)) return false;
+
+    Glib::RefPtr<Gtk::TreeSelection> rSelection = _uCtTreeview->get_selection();
+    if (ctrl) {
+        if (rSelection->is_selected(path)) rSelection->unselect(path);
+        else rSelection->select(path);
+    }
+    else {
+        Gtk::TreeModel::Path anchor;
+        Gtk::TreeView::Column* pFocusColumn = nullptr;
+        _uCtTreeview->get_cursor(anchor, pFocusColumn);
+        if (anchor.empty()) {
+            rSelection->select(path);
+        }
+        else {
+            rSelection->unselect_all();
+            // OrangeArk: gtkmm3 has no TreeSelection::select_range (the C API
+            // gtk_tree_selection_select_range is not wrapped), so walk the
+            // tree in depth-first order — which is exactly the TreePath
+            // ordering — from the lower path to the higher one and select
+            // every row in between.
+            Glib::RefPtr<Gtk::TreeModel> model = _uCtTreeview->get_model();
+            Gtk::TreeModel::iterator it_a = model->get_iter(anchor);
+            Gtk::TreeModel::iterator it_b = model->get_iter(path);
+            if (it_a and it_b) {
+                Gtk::TreeModel::iterator lo = it_a, hi = it_b;
+                // gtkmm3 does not wrap TreePath::compare either — use the C API
+                if (gtk_tree_path_compare(anchor.gobj(), path.gobj()) > 0) { lo = it_b; hi = it_a; }
+                for (Gtk::TreeModel::iterator it = lo; it != hi; ++it)
+                    rSelection->select(it);
+                rSelection->select(hi);
+            }
+        }
+    }
+    _uCtTreeview->set_cursor(path);
+    return true;   // handled: don't let GTK replace the selection
+}
+
 bool CtMainWin::_on_treeview_button_release_event(GdkEventButton* event)
 {
     if (event->button == 3) {
@@ -122,7 +174,10 @@ bool CtMainWin::_on_window_key_press_event(GdkEventKey* event)
 void CtMainWin::_on_treeview_event_after(GdkEvent* event)
 {
     if (event->type == GDK_BUTTON_PRESS and event->button.button == 1) {
-        if (_pCtConfig->treeClickFocusText) {
+        // OrangeArk: on a Ctrl/Shift click the tree must keep the focus, so the
+        // several selected rows stay visibly highlighted
+        const bool modifiedClick = (event->button.state & (GDK_CONTROL_MASK | GDK_SHIFT_MASK)) != 0;
+        if (_pCtConfig->treeClickFocusText and not modifiedClick) {
             _ctTextview.mm().grab_focus();
         }
         if (_pCtConfig->treeClickExpand) {

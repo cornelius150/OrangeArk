@@ -1,3 +1,13 @@
+orangeark (1.2.1-1) focal; urgency=low
+
+  * OrangeArk: multi-select in the node tree is now handled explicitly.
+    Ctrl+click toggles a node in the selection, Shift+click selects the whole
+    range up to the clicked node, and the tree keeps the keyboard focus during
+    such clicks so every selected node stays visibly highlighted. A plain click
+    still opens the node as before, and drag-and-drop is untouched.
+  * The batch move "移动所选节点到…" (tree menu > Move, and the tree right-click
+    menu) therefore works with the nodes picked this way.
+
 orangeark (1.2.0-1) focal; urgency=low
 
   * OrangeArk: multi-select tree nodes (Ctrl/Shift+click) and batch-move them
