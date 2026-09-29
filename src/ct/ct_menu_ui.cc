@@ -371,6 +371,7 @@ const char* CtMenu::_get_ui_str_menu()
       <menuitem action='tree_node_left'/>
       <menuitem action='tree_node_right'/>
       <menuitem action='tree_node_new_father'/>
+      <menuitem action='tree_nodes_move_to'/>
     </menu>
     <menu action='TreeSortSubMenu'>
       <menuitem action='tree_sibl_sort_asc'/>

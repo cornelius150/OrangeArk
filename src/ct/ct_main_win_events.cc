@@ -771,9 +771,13 @@ void CtMainWin::_on_treeview_drag_data_get(const Glib::RefPtr<Gdk::DragContext>&
                                            guint /*info*/,
                                            guint /*time*/)
 {
-    Gtk::TreeModel::iterator sel_iter = _uCtTreeview->get_selection()->get_selected();
-    if (sel_iter) {
-        const Glib::ustring treePathStr = _uCtTreeview->get_model()->get_path(sel_iter).to_string();
+    // OrangeArk: the tree selection is MULTIPLE, use the cursor (focus) row as
+    // the drag source — get_selected() is unreliable with several rows chosen
+    Gtk::TreeModel::Path cursorPath;
+    Gtk::TreeView::Column* pFocusColumn = nullptr;
+    _uCtTreeview->get_cursor(cursorPath, pFocusColumn);
+    if (not cursorPath.empty()) {
+        const Glib::ustring treePathStr = cursorPath.to_string();
         selection_data.set("UTF8_STRING", 8, (const guint8*)treePathStr.c_str(), (int)treePathStr.size());
     }
 }

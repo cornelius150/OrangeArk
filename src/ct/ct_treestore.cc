@@ -23,6 +23,7 @@
 
 #include "ct_main_win.h"
 #include <algorithm>
+#include <ctime>
 #include "ct_treestore.h"
 #include "ct_misc_utils.h"
 #include "ct_storage_control.h"
@@ -906,6 +907,11 @@ static const char* const kAutoDepthColours[] = {
 };
 static const size_t kNumAutoDepthColours = sizeof(kAutoDepthColours) / sizeof(kAutoDepthColours[0]);
 
+// OrangeArk: compact display format for the per-node creation timestamp shown
+// after the node name in the tree (deliberately NOT the user's insertion
+// timestamp format, which is meant for inserting dates into the text)
+static const char* const kNodeTimestampDisplayFormat = "%Y-%m-%d %H:%M";
+
 // A node counts as "not customised" when it has no colour at all, when it
 // carries the plain default text colour, or when it carries one of the
 // automatic palette entries. Anything else is a colour the user picked.
@@ -952,6 +958,28 @@ void CtTreeStore::tree_view_connect(Gtk::TreeView* pTreeView)
                 // OrangeArk: the per-level colours live on the node ICON (the
                 // orange fruit), NOT on the node name — an earlier build wrongly
                 // recoloured the text here, which was reported as a bug
+
+                // OrangeArk: render the node creation timestamp as a grey
+                // suffix after the node name. Markup is used so the suffix can
+                // be smaller and dimmer than the name itself; the name is
+                // escaped first, nodes whose ts_creation is 0 (never set) show
+                // the plain name only.
+                pTVCol0->set_cell_data_func(
+                    *pCellRendererText,
+                    [this](Gtk::CellRenderer* pCell, const Gtk::TreeModel::iterator& treeIter){
+                        Gtk::CellRendererText* pTextCell = dynamic_cast<Gtk::CellRendererText*>(pCell);
+                        if (nullptr == pTextCell) return;
+                        const Glib::ustring name = treeIter->get_value(_columns.colNodeName);
+                        const gint64 tsCreation = treeIter->get_value(_columns.colTsCreation);
+                        Glib::ustring markup = Glib::Markup::escape_text(name);
+                        if (tsCreation > 0) {
+                            markup += "  <span foreground=\"#a0a0a0\" size=\"smaller\">"
+                                    + str::time_format(kNodeTimestampDisplayFormat, (time_t)tsCreation)
+                                    + "</span>";
+                        }
+                        pTextCell->property_markup() = markup;
+                    }
+                );
             }
         }
     }
@@ -971,6 +999,26 @@ void CtTreeStore::refresh_auto_node_colours()
         if (not fg.empty() and oa_is_auto_colour(fg, defaultFg)) {
             Gtk::TreeRow row = *iter;
             row[_columns.colForeground] = Glib::ustring{};
+        }
+        return false; /* false for continue */
+    });
+}
+
+// OrangeArk: documents created before the per-node creation timestamp shipped
+// have ts_creation == 0 on every node. Give those nodes the load time as their
+// creation timestamp and mark them for property save, so the value is written
+// on the next save and then stays stable. Nodes that already carry a timestamp
+// (everything created with v1.2.0+) are left untouched.
+void CtTreeStore::nodes_creation_time_backfill()
+{
+    if (not _rTreeStore) return;
+    const gint64 now = std::time(nullptr);
+    _rTreeStore->foreach([this, now](const Gtk::TreePath&, const Gtk::TreeModel::iterator& iter)->bool{
+        const gint64 tsCreation = iter->get_value(_columns.colTsCreation);
+        if (tsCreation <= 0) {
+            Gtk::TreeRow row = *iter;
+            row[_columns.colTsCreation] = now;
+            to_ct_tree_iter(iter).pending_edit_db_node_prop();
         }
         return false; /* false for continue */
     });

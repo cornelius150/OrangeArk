@@ -138,8 +138,15 @@ public:
     void tree_node_paste_from_other_window(CtMainWin* pWinToCopyFrom, gint64 nodeIdToCopyFrom);
 
     Glib::RefPtr<Gtk::TextBuffer>     curr_buffer() { return _ctTextview.get_buffer(); }
+    // OrangeArk: the tree selection is MULTIPLE now, so "the current node" is
+    // the row with the cursor (focus), NOT "the selected row" — with several
+    // rows selected get_selected() would return an arbitrary one of them
     CtTreeIter                        curr_tree_iter()  {
-        return _uCtTreestore->to_ct_tree_iter(_uCtTreeview->get_selection()->get_selected());
+        Gtk::TreeModel::Path cursorPath;
+        Gtk::TreeView::Column* pFocusColumn = nullptr;
+        _uCtTreeview->get_cursor(cursorPath, pFocusColumn);
+        if (cursorPath.empty()) return CtTreeIter();
+        return _uCtTreestore->get_iter(cursorPath);
     }
     CtTreeStore&                      get_tree_store()  { return *_uCtTreestore; }
     CtTreeView&                       get_tree_view()   { return *_uCtTreeview; }

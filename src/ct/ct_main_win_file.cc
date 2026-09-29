@@ -252,6 +252,9 @@ bool CtMainWin::file_open(const fs::path& filepath,
     // OrangeArk: clear the node-name colours that older builds wrongly wrote
     // into the document (the per-level colours now live on the node ICON)
     _uCtTreestore->refresh_auto_node_colours();
+    // OrangeArk: documents created before the node creation timestamp shipped
+    // have ts_creation == 0 — give them one now so the tree can display it
+    _uCtTreestore->nodes_creation_time_backfill();
 
     window_title_update(false/*saveNeeded*/);
     menu_set_bookmark_menu_items();

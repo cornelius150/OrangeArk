@@ -596,6 +596,10 @@ void CtMainWin::_reset_CtTreestore_CtTreeview()
 
     _uCtTreestore.reset(new CtTreeStore{this});
     _uCtTreestore->tree_view_connect(_uCtTreeview.get());
+    // OrangeArk: allow selecting several tree nodes at once (Ctrl/Shift+click)
+    // so they can be moved under another node in one go; the "current node"
+    // is tracked via the row cursor (see CtMainWin::curr_tree_iter)
+    _uCtTreeview->get_selection()->set_mode(Gtk::SELECTION_MULTIPLE);
     _uCtTreeview->set_tree_node_name_wrap_width(_pCtConfig->cherryWrapEnabled, _pCtConfig->cherryWrapWidth);
     show_hide_tree_lines(_pCtConfig->treeLinesVisible);
 

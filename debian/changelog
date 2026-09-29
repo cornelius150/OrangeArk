@@ -1,3 +1,19 @@
+orangeark (1.2.0-1) focal; urgency=low
+
+  * OrangeArk: multi-select tree nodes (Ctrl/Shift+click) and batch-move them
+    under one chosen parent via Tree menu > Move > "移动所选节点到…" (also in
+    the tree right-click menu). The current node is now tracked by the row
+    cursor; the drag-and-drop source uses the cursor row too. Ancestors win
+    when a node and its descendant are both selected; the destination can be
+    neither one of the moved nodes nor a descendant of any of them.
+  * OrangeArk: every tree node shows its creation timestamp after the name as
+    a small grey suffix (YYYY-MM-DD HH:MM). Newly created nodes get the
+    timestamp automatically; documents created by older versions get one
+    assigned on load (persisted with the next save). The timestamp is stored
+    in the existing ts_creation field, fully compatible with old files.
+  * Manual: the bundled online manual page was rewritten as a full user guide
+    (editing, tree, tables, export, encryption, timestamps, batch move).
+
 orangeark (1.1.9-1) focal; urgency=low
 
   * OrangeArk: the node level icons are redrawn as unmistakable ORANGES. The

@@ -30,6 +30,7 @@
 #include "ct_logging.h"
 #include <ctime>
 #include <gtkmm/dialog.h>
+#include <set>
 
 bool CtActions::_is_there_selected_node_or_error()
 {
@@ -880,6 +881,88 @@ void CtActions::node_change_father()
 
     node_move_after(_pCtMainWin->curr_tree_iter(), father_iter);
     _pCtMainWin->get_tree_store().update_nodes_icon(_pCtMainWin->curr_tree_iter(), true);
+}
+
+// OrangeArk: batch-move every selected tree node under one chosen parent.
+// The tree selection is MULTIPLE (Ctrl/Shift+click); with a single row chosen
+// this behaves just like node_change_father. Topmost selected nodes win: if a
+// node and its descendant are both selected only the ancestor is moved (it
+// carries the descendant along). The destination may be neither one of the
+// moved nodes nor a descendant of any of them.
+void CtActions::node_move_selected_to_father()
+{
+    if (_in_action) { spdlog::debug("?? 2*{}", __FUNCTION__); return; }
+    _in_action = true;
+    auto on_scope_exit = scope_guard([this](void*) { _in_action = false; });
+
+    if (not _is_there_selected_node_or_error()) return;
+    CtTreeStore& ctTreeStore = _pCtMainWin->get_tree_store();
+
+    // collect the selected rows, but keep only top-most ones: skip a node when
+    // one of its ancestors is selected as well (it moves with the ancestor)
+    std::vector<Gtk::TreeModel::Path> selectedPaths = _pCtMainWin->get_tree_view().get_selection()->get_selected_rows();
+    std::set<std::string> selectedStrs;
+    for (const Gtk::TreeModel::Path& path : selectedPaths) selectedStrs.insert(path.to_string());
+    std::vector<gint64> nodeIdsToMove;
+    for (Gtk::TreeModel::Path path : selectedPaths) {   // by value: get_iter() takes a non-const ref
+        Gtk::TreeModel::Path ancestor{path};
+        bool hasSelectedAncestor = false;
+        while (ancestor.up() and not ancestor.empty()) {
+            if (selectedStrs.count(ancestor.to_string())) { hasSelectedAncestor = true; break; }
+        }
+        if (hasSelectedAncestor) continue;
+        CtTreeIter iter = ctTreeStore.get_iter(path);
+        if (iter) nodeIdsToMove.push_back(iter.get_node_id());
+    }
+    if (nodeIdsToMove.empty()) return;
+
+    Gtk::TreeModel::iterator father_iter = CtDialogs::choose_node_dialog(_pCtMainWin,
+                                   _pCtMainWin->get_tree_view(), _("Select the New Parent"), &ctTreeStore,
+                                   _pCtMainWin->curr_tree_iter());
+    if (not father_iter) return;
+    const gint64 newFatherNodeId = ctTreeStore.to_ct_tree_iter(father_iter).get_node_id();
+
+    // the destination can be neither one of the moved nodes nor their descendant
+    {
+        std::set<gint64> movedSet(nodeIdsToMove.begin(), nodeIdsToMove.end());
+        for (CtTreeIter move_towards_top_iter = ctTreeStore.to_ct_tree_iter(father_iter);
+             move_towards_top_iter; move_towards_top_iter = move_towards_top_iter.parent()) {
+            if (movedSet.count(move_towards_top_iter.get_node_id())) {
+                CtDialogs::error_dialog(_("The new parent can't be one of his children!"), *_pCtMainWin);
+                return;
+            }
+        }
+    }
+
+    // nodes that already hang under the destination would not change anything
+    std::vector<gint64> effectiveIds;
+    for (gint64 nodeId : nodeIdsToMove) {
+        CtTreeIter iter = ctTreeStore.get_node_from_node_id(nodeId);
+        if (not iter) continue;
+        CtTreeIter oldFather = iter.parent();
+        if (oldFather and oldFather.get_node_id() == newFatherNodeId) continue;
+        effectiveIds.push_back(nodeId);
+    }
+    if (effectiveIds.empty()) {
+        CtDialogs::info_dialog(_("The new chosen parent is still the old parent!"), *_pCtMainWin);
+        return;
+    }
+
+    // node_move_after erases the old row, so re-resolve each iterator by id
+    // right before moving it; keep_focus keeps the function from fighting over
+    // the cursor at every step
+    for (gint64 nodeId : effectiveIds) {
+        Gtk::TreeModel::iterator iterToMove = ctTreeStore.get_node_from_node_id(nodeId);
+        if (not iterToMove) continue;
+        node_move_after(iterToMove, father_iter, Gtk::TreeModel::iterator{}/*brother_iter*/,
+                        false/*set_first*/, true/*keep_focus*/);
+    }
+
+    // moving may have erased the focused row — put the cursor on the parent
+    CtTreeView& ctTreeView = _pCtMainWin->get_tree_view();
+    ctTreeView.expand_row(ctTreeStore.get_path(father_iter), false);
+    ctTreeView.set_cursor(ctTreeStore.get_path(father_iter));
+    _pCtMainWin->update_window_save_needed();
 }
 
 bool CtActions::node_move(Gtk::TreeModel::Path src_path, Gtk::TreeModel::Path dest_path, bool only_test_dest)

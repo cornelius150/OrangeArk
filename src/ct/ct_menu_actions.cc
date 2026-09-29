@@ -382,6 +382,12 @@ void CtMenu::init_actions(CtActions* pActions)
             _("Move the Selected Node Right"), sigc::mem_fun(*pActions, &CtActions::node_right)});
         _actions.push_back(CtMenuAction{tree_cat, "tree_node_new_father", "ct_go-jump", _("Node Change _Parent..."), KB_SHIFT+KB_ALT+"j",
             _("Change the Selected Node's Parent"), sigc::mem_fun(*pActions, &CtActions::node_change_father)});
+        // OrangeArk: batch-move every selected node under one chosen parent
+        // (the tree selection is MULTIPLE). No default shortcut — free ones in
+        // Shift+Alt+<letter> are scarce and the entry lives in the tree
+        // right-click menu anyway.
+        _actions.push_back(CtMenuAction{tree_cat, "tree_nodes_move_to", "ct_go-jump", _("移动所选节点到…"), None,
+            _("Move all the Selected Nodes Under Another Node"), sigc::mem_fun(*pActions, &CtActions::node_move_selected_to_father)});
         _actions.push_back(CtMenuAction{tree_cat, "tree_all_sort_asc", "ct_sort-asc", _("Sort Tree _Ascending"), None,
             _("Sort the Tree Ascending"), sigc::mem_fun(*pActions, &CtActions::tree_sort_ascending)});
         _actions.push_back(CtMenuAction{tree_cat, "tree_all_sort_desc", "ct_sort-desc", _("Sort Tree _Descending"), None,

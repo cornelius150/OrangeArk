@@ -165,6 +165,10 @@ public:
     void          tree_view_connect(Gtk::TreeView* pTreeView);
     // OrangeArk: (re-)assign the automatic depth colours to every node
     void          refresh_auto_node_colours();
+    // OrangeArk: give every node without a creation timestamp one (documents
+    // created before the feature shipped have ts_creation == 0); the value is
+    // persisted on the next save, so it stabilises after the first save
+    void          nodes_creation_time_backfill();
     void          text_view_apply_textbuffer(CtTreeIter& treeIter, CtTextView* pTextView);
 
     void          get_node_data(const Gtk::TreeModel::iterator& treeIter, CtNodeData& nodeData, const bool loadTextBuffer);

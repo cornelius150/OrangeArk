@@ -186,6 +186,8 @@ public:
     void node_right();
     void node_left();
     void node_change_father();
+    // OrangeArk: batch-move every selected tree node under one chosen parent
+    void node_move_selected_to_father();
     bool node_move(Gtk::TreeModel::Path src_path,
                    Gtk::TreeModel::Path dest_path,
                    bool only_test_dest);
