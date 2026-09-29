@@ -1,3 +1,14 @@
+orangeark (1.1.8-1) focal; urgency=low
+
+  * OrangeArk: superscript/subscript actually RAISES now — offscreen pixel probing showed two compounding bugs in the v1.1.6 companion-tag design: Pango MULTIPLIES the scale attributes of all applied tags (stock scale_sup 0.78 x supfmt 0.694 shrank the glyph to 0.54) and which tag wins a property is decided by tag-table creation order, not apply order, so the rise was nondeterministic; the stock scale_sup/scale_sub tag is now a pure semantic marker (save/export/toggle only) and all visual work (scale 0.694 + proportional rise) is done by the single supfmt companion tag; also the companion scale factor is now a constant 0.694 because multiplying it by the heading scale made a superscript inside an h1..h6 heading render LARGER than body text
+  * OrangeArk: table separator resizing works from inside the cells — cell text views consumed the button press (text caret + I-beam cursor) so dragging a column/row separator did nothing and the pointer turned into a text caret; cell events are now forwarded into the resize logic (only the thin separator zones are hijacked) and the hover cursor over a separator is the proper double arrow, drawn on the cell's own window
+  * OrangeArk: the permanently drawn corner grip triangles are gone — the table grip (and the image grip) read as stray triangles on the content; the image grip now appears only while the pointer hovers the picture, the table grip is removed entirely (borders and separators cover resizing)
+  * OrangeArk: table drag-resize is throttled to ~25 layout updates per second (it re-laid-out the whole Gtk::Grid of text views on EVERY motion event, which felt stuttery); the guide lines still follow the pointer at full rate and the final exact size is applied on release
+  * OrangeArk: the default toolbar carries 重复上次格式 (F7) and 清除格式 again — they were dropped from the default list in an earlier round; existing configs stored on the previous default are upgraded automatically (chained migration)
+  * OrangeArk: the Help menu's 帮助 / 在线手册 / 捐赠 links are no longer hard-coded — set [misc] help_base_url in config.cfg (e.g. http://myorange.duckdns.org) to point them at a self-hosted help site without recompiling; empty keeps the official GitHub Pages site. Source/issues and the update check still point at GitHub
+
+ -- OrangeArk <orangeark@localhost>  Tue, 29 Sep 2026 11:40:00 +0800
+
 orangeark (1.1.7-1) focal; urgency=low
 
   * OrangeArk: the highlight (背景色) toolbar icon is redrawn to match the user's reference picture — a yellow spiral notebook with a navy outline, a thin cover band with a white divider, three binding rings, a page box with two text lines, and a long pencil overlapping the bottom-right corner (v1.1.6 shipped a Word-style highlighter pen because the reference image could not be read that session)

@@ -125,13 +125,21 @@ public:
     bool _resize_motion_at(const double x, const double y, GdkEventMotion* event);
     bool _resize_release(GdkEventButton* event);
 protected:
-    void _setup_resize_grip();  // creates the visible corner grip; subclasses place it on an overlay
-    bool _on_grip_draw(const Cairo::RefPtr<Cairo::Context>& cr);
-    bool _on_grip_button_press_event(GdkEventButton* event);
     void _resize_drag_begin(const double xRoot, const double yRoot);
     void _resize_drag_update(const double xRoot, const double yRoot);
     void _resize_drag_apply(const double xRoot, const double yRoot); // OrangeArk: unthrottled layout apply
     void _resize_drag_end();
+    // OrangeArk: forward separator presses/motion from the CELL widgets (cell
+    // text views / the light tree view). The old corner grip is gone (it read
+    // as a stray triangle on the table), so the cell widgets are the only way
+    // to reach the thin separator zones — the text view otherwise consumes the
+    // press (text caret + I-beam cursor) and the resize never starts.
+    void _hook_cell_resize_forward(Gtk::Widget* pCell, const bool naturalTextCursor);
+    bool _on_cell_button_press(Gtk::Widget* pCell, GdkEventButton* event);
+    bool _on_cell_motion(Gtk::Widget* pCell, GdkEventMotion* event);
+    bool _on_cell_button_release(Gtk::Widget* pCell, GdkEventButton* event);
+    bool _cell_point_to_table(Gtk::Widget* pCell, const double x, const double y, double& rTx, double& rTy);
+    void _set_cell_cursor(Gtk::Widget* pCell, const int cursorType); // <0 = reset to natural
     void _guide_ensure();    // OrangeArk: create the root-level guide-line strips
     void _guide_destroy();   // OrangeArk: remove the guide-line strips
     void _guide_update(const double xRoot, const double yRoot); // OrangeArk: move the guide lines while dragging
@@ -151,7 +159,6 @@ protected:
     virtual void _apply_row_height(const size_t rowIdx) = 0; // subclass: push the height into widgets
     virtual int  _row_separator_at(const double y) const { (void)y; return -1; } // OrangeArk: hit test for a row separator (-1 = none)
     virtual double _row_top_at(const size_t rowIdx) const { (void)rowIdx; return -1.0; } // OrangeArk: y of a row's top edge (-1 = n/a)
-    Gtk::DrawingArea* _pResizeGrip{nullptr};
     bool _dragResizeActive{false};
     bool _dragResizeChanged{false};
     int  _dragEdgesMask{0};
@@ -172,6 +179,9 @@ protected:
     double _lastGuideX{-1e9};      // OrangeArk: last guide-line position (sub-pixel throttle)
     double _lastGuideY{-1e9};
     int    _lastCursorEdges{-999}; // OrangeArk: last cursor zone (-999 = force refresh)
+    Gtk::Widget* _pLastCellCursorWidget{nullptr}; // OrangeArk: cell cursor cache (hover feedback per cell)
+    int    _lastCellCursorType{-999};
+    gint64 _lastApplyUs{0};        // OrangeArk: live-layout throttle timestamp (min interval between grid re-layouts)
     Glib::RefPtr<Gdk::Cursor> _rHoverCursor;
     GdkSeat* _pGrabSeat{nullptr};  // OrangeArk: device-level pointer grab held during a resize drag (keeps events flowing outside the app window)
 

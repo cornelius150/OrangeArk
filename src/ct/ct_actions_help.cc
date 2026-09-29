@@ -29,20 +29,29 @@ namespace {
     const char* ORANGEARK_URL_WEB      = "https://cornelius150.github.io/OrangeArk/";
     const char* ORANGEARK_URL_SOURCE   = "https://github.com/cornelius150/OrangeArk";
     const char* ORANGEARK_URL_ISSUES   = "https://github.com/cornelius150/OrangeArk/issues";
-    const char* ORANGEARK_URL_RELEASES = "https://github.com/cornelius150/OrangeArk/releases";
-    const char* ORANGEARK_URL_DONATE   = "https://cornelius150.github.io/OrangeArk/donate.html";
-    const char* ORANGEARK_URL_MANUAL   = "https://cornelius150.github.io/OrangeArk/manual.html";
+
+    // OrangeArk: the help site base URL is configurable — set [misc]
+    // help_base_url in config.cfg (e.g. http://myorange.duckdns.org) to point
+    // the manual/website/donate links at a self-hosted help site (see the
+    // orangeark-help-site deploy bundle). Empty = the official site.
+    std::string help_site_url(const CtConfig* pCtConfig, const char* page)
+    {
+        std::string base = pCtConfig ? pCtConfig->helpBaseUrl : std::string{};
+        while (base.size() > 1u and base.back() == '/') base.pop_back();
+        if (base.empty()) return std::string{ORANGEARK_URL_WEB} + page;
+        return base + page;
+    }
 }
 
 void CtActions::online_help()
 {
     // OrangeArk: the online manual lives on the project website
-    fs::open_weblink(ORANGEARK_URL_MANUAL);
+    fs::open_weblink(help_site_url(_pCtConfig, "/manual.html"));
 }
 
 void CtActions::help_website()
 {
-    fs::open_weblink(ORANGEARK_URL_WEB);
+    fs::open_weblink(help_site_url(_pCtConfig, ""));
 }
 
 void CtActions::help_source_code()
@@ -57,7 +66,7 @@ void CtActions::help_report_bug()
 
 void CtActions::help_donate()
 {
-    fs::open_weblink(ORANGEARK_URL_DONATE);
+    fs::open_weblink(help_site_url(_pCtConfig, "/donate.html"));
 }
 
 void CtActions::dialog_about()

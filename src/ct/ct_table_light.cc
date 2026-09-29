@@ -122,8 +122,9 @@ void CtTableLight::_reset(CtTableMatrix& tableMatrix)
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
     _pManagedTreeView->signal_button_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::on_table_button_press_event), false);
     _pManagedTreeView->signal_event_after().connect(sigc::mem_fun(*this, &CtTableLight::_on_treeview_event_after));
-    // OrangeArk: drag the border/grip of the table itself to resize
-    // (no relay through the tree view: a plain click inside cells must never start a resize)
+    // OrangeArk: drag the border of the table itself to resize; separator
+    // presses/hover are forwarded from the tree view (see _hook_cell_resize_forward)
+    _hook_cell_resize_forward(_pManagedTreeView, false/*naturalTextCursor*/);
     signal_button_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_resize_button_press_event), false);
     signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_resize_motion_notify_event), false);
     signal_button_release_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_resize_button_release_event), false);
@@ -136,11 +137,10 @@ void CtTableLight::_reset(CtTableMatrix& tableMatrix)
     _frame.set_child(*_pManagedTreeView);
     show();
 #else
-    // OrangeArk: overlay a visible resize grip at the bottom-right corner
-    _setup_resize_grip();
+    // OrangeArk: the overlay used to host a permanently drawn resize grip —
+    // removed (它被当成多余的小三角形); resizing works via borders/separators
     Gtk::Overlay* pOverlay = Gtk::manage(new Gtk::Overlay());
     pOverlay->add(*_pManagedTreeView);
-    pOverlay->add_overlay(*_pResizeGrip);
     _frame.add(*pOverlay);
     pOverlay->show_all();
 #endif

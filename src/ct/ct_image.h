@@ -98,7 +98,10 @@ private:
     void _apply_resized_pixbuf(const int newWidth, const int newHeight);
     bool _on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr); // visible resize grip
     void _connect_resize_events();
+    bool _on_enter_notify_event(GdkEventCrossing* event);   // OrangeArk: grip shown on hover only
+    bool _on_leave_notify_event(GdkEventCrossing* event);
     bool   _dragResizeActive{false};
+    bool   _pointerOver{false};     // OrangeArk: grip drawn only while the pointer is over the image
     int    _dragEdges{0};
     double _dragStartX{0.}, _dragStartY{0.};
     int    _dragStartW{0}, _dragStartH{0};

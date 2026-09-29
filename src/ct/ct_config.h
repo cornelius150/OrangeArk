@@ -254,6 +254,10 @@ public:
 
     // [misc]
     std::string                                 toolbarUiList{CtConst::TOOLBAR_VEC_DEFAULT};
+    // OrangeArk: base URL of the online help site (config.cfg [misc] help_base_url).
+    // Empty = the official GitHub Pages site; when set, the Help menu's
+    // manual/website/donate links point at the self-hosted help site instead.
+    std::string                                 helpBaseUrl{""};
     bool                                        bookmarksInTopMenu{true};
     bool                                        treeTooltips{true};
     bool                                        menusTooltips{true};

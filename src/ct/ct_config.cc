@@ -428,6 +428,7 @@ void CtConfig::_populate_keyfile_from_data()
     // [misc]
     _currentGroup = "misc";
     _uKeyFile->set_string(_currentGroup, "toolbar_ui_list", toolbarUiList);
+    _uKeyFile->set_string(_currentGroup, "help_base_url", helpBaseUrl); // OrangeArk: self-hosted help site
     _uKeyFile->set_boolean(_currentGroup, "systray", systrayOn);
     _uKeyFile->set_boolean(_currentGroup, "start_on_systray", startOnSystray);
     _uKeyFile->set_boolean(_currentGroup, "autosave_on", autosaveOn);
@@ -804,6 +805,7 @@ void CtConfig::_populate_data_from_keyfile()
     // [misc]
     _currentGroup = "misc";
     _populate_string_from_keyfile("toolbar_ui_list", &toolbarUiList);
+    _populate_string_from_keyfile("help_base_url", &helpBaseUrl); // OrangeArk: self-hosted help site
     // OrangeArk: upgrade configs still on a previous default toolbar
     // (chained: pre-screenshot default -> screenshot default -> font combos + format painter default)
     if (toolbarUiList == CtConst::TOOLBAR_VEC_DEFAULT_PREV2) {

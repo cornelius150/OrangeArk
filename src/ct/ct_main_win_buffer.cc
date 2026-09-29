@@ -283,16 +283,14 @@ std::string CtMainWin::get_text_tag_name_exist_or_create(const std::string& prop
                 apply_scalable_properties(rTextTag, &_pCtConfig->scalableH6);
             }
             else if (CtConst::TAG_PROP_VAL_SUB == propertyValue or CtConst::TAG_PROP_VAL_SUP == propertyValue) {
-                rTextTag->property_scale() = PANGO_SCALE_X_SMALL;
-                // OrangeArk: rise is based on the rich-text font size; when the
-                // font string carries no usable size fall back to 11pt so the
-                // superscript is clearly RAISED (subscript clearly lowered)
-                int propRise = Pango::FontDescription(_pCtConfig->rtFont).get_size();
-                if (propRise <= 0) {
-                    propRise = 11 * PANGO_SCALE;
-                }
-                propRise = (CtConst::TAG_PROP_VAL_SUB == propertyValue) ? -propRise / 4 : propRise / 2;
-                rTextTag->property_rise() = propRise;
+                // OrangeArk: the stock scale_sup/scale_sub tag is a PURE SEMANTIC
+                // MARKER (save format, export to html/pdf/md, toggling). It must
+                // NOT set scale/rise any more:
+                //  * Pango SCALE attributes of applied tags MULTIPLY, so
+                //    stock(X_SMALL=0.78) * supfmt(0.694) shrank the glyph to 0.54;
+                //  * which of two tags wins a property is decided by tag-table
+                //    CREATION order, not apply order — nondeterministic.
+                // All the visual work is done by the supfmt companion tag.
             }
             else {
                 identified = false;
@@ -416,7 +414,13 @@ static std::string oa_sup_sub_fmt_value(const CtConfig* pCtConfig, const bool is
         if (basePt <= 0) basePt = 11.0;
     }
     const double effPt = basePt * localScale;
-    const int permille = std::max(200, static_cast<int>(std::lround(0.6944 * localScale * 1000)));
+    // OrangeArk: the scale factor must stay a CONSTANT 0.694 (relative). Pango
+    // multiplies the SCALE attributes of all applied tags, so when the span
+    // also carries an h1..h6/small tag (which has its own scale) the heading
+    // tag times this factor gives exactly 0.694 x the heading size. Scaling
+    // this permille by localScale made a superscript inside a heading render
+    // at 1.11x the normal body size.
+    const int permille = 694;
     const int rise = static_cast<int>(std::lround(effPt * (isSup ? 0.33 : -0.17) * Pango::SCALE));
     return std::to_string(permille) + "," + std::to_string(rise);
 }

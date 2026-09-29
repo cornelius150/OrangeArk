@@ -378,61 +378,135 @@ std::pair<size_t, size_t> CtTableCommon::get_row_idx_col_idx(const size_t cell_i
 }
 
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
-// OrangeArk: mouse drag-resize support for tables (visible grip at the bottom-right corner)
+// OrangeArk: mouse drag-resize support for tables.
+// The old permanently-drawn corner grip was removed (用户: "多余的小三角形")
+// — resizing goes through the outer border, the column/row separators and the
+// forwarded cell events; see _hook_cell_resize_forward().
 
-void CtTableCommon::_setup_resize_grip()
+// OrangeArk: cell widgets cover the whole table interior and a Gtk::TextView
+// consumes button presses (text caret) while showing the I-beam cursor, so a
+// press on a column/row separator never reached the table and the pointer
+// turned into a text caret (用户: "出现文本小图标后就无法调整"). Forward the
+// cell events into the resize machinery — ONLY the thin separator zones are
+// hijacked, a plain click inside a cell stays a normal text edit.
+void CtTableCommon::_hook_cell_resize_forward(Gtk::Widget* pCell, const bool naturalTextCursor)
 {
-    if (_pResizeGrip) return;
-    _pResizeGrip = Gtk::manage(new Gtk::DrawingArea());
-    _pResizeGrip->set_size_request(18, 18);
-    _pResizeGrip->set_halign(Gtk::ALIGN_END);
-    _pResizeGrip->set_valign(Gtk::ALIGN_END);
-    _pResizeGrip->set_tooltip_text(_("Drag to resize the table"));
-    _pResizeGrip->add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
-    _pResizeGrip->signal_draw().connect(sigc::mem_fun(*this, &CtTableCommon::_on_grip_draw), false);
-    _pResizeGrip->signal_button_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::_on_grip_button_press_event), false);
+    if (nullptr == pCell) return;
+    pCell->add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
+    pCell->set_data("oa-natural-text-cursor", reinterpret_cast<gpointer>(static_cast<gintptr>(naturalTextCursor ? 1 : 0)));
+    pCell->signal_button_press_event().connect([this, pCell](GdkEventButton* event) {
+        return _on_cell_button_press(pCell, event);
+    }, false);
+    pCell->signal_motion_notify_event().connect([this, pCell](GdkEventMotion* event) {
+        return _on_cell_motion(pCell, event);
+    }, false);
+    pCell->signal_button_release_event().connect([this, pCell](GdkEventButton* event) {
+        return _on_cell_button_release(pCell, event);
+    }, false);
 }
 
-bool CtTableCommon::_on_grip_draw(const Cairo::RefPtr<Cairo::Context>& cr)
+bool CtTableCommon::_cell_point_to_table(Gtk::Widget* pCell, const double x, const double y,
+                                         double& rTx, double& rTy)
 {
-    if (nullptr == _pResizeGrip) return true;
-    const Gtk::Allocation allocation = _pResizeGrip->get_allocation();
-    const double w = allocation.get_width();
-    const double h = allocation.get_height();
-    // grip triangle in the bottom-right corner
-    cr->move_to(w, 0.0);
-    cr->line_to(w, h);
-    cr->line_to(0.0, h);
-    cr->close_path();
-    cr->set_source_rgba(0.53, 0.53, 0.53, 0.85);
-    cr->fill();
-    // white diagonal grip lines
-    cr->set_line_width(1.4);
-    cr->set_source_rgba(1.0, 1.0, 1.0, 0.95);
-    for (int i = 1; i <= 3; ++i) {
-        const double o = 4.0 * i;
-        cr->move_to(w - o + 3.0, h - 3.0);
-        cr->line_to(w - 3.0, h - o + 3.0);
-        cr->stroke();
-    }
+    int orgX = 0, orgY = 0;
+    if (not pCell->translate_coordinates(*this, 0, 0, orgX, orgY)) return false;
+    rTx = orgX + x;
+    rTy = orgY + y;
     return true;
 }
 
-bool CtTableCommon::_on_grip_button_press_event(GdkEventButton* event)
+// OrangeArk: cursor feedback per CELL window — the visible cursor over a cell
+// comes from the cell's own Gdk::Window (the text view sets the I-beam there),
+// so the resize arrow must be set on the cell window, not the table's.
+// cursorType < 0 restores the widget's natural cursor (I-beam for text views).
+void CtTableCommon::_set_cell_cursor(Gtk::Widget* pCell, const int cursorType)
+{
+    if (pCell == _pLastCellCursorWidget and cursorType == _lastCellCursorType) return;
+    Glib::RefPtr<Gdk::Window> rWin = pCell->get_window();
+    if (not rWin) return;
+    _pLastCellCursorWidget = pCell;
+    _lastCellCursorType = cursorType;
+    if (cursorType < 0) {
+        if (pCell->get_data("oa-natural-text-cursor")) {
+            rWin->set_cursor(Gdk::Cursor::create(Gdk::CursorType::XTERM));
+        }
+        else {
+            rWin->set_cursor();
+        }
+    }
+    else {
+        rWin->set_cursor(Gdk::Cursor::create(static_cast<Gdk::CursorType>(cursorType)));
+    }
+}
+
+bool CtTableCommon::_on_cell_button_press(Gtk::Widget* pCell, GdkEventButton* event)
 {
     if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
+    double tx = 0.0, ty = 0.0;
+    if (not _cell_point_to_table(pCell, event->x, event->y, tx, ty)) return false;
+    const int colIdx = _column_separator_at(tx);
+    const int rowIdx = (colIdx < 0) ? _row_separator_at(ty) : -1;
+    if (colIdx < 0 and rowIdx < 0) return false; // plain click inside the cell: normal text handling
     if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
     _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
-    _dragEdgesMask = 2 | 8; // the grip sits in the bottom-right corner
-    _dragColIdx = -1;
+    if (colIdx >= 0) {
+        _dragColIdx = colIdx;
+        _dragRowIdx = -1;
+        _dragEdgesMask = 2; // behaves like a right-edge (width) drag
+    }
+    else {
+        _dragColIdx = -1;
+        _dragRowIdx = rowIdx;
+        _dragEdgesMask = 8; // behaves like a bottom-edge (height) drag
+    }
     _resize_drag_begin(event->x_root, event->y_root);
     return true;
+}
+
+bool CtTableCommon::_on_cell_motion(Gtk::Widget* pCell, GdkEventMotion* event)
+{
+    if (_dragResizeActive) {
+        // with the device-level grab active the motion reaches the cell
+        // windows as well (owner_events=TRUE) — drive the drag from here too
+        if ((event->state & GDK_BUTTON1_MASK) == 0) {
+            _lastMotionXRoot = event->x_root;
+            _lastMotionYRoot = event->y_root;
+            _resize_drag_end();
+            return true;
+        }
+        _lastMotionXRoot = event->x_root;
+        _lastMotionYRoot = event->y_root;
+        _resize_drag_update(event->x_root, event->y_root);
+        return true;
+    }
+    double tx = 0.0, ty = 0.0;
+    if (not _cell_point_to_table(pCell, event->x, event->y, tx, ty)) return false;
+    if (_column_separator_at(tx) >= 0) {
+        _set_cell_cursor(pCell, static_cast<int>(Gdk::CursorType::SB_H_DOUBLE_ARROW));
+    }
+    else if (_row_separator_at(ty) >= 0) {
+        _set_cell_cursor(pCell, static_cast<int>(Gdk::CursorType::SB_V_DOUBLE_ARROW));
+    }
+    else {
+        _set_cell_cursor(pCell, -1 /* natural cursor */);
+    }
+    return false;
+}
+
+bool CtTableCommon::_on_cell_button_release(Gtk::Widget* pCell, GdkEventButton* event)
+{
+    (void)pCell;
+    if (_dragResizeActive and 1 == event->button) {
+        return _resize_release(event);
+    }
+    return false;
 }
 
 void CtTableCommon::_resize_drag_begin(const double xRoot, const double yRoot)
 {
     _dragResizeActive = true;
     _dragResizeChanged = false;
+    _lastApplyUs = 0;
     _dragStartX = xRoot;
     _dragStartY = yRoot;
     _dragStartTotalW = get_allocation().get_width();
@@ -603,8 +677,14 @@ void CtTableCommon::_resize_drag_update(const double xRoot, const double yRoot)
     _lastGuideX = xRoot;
     _lastGuideY = yRoot;
     _guide_update(xRoot, yRoot);
-    // OrangeArk: live resize — the grid follows the pointer WHILE dragging
-    // (guide-only preview felt rigid; the table only snapped into shape on release)
+    // OrangeArk: live resize — THROTTLED. Applying the layout on every motion
+    // event re-laid-out the whole Gtk::Grid (every cell is a Gtk::TextView)
+    // hundreds of times per second and the drag felt 卡顿; ~25 fps keeps the
+    // table tracking the pointer smoothly. The final exact apply happens on
+    // release (unthrottled).
+    const gint64 nowUs = g_get_monotonic_time();
+    if (_lastApplyUs != 0 and nowUs - _lastApplyUs < 40000) return;
+    _lastApplyUs = nowUs;
     _resize_drag_apply(xRoot, yRoot);
 }
 
@@ -687,6 +767,8 @@ void CtTableCommon::_resize_drag_end()
     gtk_grab_remove(GTK_WIDGET(gobj()));
     if (Glib::RefPtr<Gdk::Window> rWin = get_window()) rWin->set_cursor();
     _lastCursorEdges = -999; // OrangeArk: force a fresh cursor on the next hover
+    _pLastCellCursorWidget = nullptr; // OrangeArk: cell cursor cache is stale after a grab
+    _lastCellCursorType = -999;
     if (_dragResizeChanged) {
         _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
     }
@@ -923,11 +1005,10 @@ CtTableHeavy::CtTableHeavy(CtMainWin* pCtMainWin,
     _frame.set_child(_grid);
     show();
 #else
-    // OrangeArk: overlay a visible resize grip at the bottom-right corner
-    _setup_resize_grip();
+    // OrangeArk: the overlay used to host a permanently drawn resize grip —
+    // removed (它被当成多余的小三角形); resizing works via borders/separators
     Gtk::Overlay* pOverlay = Gtk::manage(new Gtk::Overlay());
     pOverlay->add(_grid);
-    pOverlay->add_overlay(*_pResizeGrip);
     _frame.add(*pOverlay);
     pOverlay->show_all();
     _frame.signal_size_allocate().connect(sigc::mem_fun(*this, &CtTableHeavy::_on_frame_size_allocate));
@@ -971,6 +1052,8 @@ void CtTableHeavy::_new_text_cell_attach(const size_t rowIdx, const size_t colId
 #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
     textView.signal_populate_popup().connect(sigc::mem_fun(*this, &CtTableCommon::on_cell_populate_popup));
     textView.signal_key_press_event().connect(sigc::mem_fun(*this, &CtTableCommon::on_cell_key_press_event), false);
+    // OrangeArk: forward separator presses/hover from the cell into the resize logic
+    _hook_cell_resize_forward(&textView, true/*naturalTextCursor*/);
 #endif
 
     _grid.attach(pTextCell->get_text_view().mm(), colIdx, rowIdx, 1/*# cell horiz*/, 1/*# cell vert*/);

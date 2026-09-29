@@ -132,9 +132,34 @@ void CtImagePng::_connect_resize_events()
     signal_button_press_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_button_press_event), false);
     signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_motion_notify_event), false);
     signal_button_release_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_button_release_event), false);
-    add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK);
+    // OrangeArk: the corner grip is drawn only while the pointer hovers the
+    // image — a permanently drawn triangle read as a visual defect, and a
+    // static grip also camouflaged against light-coloured pictures
+    add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::POINTER_MOTION_MASK
+               | Gdk::ENTER_NOTIFY_MASK | Gdk::LEAVE_NOTIFY_MASK);
+    signal_enter_notify_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_enter_notify_event), false);
+    signal_leave_notify_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_leave_notify_event), false);
     // draw a visible grip after the image itself has been drawn
     signal_draw().connect(sigc::mem_fun(*this, &CtImagePng::_on_draw_grip), true/*after*/);
+}
+
+// OrangeArk: hover tracking for the grip — redraw with/without the grip
+bool CtImagePng::_on_enter_notify_event(GdkEventCrossing*)
+{
+    if (not _pointerOver) {
+        _pointerOver = true;
+        queue_draw();
+    }
+    return false;
+}
+
+bool CtImagePng::_on_leave_notify_event(GdkEventCrossing*)
+{
+    if (_pointerOver) {
+        _pointerOver = false;
+        queue_draw();
+    }
+    return false;
 }
 #endif
 
@@ -228,8 +253,11 @@ static const int IMG_RESIZE_ZONE{24};   // corner zone
 static const int IMG_RESIZE_EDGE{16};   // plain edge band
 
 // visible resize grip in the bottom-right corner (drawn after the image)
+// OrangeArk: only while the pointer hovers the image (or during a drag) —
+// a permanently drawn triangle looked like a stray artefact on the picture
 bool CtImagePng::_on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr)
 {
+    if (not _pointerOver and not _dragResizeActive) return false;
     const Gtk::Allocation allocation = get_allocation();
     const int w = allocation.get_width();
     const int h = allocation.get_height();
