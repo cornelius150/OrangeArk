@@ -113,12 +113,13 @@ void CtTableLight::_reset(CtTableMatrix& tableMatrix)
                 Pango::WrapMode::WORD_CHAR;
 #else
                 Pango::WrapMode::WRAP_WORD_CHAR;
-            // OrangeArk: FIXED sizing makes the RENDERED width equal the stored
-            // width. AUTOSIZE let columns grow with their content, so the
-            // stored widths drifted from the visible separators and a column
-            // drag resized a NEIGHBOURING column (用户: "调整到另外一列").
-            pTVColumn->set_fixed_width(width);
-            pTVColumn->property_sizing() = Gtk::TREE_VIEW_COLUMN_FIXED;
+            // OrangeArk: sizing stays AUTOSIZE on purpose. Setting FIXED +
+            // set_fixed_width() (tried in 1.2.3) made GTK give every leftover
+            // pixel to the LAST column (measured: 80px stored -> 438px
+            // rendered), which shifted the whole layout basis instead of
+            // fixing anything and made the mismatch worse for the user.
+            // The hit test below reads the WIDTHS GTK ACTUALLY RENDERED, so it
+            // follows AUTOSIZE growth instead of fighting it.
 #endif
             pTVColumn->property_min_width() = width/2;
             pCellRendererText->signal_edited().connect(sigc::bind(sigc::mem_fun(*this, &CtTableLight::_on_cell_renderer_text_edited), c), false);
@@ -539,7 +540,6 @@ void CtTableLight::set_col_width_default(const int colWidthDefault)
                 if (pTVColumn) {
                     auto pCellRendererText = static_cast<Gtk::CellRendererText*>(pTVColumn->get_first_cell());
                     pCellRendererText->property_wrap_width() = colWidthDefault;
-                    pTVColumn->set_fixed_width(colWidthDefault);   // OrangeArk: RENDERED == stored
                     pTVColumn->property_min_width() = colWidthDefault/2;
                 }
             }
@@ -555,38 +555,66 @@ void CtTableLight::set_col_width(const int colWidth, std::optional<size_t> optCo
     if (pTVColumn) {
         auto pCellRendererText = static_cast<Gtk::CellRendererText*>(pTVColumn->get_first_cell());
         pCellRendererText->property_wrap_width() = colWidth;
-        pTVColumn->set_fixed_width(colWidth);   // OrangeArk: keep RENDERED == stored
         pTVColumn->property_min_width() = colWidth/2;
     }
 }
 
-// OrangeArk: hit test against the RENDERED column geometry instead of the
-// stored widths — the frame inset and renderer padding shift the visible
-// separators, so accumulating the stored widths made a drag resize a
-// NEIGHBOURING column. Falls back to the base implementation when the
-// TreeView geometry is not available.
+// OrangeArk: hit test for a column separator. Two independent models say where
+// the separator between column c and c+1 sits:
+//   A) the widths as GTK ACTUALLY RENDERED them (TreeViewColumn::get_width,
+//      offset by the TreeView position inside the table);
+//   B) the stored column widths accumulated from the table border (the base
+//      implementation used up to 1.2.2).
+// Which one matches reality depends on how GTK laid the TreeView out: with
+// AUTOSIZE a column grows past its stored width (measured: a 100px column
+// rendered at 50px, another at 479px), and leftover space goes to the last
+// column. Instead of betting on one model (1.2.2 bet on B, 1.2.3 bet on A)
+// we take whichever separator is CLOSEST to the pointer — this can never be
+// worse than the better of the two models.
 int CtTableLight::_column_separator_at(const double x) const
 {
+    constexpr double GRAB_ZONE = 8.0;   // px either side of a separator
+    int bestIdx = -1;
+    double bestDist = GRAB_ZONE + 1.0;
+    auto consider = [&](const double separatorX, const int colIdx) {
+        if (colIdx < 0) return;
+        const double dist = std::abs(x - separatorX);
+        if (dist <= GRAB_ZONE and dist < bestDist) {
+            bestDist = dist;
+            bestIdx = colIdx;
+        }
+    };
+
+    // model A — rendered TreeView geometry
     if (_pManagedTreeView) {
         int orgX = 0, orgY = 0;
         if (_pManagedTreeView->translate_coordinates(*const_cast<CtTableLight*>(this), 0, 0, orgX, orgY)) {
-            const double tvX = x - orgX;
-            double acc = 0.0;
+            // the tree view owns its own horizontal adjustment: when the table
+            // is narrower than its columns the whole grid is scrolled left
+            double hOffset = 0.0;
+            const Glib::RefPtr<Gtk::Adjustment> hadj = _pManagedTreeView->get_hadjustment();
+            if (hadj) hOffset = hadj->get_value();
             const size_t numColumns = get_num_columns();
-            size_t walked = 0u;
+            double acc = 0.0;
             for (size_t c = 0u; c + 1u < numColumns; ++c) { // inner separators only
                 Gtk::TreeViewColumn* pTVColumn = _pManagedTreeView->get_column(static_cast<int>(c));
                 if (not pTVColumn) break;
                 acc += pTVColumn->get_width();   // actual rendered width
-                ++walked;
-                if (std::abs(tvX - acc) <= 8.0) {
-                    return static_cast<int>(c);
-                }
+                consider(orgX - hOffset + acc, static_cast<int>(c));
             }
-            if (walked + 1u == numColumns) return -1;  // full geometry walked: authoritative
         }
     }
-    return CtTableCommon::_column_separator_at(x);
+    if (bestDist <= 1.0) return bestIdx;   // clean hit: no need for model B
+    // model B — stored column widths (base implementation semantics)
+    {
+        const CtTableColWidths colWidths = get_col_widths();
+        double acc = 0.0;
+        for (size_t c = 0u; c + 1u < colWidths.size(); ++c) { // inner separators only
+            acc += colWidths.at(c);
+            consider(acc, static_cast<int>(c));
+        }
+    }
+    return bestIdx;
 }
 
 std::string CtTableLight::to_csv() const

@@ -166,7 +166,13 @@ bool CtMainWin::_on_treeview_button_press_event(GdkEventButton* event)
             }
         }
     }
-    _uCtTreeview->set_cursor(path);
+    // OrangeArk: NO Gtk::TreeView::set_cursor() here — that is the ROOT CAUSE of
+    // "多选还是不行 / 只能移动单个节点". set_cursor() collapses the multiple
+    // selection down to the row that got the focus (measured with the GTK3
+    // probe: select()+set_cursor() leaves 1 row selected, select() alone keeps
+    // all of them), so the multi-selection never existed when the drag started.
+    // The keyboard focus row stays where it was, which is exactly what the
+    // user expects while picking several nodes.
     return true;   // handled: don't let GTK replace the selection
 }
 
@@ -887,40 +893,78 @@ void CtMainWin::_on_treeview_drag_data_received(const Glib::RefPtr<Gdk::DragCont
     }
     // Use the Shift state captured during the last drag_motion event
     const bool keep_focus = _drag_shift_held;
-    spdlog::debug("drag_data_received: keep_focus={} _drag_shift_held={}", keep_focus, _drag_shift_held);
-    if (treeDropPos == Gtk::TREE_VIEW_DROP_BEFORE) {
-        auto prev_iter = drop_iter;
+    spdlog::debug("drag_data_received: keep_focus={} _drag_shift_held={} nMoves={}", keep_focus, _drag_shift_held, moveIters.size());
+    // OrangeArk: ROOT CAUSE of "only one node moves". node_move_after() inserts
+    // the moved row and then ERASES the old one; erasing bumps the tree store
+    // stamp, which INVALIDATES every other iterator/path resolved beforehand.
+    // The second iteration therefore moved a stale iterator — silently nothing
+    // (or a wrong row). Same bug fix as node_siblings_sort(): remember the NODE
+    // IDS and re-resolve each iterator right before moving it.
+    std::vector<gint64> moveNodeIds;
+    for (const CtTreeIter& moveIter : moveIters) {
+        moveNodeIds.push_back(moveIter.get_node_id());
+    }
+    const gint64 dropNodeId = drop_iter.get_node_id();
+    const gint64 prevNodeId = [&]() -> gint64 {
+        if (treeDropPos != Gtk::TREE_VIEW_DROP_BEFORE) return -1;
+        CtTreeIter prev_iter = drop_iter;
         --prev_iter;
+        return prev_iter ? prev_iter.get_node_id() : -1;
+    }();
+
+    if (treeDropPos == Gtk::TREE_VIEW_DROP_BEFORE) {
         // note: prev_iter could be None, use drop_iter to retrieve the parent;
         // iterate BOTTOM-UP, each node lands right after prev_iter, so the
         // final order matches the selection order
-        for (auto it = moveIters.rbegin(); it != moveIters.rend(); ++it) {
-            _uCtActions->node_move_after(*it, drop_iter.parent(), prev_iter, not prev_iter/*set_first*/, keep_focus);
+        for (auto idIt = moveNodeIds.rbegin(); idIt != moveNodeIds.rend(); ++idIt) {
+            CtTreeIter itToMove = _uCtTreestore->get_node_from_node_id(*idIt);
+            CtTreeIter dropNow = _uCtTreestore->get_node_from_node_id(dropNodeId);
+            if (not itToMove or not dropNow) break;
+            CtTreeIter prevNow = prevNodeId >= 0 ? _uCtTreestore->get_node_from_node_id(prevNodeId) : CtTreeIter{};
+            _uCtActions->node_move_after(itToMove, dropNow.parent(), prevNow, not prevNow/*set_first*/, keep_focus);
         }
     }
     else if (treeDropPos == Gtk::TREE_VIEW_DROP_AFTER) {
-        // each node is inserted right after drop_iter, so iterate TOP-DOWN to
-        // keep the selection order
-        for (CtTreeIter& it : moveIters) {
-            _uCtActions->node_move_after(it, drop_iter.parent(), drop_iter, false/*set_first*/, keep_focus);
+        // each node lands right after drop_iter — insert BOTTOM-UP so that the
+        // resulting order matches the selection order
+        for (auto idIt = moveNodeIds.rbegin(); idIt != moveNodeIds.rend(); ++idIt) {
+            CtTreeIter itToMove = _uCtTreestore->get_node_from_node_id(*idIt);
+            CtTreeIter dropNow = _uCtTreestore->get_node_from_node_id(dropNodeId);
+            if (not itToMove or not dropNow) break;
+            _uCtActions->node_move_after(itToMove, dropNow.parent(), dropNow, false/*set_first*/, keep_focus);
         }
     }
     else {
-        for (CtTreeIter& it : moveIters) {
-            _uCtActions->node_move_after(it, drop_iter, Gtk::TreeModel::iterator{}, false/*set_first*/, keep_focus);
+        // dropped INTO the target node: append as its last child, top-down
+        for (gint64 nodeId : moveNodeIds) {
+            CtTreeIter itToMove = _uCtTreestore->get_node_from_node_id(nodeId);
+            CtTreeIter dropNow = _uCtTreestore->get_node_from_node_id(dropNodeId);
+            if (not itToMove or not dropNow) break;
+            _uCtActions->node_move_after(itToMove, dropNow, Gtk::TreeModel::iterator{}, false/*set_first*/, keep_focus);
         }
     }
 }
 
 void CtMainWin::_on_treeview_drag_begin(const Glib::RefPtr<Gdk::DragContext>& /*context*/)
 {
-    // OrangeArk: last chance to snapshot the multi-selection — by the time
-    // drag_data_get runs, any handler may have collapsed it to the pressed
-    // row; the press-time snapshot (or this one) is the fallback payload.
+    // OrangeArk: last chance to snapshot AND RESTORE the multi-selection — by
+    // the time drag_data_get runs, any handler may have collapsed it to the
+    // pressed row; the press-time snapshot (or this one) is the fallback
+    // payload and re-selecting makes the drag carry the WHOLE selection even
+    // if something (GTK itself, the focus helper) already dropped rows.
+    // 用户反馈 (1.2.2/1.2.3): "还是只能拖动单个节点".
     if (_treeMultiSelSnapshot.empty()) {
         std::vector<Gtk::TreeModel::Path> selPaths = _uCtTreeview->get_selection()->get_selected_rows();
         if (selPaths.size() > 1) {
             _treeMultiSelSnapshot = selPaths;
+        }
+        return;
+    }
+    Glib::RefPtr<Gtk::TreeSelection> rSelection = _uCtTreeview->get_selection();
+    if (static_cast<size_t>(rSelection->count_selected_rows()) < _treeMultiSelSnapshot.size()) {
+        rSelection->unselect_all();
+        for (const Gtk::TreeModel::Path& selPath : _treeMultiSelSnapshot) {
+            if (not selPath.empty()) rSelection->select(selPath);
         }
     }
 }

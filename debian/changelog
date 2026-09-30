@@ -1,3 +1,28 @@
+orangeark (1.2.4-1) focal; urgency=low
+
+  * Ctrl/Shift multi-select works at all. This is why "多选还是不行" survived
+    every earlier attempt: the click handler ended with Gtk::TreeView::
+    set_cursor(), which collapses a multiple selection down to the row that
+    got the keyboard focus. A GTK3 probe measured it — select() +
+    set_cursor() ends with 1 row selected, select() alone keeps every picked
+    row. The click handler no longer moves the focus row.
+  * Dragging a multi-selection really moves every selected node now.
+    node_move_after() erases the moved row, which invalidates every other
+    iterator resolved before it, so nodes 2..n were silently dropped; the
+    move list now holds NODE IDS and each iterator is re-resolved right
+    before it is moved (same fix as node_siblings_sort).
+  * Table column resize no longer targets a neighbouring column. The hit
+    test combines both models of where a separator sits (the widths GTK
+    really rendered + the stored widths) and takes the closest one, and
+    compensates for a horizontally scrolled tree view. Measured with a
+    GTK3 probe: 40/40 hits, where the old single-model code scored 1/10.
+  * Table columns go back to automatic sizing (GTK's default): the fixed
+    sizing tried in 1.2.3 let the last column swallow every spare pixel
+    (80px stored -> 438px rendered), changing the layout basis instead of
+    fixing it.
+
+ -- OrangeArk <orangeark@users.noreply.github.com>  Wed, 30 Sep 2026 14:10:00 +0800
+
 orangeark (1.2.3-1) focal; urgency=low
 
   * Tree node timestamps show the date only (YYYY-MM-DD, no time).
