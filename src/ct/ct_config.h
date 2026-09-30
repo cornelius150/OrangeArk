@@ -268,7 +268,10 @@ public:
     int                                         autosaveMinutes{1};
     bool                                        checkVersion{false};
     bool                                        wordCountOn{true};
-    bool                                        reloadDocLast{true};
+    // OrangeArk: default OFF — a fresh start must open clean, never silently
+    // re-open whatever documents were left over from a previous session
+    // (users can still turn "reload last doc" on in Preferences > Misc)
+    bool                                        reloadDocLast{false};
     bool                                        rememberRecentDocs{true};
     bool                                        showStartDialog{true};
     bool                                        winTitleShowDocDir{true};

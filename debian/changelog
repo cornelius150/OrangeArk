@@ -1,3 +1,22 @@
+orangeark (1.2.2-1) focal; urgency=low
+
+  * OrangeArk: multi-selection drag-and-drop now moves ALL selected nodes.
+    The drag payload carries every selected tree path; on drop the whole
+    selection is validated (no move may make the drop target a descendant of
+    a moved node) and re-parented preserving the selection order, for drops
+    before, after or inside the target node.
+  * Windows installer: the destination-directory page is now always shown,
+    so a custom installation path can be picked on every install/upgrade.
+  * Windows uninstaller: OrangeArk now shows the orange icon in the
+    "Programs and Features" list (UninstallDisplayIcon).
+  * Windows uninstaller now offers to delete the settings and
+    recent-documents history (%LOCALAPPDATA%\orangeark) so a fresh install
+    starts clean; note documents are never touched.
+  * Startup no longer re-opens the documents left over from the previous
+    session: "reload last doc" now defaults to OFF (it can still be enabled
+    in Preferences > Miscellaneous), so launching the tool always starts
+    clean unless a file is explicitly opened.
+
 orangeark (1.2.1-1) focal; urgency=low
 
   * OrangeArk: multi-select in the node tree is now handled explicitly.

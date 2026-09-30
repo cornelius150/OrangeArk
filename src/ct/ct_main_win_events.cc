@@ -25,6 +25,8 @@
 #include "ct_actions.h"
 #include "ct_list.h"
 
+#include <algorithm>
+
 void CtMainWin::_on_treeview_cursor_changed()
 {
     CtTreeIter treeIter = curr_tree_iter();
@@ -780,29 +782,77 @@ void CtMainWin::_on_treeview_drag_data_received(const Glib::RefPtr<Gdk::DragCont
     if (not _uCtTreeview->get_dest_row_at_pos(x, y, treePathDest, treeDropPos)) {
         return;
     }
-    const std::string treePathSrcStr = selection_data.get_data_as_string();
-    if (treePathSrcStr.empty()) {
+    // OrangeArk: the payload carries ALL selected source paths, comma-separated
+    // (older single-path payloads without a comma remain supported)
+    std::vector<Gtk::TreePath> srcPaths;
+    {
+        std::string payload = selection_data.get_data_as_string();
+        size_t start = 0;
+        while (true) {
+            const size_t comma = payload.find(',', start);
+            const std::string token = payload.substr(start, comma == std::string::npos ? std::string::npos : comma - start);
+            if (not token.empty()) {
+                srcPaths.push_back(Gtk::TreePath{token});
+            }
+            if (comma == std::string::npos) break;
+            start = comma + 1;
+        }
+    }
+    if (srcPaths.empty()) {
         return;
     }
-    Gtk::TreePath treePathSrc{treePathSrcStr};
-    if (treePathDest == treePathSrc) {
-        return;
+    // resolve to iterators, in model (top-to-bottom) order: get_selected_rows
+    // already returns sorted paths, but a hand-built payload may not be sorted
+    std::sort(srcPaths.begin(), srcPaths.end(),
+              [](const Gtk::TreePath& a, const Gtk::TreePath& b)
+              { return gtk_tree_path_compare(a.gobj(), b.gobj()) < 0; });
+    std::vector<CtTreeIter> dragIters;
+    for (Gtk::TreePath& srcPath : srcPaths) {
+        if (CtTreeIter it = _uCtTreestore->get_iter(srcPath)) {
+            dragIters.push_back(it);
+        }
     }
-    CtTreeIter drag_iter = _uCtTreestore->get_iter(treePathSrc);
-    if (not drag_iter) {
+    if (dragIters.empty()) {
         return;
     }
     CtTreeIter drop_iter = _uCtTreestore->get_iter(treePathDest);
     if (not drop_iter) {
         return;
     }
-    CtTreeIter move_towards_top_iter = drop_iter.parent();
-    while (move_towards_top_iter) {
-        if (move_towards_top_iter == drag_iter) {
-            CtDialogs::error_dialog(_("The new parent can't be one of his children!"), *this);
-            return;
+    // validation: no dragged node may become an ancestor of the drop target
+    for (const CtTreeIter& dragIter : dragIters) {
+        if (dragIter == drop_iter) {
+            return;   // drop target inside the selection: nothing to move
         }
-        move_towards_top_iter = move_towards_top_iter.parent();
+        CtTreeIter move_towards_top_iter = drop_iter.parent();
+        while (move_towards_top_iter) {
+            if (move_towards_top_iter == dragIter) {
+                CtDialogs::error_dialog(_("The new parent can't be one of his children!"), *this);
+                return;
+            }
+            move_towards_top_iter = move_towards_top_iter.parent();
+        }
+    }
+    // a selected child that also has a selected ancestor comes for free with
+    // the ancestor: filter it out to avoid double moves
+    std::vector<CtTreeIter> moveIters;
+    for (const CtTreeIter& dragIter : dragIters) {
+        bool hasSelectedAncestor = false;
+        for (const CtTreeIter& other : dragIters) {
+            if (other == dragIter) continue;
+            CtTreeIter up = dragIter.parent();
+            while (up) {
+                if (up == other) { hasSelectedAncestor = true; break; }
+                up = up.parent();
+            }
+            if (hasSelectedAncestor) break;
+        }
+        if (not hasSelectedAncestor) {
+            moveIters.push_back(dragIter);
+        }
+    }
+    if (moveIters.empty()) {
+        return;
     }
     // Use the Shift state captured during the last drag_motion event
     const bool keep_focus = _drag_shift_held;
@@ -810,14 +860,24 @@ void CtMainWin::_on_treeview_drag_data_received(const Glib::RefPtr<Gdk::DragCont
     if (treeDropPos == Gtk::TREE_VIEW_DROP_BEFORE) {
         auto prev_iter = drop_iter;
         --prev_iter;
-        // note: prev_iter could be None, use drop_iter to retrieve the parent
-        _uCtActions->node_move_after(drag_iter, drop_iter.parent(), prev_iter, true/*set_first*/, keep_focus);
+        // note: prev_iter could be None, use drop_iter to retrieve the parent;
+        // iterate BOTTOM-UP, each node lands right after prev_iter, so the
+        // final order matches the selection order
+        for (auto it = moveIters.rbegin(); it != moveIters.rend(); ++it) {
+            _uCtActions->node_move_after(*it, drop_iter.parent(), prev_iter, not prev_iter/*set_first*/, keep_focus);
+        }
     }
     else if (treeDropPos == Gtk::TREE_VIEW_DROP_AFTER) {
-        _uCtActions->node_move_after(drag_iter, drop_iter.parent(), drop_iter, false/*set_first*/, keep_focus);
+        // each node is inserted right after drop_iter, so iterate TOP-DOWN to
+        // keep the selection order
+        for (CtTreeIter& it : moveIters) {
+            _uCtActions->node_move_after(it, drop_iter.parent(), drop_iter, false/*set_first*/, keep_focus);
+        }
     }
     else {
-        _uCtActions->node_move_after(drag_iter, drop_iter, Gtk::TreeModel::iterator{}, false/*set_first*/, keep_focus);
+        for (CtTreeIter& it : moveIters) {
+            _uCtActions->node_move_after(it, drop_iter, Gtk::TreeModel::iterator{}, false/*set_first*/, keep_focus);
+        }
     }
 }
 
@@ -826,13 +886,23 @@ void CtMainWin::_on_treeview_drag_data_get(const Glib::RefPtr<Gdk::DragContext>&
                                            guint /*info*/,
                                            guint /*time*/)
 {
-    // OrangeArk: the tree selection is MULTIPLE, use the cursor (focus) row as
-    // the drag source — get_selected() is unreliable with several rows chosen
-    Gtk::TreeModel::Path cursorPath;
-    Gtk::TreeView::Column* pFocusColumn = nullptr;
-    _uCtTreeview->get_cursor(cursorPath, pFocusColumn);
-    if (not cursorPath.empty()) {
-        const Glib::ustring treePathStr = cursorPath.to_string();
+    // OrangeArk: the tree selection is MULTIPLE, serialize ALL selected rows
+    // (comma-separated tree paths, ':' inside paths is safe) so that a
+    // multi-selection drag moves the whole selection, not just one node.
+    Glib::ustring treePathStr;
+    std::vector<Gtk::TreeModel::Path> selPaths = _uCtTreeview->get_selection()->get_selected_rows();
+    for (const Gtk::TreeModel::Path& selPath : selPaths) {
+        if (not treePathStr.empty()) treePathStr += ",";
+        treePathStr += selPath.to_string();
+    }
+    if (treePathStr.empty()) {
+        // fallback: use the cursor (focus) row
+        Gtk::TreeModel::Path cursorPath;
+        Gtk::TreeView::Column* pFocusColumn = nullptr;
+        _uCtTreeview->get_cursor(cursorPath, pFocusColumn);
+        if (not cursorPath.empty()) treePathStr = cursorPath.to_string();
+    }
+    if (not treePathStr.empty()) {
         selection_data.set("UTF8_STRING", 8, (const guint8*)treePathStr.c_str(), (int)treePathStr.size());
     }
 }

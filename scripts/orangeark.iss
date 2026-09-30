@@ -5,7 +5,7 @@
 #define MyAppPublisher "Giuseppe Penone"
 #define MyAppURL "https://www.giuspen.net/orangeark/"
 #define MyAppExeName "orangeark.exe"
-#define MyAppVersion "1.2.1"
+#define MyAppVersion "1.2.2"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -19,7 +19,10 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
+DisableDirPage=no
+UsePreviousAppDir=no
 DisableProgramGroupPage=yes
+UninstallDisplayIcon={app}\ucrt64\bin\{#MyAppExeName}
 OutputDir=..\build
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
@@ -209,5 +212,18 @@ begin
         Result := False;
       end;
     end;
+  end;
+end;
+
+// Ask whether to delete user configuration (settings + recent-documents
+// history, %LOCALAPPDATA%\orangeark). Note documents stored elsewhere are
+// never touched. Portable-mode config lives inside {app} and is removed by
+// the normal uninstall regardless of this choice.
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+begin
+  if CurUninstallStep = usPostUninstall then
+  begin
+    if MsgBox('Do you also want to delete OrangeArk settings and the recent-documents history?'#13#10'(Your note documents will NOT be deleted.)', mbConfirmation, MB_YESNO) = IDYES then
+      DelTree(ExpandConstant('{localappdata}\orangeark'), True, True, True);
   end;
 end;
