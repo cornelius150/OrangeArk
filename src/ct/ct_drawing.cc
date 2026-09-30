@@ -1,0 +1,1241 @@
+/*
+ * ct_drawing.cc
+ *
+ * OrangeArk: a Visio-like diagram that lives directly in the document body.
+ *
+ * Copyright 2009-2026
+ * Giuseppe Penone <giuspen@gmail.com>
+ * Evgenii Gurianov <https://github.com/txe>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ */
+
+#include "ct_drawing.h"
+#include "ct_state_machine.h"
+#include "ct_storage_sqlite.h"
+#include "ct_storage_multifile.h"
+#include "ct_logging.h"
+#include "ct_main_win.h"
+#include "ct_const.h"
+#include "ct_dialogs.h"
+
+#include <glibmm/base64.h>
+#include <libxml++/libxml++.h>
+
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+#include <limits>
+
+const char* CtDrawing::XML_MODEL_ATTR = "oa_drawing";
+const char* CtDrawing::SQLITE_LINK_PREFIX = "oa-drawing:";
+
+// clang-format off
+static const char* kShapeTypeNames[] = {
+    "rect", "roundrect", "ellipse", "diamond", "parallelogram",
+    "cylinder", "hexagon", "terminator", "document"
+};
+// clang-format on
+
+static void oa_hex_to_rgb(const std::string& hex, double& r, double& g, double& b)
+{
+    r = g = b = 0.0;
+    if (hex.size() >= 7) {
+        unsigned int rr = 0, gg = 0, bb = 0;
+        if (3 == std::sscanf(hex.c_str(), "#%02x%02x%02x", &rr, &gg, &bb)) {
+            r = rr / 255.0;
+            g = gg / 255.0;
+            b = bb / 255.0;
+        }
+    }
+}
+
+static std::string oa_rgba_to_hex(const Gdk::RGBA& colour)
+{
+    char buf[16];
+    std::snprintf(buf, sizeof(buf), "#%02x%02x%02x",
+                  static_cast<int>(std::lround(colour.get_red() * 255.0)),
+                  static_cast<int>(std::lround(colour.get_green() * 255.0)),
+                  static_cast<int>(std::lround(colour.get_blue() * 255.0)));
+    return std::string{buf};
+}
+
+static void oa_rounded_rect(const Cairo::RefPtr<Cairo::Context>& cr,
+                            const double x, const double y,
+                            const double w, const double h,
+                            const double radius)
+{
+    const double r = std::min(radius, std::min(w, h) / 2.0);
+    cr->move_to(x + r, y);
+    cr->line_to(x + w - r, y);
+    cr->arc(x + w - r, y + r, r, -M_PI / 2.0, 0.0);
+    cr->line_to(x + w, y + h - r);
+    cr->arc(x + w - r, y + h - r, r, 0.0, M_PI / 2.0);
+    cr->line_to(x + r, y + h);
+    cr->arc(x + r, y + h - r, r, M_PI / 2.0, M_PI);
+    cr->line_to(x, y + r);
+    cr->arc(x + r, y + r, r, M_PI, 1.5 * M_PI);
+    cr->close_path();
+}
+
+static Glib::RefPtr<Gdk::Pixbuf> oa_placeholder_pixbuf()
+{
+    Glib::RefPtr<Gdk::Pixbuf> rPixbuf = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, false, 8, 16, 16);
+    if (rPixbuf) rPixbuf->fill(0xffffffffu);
+    return rPixbuf;
+}
+
+/*static*/ double CtDrawing::_shape_attr_double(xmlpp::Element* pElement, const char* name, const double defVal)
+{
+    const Glib::ustring val = pElement->get_attribute_value(name);
+    if (val.empty()) return defVal;
+    try {
+        return std::stod(val);
+    }
+    catch (...) {
+        return defVal;
+    }
+}
+
+/*static*/ int CtDrawing::_shape_attr_int(xmlpp::Element* pElement, const char* name, const int defVal)
+{
+    const Glib::ustring val = pElement->get_attribute_value(name);
+    if (val.empty()) return defVal;
+    try {
+        return std::stoi(val);
+    }
+    catch (...) {
+        return defVal;
+    }
+}
+
+/*static*/ std::string CtDrawing::_shape_attr_str(xmlpp::Element* pElement, const char* name, const std::string& defVal)
+{
+    const Glib::ustring val = pElement->get_attribute_value(name);
+    return val.empty() ? defVal : static_cast<std::string>(val);
+}
+
+/*static*/ CtDrawing::Model CtDrawing::_model_from_xml(const std::string& xml)
+{
+    Model model;
+    if (xml.empty()) return model;
+    try {
+        xmlpp::DomParser parser;
+        parser.parse_memory(xml);
+        xmlpp::Element* pRoot = parser.get_document() ? parser.get_document()->get_root_node() : nullptr;
+        if (not pRoot) return model;
+
+        model.width = _shape_attr_int(pRoot, "width", model.width);
+        model.height = _shape_attr_int(pRoot, "height", model.height);
+        if (model.width < 80) model.width = 80;
+        if (model.height < 60) model.height = 60;
+
+        for (xmlpp::Node* pNode : pRoot->get_children("shape")) {
+            xmlpp::Element* pElement = dynamic_cast<xmlpp::Element*>(pNode);
+            if (not pElement) continue;
+            Shape shape;
+            shape.id = _shape_attr_int(pElement, "id", 0);
+            shape.type = Tool::Rect;
+            const std::string typeName = _shape_attr_str(pElement, "type", "rect");
+            for (size_t i = 0; i < sizeof(kShapeTypeNames) / sizeof(kShapeTypeNames[0]); ++i) {
+                if (typeName == kShapeTypeNames[i]) {
+                    shape.type = static_cast<Tool>(static_cast<int>(Tool::Rect) + static_cast<int>(i));
+                    break;
+                }
+            }
+            shape.x = _shape_attr_double(pElement, "x", 0.0);
+            shape.y = _shape_attr_double(pElement, "y", 0.0);
+            shape.w = _shape_attr_double(pElement, "w", 100.0);
+            shape.h = _shape_attr_double(pElement, "h", 60.0);
+            shape.fill = _shape_attr_str(pElement, "fill", "#e3f2fd");
+            shape.stroke = _shape_attr_str(pElement, "stroke", "#1565c0");
+            shape.fontSize = _shape_attr_double(pElement, "fs", 13.0);
+            shape.bold = 0 != _shape_attr_int(pElement, "bold", 0);
+            if (xmlpp::TextNode* pText = pElement->get_child_text()) {
+                shape.text = pText->get_content();
+            }
+            model.shapes.push_back(shape);
+        }
+
+        for (xmlpp::Node* pNode : pRoot->get_children("conn")) {
+            xmlpp::Element* pElement = dynamic_cast<xmlpp::Element*>(pNode);
+            if (not pElement) continue;
+            Conn conn;
+            conn.id = _shape_attr_int(pElement, "id", 0);
+            conn.x1 = _shape_attr_double(pElement, "x1", 0.0);
+            conn.y1 = _shape_attr_double(pElement, "y1", 0.0);
+            conn.x2 = _shape_attr_double(pElement, "x2", 0.0);
+            conn.y2 = _shape_attr_double(pElement, "y2", 0.0);
+            conn.fromShape = _shape_attr_int(pElement, "from", -1);
+            conn.toShape = _shape_attr_int(pElement, "to", -1);
+            conn.arrowEnd = 0 != _shape_attr_int(pElement, "ae", 1);
+            conn.dashed = 0 != _shape_attr_int(pElement, "dash", 0);
+            conn.stroke = _shape_attr_str(pElement, "stroke", "#37474f");
+            model.conns.push_back(conn);
+        }
+    }
+    catch (std::exception& e) {
+        spdlog::warn("!! {} {}", __FUNCTION__, e.what());
+    }
+    return model;
+}
+
+/*static*/ std::string CtDrawing::_model_to_xml(const Model& model)
+{
+    xmlpp::Document doc;
+    xmlpp::Element* pRoot = doc.create_root_node("oa_drawing");
+    pRoot->set_attribute("width", std::to_string(model.width));
+    pRoot->set_attribute("height", std::to_string(model.height));
+    for (const Shape& shape : model.shapes) {
+        xmlpp::Element* pShapeNode = pRoot->add_child("shape");
+        pShapeNode->set_attribute("id", std::to_string(shape.id));
+        const int typeIdx = static_cast<int>(shape.type) - static_cast<int>(Tool::Rect);
+        pShapeNode->set_attribute("type", (typeIdx >= 0 and typeIdx < static_cast<int>(sizeof(kShapeTypeNames) / sizeof(kShapeTypeNames[0])))
+                                          ? kShapeTypeNames[typeIdx] : "rect");
+        pShapeNode->set_attribute("x", std::to_string(shape.x));
+        pShapeNode->set_attribute("y", std::to_string(shape.y));
+        pShapeNode->set_attribute("w", std::to_string(shape.w));
+        pShapeNode->set_attribute("h", std::to_string(shape.h));
+        pShapeNode->set_attribute("fill", shape.fill);
+        pShapeNode->set_attribute("stroke", shape.stroke);
+        pShapeNode->set_attribute("fs", std::to_string(shape.fontSize));
+        pShapeNode->set_attribute("bold", shape.bold ? "1" : "0");
+        if (not shape.text.empty()) {
+            pShapeNode->add_child_text(shape.text);
+        }
+    }
+    for (const Conn& conn : model.conns) {
+        xmlpp::Element* pConnNode = pRoot->add_child("conn");
+        pConnNode->set_attribute("id", std::to_string(conn.id));
+        pConnNode->set_attribute("x1", std::to_string(conn.x1));
+        pConnNode->set_attribute("y1", std::to_string(conn.y1));
+        pConnNode->set_attribute("x2", std::to_string(conn.x2));
+        pConnNode->set_attribute("y2", std::to_string(conn.y2));
+        pConnNode->set_attribute("from", std::to_string(conn.fromShape));
+        pConnNode->set_attribute("to", std::to_string(conn.toShape));
+        pConnNode->set_attribute("ae", conn.arrowEnd ? "1" : "0");
+        pConnNode->set_attribute("dash", conn.dashed ? "1" : "0");
+        pConnNode->set_attribute("stroke", conn.stroke);
+    }
+    return doc.write_to_string();
+}
+
+CtDrawing::CtDrawing(CtMainWin* pCtMainWin,
+                     const std::string& modelXml,
+                     const int charOffset,
+                     const std::string& justification)
+ : CtImage{pCtMainWin, oa_placeholder_pixbuf(), charOffset, justification}
+{
+    _model = _model_from_xml(modelXml);
+    _sync_model();
+
+    _fillColor.set("#e3f2fd");
+    _strokeColor.set("#1565c0");
+
+    // replace the static image of the base class with: toolbar + canvas
+    _frame.remove();   // Gtk::Bin::remove() drops the single child (the base image)
+
+    _pOverlay = Gtk::manage(new Gtk::Overlay{});
+    _pCanvas = Gtk::manage(new Gtk::EventBox{});
+    _pEditor = Gtk::manage(new Gtk::TextView{});
+    _pVBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 2});
+
+    _pOverlay->add(_image);
+
+    _pEditor->set_no_show_all(true);
+    _pEditor->set_wrap_mode(Gtk::WRAP_WORD_CHAR);
+    _pEditor->set_justification(Gtk::JUSTIFY_CENTER);
+    _pEditor->set_halign(Gtk::ALIGN_START);
+    _pEditor->set_valign(Gtk::ALIGN_START);
+    _pEditor->set_border_width(0);
+    _pEditor->signal_focus_out_event().connect([this](GdkEventFocus*) {
+        _commit_text_editing();
+        return false;
+    });
+    _pOverlay->add_overlay(*_pEditor);
+
+    _pCanvas->add(*_pOverlay);
+    _pCanvas->set_can_focus(true);
+    _pCanvas->add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK |
+                         Gdk::BUTTON1_MOTION_MASK | Gdk::POINTER_MOTION_MASK |
+                         Gdk::KEY_PRESS_MASK);
+    _pCanvas->signal_button_press_event().connect(sigc::mem_fun(*this, &CtDrawing::_on_canvas_press), false);
+    _pCanvas->signal_button_release_event().connect(sigc::mem_fun(*this, &CtDrawing::_on_canvas_release), false);
+    _pCanvas->signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtDrawing::_on_canvas_motion), false);
+    _pCanvas->signal_key_press_event().connect(sigc::mem_fun(*this, &CtDrawing::_on_canvas_key), false);
+
+    _pVBox->pack_start(*_build_toolbar(), false, false);
+    _pVBox->pack_start(*_pCanvas, false, false);
+    _frame.add(*_pVBox);
+    _frame.show_all();
+
+    _render();
+}
+
+Gtk::Button* CtDrawing::_tool_button(const Glib::ustring& label, const Glib::ustring& tooltip, const Tool tool)
+{
+    Gtk::Button* pButton = Gtk::manage(new Gtk::Button{label});
+    pButton->set_tooltip_text(tooltip);
+    pButton->set_relief(Gtk::RELIEF_NONE);
+    pButton->signal_clicked().connect([this, tool]() { _set_tool(tool); });
+    _toolButtons.push_back(pButton);
+    return pButton;
+}
+
+Gtk::Box* CtDrawing::_build_toolbar()
+{
+    _pToolbar = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 2});
+
+    Gtk::Box* pRow1 = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 1});
+    pRow1->pack_start(*_tool_button(_("选择"), _("选择 / 移动图形，双击图形输入文字"), Tool::Select), false, false);
+    pRow1->pack_start(*_tool_button(_("矩形"), _("矩形（流程步骤）"), Tool::Rect), false, false);
+    pRow1->pack_start(*_tool_button(_("圆角"), _("圆角矩形"), Tool::RoundRect), false, false);
+    pRow1->pack_start(*_tool_button(_("椭圆"), _("椭圆 / 圆形"), Tool::Ellipse), false, false);
+    pRow1->pack_start(*_tool_button(_("菱形"), _("菱形（判断）"), Tool::Diamond), false, false);
+    pRow1->pack_start(*_tool_button(_("平行"), _("平行四边形（数据输入 / 输出）"), Tool::Parallelogram), false, false);
+    pRow1->pack_start(*_tool_button(_("数据"), _("圆柱形（数据库 / 存储）"), Tool::Cylinder), false, false);
+    pRow1->pack_start(*_tool_button(_("六边"), _("六边形（准备 / 预设）"), Tool::Hexagon), false, false);
+    pRow1->pack_start(*_tool_button(_("起止"), _("圆角胶囊（开始 / 结束）"), Tool::Terminator), false, false);
+    pRow1->pack_start(*_tool_button(_("文档"), _("文档形状（报表 / 输出）"), Tool::Document), false, false);
+    _pToolbar->pack_start(*pRow1, false, false);
+
+    Gtk::Box* pRow2 = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 2});
+    pRow2->pack_start(*_tool_button(_("直线"), _("连线：从一个图形拖到另一个图形"), Tool::Connector), false, false);
+    pRow2->pack_start(*_tool_button(_("箭头"), _("带箭头的连线（流程方向）"), Tool::Arrow), false, false);
+
+    _pFillBtn = Gtk::manage(new Gtk::ColorButton{_fillColor});
+    _pFillBtn->set_size_request(30, 24);
+    _pFillBtn->set_tooltip_text(_("填充颜色（选中图形后可直接改色）"));
+    _pFillBtn->signal_color_set().connect(sigc::mem_fun(*this, &CtDrawing::_on_fill_color_set));
+    pRow2->pack_start(*_pFillBtn, false, false);
+
+    _pStrokeBtn = Gtk::manage(new Gtk::ColorButton{_strokeColor});
+    _pStrokeBtn->set_size_request(30, 24);
+    _pStrokeBtn->set_tooltip_text(_("边框 / 线条颜色"));
+    _pStrokeBtn->signal_color_set().connect(sigc::mem_fun(*this, &CtDrawing::_on_stroke_color_set));
+    pRow2->pack_start(*_pStrokeBtn, false, false);
+
+    Gtk::Button* pTextBtn = Gtk::manage(new Gtk::Button{_("文字")});
+    pTextBtn->set_relief(Gtk::RELIEF_NONE);
+    pTextBtn->set_tooltip_text(_("给选中的图形输入 / 修改文字"));
+    pTextBtn->signal_clicked().connect([this]() {
+        if (_selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+            _start_text_editing(_selShape);
+        }
+    });
+    pRow2->pack_start(*pTextBtn, false, false);
+
+    Gtk::Button* pDelBtn = Gtk::manage(new Gtk::Button{_("删除")});
+    pDelBtn->set_relief(Gtk::RELIEF_NONE);
+    pDelBtn->set_tooltip_text(_("删除选中的图形 / 连线（也可按 Delete 键）"));
+    pDelBtn->signal_clicked().connect([this]() { _delete_selection(); });
+    pRow2->pack_start(*pDelBtn, false, false);
+
+    Gtk::Button* pFitBtn = Gtk::manage(new Gtk::Button{_("适应")});
+    pFitBtn->set_relief(Gtk::RELIEF_NONE);
+    pFitBtn->set_tooltip_text(_("把画布缩到刚好包住所有图形"));
+    pFitBtn->signal_clicked().connect([this]() {
+        _fit_canvas();
+        _sync_model();
+        _render();
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    });
+    pRow2->pack_start(*pFitBtn, false, false);
+
+    _pToolbar->pack_start(*pRow2, false, false);
+    _update_toolbar_sensitivity();
+    return _pToolbar;
+}
+
+void CtDrawing::_set_tool(const Tool tool)
+{
+    _tool = tool;
+    _update_toolbar_sensitivity();
+}
+
+void CtDrawing::_update_toolbar_sensitivity()
+{
+    const int activeIdx = static_cast<int>(_tool);
+    for (size_t i = 0; i < _toolButtons.size(); ++i) {
+        _toolButtons[i]->set_relief(static_cast<int>(i) == activeIdx ? Gtk::RELIEF_NORMAL : Gtk::RELIEF_NONE);
+    }
+}
+
+void CtDrawing::_on_fill_color_set()
+{
+    _fillColor = _pFillBtn->get_rgba();
+    _apply_style_to_selection();
+}
+
+void CtDrawing::_on_stroke_color_set()
+{
+    _strokeColor = _pStrokeBtn->get_rgba();
+    _apply_style_to_selection();
+}
+
+void CtDrawing::_apply_style_to_selection()
+{
+    if (_selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+        _model.shapes[_selShape].fill = oa_rgba_to_hex(_fillColor);
+        _model.shapes[_selShape].stroke = oa_rgba_to_hex(_strokeColor);
+        _sync_model();
+        _render();
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    }
+    else if (_selConn >= 0 and _selConn < static_cast<int>(_model.conns.size())) {
+        _model.conns[_selConn].stroke = oa_rgba_to_hex(_strokeColor);
+        _sync_model();
+        _render();
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    }
+}
+
+void CtDrawing::_sync_model()
+{
+    _modelXml = _model_to_xml(_model);
+}
+
+int CtDrawing::_next_shape_id() const
+{
+    int maxId = 0;
+    for (const Shape& shape : _model.shapes) maxId = std::max(maxId, shape.id);
+    return maxId + 1;
+}
+
+int CtDrawing::_next_conn_id() const
+{
+    int maxId = 0;
+    for (const Conn& conn : _model.conns) maxId = std::max(maxId, conn.id);
+    return maxId + 1;
+}
+
+void CtDrawing::_select_only(const int shapeIdx, const int connIdx)
+{
+    _selShape = shapeIdx;
+    _selConn = connIdx;
+}
+
+bool CtDrawing::_inside_shape(const Shape& shape, const double x, const double y) const
+{
+    return x >= shape.x and x <= shape.x + shape.w and y >= shape.y and y <= shape.y + shape.h;
+}
+
+int CtDrawing::_hit_shape(const double x, const double y) const
+{
+    for (int i = static_cast<int>(_model.shapes.size()) - 1; i >= 0; --i) {   // topmost first
+        if (_inside_shape(_model.shapes[i], x, y)) return i;
+    }
+    return -1;
+}
+
+int CtDrawing::_hit_conn(const double x, const double y) const
+{
+    for (int i = static_cast<int>(_model.conns.size()) - 1; i >= 0; --i) {
+        const Conn& conn = _model.conns[i];
+        const double dx = conn.x2 - conn.x1;
+        const double dy = conn.y2 - conn.y1;
+        const double len2 = dx * dx + dy * dy;
+        if (len2 < 1.0) continue;
+        double t = ((x - conn.x1) * dx + (y - conn.y1) * dy) / len2;
+        t = std::max(0.0, std::min(1.0, t));
+        const double px = conn.x1 + t * dx;
+        const double py = conn.y1 + t * dy;
+        if (std::hypot(x - px, y - py) <= 6.0) return i;
+    }
+    return -1;
+}
+
+void CtDrawing::_handle_pos(const Shape& shape, const int handle, double& hx, double& hy) const
+{
+    const double xs[3] = {shape.x, shape.x + shape.w / 2.0, shape.x + shape.w};
+    const double ys[3] = {shape.y, shape.y + shape.h / 2.0, shape.y + shape.h};
+    hx = xs[handle % 3];
+    hy = ys[handle / 3];
+}
+
+int CtDrawing::_hit_handle(const double x, const double y) const
+{
+    if (_selShape < 0 or _selShape >= static_cast<int>(_model.shapes.size())) return -1;
+    const Shape& shape = _model.shapes[_selShape];
+    for (int h = 0; h < 8; ++h) {
+        double hx = 0.0, hy = 0.0;
+        _handle_pos(shape, h, hx, hy);
+        if (std::abs(x - hx) <= 5.0 and std::abs(y - hy) <= 5.0) return h;
+    }
+    return -1;
+}
+
+/*static*/ bool CtDrawing::_clip_line_to_rect(const double cx, const double cy,
+                                             const double tx, const double ty,
+                                             const double rx, const double ry, const double rw, const double rh,
+                                             double& outX, double& outY)
+{
+    const double dx = tx - cx;
+    const double dy = ty - cy;
+    if (std::abs(dx) < 0.001 and std::abs(dy) < 0.001) {
+        outX = cx;
+        outY = cy;
+        return false;
+    }
+    double t = std::numeric_limits<double>::max();
+    if (std::abs(dx) > 0.001) {
+        t = std::min(t, (dx > 0 ? (rx + rw - cx) : (rx - cx)) / dx);
+    }
+    if (std::abs(dy) > 0.001) {
+        t = std::min(t, (dy > 0 ? (ry + rh - cy) : (ry - cy)) / dy);
+    }
+    if (t < 0.0 or t > 1.0e6) return false;
+    outX = cx + t * dx;
+    outY = cy + t * dy;
+    return true;
+}
+
+void CtDrawing::_recompute_conns()
+{
+    for (Conn& conn : _model.conns) {
+        if (conn.fromShape < 0 or conn.toShape < 0) continue;
+        if (conn.fromShape >= static_cast<int>(_model.shapes.size())) continue;
+        if (conn.toShape >= static_cast<int>(_model.shapes.size())) continue;
+        const Shape& from = _model.shapes[conn.fromShape];
+        const Shape& to = _model.shapes[conn.toShape];
+        const double cx = from.x + from.w / 2.0;
+        const double cy = from.y + from.h / 2.0;
+        const double tx = to.x + to.w / 2.0;
+        const double ty = to.y + to.h / 2.0;
+        double ax = cx, ay = cy, bx = tx, by = ty;
+        _clip_line_to_rect(cx, cy, tx, ty, from.x, from.y, from.w, from.h, ax, ay);
+        _clip_line_to_rect(tx, ty, cx, cy, to.x, to.y, to.w, to.h, bx, by);
+        conn.x1 = ax;
+        conn.y1 = ay;
+        conn.x2 = bx;
+        conn.y2 = by;
+    }
+}
+
+void CtDrawing::_grow_canvas_for(const double x, const double y)
+{
+    if (x > _model.width - 24.0) _model.width = std::min(4000, static_cast<int>(x) + 80);
+    if (y > _model.height - 24.0) _model.height = std::min(4000, static_cast<int>(y) + 80);
+}
+
+void CtDrawing::_fit_canvas()
+{
+    if (_model.shapes.empty()) {
+        _model.width = 400;
+        _model.height = 240;
+        return;
+    }
+    double minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+    for (const Shape& shape : _model.shapes) {
+        minX = std::min(minX, shape.x);
+        minY = std::min(minY, shape.y);
+        maxX = std::max(maxX, shape.x + shape.w);
+        maxY = std::max(maxY, shape.y + shape.h);
+    }
+    for (const Conn& conn : _model.conns) {
+        minX = std::min({minX, conn.x1, conn.x2});
+        minY = std::min({minY, conn.y1, conn.y2});
+        maxX = std::max({maxX, conn.x1, conn.x2});
+        maxY = std::max({maxY, conn.y1, conn.y2});
+    }
+    const double pad = 24.0;
+    _model.width = static_cast<int>(maxX - minX + 2.0 * pad);
+    _model.height = static_cast<int>(maxY - minY + 2.0 * pad);
+    if (_model.width < 120) _model.width = 120;
+    if (_model.height < 80) _model.height = 80;
+    // shift everything so the content starts at the padding
+    const double dx = pad - minX;
+    const double dy = pad - minY;
+    for (Shape& shape : _model.shapes) {
+        shape.x += dx;
+        shape.y += dy;
+    }
+    for (Conn& conn : _model.conns) {
+        if (conn.fromShape < 0) conn.x1 += dx;
+        if (conn.toShape < 0) conn.x2 += dx;
+        if (conn.fromShape < 0) conn.y1 += dy;
+        if (conn.toShape < 0) conn.y2 += dy;
+    }
+    _recompute_conns();
+}
+
+void CtDrawing::_delete_selection()
+{
+    bool changed{false};
+    if (_selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+        _model.shapes.erase(_model.shapes.begin() + _selShape);
+        // connectors bound to the removed shape lose their binding
+        for (Conn& conn : _model.conns) {
+            if (conn.fromShape == _selShape) conn.fromShape = -1;
+            else if (conn.fromShape > _selShape) conn.fromShape -= 1;
+            if (conn.toShape == _selShape) conn.toShape = -1;
+            else if (conn.toShape > _selShape) conn.toShape -= 1;
+        }
+        _selShape = -1;
+        changed = true;
+    }
+    else if (_selConn >= 0 and _selConn < static_cast<int>(_model.conns.size())) {
+        _model.conns.erase(_model.conns.begin() + _selConn);
+        _selConn = -1;
+        changed = true;
+    }
+    if (changed) {
+        _editShape = -1;
+        _pEditor->hide();
+        _sync_model();
+        _render();
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    }
+}
+
+void CtDrawing::_start_text_editing(const int shapeIdx)
+{
+    if (shapeIdx < 0 or shapeIdx >= static_cast<int>(_model.shapes.size())) return;
+    _commit_text_editing();
+    _editShape = shapeIdx;
+    const Shape& shape = _model.shapes[shapeIdx];
+    _pEditor->get_buffer()->set_text(shape.text);
+    _pEditor->set_size_request(static_cast<int>(shape.w) - 12, static_cast<int>(shape.h) - 12);
+    _pEditor->set_margin_start(static_cast<int>(shape.x) + 6);
+    _pEditor->set_margin_top(static_cast<int>(shape.y) + 6);
+    _pEditor->show();
+    _pEditor->grab_focus();
+}
+
+void CtDrawing::_commit_text_editing()
+{
+    if (_editShape < 0) return;
+    const int idx = _editShape;
+    _editShape = -1;
+    if (idx < static_cast<int>(_model.shapes.size())) {
+        _model.shapes[idx].text = _pEditor->get_buffer()->get_text();
+    }
+    _pEditor->hide();
+    _sync_model();
+    _render();
+    _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+}
+
+void CtDrawing::_on_editor_focus_out()
+{
+    _commit_text_editing();
+}
+
+// ---------------------------------------------------------------- rendering
+
+void CtDrawing::_shape_path(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const
+{
+    const double x = shape.x;
+    const double y = shape.y;
+    const double w = shape.w;
+    const double h = shape.h;
+
+    switch (shape.type) {
+    case Tool::RoundRect:
+        oa_rounded_rect(cr, x, y, w, h, 12.0);
+        break;
+    case Tool::Terminator:
+        oa_rounded_rect(cr, x, y, w, h, h / 2.0);
+        break;
+    case Tool::Ellipse:
+        cr->save();
+        cr->translate(x + w / 2.0, y + h / 2.0);
+        cr->scale(w / 2.0, h / 2.0);
+        cr->arc(0.0, 0.0, 1.0, 0.0, 2.0 * M_PI);
+        cr->restore();
+        break;
+    case Tool::Diamond:
+        cr->move_to(x + w / 2.0, y);
+        cr->line_to(x + w, y + h / 2.0);
+        cr->line_to(x + w / 2.0, y + h);
+        cr->line_to(x, y + h / 2.0);
+        cr->close_path();
+        break;
+    case Tool::Parallelogram: {
+        const double skew = std::min(w * 0.2, 24.0);
+        cr->move_to(x + skew, y);
+        cr->line_to(x + w, y);
+        cr->line_to(x + w - skew, y + h);
+        cr->line_to(x, y + h);
+        cr->close_path();
+        break;
+    }
+    case Tool::Cylinder: {
+        const double ry = std::min(h * 0.18, 16.0);
+        cr->move_to(x, y + ry);
+        cr->line_to(x, y + h - ry);
+        cr->save();
+        cr->translate(x + w / 2.0, y + h - ry);
+        cr->scale(w / 2.0, ry);
+        cr->arc(0.0, 0.0, 1.0, 0.0, M_PI);
+        cr->restore();
+        cr->line_to(x + w, y + ry);
+        cr->save();
+        cr->translate(x + w / 2.0, y + ry);
+        cr->scale(w / 2.0, ry);
+        cr->arc(0.0, 0.0, 1.0, M_PI, 2.0 * M_PI);
+        cr->restore();
+        cr->close_path();
+        break;
+    }
+    case Tool::Hexagon: {
+        const double sx = w * 0.22;
+        cr->move_to(x + sx, y);
+        cr->line_to(x + w - sx, y);
+        cr->line_to(x + w, y + h / 2.0);
+        cr->line_to(x + w - sx, y + h);
+        cr->line_to(x + sx, y + h);
+        cr->line_to(x, y + h / 2.0);
+        cr->close_path();
+        break;
+    }
+    case Tool::Document: {
+        const double wave = std::min(h * 0.16, 14.0);
+        cr->move_to(x, y);
+        cr->line_to(x + w, y);
+        cr->line_to(x + w, y + h - wave);
+        cr->curve_to(x + w * 0.75, y + h, x + w * 0.75, y + h - wave, x + w * 0.5, y + h - wave * 0.5);
+        cr->curve_to(x + w * 0.25, y + h - wave * 0.0, x + w * 0.25, y + h, x, y + h - wave);
+        cr->close_path();
+        break;
+    }
+    case Tool::Rect: [[fallthrough]];
+    default:
+        cr->rectangle(x, y, w, h);
+        break;
+    }
+}
+
+void CtDrawing::_render_shape(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape)
+{
+    double fr = 1.0, fg = 1.0, fb = 1.0;
+    double sr = 0.0, sg = 0.0, sb = 0.0;
+    oa_hex_to_rgb(shape.fill, fr, fg, fb);
+    oa_hex_to_rgb(shape.stroke, sr, sg, sb);
+
+    _shape_path(cr, shape);
+    cr->set_source_rgb(fr, fg, fb);
+    cr->fill_preserve();
+    cr->set_source_rgb(sr, sg, sb);
+    cr->set_line_width(1.6);
+    cr->stroke();
+
+    if (shape.text.empty()) return;
+
+    Glib::RefPtr<Pango::Layout> rLayout = _image.create_pango_layout(shape.text);
+    Pango::FontDescription fontDesc;
+    fontDesc.set_family("Sans");
+    fontDesc.set_absolute_size(static_cast<int>(shape.fontSize * PANGO_SCALE));
+    if (shape.bold) fontDesc.set_weight(Pango::WEIGHT_BOLD);
+    rLayout->set_font_description(fontDesc);
+    const double innerW = std::max(12.0, shape.w - 14.0);
+    rLayout->set_width(static_cast<int>(innerW * PANGO_SCALE));
+    rLayout->set_wrap(Pango::WRAP_WORD_CHAR);
+    rLayout->set_alignment(Pango::ALIGN_CENTER);
+
+    int textW = 0, textH = 0;
+    rLayout->get_pixel_size(textW, textH);
+    const double textX = shape.x + (shape.w - innerW) / 2.0;
+    const double textY = shape.y + std::max(0.0, (shape.h - textH) / 2.0);
+    cr->move_to(textX, textY);
+    cr->set_source_rgb(0.12, 0.14, 0.16);
+    rLayout->show_in_cairo_context(cr);
+}
+
+void CtDrawing::_arrow_head(const Cairo::RefPtr<Cairo::Context>& cr, const double x, const double y, const double angle) const
+{
+    const double size = 9.0;
+    const double spread = 0.42;
+    cr->save();
+    cr->move_to(x, y);
+    cr->line_to(x - size * std::cos(angle - spread), y - size * std::sin(angle - spread));
+    cr->line_to(x - size * std::cos(angle + spread), y - size * std::sin(angle + spread));
+    cr->close_path();
+    cr->fill();
+    cr->restore();
+}
+
+void CtDrawing::_render_conn(const Cairo::RefPtr<Cairo::Context>& cr, const Conn& conn) const
+{
+    double sr = 0.2, sg = 0.25, sb = 0.3;
+    oa_hex_to_rgb(conn.stroke, sr, sg, sb);
+    cr->set_source_rgb(sr, sg, sb);
+    cr->set_line_width(1.6);
+    if (conn.dashed) {
+        std::vector<double> dashes{6.0, 4.0};
+        cr->set_dash(dashes, 0.0);
+    }
+    cr->move_to(conn.x1, conn.y1);
+    cr->line_to(conn.x2, conn.y2);
+    cr->stroke();
+    cr->unset_dash();
+    if (conn.arrowEnd) {
+        const double angle = std::atan2(conn.y2 - conn.y1, conn.x2 - conn.x1);
+        _arrow_head(cr, conn.x2, conn.y2, angle);
+    }
+}
+
+void CtDrawing::_render_handles(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const
+{
+    cr->set_source_rgb(0.09, 0.34, 0.75);
+    cr->set_line_width(1.0);
+    const double dash[] = {4.0, 3.0};
+    std::vector<double> dashes(dash, dash + 2);
+    cr->set_dash(dashes, 0.0);
+    cr->rectangle(shape.x - 2.0, shape.y - 2.0, shape.w + 4.0, shape.h + 4.0);
+    cr->stroke();
+    cr->unset_dash();
+    for (int h = 0; h < 8; ++h) {
+        double hx = 0.0, hy = 0.0;
+        _handle_pos(shape, h, hx, hy);
+        cr->set_source_rgb(1.0, 1.0, 1.0);
+        cr->rectangle(hx - 3.5, hy - 3.5, 7.0, 7.0);
+        cr->fill();
+        cr->set_source_rgb(0.09, 0.34, 0.75);
+        cr->rectangle(hx - 3.5, hy - 3.5, 7.0, 7.0);
+        cr->stroke();
+    }
+}
+
+void CtDrawing::_render_grid(const Cairo::RefPtr<Cairo::Context>& cr) const
+{
+    cr->set_source_rgba(0.35, 0.45, 0.55, 0.10);
+    cr->set_line_width(1.0);
+    for (int x = 20; x < _model.width; x += 20) {
+        cr->move_to(x + 0.5, 0.0);
+        cr->line_to(x + 0.5, _model.height);
+    }
+    for (int y = 20; y < _model.height; y += 20) {
+        cr->move_to(0.0, y + 0.5);
+        cr->line_to(_model.width, y + 0.5);
+    }
+    cr->stroke();
+}
+
+void CtDrawing::_render()
+{
+    const int width = std::max(80, _model.width);
+    const int height = std::max(60, _model.height);
+    Cairo::RefPtr<Cairo::ImageSurface> rSurface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, width, height);
+    Cairo::RefPtr<Cairo::Context> cr = Cairo::Context::create(rSurface);
+
+    cr->set_source_rgb(1.0, 1.0, 1.0);
+    cr->paint();
+    _render_grid(cr);
+
+    for (const Conn& conn : _model.conns) {
+        _render_conn(cr, conn);
+    }
+    if (_preview and Drag::Conn == _drag) {
+        _render_conn(cr, _previewConn);
+    }
+    for (const Shape& shape : _model.shapes) {
+        _render_shape(cr, shape);
+    }
+    if (_preview and Drag::Create == _drag) {
+        _render_shape(cr, _previewShape);
+    }
+    if (_selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+        _render_handles(cr, _model.shapes[_selShape]);
+    }
+
+    Glib::RefPtr<Gdk::Pixbuf> rPixbuf = Gdk::Pixbuf::create(rSurface, 0, 0, width, height);
+    if (not rPixbuf) return;
+    _rPixbuf = rPixbuf;
+    _image.set(_rPixbuf);
+    _image.queue_draw();
+}
+
+// ---------------------------------------------------------------- events
+
+bool CtDrawing::_on_canvas_press(GdkEventButton* event)
+{
+    const double x = event->x;
+    const double y = event->y;
+
+    if (3 == event->button) {
+        _show_popup(event);
+        return true;
+    }
+    if (1 != event->button) return false;
+
+    if (_editShape >= 0) {
+        _commit_text_editing();
+    }
+
+    if (GDK_2BUTTON_PRESS == event->type) {
+        const int idx = _hit_shape(x, y);
+        if (idx >= 0) {
+            _select_only(idx, -1);
+            _render();
+            _start_text_editing(idx);
+            return true;
+        }
+    }
+
+    _pCanvas->grab_focus();
+
+    if (Tool::Select == _tool) {
+        const int handle = _hit_handle(x, y);
+        if (handle >= 0) {
+            _drag = Drag::Resize;
+            _dragHandle = handle;
+            _dragStartX = x;
+            _dragStartY = y;
+            const Shape& shape = _model.shapes[_selShape];
+            _origX = shape.x;
+            _origY = shape.y;
+            _origW = shape.w;
+            _origH = shape.h;
+            return true;
+        }
+        const int idx = _hit_shape(x, y);
+        if (idx >= 0) {
+            _select_only(idx, -1);
+            _drag = Drag::Move;
+            _dragStartX = x;
+            _dragStartY = y;
+            const Shape& shape = _model.shapes[idx];
+            _origX = shape.x;
+            _origY = shape.y;
+            _origW = shape.w;
+            _origH = shape.h;
+            _render();
+            return true;
+        }
+        const int cidx = _hit_conn(x, y);
+        _select_only(-1, cidx);
+        _render();
+        return true;
+    }
+
+    if (Tool::Connector == _tool or Tool::Arrow == _tool) {
+        _preview = true;
+        _previewConn = Conn{};
+        _previewConn.id = _next_conn_id();
+        _previewConn.x1 = x;
+        _previewConn.y1 = y;
+        _previewConn.x2 = x;
+        _previewConn.y2 = y;
+        _previewConn.fromShape = _hit_shape(x, y);
+        _previewConn.toShape = _previewConn.fromShape;
+        _previewConn.arrowEnd = (Tool::Arrow == _tool);
+        _previewConn.dashed = false;
+        _previewConn.stroke = oa_rgba_to_hex(_strokeColor);
+        _drag = Drag::Conn;
+        _dragStartX = x;
+        _dragStartY = y;
+        _render();
+        return true;
+    }
+
+    // a shape tool is active: drag out the new shape
+    _preview = true;
+    _previewShape = Shape{};
+    _previewShape.id = _next_shape_id();
+    _previewShape.type = _tool;
+    _previewShape.x = x;
+    _previewShape.y = y;
+    _previewShape.w = 0.0;
+    _previewShape.h = 0.0;
+    _previewShape.fill = oa_rgba_to_hex(_fillColor);
+    _previewShape.stroke = oa_rgba_to_hex(_strokeColor);
+    _drag = Drag::Create;
+    _dragStartX = x;
+    _dragStartY = y;
+    _render();
+    return true;
+}
+
+bool CtDrawing::_on_canvas_motion(GdkEventMotion* event)
+{
+    const double x = event->x;
+    const double y = event->y;
+
+    if (Drag::None == _drag) {
+        return false;
+    }
+
+    if (Drag::Create == _drag) {
+        _previewShape.x = std::min(_dragStartX, x);
+        _previewShape.y = std::min(_dragStartY, y);
+        _previewShape.w = std::abs(x - _dragStartX);
+        _previewShape.h = std::abs(y - _dragStartY);
+    }
+    else if (Drag::Move == _drag and _selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+        Shape& shape = _model.shapes[_selShape];
+        shape.x = std::max(0.0, _origX + (x - _dragStartX));
+        shape.y = std::max(0.0, _origY + (y - _dragStartY));
+        _grow_canvas_for(shape.x + shape.w, shape.y + shape.h);
+        _recompute_conns();
+    }
+    else if (Drag::Resize == _drag and _selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+        Shape& shape = _model.shapes[_selShape];
+        const double dx = x - _dragStartX;
+        const double dy = y - _dragStartY;
+        double nx = _origX, ny = _origY, nw = _origW, nh = _origH;
+        if (0 != (_dragHandle % 3)) {          // left or right column
+            if (1 == (_dragHandle % 3)) {      // left edge
+                nx = _origX + dx;
+                nw = _origW - dx;
+            }
+            else {                             // right edge
+                nw = _origW + dx;
+            }
+        }
+        if (_dragHandle < 3) {                 // top row
+            ny = _origY + dy;
+            nh = _origH - dy;
+        }
+        else if (_dragHandle >= 6) {           // bottom row
+            nh = _origH + dy;
+        }
+        if (nw < 20.0) { nw = 20.0; }
+        if (nh < 16.0) { nh = 16.0; }
+        shape.x = nx;
+        shape.y = ny;
+        shape.w = nw;
+        shape.h = nh;
+        _grow_canvas_for(shape.x + shape.w, shape.y + shape.h);
+        _recompute_conns();
+    }
+    else if (Drag::Conn == _drag) {
+        _previewConn.x2 = x;
+        _previewConn.y2 = y;
+        _previewConn.toShape = _hit_shape(x, y);
+        if (_previewConn.toShape == _previewConn.fromShape and _previewConn.fromShape >= 0) {
+            _previewConn.toShape = -1;
+        }
+    }
+
+    // throttle the re-render so dragging stays smooth
+    const gint64 nowUs = g_get_monotonic_time();
+    if (nowUs - _lastRenderUs >= 16000) {   // ~60 fps at most
+        _lastRenderUs = nowUs;
+        _render();
+    }
+    return true;
+}
+
+bool CtDrawing::_on_canvas_release(GdkEventButton* event)
+{
+    if (1 != event->button) return false;
+    const double x = event->x;
+    const double y = event->y;
+
+    if (Drag::Create == _drag) {
+        _previewShape.x = std::min(_dragStartX, x);
+        _previewShape.y = std::min(_dragStartY, y);
+        _previewShape.w = std::abs(x - _dragStartX);
+        _previewShape.h = std::abs(y - _dragStartY);
+        if (_previewShape.w < 12.0 or _previewShape.h < 12.0) {
+            // a plain click with a shape tool: drop a default sized shape
+            _previewShape.w = 140.0;
+            _previewShape.h = 64.0;
+            _previewShape.x = std::max(0.0, x - 70.0);
+            _previewShape.y = std::max(0.0, y - 32.0);
+        }
+        _model.shapes.push_back(_previewShape);
+        _select_only(static_cast<int>(_model.shapes.size()) - 1, -1);
+        _grow_canvas_for(_previewShape.x + _previewShape.w, _previewShape.y + _previewShape.h);
+    }
+    else if (Drag::Conn == _drag) {
+        _previewConn.x2 = x;
+        _previewConn.y2 = y;
+        _previewConn.toShape = _hit_shape(x, y);
+        if (_previewConn.toShape == _previewConn.fromShape and _previewConn.fromShape >= 0) {
+            _previewConn.toShape = -1;
+        }
+        if (std::hypot(x - _dragStartX, y - _dragStartY) >= 8.0) {
+            if (_previewConn.fromShape >= 0 and _previewConn.toShape >= 0) {
+                // both ends snapped: the line keeps following the shapes
+                _model.conns.push_back(_previewConn);
+                _recompute_conns();
+            }
+            else {
+                _model.conns.push_back(_previewConn);
+            }
+            _select_only(-1, static_cast<int>(_model.conns.size()) - 1);
+        }
+    }
+    else if (Drag::Move == _drag or Drag::Resize == _drag) {
+        _recompute_conns();
+    }
+
+    _preview = false;
+    _drag = Drag::None;
+    _dragHandle = -1;
+    _sync_model();
+    _render();
+    _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    return true;
+}
+
+bool CtDrawing::_on_canvas_key(GdkEventKey* event)
+{
+    if (GDK_KEY_Escape == event->keyval) {
+        if (_editShape >= 0) {
+            _commit_text_editing();
+            return true;
+        }
+        _select_only(-1, -1);
+        _set_tool(Tool::Select);
+        _render();
+        return true;
+    }
+    if (GDK_KEY_Delete == event->keyval or GDK_KEY_KP_Delete == event->keyval) {
+        _delete_selection();
+        return true;
+    }
+    if ((GDK_KEY_Return == event->keyval or GDK_KEY_F2 == event->keyval) and _selShape >= 0) {
+        _start_text_editing(_selShape);
+        return true;
+    }
+    if (GDK_KEY_Tab == event->keyval) {
+        // let Tab move the focus out of the drawing instead of inserting a tab
+        return false;
+    }
+    return false;
+}
+
+bool CtDrawing::_on_canvas_draw(const Cairo::RefPtr<Cairo::Context>& /*cr*/)
+{
+    return false;
+}
+
+void CtDrawing::_show_popup(GdkEventButton* event)
+{
+    const int hitIdx = _hit_shape(event->x, event->y);
+    if (hitIdx >= 0) {
+        _select_only(hitIdx, -1);
+        _render();
+    }
+
+    // the menu is a member: a local one would be destroyed before the click
+    for (Gtk::Widget* pChild : _popup.get_children()) {
+        _popup.remove(*pChild);
+    }
+
+    Gtk::MenuItem* pItemEdit = Gtk::manage(new Gtk::MenuItem{_("输入文字…")});
+    pItemEdit->signal_activate().connect([this, hitIdx]() {
+        _start_text_editing(hitIdx >= 0 ? hitIdx : _selShape);
+    });
+    pItemEdit->set_sensitive(hitIdx >= 0 or _selShape >= 0);
+    _popup.append(*pItemEdit);
+
+    Gtk::MenuItem* pItemDelete = Gtk::manage(new Gtk::MenuItem{_("删除")});
+    pItemDelete->signal_activate().connect([this]() { _delete_selection(); });
+    pItemDelete->set_sensitive(_selShape >= 0 or _selConn >= 0);
+    _popup.append(*pItemDelete);
+
+    _popup.append(*Gtk::manage(new Gtk::SeparatorMenuItem{}));
+
+    Gtk::MenuItem* pItemFront = Gtk::manage(new Gtk::MenuItem{_("置于顶层")});
+    pItemFront->signal_activate().connect([this]() {
+        if (_selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+            Shape shape = _model.shapes[_selShape];
+            _model.shapes.erase(_model.shapes.begin() + _selShape);
+            _model.shapes.push_back(shape);
+            _selShape = static_cast<int>(_model.shapes.size()) - 1;
+            _sync_model();
+            _render();
+            _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+        }
+    });
+    pItemFront->set_sensitive(_selShape >= 0);
+    _popup.append(*pItemFront);
+
+    Gtk::MenuItem* pItemSave = Gtk::manage(new Gtk::MenuItem{_("导出为 PNG 图片…")});
+    pItemSave->signal_activate().connect([this]() {
+        CtDialogs::CtFileSelectArgs args{};
+        args.curr_folder = _pCtConfig->pickDirFile;
+        args.curr_file_name = "diagram.png";
+        args.filter_name = _("PNG Image");
+        args.filter_pattern = {"*.png"};
+        const std::string filepath = CtDialogs::file_save_as_dialog(_pCtMainWin, args);
+        if (filepath.empty()) return;
+        _pCtConfig->pickDirFile = Glib::path_get_dirname(filepath);
+        save(fs::path{filepath}, "png");
+    });
+    _popup.append(*pItemSave);
+
+    _popup.show_all();
+    _popup.popup(event->button, event->time);
+}
+
+// ---------------------------------------------------------------- storage
+
+std::string CtDrawing::_png_blob()
+{
+    if (not _rPixbuf) return std::string{};
+    g_autofree gchar* pBuffer{nullptr};
+    gsize buffer_size{0};
+    _rPixbuf->save_to_buffer(pBuffer, buffer_size, "png");
+    return std::string{pBuffer, buffer_size};
+}
+
+void CtDrawing::to_xml(xmlpp::Element* p_node_parent, const int offset_adjustment, CtStorageCache* /*cache*/, const std::string& multifile_dir)
+{
+    xmlpp::Element* p_image_node = p_node_parent->add_child("encoded_png");
+    p_image_node->set_attribute("char_offset", std::to_string(_charOffset + offset_adjustment));
+    p_image_node->set_attribute(CtConst::TAG_JUSTIFICATION, _justification);
+    p_image_node->set_attribute("link", "");   // a drawing carries no link, the model travels in its own attribute
+    p_image_node->set_attribute(XML_MODEL_ATTR, Glib::Base64::encode(_modelXml));
+    if (multifile_dir.empty()) {
+        p_image_node->add_child_text(Glib::Base64::encode(_png_blob()));
+    }
+    else {
+        const std::string sha256sum = CtStorageMultiFile::save_blob(_png_blob(), multifile_dir, ".png");
+        p_image_node->set_attribute("sha256sum", sha256sum);
+    }
+}
+
+bool CtDrawing::to_sqlite(sqlite3* pDb, const gint64 node_id, const int offset_adjustment, CtStorageCache* /*cache*/)
+{
+    bool retVal{true};
+    sqlite3_stmt* p_stmt{nullptr};
+    if (SQLITE_OK != sqlite3_prepare_v2(pDb, CtStorageSqlite::TABLE_IMAGE_INSERT, -1, &p_stmt, nullptr)) {
+        spdlog::error("{}: {}", CtStorageSqlite::ERR_SQLITE_PREPV2, sqlite3_errmsg(pDb));
+        retVal = false;
+    }
+    else {
+        const std::string rawBlob = _png_blob();
+        // the SQLite schema has no room for the vector model: it rides along in
+        // the link column, prefixed so it is never mistaken for a real link
+        const std::string link = std::string{SQLITE_LINK_PREFIX} + Glib::Base64::encode(_modelXml);
+
+        sqlite3_bind_int64(p_stmt, 1, node_id);
+        sqlite3_bind_int64(p_stmt, 2, _charOffset + offset_adjustment);
+        sqlite3_bind_text(p_stmt, 3, _justification.c_str(), _justification.size(), SQLITE_STATIC);
+        sqlite3_bind_text(p_stmt, 4, "", -1, SQLITE_STATIC); // anchor name
+        sqlite3_bind_blob(p_stmt, 5, rawBlob.c_str(), rawBlob.size(), SQLITE_STATIC);
+        sqlite3_bind_text(p_stmt, 6, "", -1, SQLITE_STATIC); // filename
+        sqlite3_bind_text(p_stmt, 7, link.c_str(), link.size(), SQLITE_STATIC);
+        sqlite3_bind_int64(p_stmt, 8, 0); // time
+        if (SQLITE_DONE != sqlite3_step(p_stmt)) {
+            spdlog::error("{}: {}", CtStorageSqlite::ERR_SQLITE_STEP, sqlite3_errmsg(pDb));
+            retVal = false;
+        }
+        sqlite3_finalize(p_stmt);
+    }
+    return retVal;
+}
+
+std::shared_ptr<CtAnchoredWidgetState> CtDrawing::get_state()
+{
+    return std::shared_ptr<CtAnchoredWidgetState>(new CtAnchoredWidgetState_Drawing{this});
+}

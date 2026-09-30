@@ -24,6 +24,7 @@
 #include "ct_state_machine.h"
 #include "ct_main_win.h"
 #include "ct_storage_xml.h"
+#include "ct_drawing.h"
 
 // ImagePng
 CtAnchoredWidgetState_ImagePng::CtAnchoredWidgetState_ImagePng(CtImagePng* image)
@@ -47,6 +48,27 @@ bool CtAnchoredWidgetState_ImagePng::equal(std::shared_ptr<CtAnchoredWidgetState
 CtAnchoredWidget* CtAnchoredWidgetState_ImagePng::to_widget(CtMainWin* pCtMainWin)
 {
     return new CtImagePng{pCtMainWin, pixbuf->copy(), link, charOffset, justification};
+}
+
+// Drawing (OrangeArk)
+CtAnchoredWidgetState_Drawing::CtAnchoredWidgetState_Drawing(CtDrawing* drawing)
+ : CtAnchoredWidgetState{drawing->getOffset(), drawing->getJustification()}
+ , modelXml{drawing->get_model_xml()}
+{
+}
+
+bool CtAnchoredWidgetState_Drawing::equal(std::shared_ptr<CtAnchoredWidgetState> state)
+{
+    CtAnchoredWidgetState_Drawing* other_state = dynamic_cast<CtAnchoredWidgetState_Drawing*>(state.get());
+    return other_state and
+           charOffset == other_state->charOffset and
+           justification == other_state->justification and
+           modelXml == other_state->modelXml;
+}
+
+CtAnchoredWidget* CtAnchoredWidgetState_Drawing::to_widget(CtMainWin* pCtMainWin)
+{
+    return new CtDrawing{pCtMainWin, modelXml, charOffset, justification};
 }
 
 // ImageAnchor

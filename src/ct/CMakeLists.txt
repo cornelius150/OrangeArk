@@ -47,6 +47,7 @@ set(CT_SHARED_FILES
   ct_dialogs_gen_purp.cc
   ct_dialogs_link.cc
   ct_dialogs_tree.cc
+  ct_drawing.cc
   ct_export2html.cc
   ct_export2pdf.cc
   ct_export2txt.cc

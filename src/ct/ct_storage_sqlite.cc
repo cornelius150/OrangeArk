@@ -22,6 +22,7 @@
  */
 
 #include "ct_storage_sqlite.h"
+#include "ct_drawing.h"
 #include "ct_storage_xml.h"
 #include "ct_storage_control.h"
 #include "ct_main_win.h"
@@ -583,7 +584,16 @@ void CtStorageSqlite::_image_from_db(const gint64& nodeId, std::list<CtAnchoredW
             }
             else {
                 const Glib::ustring link = safe_sqlite3_column_text(stmt, 6);
-                anchoredWidgets.push_back(new CtImagePng{_pCtMainWin, rawBlob, link, charOffset, justification});
+                // OrangeArk: a diagram keeps its vector model in the link column
+                const std::string marker{CtDrawing::SQLITE_LINK_PREFIX};
+                const std::string linkStr{link};
+                if (0 == linkStr.compare(0, marker.size(), marker)) {
+                    const std::string modelXml = Glib::Base64::decode(linkStr.substr(marker.size()));
+                    anchoredWidgets.push_back(new CtDrawing{_pCtMainWin, modelXml, charOffset, justification});
+                }
+                else {
+                    anchoredWidgets.push_back(new CtImagePng{_pCtMainWin, rawBlob, link, charOffset, justification});
+                }
             }
         }
     }

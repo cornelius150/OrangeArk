@@ -426,6 +426,7 @@ public:
     void screenshot();
     void latex_insert();
     void table_insert();
+    void drawing_insert();   // OrangeArk: Visio-like diagram in the body
     void codebox_insert();
     void embfile_insert();
     void embfile_insert_path(const std::string& filepath);

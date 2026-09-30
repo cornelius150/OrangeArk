@@ -816,6 +816,17 @@ void CtConfig::_populate_data_from_keyfile()
     }
     // OrangeArk: make sure the single special-character picker button exists
     // (it replaces the several per-symbol quick buttons)
+    // OrangeArk: make sure the diagram (Visio-like canvas) button exists
+    if (toolbarUiList.find("handle_drawing") == std::string::npos) {
+        const size_t posImage = toolbarUiList.find("handle_image");
+        if (std::string::npos != posImage) {
+            toolbarUiList.insert(posImage, "handle_drawing,");
+        }
+        else {
+            if (not toolbarUiList.empty()) toolbarUiList += ",";
+            toolbarUiList += "handle_drawing";
+        }
+    }
     if (toolbarUiList.find("insert_special_char") == std::string::npos) {
         if (not toolbarUiList.empty()) toolbarUiList += ",";
         toolbarUiList += "insert_special_char";

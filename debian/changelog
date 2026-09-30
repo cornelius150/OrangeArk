@@ -1,3 +1,31 @@
+orangeark (1.3.0-1) focal; urgency=low
+
+  * New: a Visio-like diagram can be drawn right in the document body
+    ("插入图形"). The canvas is an anchored widget with its own toolbar:
+    rectangle, rounded rectangle, ellipse, diamond (decision), parallelogram
+    (data), cylinder (database), hexagon (preparation), terminator (start /
+    end) and document shapes, plus connectors and arrows. Shapes are drawn by
+    dragging, moved by dragging, resized with 8 handles, deleted with the
+    Delete key and stacked with the popup menu.
+  * New: text inside shapes, like Visio. Double click a shape (or press F2 /
+    Enter) and a real text editor opens on top of it, so the input method
+    works for Chinese; the text is centred and word wrapped inside the shape
+    and is rendered with Pango when the canvas is drawn.
+  * New: connectors snap to shapes. Dragging a line from inside one shape to
+    inside another binds both ends to those shapes, so the line keeps
+    following them when they are moved or resized.
+  * Storage: a diagram is saved as a plain PNG image (any other CherryTree /
+    OrangeArk still shows the picture) plus its vector model - in the
+    "oa_drawing" attribute for XML documents, and in the image link column of
+    SQLite documents behind the "oa-drawing:" marker. Undo/redo and
+    copy/paste keep the diagram editable.
+  * The screen colour picker now really shows the little eyedropper cursor,
+    including while sampling a colour inside the document. The cursor is
+    built with the Win32 cursor API from the embedded icon and re-applied
+    while the mouse is captured (mouse capture also stops Windows from
+    replacing it with the text view's I-beam through WM_SETCURSOR). A small
+    preview of the sampled colour follows the pointer.
+
 orangeark (1.2.4-1) focal; urgency=low
 
   * Ctrl/Shift multi-select works at all. This is why "多选还是不行" survived

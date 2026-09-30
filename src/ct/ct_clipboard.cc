@@ -25,6 +25,7 @@
 #include "ct_codebox.h"
 #include "ct_main_win.h"
 #include "ct_image.h"
+#include "ct_drawing.h"
 #include "ct_export2html.h"
 #include "ct_export2txt.h"
 #include "ct_imports.h"
@@ -415,7 +416,11 @@ void CtClipboard::_selection_to_clipboard(Glib::RefPtr<Gtk::TextBuffer> text_buf
 #ifdef _WIN32
                 // image target doesn't work on Win32 with other targets, so have to set it directly
                 // then copy/paste into MS Paint will work. Pasting into CT back also will work
-                if (image->get_type() == CtAnchWidgType::ImagePng) {
+                // OrangeArk: a diagram is only fully preserved in CT's own
+                // clipboard format (the vector model travels with it), so it
+                // must not take the raw image shortcut
+                if (CtAnchWidgType::ImagePng == image->get_type() and
+                    nullptr == dynamic_cast<CtDrawing*>(image)) {
 #if GTKMM_MAJOR_VERSION >= 4
                     if (auto display = Gdk::Display::get_default()) {
                         if (auto clipboard = display->get_clipboard()) {

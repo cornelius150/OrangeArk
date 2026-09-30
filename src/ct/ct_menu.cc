@@ -997,11 +997,71 @@ static void oa_ensure_colour_cell_css()
 //    │ ▬▬▬▬▬  │   │   <- live colour swatch, redrawn whenever the colour changes
 //    └────────┴───┘
 #ifdef G_OS_WIN32
-// OrangeArk: fullscreen transparent overlay with an EYEDROPPER cursor — the
-// user asked for a real "取色小吸管" when sampling a colour. The overlay
-// swallows the next click anywhere on the screen and samples that pixel;
-// right-click or Esc cancels. Fully transparent (RGBA), so GetPixel still
-// reads the true colour underneath.
+// OrangeArk: fullscreen transparent overlay with an EYEDROPPER cursor, built
+// on the Win32 cursor API. GDK applies the cursor of the window under the
+// pointer in its WM_SETCURSOR handler, so over the document body the dropper
+// was replaced by the text view's I-beam. Setting the cursor ourselves AND
+// capturing the mouse (which also suppresses WM_SETCURSOR) makes the little
+// dropper visible everywhere, including while sampling text in the document.
+#include <gdk/gdkwin32.h> // OrangeArk: gdk_win32_window_get_handle()
+
+static HCURSOR oa_make_eyedropper_cursor()
+{
+    Glib::RefPtr<Gdk::Pixbuf> rPix;
+    try {
+        rPix = Gdk::Pixbuf::create_from_resource("/icons/ct_colour_pick.svg", 32, 32, true);
+    }
+    catch (...) {
+        rPix.reset();
+    }
+    if (not rPix) return nullptr;
+    Glib::RefPtr<Gdk::Pixbuf> rImg = rPix->get_has_alpha() ? rPix : rPix->add_alpha(false, 0, 0, 0);
+    const int w = rImg->get_width();
+    const int h = rImg->get_height();
+    HDC hdc = GetDC(nullptr);
+    if (not hdc) return nullptr;
+
+    BITMAPINFO bmi{};
+    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bmi.bmiHeader.biWidth = w;
+    bmi.bmiHeader.biHeight = -h;                 // top-down DIB
+    bmi.bmiHeader.biPlanes = 1;
+    bmi.bmiHeader.biBitCount = 32;
+    bmi.bmiHeader.biCompression = BI_RGB;
+    void* pBits{nullptr};
+    HBITMAP hColour = CreateDIBSection(hdc, &bmi, DIB_RGB_COLORS, &pBits, nullptr, 0);
+    if (not hColour or not pBits) {
+        ReleaseDC(nullptr, hdc);
+        return nullptr;
+    }
+    const guint8* pSrc = rImg->get_pixels();
+    const int srcStride = rImg->get_rowstride();
+    guint8* pDst = static_cast<guint8*>(pBits);
+    for (int y = 0; y < h; ++y) {
+        const guint8* s = pSrc + static_cast<size_t>(y) * static_cast<size_t>(srcStride);
+        guint8* d = pDst + static_cast<size_t>(y) * static_cast<size_t>(w) * 4u;
+        for (int x = 0; x < w; ++x) {
+            const guint8 a = s[4 * x + 3];
+            d[4 * x + 0] = static_cast<guint8>((s[4 * x + 2] * a) / 255); // B
+            d[4 * x + 1] = static_cast<guint8>((s[4 * x + 1] * a) / 255); // G
+            d[4 * x + 2] = static_cast<guint8>((s[4 * x + 0] * a) / 255); // R
+            d[4 * x + 3] = a;                                            // A
+        }
+    }
+    HBITMAP hMask = CreateBitmap(w, h, 1, 1, nullptr);
+    ICONINFO iconInfo{};
+    iconInfo.fIcon = FALSE;
+    iconInfo.xHotspot = 9;    // dropper tip: (7,17) of the 24x24 art, scaled to 32x32
+    iconInfo.yHotspot = 22;
+    iconInfo.hbmMask = hMask;
+    iconInfo.hbmColor = hColour;
+    HCURSOR hCursor = CreateIconIndirect(&iconInfo);
+    DeleteObject(hMask);
+    DeleteObject(hColour);
+    ReleaseDC(nullptr, hdc);
+    return hCursor;
+}
+
 class OaColourPickOverlay : public Gtk::Window
 {
 public:
@@ -1022,20 +1082,21 @@ private:
         set_decorated(false);
         set_app_paintable(true);
         if (auto rVisual = get_screen()->get_rgba_visual()) {
-            // gtkmm3 wraps no set_visual — go through the C API (alpha compositing)
+            // gtkmm3 wraps no set_visual - go through the C API (alpha compositing)
             gtk_widget_set_visual(GTK_WIDGET(gobj()), rVisual->gobj());
         }
-        signal_draw().connect([](const Cairo::RefPtr<Cairo::Context>& cr){
-            // paint nothing — clear to fully transparent so the screen below
-            // stays visible AND GetPixel returns the real underlying colour
-            cr->set_source_rgba(0.0, 0.0, 0.0, 0.0);
-            cr->set_operator(Cairo::OPERATOR_SOURCE);
-            cr->paint();
-            return true;
-        });
+        signal_draw().connect(sigc::mem_fun(*this, &OaColourPickOverlay::_on_draw), false);
         add_events(Gdk::BUTTON_PRESS_MASK | Gdk::KEY_PRESS_MASK);
         signal_button_press_event().connect(sigc::mem_fun(*this, &OaColourPickOverlay::_on_press), false);
         signal_key_press_event().connect(sigc::mem_fun(*this, &OaColourPickOverlay::_on_key), false);
+    }
+
+    ~OaColourPickOverlay() override
+    {
+        if (_hCursor) {
+            DestroyCursor(_hCursor);
+            _hCursor = nullptr;
+        }
     }
 
     void run()
@@ -1043,23 +1104,105 @@ private:
         fullscreen();
         show_all();
         grab_focus();
-        // eyedropper cursor from the embedded icon; hotspot = dropper tip
-        Glib::RefPtr<Gdk::Cursor> rCursor;
-        try {
-            auto rPix = Gdk::Pixbuf::create_from_resource("/icons/ct_colour_pick.svg", 24, 24, true);
-            if (rPix and get_screen()->get_display()) {
-                rCursor = Gdk::Cursor::create(get_screen()->get_display(), rPix, 7, 17);
-            }
+        _hCursor = oa_make_eyedropper_cursor();
+        if (auto rWin = get_window()) {
+            _hWnd = static_cast<HWND>(gdk_win32_window_get_handle(rWin->gobj()));
         }
-        catch (...) {}
-        if (not rCursor) rCursor = Gdk::Cursor::create(Gdk::CursorType::CROSSHAIR);
-        if (auto rWin = get_window()) rWin->set_cursor(rCursor);
+        if (_hWnd) {
+            SetCapture(_hWnd);   // every mouse message comes here, and Windows
+            _captured = true;    // stops sending WM_SETCURSOR while captured
+        }
+        _apply_cursor();
+        _tickConn = Glib::signal_timeout().connect([this]() { return _on_tick(); }, 25);
     }
 
-    bool _on_press(GdkEventButton* event)
+    void _apply_cursor()
     {
-        if (3 == event->button) { _finish(false); return true; } // right click = cancel
-        if (1 != event->button) return false;
+        if (_hCursor) {
+            SetCursor(_hCursor);
+        }
+        else {
+            // fallback if the icon could not be turned into a cursor
+            Glib::RefPtr<Gdk::Cursor> rCursor = Gdk::Cursor::create(Gdk::CursorType::CROSSHAIR);
+            if (auto rWin = get_window()) rWin->set_cursor(rCursor);
+        }
+    }
+
+    bool _on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
+    {
+        // paint nothing - fully transparent so the screen below stays visible
+        // AND GetPixel returns the real underlying colour
+        cr->set_source_rgba(0.0, 0.0, 0.0, 0.0);
+        cr->set_operator(Cairo::OPERATOR_SOURCE);
+        cr->paint();
+        cr->set_operator(Cairo::OPERATOR_OVER);
+        if (_done or _sampleHex.empty()) return true;
+
+        // screen coordinates -> window coordinates
+        int orgX = 0, orgY = 0;
+        if (auto rWin = get_window()) rWin->get_origin(orgX, orgY);
+        const double px = _lastX - orgX + 20.0;
+        const double py = _lastY - orgY + 20.0;
+
+        double r = 0.0, g = 0.0, b = 0.0;
+        unsigned int rr = 0, gg = 0, bb = 0;
+        if (3 == std::sscanf(_sampleHex.c_str(), "#%02x%02x%02x", &rr, &gg, &bb)) {
+            r = rr / 255.0;
+            g = gg / 255.0;
+            b = bb / 255.0;
+        }
+        cr->rectangle(px, py, 40.0, 30.0);
+        cr->set_source_rgb(r, g, b);
+        cr->fill_preserve();
+        cr->set_source_rgb(1.0, 1.0, 1.0);
+        cr->set_line_width(2.0);
+        cr->stroke();
+        cr->rectangle(px + 1.0, py + 1.0, 38.0, 28.0);
+        cr->set_source_rgb(0.15, 0.15, 0.15);
+        cr->set_line_width(1.0);
+        cr->stroke();
+        return true;
+    }
+
+    bool _on_tick()
+    {
+        if (_done) return false;
+        _apply_cursor();
+        if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
+            _finish(false);
+            return false;
+        }
+        POINT pt{};
+        GetCursorPos(&pt);
+        if (pt.x != _lastX or pt.y != _lastY) {
+            _lastX = pt.x;
+            _lastY = pt.y;
+            HDC hdc = GetDC(nullptr);
+            const COLORREF c = GetPixel(hdc, pt.x, pt.y);
+            ReleaseDC(nullptr, hdc);
+            char hex[16];
+            std::snprintf(hex, sizeof(hex), "#%02x%02x%02x", GetRValue(c), GetGValue(c), GetBValue(c));
+            _sampleHex = hex;
+            queue_draw();
+        }
+        // safety net: if GDK never delivered the press event (transparent
+        // window, exotic driver) the click is still honoured
+        if (not _pressed) {
+            if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+                _pressed = true;
+                _finish(true, _sampleHex.empty() ? _sample_at_cursor() : Glib::ustring{_sampleHex});
+                return false;
+            }
+            if (GetAsyncKeyState(VK_RBUTTON) & 0x8000) {
+                _finish(false);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    Glib::ustring _sample_at_cursor() const
+    {
         POINT pt{};
         GetCursorPos(&pt);
         HDC hdc = GetDC(nullptr);
@@ -1067,13 +1210,27 @@ private:
         ReleaseDC(nullptr, hdc);
         char hex[16];
         std::snprintf(hex, sizeof(hex), "#%02x%02x%02x", GetRValue(c), GetGValue(c), GetBValue(c));
-        _finish(true, Glib::ustring{hex});
+        return Glib::ustring{hex};
+    }
+
+    bool _on_press(GdkEventButton* event)
+    {
+        if (3 == event->button) {
+            _finish(false);
+            return true;   // right click = cancel
+        }
+        if (1 != event->button) return false;
+        _pressed = true;
+        _finish(true, _sample_at_cursor());
         return true;
     }
 
     bool _on_key(GdkEventKey* event)
     {
-        if (GDK_KEY_Escape == event->keyval) { _finish(false); return true; }
+        if (GDK_KEY_Escape == event->keyval) {
+            _finish(false);
+            return true;
+        }
         return false;
     }
 
@@ -1081,13 +1238,27 @@ private:
     {
         if (_done) return;
         _done = true;
+        _tickConn.disconnect();
+        if (_captured) {
+            ReleaseCapture();
+            _captured = false;
+        }
+        SetCursor(static_cast<HCURSOR>(LoadImage(nullptr, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED)));
         if (picked) _onPicked(colour);
         hide();
         Glib::signal_idle().connect_once([this]() { delete this; });
     }
 
     sigc::slot<void, const Glib::ustring&> _onPicked;
-    bool _done{false};
+    sigc::connection _tickConn;
+    HWND     _hWnd{nullptr};
+    HCURSOR  _hCursor{nullptr};
+    bool     _captured{false};
+    bool     _done{false};
+    bool     _pressed{false};
+    int      _lastX{-1};
+    int      _lastY{-1};
+    std::string _sampleHex;
 };
 #endif /* G_OS_WIN32 */
 

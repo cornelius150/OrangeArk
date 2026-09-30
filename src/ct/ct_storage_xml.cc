@@ -27,6 +27,7 @@
 #include <libxml++/libxml++.h>
 #include <libxml2/libxml/parser.h>
 #include "ct_image.h"
+#include "ct_drawing.h"
 #include "ct_codebox.h"
 #include "ct_table.h"
 #include "ct_main_win.h"
@@ -787,6 +788,12 @@ CtAnchoredWidget* CtStorageXmlHelper::_create_image_from_xml(xmlpp::Element* xml
                                   fs::path{multifile_dir} / file_name};
     }
     const Glib::ustring link = xml_element->get_attribute_value("link");
+    // OrangeArk: an editable diagram is stored as a normal PNG plus its vector
+    // model in the "oa_drawing" attribute; without the model it is a plain image
+    const Glib::ustring drawingModel = xml_element->get_attribute_value(CtDrawing::XML_MODEL_ATTR);
+    if (not drawingModel.empty()) {
+        return new CtDrawing{_pCtMainWin, Glib::Base64::decode(drawingModel), charOffset, justification};
+    }
     return new CtImagePng{_pCtMainWin, rawBlob, link, charOffset, justification};
 }
 

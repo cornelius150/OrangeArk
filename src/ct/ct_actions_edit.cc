@@ -25,6 +25,7 @@
 #include "ct_clipboard.h"
 #include "ct_list.h"
 #include "ct_image.h"
+#include "ct_drawing.h"
 #include "ct_logging.h"
 #include "ct_storage_control.h"
 #include <gtkmm/dialog.h>
@@ -1074,6 +1075,19 @@ void CtActions::image_insert_latex(Gtk::TextIter iter_insert,
     if (latex_text.empty()) return;
     const int charOffset = iter_insert.get_offset();
     CtAnchoredWidget* pAnchoredWidget = new CtImageLatex{_pCtMainWin, latex_text, charOffset, justification, CtImageEmbFile::get_next_unique_id()};
+    pAnchoredWidget->insertInTextBuffer(_curr_buffer());
+    _pCtMainWin->get_tree_store().addAnchoredWidgets(_pCtMainWin->curr_tree_iter(),
+                                                     {pAnchoredWidget},
+                                                     &_pCtMainWin->get_text_view().mm());
+}
+
+// OrangeArk: insert an editable diagram (flow chart / topology) in the body
+void CtActions::drawing_insert()
+{
+    if (not _node_sel_and_rich_text()) return;
+    if (not _is_curr_node_not_read_only_or_error()) return;
+    const int charOffset = _curr_buffer()->get_insert()->get_iter().get_offset();
+    CtAnchoredWidget* pAnchoredWidget = new CtDrawing{_pCtMainWin, ""/*empty canvas*/, charOffset, ""};
     pAnchoredWidget->insertInTextBuffer(_curr_buffer());
     _pCtMainWin->get_tree_store().addAnchoredWidgets(_pCtMainWin->curr_tree_iter(),
                                                      {pAnchoredWidget},

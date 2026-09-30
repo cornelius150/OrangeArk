@@ -122,6 +122,8 @@ void CtMenu::init_actions(CtActions* pActions)
             _("截图"), sigc::mem_fun(*pActions, &CtActions::screenshot)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_latex", "ct_latex_insert", _("Insert Late_x..."), KB_SHIFT+KB_ALT+"g",
             _("Insert LatexBox"), sigc::mem_fun(*pActions, &CtActions::latex_insert)});
+        _actions.push_back(CtMenuAction{editor_cat, "handle_drawing", "ct_drawing_insert", _("插入图形"), KB_SHIFT+KB_ALT+"v",
+            _("在正文中插入可以画流程图/拓扑图的画布"), sigc::mem_fun(*pActions, &CtActions::drawing_insert)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_table", "ct_table_insert", _("Insert _Table..."), KB_SHIFT+KB_ALT+"h",
             _("Insert a Table"), sigc::mem_fun(*pActions, &CtActions::table_insert)});
         _actions.push_back(CtMenuAction{editor_cat, "handle_codebox", "ct_codebox_insert", _("Insert _CodeBox..."), KB_SHIFT+KB_ALT+"d",

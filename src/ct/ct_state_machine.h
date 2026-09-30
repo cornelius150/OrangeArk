@@ -64,6 +64,19 @@ public:
     Glib::RefPtr<Gdk::Pixbuf> pixbuf;
 };
 
+// OrangeArk: a diagram keeps its vector model through undo/redo
+class CtAnchoredWidgetState_Drawing : public CtAnchoredWidgetState
+{
+public:
+    CtAnchoredWidgetState_Drawing(class CtDrawing* drawing);
+
+    bool equal(std::shared_ptr<CtAnchoredWidgetState> state) override;
+    CtAnchoredWidget* to_widget(CtMainWin* pCtMainWin) override;
+
+public:
+    std::string modelXml;
+};
+
 class CtAnchoredWidgetState_Anchor : public CtAnchoredWidgetState
 {
 public:
