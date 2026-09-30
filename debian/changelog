@@ -1,3 +1,25 @@
+orangeark (1.3.1-1) focal; urgency=low
+
+  * New: text inside shapes now has its own font size and colour. The
+    toolbar gains a font size dropdown (10-32) and a text colour button;
+    both apply to the selected shape (or become the default for new shapes)
+    and the on-shape text editor shows the same size and colour while
+    typing. Stored per shape in the model (new "tc" attribute next to the
+    existing "fs"; older documents keep rendering exactly as before).
+  * Change: the drawing toolbar now shows graphical icons instead of text
+    buttons - the icons are rendered with cairo from the same geometry as
+    the shapes they stand for; the Chinese tooltips are kept.
+  * Change: the drawing toolbar is hidden while a diagram is not being
+    edited. It appears when the canvas is clicked (and right away for a
+    newly inserted diagram) and hides again as soon as the focus goes back
+    to the document, so a finished diagram reads as a plain picture in the
+    text.
+  * Change: the canvas no longer grows without bound while dragging near
+    the edge (was up to 4000px, now capped at 1200px); the "适应" button
+    still shrinks it to fit the content.
+
+ -- Cornelius <cornelius150@users.noreply.github.com>  Wed, 30 Sep 2026 17:55:00 +0800
+
 orangeark (1.3.0-1) focal; urgency=low
 
   * New: a Visio-like diagram can be drawn right in the document body

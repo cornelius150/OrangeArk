@@ -165,6 +165,7 @@ static Glib::RefPtr<Gdk::Pixbuf> oa_placeholder_pixbuf()
             shape.stroke = _shape_attr_str(pElement, "stroke", "#1565c0");
             shape.fontSize = _shape_attr_double(pElement, "fs", 13.0);
             shape.bold = 0 != _shape_attr_int(pElement, "bold", 0);
+            shape.textColor = _shape_attr_str(pElement, "tc", "#1f2429");
             if (xmlpp::TextNode* pText = pElement->get_child_text()) {
                 shape.text = pText->get_content();
             }
@@ -214,6 +215,7 @@ static Glib::RefPtr<Gdk::Pixbuf> oa_placeholder_pixbuf()
         pShapeNode->set_attribute("stroke", shape.stroke);
         pShapeNode->set_attribute("fs", std::to_string(shape.fontSize));
         pShapeNode->set_attribute("bold", shape.bold ? "1" : "0");
+        pShapeNode->set_attribute("tc", shape.textColor);
         if (not shape.text.empty()) {
             pShapeNode->add_child_text(shape.text);
         }
@@ -245,6 +247,7 @@ CtDrawing::CtDrawing(CtMainWin* pCtMainWin,
 
     _fillColor.set("#e3f2fd");
     _strokeColor.set("#1565c0");
+    _textColor.set("#1f2429");
 
     // replace the static image of the base class with: toolbar + canvas
     _frame.remove();   // Gtk::Bin::remove() drops the single child (the base image)
@@ -266,6 +269,13 @@ CtDrawing::CtDrawing(CtMainWin* pCtMainWin,
         _commit_text_editing();
         return false;
     });
+    _pEditor->get_buffer()->signal_changed().connect([this]() {
+        // keep the text colour tag over the whole text while the user types
+        if (_editShape < 0) return;
+        Glib::RefPtr<Gtk::TextBuffer> rBuf = _pEditor->get_buffer();
+        Glib::RefPtr<Gtk::TextTag> rTag = rBuf->get_tag_table()->lookup("oa_drawing_text_color");
+        if (rTag) rBuf->apply_tag(rTag, rBuf->begin(), rBuf->end());
+    });
     _pOverlay->add_overlay(*_pEditor);
 
     _pCanvas->add(*_pOverlay);
@@ -277,23 +287,147 @@ CtDrawing::CtDrawing(CtMainWin* pCtMainWin,
     _pCanvas->signal_button_release_event().connect(sigc::mem_fun(*this, &CtDrawing::_on_canvas_release), false);
     _pCanvas->signal_motion_notify_event().connect(sigc::mem_fun(*this, &CtDrawing::_on_canvas_motion), false);
     _pCanvas->signal_key_press_event().connect(sigc::mem_fun(*this, &CtDrawing::_on_canvas_key), false);
+    _pCanvas->signal_focus_out_event().connect(sigc::mem_fun(*this, &CtDrawing::_on_canvas_focus_out), false);
 
     _pVBox->pack_start(*_build_toolbar(), false, false);
     _pVBox->pack_start(*_pCanvas, false, false);
     _frame.add(*_pVBox);
     _frame.show_all();
 
+    if (_model.shapes.empty() and _model.conns.empty()) {
+        // a brand-new canvas starts with the tools visible, ready to draw
+        _pToolbar->show();
+        Glib::signal_idle().connect(sigc::mem_fun(*this, &CtDrawing::_grab_focus_on_idle));
+    }
+    else {
+        // an existing diagram opens as a plain picture: the tools appear only
+        // while the user works on the canvas and hide again on click-away
+        _pToolbar->hide();
+    }
+
     _render();
 }
 
-Gtk::Button* CtDrawing::_tool_button(const Glib::ustring& label, const Glib::ustring& tooltip, const Tool tool)
+Gtk::Button* CtDrawing::_tool_button(const Glib::RefPtr<Gdk::Pixbuf>& rIcon, const Glib::ustring& tooltip, const Tool tool)
 {
-    Gtk::Button* pButton = Gtk::manage(new Gtk::Button{label});
-    pButton->set_tooltip_text(tooltip);
+    Gtk::Button* pButton = Gtk::manage(new Gtk::Button{});
+    pButton->set_focus_on_click(false);
     pButton->set_relief(Gtk::RELIEF_NONE);
+    pButton->set_always_show_image(true);
+    pButton->set_image(*Gtk::manage(new Gtk::Image{rIcon}));
+    pButton->set_tooltip_text(tooltip);
     pButton->signal_clicked().connect([this, tool]() { _set_tool(tool); });
     _toolButtons.push_back(pButton);
     return pButton;
+}
+
+// toolbar icons are rendered programmatically with cairo, so they need no
+// extra resource and always match the shapes they stand for
+Glib::RefPtr<Gdk::Pixbuf> CtDrawing::_icon_for_tool(const Tool tool)
+{
+    const int S = 22;
+    Cairo::RefPtr<Cairo::ImageSurface> rSurface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, S, S);
+    Cairo::RefPtr<Cairo::Context> cr = Cairo::Context::create(rSurface);
+    cr->set_line_join(Cairo::LINE_JOIN_ROUND);
+    cr->set_line_cap(Cairo::LINE_CAP_ROUND);
+
+    if (Tool::Connector == tool or Tool::Arrow == tool) {
+        cr->set_source_rgb(0.22, 0.28, 0.31);
+        cr->set_line_width(1.8);
+        cr->move_to(4.5, 17.0);
+        cr->line_to(17.5, 5.0);
+        cr->stroke();
+        if (Tool::Arrow == tool) {
+            _arrow_head(cr, 17.5, 5.0, std::atan2(5.0 - 17.0, 17.5 - 4.5), 6.0);
+        }
+    }
+    else if (Tool::Select == tool) {
+        cr->set_source_rgb(0.22, 0.28, 0.31);
+        cr->move_to(6.0, 3.0);
+        cr->line_to(6.0, 16.5);
+        cr->line_to(9.7, 13.3);
+        cr->line_to(11.9, 18.2);
+        cr->line_to(14.1, 17.2);
+        cr->line_to(11.9, 12.5);
+        cr->line_to(16.6, 12.1);
+        cr->close_path();
+        cr->fill();
+    }
+    else {
+        Shape iconShape;
+        iconShape.type = tool;
+        switch (tool) {
+        case Tool::Diamond:    iconShape.x = 4.0; iconShape.y = 3.5; iconShape.w = 14.0; iconShape.h = 15.0; break;
+        case Tool::Ellipse:    iconShape.x = 3.5; iconShape.y = 5.0; iconShape.w = 15.0; iconShape.h = 12.0; break;
+        case Tool::Cylinder:   iconShape.x = 4.5; iconShape.y = 4.5; iconShape.w = 13.0; iconShape.h = 13.0; break;
+        case Tool::Terminator: iconShape.x = 3.0; iconShape.y = 7.0; iconShape.w = 16.0; iconShape.h = 8.0;  break;
+        case Tool::Document:   iconShape.x = 3.5; iconShape.y = 4.5; iconShape.w = 15.0; iconShape.h = 12.0; break;
+        default:               iconShape.x = 3.5; iconShape.y = 5.5; iconShape.w = 15.0; iconShape.h = 11.0; break;
+        }
+        _shape_path(cr, iconShape);
+        cr->set_source_rgb(0.89, 0.95, 0.99);   // the default shape fill
+        cr->fill_preserve();
+        cr->set_source_rgb(0.08, 0.40, 0.75);   // the default shape stroke
+        cr->set_line_width(1.4);
+        cr->stroke();
+    }
+
+    return Gdk::Pixbuf::create(rSurface, 0, 0, S, S);
+}
+
+Glib::RefPtr<Gdk::Pixbuf> CtDrawing::_icon_for_action(const char* kind)
+{
+    const int S = 22;
+    Cairo::RefPtr<Cairo::ImageSurface> rSurface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, S, S);
+    Cairo::RefPtr<Cairo::Context> cr = Cairo::Context::create(rSurface);
+    cr->set_line_join(Cairo::LINE_JOIN_ROUND);
+    cr->set_line_cap(Cairo::LINE_CAP_ROUND);
+
+    if (0 == std::strcmp(kind, "text")) {
+        cr->select_font_face("Sans", Cairo::FONT_SLANT_NORMAL, Cairo::FONT_WEIGHT_BOLD);
+        cr->set_font_size(16.0);
+        cr->set_source_rgb(0.22, 0.28, 0.31);
+        Cairo::TextExtents te;
+        cr->get_text_extents("A", te);
+        cr->move_to((S - te.width) / 2.0 - te.x_bearing, (S + te.height) / 2.0 - te.y_bearing - 1.0);
+        cr->show_text("A");
+    }
+    else if (0 == std::strcmp(kind, "delete")) {
+        cr->set_source_rgb(0.78, 0.16, 0.12);
+        cr->set_line_width(1.5);
+        cr->move_to(4.5, 6.2);
+        cr->line_to(17.5, 6.2);                    // lid
+        cr->move_to(8.8, 6.2);
+        cr->line_to(8.8, 3.8);
+        cr->line_to(13.2, 3.8);
+        cr->line_to(13.2, 6.2);                    // handle
+        cr->move_to(6.4, 8.6);
+        cr->line_to(7.0, 17.6);
+        cr->line_to(15.0, 17.6);
+        cr->line_to(15.6, 8.6);
+        cr->close_path();                          // body
+        cr->move_to(9.6, 10.6);
+        cr->line_to(9.6, 15.4);                    // inner rib 1
+        cr->move_to(12.4, 10.6);
+        cr->line_to(12.4, 15.4);                   // inner rib 2
+        cr->stroke();
+    }
+    else {   // "fit"
+        cr->set_source_rgb(0.22, 0.28, 0.31);
+        cr->set_line_width(1.5);
+        cr->move_to(4.0, 9.0);   cr->line_to(4.0, 4.0);   cr->line_to(9.0, 4.0);
+        cr->move_to(13.0, 4.0);  cr->line_to(18.0, 4.0);  cr->line_to(18.0, 9.0);
+        cr->move_to(18.0, 13.0); cr->line_to(18.0, 18.0); cr->line_to(13.0, 18.0);
+        cr->move_to(9.0, 18.0);  cr->line_to(4.0, 18.0);  cr->line_to(4.0, 13.0);
+        cr->stroke();
+        cr->move_to(8.8, 13.2);
+        cr->line_to(13.2, 8.8);
+        cr->stroke();
+        _arrow_head(cr, 13.6, 8.4, std::atan2(8.4 - 13.2, 13.6 - 8.8), 5.0);
+        _arrow_head(cr, 8.4, 13.6, std::atan2(13.6 - 8.8, 8.4 - 13.6), 5.0);
+    }
+
+    return Gdk::Pixbuf::create(rSurface, 0, 0, S, S);
 }
 
 Gtk::Box* CtDrawing::_build_toolbar()
@@ -301,36 +435,61 @@ Gtk::Box* CtDrawing::_build_toolbar()
     _pToolbar = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_VERTICAL, 2});
 
     Gtk::Box* pRow1 = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 1});
-    pRow1->pack_start(*_tool_button(_("选择"), _("选择 / 移动图形，双击图形输入文字"), Tool::Select), false, false);
-    pRow1->pack_start(*_tool_button(_("矩形"), _("矩形（流程步骤）"), Tool::Rect), false, false);
-    pRow1->pack_start(*_tool_button(_("圆角"), _("圆角矩形"), Tool::RoundRect), false, false);
-    pRow1->pack_start(*_tool_button(_("椭圆"), _("椭圆 / 圆形"), Tool::Ellipse), false, false);
-    pRow1->pack_start(*_tool_button(_("菱形"), _("菱形（判断）"), Tool::Diamond), false, false);
-    pRow1->pack_start(*_tool_button(_("平行"), _("平行四边形（数据输入 / 输出）"), Tool::Parallelogram), false, false);
-    pRow1->pack_start(*_tool_button(_("数据"), _("圆柱形（数据库 / 存储）"), Tool::Cylinder), false, false);
-    pRow1->pack_start(*_tool_button(_("六边"), _("六边形（准备 / 预设）"), Tool::Hexagon), false, false);
-    pRow1->pack_start(*_tool_button(_("起止"), _("圆角胶囊（开始 / 结束）"), Tool::Terminator), false, false);
-    pRow1->pack_start(*_tool_button(_("文档"), _("文档形状（报表 / 输出）"), Tool::Document), false, false);
+    pRow1->pack_start(*_tool_button(_icon_for_tool(Tool::Select),        _("选择 / 移动图形，双击图形输入文字"), Tool::Select), false, false);
+    pRow1->pack_start(*_tool_button(_icon_for_tool(Tool::Rect),          _("矩形（流程步骤）"), Tool::Rect), false, false);
+    pRow1->pack_start(*_tool_button(_icon_for_tool(Tool::RoundRect),     _("圆角矩形"), Tool::RoundRect), false, false);
+    pRow1->pack_start(*_tool_button(_icon_for_tool(Tool::Ellipse),       _("椭圆 / 圆形"), Tool::Ellipse), false, false);
+    pRow1->pack_start(*_tool_button(_icon_for_tool(Tool::Diamond),       _("菱形（判断）"), Tool::Diamond), false, false);
+    pRow1->pack_start(*_tool_button(_icon_for_tool(Tool::Parallelogram), _("平行四边形（数据输入 / 输出）"), Tool::Parallelogram), false, false);
+    pRow1->pack_start(*_tool_button(_icon_for_tool(Tool::Cylinder),      _("圆柱形（数据库 / 存储）"), Tool::Cylinder), false, false);
+    pRow1->pack_start(*_tool_button(_icon_for_tool(Tool::Hexagon),       _("六边形（准备 / 预设）"), Tool::Hexagon), false, false);
+    pRow1->pack_start(*_tool_button(_icon_for_tool(Tool::Terminator),    _("圆角胶囊（开始 / 结束）"), Tool::Terminator), false, false);
+    pRow1->pack_start(*_tool_button(_icon_for_tool(Tool::Document),      _("文档形状（报表 / 输出）"), Tool::Document), false, false);
     _pToolbar->pack_start(*pRow1, false, false);
 
     Gtk::Box* pRow2 = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 2});
-    pRow2->pack_start(*_tool_button(_("直线"), _("连线：从一个图形拖到另一个图形"), Tool::Connector), false, false);
-    pRow2->pack_start(*_tool_button(_("箭头"), _("带箭头的连线（流程方向）"), Tool::Arrow), false, false);
+    pRow2->pack_start(*_tool_button(_icon_for_tool(Tool::Connector), _("连线：从一个图形拖到另一个图形"), Tool::Connector), false, false);
+    pRow2->pack_start(*_tool_button(_icon_for_tool(Tool::Arrow),     _("带箭头的连线（流程方向）"), Tool::Arrow), false, false);
 
     _pFillBtn = Gtk::manage(new Gtk::ColorButton{_fillColor});
     _pFillBtn->set_size_request(30, 24);
+    _pFillBtn->set_focus_on_click(false);
     _pFillBtn->set_tooltip_text(_("填充颜色（选中图形后可直接改色）"));
     _pFillBtn->signal_color_set().connect(sigc::mem_fun(*this, &CtDrawing::_on_fill_color_set));
     pRow2->pack_start(*_pFillBtn, false, false);
 
     _pStrokeBtn = Gtk::manage(new Gtk::ColorButton{_strokeColor});
     _pStrokeBtn->set_size_request(30, 24);
+    _pStrokeBtn->set_focus_on_click(false);
     _pStrokeBtn->set_tooltip_text(_("边框 / 线条颜色"));
     _pStrokeBtn->signal_color_set().connect(sigc::mem_fun(*this, &CtDrawing::_on_stroke_color_set));
     pRow2->pack_start(*_pStrokeBtn, false, false);
 
-    Gtk::Button* pTextBtn = Gtk::manage(new Gtk::Button{_("文字")});
+    _pTextColBtn = Gtk::manage(new Gtk::ColorButton{_textColor});
+    _pTextColBtn->set_size_request(30, 24);
+    _pTextColBtn->set_focus_on_click(false);
+    _pTextColBtn->set_tooltip_text(_("文字颜色"));
+    _pTextColBtn->signal_color_set().connect(sigc::mem_fun(*this, &CtDrawing::_on_text_color_set));
+    pRow2->pack_start(*_pTextColBtn, false, false);
+
+    _pSizeCombo = Gtk::manage(new Gtk::ComboBoxText{});
+    _syncingStyle = true;
+    for (const int size : {10, 11, 12, 13, 14, 16, 18, 20, 24, 28, 32}) {
+        _pSizeCombo->append(std::to_string(size));
+    }
+    _pSizeCombo->set_active(3);   // "13", the default font size
+    _syncingStyle = false;
+    _pSizeCombo->set_size_request(58, -1);
+    _pSizeCombo->set_can_focus(false);
+    _pSizeCombo->set_tooltip_text(_("文字大小"));
+    _pSizeCombo->signal_changed().connect(sigc::mem_fun(*this, &CtDrawing::_on_font_size_changed));
+    pRow2->pack_start(*_pSizeCombo, false, false);
+
+    Gtk::Button* pTextBtn = Gtk::manage(new Gtk::Button{});
+    pTextBtn->set_focus_on_click(false);
     pTextBtn->set_relief(Gtk::RELIEF_NONE);
+    pTextBtn->set_always_show_image(true);
+    pTextBtn->set_image(*Gtk::manage(new Gtk::Image{_icon_for_action("text")}));
     pTextBtn->set_tooltip_text(_("给选中的图形输入 / 修改文字"));
     pTextBtn->signal_clicked().connect([this]() {
         if (_selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
@@ -339,14 +498,20 @@ Gtk::Box* CtDrawing::_build_toolbar()
     });
     pRow2->pack_start(*pTextBtn, false, false);
 
-    Gtk::Button* pDelBtn = Gtk::manage(new Gtk::Button{_("删除")});
+    Gtk::Button* pDelBtn = Gtk::manage(new Gtk::Button{});
+    pDelBtn->set_focus_on_click(false);
     pDelBtn->set_relief(Gtk::RELIEF_NONE);
+    pDelBtn->set_always_show_image(true);
+    pDelBtn->set_image(*Gtk::manage(new Gtk::Image{_icon_for_action("delete")}));
     pDelBtn->set_tooltip_text(_("删除选中的图形 / 连线（也可按 Delete 键）"));
     pDelBtn->signal_clicked().connect([this]() { _delete_selection(); });
     pRow2->pack_start(*pDelBtn, false, false);
 
-    Gtk::Button* pFitBtn = Gtk::manage(new Gtk::Button{_("适应")});
+    Gtk::Button* pFitBtn = Gtk::manage(new Gtk::Button{});
+    pFitBtn->set_focus_on_click(false);
     pFitBtn->set_relief(Gtk::RELIEF_NONE);
+    pFitBtn->set_always_show_image(true);
+    pFitBtn->set_image(*Gtk::manage(new Gtk::Image{_icon_for_action("fit")}));
     pFitBtn->set_tooltip_text(_("把画布缩到刚好包住所有图形"));
     pFitBtn->signal_clicked().connect([this]() {
         _fit_canvas();
@@ -373,6 +538,125 @@ void CtDrawing::_update_toolbar_sensitivity()
     for (size_t i = 0; i < _toolButtons.size(); ++i) {
         _toolButtons[i]->set_relief(static_cast<int>(i) == activeIdx ? Gtk::RELIEF_NORMAL : Gtk::RELIEF_NONE);
     }
+}
+
+// ----------------------------------------------------- toolbar show / hide
+
+void CtDrawing::_show_toolbar()
+{
+    if (_pToolbar and not _pToolbar->get_visible()) {
+        _pToolbar->show();
+    }
+}
+
+void CtDrawing::_hide_toolbar()
+{
+    if (_pToolbar and _pToolbar->get_visible()) {
+        _pToolbar->hide();
+    }
+}
+
+bool CtDrawing::_on_canvas_focus_out(GdkEventFocus*)
+{
+    // keep the tools while the user works inside this drawing (toolbar
+    // controls, colour chooser dialogs...), hide them only when the focus
+    // really goes back to the document
+    Gtk::Window* pTop = dynamic_cast<Gtk::Window*>(_pVBox->get_toplevel());
+    if (pTop and not pTop->is_active()) {
+        return false;   // a dialog (e.g. the colour chooser) owns the activation
+    }
+    Gtk::Widget* pFocus = pTop ? pTop->get_focus() : nullptr;
+    if (pFocus and pFocus->is_ancestor(*_pVBox)) {
+        return false;   // focus moved to one of our own widgets
+    }
+    _hide_toolbar();
+    return false;
+}
+
+bool CtDrawing::_grab_focus_on_idle()
+{
+    if (_pCanvas) {
+        _pCanvas->grab_focus();
+    }
+    return false;   // one-shot
+}
+
+// ----------------------------------------------------- text size and colour
+
+void CtDrawing::_sync_style_controls()
+{
+    if (not _pSizeCombo or not _pTextColBtn) return;
+    double fontSize = _defaultFontSize;
+    std::string textCol = _defaultTextColor;
+    if (_selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+        fontSize = _model.shapes[_selShape].fontSize;
+        textCol = _model.shapes[_selShape].textColor;
+    }
+    static const std::vector<int> kSizes = {10, 11, 12, 13, 14, 16, 18, 20, 24, 28, 32};
+    size_t best = 0;
+    for (size_t i = 0; i < kSizes.size(); ++i) {
+        if (std::abs(kSizes[i] - fontSize) < std::abs(kSizes[best] - fontSize)) best = i;
+    }
+    _syncingStyle = true;
+    _pSizeCombo->set_active(static_cast<int>(best));
+    _textColor.set(textCol);
+    _pTextColBtn->set_rgba(_textColor);
+    _syncingStyle = false;
+}
+
+void CtDrawing::_on_font_size_changed()
+{
+    if (_syncingStyle or not _pSizeCombo) return;
+    const Glib::ustring val = _pSizeCombo->get_active_text();
+    if (val.empty()) return;
+    double fs = 13.0;
+    try {
+        fs = std::stod(val);
+    }
+    catch (...) {
+        return;
+    }
+    _defaultFontSize = fs;
+    if (_selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+        _model.shapes[_selShape].fontSize = fs;
+        _sync_model();
+        _render();
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    }
+    _apply_editor_text_style();
+}
+
+void CtDrawing::_on_text_color_set()
+{
+    if (_syncingStyle or not _pTextColBtn) return;
+    _textColor = _pTextColBtn->get_rgba();
+    _defaultTextColor = oa_rgba_to_hex(_textColor);
+    if (_selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+        _model.shapes[_selShape].textColor = _defaultTextColor;
+        _sync_model();
+        _render();
+        _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+    }
+    _apply_editor_text_style();
+}
+
+void CtDrawing::_apply_editor_text_style()
+{
+    if (_editShape < 0 or _editShape >= static_cast<int>(_model.shapes.size())) return;
+    const Shape& shape = _model.shapes[_editShape];
+    Pango::FontDescription fontDesc;
+    fontDesc.set_family("Sans");
+    fontDesc.set_absolute_size(static_cast<int>(shape.fontSize * PANGO_SCALE));
+    if (shape.bold) fontDesc.set_weight(Pango::WEIGHT_BOLD);
+    _pEditor->override_font(fontDesc);
+
+    Glib::RefPtr<Gtk::TextBuffer> rBuf = _pEditor->get_buffer();
+    Glib::RefPtr<Gtk::TextTag> rTag = rBuf->get_tag_table()->lookup("oa_drawing_text_color");
+    if (not rTag) {
+        rTag = rBuf->create_tag("oa_drawing_text_color");
+    }
+    rTag->property_foreground() = shape.textColor;
+    rBuf->apply_tag(rTag, rBuf->begin(), rBuf->end());
 }
 
 void CtDrawing::_on_fill_color_set()
@@ -427,6 +711,7 @@ void CtDrawing::_select_only(const int shapeIdx, const int connIdx)
 {
     _selShape = shapeIdx;
     _selConn = connIdx;
+    _sync_style_controls();
 }
 
 bool CtDrawing::_inside_shape(const Shape& shape, const double x, const double y) const
@@ -528,8 +813,9 @@ void CtDrawing::_recompute_conns()
 
 void CtDrawing::_grow_canvas_for(const double x, const double y)
 {
-    if (x > _model.width - 24.0) _model.width = std::min(4000, static_cast<int>(x) + 80);
-    if (y > _model.height - 24.0) _model.height = std::min(4000, static_cast<int>(y) + 80);
+    // a bounded canvas keeps the anchored widget from taking over the page
+    if (x > _model.width - 24.0) _model.width = std::min(1200, static_cast<int>(x) + 80);
+    if (y > _model.height - 24.0) _model.height = std::min(1200, static_cast<int>(y) + 80);
 }
 
 void CtDrawing::_fit_canvas()
@@ -612,6 +898,7 @@ void CtDrawing::_start_text_editing(const int shapeIdx)
     _pEditor->set_size_request(static_cast<int>(shape.w) - 12, static_cast<int>(shape.h) - 12);
     _pEditor->set_margin_start(static_cast<int>(shape.x) + 6);
     _pEditor->set_margin_top(static_cast<int>(shape.y) + 6);
+    _apply_editor_text_style();
     _pEditor->show();
     _pEditor->grab_focus();
 }
@@ -751,14 +1038,15 @@ void CtDrawing::_render_shape(const Cairo::RefPtr<Cairo::Context>& cr, const Sha
     rLayout->get_pixel_size(textW, textH);
     const double textX = shape.x + (shape.w - innerW) / 2.0;
     const double textY = shape.y + std::max(0.0, (shape.h - textH) / 2.0);
+    double tr = 0.12, tg = 0.14, tb = 0.16;
+    oa_hex_to_rgb(shape.textColor, tr, tg, tb);
     cr->move_to(textX, textY);
-    cr->set_source_rgb(0.12, 0.14, 0.16);
+    cr->set_source_rgb(tr, tg, tb);
     rLayout->show_in_cairo_context(cr);
 }
 
-void CtDrawing::_arrow_head(const Cairo::RefPtr<Cairo::Context>& cr, const double x, const double y, const double angle) const
+void CtDrawing::_arrow_head(const Cairo::RefPtr<Cairo::Context>& cr, const double x, const double y, const double angle, const double size) const
 {
-    const double size = 9.0;
     const double spread = 0.42;
     cr->save();
     cr->move_to(x, y);
@@ -867,6 +1155,9 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
     const double x = event->x;
     const double y = event->y;
 
+    // any click on the canvas brings the tools up (they hide again on focus-out)
+    _show_toolbar();
+
     if (3 == event->button) {
         _show_popup(event);
         return true;
@@ -954,6 +1245,8 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
     _previewShape.h = 0.0;
     _previewShape.fill = oa_rgba_to_hex(_fillColor);
     _previewShape.stroke = oa_rgba_to_hex(_strokeColor);
+    _previewShape.fontSize = _defaultFontSize;
+    _previewShape.textColor = _defaultTextColor;
     _drag = Drag::Create;
     _dragStartX = x;
     _dragStartY = y;

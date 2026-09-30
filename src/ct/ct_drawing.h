@@ -84,6 +84,7 @@ private:
         std::string  text;
         double       fontSize{13.};
         bool         bold{false};
+        std::string  textColor{"#1f2429"};
     };
 
     struct Conn {
@@ -116,7 +117,7 @@ private:
     void _render_shape(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape);
     void _render_conn(const Cairo::RefPtr<Cairo::Context>& cr, const Conn& conn) const;
     void _shape_path(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const;
-    void _arrow_head(const Cairo::RefPtr<Cairo::Context>& cr, const double x, const double y, const double angle) const;
+    void _arrow_head(const Cairo::RefPtr<Cairo::Context>& cr, const double x, const double y, const double angle, const double size = 9.0) const;
     void _render_handles(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const;
 
     int  _hit_shape(const double x, const double y) const;
@@ -141,8 +142,19 @@ private:
 
     Gtk::Box* _build_toolbar();
     void      _set_tool(const Tool tool);
-    Gtk::Button* _tool_button(const Glib::ustring& label, const Glib::ustring& tooltip, const Tool tool);
+    Gtk::Button* _tool_button(const Glib::RefPtr<Gdk::Pixbuf>& rIcon, const Glib::ustring& tooltip, const Tool tool);
     void      _update_toolbar_sensitivity();
+    Glib::RefPtr<Gdk::Pixbuf> _icon_for_tool(const Tool tool);
+    Glib::RefPtr<Gdk::Pixbuf> _icon_for_action(const char* kind);   // "text", "delete", "fit"
+
+    void _show_toolbar();
+    void _hide_toolbar();
+    bool _on_canvas_focus_out(GdkEventFocus* event);
+    bool _grab_focus_on_idle();
+    void _sync_style_controls();
+    void _on_font_size_changed();
+    void _on_text_color_set();
+    void _apply_editor_text_style();
 
     bool _on_canvas_press(GdkEventButton* event);
     bool _on_canvas_motion(GdkEventMotion* event);
@@ -178,8 +190,14 @@ private:
     Gtk::TextView* _pEditor{nullptr};
     Gtk::ColorButton* _pFillBtn{nullptr};
     Gtk::ColorButton* _pStrokeBtn{nullptr};
+    Gtk::ColorButton* _pTextColBtn{nullptr};
+    Gtk::ComboBoxText* _pSizeCombo{nullptr};
     Gtk::Menu         _popup;        // kept alive: a local menu would die before it is clicked
     Gdk::RGBA      _fillColor;
     Gdk::RGBA      _strokeColor;
+    Gdk::RGBA      _textColor;
+    double         _defaultFontSize{13.};
+    std::string    _defaultTextColor{"#1f2429"};
+    bool           _syncingStyle{false};
     std::vector<Gtk::Button*> _toolButtons;
 };
