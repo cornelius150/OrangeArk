@@ -910,7 +910,7 @@ static const size_t kNumAutoDepthColours = sizeof(kAutoDepthColours) / sizeof(kA
 // OrangeArk: compact display format for the per-node creation timestamp shown
 // after the node name in the tree (deliberately NOT the user's insertion
 // timestamp format, which is meant for inserting dates into the text)
-static const char* const kNodeTimestampDisplayFormat = "%Y-%m-%d %H:%M";
+static const char* const kNodeTimestampDisplayFormat = "%Y-%m-%d";
 
 // A node counts as "not customised" when it has no colour at all, when it
 // carries the plain default text colour, or when it carries one of the

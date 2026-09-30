@@ -144,7 +144,7 @@ protected:
     void _guide_destroy();   // OrangeArk: remove the guide-line strips
     void _guide_update(const double xRoot, const double yRoot); // OrangeArk: move the guide lines while dragging
     void _apply_border_cursor(const int edges); // OrangeArk: set the resize cursor only when the zone changes
-    int  _column_separator_at(const double x) const; // OrangeArk: hit test for a column separator (-1 = none)
+    virtual int _column_separator_at(const double x) const; // OrangeArk: hit test for a column separator (-1 = none)
     virtual void _set_rows_min_height(const int height) = 0; // OrangeArk: row height control
     virtual int  _get_rows_min_height() const = 0;
     virtual int  _get_rows_min_height_raw() const = 0; // OrangeArk: 0 = not set (no fallback estimate)
@@ -274,6 +274,11 @@ protected:
     int  _get_rows_min_height_raw() const override { return _rowsMinHeight; }
     void _apply_row_height(const size_t rowIdx) override;
     int  _rowsMinHeight{0};
+
+    // OrangeArk: hit test against the RENDERED column geometry — the frame
+    // inset and renderer padding shift the visible separators, so accumulating
+    // the stored widths pointed a drag at a neighbouring column
+    int  _column_separator_at(const double x) const override;
 
     #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
     void _on_treeview_event_after(GdkEvent* event);

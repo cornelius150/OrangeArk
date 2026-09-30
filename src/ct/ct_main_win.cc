@@ -628,6 +628,7 @@ void CtMainWin::_reset_CtTreestore_CtTreeview()
     _uCtTreeview->signal_drag_motion().connect(sigc::mem_fun(*this, &CtMainWin::_on_treeview_drag_motion));
     _uCtTreeview->signal_drag_data_received().connect(sigc::mem_fun(*this, &CtMainWin::_on_treeview_drag_data_received));
     _uCtTreeview->signal_drag_data_get().connect(sigc::mem_fun(*this, &CtMainWin::_on_treeview_drag_data_get));
+    _uCtTreeview->signal_drag_begin().connect(sigc::mem_fun(*this, &CtMainWin::_on_treeview_drag_begin));
     #else
     _setup_treeview_drag_and_drop_gtk4();
     #endif

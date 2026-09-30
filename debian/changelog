@@ -1,3 +1,18 @@
+orangeark (1.2.3-1) focal; urgency=low
+
+  * Tree node timestamps show the date only (YYYY-MM-DD, no time).
+  * Superscripts sit visibly higher; the sup/sub rise is recomputed when a
+    document is loaded, so existing documents pick up the new geometry.
+  * Dragging a multi-selection moves every selected node again: the
+    selection is snapshotted at press time, the focus no longer jumps to
+    the text view while a multi-row drag starts, and the drag payload
+    falls back to the snapshot if the live selection collapsed.
+  * Table column resize hit test uses the rendered column geometry (fixed
+    column sizing), so dragging resizes the column under the cursor
+    instead of a neighbour.
+
+ -- OrangeArk <orangeark@users.noreply.github.com>  Wed, 30 Sep 2026 12:05:00 +0800
+
 orangeark (1.2.2-1) focal; urgency=low
 
   * OrangeArk: multi-selection drag-and-drop now moves ALL selected nodes.

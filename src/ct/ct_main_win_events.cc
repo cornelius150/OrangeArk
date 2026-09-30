@@ -108,7 +108,28 @@ bool CtMainWin::_on_treeview_button_press_event(GdkEventButton* event)
     if (event->button != 1) return false;
     const bool ctrl = (event->state & GDK_CONTROL_MASK) != 0;
     const bool shift = (event->state & GDK_SHIFT_MASK) != 0;
-    if (not ctrl and not shift) return false;   // plain click -> default handling
+    if (not ctrl and not shift) {
+        // OrangeArk: a plain press on a row that is part of a multi-selection
+        // is how a multi-row drag starts. Snapshot the selection now —
+        //  * the press must not move the focus to the text view (that breaks
+        //    the pending drag, see _on_treeview_event_after)
+        //  * the drag payload must carry the WHOLE selection even if GTK or
+        //    any other handler collapses it before drag_data_get runs
+        //    (用户 1.2.2 反馈: "只能实现单一节点拖动")
+        _treeMultiDragPress = false;
+        _treeMultiSelSnapshot.clear();
+        Gtk::TreeModel::Path pressPath;
+        if (_uCtTreeview->get_path_at_pos((int)event->x, (int)event->y, pressPath)) {
+            Glib::RefPtr<Gtk::TreeSelection> rSelection = _uCtTreeview->get_selection();
+            if (rSelection->is_selected(pressPath) and rSelection->count_selected_rows() > 1) {
+                _treeMultiDragPress = true;
+                _treeMultiSelSnapshot = rSelection->get_selected_rows();
+            }
+        }
+        return false;   // plain click -> default handling (select / start drag)
+    }
+    _treeMultiDragPress = false;
+    _treeMultiSelSnapshot.clear();
 
     Gtk::TreeModel::Path path;
     if (not _uCtTreeview->get_path_at_pos((int)event->x, (int)event->y, path)) return false;
@@ -177,9 +198,13 @@ void CtMainWin::_on_treeview_event_after(GdkEvent* event)
 {
     if (event->type == GDK_BUTTON_PRESS and event->button.button == 1) {
         // OrangeArk: on a Ctrl/Shift click the tree must keep the focus, so the
-        // several selected rows stay visibly highlighted
+        // several selected rows stay visibly highlighted. The same applies to
+        // a plain press on a row that is part of a multi-selection: that press
+        // starts a multi-row DRAG, and moving the focus to the text view here
+        // breaks it (the drag died and the selection collapsed — the "只能拖动
+        // 单个节点" bug).
         const bool modifiedClick = (event->button.state & (GDK_CONTROL_MASK | GDK_SHIFT_MASK)) != 0;
-        if (_pCtConfig->treeClickFocusText and not modifiedClick) {
+        if (_pCtConfig->treeClickFocusText and not modifiedClick and not _treeMultiDragPress) {
             _ctTextview.mm().grab_focus();
         }
         if (_pCtConfig->treeClickExpand) {
@@ -192,6 +217,12 @@ void CtMainWin::_on_treeview_event_after(GdkEvent* event)
                 }
             }
         }
+    }
+    if (event->type == GDK_BUTTON_RELEASE and event->button.button == 1) {
+        // the press/release cycle is over: restore the normal focus behaviour
+        // (GTK itself collapses the multi-selection on a release that did not
+        // become a drag, which is the expected single-click UX)
+        _treeMultiDragPress = false;
     }
     if (event->type == GDK_BUTTON_PRESS && event->button.button == 2 /* wheel click */) {
         auto path = get_tree_store().get_path(curr_tree_iter());
@@ -881,6 +912,19 @@ void CtMainWin::_on_treeview_drag_data_received(const Glib::RefPtr<Gdk::DragCont
     }
 }
 
+void CtMainWin::_on_treeview_drag_begin(const Glib::RefPtr<Gdk::DragContext>& /*context*/)
+{
+    // OrangeArk: last chance to snapshot the multi-selection — by the time
+    // drag_data_get runs, any handler may have collapsed it to the pressed
+    // row; the press-time snapshot (or this one) is the fallback payload.
+    if (_treeMultiSelSnapshot.empty()) {
+        std::vector<Gtk::TreeModel::Path> selPaths = _uCtTreeview->get_selection()->get_selected_rows();
+        if (selPaths.size() > 1) {
+            _treeMultiSelSnapshot = selPaths;
+        }
+    }
+}
+
 void CtMainWin::_on_treeview_drag_data_get(const Glib::RefPtr<Gdk::DragContext>& /*context*/,
                                            Gtk::SelectionData& selection_data,
                                            guint /*info*/,
@@ -891,6 +935,11 @@ void CtMainWin::_on_treeview_drag_data_get(const Glib::RefPtr<Gdk::DragContext>&
     // multi-selection drag moves the whole selection, not just one node.
     Glib::ustring treePathStr;
     std::vector<Gtk::TreeModel::Path> selPaths = _uCtTreeview->get_selection()->get_selected_rows();
+    if (selPaths.size() < _treeMultiSelSnapshot.size()) {
+        // the live selection lost rows between press and data_get — trust the
+        // snapshot taken while the multi-selection was still intact
+        selPaths = _treeMultiSelSnapshot;
+    }
     for (const Gtk::TreeModel::Path& selPath : selPaths) {
         if (not treePathStr.empty()) treePathStr += ",";
         treePathStr += selPath.to_string();

@@ -421,7 +421,10 @@ static std::string oa_sup_sub_fmt_value(const CtConfig* pCtConfig, const bool is
     // this permille by localScale made a superscript inside a heading render
     // at 1.11x the normal body size.
     const int permille = 694;
-    const int rise = static_cast<int>(std::lround(effPt * (isSup ? 0.33 : -0.17) * Pango::SCALE));
+    // OrangeArk: 0.45 puts the superscript clearly in the top-right corner
+    // (用户反馈 0.33 "位置还得上移" — it read as vertically centred next to a
+    // subscript); the subscript keeps a symmetric-looking -0.17.
+    const int rise = static_cast<int>(std::lround(effPt * (isSup ? 0.45 : -0.17) * Pango::SCALE));
     return std::to_string(permille) + "," + std::to_string(rise);
 }
 

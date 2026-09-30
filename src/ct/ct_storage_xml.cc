@@ -687,7 +687,7 @@ void CtStorageXmlHelper::_add_rich_text_from_xml(Glib::RefPtr<Gtk::TextBuffer> b
     if (text_content.empty()) return;
     std::vector<Glib::ustring> tags;
     Glib::ustring scaleAttrVal, fontSizeAttrVal;
-    bool hasSupSub{false}, hasSupFmt{false};
+    bool hasSupSub{false};
     for (const xmlpp::Attribute* pAttribute : xml_element->get_attributes()) {
         const Glib::ustring attrName = pAttribute->get_name();
         const Glib::ustring attrValue = pAttribute->get_value();
@@ -701,32 +701,22 @@ void CtStorageXmlHelper::_add_rich_text_from_xml(Glib::RefPtr<Gtk::TextBuffer> b
         else if (CtConst::TAG_FONT_SIZE == attrName) {
             fontSizeAttrVal = attrValue;
         }
-        else if (CtConst::TAG_SUPFMT == attrName) {
-            hasSupFmt = true;
-        }
         tags.push_back(_pCtMainWin->get_text_tag_name_exist_or_create(attrName, attrValue));
     }
     // OrangeArk: the sup/sub companion tag must be applied AFTER the scale tag
-    // to win the tag merge. Fresh documents always store it; older documents
-    // (and foreign imports) don't — synthesize it from the span's own
-    // font_size / scale attributes so a superscript on 22pt text still rises.
+    // to win the tag merge. It is ALWAYS recomputed here instead of trusting
+    // the stored value: documents saved by older versions carry a rise
+    // computed by an older formula (用户: "上标的位置还得上移"), and a
+    // recompute at load migrates every existing document for free.
     if (hasSupSub) {
-        const std::string fmtTagName = _pCtMainWin->sup_sub_fmt_tag_name_from_attrs(
-            scaleAttrVal == CtConst::TAG_PROP_VAL_SUP, fontSizeAttrVal, scaleAttrVal);
-        if (not hasSupFmt) {
-            tags.push_back(fmtTagName);
-        }
-        else {
-            // move the existing companion to the end of the apply order
-            for (size_t idx = 0; idx < tags.size(); ++idx) {
-                if (str::startswith(tags[idx], CtConst::TAG_SUPFMT_PREFIX)) {
-                    const Glib::ustring moving = tags[idx];
-                    tags.erase(tags.begin() + static_cast<long>(idx));
-                    tags.push_back(moving);
-                    break;
-                }
+        for (size_t idx = tags.size(); idx-- > 0u;) {
+            if (str::startswith(tags[idx], CtConst::TAG_SUPFMT_PREFIX)) {
+                tags.erase(tags.begin() + static_cast<long>(idx));
             }
         }
+        const std::string fmtTagName = _pCtMainWin->sup_sub_fmt_tag_name_from_attrs(
+            scaleAttrVal == CtConst::TAG_PROP_VAL_SUP, fontSizeAttrVal, scaleAttrVal);
+        tags.push_back(fmtTagName);
     }
     Gtk::TextIter iter = text_insert_pos ? *text_insert_pos : buffer->end();
     if (tags.size() > 0)

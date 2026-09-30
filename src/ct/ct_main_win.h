@@ -288,6 +288,11 @@ private:
     bool _on_treeview_button_press_event(GdkEventButton* event);
     bool _on_treeview_button_release_event(GdkEventButton* event);
     void _on_treeview_event_after(GdkEvent* event); // pygtk: on_event_after_tree
+    // OrangeArk: keep the multi-selection alive while a drag starts from a
+    // plain press on one of the selected rows
+    void _on_treeview_drag_begin(const Glib::RefPtr<Gdk::DragContext>& context);
+    bool _treeMultiDragPress{false};                          // plain press on a row already in a multi-selection
+    std::vector<Gtk::TreeModel::Path> _treeMultiSelSnapshot;  // selection at press time, fallback drag payload
 #endif
     void _on_treeview_row_activated(const Gtk::TreeModel::Path&, Gtk::TreeViewColumn*);
     void _on_treeview_row_expanded(const Gtk::TreeModel::iterator&, const Gtk::TreeModel::Path&);
