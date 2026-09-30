@@ -1,3 +1,21 @@
+orangeark (1.3.2-1) focal; urgency=low
+
+  * New: drawing shapes is created by press-and-drag only - a plain
+    click on the canvas with a shape tool no longer drops a default
+    sized shape. After a shape is drawn the tool falls back to Select
+    so the new shape shows its 8 handles and can be resized or moved
+    by dragging right away.
+  * New: connectors/arrows snap Visio-style to the border anchor points
+    (top/right/bottom/left midpoints) of both shapes, while drawing and
+    whenever a shape is moved or resized afterwards; the hovered target
+    shape is highlighted with its four snap points while connecting.
+  * Fix: seven menu icons still carried the old red cherry artwork
+    (copy-link-to-node, replace-in-node, replace-in-multiple-nodes,
+    replace-node-and-subnodes, parent-child lines, import/export
+    OrangeArk). The fruit is now the OrangeArk orange (#f57f17 with a
+    #ffcc80 highlight and a #4caf50 stem), matching the "add node" icon;
+    root, 48px copies updated (Breeze copies were already cherry-free).
+
 orangeark (1.3.1-1) focal; urgency=low
 
   * New: text inside shapes now has its own font size and colour. The

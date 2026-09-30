@@ -250,7 +250,7 @@
          id="cherry2-3"
          transform="matrix(0.1203468,0.00521202,-0.00532923,0.12128682,-8.3880628,-3.3438663)">
         <path
-           style="fill:#c6262e;fill-opacity:1;stroke:#7a0000;stroke-width:4.1346;stroke-opacity:1"
+           style="fill:#f57f17;fill-opacity:1;stroke:#7a0000;stroke-width:4.1346;stroke-opacity:1"
            id="p5-12"
            d="m 42.021325,38.735182 c -2.279722,6.288872 -8.636377,11.670921 -14.976424,9.411231 -6.70613,-0.642133 -10.13411,-8.200552 -9.485159,-14.85215 0.72889,-7.470957 6.639519,-10.416091 14.793381,-8.602451 8.153861,1.813641 12.228746,6.979824 9.668202,14.04337 z" />
         <path
@@ -259,14 +259,14 @@
            d="m 28.22429,26.01175 c -0.601384,3.336063 4.88838,5.213413 6.335518,2.000743" />
       </g>
       <path
-         style="fill:#275100;fill-opacity:0.945098;stroke:#3a9104;stroke-width:0.5;stroke-linecap:round;stroke-opacity:1;stop-color:#000000"
+         style="fill:#4caf50;fill-opacity:0.945098;stroke:#3a9104;stroke-width:0.5;stroke-linecap:round;stroke-opacity:1;stop-color:#000000"
          d="m -4.8335274,0.08055881 c 0.1452989,-0.3893675 0.4855397,-0.6981762 0.9667054,-1.08754371"
          id="path1009"
          sodipodi:nodetypes="cc" />
     </g>
     <path
        d="M 5.7418096,3.9793271 A 0.52363216,0.40279397 48.878523 0 1 5.0940074,3.8497667 0.52363216,0.40279397 48.878523 0 1 5.0530684,3.1904052 0.52363216,0.40279397 48.878523 0 1 5.7008706,3.3199656 0.52363216,0.40279397 48.878523 0 1 5.7418096,3.9793271"
-       style="opacity:1;fill:#ff8c82;fill-opacity:1;stroke:none;stroke-width:0.495729;stroke-linecap:round;stroke-opacity:1;stop-color:#000000"
+       style="opacity:1;fill:#ffcc80;fill-opacity:1;stroke:none;stroke-width:0.495729;stroke-linecap:round;stroke-opacity:1;stop-color:#000000"
        id="path1046" />
   </g>
 </svg>

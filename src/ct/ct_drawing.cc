@@ -797,17 +797,88 @@ void CtDrawing::_recompute_conns()
         if (conn.toShape >= static_cast<int>(_model.shapes.size())) continue;
         const Shape& from = _model.shapes[conn.fromShape];
         const Shape& to = _model.shapes[conn.toShape];
-        const double cx = from.x + from.w / 2.0;
-        const double cy = from.y + from.h / 2.0;
-        const double tx = to.x + to.w / 2.0;
-        const double ty = to.y + to.h / 2.0;
-        double ax = cx, ay = cy, bx = tx, by = ty;
-        _clip_line_to_rect(cx, cy, tx, ty, from.x, from.y, from.w, from.h, ax, ay);
-        _clip_line_to_rect(tx, ty, cx, cy, to.x, to.y, to.w, to.h, bx, by);
+        // Visio-style: attach to the closest pair of the four border anchor
+        // points (top/right/bottom/left midpoints) of the two shapes, so a
+        // vertical flow naturally uses bottom->top and a horizontal one
+        // right->left.
+        const auto fromAnchors = _border_anchors(from);
+        const auto toAnchors = _border_anchors(to);
+        double bestDist = 1e18;
+        double ax = conn.x1, ay = conn.y1, bx = conn.x2, by = conn.y2;
+        for (const auto& a : fromAnchors) {
+            for (const auto& b : toAnchors) {
+                const double dx = a.first - b.first;
+                const double dy = a.second - b.second;
+                const double d = dx * dx + dy * dy;
+                if (d < bestDist) {
+                    bestDist = d;
+                    ax = a.first;
+                    ay = a.second;
+                    bx = b.first;
+                    by = b.second;
+                }
+            }
+        }
         conn.x1 = ax;
         conn.y1 = ay;
         conn.x2 = bx;
         conn.y2 = by;
+    }
+}
+
+std::array<std::pair<double, double>, 4> CtDrawing::_border_anchors(const Shape& shape)
+{
+    const double cx = shape.x + shape.w / 2.0;
+    const double cy = shape.y + shape.h / 2.0;
+    return {std::make_pair(cx, shape.y),
+            std::make_pair(shape.x + shape.w, cy),
+            std::make_pair(cx, shape.y + shape.h),
+            std::make_pair(shape.x, cy)};
+}
+
+std::pair<double, double> CtDrawing::_nearest_anchor(const Shape& shape, const double x, const double y)
+{
+    const auto anchors = _border_anchors(shape);
+    std::pair<double, double> best = anchors[0];
+    double bestDist = 1e18;
+    for (const auto& p : anchors) {
+        const double dx = p.first - x;
+        const double dy = p.second - y;
+        const double d = dx * dx + dy * dy;
+        if (d < bestDist) {
+            bestDist = d;
+            best = p;
+        }
+    }
+    return best;
+}
+
+// live snapping of the connector being drawn
+void CtDrawing::_snap_conn_preview(const double x, const double y)
+{
+    if (_previewConn.fromShape >= 0 and _previewConn.fromShape < static_cast<int>(_model.shapes.size())) {
+        const Shape& from = _model.shapes[_previewConn.fromShape];
+        const auto a = _nearest_anchor(from, x, y);
+        _previewConn.x1 = a.first;
+        _previewConn.y1 = a.second;
+    }
+    else {
+        _previewConn.x1 = _dragStartX;
+        _previewConn.y1 = _dragStartY;
+    }
+    _previewConn.toShape = _hit_shape(x, y);
+    if (_previewConn.toShape == _previewConn.fromShape and _previewConn.fromShape >= 0) {
+        _previewConn.toShape = -1;
+    }
+    if (_previewConn.toShape >= 0 and _previewConn.toShape < static_cast<int>(_model.shapes.size())) {
+        const Shape& to = _model.shapes[_previewConn.toShape];
+        const auto b = _nearest_anchor(to, _previewConn.x1, _previewConn.y1);
+        _previewConn.x2 = b.first;
+        _previewConn.y2 = b.second;
+    }
+    else {
+        _previewConn.x2 = x;
+        _previewConn.y2 = y;
     }
 }
 
@@ -1130,6 +1201,19 @@ void CtDrawing::_render()
     }
     if (_preview and Drag::Conn == _drag) {
         _render_conn(cr, _previewConn);
+        // highlight the hovered target shape and show its four snap points
+        if (_previewConn.toShape >= 0 and _previewConn.toShape < static_cast<int>(_model.shapes.size())) {
+            const Shape& t = _model.shapes[_previewConn.toShape];
+            cr->set_source_rgba(0.96, 0.49, 0.0, 0.9);
+            cr->set_line_width(2.0);
+            cr->rectangle(t.x - 3.0, t.y - 3.0, t.w + 6.0, t.h + 6.0);
+            cr->stroke();
+            cr->set_source_rgba(0.96, 0.49, 0.0, 1.0);
+            for (const auto& p : _border_anchors(t)) {
+                cr->arc(p.first, p.second, 3.5, 0.0, 2.0 * M_PI);
+                cr->fill();
+            }
+        }
     }
     for (const Shape& shape : _model.shapes) {
         _render_shape(cr, shape);
@@ -1230,6 +1314,7 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
         _drag = Drag::Conn;
         _dragStartX = x;
         _dragStartY = y;
+        _snap_conn_preview(x, y);
         _render();
         return true;
     }
@@ -1307,12 +1392,7 @@ bool CtDrawing::_on_canvas_motion(GdkEventMotion* event)
         _recompute_conns();
     }
     else if (Drag::Conn == _drag) {
-        _previewConn.x2 = x;
-        _previewConn.y2 = y;
-        _previewConn.toShape = _hit_shape(x, y);
-        if (_previewConn.toShape == _previewConn.fromShape and _previewConn.fromShape >= 0) {
-            _previewConn.toShape = -1;
-        }
+        _snap_conn_preview(x, y);
     }
 
     // throttle the re-render so dragging stays smooth
@@ -1331,28 +1411,22 @@ bool CtDrawing::_on_canvas_release(GdkEventButton* event)
     const double y = event->y;
 
     if (Drag::Create == _drag) {
-        _previewShape.x = std::min(_dragStartX, x);
-        _previewShape.y = std::min(_dragStartY, y);
-        _previewShape.w = std::abs(x - _dragStartX);
-        _previewShape.h = std::abs(y - _dragStartY);
-        if (_previewShape.w < 12.0 or _previewShape.h < 12.0) {
-            // a plain click with a shape tool: drop a default sized shape
-            _previewShape.w = 140.0;
-            _previewShape.h = 64.0;
-            _previewShape.x = std::max(0.0, x - 70.0);
-            _previewShape.y = std::max(0.0, y - 32.0);
+        // only a real drag creates a shape; a plain click stays a no-op
+        if (std::hypot(x - _dragStartX, y - _dragStartY) >= 8.0) {
+            _previewShape.x = std::min(_dragStartX, x);
+            _previewShape.y = std::min(_dragStartY, y);
+            _previewShape.w = std::max(12.0, std::abs(x - _dragStartX));
+            _previewShape.h = std::max(12.0, std::abs(y - _dragStartY));
+            _model.shapes.push_back(_previewShape);
+            _select_only(static_cast<int>(_model.shapes.size()) - 1, -1);
+            _grow_canvas_for(_previewShape.x + _previewShape.w, _previewShape.y + _previewShape.h);
+            // Visio-style: fall back to the select tool so the new shape can
+            // be resized/moved by its handles right away
+            _set_tool(Tool::Select);
         }
-        _model.shapes.push_back(_previewShape);
-        _select_only(static_cast<int>(_model.shapes.size()) - 1, -1);
-        _grow_canvas_for(_previewShape.x + _previewShape.w, _previewShape.y + _previewShape.h);
     }
     else if (Drag::Conn == _drag) {
-        _previewConn.x2 = x;
-        _previewConn.y2 = y;
-        _previewConn.toShape = _hit_shape(x, y);
-        if (_previewConn.toShape == _previewConn.fromShape and _previewConn.fromShape >= 0) {
-            _previewConn.toShape = -1;
-        }
+        _snap_conn_preview(x, y);
         if (std::hypot(x - _dragStartX, y - _dragStartY) >= 8.0) {
             if (_previewConn.fromShape >= 0 and _previewConn.toShape >= 0) {
                 // both ends snapped: the line keeps following the shapes

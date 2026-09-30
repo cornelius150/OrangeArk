@@ -27,6 +27,9 @@
 
 #include "ct_image.h"
 
+#include <array>
+#include <utility>
+
 #include <gtkmm.h>
 
 #include <string>
@@ -126,6 +129,9 @@ private:
     void _handle_pos(const Shape& shape, const int handle, double& hx, double& hy) const;
     bool _inside_shape(const Shape& shape, const double x, const double y) const;
     void _recompute_conns();            // snap the endpoints of shape-bound connectors
+    static std::array<std::pair<double, double>, 4> _border_anchors(const Shape& shape); // top/right/bottom/left midpoints
+    static std::pair<double, double> _nearest_anchor(const Shape& shape, const double x, const double y);
+    void _snap_conn_preview(const double x, const double y);
     static bool _clip_line_to_rect(const double cx, const double cy,
                                    const double tx, const double ty,
                                    const double rx, const double ry, const double rw, const double rh,
