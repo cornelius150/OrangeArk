@@ -764,6 +764,23 @@ int CtDrawing::_hit_handle(const double x, const double y) const
     return -1;
 }
 
+// hit-test of the Visio-style quick-connect arrows (drawn ~4..20px outside
+// each border anchor midpoint of the selected shape); returns 0..3 or -1
+int CtDrawing::_hit_quick_arrow(const double x, const double y) const
+{
+    if (_selShape < 0 or _selShape >= static_cast<int>(_model.shapes.size())) return -1;
+    if (Drag::None != _drag) return -1;
+    const Shape& shape = _model.shapes[_selShape];
+    const auto anchors = _border_anchors(shape);
+    const double dirs[4][2] = {{0., -1.}, {1., 0.}, {0., 1.}, {-1., 0.}};
+    for (int d = 0; d < 4; ++d) {
+        const double cx = anchors[d].first + dirs[d][0] * 14.0;
+        const double cy = anchors[d].second + dirs[d][1] * 14.0;
+        if (std::hypot(x - cx, y - cy) <= 12.0) return d;
+    }
+    return -1;
+}
+
 /*static*/ bool CtDrawing::_clip_line_to_rect(const double cx, const double cy,
                                              const double tx, const double ty,
                                              const double rx, const double ry, const double rw, const double rh,
@@ -1170,6 +1187,28 @@ void CtDrawing::_render_handles(const Cairo::RefPtr<Cairo::Context>& cr, const S
     }
 }
 
+// Visio-style: four small outward arrows on the border anchor midpoints of
+// the selected shape — press one and drag to connect (or to drop a new shape)
+void CtDrawing::_render_quick_arrows(const Cairo::RefPtr<Cairo::Context>& cr) const
+{
+    if (_drag != Drag::None) return;   // hidden while any interaction is going on
+    const Shape& shape = _model.shapes[_selShape];
+    const auto anchors = _border_anchors(shape);
+    const double dirs[4][2] = {{0., -1.}, {1., 0.}, {0., 1.}, {-1., 0.}};
+    for (int d = 0; d < 4; ++d) {
+        const double sx = anchors[d].first + dirs[d][0] * 4.0;
+        const double sy = anchors[d].second + dirs[d][1] * 4.0;
+        const double ex = anchors[d].first + dirs[d][0] * 20.0;
+        const double ey = anchors[d].second + dirs[d][1] * 20.0;
+        cr->set_source_rgba(0.96, 0.49, 0.0, 0.95);
+        cr->set_line_width(2.0);
+        cr->move_to(sx, sy);
+        cr->line_to(ex, ey);
+        cr->stroke();
+        _arrow_head(cr, ex, ey, std::atan2(dirs[d][1], dirs[d][0]), 7.0);
+    }
+}
+
 void CtDrawing::_render_grid(const Cairo::RefPtr<Cairo::Context>& cr) const
 {
     cr->set_source_rgba(0.35, 0.45, 0.55, 0.10);
@@ -1185,7 +1224,7 @@ void CtDrawing::_render_grid(const Cairo::RefPtr<Cairo::Context>& cr) const
     cr->stroke();
 }
 
-void CtDrawing::_render()
+Cairo::RefPtr<Cairo::ImageSurface> CtDrawing::_render_surface(const bool withUi)
 {
     const int width = std::max(80, _model.width);
     const int height = std::max(60, _model.height);
@@ -1199,7 +1238,7 @@ void CtDrawing::_render()
     for (const Conn& conn : _model.conns) {
         _render_conn(cr, conn);
     }
-    if (_preview and Drag::Conn == _drag) {
+    if (withUi and _preview and Drag::Conn == _drag) {
         _render_conn(cr, _previewConn);
         // highlight the hovered target shape and show its four snap points
         if (_previewConn.toShape >= 0 and _previewConn.toShape < static_cast<int>(_model.shapes.size())) {
@@ -1218,13 +1257,21 @@ void CtDrawing::_render()
     for (const Shape& shape : _model.shapes) {
         _render_shape(cr, shape);
     }
-    if (_preview and Drag::Create == _drag) {
+    if (withUi and _preview and Drag::Create == _drag) {
         _render_shape(cr, _previewShape);
     }
-    if (_selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
+    if (withUi and _selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
         _render_handles(cr, _model.shapes[_selShape]);
+        _render_quick_arrows(cr);
     }
+    return rSurface;
+}
 
+void CtDrawing::_render()
+{
+    const Cairo::RefPtr<Cairo::ImageSurface> rSurface = _render_surface(true);
+    const int width = rSurface->get_width();
+    const int height = rSurface->get_height();
     Glib::RefPtr<Gdk::Pixbuf> rPixbuf = Gdk::Pixbuf::create(rSurface, 0, 0, width, height);
     if (not rPixbuf) return;
     _rPixbuf = rPixbuf;
@@ -1264,20 +1311,47 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
 
     _pCanvas->grab_focus();
 
+    // dragging a resize handle works with ANY tool while a shape is selected —
+    // the user never has to switch to the select tool just to fix a size
+    const int handle = _hit_handle(x, y);
+    if (handle >= 0) {
+        _drag = Drag::Resize;
+        _dragHandle = handle;
+        _dragStartX = x;
+        _dragStartY = y;
+        const Shape& shape = _model.shapes[_selShape];
+        _origX = shape.x;
+        _origY = shape.y;
+        _origW = shape.w;
+        _origH = shape.h;
+        return true;
+    }
+
+    // Visio-style: pressing one of the four outward quick-connect arrows
+    // starts a connection from that border anchor point
+    const int qdir = _hit_quick_arrow(x, y);
+    if (qdir >= 0) {
+        const auto anchors = _border_anchors(_model.shapes[_selShape]);
+        _preview = true;
+        _previewConn = Conn{};
+        _previewConn.id = _next_conn_id();
+        _previewConn.fromShape = _selShape;
+        _previewConn.x1 = anchors[qdir].first;
+        _previewConn.y1 = anchors[qdir].second;
+        _previewConn.x2 = x;
+        _previewConn.y2 = y;
+        _previewConn.arrowEnd = true;
+        _previewConn.dashed = false;
+        _previewConn.stroke = oa_rgba_to_hex(_strokeColor);
+        _connFromQuick = true;
+        _drag = Drag::Conn;
+        _dragStartX = x;
+        _dragStartY = y;
+        _render();
+        return true;
+    }
+
     if (Tool::Select == _tool) {
-        const int handle = _hit_handle(x, y);
-        if (handle >= 0) {
-            _drag = Drag::Resize;
-            _dragHandle = handle;
-            _dragStartX = x;
-            _dragStartY = y;
-            const Shape& shape = _model.shapes[_selShape];
-            _origX = shape.x;
-            _origY = shape.y;
-            _origW = shape.w;
-            _origH = shape.h;
-            return true;
-        }
         const int idx = _hit_shape(x, y);
         if (idx >= 0) {
             _select_only(idx, -1);
@@ -1319,7 +1393,24 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
         return true;
     }
 
-    // a shape tool is active: drag out the new shape
+    // a shape tool is active: pressing an existing shape selects/moves it
+    // (no tool switching needed); dragging on empty canvas draws a new one.
+    // A plain click NEVER creates a shape — a drag of 8px or more is required
+    const int hitIdx = _hit_shape(x, y);
+    if (hitIdx >= 0) {
+        _select_only(hitIdx, -1);
+        _drag = Drag::Move;
+        _dragStartX = x;
+        _dragStartY = y;
+        const Shape& shape = _model.shapes[hitIdx];
+        _origX = shape.x;
+        _origY = shape.y;
+        _origW = shape.w;
+        _origH = shape.h;
+        _render();
+        return true;
+    }
+
     _preview = true;
     _previewShape = Shape{};
     _previewShape.id = _next_shape_id();
@@ -1420,24 +1511,41 @@ bool CtDrawing::_on_canvas_release(GdkEventButton* event)
             _model.shapes.push_back(_previewShape);
             _select_only(static_cast<int>(_model.shapes.size()) - 1, -1);
             _grow_canvas_for(_previewShape.x + _previewShape.w, _previewShape.y + _previewShape.h);
-            // Visio-style: fall back to the select tool so the new shape can
-            // be resized/moved by its handles right away
-            _set_tool(Tool::Select);
+            // the tool stays active: keep holding and dragging draws the next
+            // shape of the same kind right away (a click still creates nothing)
         }
     }
     else if (Drag::Conn == _drag) {
         _snap_conn_preview(x, y);
         if (std::hypot(x - _dragStartX, y - _dragStartY) >= 8.0) {
-            if (_previewConn.fromShape >= 0 and _previewConn.toShape >= 0) {
-                // both ends snapped: the line keeps following the shapes
-                _model.conns.push_back(_previewConn);
-                _recompute_conns();
+            if (_connFromQuick and _previewConn.fromShape >= 0 and _previewConn.toShape < 0) {
+                // quick-connect released over empty canvas: ask which shape to
+                // drop there — it gets created and connected automatically
+                _quickPending = true;
+                _quickFromShape = _previewConn.fromShape;
+                _quickMenuX = x;
+                _quickMenuY = y;
             }
             else {
                 _model.conns.push_back(_previewConn);
+                if (_previewConn.fromShape >= 0 and _previewConn.toShape >= 0) {
+                    // both ends snapped: the line keeps following the shapes
+                    _recompute_conns();
+                    if (_connFromQuick) {
+                        // chain-friendly: the target becomes selected, its own
+                        // quick arrows show up right away
+                        _select_only(_previewConn.toShape, -1);
+                    }
+                    else {
+                        _select_only(-1, static_cast<int>(_model.conns.size()) - 1);
+                    }
+                }
+                else {
+                    _select_only(-1, static_cast<int>(_model.conns.size()) - 1);
+                }
             }
-            _select_only(-1, static_cast<int>(_model.conns.size()) - 1);
         }
+        _connFromQuick = false;
     }
     else if (Drag::Move == _drag or Drag::Resize == _drag) {
         _recompute_conns();
@@ -1449,6 +1557,11 @@ bool CtDrawing::_on_canvas_release(GdkEventButton* event)
     _sync_model();
     _render();
     _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+
+    if (_quickPending) {
+        // open the shape picker after the release bookkeeping is done
+        _quick_show_menu(event);
+    }
     return true;
 }
 
@@ -1544,14 +1657,96 @@ void CtDrawing::_show_popup(GdkEventButton* event)
     _popup.popup(event->button, event->time);
 }
 
+// Visio-style: after a quick-connect drag ended on empty canvas, let the user
+// pick which shape to drop there — it is created at the release point and
+// connected back to the origin shape automatically
+void CtDrawing::_quick_show_menu(GdkEventButton* event)
+{
+    for (Gtk::Widget* pChild : _quickMenu.get_children()) {
+        _quickMenu.remove(*pChild);
+    }
+
+    const std::vector<std::pair<Tool, const char*>> items = {
+        {Tool::Rect,          _("矩形")},
+        {Tool::RoundRect,     _("圆角矩形")},
+        {Tool::Ellipse,       _("椭圆")},
+        {Tool::Diamond,       _("菱形")},
+        {Tool::Parallelogram, _("平行四边形")},
+        {Tool::Cylinder,      _("圆柱")},
+        {Tool::Hexagon,       _("六边形")},
+        {Tool::Terminator,    _("胶囊")},
+        {Tool::Document,      _("文档")},
+    };
+    for (const auto& item : items) {
+        // MenuItem is a Bin: pack an icon + label box into it (set_image is
+        // not available in this gtkmm build)
+        Gtk::MenuItem* pItem = Gtk::manage(new Gtk::MenuItem{});
+        Gtk::Box* pBox = Gtk::manage(new Gtk::Box{Gtk::ORIENTATION_HORIZONTAL, 6});
+        pBox->pack_start(*Gtk::manage(new Gtk::Image{_icon_for_tool(item.first)}), false, false);
+        pBox->pack_start(*Gtk::manage(new Gtk::Label{item.second}), false, false);
+        pItem->add(*pBox);
+        const Tool shapeType = item.first;
+        pItem->signal_activate().connect([this, shapeType]() { _quick_create_shape(shapeType); });
+        _quickMenu.append(*pItem);
+    }
+
+    _quickMenu.show_all();
+    _quickMenu.popup(event->button, event->time);
+}
+
+void CtDrawing::_quick_create_shape(const Tool shapeType)
+{
+    if (not _quickPending or _quickFromShape < 0 or _quickFromShape >= static_cast<int>(_model.shapes.size())) {
+        _quickPending = false;
+        return;
+    }
+    _quickPending = false;
+
+    Shape shape{};
+    shape.id = _next_shape_id();
+    shape.type = shapeType;
+    shape.w = 140.0;
+    shape.h = 64.0;
+    shape.x = std::max(0.0, _quickMenuX - shape.w / 2.0);
+    shape.y = std::max(0.0, _quickMenuY - shape.h / 2.0);
+    shape.fill = oa_rgba_to_hex(_fillColor);
+    shape.stroke = oa_rgba_to_hex(_strokeColor);
+    shape.fontSize = _defaultFontSize;
+    shape.textColor = _defaultTextColor;
+    _model.shapes.push_back(shape);
+    const int newIdx = static_cast<int>(_model.shapes.size()) - 1;
+
+    // connect it back to the shape the arrow was dragged from; the endpoints
+    // follow the border anchor midpoints from now on
+    Conn conn{};
+    conn.id = _next_conn_id();
+    conn.fromShape = _quickFromShape;
+    conn.toShape = newIdx;
+    conn.arrowEnd = true;
+    conn.dashed = false;
+    conn.stroke = oa_rgba_to_hex(_strokeColor);
+    _model.conns.push_back(conn);
+    _recompute_conns();
+
+    _grow_canvas_for(shape.x + shape.w, shape.y + shape.h);
+    _select_only(newIdx, -1);
+    _sync_model();
+    _render();
+    _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+}
+
 // ---------------------------------------------------------------- storage
 
 std::string CtDrawing::_png_blob()
 {
-    if (not _rPixbuf) return std::string{};
+    // a clean re-render: the on-screen pixbuf carries selection UI (handles,
+    // quick-connect arrows) that must never leak into the saved image
+    const Cairo::RefPtr<Cairo::ImageSurface> rSurface = _render_surface(false);
+    Glib::RefPtr<Gdk::Pixbuf> rPixbuf = Gdk::Pixbuf::create(rSurface, 0, 0, rSurface->get_width(), rSurface->get_height());
+    if (not rPixbuf) return std::string{};
     g_autofree gchar* pBuffer{nullptr};
     gsize buffer_size{0};
-    _rPixbuf->save_to_buffer(pBuffer, buffer_size, "png");
+    rPixbuf->save_to_buffer(pBuffer, buffer_size, "png");
     return std::string{pBuffer, buffer_size};
 }
 

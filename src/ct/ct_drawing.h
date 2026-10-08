@@ -115,6 +115,7 @@ private:
     static std::string _shape_attr_str(xmlpp::Element* pElement, const char* name, const std::string& defVal);
 
     void _sync_model();                 // model -> xml string (kept for saving)
+    Cairo::RefPtr<Cairo::ImageSurface> _render_surface(const bool withUi); // model -> cairo surface (withUi=false: a clean image for saving)
     void _render();                     // model -> pixbuf -> Gtk::Image
     void _render_grid(const Cairo::RefPtr<Cairo::Context>& cr) const;
     void _render_shape(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape);
@@ -122,10 +123,12 @@ private:
     void _shape_path(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const;
     void _arrow_head(const Cairo::RefPtr<Cairo::Context>& cr, const double x, const double y, const double angle, const double size = 9.0) const;
     void _render_handles(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const;
+    void _render_quick_arrows(const Cairo::RefPtr<Cairo::Context>& cr) const; // Visio-style 4-way connect arrows on the selected shape
 
     int  _hit_shape(const double x, const double y) const;
     int  _hit_conn(const double x, const double y) const;
     int  _hit_handle(const double x, const double y) const;   // 0..7 or -1
+    int  _hit_quick_arrow(const double x, const double y) const; // Visio-style outward arrow: 0..3 or -1
     void _handle_pos(const Shape& shape, const int handle, double& hx, double& hy) const;
     bool _inside_shape(const Shape& shape, const double x, const double y) const;
     void _recompute_conns();            // snap the endpoints of shape-bound connectors
@@ -168,6 +171,8 @@ private:
     bool _on_canvas_key(GdkEventKey* event);
     bool _on_canvas_draw(const Cairo::RefPtr<Cairo::Context>& cr);
     void _show_popup(GdkEventButton* event);
+    void _quick_show_menu(GdkEventButton* event);       // Visio-style: pick a shape to auto-create and connect
+    void _quick_create_shape(const Tool shapeType);     // create the picked shape at the release point and connect it
     void _on_fill_color_set();
     void _on_stroke_color_set();
     void _on_editor_focus_out();
@@ -206,4 +211,9 @@ private:
     std::string    _defaultTextColor{"#1f2429"};
     bool           _syncingStyle{false};
     std::vector<Gtk::Button*> _toolButtons;
+    bool           _connFromQuick{false};  // the connector being dragged started from a quick-connect arrow
+    bool           _quickPending{false};   // a quick-connect release awaits the shape pick
+    int            _quickFromShape{-1};    // origin shape of the pending quick connection
+    double         _quickMenuX{0.}, _quickMenuY{0.};  // canvas coords of the quick-connect release point
+    Gtk::Menu      _quickMenu;             // kept alive: the shape picker of the quick-connect flow
 };

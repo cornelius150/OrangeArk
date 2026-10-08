@@ -1,3 +1,24 @@
+orangeark (1.3.3-1) focal; urgency=low
+
+  * New: Visio-style quick-connect - the selected shape shows four outward
+    arrows on its border anchor midpoints; press one and drag to connect to
+    another shape, or release over empty canvas and pick a shape from the
+    popup menu: it is created right there and connected automatically
+    (endpoints keep following the border anchor midpoints).
+  * New: with a shape tool active the user can keep drawing that shape -
+    a drag of 8px or more creates it, a plain click never does; pressing an
+    existing shape selects/moves it and its handles stay resizable without
+    switching to the select tool.
+  * Fix: the pin-to-desktop close button never fired (a custom
+    button-press handler returning TRUE blocked GtkButton's own press
+    handling); the button is now a small circle with a X.
+  * Fix: saved drawings no longer leak the selection handles/arrows into
+    the stored PNG (a clean render is used for saving).
+  * New: .mdz (encrypted Markdown) is now associated in the installer, and
+    on startup the app registers HKCU file associations for portable
+    installs so saved documents carry the orange icon (never stealing
+    extensions owned by other applications).
+
 orangeark (1.3.2-1) focal; urgency=low
 
   * New: drawing shapes is created by press-and-drag only - a plain

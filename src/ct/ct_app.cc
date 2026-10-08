@@ -23,7 +23,18 @@
 
 #include <glib/gstdio.h>
 #include "ct_app.h"
-#if GTKMM_MAJOR_VERSION >= 4 && defined(_WIN32)
+#if defined(_WIN32) && !defined(ORANGEARK_NO_FILE_ASSOC)
+// OrangeArk: file associations (see oa_ensure_file_associations below)
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#include <shlobj.h>
+#include <cstring>
+#elif GTKMM_MAJOR_VERSION >= 4 && defined(_WIN32)
 #include <windows.h>
 #include <gdk/win32/gdkwin32.h>
 #endif
@@ -55,6 +66,93 @@ void queue_focus_node(CtMainWin* pCtMainWin, const Glib::ustring& node_to_focus,
         }
     });
 }
+
+#if defined(_WIN32) && !defined(ORANGEARK_NO_FILE_ASSOC)
+// OrangeArk: make sure our document extensions carry the orange icon and open
+// in OrangeArk even for the PORTABLE build (the installer writes HKCR, a
+// portable zip cannot). We only write HKCU\Software\Classes (no admin rights
+// needed) and we never steal an extension another application has claimed.
+static bool oa_reg_write_string(HKEY hRoot, const char* pSubkey, const char* pValueName, const char* pData)
+{
+    HKEY hKey{nullptr};
+    if (RegCreateKeyExA(hRoot, pSubkey, 0, nullptr, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE,
+                        nullptr, &hKey, nullptr) != ERROR_SUCCESS) {
+        return false;
+    }
+    const bool ok = RegSetValueExA(hKey, pValueName, 0, REG_SZ,
+                                   reinterpret_cast<const BYTE*>(pData),
+                                   static_cast<DWORD>(strlen(pData) + 1)) == ERROR_SUCCESS;
+    RegCloseKey(hKey);
+    return ok;
+}
+
+// returns true when something was (re)written
+static bool oa_write_file_assoc(const char* pExt, const char* pProgId, const char* pDesc, const std::string& exePath)
+{
+    const std::string extKey = std::string("Software\\Classes\\") + pExt;
+
+    // 1) HKCU already claims the extension for another app -> hands off
+    char current[512]{};
+    DWORD cbSize = sizeof(current);
+    DWORD type = 0;
+    HKEY hKey{nullptr};
+    if (RegOpenKeyExA(HKEY_CURRENT_USER, extKey.c_str(), 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
+        const bool has = (RegQueryValueExA(hKey, "", nullptr, &type,
+                                           reinterpret_cast<LPBYTE>(current), &cbSize) == ERROR_SUCCESS and
+                          type == REG_SZ and current[0] != '\0');
+        RegCloseKey(hKey);
+        if (has and std::strncmp(current, "OrangeArk", 9) != 0) {
+            return false;
+        }
+    }
+
+    // 2) HKCR (machine-wide) claims it for another app -> hands off too
+    char hkcrVal[512]{};
+    DWORD cb2 = sizeof(hkcrVal);
+    DWORD type2 = 0;
+    HKEY hHkcr{nullptr};
+    if (RegOpenKeyExA(HKEY_CLASSES_ROOT, pExt, 0, KEY_READ, &hHkcr) == ERROR_SUCCESS) {
+        const bool has = (RegQueryValueExA(hHkcr, "", nullptr, &type2,
+                                           reinterpret_cast<LPBYTE>(hkcrVal), &cb2) == ERROR_SUCCESS and
+                          type2 == REG_SZ and hkcrVal[0] != '\0');
+        RegCloseKey(hHkcr);
+        if (has and std::strncmp(hkcrVal, "OrangeArk", 9) != 0) {
+            return false;
+        }
+    }
+
+    const std::string progKey = std::string("Software\\Classes\\") + pProgId;
+    const std::string iconVal = "\"" + exePath + "\",0";
+    const std::string cmdVal = "\"" + exePath + "\" \"%1\"";
+    bool wrote = false;
+    wrote |= oa_reg_write_string(HKEY_CURRENT_USER, extKey.c_str(), "", pProgId);
+    wrote |= oa_reg_write_string(HKEY_CURRENT_USER, progKey.c_str(), "", pDesc);
+    wrote |= oa_reg_write_string(HKEY_CURRENT_USER, (progKey + "\\DefaultIcon").c_str(), "", iconVal.c_str());
+    wrote |= oa_reg_write_string(HKEY_CURRENT_USER, (progKey + "\\shell\\open\\command").c_str(), "", cmdVal.c_str());
+    if (wrote) {
+        spdlog::info("file association registered: {} -> {}", pExt, pProgId);
+    }
+    return wrote;
+}
+
+static void oa_ensure_file_associations()
+{
+    char exePathA[MAX_PATH]{};
+    if (GetModuleFileNameA(nullptr, exePathA, MAX_PATH) == 0) return;
+    const std::string exePath = exePathA;
+    bool any = false;
+    any |= oa_write_file_assoc(".mdz", "OrangeArkMDZ", "OrangeArk Encrypted Document", exePath);
+    any |= oa_write_file_assoc(".md",  "OrangeArkMD",  "OrangeArk Document", exePath);
+    any |= oa_write_file_assoc(".ctb", "OrangeArkB",   "OrangeArk SQLite Document", exePath);
+    any |= oa_write_file_assoc(".ctx", "OrangeArkX",   "OrangeArk SQLite Zipped", exePath);
+    any |= oa_write_file_assoc(".ctd", "OrangeArkD",   "OrangeArk XML Document", exePath);
+    any |= oa_write_file_assoc(".ctz", "OrangeArkZ",   "OrangeArk XML Zipped", exePath);
+    if (any) {
+        // let Explorer pick the new icons up without a logoff
+        SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
+    }
+}
+#endif // defined(_WIN32) && !defined(ORANGEARK_NO_FILE_ASSOC)
 
 #if GTKMM_MAJOR_VERSION >= 4 && defined(_WIN32)
 void present_main_window(Gtk::Window* pWindow)
@@ -247,6 +345,10 @@ void CtApp::_on_startup()
 
     if (not _no_gui) {
         _pCtApp = this;
+#if defined(_WIN32) && !defined(ORANGEARK_NO_FILE_ASSOC)
+        // portable builds get their orange document icons from here (HKCU)
+        oa_ensure_file_associations();
+#endif
         signal(SIGTERM, kill_callback_handler); // kill/killall
         signal(SIGINT, kill_callback_handler);  // Ctrl+C
 #ifndef _WIN32

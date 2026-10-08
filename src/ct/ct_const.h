@@ -728,7 +728,7 @@ const inline static std::array<std::string_view, 4>  INVALID_HTML_TAGS = {
 
 // List of extensions for orangeark save files, for use with gtk FileFilter
 const inline static std::vector<std::string> CT_FILE_EXTENSIONS_FILTER = {
-    "*.md", "*.ctb", "*.ctx", "*.ctd", "*.ctz"
+    "*.md", "*.mdz", "*.ctb", "*.ctx", "*.ctd", "*.ctz"
 };
 
 const inline static Glib::ustring TARGET_CTD_PLAIN_TEXT = "UTF8_STRING";

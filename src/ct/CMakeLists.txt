@@ -108,6 +108,10 @@ target_link_libraries(orangeark_shared
   pthread
   7za_static
 )
+if(WIN32)
+  # OrangeArk: registry (file associations) + shell icon-change notification
+  target_link_libraries(orangeark_shared advapi32 shell32)
+endif()
 if(CT_USE_GSPELL)
   target_link_libraries(orangeark_shared
     ${GSPELL_LIBRARIES}

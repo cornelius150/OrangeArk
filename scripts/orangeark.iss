@@ -5,7 +5,7 @@
 #define MyAppPublisher "Giuseppe Penone"
 #define MyAppURL "https://www.giuspen.net/orangeark/"
 #define MyAppExeName "orangeark.exe"
-#define MyAppVersion "1.3.2"
+#define MyAppVersion "1.3.3"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -57,6 +57,10 @@ Root: HKCR; Subkey: ".md"; ValueType: string; ValueName: ""; ValueData: "OrangeA
 Root: HKCR; Subkey: "OrangeArkMD"; ValueType: string; ValueName: ""; ValueData: "OrangeArk Document"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "OrangeArkMD\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\ucrt64\bin\{#MyAppExeName},0"
 Root: HKCR; Subkey: "OrangeArkMD\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\ucrt64\bin\{#MyAppExeName}"" ""%1"""
+Root: HKCR; Subkey: ".mdz"; ValueType: string; ValueName: ""; ValueData: "OrangeArkMDZ"; Flags: uninsdeletevalue
+Root: HKCR; Subkey: "OrangeArkMDZ"; ValueType: string; ValueName: ""; ValueData: "OrangeArk Encrypted Document"; Flags: uninsdeletekey
+Root: HKCR; Subkey: "OrangeArkMDZ\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\ucrt64\bin\{#MyAppExeName},0"
+Root: HKCR; Subkey: "OrangeArkMDZ\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\ucrt64\bin\{#MyAppExeName}"" ""%1"""
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

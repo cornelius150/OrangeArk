@@ -19,6 +19,7 @@
 #include <cairo.h>
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 #include <vector>
 
 namespace CtScreenshot
@@ -169,10 +170,11 @@ private:
             rCss->load_from_data(
                 ".pin-frame { border: 1px solid rgba(0,0,0,0.35); background: #ffffff; }\n"
                 ".pin-frame:hover { border: 2px solid #ff8800; }\n"
-                // OrangeArk: the always-visible ✕ close button in the corner
-                ".pin-close { padding:0px; min-width:18px; min-height:18px;"
-                " border-radius:0px; border:none; background:rgba(0,0,0,0.45);"
-                " color:#ffffff; font-size:11px;"
+                // OrangeArk: the always-visible close button in the corner —
+                // a small circle with a ✕ (Snipaste-style)
+                ".pin-close { padding:0px; min-width:16px; min-height:16px;"
+                " border-radius:50%; border:none; background:rgba(0,0,0,0.40);"
+                " color:#ffffff; font-size:9px; font-weight:bold;"
                 " -GtkWidget-focus-padding:0; -GtkWidget-focus-line-width:0; }\n"
                 ".pin-close:hover { background:#e53935; }\n");
             get_style_context()->add_provider(rCss, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -191,8 +193,11 @@ private:
         pBtnClose->set_margin_end(2);
         pBtnClose->set_tooltip_text("关闭贴图");
         pBtnClose->get_style_context()->add_class("pin-close");
-        // swallow presses on the button so they never start a drag on the pin
-        pBtnClose->signal_button_press_event().connect([](GdkEventButton*){ return true; }, false);
+        // NOTE: no custom button-press handler here — a handler returning TRUE
+        // before GtkButton's own class handler blocks it, so the button never
+        // enters the pressed state and "clicked" never fires (the close button
+        // appeared dead). GtkButton already stops event propagation by itself,
+        // so the window drag handler never sees presses made on the button.
         pBtnClose->signal_clicked().connect(sigc::mem_fun(*this, &CtScreenshotPinWindow::close_self));
 
         auto* pLayout = Gtk::manage(new Gtk::Overlay{});
