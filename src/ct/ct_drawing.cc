@@ -756,7 +756,8 @@ int CtDrawing::_hit_handle(const double x, const double y) const
 {
     if (_selShape < 0 or _selShape >= static_cast<int>(_model.shapes.size())) return -1;
     const Shape& shape = _model.shapes[_selShape];
-    for (int h = 0; h < 8; ++h) {
+    // the 8 resize grips: every bbox point except the (useless) centre
+    for (const int h : {0, 1, 2, 3, 5, 6, 7, 8}) {
         double hx = 0.0, hy = 0.0;
         _handle_pos(shape, h, hx, hy);
         if (std::abs(x - hx) <= 5.0 and std::abs(y - hy) <= 5.0) return h;
@@ -764,18 +765,60 @@ int CtDrawing::_hit_handle(const double x, const double y) const
     return -1;
 }
 
-// hit-test of the Visio-style quick-connect arrows (drawn ~4..20px outside
-// each border anchor midpoint of the selected shape); returns 0..3 or -1
-int CtDrawing::_hit_quick_arrow(const double x, const double y) const
+// hit-test of the border LINES of the selected shape (a few px around them),
+// so the user can grab an edge anywhere along it to resize — not only at the
+// small grips. Returns the edge's mid-handle: 1 top, 3 left, 5 right, 7 bottom.
+int CtDrawing::_hit_edge(const double x, const double y) const
 {
     if (_selShape < 0 or _selShape >= static_cast<int>(_model.shapes.size())) return -1;
-    if (Drag::None != _drag) return -1;
     const Shape& shape = _model.shapes[_selShape];
+    const double tol = 4.0;
+    const double x1 = shape.x, x2 = shape.x + shape.w;
+    const double y1 = shape.y, y2 = shape.y + shape.h;
+    if (x >= x1 - tol and x <= x2 + tol) {
+        if (std::abs(y - y1) <= tol and y < (y1 + y2) / 2.0) return 1;   // top edge
+        if (std::abs(y - y2) <= tol and y > (y1 + y2) / 2.0) return 7;   // bottom edge
+    }
+    if (y >= y1 - tol and y <= y2 + tol) {
+        if (std::abs(x - x1) <= tol and x < (x1 + x2) / 2.0) return 3;   // left edge
+        if (std::abs(x - x2) <= tol and x > (x1 + x2) / 2.0) return 5;   // right edge
+    }
+    return -1;
+}
+
+// outward unit direction of one of the shape's border anchors (shape centre
+// -> anchor point); works for any anchor set, diamond included
+/*static*/ void CtDrawing::_anchor_dir(const Shape& shape, const int anchorIdx, double& dx, double& dy)
+{
     const auto anchors = _border_anchors(shape);
-    const double dirs[4][2] = {{0., -1.}, {1., 0.}, {0., 1.}, {-1., 0.}};
+    const double cx = shape.x + shape.w / 2.0;
+    const double cy = shape.y + shape.h / 2.0;
+    dx = anchors[anchorIdx].first - cx;
+    dy = anchors[anchorIdx].second - cy;
+    const double len = std::hypot(dx, dy);
+    if (len < 0.001) {
+        dx = 0.0;
+        dy = -1.0;
+    }
+    else {
+        dx /= len;
+        dy /= len;
+    }
+}
+
+// hit-test of the Visio-style quick-connect arrows (drawn ~4..20px outside
+// each border anchor of the HOVERED shape); returns 0..3 or -1
+int CtDrawing::_hit_quick_arrow(const double x, const double y) const
+{
+    if (_hoverShape < 0 or _hoverShape >= static_cast<int>(_model.shapes.size())) return -1;
+    if (Drag::None != _drag) return -1;
+    const Shape& shape = _model.shapes[_hoverShape];
+    const auto anchors = _border_anchors(shape);
     for (int d = 0; d < 4; ++d) {
-        const double cx = anchors[d].first + dirs[d][0] * 14.0;
-        const double cy = anchors[d].second + dirs[d][1] * 14.0;
+        double dx = 0.0, dy = 0.0;
+        _anchor_dir(shape, d, dx, dy);
+        const double cx = anchors[d].first + dx * 14.0;
+        const double cy = anchors[d].second + dy * 14.0;
         if (std::hypot(x - cx, y - cy) <= 12.0) return d;
     }
     return -1;
@@ -843,10 +886,20 @@ void CtDrawing::_recompute_conns()
     }
 }
 
+// the connect points of a shape. For most shapes the four border midpoints
+// of the bounding box sit right on the outline; the diamond is the exception
+// — its bbox midpoints are its four VERTICES, so the anchors move to the
+// midpoints of the four slanted edges ("菱形边线中心点")
 std::array<std::pair<double, double>, 4> CtDrawing::_border_anchors(const Shape& shape)
 {
     const double cx = shape.x + shape.w / 2.0;
     const double cy = shape.y + shape.h / 2.0;
+    if (Tool::Diamond == shape.type) {
+        return {std::make_pair((shape.x + cx) / 2.0, (cy + shape.y) / 2.0),            // top-left edge midpoint
+                std::make_pair((cx + shape.x + shape.w) / 2.0, (shape.y + cy) / 2.0),  // top-right edge midpoint
+                std::make_pair((cx + shape.x) / 2.0, (shape.y + shape.h + cy) / 2.0),  // bottom-left edge midpoint
+                std::make_pair((shape.x + shape.w + cx) / 2.0, (cy + shape.y + shape.h) / 2.0)}; // bottom-right edge midpoint
+    }
     return {std::make_pair(cx, shape.y),
             std::make_pair(shape.x + shape.w, cy),
             std::make_pair(cx, shape.y + shape.h),
@@ -970,6 +1023,7 @@ void CtDrawing::_delete_selection()
     if (changed) {
         _editShape = -1;
         _pEditor->hide();
+        _hoverShape = -1;   // indices shifted; re-armed by the next mouse move
         _sync_model();
         _render();
         _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
@@ -1175,7 +1229,7 @@ void CtDrawing::_render_handles(const Cairo::RefPtr<Cairo::Context>& cr, const S
     cr->rectangle(shape.x - 2.0, shape.y - 2.0, shape.w + 4.0, shape.h + 4.0);
     cr->stroke();
     cr->unset_dash();
-    for (int h = 0; h < 8; ++h) {
+    for (const int h : {0, 1, 2, 3, 5, 6, 7, 8}) {
         double hx = 0.0, hy = 0.0;
         _handle_pos(shape, h, hx, hy);
         cr->set_source_rgb(1.0, 1.0, 1.0);
@@ -1187,25 +1241,32 @@ void CtDrawing::_render_handles(const Cairo::RefPtr<Cairo::Context>& cr, const S
     }
 }
 
-// Visio-style: four small outward arrows on the border anchor midpoints of
-// the selected shape — press one and drag to connect (or to drop a new shape)
-void CtDrawing::_render_quick_arrows(const Cairo::RefPtr<Cairo::Context>& cr) const
+// Visio-style: four small outward arrows on the border anchors of the shape
+// under the mouse — press one to connect, or just click it to drop a copy of
+// the shape beside and connect the two. Never shown while not hovering.
+void CtDrawing::_render_quick_arrows(const Cairo::RefPtr<Cairo::Context>& cr, const int shapeIdx)
 {
     if (_drag != Drag::None) return;   // hidden while any interaction is going on
-    const Shape& shape = _model.shapes[_selShape];
+    if (shapeIdx < 0 or shapeIdx >= static_cast<int>(_model.shapes.size())) return;
+    const Shape& shape = _model.shapes[shapeIdx];
     const auto anchors = _border_anchors(shape);
-    const double dirs[4][2] = {{0., -1.}, {1., 0.}, {0., 1.}, {-1., 0.}};
     for (int d = 0; d < 4; ++d) {
-        const double sx = anchors[d].first + dirs[d][0] * 4.0;
-        const double sy = anchors[d].second + dirs[d][1] * 4.0;
-        const double ex = anchors[d].first + dirs[d][0] * 20.0;
-        const double ey = anchors[d].second + dirs[d][1] * 20.0;
+        double dx = 0.0, dy = 0.0;
+        _anchor_dir(shape, d, dx, dy);
+        const double sx = anchors[d].first + dx * 4.0;
+        const double sy = anchors[d].second + dy * 4.0;
+        const double ex = anchors[d].first + dx * 20.0;
+        const double ey = anchors[d].second + dy * 20.0;
+        // a small dot marks the connect point itself (the edge midpoint)
+        cr->set_source_rgba(0.96, 0.49, 0.0, 0.9);
+        cr->arc(anchors[d].first, anchors[d].second, 2.5, 0.0, 2.0 * M_PI);
+        cr->fill();
         cr->set_source_rgba(0.96, 0.49, 0.0, 0.95);
         cr->set_line_width(2.0);
         cr->move_to(sx, sy);
         cr->line_to(ex, ey);
         cr->stroke();
-        _arrow_head(cr, ex, ey, std::atan2(dirs[d][1], dirs[d][0]), 7.0);
+        _arrow_head(cr, ex, ey, std::atan2(dy, dx), 7.0);
     }
 }
 
@@ -1262,7 +1323,11 @@ Cairo::RefPtr<Cairo::ImageSurface> CtDrawing::_render_surface(const bool withUi)
     }
     if (withUi and _selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
         _render_handles(cr, _model.shapes[_selShape]);
-        _render_quick_arrows(cr);
+    }
+    if (withUi and _editShape < 0) {
+        // the quick arrows belong to whichever shape the mouse hovers —
+        // after drawing they disappear until the pointer comes back
+        _render_quick_arrows(cr, _hoverShape);
     }
     return rSurface;
 }
@@ -1280,6 +1345,35 @@ void CtDrawing::_render()
 }
 
 // ---------------------------------------------------------------- events
+
+// while the mouse just hovers (no drag going on), show what a press would do:
+// the resize arrows over the selected shape's grips and border lines, a
+// pointing hand over the quick-connect arrows
+void CtDrawing::_update_cursor(const double x, const double y)
+{
+    Glib::ustring name = "default";
+    if (_editShape < 0) {
+        if (_hit_quick_arrow(x, y) >= 0) {
+            name = "pointer";
+        }
+        else {
+            int handle = _hit_handle(x, y);
+            if (handle < 0) handle = _hit_edge(x, y);
+            switch (handle) {
+            case 1: case 7: name = "ns-resize"; break;   // top / bottom edge
+            case 3: case 5: name = "ew-resize"; break;   // left / right edge
+            case 0: case 8: name = "nw-resize"; break;   // top-left / bottom-right corner
+            case 2: case 6: name = "ne-resize"; break;   // top-right / bottom-left corner
+            default: break;
+            }
+        }
+    }
+    if (name == _cursorName) return;
+    _cursorName = name;
+    if (Glib::RefPtr<Gdk::Window> rWindow = _pCanvas->get_window()) {
+        rWindow->set_cursor(Gdk::Cursor::create(rWindow->get_display(), name));
+    }
+}
 
 bool CtDrawing::_on_canvas_press(GdkEventButton* event)
 {
@@ -1311,9 +1405,10 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
 
     _pCanvas->grab_focus();
 
-    // dragging a resize handle works with ANY tool while a shape is selected —
-    // the user never has to switch to the select tool just to fix a size
-    const int handle = _hit_handle(x, y);
+    // dragging a resize grip OR anywhere along a border line of the selected
+    // shape works with ANY tool — the user never has to switch tools
+    int handle = _hit_handle(x, y);
+    if (handle < 0) handle = _hit_edge(x, y);
     if (handle >= 0) {
         _drag = Drag::Resize;
         _dragHandle = handle;
@@ -1328,14 +1423,18 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
     }
 
     // Visio-style: pressing one of the four outward quick-connect arrows
-    // starts a connection from that border anchor point
+    // starts a connection from that border anchor point (a plain click, with
+    // no drag, auto-creates the connected shape on release)
     const int qdir = _hit_quick_arrow(x, y);
     if (qdir >= 0) {
-        const auto anchors = _border_anchors(_model.shapes[_selShape]);
+        const int fromIdx = _hoverShape;
+        const Shape& fromShape = _model.shapes[fromIdx];
+        const auto anchors = _border_anchors(fromShape);
+        _anchor_dir(fromShape, qdir, _quickDirX, _quickDirY);
         _preview = true;
         _previewConn = Conn{};
         _previewConn.id = _next_conn_id();
-        _previewConn.fromShape = _selShape;
+        _previewConn.fromShape = fromIdx;
         _previewConn.x1 = anchors[qdir].first;
         _previewConn.y1 = anchors[qdir].second;
         _previewConn.x2 = x;
@@ -1344,6 +1443,7 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
         _previewConn.dashed = false;
         _previewConn.stroke = oa_rgba_to_hex(_strokeColor);
         _connFromQuick = true;
+        _quickFromShape = fromIdx;
         _drag = Drag::Conn;
         _dragStartX = x;
         _dragStartY = y;
@@ -1436,6 +1536,14 @@ bool CtDrawing::_on_canvas_motion(GdkEventMotion* event)
     const double y = event->y;
 
     if (Drag::None == _drag) {
+        // track which shape the mouse is over: the quick-connect arrows of
+        // that shape appear (and disappear when the mouse leaves)
+        const int hover = _hit_shape(x, y);
+        if (hover != _hoverShape) {
+            _hoverShape = hover;
+            _render();
+        }
+        _update_cursor(x, y);
         return false;
     }
 
@@ -1517,7 +1625,13 @@ bool CtDrawing::_on_canvas_release(GdkEventButton* event)
     }
     else if (Drag::Conn == _drag) {
         _snap_conn_preview(x, y);
-        if (std::hypot(x - _dragStartX, y - _dragStartY) >= 8.0) {
+        const double dragDist = std::hypot(x - _dragStartX, y - _dragStartY);
+        if (_connFromQuick and dragDist < 8.0) {
+            // a plain click on a quick arrow: drop a copy of the shape in the
+            // arrow direction and connect the two right away
+            _quick_auto_create();
+        }
+        else if (dragDist >= 8.0) {
             if (_connFromQuick and _previewConn.fromShape >= 0 and _previewConn.toShape < 0) {
                 // quick-connect released over empty canvas: ask which shape to
                 // drop there — it gets created and connected automatically
@@ -1554,8 +1668,10 @@ bool CtDrawing::_on_canvas_release(GdkEventButton* event)
     _preview = false;
     _drag = Drag::None;
     _dragHandle = -1;
+    _hoverShape = _hit_shape(x, y);   // arrows follow the pointer right away
     _sync_model();
     _render();
+    _update_cursor(x, y);
     _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
 
     if (_quickPending) {
@@ -1733,6 +1849,48 @@ void CtDrawing::_quick_create_shape(const Tool shapeType)
     _sync_model();
     _render();
     _pCtMainWin->update_window_save_needed(CtSaveNeededUpdType::nbuf, true);
+}
+
+// a plain click (no drag) on one of the hovered shape's quick arrows: clone
+// that shape one step out in the arrow direction and connect the two
+void CtDrawing::_quick_auto_create()
+{
+    if (_quickFromShape < 0 or _quickFromShape >= static_cast<int>(_model.shapes.size())) return;
+    const Shape from = _model.shapes[_quickFromShape];   // a copy: we push below
+
+    Shape shape{};
+    shape.id = _next_shape_id();
+    shape.type = from.type;
+    shape.w = from.w;
+    shape.h = from.h;
+    shape.fill = from.fill;
+    shape.stroke = from.stroke;
+    shape.fontSize = from.fontSize;
+    shape.bold = from.bold;
+    shape.textColor = from.textColor;
+    const double gap = 44.0;
+    const double cx = from.x + from.w / 2.0 + _quickDirX * (from.w / 2.0 + gap + shape.w / 2.0);
+    const double cy = from.y + from.h / 2.0 + _quickDirY * (from.h / 2.0 + gap + shape.h / 2.0);
+    shape.x = std::max(4.0, cx - shape.w / 2.0);
+    shape.y = std::max(4.0, cy - shape.h / 2.0);
+    _grow_canvas_for(shape.x + shape.w, shape.y + shape.h);
+    // the canvas growth is capped: keep the new shape inside it
+    if (shape.x + shape.w > _model.width - 4.0) shape.x = std::max(4.0, _model.width - 4.0 - shape.w);
+    if (shape.y + shape.h > _model.height - 4.0) shape.y = std::max(4.0, _model.height - 4.0 - shape.h);
+    _model.shapes.push_back(shape);
+    const int newIdx = static_cast<int>(_model.shapes.size()) - 1;
+
+    Conn conn{};
+    conn.id = _next_conn_id();
+    conn.fromShape = _quickFromShape;
+    conn.toShape = newIdx;
+    conn.arrowEnd = true;
+    conn.dashed = false;
+    conn.stroke = oa_rgba_to_hex(_strokeColor);
+    _model.conns.push_back(conn);
+    _recompute_conns();
+
+    _select_only(newIdx, -1);
 }
 
 // ---------------------------------------------------------------- storage

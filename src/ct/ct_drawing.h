@@ -123,16 +123,19 @@ private:
     void _shape_path(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const;
     void _arrow_head(const Cairo::RefPtr<Cairo::Context>& cr, const double x, const double y, const double angle, const double size = 9.0) const;
     void _render_handles(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const;
-    void _render_quick_arrows(const Cairo::RefPtr<Cairo::Context>& cr) const; // Visio-style 4-way connect arrows on the selected shape
+    void _render_quick_arrows(const Cairo::RefPtr<Cairo::Context>& cr, const int shapeIdx); // Visio-style connect arrows on the hovered shape
 
     int  _hit_shape(const double x, const double y) const;
     int  _hit_conn(const double x, const double y) const;
-    int  _hit_handle(const double x, const double y) const;   // 0..7 or -1
+    int  _hit_handle(const double x, const double y) const;   // 0..8 except 4 (center) or -1
+    int  _hit_edge(const double x, const double y) const;     // border-line of the selected shape: 1 top, 3 left, 5 right, 7 bottom or -1
     int  _hit_quick_arrow(const double x, const double y) const; // Visio-style outward arrow: 0..3 or -1
+    void _update_cursor(const double x, const double y);      // resize / pointer cursors while hovering
     void _handle_pos(const Shape& shape, const int handle, double& hx, double& hy) const;
     bool _inside_shape(const Shape& shape, const double x, const double y) const;
     void _recompute_conns();            // snap the endpoints of shape-bound connectors
-    static std::array<std::pair<double, double>, 4> _border_anchors(const Shape& shape); // top/right/bottom/left midpoints
+    static void _anchor_dir(const Shape& shape, const int anchorIdx, double& dx, double& dy); // outward unit direction of a border anchor
+    static std::array<std::pair<double, double>, 4> _border_anchors(const Shape& shape); // per-shape connect points (diamond: the 4 edge midpoints)
     static std::pair<double, double> _nearest_anchor(const Shape& shape, const double x, const double y);
     void _snap_conn_preview(const double x, const double y);
     static bool _clip_line_to_rect(const double cx, const double cy,
@@ -173,6 +176,7 @@ private:
     void _show_popup(GdkEventButton* event);
     void _quick_show_menu(GdkEventButton* event);       // Visio-style: pick a shape to auto-create and connect
     void _quick_create_shape(const Tool shapeType);     // create the picked shape at the release point and connect it
+    void _quick_auto_create();                          // a plain click on a quick arrow: clone the origin shape beside it and connect
     void _on_fill_color_set();
     void _on_stroke_color_set();
     void _on_editor_focus_out();
@@ -193,6 +197,8 @@ private:
     Conn           _previewConn;
     int            _editShape{-1};
     gint64         _lastRenderUs{0};
+    int            _hoverShape{-1};        // shape under the mouse (drives the quick-connect arrows)
+    double         _quickDirX{0.}, _quickDirY{-1.};  // outward direction of the pressed quick arrow
 
     Gtk::Box*      _pVBox{nullptr};
     Gtk::Box*      _pToolbar{nullptr};
@@ -216,4 +222,5 @@ private:
     int            _quickFromShape{-1};    // origin shape of the pending quick connection
     double         _quickMenuX{0.}, _quickMenuY{0.};  // canvas coords of the quick-connect release point
     Gtk::Menu      _quickMenu;             // kept alive: the shape picker of the quick-connect flow
+    Glib::ustring  _cursorName{"default"}; // currently applied canvas cursor (avoid redundant sets)
 };

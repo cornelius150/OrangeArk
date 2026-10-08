@@ -5,7 +5,7 @@
 #define MyAppPublisher "Giuseppe Penone"
 #define MyAppURL "https://www.giuspen.net/orangeark/"
 #define MyAppExeName "orangeark.exe"
-#define MyAppVersion "1.3.3"
+#define MyAppVersion "1.3.4"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -35,6 +35,10 @@ Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
 ChangesAssociations=yes
+; OrangeArk: never half-update over a running instance (old exe without the
+; newest features would survive the install)
+AppMutex=OrangeArkAppMutex
+CloseApplications=yes
 
 [Registry]
 Root: HKCR; Subkey: ".ctb"; ValueType: string; ValueName: ""; ValueData: "OrangeArkB"; Flags: uninsdeletevalue

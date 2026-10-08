@@ -288,6 +288,14 @@ void CtApp::_on_startup()
     _initDone = true;
 
 #if defined(_WIN32)
+    // OrangeArk: hold a named mutex for the whole process lifetime so the
+    // installer (AppMutex=OrangeArkAppMutex) can detect a running instance
+    // and ask to close it BEFORE replacing orangeark.exe — otherwise an
+    // upgraded install can silently keep the old exe (e.g. "no drawing tool")
+    (void)CreateMutexW(nullptr, FALSE, L"OrangeArkAppMutex");
+#endif
+
+#if defined(_WIN32)
     (void)fs::alter_TEXMFROOT_env_var();
     (void)fs::alter_PATH_env_var();
 #endif // _WIN32
