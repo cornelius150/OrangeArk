@@ -568,22 +568,20 @@ void CtTableLight::set_col_width(const int colWidth, std::optional<size_t> optCo
 // Which one matches reality depends on how GTK laid the TreeView out: with
 // AUTOSIZE a column grows past its stored width (measured: a 100px column
 // rendered at 50px, another at 479px), and leftover space goes to the last
-// column. Instead of betting on one model (1.2.2 bet on B, 1.2.3 bet on A)
-// we take whichever separator is CLOSEST to the pointer — this can never be
-// worse than the better of the two models.
+// column. Up to 1.3.5 we took whichever separator was CLOSEST to the pointer,
+// mixing the two models. That mixed pool is exactly what made the drag of the
+// LAST separator jump into a neighbouring column: model A and model B drift
+// apart by tens of px, so around the right-hand edge the nearest candidate
+// often belonged to a DIFFERENT column than the line the user was aiming at
+// (and that wrong column then stayed locked for the whole drag).
+// As of 1.3.6 model A (what the user actually SEES on screen) is authoritative
+// whenever it is available; model B is only a fallback for the short window
+// before the TreeView has been laid out.
 int CtTableLight::_column_separator_at(const double x) const
 {
-    constexpr double GRAB_ZONE = 8.0;   // px either side of a separator
-    int bestIdx = -1;
-    double bestDist = GRAB_ZONE + 1.0;
-    auto consider = [&](const double separatorX, const int colIdx) {
-        if (colIdx < 0) return;
-        const double dist = std::abs(x - separatorX);
-        if (dist <= GRAB_ZONE and dist < bestDist) {
-            bestDist = dist;
-            bestIdx = colIdx;
-        }
-    };
+    constexpr double GRAB_ZONE = 6.0;   // px either side of a separator
+    const size_t numColumns = get_num_columns();
+    if (numColumns < 2) return -1;
 
     // model A — rendered TreeView geometry
     if (_pManagedTreeView) {
@@ -594,27 +592,31 @@ int CtTableLight::_column_separator_at(const double x) const
             double hOffset = 0.0;
             const Glib::RefPtr<Gtk::Adjustment> hadj = _pManagedTreeView->get_hadjustment();
             if (hadj) hOffset = hadj->get_value();
-            const size_t numColumns = get_num_columns();
+            bool complete{true};
+            std::vector<double> separators;
             double acc = 0.0;
             for (size_t c = 0u; c + 1u < numColumns; ++c) { // inner separators only
                 Gtk::TreeViewColumn* pTVColumn = _pManagedTreeView->get_column(static_cast<int>(c));
-                if (not pTVColumn) break;
+                if (not pTVColumn) { complete = false; break; }
                 acc += pTVColumn->get_width();   // actual rendered width
-                consider(orgX - hOffset + acc, static_cast<int>(c));
+                separators.push_back(orgX - hOffset + acc);
+            }
+            if (complete and not separators.empty()) {
+                int bestIdx = -1;
+                double bestDist = GRAB_ZONE + 1.0;
+                for (size_t c = 0u; c < separators.size(); ++c) {
+                    const double dist = std::abs(x - separators[c]);
+                    if (dist <= GRAB_ZONE and dist < bestDist) {
+                        bestDist = dist;
+                        bestIdx = static_cast<int>(c);
+                    }
+                }
+                return bestIdx;   // only model A candidates: no model mixing
             }
         }
     }
-    if (bestDist <= 1.0) return bestIdx;   // clean hit: no need for model B
-    // model B — stored column widths (base implementation semantics)
-    {
-        const CtTableColWidths colWidths = get_col_widths();
-        double acc = 0.0;
-        for (size_t c = 0u; c + 1u < colWidths.size(); ++c) { // inner separators only
-            acc += colWidths.at(c);
-            consider(acc, static_cast<int>(c));
-        }
-    }
-    return bestIdx;
+    // model B — stored column widths (TreeView not laid out yet)
+    return CtTableCommon::_column_separator_at(x);
 }
 
 std::string CtTableLight::to_csv() const

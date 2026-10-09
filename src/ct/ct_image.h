@@ -96,7 +96,8 @@ private:
     void _resize_live(const double xRoot, const double yRoot); // throttled apply while dragging
     void _resize_live_apply(const double xRoot, const double yRoot); // OrangeArk: unthrottled apply
     void _apply_resized_pixbuf(const int newWidth, const int newHeight);
-    bool _on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr); // visible resize grip
+    // OrangeArk: no visual grip is drawn any more (bottom-right triangle
+    // removed); resizing works from the border zones, cursor shows the hint
     void _connect_resize_events();
     bool _on_enter_notify_event(GdkEventCrossing* event);   // OrangeArk: grip shown on hover only
     bool _on_leave_notify_event(GdkEventCrossing* event);

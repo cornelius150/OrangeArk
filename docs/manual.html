@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>在线手册 — 橙子笔记 OrangeArk</title>
-<meta name="description" content="橙子笔记（OrangeArk）在线使用手册：入门、节点管理（多选批量移动、节点时间戳）、富文本、表格、代码框、画图、截图、加密、导出与快捷键。">
+<meta name="description" content="橙子笔记（OrangeArk）在线使用手册：入门、节点管理（多选批量移动、节点时间戳）、富文本、表格、灵活调整表格与列、代码框、画图与表格公式、截图、加密、导出与快捷键。">
 <style>
   :root {
     --orange: #fb8c00;
@@ -98,7 +98,7 @@
 
 <div class="page-title">
   <h1>在线手册</h1>
-  <p>从零开始了解橙子笔记的各项功能（对应版本 v1.3.0+）。</p>
+  <p>从零开始了解橙子笔记的各项功能（持续更新，当前对应版本 <strong>v1.3.6</strong>）。</p>
 </div>
 
 <div class="wrap">
@@ -118,6 +118,7 @@
       <a href="#export">十一、导入与导出</a>
       <a href="#secure">十二、文档与加密</a>
       <a href="#hotkey">十三、快捷键</a>
+      <a href="#changes">十四、版本更新记录<span class="new">新</span></a>
     </div>
   </aside>
 
@@ -228,11 +229,15 @@
     <h3>连线（Visio 式）</h3>
     <ul>
       <li><strong>四向连接箭头</strong>：鼠标悬停在图形上时四边显示橙色三角箭头，移开即消失；<strong>单击箭头</strong>会在该方向自动生成一个同款图形并自动连线；按住箭头拖动可连到已有图形，或拖到空白处松手弹出形状菜单选择生成。</li>
-      <li><strong>自动吸附</strong>：连线两端自动吸附图形边框连接点（菱形为四条斜边的中点），拖动图形时连线跟随。</li>
+      <li><strong>自动吸附</strong>：连线两端自动吸附图形边框连接点（菱形为四条斜边的中点），拖动或缩放图形时连线自动跟随。</li>
+      <li><strong>连接点贴合真实轮廓</strong><span class="new">1.3.6</span>：平行四边形、文档（波浪底）、圆柱、六边形、椭圆现在都按<strong>实际边线</strong>计算连接点，连线不会再飘在斜边或波浪边的外面。</li>
+      <li><strong>整条线可以移动</strong><span class="new">1.3.6</span>：用「选择」工具在<strong>线身</strong>上按住拖动即可整体平移；端点只要仍靠近原图形就保持粘连并沿边框滑动，拖远了才脱离变成自由端点。</li>
+      <li><strong>手工微调连接位置</strong><span class="new">1.3.6</span>：单击连线选中后两端各出现一个<strong>方形控制点</strong>，拖到图形边框的<strong>任意位置</strong>即可改连接点；拖到空白处即与该图形断开。</li>
     </ul>
     <h3>调整大小</h3>
     <ul>
-      <li>选中图形后，四角与四边的<strong>控制点</strong>可拖动缩放；鼠标放在边框线上出现双向箭头光标时，<strong>沿边线任意位置按住拖动</strong>即可调整大小，不必瞄准小控制点。</li>
+      <li>选中图形后，四角与四边的<strong>控制点</strong>可拖动缩放。</li>
+      <li>鼠标移到<strong>边框线的任意位置</strong>会显示双向箭头光标：上下边为 ↕，左右边为 ↔，四角为斜向双箭头；此时<strong>按住拖动</strong>即可调整大小，不必瞄准小控制点<span class="new">1.3.6</span>（该版本修复了 Windows 下光标不显示的问题）。</li>
     </ul>
     <div class="tip">💡 画布内容随文档一起保存，导出 HTML / PDF 时按图片导出。</div>
 
@@ -302,6 +307,20 @@
       <tr><td><kbd>F8</kbd></td><td>插入日期节点</td></tr>
       <tr><td><kbd>F6</kbd></td><td>树栏与编辑区焦点切换</td></tr>
     </table>
+
+    <h2 id="changes">十四、版本更新记录</h2>
+    <p>近几个版本新增与修复的功能都记在这里，方便判断该升级到哪一版（完整更新日志见 GitHub Releases）。</p>
+    <table>
+      <tr><th>版本</th><th>功能 / 修复说明</th></tr>
+      <tr><td><strong>v1.3.6</strong></td><td>①修复画<strong>圆柱 / 椭圆时程序崩溃退出</strong>；②修复 Windows 下选中图形后<strong>边框不显示双向缩放光标</strong>；③连接点改为按<strong>真实轮廓</strong>计算（平行四边形 / 文档 / 圆柱 / 六边形 / 椭圆都不再错位）；④<strong>连线可整体移动</strong>，两端<strong>可手工拖到边框任意位置</strong>或拖离图形断开；⑤<strong>去掉图片右下角的小三角</strong>（与表格一致，缩放只用鼠标光标提示）；⑥表格拖拽<strong>锁定目标列 / 目标行</strong>：拖最外侧那道边线不再跳到隔壁列，每条竖线可单独调整，拖动手感更接近 OneNote</td></tr>
+      <tr><td>v1.3.5</td><td>修复全新安装（还没有配置文件）第一次打开时工具栏<strong>没有「插入图形」按钮</strong>；捐赠页改为单个收款二维码</td></tr>
+      <tr><td>v1.3.4</td><td>安装器防止旧版进程占用导致「装了新版还在跑旧程序」；四向连接箭头改为<strong>悬停才显示</strong> + 单击箭头自动建图并连线；菱形连接点改为四条斜边的中点</td></tr>
+      <tr><td>v1.3.3</td><td>保存的 .md / .mdz 文件带上橙子图标（文件自动关联）；修复贴图关闭按钮点不动（改为小圆圈 ✕）；新增 Visio 式四向连接箭头</td></tr>
+      <tr><td>v1.3.2</td><td>必须<strong>按住拖拽</strong>才生成图形（单击不生成）；连线自动吸附图形边框连接点；补齐菜单里的橙子图标</td></tr>
+      <tr><td>v1.3.1</td><td>画图工具栏改为图形按钮、光标离开画布自动隐藏；图形内文字支持设置字号与颜色</td></tr>
+      <tr><td>v1.3.0</td><td>新增正文内嵌<strong>画图工具</strong>：形状、连线、文字，随文档保存并支持导出</td></tr>
+    </table>
+    <div class="tip">💡 便携版不会自动升级，需要到 GitHub Releases 或官网下载新版本解压覆盖。</div>
 
   </main>
 </div>

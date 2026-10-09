@@ -183,6 +183,8 @@ static Glib::RefPtr<Gdk::Pixbuf> oa_placeholder_pixbuf()
             conn.y2 = _shape_attr_double(pElement, "y2", 0.0);
             conn.fromShape = _shape_attr_int(pElement, "from", -1);
             conn.toShape = _shape_attr_int(pElement, "to", -1);
+            conn.fromU = _shape_attr_double(pElement, "fu", -1.0);
+            conn.toU = _shape_attr_double(pElement, "tu", -1.0);
             conn.arrowEnd = 0 != _shape_attr_int(pElement, "ae", 1);
             conn.dashed = 0 != _shape_attr_int(pElement, "dash", 0);
             conn.stroke = _shape_attr_str(pElement, "stroke", "#37474f");
@@ -229,6 +231,8 @@ static Glib::RefPtr<Gdk::Pixbuf> oa_placeholder_pixbuf()
         pConnNode->set_attribute("y2", std::to_string(conn.y2));
         pConnNode->set_attribute("from", std::to_string(conn.fromShape));
         pConnNode->set_attribute("to", std::to_string(conn.toShape));
+        pConnNode->set_attribute("fu", std::to_string(conn.fromU));
+        pConnNode->set_attribute("tu", std::to_string(conn.toU));
         pConnNode->set_attribute("ae", conn.arrowEnd ? "1" : "0");
         pConnNode->set_attribute("dash", conn.dashed ? "1" : "0");
         pConnNode->set_attribute("stroke", conn.stroke);
@@ -243,6 +247,9 @@ CtDrawing::CtDrawing(CtMainWin* pCtMainWin,
  : CtImage{pCtMainWin, oa_placeholder_pixbuf(), charOffset, justification}
 {
     _model = _model_from_xml(modelXml);
+    // re-align the connectors on load: documents written by older builds can
+    // hold anchor points that no longer sit on the (now exact) shape border
+    _recompute_conns();
     _sync_model();
 
     _fillColor.set("#e3f2fd");
@@ -852,15 +859,39 @@ int CtDrawing::_hit_quick_arrow(const double x, const double y) const
 void CtDrawing::_recompute_conns()
 {
     for (Conn& conn : _model.conns) {
-        if (conn.fromShape < 0 or conn.toShape < 0) continue;
-        if (conn.fromShape >= static_cast<int>(_model.shapes.size())) continue;
-        if (conn.toShape >= static_cast<int>(_model.shapes.size())) continue;
+        _update_conn_ends(conn);
+    }
+}
+
+// refresh the endpoints of one connector from the shapes they are glued to.
+// An end placed by hand (u >= 0) keeps its own position along the border; an
+// automatic end (u < 0) keeps following the nearest border anchor point
+void CtDrawing::_update_conn_ends(Conn& conn)
+{
+    const int nShapes = static_cast<int>(_model.shapes.size());
+    const bool fromOk = conn.fromShape >= 0 and conn.fromShape < nShapes;
+    const bool toOk = conn.toShape >= 0 and conn.toShape < nShapes;
+
+    // 1. the hand-placed ends (they must not be moved by the auto logic)
+    if (fromOk and conn.fromU >= 0.0) {
+        const auto p = _point_on_outline(_model.shapes[conn.fromShape], conn.fromU);
+        conn.x1 = p.first;
+        conn.y1 = p.second;
+    }
+    if (toOk and conn.toU >= 0.0) {
+        const auto p = _point_on_outline(_model.shapes[conn.toShape], conn.toU);
+        conn.x2 = p.first;
+        conn.y2 = p.second;
+    }
+
+    // 2. the automatic ends
+    if (fromOk and toOk and conn.fromU < 0.0 and conn.toU < 0.0) {
+        // Visio-style: attach to the closest pair of the four border anchor
+        // points, so a vertical flow naturally uses bottom->top and a
+        // horizontal one right->left (unchanged: old documents keep rendering
+        // exactly the same)
         const Shape& from = _model.shapes[conn.fromShape];
         const Shape& to = _model.shapes[conn.toShape];
-        // Visio-style: attach to the closest pair of the four border anchor
-        // points (top/right/bottom/left midpoints) of the two shapes, so a
-        // vertical flow naturally uses bottom->top and a horizontal one
-        // right->left.
         const auto fromAnchors = _border_anchors(from);
         const auto toAnchors = _border_anchors(to);
         double bestDist = 1e18;
@@ -883,13 +914,290 @@ void CtDrawing::_recompute_conns()
         conn.y1 = ay;
         conn.x2 = bx;
         conn.y2 = by;
+        return;
+    }
+    if (fromOk and conn.fromU < 0.0) {
+        const auto a = _nearest_anchor(_model.shapes[conn.fromShape], conn.x2, conn.y2);
+        conn.x1 = a.first;
+        conn.y1 = a.second;
+    }
+    if (toOk and conn.toU < 0.0) {
+        const auto b = _nearest_anchor(_model.shapes[conn.toShape], conn.x1, conn.y1);
+        conn.x2 = b.first;
+        conn.y2 = b.second;
     }
 }
 
-// the connect points of a shape. For most shapes the four border midpoints
-// of the bounding box sit right on the outline; the diamond is the exception
-// — its bbox midpoints are its four VERTICES, so the anchors move to the
-// midpoints of the four slanted edges ("菱形边线中心点")
+// glue one endpoint of a connector to whatever border point is closest to
+// (x,y): any point of the border, not only the four anchors. Dropping it on
+// empty canvas detaches the end and makes it a free point
+void CtDrawing::_set_conn_end(Conn& conn, const bool isStart, const double x, const double y)
+{
+    const int idx = _shape_at_point(x, y, 6.0);
+    if (idx >= 0) {
+        const Shape& shape = _model.shapes[idx];
+        const double u = _u_on_outline(shape, x, y);
+        const auto p = _point_on_outline(shape, u);
+        if (isStart) {
+            conn.fromShape = idx;
+            conn.fromU = u;
+            conn.x1 = p.first;
+            conn.y1 = p.second;
+        }
+        else {
+            conn.toShape = idx;
+            conn.toU = u;
+            conn.x2 = p.first;
+            conn.y2 = p.second;
+        }
+    }
+    else if (isStart) {
+        conn.fromShape = -1;
+        conn.fromU = -1.0;
+        conn.x1 = std::max(0.0, x);
+        conn.y1 = std::max(0.0, y);
+    }
+    else {
+        conn.toShape = -1;
+        conn.toU = -1.0;
+        conn.x2 = std::max(0.0, x);
+        conn.y2 = std::max(0.0, y);
+    }
+}
+
+// 0 = start grip, 1 = end grip of the given connector, -1 = not on a grip
+int CtDrawing::_hit_conn_end(const int connIdx, const double x, const double y) const
+{
+    if (connIdx < 0 or connIdx >= static_cast<int>(_model.conns.size())) return -1;
+    const Conn& conn = _model.conns[connIdx];
+    if (std::hypot(x - conn.x1, y - conn.y1) <= 7.0) return 0;
+    if (std::hypot(x - conn.x2, y - conn.y2) <= 7.0) return 1;
+    return -1;
+}
+
+// topmost shape whose bounding box (grown by margin) contains the point
+int CtDrawing::_shape_at_point(const double x, const double y, const double margin) const
+{
+    for (int i = static_cast<int>(_model.shapes.size()) - 1; i >= 0; --i) {
+        const Shape& shape = _model.shapes[i];
+        if (x >= shape.x - margin and x <= shape.x + shape.w + margin and
+            y >= shape.y - margin and y <= shape.y + shape.h + margin) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// ------------------------------------------------------- border geometry
+
+namespace {
+
+struct OaBorderHit {
+    double u{0.};      // position along the border, in [0,1)
+    double dist{0.};   // distance from the queried point to the border
+};
+
+// projects (x,y) on the closed polygon pts and reports both the parametric
+// position along the outline and the distance to it
+OaBorderHit oa_border_project(const std::vector<std::pair<double, double>>& pts, const double x, const double y)
+{
+    OaBorderHit hit;
+    if (pts.size() < 2) return hit;
+    double total = 0.0;
+    std::vector<double> cum(pts.size() + 1, 0.0);
+    for (size_t i = 0; i < pts.size(); ++i) {
+        const auto& a = pts[i];
+        const auto& b = pts[(i + 1) % pts.size()];
+        total += std::hypot(b.first - a.first, b.second - a.second);
+        cum[i + 1] = total;
+    }
+    if (total < 0.001) return hit;
+    double bestD2 = 1e18;
+    double bestU = 0.0;
+    for (size_t i = 0; i < pts.size(); ++i) {
+        const auto& a = pts[i];
+        const auto& b = pts[(i + 1) % pts.size()];
+        const double ex = b.first - a.first;
+        const double ey = b.second - a.second;
+        const double len2 = ex * ex + ey * ey;
+        double t = 0.0;
+        if (len2 > 0.000001) {
+            t = ((x - a.first) * ex + (y - a.second) * ey) / len2;
+            t = std::max(0.0, std::min(1.0, t));
+        }
+        const double px = a.first + t * ex;
+        const double py = a.second + t * ey;
+        const double d2 = (x - px) * (x - px) + (y - py) * (y - py);
+        if (d2 < bestD2) {
+            bestD2 = d2;
+            bestU = (cum[i] + t * (cum[i + 1] - cum[i])) / total;
+        }
+    }
+    hit.u = bestU;
+    hit.dist = std::sqrt(bestD2);
+    return hit;
+}
+
+} // namespace
+
+// a polygon that follows the real outline of the shape — this is what makes
+// the connect points land ON the border for every shape (parallelogram,
+// cylinder, hexagon, document) and not just for plain boxes
+std::vector<std::pair<double, double>> CtDrawing::_outline_points(const Shape& shape)
+{
+    using Pt = std::pair<double, double>;
+    std::vector<Pt> pts;
+    const double x = shape.x;
+    const double y = shape.y;
+    const double w = std::max(1.0, shape.w);
+    const double h = std::max(1.0, shape.h);
+    const double cx = x + w / 2.0;
+    const double cy = y + h / 2.0;
+
+    switch (shape.type) {
+    case Tool::Ellipse: {
+        const int n = 32;
+        for (int i = 0; i < n; ++i) {
+            const double a = 2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n);
+            pts.emplace_back(cx + (w / 2.0) * std::cos(a), cy + (h / 2.0) * std::sin(a));
+        }
+        break;
+    }
+    case Tool::Diamond:
+        pts = {Pt{cx, y}, Pt{x + w, cy}, Pt{cx, y + h}, Pt{x, cy}};
+        break;
+    case Tool::Parallelogram: {
+        const double skew = std::min(w * 0.2, 24.0);
+        pts = {Pt{x + skew, y}, Pt{x + w, y}, Pt{x + w - skew, y + h}, Pt{x, y + h}};
+        break;
+    }
+    case Tool::Hexagon: {
+        const double sx = w * 0.22;
+        pts = {Pt{x + sx, y}, Pt{x + w - sx, y}, Pt{x + w, cy},
+               Pt{x + w - sx, y + h}, Pt{x + sx, y + h}, Pt{x, cy}};
+        break;
+    }
+    case Tool::Cylinder: {
+        const double ry = std::min(h * 0.18, 16.0);
+        const int n = 10;
+        pts.emplace_back(x, y + ry);
+        pts.emplace_back(x, y + h - ry);
+        for (int i = 1; i <= n; ++i) {   // bottom bulge, left -> right
+            const double a = M_PI - M_PI * static_cast<double>(i) / static_cast<double>(n);
+            pts.emplace_back(cx + (w / 2.0) * std::cos(a), y + h - ry + ry * std::sin(a));
+        }
+        pts.emplace_back(x + w, y + ry);
+        for (int i = 1; i < n; ++i) {    // top bulge, right -> left
+            const double a = -M_PI * static_cast<double>(i) / static_cast<double>(n);
+            pts.emplace_back(cx + (w / 2.0) * std::cos(a), y + ry + ry * std::sin(a));
+        }
+        break;
+    }
+    case Tool::Document: {
+        const double wave = std::min(h * 0.16, 14.0);
+        pts = {Pt{x, y}, Pt{x + w, y}, Pt{x + w, y + h - wave}};
+        auto cubic = [](const double a, const double b, const double c, const double d, const double t) {
+            const double mt = 1.0 - t;
+            return mt * mt * mt * a + 3.0 * mt * mt * t * b + 3.0 * mt * t * t * c + t * t * t * d;
+        };
+        const double p0x = x + w, p0y = y + h - wave;
+        const double p3x = x + w * 0.5, p3y = y + h - wave * 0.5;
+        const double q3x = x, q3y = y + h - wave;
+        const int n = 8;
+        for (int i = 1; i <= n; ++i) {   // first half of the wavy bottom
+            const double t = static_cast<double>(i) / static_cast<double>(n);
+            pts.emplace_back(cubic(p0x, x + w * 0.75, x + w * 0.75, p3x, t),
+                             cubic(p0y, y + h, y + h - wave, p3y, t));
+        }
+        for (int i = 1; i <= n; ++i) {   // second half
+            const double t = static_cast<double>(i) / static_cast<double>(n);
+            pts.emplace_back(cubic(p3x, x + w * 0.25, x + w * 0.25, q3x, t),
+                             cubic(p3y, y + h, y + h, q3y, t));
+        }
+        break;
+    }
+    case Tool::RoundRect: [[fallthrough]];
+    case Tool::Terminator: [[fallthrough]];
+    case Tool::Rect: [[fallthrough]];
+    default:
+        pts = {Pt{x, y}, Pt{x + w, y}, Pt{x + w, y + h}, Pt{x, y + h}};
+        break;
+    }
+    return pts;
+}
+
+std::pair<double, double> CtDrawing::_point_on_outline(const Shape& shape, const double u)
+{
+    using Pt = std::pair<double, double>;
+    const std::vector<Pt> pts = _outline_points(shape);
+    if (pts.size() < 2) return Pt{shape.x, shape.y};
+    double total = 0.0;
+    std::vector<double> cum(pts.size() + 1, 0.0);
+    for (size_t i = 0; i < pts.size(); ++i) {
+        const auto& a = pts[i];
+        const auto& b = pts[(i + 1) % pts.size()];
+        total += std::hypot(b.first - a.first, b.second - a.second);
+        cum[i + 1] = total;
+    }
+    if (total < 0.001) return pts[0];
+    double uu = u - std::floor(u);
+    if (uu < 0.0) uu += 1.0;
+    const double target = uu * total;
+    for (size_t i = 0; i < pts.size(); ++i) {
+        if (target <= cum[i + 1] or i + 1 == pts.size()) {
+            const double segLen = cum[i + 1] - cum[i];
+            const double t = segLen < 0.001 ? 0.0 : std::min(1.0, (target - cum[i]) / segLen);
+            const auto& a = pts[i];
+            const auto& b = pts[(i + 1) % pts.size()];
+            return Pt{a.first + (b.first - a.first) * t, a.second + (b.second - a.second) * t};
+        }
+    }
+    return pts[0];
+}
+
+double CtDrawing::_u_on_outline(const Shape& shape, const double x, const double y)
+{
+    return oa_border_project(_outline_points(shape), x, y).u;
+}
+
+double CtDrawing::_dist_to_outline(const Shape& shape, const double x, const double y)
+{
+    return oa_border_project(_outline_points(shape), x, y).dist;
+}
+
+// casts a ray from the shape centre outwards and returns the point where it
+// crosses the real border — this is what puts every anchor ON the outline
+std::pair<double, double> CtDrawing::_ray_outline_hit(const Shape& shape, const double dx, const double dy)
+{
+    using Pt = std::pair<double, double>;
+    const std::vector<Pt> pts = _outline_points(shape);
+    const double cx = shape.x + shape.w / 2.0;
+    const double cy = shape.y + shape.h / 2.0;
+    double bestT = 1e18;
+    Pt best{cx + dx * 10.0, cy + dy * 10.0};
+    if (pts.size() < 2) return best;
+    for (size_t i = 0; i < pts.size(); ++i) {
+        const auto& a = pts[i];
+        const auto& b = pts[(i + 1) % pts.size()];
+        const double ex = b.first - a.first;
+        const double ey = b.second - a.second;
+        const double fx = a.first - cx;
+        const double fy = a.second - cy;
+        const double det = ex * dy - ey * dx;
+        if (std::abs(det) < 0.000001) continue;
+        const double t = (ex * fy - ey * fx) / det;
+        const double s = (dx * fy - dy * fx) / det;
+        if (t > 0.0001 and t < bestT and s >= -0.0001 and s <= 1.0001) {
+            bestT = t;
+            best = Pt{cx + dx * t, cy + dy * t};
+        }
+    }
+    return best;
+}
+
+// the connect points of a shape: the four border points hit by the up/right/
+// down/left rays from the centre, so they always sit ON the outline. The
+// diamond keeps the midpoints of its four slanted edges ("菱形边线中心点")
 std::array<std::pair<double, double>, 4> CtDrawing::_border_anchors(const Shape& shape)
 {
     const double cx = shape.x + shape.w / 2.0;
@@ -900,10 +1208,13 @@ std::array<std::pair<double, double>, 4> CtDrawing::_border_anchors(const Shape&
                 std::make_pair((cx + shape.x) / 2.0, (shape.y + shape.h + cy) / 2.0),  // bottom-left edge midpoint
                 std::make_pair((shape.x + shape.w + cx) / 2.0, (cy + shape.y + shape.h) / 2.0)}; // bottom-right edge midpoint
     }
-    return {std::make_pair(cx, shape.y),
-            std::make_pair(shape.x + shape.w, cy),
-            std::make_pair(cx, shape.y + shape.h),
-            std::make_pair(shape.x, cy)};
+    // every other shape: follow the up / right / down / left rays from the
+    // centre to the real outline, so slanted or wavy borders (parallelogram,
+    // document, hexagon, ellipse, cylinder) get their true border points
+    return {_ray_outline_hit(shape, 0.0, -1.0),
+            _ray_outline_hit(shape, 1.0, 0.0),
+            _ray_outline_hit(shape, 0.0, 1.0),
+            _ray_outline_hit(shape, -1.0, 0.0)};
 }
 
 std::pair<double, double> CtDrawing::_nearest_anchor(const Shape& shape, const double x, const double y)
@@ -1070,8 +1381,11 @@ void CtDrawing::_shape_path(const Cairo::RefPtr<Cairo::Context>& cr, const Shape
 {
     const double x = shape.x;
     const double y = shape.y;
-    const double w = shape.w;
-    const double h = shape.h;
+    // a brand-new shape has a zero width/height while the drag just started:
+    // cairo throws "invalid matrix (not invertible)" on a degenerate scale
+    // (ellipse / cylinder) and the exception would kill the whole program
+    const double w = std::max(1.0, shape.w);
+    const double h = std::max(1.0, shape.h);
 
     switch (shape.type) {
     case Tool::RoundRect:
@@ -1219,6 +1533,22 @@ void CtDrawing::_render_conn(const Cairo::RefPtr<Cairo::Context>& cr, const Conn
     }
 }
 
+// the two square grips of the selected connector: drag one to move that end
+// anywhere along a shape border (or off it, to detach the end)
+void CtDrawing::_render_conn_grips(const Cairo::RefPtr<Cairo::Context>& cr, const Conn& conn) const
+{
+    const std::pair<double, double> ends[2] = {std::make_pair(conn.x1, conn.y1), std::make_pair(conn.x2, conn.y2)};
+    for (const auto& p : ends) {
+        cr->set_source_rgb(1.0, 1.0, 1.0);
+        cr->rectangle(p.first - 4.0, p.second - 4.0, 8.0, 8.0);
+        cr->fill();
+        cr->set_source_rgb(0.09, 0.34, 0.75);
+        cr->set_line_width(1.2);
+        cr->rectangle(p.first - 4.0, p.second - 4.0, 8.0, 8.0);
+        cr->stroke();
+    }
+}
+
 void CtDrawing::_render_handles(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const
 {
     cr->set_source_rgb(0.09, 0.34, 0.75);
@@ -1324,6 +1654,9 @@ Cairo::RefPtr<Cairo::ImageSurface> CtDrawing::_render_surface(const bool withUi)
     if (withUi and _selShape >= 0 and _selShape < static_cast<int>(_model.shapes.size())) {
         _render_handles(cr, _model.shapes[_selShape]);
     }
+    if (withUi and _selConn >= 0 and _selConn < static_cast<int>(_model.conns.size())) {
+        _render_conn_grips(cr, _model.conns[_selConn]);
+    }
     if (withUi and _editShape < 0) {
         // the quick arrows belong to whichever shape the mouse hovers —
         // after drawing they disappear until the pointer comes back
@@ -1334,14 +1667,21 @@ Cairo::RefPtr<Cairo::ImageSurface> CtDrawing::_render_surface(const bool withUi)
 
 void CtDrawing::_render()
 {
-    const Cairo::RefPtr<Cairo::ImageSurface> rSurface = _render_surface(true);
-    const int width = rSurface->get_width();
-    const int height = rSurface->get_height();
-    Glib::RefPtr<Gdk::Pixbuf> rPixbuf = Gdk::Pixbuf::create(rSurface, 0, 0, width, height);
-    if (not rPixbuf) return;
-    _rPixbuf = rPixbuf;
-    _image.set(_rPixbuf);
-    _image.queue_draw();
+    // cairomm throws on any illegal operation (a degenerate matrix used to
+    // abort the whole program), so a broken canvas must never escape here
+    try {
+        const Cairo::RefPtr<Cairo::ImageSurface> rSurface = _render_surface(true);
+        const int width = rSurface->get_width();
+        const int height = rSurface->get_height();
+        Glib::RefPtr<Gdk::Pixbuf> rPixbuf = Gdk::Pixbuf::create(rSurface, 0, 0, width, height);
+        if (not rPixbuf) return;
+        _rPixbuf = rPixbuf;
+        _image.set(_rPixbuf);
+        _image.queue_draw();
+    }
+    catch (const std::exception& e) {
+        spdlog::error("!! {} {}", __FUNCTION__, e.what());
+    }
 }
 
 // ---------------------------------------------------------------- events
@@ -1351,27 +1691,43 @@ void CtDrawing::_render()
 // pointing hand over the quick-connect arrows
 void CtDrawing::_update_cursor(const double x, const double y)
 {
-    Glib::ustring name = "default";
+    // NOTE: cursors MUST be picked from the Gdk::CursorType enum — the Win32
+    // GDK backend does not resolve the CSS cursor NAMES ("ew-resize", ...)
+    // and silently hands back an unusable cursor, which is why the resize
+    // arrows never showed up on Windows
+    Gdk::CursorType type = Gdk::ARROW;
     if (_editShape < 0) {
-        if (_hit_quick_arrow(x, y) >= 0) {
-            name = "pointer";
-        }
-        else {
-            int handle = _hit_handle(x, y);
-            if (handle < 0) handle = _hit_edge(x, y);
+        int handle = _hit_handle(x, y);
+        if (handle < 0) handle = _hit_edge(x, y);
+        if (handle >= 0) {
             switch (handle) {
-            case 1: case 7: name = "ns-resize"; break;   // top / bottom edge
-            case 3: case 5: name = "ew-resize"; break;   // left / right edge
-            case 0: case 8: name = "nw-resize"; break;   // top-left / bottom-right corner
-            case 2: case 6: name = "ne-resize"; break;   // top-right / bottom-left corner
+            case 1: case 7: type = Gdk::SB_V_DOUBLE_ARROW; break;   // top / bottom edge: up-down double arrow
+            case 3: case 5: type = Gdk::SB_H_DOUBLE_ARROW; break;   // left / right edge: the requested left-right double arrow
+            case 0: case 8: type = Gdk::TOP_LEFT_CORNER; break;     // top-left / bottom-right corner
+            case 2: case 6: type = Gdk::TOP_RIGHT_CORNER; break;    // top-right / bottom-left corner
             default: break;
             }
         }
+        else if (_hit_quick_arrow(x, y) >= 0) {
+            type = Gdk::HAND2;                                   // a quick-connect arrow
+        }
+        else if (_selConn >= 0 and _hit_conn_end(_selConn, x, y) >= 0) {
+            type = Gdk::HAND2;                                   // an endpoint grip of the selected connector
+        }
+        else if (_hit_conn(x, y) >= 0) {
+            type = Gdk::FLEUR;                                   // the connector body can be dragged
+        }
+        else if (Tool::Select == _tool and _hit_shape(x, y) >= 0) {
+            type = Gdk::FLEUR;                                   // the shape itself can be dragged
+        }
+        else if (Tool::Select != _tool) {
+            type = Gdk::CROSSHAIR;                               // ready to draw the next shape
+        }
     }
-    if (name == _cursorName) return;
-    _cursorName = name;
+    if (type == _cursorType) return;
+    _cursorType = type;
     if (Glib::RefPtr<Gdk::Window> rWindow = _pCanvas->get_window()) {
-        rWindow->set_cursor(Gdk::Cursor::create(rWindow->get_display(), name));
+        rWindow->set_cursor(Gdk::Cursor::create(rWindow->get_display(), type));
     }
 }
 
@@ -1422,6 +1778,21 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
         return true;
     }
 
+    // an endpoint grip of the SELECTED connector: dragging it moves the
+    // attach point anywhere along a shape border (and detaches it when the
+    // pointer leaves every shape)
+    if (_selConn >= 0 and _selConn < static_cast<int>(_model.conns.size())) {
+        const int end = _hit_conn_end(_selConn, x, y);
+        if (end >= 0) {
+            _drag = Drag::ConnEnd;
+            _dragConnEnd = end;
+            _origConn = _model.conns[_selConn];
+            _dragStartX = x;
+            _dragStartY = y;
+            return true;
+        }
+    }
+
     // Visio-style: pressing one of the four outward quick-connect arrows
     // starts a connection from that border anchor point (a plain click, with
     // no drag, auto-creates the connected shape on release)
@@ -1468,6 +1839,13 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
         }
         const int cidx = _hit_conn(x, y);
         _select_only(-1, cidx);
+        if (cidx >= 0) {
+            // a connector can be picked up and moved as a whole
+            _drag = Drag::MoveConn;
+            _origConn = _model.conns[cidx];
+            _dragStartX = x;
+            _dragStartY = y;
+        }
         _render();
         return true;
     }
@@ -1590,6 +1968,53 @@ bool CtDrawing::_on_canvas_motion(GdkEventMotion* event)
         _grow_canvas_for(shape.x + shape.w, shape.y + shape.h);
         _recompute_conns();
     }
+    else if (Drag::ConnEnd == _drag and _selConn >= 0 and _selConn < static_cast<int>(_model.conns.size())) {
+        Conn& conn = _model.conns[_selConn];
+        const double px = (0 == _dragConnEnd ? _origConn.x1 : _origConn.x2) + (x - _dragStartX);
+        const double py = (0 == _dragConnEnd ? _origConn.y1 : _origConn.y2) + (y - _dragStartY);
+        // glues to ANY point of the border of the shape under the pointer
+        // (and detaches when dropped on empty canvas)
+        _set_conn_end(conn, 0 == _dragConnEnd, px, py);
+    }
+    else if (Drag::MoveConn == _drag and _selConn >= 0 and _selConn < static_cast<int>(_model.conns.size())) {
+        Conn& conn = _model.conns[_selConn];
+        const double dx = x - _dragStartX;
+        const double dy = y - _dragStartY;
+        // an end glued to a shape keeps gluing (sliding along its border) as
+        // long as it stays close to it, otherwise it becomes a free point
+        const double sx = _origConn.x1 + dx;
+        const double sy = _origConn.y1 + dy;
+        const double ex = _origConn.x2 + dx;
+        const double ey = _origConn.y2 + dy;
+        const int nShapes = static_cast<int>(_model.shapes.size());
+        if (_origConn.fromShape >= 0 and _origConn.fromShape < nShapes) {
+            const Shape& shape = _model.shapes[_origConn.fromShape];
+            const double u = _u_on_outline(shape, sx, sy);
+            const auto p = _point_on_outline(shape, u);
+            if (std::hypot(p.first - sx, p.second - sy) <= 24.0) {
+                conn.fromShape = _origConn.fromShape;
+                conn.fromU = u;
+                conn.x1 = p.first;
+                conn.y1 = p.second;
+            }
+            else { conn.fromShape = -1; conn.fromU = -1.0; conn.x1 = std::max(0.0, sx); conn.y1 = std::max(0.0, sy); }
+        }
+        else { conn.x1 = std::max(0.0, sx); conn.y1 = std::max(0.0, sy); }
+        if (_origConn.toShape >= 0 and _origConn.toShape < nShapes) {
+            const Shape& shape = _model.shapes[_origConn.toShape];
+            const double u = _u_on_outline(shape, ex, ey);
+            const auto p = _point_on_outline(shape, u);
+            if (std::hypot(p.first - ex, p.second - ey) <= 24.0) {
+                conn.toShape = _origConn.toShape;
+                conn.toU = u;
+                conn.x2 = p.first;
+                conn.y2 = p.second;
+            }
+            else { conn.toShape = -1; conn.toU = -1.0; conn.x2 = std::max(0.0, ex); conn.y2 = std::max(0.0, ey); }
+        }
+        else { conn.x2 = std::max(0.0, ex); conn.y2 = std::max(0.0, ey); }
+        _grow_canvas_for(std::max(conn.x1, conn.x2), std::max(conn.y1, conn.y2));
+    }
     else if (Drag::Conn == _drag) {
         _snap_conn_preview(x, y);
     }
@@ -1661,13 +2086,15 @@ bool CtDrawing::_on_canvas_release(GdkEventButton* event)
         }
         _connFromQuick = false;
     }
-    else if (Drag::Move == _drag or Drag::Resize == _drag) {
+    else if (Drag::Move == _drag or Drag::Resize == _drag or
+             Drag::ConnEnd == _drag or Drag::MoveConn == _drag) {
         _recompute_conns();
     }
 
     _preview = false;
     _drag = Drag::None;
     _dragHandle = -1;
+    _dragConnEnd = -1;
     _hoverShape = _hit_shape(x, y);   // arrows follow the pointer right away
     _sync_model();
     _render();
@@ -1899,7 +2326,14 @@ std::string CtDrawing::_png_blob()
 {
     // a clean re-render: the on-screen pixbuf carries selection UI (handles,
     // quick-connect arrows) that must never leak into the saved image
-    const Cairo::RefPtr<Cairo::ImageSurface> rSurface = _render_surface(false);
+    Cairo::RefPtr<Cairo::ImageSurface> rSurface;
+    try {
+        rSurface = _render_surface(false);
+    }
+    catch (const std::exception& e) {
+        spdlog::error("!! {} {}", __FUNCTION__, e.what());
+        return std::string{};
+    }
     Glib::RefPtr<Gdk::Pixbuf> rPixbuf = Gdk::Pixbuf::create(rSurface, 0, 0, rSurface->get_width(), rSurface->get_height());
     if (not rPixbuf) return std::string{};
     g_autofree gchar* pBuffer{nullptr};

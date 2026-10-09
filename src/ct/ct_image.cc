@@ -139,8 +139,9 @@ void CtImagePng::_connect_resize_events()
                | Gdk::ENTER_NOTIFY_MASK | Gdk::LEAVE_NOTIFY_MASK);
     signal_enter_notify_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_enter_notify_event), false);
     signal_leave_notify_event().connect(sigc::mem_fun(*this, &CtImagePng::_on_leave_notify_event), false);
-    // draw a visible grip after the image itself has been drawn
-    signal_draw().connect(sigc::mem_fun(*this, &CtImagePng::_on_draw_grip), true/*after*/);
+    // OrangeArk: no corner grip is drawn — the orange bottom-right triangle
+    // read as a stray artefact on the picture. Resizing still works from any
+    // border / corner zone and only shows up as the resize cursor on hover.
 }
 
 // OrangeArk: hover tracking for the grip — redraw with/without the grip
@@ -252,37 +253,9 @@ void CtImagePng::update_label_widget()
 static const int IMG_RESIZE_ZONE{24};   // corner zone
 static const int IMG_RESIZE_EDGE{16};   // plain edge band
 
-// visible resize grip in the bottom-right corner (drawn after the image)
-// OrangeArk: only while the pointer hovers the image (or during a drag) —
-// a permanently drawn triangle looked like a stray artefact on the picture
-bool CtImagePng::_on_draw_grip(const Cairo::RefPtr<Cairo::Context>& cr)
-{
-    if (not _pointerOver and not _dragResizeActive) return false;
-    const Gtk::Allocation allocation = get_allocation();
-    const int w = allocation.get_width();
-    const int h = allocation.get_height();
-    const int g = std::min(IMG_RESIZE_ZONE, std::min(w, h));
-    if (g < 8) return false;
-    cr->save();
-    // orange corner triangle
-    cr->move_to(w, h - g);
-    cr->line_to(w, h);
-    cr->line_to(w - g, h);
-    cr->close_path();
-    cr->set_source_rgba(1.0, 0.55, 0.1, 0.8);
-    cr->fill();
-    // white diagonal stripes
-    cr->set_source_rgba(1.0, 1.0, 1.0, 0.85);
-    cr->set_line_width(1.2);
-    for (int i = 1; i <= 2; ++i) {
-        const double off = g * i / 3.0;
-        cr->move_to(w - off, h);
-        cr->line_to(w, h - off);
-    }
-    cr->stroke();
-    cr->restore();
-    return false;
-}
+// OrangeArk: the bottom-right corner grip used to be drawn here; it is gone
+// for good (user feedback: "多余的小三角形"). Keeping the helper deleted also
+// keeps the hover codes paths free of the extra redraw it forced.
 
 // OrangeArk: bit mask of the image borders under the given widget coords
 // (1 = left, 2 = right, 4 = top, 8 = bottom) — any border position resizes

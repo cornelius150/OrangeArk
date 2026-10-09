@@ -76,7 +76,7 @@ private:
         NumTools
     };
 
-    enum class Drag { None, Create, Move, Resize, Conn };
+    enum class Drag { None, Create, Move, Resize, Conn, MoveConn, ConnEnd };
 
     struct Shape {
         int          id{0};
@@ -98,6 +98,8 @@ private:
         bool         arrowEnd{true};
         bool         dashed{false};
         std::string  stroke{"#37474f"};
+        double       fromU{-1.};   // custom attach point along the origin shape border [0,1); <0 = auto (border anchor)
+        double       toU{-1.};     // same for the target end
     };
 
     struct Model {
@@ -120,6 +122,7 @@ private:
     void _render_grid(const Cairo::RefPtr<Cairo::Context>& cr) const;
     void _render_shape(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape);
     void _render_conn(const Cairo::RefPtr<Cairo::Context>& cr, const Conn& conn) const;
+    void _render_conn_grips(const Cairo::RefPtr<Cairo::Context>& cr, const Conn& conn) const; // draggable endpoints of the selected connector
     void _shape_path(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const;
     void _arrow_head(const Cairo::RefPtr<Cairo::Context>& cr, const double x, const double y, const double angle, const double size = 9.0) const;
     void _render_handles(const Cairo::RefPtr<Cairo::Context>& cr, const Shape& shape) const;
@@ -130,14 +133,24 @@ private:
     int  _hit_handle(const double x, const double y) const;   // 0..8 except 4 (center) or -1
     int  _hit_edge(const double x, const double y) const;     // border-line of the selected shape: 1 top, 3 left, 5 right, 7 bottom or -1
     int  _hit_quick_arrow(const double x, const double y) const; // Visio-style outward arrow: 0..3 or -1
+    int  _hit_conn_end(const int connIdx, const double x, const double y) const; // 0 = start, 1 = end, -1 = none
+    int  _shape_at_point(const double x, const double y, const double margin) const; // topmost shape whose box (grown by margin) contains the point
     void _update_cursor(const double x, const double y);      // resize / pointer cursors while hovering
     void _handle_pos(const Shape& shape, const int handle, double& hx, double& hy) const;
     bool _inside_shape(const Shape& shape, const double x, const double y) const;
     void _recompute_conns();            // snap the endpoints of shape-bound connectors
+    void _update_conn_ends(Conn& conn); // refresh one connector's endpoints from the shapes they are glued to
+    void _set_conn_end(Conn& conn, const bool isStart, const double x, const double y); // glue/snap one endpoint (any point of a border)
     static void _anchor_dir(const Shape& shape, const int anchorIdx, double& dx, double& dy); // outward unit direction of a border anchor
     static std::array<std::pair<double, double>, 4> _border_anchors(const Shape& shape); // per-shape connect points (diamond: the 4 edge midpoints)
     static std::pair<double, double> _nearest_anchor(const Shape& shape, const double x, const double y);
     void _snap_conn_preview(const double x, const double y);
+    // geometry of the real shape border (works for every shape, not only boxes)
+    static std::vector<std::pair<double, double>> _outline_points(const Shape& shape);  // polygon approximating the border
+    static std::pair<double, double> _point_on_outline(const Shape& shape, const double u); // u in [0,1) along the border
+    static double _u_on_outline(const Shape& shape, const double x, const double y);    // u of the closest border point
+    static double _dist_to_outline(const Shape& shape, const double x, const double y);
+    static std::pair<double, double> _ray_outline_hit(const Shape& shape, const double dx, const double dy); // first border hit from the centre
     static bool _clip_line_to_rect(const double cx, const double cy,
                                    const double tx, const double ty,
                                    const double rx, const double ry, const double rw, const double rh,
@@ -199,6 +212,8 @@ private:
     gint64         _lastRenderUs{0};
     int            _hoverShape{-1};        // shape under the mouse (drives the quick-connect arrows)
     double         _quickDirX{0.}, _quickDirY{-1.};  // outward direction of the pressed quick arrow
+    int            _dragConnEnd{-1};       // 0 = start / 1 = end of the connector endpoint being dragged
+    Conn           _origConn;              // connector geometry when the drag started
 
     Gtk::Box*      _pVBox{nullptr};
     Gtk::Box*      _pToolbar{nullptr};
@@ -222,5 +237,5 @@ private:
     int            _quickFromShape{-1};    // origin shape of the pending quick connection
     double         _quickMenuX{0.}, _quickMenuY{0.};  // canvas coords of the quick-connect release point
     Gtk::Menu      _quickMenu;             // kept alive: the shape picker of the quick-connect flow
-    Glib::ustring  _cursorName{"default"}; // currently applied canvas cursor (avoid redundant sets)
+    Gdk::CursorType _cursorType{static_cast<Gdk::CursorType>(-1)}; // currently applied canvas cursor (avoid redundant sets)
 };

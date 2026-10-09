@@ -779,15 +779,49 @@ void CtTableCommon::_resize_drag_end()
 // x, or -1 when x is not near any separator
 int CtTableCommon::_column_separator_at(const double x) const
 {
+    // OrangeArk 1.3.6: the grab zone was 8px and the hit test trusted the
+    // STORED column widths even while GTK had not laid the widget out yet. In
+    // that window the accumulated widths describe lines at quite different
+    // places than the rendered ones (and the stored total may even be smaller
+    // than the widget), so a press near the last separator could resolve to
+    // the NEXT column's line — the drag then resized the wrong column and the
+    // guide/table snapped sideways ("<｜hy_place▁holder▁no▁813｜>最边缘的线时会跳到另一格的表格边线").
+    // Now: while the widget is realised require the stored widths to match the
+    // drawn width, otherwise walk an even split of the REAL widget width; and
+    // while it is not realised do not answer at all (the mouse-down then falls
+    // through to the cell, no wrong column can be armed).
+    constexpr double GRAB_ZONE = 6.0;
+    const Gtk::Allocation alloc = get_allocation();
+    const int realW = alloc.get_width();
+    if (realW <= 0) return -1;   // not realised: no trustworthy geometry yet
+
     const CtTableColWidths colWidths = get_col_widths();
+    const size_t numCols = colWidths.size();
+    if (numCols < 2) return -1;
+    double total = 0.0;
+    for (const int w : colWidths) total += w;
+    const bool inSync = total > 0.0 and std::abs(total - realW) <= std::max(6.0, realW * 0.02);
+
+    CtTableColWidths useWidths;
+    if (inSync) {
+        useWidths = colWidths;
+    }
+    else {
+        // fall back to an even split of the width that is really drawn
+        useWidths.assign(numCols, realW / static_cast<int>(numCols));
+    }
+    int bestIdx = -1;
+    double bestDist = GRAB_ZONE + 1.0;
     double acc = 0.0;
-    for (size_t c = 0u; c + 1u < colWidths.size(); ++c) { // inner separators only
-        acc += colWidths.at(c);
-        if (std::abs(x - acc) <= 8.0) { // OrangeArk: wider grab zone (was 4, then 6)
-            return static_cast<int>(c);
+    for (size_t c = 0u; c + 1u < numCols; ++c) { // inner separators only
+        acc += useWidths.at(c);
+        const double dist = std::abs(x - acc);
+        if (dist <= GRAB_ZONE and dist < bestDist) {
+            bestDist = dist;
+            bestIdx = static_cast<int>(c);
         }
     }
-    return -1;
+    return bestIdx;
 }
 
 // OrangeArk: bit mask of the table borders under the cursor

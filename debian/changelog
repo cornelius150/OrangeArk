@@ -1,3 +1,26 @@
+orangeark (1.3.6-1) focal; urgency=low
+
+  * Drawing tool: fixed the crash when drawing a cylinder or an ellipse (cairo
+    threw "invalid matrix (not invertible)" on a still-zero shape size and the
+    exception aborted the program)
+  * Drawing tool: resize cursors now really appear on Windows (the Win32 GDK
+    backend ignores CSS cursor names, so they must come from the Gdk::CursorType
+    enum); the selected shape's border can be dragged anywhere along the line
+  * Drawing tool: border anchors follow the real outline for every shape, so a
+    connector lands on the slanted/wavy border of a parallelogram, document,
+    cylinder or hexagon instead of floating beside it
+  * Drawing tool: a connector can be moved as a whole, and each of its endpoints
+    can be dragged by hand to any point of a shape border (and off it, to detach)
+  * Images: dropped the orange bottom-right corner triangle (the same grip that
+    was already removed from tables); resizing still works from every border and
+    only shows up as the resize cursor on hover
+  * Tables: dragging the outermost separator no longer jumps into the
+    neighbouring column — the hit test now runs only once the widget is laid out
+    and the stored column widths match the drawn width, and the grab zone went
+    from 8px down to 6px
+
+ -- OrangeArk <orange@example.com>  Fri, 09 Oct 2026 17:30:00 +0800
+
 orangeark (1.3.5-1) focal; urgency=low
 
   * Fix: the drawing button was missing from the toolbar on a fresh
