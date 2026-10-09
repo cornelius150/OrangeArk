@@ -1,3 +1,12 @@
+orangeark (1.3.5-1) focal; urgency=low
+
+  * Fix: the drawing button was missing from the toolbar on a fresh
+    installation (no config.cfg yet): TOOLBAR_VEC_DEFAULT — the toolbar
+    shipped before any config exists — did not contain handle_drawing and
+    the config-upgrade path that inserts it only runs when a config file
+    is actually loaded. The default toolbar now ships with the drawing
+    button in place (between insert-image and screenshot).
+
 orangeark (1.3.4-1) focal; urgency=low
 
   * New: the four quick-connect arrows now show only while the mouse hovers

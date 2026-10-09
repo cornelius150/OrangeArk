@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>在线手册 — 橙子笔记 OrangeArk</title>
-<meta name="description" content="橙子笔记（OrangeArk）在线使用手册：入门、节点管理、富文本、表格、代码框、截图、导出与快捷键。">
+<meta name="description" content="橙子笔记（OrangeArk）在线使用手册：入门、节点管理（多选批量移动、节点时间戳）、富文本、表格、代码框、画图、截图、加密、导出与快捷键。">
 <style>
   :root {
     --orange: #fb8c00;
@@ -41,6 +41,8 @@
   aside.toc h4 { font-size: 15px; margin-bottom: 10px; color: var(--orange-dark); }
   aside.toc a { display: block; padding: 5px 0; color: var(--ink); }
   aside.toc a:hover { color: var(--orange-dark); text-decoration: none; }
+  aside.toc .new { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 8px;
+    background: var(--orange); color: #fff; font-size: 11px; vertical-align: 1px; }
   main h2 { font-size: 26px; margin: 38px 0 14px; padding-top: 8px; }
   main h2:first-child { margin-top: 0; }
   main h3 { font-size: 19px; margin: 22px 0 10px; }
@@ -57,6 +59,10 @@
   }
   .tip {
     background: var(--orange-light); border-left: 4px solid var(--orange);
+    border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 14.5px;
+  }
+  .warn {
+    background: #fdeeee; border-left: 4px solid #d84a3a;
     border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 14.5px;
   }
   footer.site {
@@ -92,7 +98,7 @@
 
 <div class="page-title">
   <h1>在线手册</h1>
-  <p>从零开始了解橙子笔记的各项功能。</p>
+  <p>从零开始了解橙子笔记的各项功能（对应版本 v1.3.0+）。</p>
 </div>
 
 <div class="wrap">
@@ -101,13 +107,17 @@
       <h4>目录</h4>
       <a href="#start">一、快速入门</a>
       <a href="#nodes">二、节点管理</a>
-      <a href="#rich">三、富文本编辑</a>
-      <a href="#table">四、表格</a>
-      <a href="#code">五、代码框</a>
-      <a href="#image">六、图片</a>
-      <a href="#shot">七、截图标注</a>
-      <a href="#export">八、导入与导出</a>
-      <a href="#hotkey">九、快捷键</a>
+      <a href="#nodes-multi">三、多选与批量移动<span class="new">新</span></a>
+      <a href="#nodes-time">四、节点时间戳<span class="new">新</span></a>
+      <a href="#rich">五、富文本编辑</a>
+      <a href="#table">六、表格</a>
+      <a href="#code">七、代码框</a>
+      <a href="#draw">八、画图工具<span class="new">新</span></a>
+      <a href="#image">九、图片</a>
+      <a href="#shot">十、截图标注</a>
+      <a href="#export">十一、导入与导出</a>
+      <a href="#secure">十二、文档与加密</a>
+      <a href="#hotkey">十三、快捷键</a>
     </div>
   </aside>
 
@@ -120,46 +130,87 @@
       <li><strong>自动保存</strong>：可在「工具 → 首选项」中开启自动保存，也可以随时按 <kbd>Ctrl</kbd>+<kbd>S</kbd> 手动保存。</li>
       <li><strong>文档格式</strong>：文档是标准的 Markdown 文本文件，任何文本编辑器都能打开阅读；橙子笔记自身的数据则以内嵌快照形式无损保存，确保重开后树状结构与所有富文本格式完全一致。</li>
     </ul>
-    <div class="tip">💡 文档是纯文本性质的 <code>.md</code> 文件，方便备份、同步和版本管理，也便于迁移到其他笔记工具。</div>
+    <div class="tip">💡 文档是纯文本性质的 <code>.md</code> 文件，方便备份、同步和版本管理，也便于迁移到其他笔记工具。加密码保存见<a href="#secure">「十一、文档与加密」</a>。</div>
 
     <h2 id="nodes">二、节点管理</h2>
-    <h3>节点操作</h3>
+    <h3>基本操作</h3>
     <ul>
-      <li><strong>新建节点</strong>：<kbd>Ctrl</kbd>+<kbd>N</kbd> 新建同级节点；「节点」菜单或左栏右键可新建子节点。</li>
-      <li><strong>层级与排序</strong>：在左侧树栏拖拽节点即可移动位置、改变层级。</li>
-      <li><strong>节点图标</strong>：右键节点 →「属性」可选择节点图标。</li>
+      <li><strong>新建节点</strong>：<kbd>Ctrl</kbd>+<kbd>N</kbd> 新建同级节点；<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> 新建子节点。左栏空白处或节点上右键菜单也可以完成。</li>
+      <li><strong>重命名</strong>：选中节点按 <kbd>F2</kbd>，或右键 →「编辑节点」。</li>
+      <li><strong>删除节点</strong>：右键 →「删除节点」（连同其全部子节点一起删除，删除前有确认提示）。</li>
+      <li><strong>复制节点</strong>：<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> 复制当前节点（含全部子节点）。</li>
+      <li><strong>节点图标与颜色</strong>：树中每个层级的节点图标自动按深度着色（根节点橙色、子节点蓝色、孙节点绿色……依次循环）；右键 →「属性」可自定义图标与颜色。</li>
       <li><strong>书签</strong>：右键节点 →「添加到书签」，常用节点会固定在树栏顶部，右键书签可跳转或移除。</li>
       <li><strong>搜索</strong>：<kbd>Ctrl</kbd>+<kbd>F</kbd> 在当前节点内查找；「搜索」菜单可跨全部节点全文搜索。</li>
+    </ul>
+    <h3>移动节点</h3>
+    <ul>
+      <li><strong>拖拽</strong>：按住节点拖到目标节点上，松手即成为其子节点；拖到两个节点之间则插到它们中间。</li>
+      <li><strong>方向移动</strong>：<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd> 在兄弟节点间上移 / 下移；<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>←</kbd> 升一级（变为父节点的兄弟）、<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>→</kbd> 降一级（钻入上方兄弟节点内部）。</li>
+      <li><strong>更换父节点</strong>：<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>J</kbd>，在弹出的树形对话框中点选新的父节点。</li>
+      <li><strong>排序</strong>：「树型」菜单可对整棵树或当前节点的兄弟按名称排序（支持自然排序，"第2章"排在"第10章"之前）。</li>
     </ul>
     <h3>节点类型</h3>
     <p>每个节点可选择三种类型：<strong>富文本</strong>（默认，本手册主要介绍）、<strong>纯文本</strong> 与 <strong>代码</strong>（整页代码编辑，带语法高亮）。</p>
 
-    <h2 id="rich">三、富文本编辑</h2>
+    <h2 id="nodes-multi">三、多选与批量移动<span class="new">新</span></h2>
+    <p>v1.2.0 起左侧节点树支持<strong>一次选中多个节点</strong>，并把它们整体搬到另一个节点之下。</p>
+    <h3>怎么选中多个节点</h3>
+    <ul>
+      <li><strong>点选多个</strong>：按住 <kbd>Ctrl</kbd> 逐个点击节点，点到的节点都会进入选中集（再点一下取消）。</li>
+      <li><strong>范围选择</strong>：先点击一个节点，再按住 <kbd>Shift</kbd> 点击另一个节点，两者之间的连续节点全部选中。</li>
+      <li>单击（不带 Ctrl/Shift）任意节点即恢复正常单选。</li>
+    </ul>
+    <h3>批量移动到某个节点之下</h3>
+    <ol>
+      <li>按上述方法选中多个节点（一个节点也可以）。</li>
+      <li>在选中节点上<strong>右键 → 移动 → 移动所选节点到…</strong>（或菜单「树型 → 移动 → 移动所选节点到…」）。</li>
+      <li>在弹出的树形对话框中点选<strong>目标父节点</strong>，确定。</li>
+      <li>所有选中的节点立即整体搬到目标节点之下（按原顺序排在末尾）。</li>
+    </ol>
+    <div class="tip">💡 移动会连同每个节点的<strong>全部子节点</strong>一起搬走，不需要先展开。目标节点会自动展开，方便确认结果。</div>
+    <h3>批量移动的保护规则</h3>
+    <ul>
+      <li>如果同时选中了<strong>父节点和它的子孙</strong>，只有父节点会被移动（子孙跟着父节点走，不会重复搬）。</li>
+      <li>目标节点不能是被移动节点自己，也不能是任一被移动节点的子孙（否则会形成死循环），违反时会明确报错。</li>
+      <li>目标节点就是某个选中节点当前的父节点时，该节点自动跳过（位置没变化）；如果全部节点都无需移动，会给出提示。</li>
+    </ul>
+
+    <h2 id="nodes-time">四、节点时间戳<span class="new">新</span></h2>
+    <p>v1.2.0 起每个节点名称后面会显示一个<strong>灰色小字时间戳</strong>，即该节点的创建时间（格式 <code>年-月-日 时:分</code>）：</p>
+    <ul>
+      <li><strong>自动生成</strong>：每次新建节点（<kbd>Ctrl</kbd>+<kbd>N</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> / 复制节点 / 导入等）都会自动记录创建时间，无需手动填写。</li>
+      <li><strong>旧文档自动补齐</strong>：用旧版本创建的文档第一次用 v1.2.0+ 打开时，没有时间戳的节点会自动补上当前时间，并在<strong>下一次保存时写进文档</strong>，之后固定不变。</li>
+      <li><strong>随文档保存</strong>：时间戳保存在文档内（<code>ts_creation</code> 字段），<code>.md</code> / 加密的 <code>.mdz</code> / 传统 <code>.ctd</code> 等格式都支持；旧版本软件打开新文档也不受影响（只是不显示）。</li>
+      <li>状态栏同样会显示当前节点的「创建时间」，把鼠标悬停在节点上也能看到节点名提示。</li>
+    </ul>
+
+    <h2 id="rich">五、富文本编辑</h2>
     <h3>文字格式</h3>
     <ul>
       <li><strong>字体与字号</strong>：工具栏中的字体下拉框列出系统已安装的全部字体（常用中文字体排在前面）；右侧字号下拉框提供 8–72 号字号。选中文字后选择即可应用，也可以不选中文本，在光标处继续输入时生效。</li>
-      <li><strong>常用样式</strong>：加粗 <kbd>Ctrl</kbd>+<kbd>B</kbd>、斜体 <kbd>Ctrl</kbd>+<kbd>I</kbd>、下划线 <kbd>Ctrl</kbd>+<kbd>U</kbd>、删除线 <kbd>Ctrl</kbd>+<kbd>K</kbd>、上下标、等宽字体等。</li>
-      <li><strong>颜色</strong>：工具栏「字体颜色」与「背景色」按钮可给选中文字上色；「高亮色」按钮提供一键荧光标记。</li>
+      <li><strong>常用样式</strong>：加粗 <kbd>Ctrl</kbd>+<kbd>B</kbd>、斜体 <kbd>Ctrl</kbd>+<kbd>I</kbd>、下划线 <kbd>Ctrl</kbd>+<kbd>U</kbd>、删除线 <kbd>Ctrl</kbd>+<kbd>K</kbd>、等宽字体等。</li>
+      <li><strong>上标 / 下标</strong>：工具栏「x²」「x₂」按钮以上标 / 下标显示选中文字（v1.1.8 起按当前字号真实上移 / 下移）。</li>
+      <li><strong>颜色</strong>：工具栏「字体颜色」与「背景色」按钮可给选中文字上色；「高亮色」按钮提供一键荧光标记；两个按钮都带吸管取色器，可从屏幕任意位置取色。</li>
       <li><strong>标题样式</strong>：<kbd>Ctrl</kbd>+<kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd> 切换一、二、三级标题。</li>
-      <li><strong>格式刷</strong>：工具栏的格式刷按钮（刷子图标）可复制上一个应用的格式，选中文字后点一下即可套用，无需逐项设置。</li>
-      <li><strong>清除格式</strong>：「清除格式」按钮可去掉选中文字上的所有样式。</li>
+      <li><strong>格式刷</strong>：工具栏的格式刷按钮（刷子图标）可复制上一个应用的格式，选中文字后点一下即可套用；<kbd>F7</kbd> 可重复上一次的格式操作，「清除格式」按钮可去掉选中文字上的所有样式。</li>
     </ul>
     <h3>段落与缩进</h3>
     <ul>
-      <li>支持左 / 中 / 右对齐、项目符号列表、编号列表与待办列表。</li>
+      <li>支持左 / 中 / 右对齐、项目符号列表、编号列表与待办列表；编号样式库提供 10 种编号（1. / A. / a. / (一) / ① 等）。</li>
       <li>段落缩进支持 <kbd>Tab</kbd> 增加缩进、<kbd>Shift</kbd>+<kbd>Tab</kbd> 减少缩进；列表内 Tab 可逐级下沉。</li>
       <li>对齐、缩进、颜色、字体等全部格式随文档一起保存，导出 PDF / HTML 时同样保留。</li>
     </ul>
 
-    <h2 id="table">四、表格</h2>
+    <h2 id="table">六、表格</h2>
     <ul>
       <li><strong>插入表格</strong>：菜单「插入 → 表格」，设置行列数。</li>
       <li><strong>编辑单元格</strong>：点击单元格直接输入；<kbd>Tab</kbd> 跳到下一格，<kbd>Shift</kbd>+<kbd>Tab</kbd> 退回上一格。</li>
-      <li><strong>调整大小</strong>：将鼠标移到表格边缘出现调整光标后拖动，即可调整宽度与高度。</li>
+      <li><strong>调整大小</strong>：将鼠标移到表格边缘出现调整光标后拖动，即可调整宽度与高度；列分隔线可以直接在单元格内拖动（双向箭头光标）。</li>
       <li><strong>行列操作</strong>：右键表格可插入 / 删除行列、设置列宽与对齐方式。</li>
     </ul>
 
-    <h2 id="code">五、代码框</h2>
+    <h2 id="code">七、代码框</h2>
     <ul>
       <li><strong>插入</strong>：「插入 → 代码框」，选择编程语言后获得带语法高亮的代码编辑区。</li>
       <li>支持数十种主流编程语言的高亮，代码框内 <kbd>Tab</kbd> 输入缩进而非跳出。</li>
@@ -167,18 +218,36 @@
       <li>右键代码框可修改语言、自动换行、行号显示等选项。</li>
     </ul>
 
-    <h2 id="image">六、图片</h2>
+    <h2 id="draw">八、画图工具<span class="new">新</span></h2>
+    <p>工具栏的「插入图形」按钮（图片按钮左侧）可在正文中插入一块<strong>可自由画图的画布</strong>，适合画流程图、拓扑图、示意图（v1.3.0 起）。</p>
+    <ul>
+      <li><strong>拖拽画形状</strong>：选中形状工具后，在画布上<strong>按住鼠标拖动</strong>即画出矩形 / 椭圆 / 菱形等形状；单击不会生成图形。</li>
+      <li><strong>画图工具栏</strong>：点击画布区域自动显示（形状、连线、文字、字号与颜色），光标回到正文时自动隐藏。</li>
+      <li><strong>文字</strong>：双击形状可输入文字，支持设置字号与文字颜色。</li>
+    </ul>
+    <h3>连线（Visio 式）</h3>
+    <ul>
+      <li><strong>四向连接箭头</strong>：鼠标悬停在图形上时四边显示橙色三角箭头，移开即消失；<strong>单击箭头</strong>会在该方向自动生成一个同款图形并自动连线；按住箭头拖动可连到已有图形，或拖到空白处松手弹出形状菜单选择生成。</li>
+      <li><strong>自动吸附</strong>：连线两端自动吸附图形边框连接点（菱形为四条斜边的中点），拖动图形时连线跟随。</li>
+    </ul>
+    <h3>调整大小</h3>
+    <ul>
+      <li>选中图形后，四角与四边的<strong>控制点</strong>可拖动缩放；鼠标放在边框线上出现双向箭头光标时，<strong>沿边线任意位置按住拖动</strong>即可调整大小，不必瞄准小控制点。</li>
+    </ul>
+    <div class="tip">💡 画布内容随文档一起保存，导出 HTML / PDF 时按图片导出。</div>
+
+    <h2 id="image">九、图片</h2>
     <ul>
       <li><strong>插入</strong>：「插入 → 图片」或直接把图片文件拖进编辑区；截图复制的图片也可 <kbd>Ctrl</kbd>+<kbd>V</kbd> 粘贴。</li>
-      <li><strong>调整大小</strong>：鼠标移到图片上出现调整光标后拖动，可<strong>放大也可以缩小</strong>；按住比例拖角可保持宽高比。</li>
+      <li><strong>调整大小</strong>：鼠标移到图片上出现调整光标后拖动，可<strong>放大也可以缩小</strong>；调整手柄只在悬停时显示，平时不遮挡内容。</li>
       <li><strong>还原</strong>：右键图片 →「还原大小」可一键恢复原始尺寸。</li>
-      <li><strong>编辑</strong>：右键图片可选择旋转、另存为文件。</li>
+      <li><strong>编辑</strong>：右键图片可选择旋转、另存为文件；贴图（钉在桌面上的图片）右上角有 ✕ 关闭按钮。</li>
     </ul>
 
-    <h2 id="shot">七、截图标注</h2>
+    <h2 id="shot">十、截图标注</h2>
     <p>橙子笔记内置 QQ 式截图工具，截完即标注、标注完即插入笔记。</p>
     <ul>
-      <li><strong>开始截图</strong>：点击工具栏相机图标，或使用菜单「工具 → 截图」。窗口自动最小化并稍候抓取屏幕。</li>
+      <li><strong>开始截图</strong>：按 <kbd>Print</kbd>（PrtSc）键，或点击工具栏相机图标。窗口自动最小化并稍候抓取屏幕。</li>
       <li><strong>框选区域</strong>：按住鼠标左键拖出矩形区域，松开即完成框选。</li>
       <li><strong>标注工具</strong>：确认前的悬浮工具条提供：矩形、椭圆、箭头、画笔、荧光笔、马赛克、文字标注（可直接输入中文）与数字序号标记。</li>
       <li><strong>移动标注</strong>：画好的标注可以用鼠标拖动位置微调。</li>
@@ -186,7 +255,7 @@
     </ul>
     <div class="tip">💡 截图工具条的样式与操作习惯与 QQ / 微信截图一致，第一次使用即可上手。</div>
 
-    <h2 id="export">八、导入与导出</h2>
+    <h2 id="export">十一、导入与导出</h2>
     <h3>导出</h3>
     <table>
       <tr><th>格式</th><th>说明</th></tr>
@@ -196,19 +265,41 @@
     </table>
     <p>菜单「文件 → 导出」可选择导出范围（当前节点 / 当前节点及子节点 / 整个文档）。</p>
     <h3>导入</h3>
-    <p>支持导入外部 Markdown 文件（<code>.md</code>）与纯文本文件，标题层级会自动转换为节点层级。</p>
+    <p>支持导入外部 Markdown 文件（<code>.md</code>）与纯文本文件，标题层级会自动转换为节点层级（导入的节点同样自动记录创建时间戳）。</p>
 
-    <h2 id="hotkey">九、快捷键</h2>
+    <h2 id="secure">十二、文档与加密</h2>
+    <h3>两种文档文件</h3>
+    <table>
+      <tr><th>扩展名</th><th>含义</th></tr>
+      <tr><td><code>.md</code></td><td>普通 Markdown 文档，无密码</td></tr>
+      <tr><td><code>.mdz</code></td><td>加密文档：内容打包压缩并用密码加密后的文件，打开时需输入密码</td></tr>
+    </table>
+    <ul>
+      <li><strong>给文档加密</strong>：「文件 → 另存为」时选择 <code>.mdz</code> 格式并设置密码；已加密文档再次保存仍保持加密。</li>
+      <li><strong>打开加密文档</strong>：双击或「文件 → 打开」选择 <code>.mdz</code>，在弹窗中输入密码。密码错误会提示「密码错误，请重新输入」。</li>
+      <li><strong>密保提示</strong>：加密后<strong>忘记密码无法找回</strong>， OrangeArk 是本地离线软件，没有任何服务器能帮你重置，请务必记牢密码或用密码管理器保管。</li>
+      <li><strong>性能</strong>：加密文档每次打开需要解压解密，超大文档会稍慢，属于正常现象。</li>
+    </ul>
+    <div class="warn">⚠️ 加密文档忘记密码后内容将无法恢复，请务必妥善保管密码。</div>
+
+    <h2 id="hotkey">十三、快捷键</h2>
     <table>
       <tr><th>快捷键</th><th>功能</th></tr>
       <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>新建节点</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></td><td>新建子节点</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></td><td>复制当前节点</td></tr>
+      <tr><td><kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>/<kbd>←</kbd>/<kbd>→</kbd></td><td>节点上移 / 下移 / 升级 / 降级</td></tr>
+      <tr><td><kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>J</kbd></td><td>更改节点父节点</td></tr>
       <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>保存文档</td></tr>
       <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>当前节点内查找</td></tr>
       <tr><td><kbd>Ctrl</kbd>+<kbd>B</kbd> / <kbd>I</kbd> / <kbd>U</kbd> / <kbd>K</kbd></td><td>加粗 / 斜体 / 下划线 / 删除线</td></tr>
       <tr><td><kbd>Ctrl</kbd>+<kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd></td><td>标题 1 / 2 / 3</td></tr>
+      <tr><td><kbd>F7</kbd></td><td>重复上一次格式</td></tr>
       <tr><td><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></td><td>缩进增加 / 减少</td></tr>
       <tr><td><kbd>Ctrl</kbd>+<kbd>V</kbd></td><td>粘贴（含图片与截图）</td></tr>
       <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Y</kbd></td><td>撤销 / 重做</td></tr>
+      <tr><td><kbd>Print</kbd></td><td>截图标注</td></tr>
+      <tr><td><kbd>F8</kbd></td><td>插入日期节点</td></tr>
       <tr><td><kbd>F6</kbd></td><td>树栏与编辑区焦点切换</td></tr>
     </table>
 
