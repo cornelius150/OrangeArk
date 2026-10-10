@@ -814,19 +814,30 @@ int CtDrawing::_hit_edge(const double x, const double y) const
 }
 
 // hit-test of the Visio-style quick-connect arrows (drawn ~4..20px outside
-// each border anchor of the HOVERED shape); returns 0..3 or -1
+// each border anchor of the HOVERED shape); returns 0..3 or -1.
+// OrangeArk 1.3.7: the hit region is the whole arrow SEGMENT (not just a
+// circle at its middle) — the arrows are small and a click slightly off the
+// centre never landed (用户: "准备在箭头点时又不会生成图形")
 int CtDrawing::_hit_quick_arrow(const double x, const double y) const
 {
     if (_hoverShape < 0 or _hoverShape >= static_cast<int>(_model.shapes.size())) return -1;
     if (Drag::None != _drag) return -1;
     const Shape& shape = _model.shapes[_hoverShape];
+    if (_inside_shape(shape, x, y)) return -1;   // arrows only respond OUTSIDE the shape: a press on the border stays a resize
     const auto anchors = _border_anchors(shape);
     for (int d = 0; d < 4; ++d) {
         double dx = 0.0, dy = 0.0;
         _anchor_dir(shape, d, dx, dy);
-        const double cx = anchors[d].first + dx * 14.0;
-        const double cy = anchors[d].second + dy * 14.0;
-        if (std::hypot(x - cx, y - cy) <= 12.0) return d;
+        const double ax = anchors[d].first + dx * 4.0;
+        const double ay = anchors[d].second + dy * 4.0;
+        const double bx = anchors[d].first + dx * 20.0;
+        const double by = anchors[d].second + dy * 20.0;
+        const double ex = bx - ax;
+        const double ey = by - ay;
+        const double len2 = ex * ex + ey * ey;
+        double t = len2 > 0.001 ? ((x - ax) * ex + (y - ay) * ey) / len2 : 0.0;
+        t = std::max(0.0, std::min(1.0, t));
+        if (std::hypot(x - (ax + t * ex), y - (ay + t * ey)) <= 10.0) return d;
     }
     return -1;
 }
@@ -1237,7 +1248,13 @@ std::pair<double, double> CtDrawing::_nearest_anchor(const Shape& shape, const d
 // live snapping of the connector being drawn
 void CtDrawing::_snap_conn_preview(const double x, const double y)
 {
-    if (_previewConn.fromShape >= 0 and _previewConn.fromShape < static_cast<int>(_model.shapes.size())) {
+    const int nShapes = static_cast<int>(_model.shapes.size());
+    // the start keeps the shape the drag began on; re-resolving it from the
+    // press point (8px margin) covers a press a few px outside the border
+    if (_previewConn.fromShape < 0 or _previewConn.fromShape >= nShapes) {
+        _previewConn.fromShape = _shape_at_point(_dragStartX, _dragStartY, 8.0);
+    }
+    if (_previewConn.fromShape >= 0 and _previewConn.fromShape < nShapes) {
         const Shape& from = _model.shapes[_previewConn.fromShape];
         const auto a = _nearest_anchor(from, x, y);
         _previewConn.x1 = a.first;
@@ -1247,13 +1264,17 @@ void CtDrawing::_snap_conn_preview(const double x, const double y)
         _previewConn.x1 = _dragStartX;
         _previewConn.y1 = _dragStartY;
     }
-    _previewConn.toShape = _hit_shape(x, y);
-    if (_previewConn.toShape == _previewConn.fromShape and _previewConn.fromShape >= 0) {
-        _previewConn.toShape = -1;
+    // the end: any shape within 8px of the pointer counts as a target, so a
+    // release slightly outside the border still connects (and the connector
+    // then keeps following the shape's edge midpoints)
+    int to = _shape_at_point(x, y, 8.0);
+    if (to == _previewConn.fromShape and to >= 0) {
+        to = -1;   // a connector never loops back to its own shape here
     }
-    if (_previewConn.toShape >= 0 and _previewConn.toShape < static_cast<int>(_model.shapes.size())) {
-        const Shape& to = _model.shapes[_previewConn.toShape];
-        const auto b = _nearest_anchor(to, _previewConn.x1, _previewConn.y1);
+    _previewConn.toShape = to;
+    if (to >= 0 and to < nShapes) {
+        const Shape& shape = _model.shapes[to];
+        const auto b = _nearest_anchor(shape, _previewConn.x1, _previewConn.y1);
         _previewConn.x2 = b.first;
         _previewConn.y2 = b.second;
     }
@@ -1697,31 +1718,37 @@ void CtDrawing::_update_cursor(const double x, const double y)
     // arrows never showed up on Windows
     Gdk::CursorType type = Gdk::ARROW;
     if (_editShape < 0) {
-        int handle = _hit_handle(x, y);
-        if (handle < 0) handle = _hit_edge(x, y);
-        if (handle >= 0) {
-            switch (handle) {
-            case 1: case 7: type = Gdk::SB_V_DOUBLE_ARROW; break;   // top / bottom edge: up-down double arrow
-            case 3: case 5: type = Gdk::SB_H_DOUBLE_ARROW; break;   // left / right edge: the requested left-right double arrow
-            case 0: case 8: type = Gdk::TOP_LEFT_CORNER; break;     // top-left / bottom-right corner
-            case 2: case 6: type = Gdk::TOP_RIGHT_CORNER; break;    // top-right / bottom-left corner
-            default: break;
-            }
-        }
-        else if (_hit_quick_arrow(x, y) >= 0) {
+        const bool connTool = (Tool::Connector == _tool or Tool::Arrow == _tool);
+        if (_hit_quick_arrow(x, y) >= 0) {
             type = Gdk::HAND2;                                   // a quick-connect arrow
         }
         else if (_selConn >= 0 and _hit_conn_end(_selConn, x, y) >= 0) {
             type = Gdk::HAND2;                                   // an endpoint grip of the selected connector
         }
-        else if (_hit_conn(x, y) >= 0) {
-            type = Gdk::FLEUR;                                   // the connector body can be dragged
+        else if ((Tool::Select == _tool or connTool) and _hit_conn(x, y) >= 0) {
+            type = Gdk::FLEUR;                                   // the connector body can be picked up
         }
-        else if (Tool::Select == _tool and _hit_shape(x, y) >= 0) {
-            type = Gdk::FLEUR;                                   // the shape itself can be dragged
+        else if (not connTool) {
+            int handle = _hit_handle(x, y);
+            if (handle < 0) handle = _hit_edge(x, y);
+            if (handle >= 0) {
+                switch (handle) {
+                case 1: case 7: type = Gdk::SB_V_DOUBLE_ARROW; break;   // top / bottom edge: up-down double arrow
+                case 3: case 5: type = Gdk::SB_H_DOUBLE_ARROW; break;   // left / right edge: the requested left-right double arrow
+                case 0: case 8: type = Gdk::TOP_LEFT_CORNER; break;     // top-left / bottom-right corner
+                case 2: case 6: type = Gdk::TOP_RIGHT_CORNER; break;    // top-right / bottom-left corner
+                default: break;
+                }
+            }
+            else if (Tool::Select == _tool and _hit_shape(x, y) >= 0) {
+                type = Gdk::FLEUR;                               // the shape itself can be dragged
+            }
+            else if (Tool::Select != _tool) {
+                type = Gdk::CROSSHAIR;                           // ready to draw the next shape
+            }
         }
-        else if (Tool::Select != _tool) {
-            type = Gdk::CROSSHAIR;                               // ready to draw the next shape
+        else {
+            type = Gdk::CROSSHAIR;                               // connector tool over empty canvas
         }
     }
     if (type == _cursorType) return;
@@ -1761,41 +1788,11 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
 
     _pCanvas->grab_focus();
 
-    // dragging a resize grip OR anywhere along a border line of the selected
-    // shape works with ANY tool — the user never has to switch tools
-    int handle = _hit_handle(x, y);
-    if (handle < 0) handle = _hit_edge(x, y);
-    if (handle >= 0) {
-        _drag = Drag::Resize;
-        _dragHandle = handle;
-        _dragStartX = x;
-        _dragStartY = y;
-        const Shape& shape = _model.shapes[_selShape];
-        _origX = shape.x;
-        _origY = shape.y;
-        _origW = shape.w;
-        _origH = shape.h;
-        return true;
-    }
-
-    // an endpoint grip of the SELECTED connector: dragging it moves the
-    // attach point anywhere along a shape border (and detaches it when the
-    // pointer leaves every shape)
-    if (_selConn >= 0 and _selConn < static_cast<int>(_model.conns.size())) {
-        const int end = _hit_conn_end(_selConn, x, y);
-        if (end >= 0) {
-            _drag = Drag::ConnEnd;
-            _dragConnEnd = end;
-            _origConn = _model.conns[_selConn];
-            _dragStartX = x;
-            _dragStartY = y;
-            return true;
-        }
-    }
-
     // Visio-style: pressing one of the four outward quick-connect arrows
     // starts a connection from that border anchor point (a plain click, with
-    // no drag, auto-creates the connected shape on release)
+    // no drag, auto-creates the connected shape on release). Checked FIRST —
+    // the arrows sit just outside the border where the resize/edge hit tests
+    // would otherwise steal the press.
     const int qdir = _hit_quick_arrow(x, y);
     if (qdir >= 0) {
         const int fromIdx = _hoverShape;
@@ -1822,6 +1819,59 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
         return true;
     }
 
+    // an endpoint grip (or the body) of a connector under the pointer: the
+    // endpoint can be dragged to any point of a shape border (and detached on
+    // empty canvas), the body can be picked up and moved as a whole.
+    // OrangeArk 1.3.7: this works with the Select tool AND while 直线/箭头线 is
+    // active — before, drawing a line left the tool on and every attempt to
+    // grab it just drew yet another line (用户: "无法移动箭头线和直线，而且又
+    // 画出箭头线")
+    if (Tool::Select == _tool or Tool::Connector == _tool or Tool::Arrow == _tool) {
+        int cidx = _hit_conn(x, y);
+        if (cidx < 0 and _selConn >= 0 and _selConn < static_cast<int>(_model.conns.size())
+            and _hit_conn_end(_selConn, x, y) >= 0) {
+            cidx = _selConn;   // the selected connector's grips stay grabbable
+        }
+        if (cidx >= 0) {
+            _select_only(-1, cidx);
+            _dragStartX = x;
+            _dragStartY = y;
+            _origConn = _model.conns[cidx];
+            const int end = _hit_conn_end(cidx, x, y);
+            if (end >= 0) {
+                _drag = Drag::ConnEnd;
+                _dragConnEnd = end;
+            }
+            else {
+                _drag = Drag::MoveConn;
+                _dragConnEnd = -1;
+            }
+            _render();
+            return true;
+        }
+    }
+
+    // dragging a resize grip OR anywhere along a border line of the selected
+    // shape works with ANY tool — the user never has to switch tools —
+    // EXCEPT while 直线/箭头线 is active: there the press on a shape's border
+    // must start a connection, not resize the shape
+    if (Tool::Connector != _tool and Tool::Arrow != _tool) {
+        int handle = _hit_handle(x, y);
+        if (handle < 0) handle = _hit_edge(x, y);
+        if (handle >= 0) {
+            _drag = Drag::Resize;
+            _dragHandle = handle;
+            _dragStartX = x;
+            _dragStartY = y;
+            const Shape& shape = _model.shapes[_selShape];
+            _origX = shape.x;
+            _origY = shape.y;
+            _origW = shape.w;
+            _origH = shape.h;
+            return true;
+        }
+    }
+
     if (Tool::Select == _tool) {
         const int idx = _hit_shape(x, y);
         if (idx >= 0) {
@@ -1837,15 +1887,7 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
             _render();
             return true;
         }
-        const int cidx = _hit_conn(x, y);
-        _select_only(-1, cidx);
-        if (cidx >= 0) {
-            // a connector can be picked up and moved as a whole
-            _drag = Drag::MoveConn;
-            _origConn = _model.conns[cidx];
-            _dragStartX = x;
-            _dragStartY = y;
-        }
+        _select_only(-1, -1);
         _render();
         return true;
     }
@@ -1858,7 +1900,10 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
         _previewConn.y1 = y;
         _previewConn.x2 = x;
         _previewConn.y2 = y;
-        _previewConn.fromShape = _hit_shape(x, y);
+        // OrangeArk 1.3.7: a press just OUTSIDE a shape (a few px away from its
+        // border, easy to happen when aiming at the shape) still glues the
+        // start to it, so the line really connects instead of floating free
+        _previewConn.fromShape = _shape_at_point(x, y, 8.0);
         _previewConn.toShape = _previewConn.fromShape;
         _previewConn.arrowEnd = (Tool::Arrow == _tool);
         _previewConn.dashed = false;
@@ -1915,8 +1960,16 @@ bool CtDrawing::_on_canvas_motion(GdkEventMotion* event)
 
     if (Drag::None == _drag) {
         // track which shape the mouse is over: the quick-connect arrows of
-        // that shape appear (and disappear when the mouse leaves)
-        const int hover = _hit_shape(x, y);
+        // that shape appear (and disappear when the mouse leaves).
+        // OrangeArk 1.3.7: the arrows live OUTSIDE the shape border, so the
+        // moment the user reached for one the hover was lost, the arrows
+        // vanished and the click never created the connected shape (用户:
+        // "准备在箭头点时又不会生成图形"). While the pointer is on one of the
+        // arrows, the shape stays hovered.
+        int hover = _hit_shape(x, y);
+        if (hover < 0 and _hoverShape >= 0 and _hit_quick_arrow(x, y) >= 0) {
+            hover = _hoverShape;
+        }
         if (hover != _hoverShape) {
             _hoverShape = hover;
             _render();
@@ -2067,17 +2120,14 @@ bool CtDrawing::_on_canvas_release(GdkEventButton* event)
             }
             else {
                 _model.conns.push_back(_previewConn);
-                if (_previewConn.fromShape >= 0 and _previewConn.toShape >= 0) {
-                    // both ends snapped: the line keeps following the shapes
-                    _recompute_conns();
-                    if (_connFromQuick) {
-                        // chain-friendly: the target becomes selected, its own
-                        // quick arrows show up right away
-                        _select_only(_previewConn.toShape, -1);
-                    }
-                    else {
-                        _select_only(-1, static_cast<int>(_model.conns.size()) - 1);
-                    }
+                // one or both ends glued to shapes: snap them onto the border
+                // anchor points right away, so the line starts connected to the
+                // edge midpoints and keeps following the shapes from now on
+                _recompute_conns();
+                if (_connFromQuick and _previewConn.toShape >= 0) {
+                    // chain-friendly: the target becomes selected, its own
+                    // quick arrows show up right away
+                    _select_only(_previewConn.toShape, -1);
                 }
                 else {
                     _select_only(-1, static_cast<int>(_model.conns.size()) - 1);

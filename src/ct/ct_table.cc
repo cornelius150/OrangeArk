@@ -1521,13 +1521,41 @@ double CtTableHeavy::_row_top_at(const size_t rowIdx) const
 
 // OrangeArk: hit test for the row separators (the horizontal lines between
 // rows) — returns the index of the row ABOVE the separator under y, or -1.
-// OrangeArk perf: walk the rows ONCE accumulating the first-column cell
-// heights — the previous per-separator _row_top_at() restart made every mouse
-// motion O(numRows²) allocation lookups, which was the resize lag.
+// OrangeArk 1.3.7: like the column hit test below, this now uses the real
+// rendered geometry (the gap midpoint between consecutive row-0 cells), so a
+// drag lands on the line the user is actually pointing at even when GTK
+// shrunk the cells below their requested size.
+// OrangeArk perf: walk the rows ONCE — the previous per-separator _row_top_at()
+// restart made every mouse motion O(numRows²) allocation lookups, which was
+// the resize lag.
 int CtTableHeavy::_row_separator_at(const double y) const
 {
     const size_t numRows = get_num_rows();
     if (numRows < 2 or _tableMatrix.empty() or _tableMatrix.front().empty()) return -1;
+    int orgX = 0, orgY = 0;
+    if (const_cast<Gtk::Grid&>(_grid).translate_coordinates(*const_cast<CtTableHeavy*>(this), 0, 0, orgX, orgY)) {
+        constexpr double GRAB_ZONE = 8.0;
+        int bestIdx = -1;
+        double bestDist = GRAB_ZONE + 1.0;
+        double prevBottom = -1.0;
+        for (size_t r = 0u; r < numRows; ++r) {
+            const Gtk::Allocation alloc =
+                static_cast<CtTextCell*>(_tableMatrix.at(r).front())->get_text_view().mm().get_allocation();
+            if (alloc.get_height() <= 0) break;   // not laid out yet: fall through to the old logic
+            const double top = orgY + alloc.get_y();
+            const double bottom = top + alloc.get_height();
+            if (r > 0u) {
+                const double sep = (prevBottom + top) / 2.0;
+                const double dist = std::abs(y - sep);
+                if (dist <= GRAB_ZONE and dist < bestDist) {
+                    bestDist = dist;
+                    bestIdx = static_cast<int>(r) - 1;
+                }
+            }
+            prevBottom = bottom;
+        }
+        if (bestIdx >= 0) return bestIdx;
+    }
     const int spacing = _grid.get_row_spacing();
     double nextTop = 0.0;
     for (size_t r = 0u; r + 1u < numRows; ++r) { // inner separators only
@@ -1538,4 +1566,43 @@ int CtTableHeavy::_row_separator_at(const double y) const
         }
     }
     return -1;
+}
+
+// OrangeArk 1.3.7: hit-test the column separators against the geometry the
+// user actually SEES — the real allocations of the first row's cells. The
+// stored widths only describe what was REQUESTED: when the table is narrower
+// than the requested total (a small table, a narrow node) GTK shrinks the
+// cells, and accumulating the stored widths then pointed the drag at a
+// NEIGHBOURBOUR column (用户: "表格比较小的时候基本每次都是调整到另外一列").
+// The separator between two cells is the midpoint of the gap between their
+// real right/left edges, so it is exact whatever spacing/borders GTK applied.
+int CtTableHeavy::_column_separator_at(const double x) const
+{
+    constexpr double GRAB_ZONE = 6.0;
+    const size_t numCols = get_num_columns();
+    if (numCols < 2 or _tableMatrix.empty() or _tableMatrix.front().size() < numCols) return -1;
+    int orgX = 0, orgY = 0;
+    if (const_cast<Gtk::Grid&>(_grid).translate_coordinates(*const_cast<CtTableHeavy*>(this), 0, 0, orgX, orgY)) {
+        int bestIdx = -1;
+        double bestDist = GRAB_ZONE + 1.0;
+        double prevRight = -1.0;
+        for (size_t c = 0u; c < numCols; ++c) {
+            const Gtk::Allocation alloc =
+                static_cast<CtTextCell*>(_tableMatrix.front().at(c))->get_text_view().mm().get_allocation();
+            if (alloc.get_width() <= 0) break;   // not laid out yet: fall through to the stored widths
+            const double left = orgX + alloc.get_x();
+            const double right = left + alloc.get_width();
+            if (c > 0u) {
+                const double sep = (prevRight + left) / 2.0;
+                const double dist = std::abs(x - sep);
+                if (dist <= GRAB_ZONE and dist < bestDist) {
+                    bestDist = dist;
+                    bestIdx = static_cast<int>(c) - 1;
+                }
+            }
+            prevRight = right;
+        }
+        if (bestIdx >= 0) return bestIdx;
+    }
+    return CtTableCommon::_column_separator_at(x);
 }

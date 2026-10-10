@@ -348,6 +348,7 @@ protected:
     int  _get_rows_min_height_raw() const override { return _rowsMinHeight; }
     void _apply_row_height(const size_t rowIdx) override;
     int  _row_separator_at(const double y) const override; // OrangeArk: per-row resize hit test
+    int  _column_separator_at(const double x) const override; // OrangeArk: real rendered geometry (see ct_table.cc)
     double _row_top_at(const size_t rowIdx) const override;
     int  _rowsMinHeight{0};
 

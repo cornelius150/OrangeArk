@@ -421,10 +421,14 @@ static std::string oa_sup_sub_fmt_value(const CtConfig* pCtConfig, const bool is
     // this permille by localScale made a superscript inside a heading render
     // at 1.11x the normal body size.
     const int permille = 694;
-    // OrangeArk: 0.45 puts the superscript clearly in the top-right corner
-    // (用户反馈 0.33 "位置还得上移" — it read as vertically centred next to a
-    // subscript); the subscript keeps a symmetric-looking -0.17.
-    const int rise = static_cast<int>(std::lround(effPt * (isSup ? 0.45 : -0.17) * Pango::SCALE));
+    // OrangeArk: 0.45 still read as "vertically centred, a bit up" (用户
+    // 第三次反馈 "还得继续往上调整"). An offscreen probe (_supprobe) measured
+    // what Pango really does: the effective visual rise is the NOMINAL rise
+    // times the scale factor (0.694) — 0.45 nominal rendered only ~0.31em up
+    // (5px on an 11pt font whose cap height is 12px). 0.72 nominal -> ~0.50em
+    // effective, which puts the superscript clearly into the top-right corner.
+    // The subscript gets a matching small bump (-0.17 -> -0.20).
+    const int rise = static_cast<int>(std::lround(effPt * (isSup ? 0.72 : -0.20) * Pango::SCALE));
     return std::to_string(permille) + "," + std::to_string(rise);
 }
 

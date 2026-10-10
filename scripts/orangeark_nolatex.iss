@@ -5,7 +5,7 @@
 #define MyAppPublisher "Giuseppe Penone"
 #define MyAppURL "https://www.giuspen.net/orangeark/"
 #define MyAppExeName "orangeark.exe"
-#define MyAppVersion "1.3.6"
+#define MyAppVersion "1.3.7"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
