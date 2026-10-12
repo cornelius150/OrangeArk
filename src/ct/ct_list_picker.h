@@ -126,7 +126,34 @@ inline std::vector<Glib::ustring> ordered_font_families()
     return ordered;
 }
 
-// OrangeArk: toolbar font/size picker — see the class comment at the top
+// OrangeArk: show a friendly localized name for a system font family while
+// keeping the real Pango family name (what we store in the document/tag) intact.
+// Pango reports these families by their English name on Windows, but the user
+// expects the Word-style Chinese label (KaiTi -> 楷体, SimSun -> 宋体, ...).
+// Names that are not in the map (including ones Pango already returns in
+// Chinese) are shown verbatim.
+inline Glib::ustring display_font_name(const Glib::ustring& name)
+{
+    static const std::vector<std::pair<Glib::ustring, Glib::ustring>> kMap = {
+        {"Microsoft YaHei", "微软雅黑"}, {"微软雅黑", "微软雅黑"},
+        {"Microsoft YaHei UI", "微软雅黑"}, {"Microsoft YaHei Light", "微软雅黑 Light"},
+        {"SimSun", "宋体"}, {"宋体", "宋体"},
+        {"NSimSun", "新宋体"}, {"新宋体", "新宋体"},
+        {"SimHei", "黑体"}, {"黑体", "黑体"},
+        {"KaiTi", "楷体"}, {"楷体", "楷体"},
+        {"FangSong", "仿宋"}, {"仿宋", "仿宋"},
+        {"DengXian", "等线"}, {"等线", "等线"},
+        {"Segoe UI", "Segoe UI"}, {"Arial", "Arial"},
+        {"Times New Roman", "Times New Roman"}, {"Courier New", "Courier New"},
+        {"Calibri", "Calibri"}, {"Consolas", "Consolas"},
+        {"Verdana", "Verdana"}, {"Tahoma", "Tahoma"}};
+    const Glib::ustring lower = name.lowercase();
+    for (const auto& kv : kMap) {
+        if (kv.first.lowercase() == lower) return kv.second;
+    }
+    return name;
+}
+
 // OrangeArk: toolbar font/size picker — see the class comment at the top.
 // NOTE: the list opens in a small borderless popup Gtk::Window instead of a
 // Gtk::Popover — this GTK 3.24.52 build renders GtkPopover bodies attached to
@@ -135,29 +162,38 @@ inline std::vector<Glib::ustring> ordered_font_families()
 class CtListPickerButton : public Gtk::Button
 {
 public:
+    // OrangeArk: pDisplayItems (optional) holds the human-friendly label for
+    // each item (e.g. 楷体 for KaiTi). When omitted or mismatched, the item
+    // text itself is used. The signal always emits the REAL item text.
     CtListPickerButton(const std::vector<Glib::ustring>& items, int viewWidthPx,
-                       Gtk::PositionType pos = Gtk::POS_BOTTOM)
+                       Gtk::PositionType pos = Gtk::POS_BOTTOM,
+                       const std::vector<Glib::ustring>* pDisplayItems = nullptr)
     {
         set_relief(Gtk::RELIEF_NONE);
         set_size_request(viewWidthPx, -1);
         set_halign(Gtk::Align::ALIGN_FILL);
-        _pLabel = Gtk::manage(new Gtk::Label(items.empty() ? Glib::ustring{} : items.front()));
+        const Glib::ustring frontDisp = (pDisplayItems and not pDisplayItems->empty())
+            ? pDisplayItems->front() : (items.empty() ? Glib::ustring{} : items.front());
+        _pLabel = Gtk::manage(new Gtk::Label(frontDisp));
         _pLabel->set_halign(Gtk::Align::ALIGN_START);
         _pLabel->set_ellipsize(Pango::ELLIPSIZE_END);
         _pLabel->set_margin_start(4);
         add(*_pLabel);
         _pos = pos;
 
-        for (const Glib::ustring& text : items) {
+        for (size_t i = 0; i < items.size(); ++i) {
+            const Glib::ustring& disp = (pDisplayItems and i < pDisplayItems->size())
+                ? pDisplayItems->at(i) : items.at(i);
             auto* pRow = Gtk::manage(new Gtk::ListBoxRow());
-            auto* pL = Gtk::manage(new Gtk::Label(text));
+            auto* pL = Gtk::manage(new Gtk::Label(disp));
             pL->set_halign(Gtk::Align::ALIGN_START);
             pL->set_margin_top(2);
             pL->set_margin_bottom(2);
             pL->set_margin_start(8);
             pRow->add(*pL);
             _pListBox->append(*pRow);
-            _pRowText.push_back(text);
+            _pRowText.push_back(items.at(i));
+            _pRowDisplay.push_back(disp);
         }
         _pListBox->set_activate_on_single_click(true);
         _pListBox->signal_row_activated().connect([this](Gtk::ListBoxRow* pRow) {
@@ -165,7 +201,7 @@ public:
             const int idx = pRow->get_index();
             if (idx < 0 or idx >= static_cast<int>(_pRowText.size())) return;
             _activeIdx = idx;
-            _pLabel->set_text(_pRowText.at(static_cast<size_t>(idx)));
+            _pLabel->set_text(_pRowDisplay.at(static_cast<size_t>(idx)));
             _close_popup();
             _sigSelected.emit(idx, _pRowText.at(static_cast<size_t>(idx)));
         });
@@ -204,7 +240,7 @@ public:
     {
         _activeIdx = idx;
         if (idx >= 0 and idx < static_cast<int>(_pRowText.size())) {
-            _pLabel->set_text(_pRowText.at(static_cast<size_t>(idx)));
+            _pLabel->set_text(_pRowDisplay.at(static_cast<size_t>(idx)));
         }
     }
     // OrangeArk: select a row by its text (case-insensitive), no signal emitted
@@ -315,6 +351,7 @@ private:
     Gtk::ListBox* _pListBox{Gtk::manage(new Gtk::ListBox())};
     Gtk::Label*   _pLabel{nullptr};
     std::vector<Glib::ustring> _pRowText;
+    std::vector<Glib::ustring> _pRowDisplay;
     int _activeIdx{-1};
     int _popupW{180}, _popupH{320}, _popupX{0}, _popupY{0};
     sigc::signal<void(int, const Glib::ustring&)> _sigSelected;

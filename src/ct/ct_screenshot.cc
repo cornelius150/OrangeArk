@@ -852,7 +852,7 @@ protected:
         pList->set_activate_on_single_click(true);
         for (const Glib::ustring& fam : _fontFamilies) {
             auto* pRow = Gtk::manage(new Gtk::ListBoxRow());
-            auto* pL = Gtk::manage(new Gtk::Label(fam));
+            auto* pL = Gtk::manage(new Gtk::Label(CtListPicker::display_font_name(fam)));
             pL->set_halign(Gtk::Align::ALIGN_START);
             pL->set_margin_top(2);
             pL->set_margin_bottom(2);
@@ -865,7 +865,7 @@ protected:
             const int idx = pRow->get_index();
             if (idx < 0 or idx >= static_cast<int>(_fontFamilies.size())) return;
             _annoFontName = _fontFamilies.at(static_cast<size_t>(idx));
-            _pFontPicker->set_label(_annoFontName);
+            _pFontPicker->set_label(CtListPicker::display_font_name(_annoFontName));
             _hide_font_list();
             _apply_panel_edit();
         });

@@ -35,6 +35,8 @@
 #include "ct_config.h"
 
 #include <curl/curl.h>
+#include <mutex>
+#include <functional>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -357,35 +359,61 @@ void _open_path_with_default_app(const fs::path& file_or_folder_path)
     _locale_env_vars_set_for_external_cmd(false/*isPre*/);
 }
 
+// OrangeArk security: quote a value so that substituting it for the %s
+// placeholder of a user configured custom command cannot turn the value into
+// extra shell commands (OS command injection). The value comes from the
+// document (a clicked link or a file/folder path) and is therefore untrusted,
+// while the command template itself is trusted (our own config).
+std::string shell_quote_arg(const std::string& value)
+{
+#ifdef _WIN32
+    // cmd.exe keeps every metacharacter (& | > < ^ ( )) literal inside double
+    // quotes. A double quote is not valid in a Windows path and is not part of
+    // a well formed URL, so drop it (and control characters) rather than let it
+    // terminate the quoted string and break out of it.
+    std::string safe;
+    safe.reserve(value.size() + 2);
+    for (const char ch : value) {
+        if (ch == '"' or ch == '\r' or ch == '\n') continue;
+        safe += ch;
+    }
+    safe.insert(0, 1, '"');
+    safe.push_back('"');
+    return safe;
+#else
+    g_autofree gchar* quoted = g_shell_quote(value.c_str());
+    return std::string{quoted};
+#endif
+}
+
+std::string build_custom_cmd(const std::string& cmd_template, const std::string& value)
+{
+    std::string cmd = cmd_template;
+    const std::string quoted = shell_quote_arg(value);
+    // Replace "file://%s" with just %s (without the double quotes from template)
+    const size_t filePos = cmd.find("\"file://%s\"");
+    if (filePos != std::string::npos) {
+        cmd.replace(filePos, 11, quoted);
+    }
+    else {
+        size_t pos = 0;
+        while ((pos = cmd.find("%s", pos)) != std::string::npos) {
+            cmd.replace(pos, 2, quoted);
+            pos += quoted.length();
+        }
+    }
+    return cmd;
+}
+
 // Open Filepath with External App
 void open_filepath(const fs::path& filepath, bool open_folder_if_file_not_exists, CtConfig* config)
 {
     spdlog::debug("fs::open_filepath {}", filepath.string());
     if (config->filelinkCustomOn) {
-        std::string cmd = config->filelinkCustomAct;
 #ifdef _WIN32
-        // cmd.exe does not support Unix-style single-quoted paths from g_shell_quote
-        const std::string pathStr = filepath.string_native();
-        size_t pos = 0;
-        while ((pos = cmd.find("%s", pos)) != std::string::npos) {
-            cmd.replace(pos, 2, pathStr);
-            pos += pathStr.length();
-        }
+        std::string cmd = build_custom_cmd(config->filelinkCustomAct, filepath.string_native());
 #else
-        g_autofree gchar* quoted = g_shell_quote(filepath.string().c_str());
-        std::string quotedPath(quoted);
-        // Replace "file://%s" with just %s (without the double quotes from template)
-        size_t filePos = cmd.find("\"file://%s\"");
-        if (filePos != std::string::npos) {
-            cmd.replace(filePos, 11, quotedPath);
-        }
-        else {
-            size_t pos = 0;
-            while ((pos = cmd.find("%s", pos)) != std::string::npos) {
-                cmd.replace(pos, 2, quotedPath);
-                pos += quotedPath.length();
-            }
-        }
+        std::string cmd = build_custom_cmd(config->filelinkCustomAct, filepath.string());
 #endif
         _locale_env_vars_set_for_external_cmd(true/*isPre*/);
         const int retVal = std::system(cmd.c_str());
@@ -413,30 +441,10 @@ void open_folderpath(const fs::path& folderpath, CtConfig* config)
 {
     spdlog::debug("fs::open_folderpath {}", folderpath.string());
     if (config->folderlinkCustomOn) {
-        std::string cmd = config->folderlinkCustomAct;
 #ifdef _WIN32
-        // cmd.exe does not support Unix-style single-quoted paths from g_shell_quote
-        const std::string pathStr = folderpath.string_native();
-        size_t pos = 0;
-        while ((pos = cmd.find("%s", pos)) != std::string::npos) {
-            cmd.replace(pos, 2, pathStr);
-            pos += pathStr.length();
-        }
+        std::string cmd = build_custom_cmd(config->folderlinkCustomAct, folderpath.string_native());
 #else
-        g_autofree gchar* quoted = g_shell_quote(folderpath.string().c_str());
-        std::string quotedPath(quoted);
-        // Replace "file://%s" with just %s (without the double quotes from template)
-        size_t filePos = cmd.find("\"file://%s\"");
-        if (filePos != std::string::npos) {
-            cmd.replace(filePos, 11, quotedPath);
-        }
-        else {
-            size_t pos = 0;
-            while ((pos = cmd.find("%s", pos)) != std::string::npos) {
-                cmd.replace(pos, 2, quotedPath);
-                pos += quotedPath.length();
-            }
-        }
+        std::string cmd = build_custom_cmd(config->folderlinkCustomAct, folderpath.string());
 #endif
         _locale_env_vars_set_for_external_cmd(true/*isPre*/);
         const int retVal = std::system(cmd.c_str());
@@ -598,6 +606,22 @@ fs::path get_orangeark_config_user_style_filepath(const unsigned num)
     return fs::canonical(get_orangeark_config_styles_dirpath() / ("user-style-" + std::to_string(num) + ".xml"));
 }
 
+namespace {
+
+// OrangeArk: libcurl requires curl_global_init() to run exactly once per
+// process, and nothing still holding handles may outlive curl_global_cleanup().
+// download_file() and post_json() used to each wrap their own request in
+// init+cleanup, so a second overlapping caller would keep working with global
+// resources that had already been released. Initialise once, never tear down
+// (the OS reclaims everything on exit anyway).
+void ensure_curl_global_inited()
+{
+    static std::once_flag onceFlag;
+    std::call_once(onceFlag, []{ curl_global_init(CURL_GLOBAL_ALL); });
+}
+
+} // namespace
+
 std::string download_file(const std::string& filepath)
 {
     struct local {
@@ -616,7 +640,7 @@ std::string download_file(const std::string& filepath)
     buffer.reserve(3 * 1024 * 1024); // preallocate 3mb
 
     // from https://curl.haxx.se/libcurl/c/getinmemory.html
-    curl_global_init(CURL_GLOBAL_ALL);
+    ensure_curl_global_inited(); // OrangeArk: init once per process, never cleanup (see above)
     CURL* pCurlHandle = curl_easy_init();
 
     curl_easy_setopt(pCurlHandle, CURLOPT_URL, filepath.c_str());
@@ -641,7 +665,6 @@ std::string download_file(const std::string& filepath)
     long http_code = 0;
     curl_easy_getinfo(pCurlHandle, CURLINFO_RESPONSE_CODE, &http_code);
     curl_easy_cleanup(pCurlHandle);
-    curl_global_cleanup();
 
     if (res != CURLE_OK) {
         spdlog::error("fs::download_file: curl_easy_perform() failed, {} (HTTP {})", curl_easy_strerror(res), http_code);
@@ -649,6 +672,85 @@ std::string download_file(const std::string& filepath)
     }
 
     return buffer;
+}
+
+// OrangeArk: HTTPS POST with a JSON body, used by the in-app feedback dialog.
+// See the header for the enforced transport rules (https only, certificates
+// always verified, no redirects). The body is never logged.
+bool post_json(const std::string& url, const std::string& json_body, long& http_code_out)
+{
+    http_code_out = 0;
+
+    if (not (url.size() > 8u and 0 == url.compare(0, 8, "https://"))) {
+        spdlog::error("fs::post_json: refusing non https url");
+        return false;
+    }
+    if (json_body.empty()) {
+        spdlog::error("fs::post_json: refusing empty body");
+        return false;
+    }
+
+    struct local {
+        static size_t write_memory_callback(void* contents, size_t size, size_t nmemb, void* userp)
+        {
+            const size_t realsize = size*nmemb;
+            std::string* pBuffer = static_cast<std::string*>(userp);
+            if (pBuffer->size() < 64u*1024u) {
+                pBuffer->append((char*)contents, realsize);
+            }
+            return realsize;
+        }
+    };
+    CtConfig* pCtConfig = CtConfig::GetCtConfig();
+
+    std::string buffer;
+    ensure_curl_global_inited(); // OrangeArk: init once per process, never cleanup (see above)
+    CURL* pCurlHandle = curl_easy_init();
+    if (not pCurlHandle) {
+        spdlog::error("fs::post_json: curl_easy_init() failed");
+        return false;
+    }
+
+    struct curl_slist* pHeaders = nullptr;
+    pHeaders = curl_slist_append(pHeaders, "Content-Type: application/json");
+    pHeaders = curl_slist_append(pHeaders, "Accept: application/json");
+    pHeaders = curl_slist_append(pHeaders, "Expect:"); // no 100-continue handshake
+
+    curl_easy_setopt(pCurlHandle, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(pCurlHandle, CURLOPT_HTTPHEADER, pHeaders);
+    curl_easy_setopt(pCurlHandle, CURLOPT_POST, 1L);
+    curl_easy_setopt(pCurlHandle, CURLOPT_POSTFIELDS, json_body.data());
+    curl_easy_setopt(pCurlHandle, CURLOPT_POSTFIELDSIZE_LARGE, static_cast<curl_off_t>(json_body.size()));
+    if (pCtConfig and not pCtConfig->proxyUrlColonPort.empty()) {
+        curl_easy_setopt(pCurlHandle, CURLOPT_PROXY, pCtConfig->proxyUrlColonPort.c_str());
+        if (not pCtConfig->proxyUsername.empty()) {
+            curl_easy_setopt(pCurlHandle, CURLOPT_PROXYUSERNAME, pCtConfig->proxyUsername.c_str());
+            if (not pCtConfig->proxyPassword.empty()) {
+                curl_easy_setopt(pCurlHandle, CURLOPT_PROXYPASSWORD, pCtConfig->proxyPassword.c_str());
+            }
+        }
+    }
+    // OrangeArk: never allow the submission to travel unencrypted or to an
+    // unverified host — these stay ON even if a caller ever "optimises" them.
+    curl_easy_setopt(pCurlHandle, CURLOPT_SSL_VERIFYPEER, 1L);
+    curl_easy_setopt(pCurlHandle, CURLOPT_SSL_VERIFYHOST, 2L);
+    curl_easy_setopt(pCurlHandle, CURLOPT_WRITEFUNCTION, local::write_memory_callback);
+    curl_easy_setopt(pCurlHandle, CURLOPT_WRITEDATA, (void*)&buffer);
+    curl_easy_setopt(pCurlHandle, CURLOPT_CONNECTTIMEOUT, 8L);
+    curl_easy_setopt(pCurlHandle, CURLOPT_TIMEOUT, 25L);
+    curl_easy_setopt(pCurlHandle, CURLOPT_NOSIGNAL, 1L);
+    curl_easy_setopt(pCurlHandle, CURLOPT_USERAGENT, "OrangeArk/" PACKAGE_VERSION);
+
+    const CURLcode res = curl_easy_perform(pCurlHandle);
+    curl_easy_getinfo(pCurlHandle, CURLINFO_RESPONSE_CODE, &http_code_out);
+    curl_slist_free_all(pHeaders);
+    curl_easy_cleanup(pCurlHandle);
+
+    if (res != CURLE_OK) {
+        spdlog::error("fs::post_json: curl_easy_perform() failed, {} (HTTP {})", curl_easy_strerror(res), http_code_out);
+        return false;
+    }
+    return http_code_out >= 200 and http_code_out < 300;
 }
 
 CtDocType get_doc_type_from_file_ext(const fs::path& filename)

@@ -1250,9 +1250,9 @@ void CtDrawing::_snap_conn_preview(const double x, const double y)
 {
     const int nShapes = static_cast<int>(_model.shapes.size());
     // the start keeps the shape the drag began on; re-resolving it from the
-    // press point (8px margin) covers a press a few px outside the border
+    // press point (14px margin) covers a press a few px outside the border
     if (_previewConn.fromShape < 0 or _previewConn.fromShape >= nShapes) {
-        _previewConn.fromShape = _shape_at_point(_dragStartX, _dragStartY, 8.0);
+        _previewConn.fromShape = _shape_at_point(_dragStartX, _dragStartY, 14.0);
     }
     if (_previewConn.fromShape >= 0 and _previewConn.fromShape < nShapes) {
         const Shape& from = _model.shapes[_previewConn.fromShape];
@@ -1264,16 +1264,18 @@ void CtDrawing::_snap_conn_preview(const double x, const double y)
         _previewConn.x1 = _dragStartX;
         _previewConn.y1 = _dragStartY;
     }
-    // the end: any shape within 8px of the pointer counts as a target, so a
+    // the end: any shape within 14px of the pointer counts as a target, so a
     // release slightly outside the border still connects (and the connector
     // then keeps following the shape's edge midpoints)
-    int to = _shape_at_point(x, y, 8.0);
+    int to = _shape_at_point(x, y, 14.0);
     if (to == _previewConn.fromShape and to >= 0) {
         to = -1;   // a connector never loops back to its own shape here
     }
     _previewConn.toShape = to;
     if (to >= 0 and to < nShapes) {
         const Shape& shape = _model.shapes[to];
+        // snap to the edge-midpoint anchor facing the line's other end, which is
+        // what the final _recompute_conns() keeps, so the preview matches it
         const auto b = _nearest_anchor(shape, _previewConn.x1, _previewConn.y1);
         _previewConn.x2 = b.first;
         _previewConn.y2 = b.second;
@@ -1900,10 +1902,10 @@ bool CtDrawing::_on_canvas_press(GdkEventButton* event)
         _previewConn.y1 = y;
         _previewConn.x2 = x;
         _previewConn.y2 = y;
-        // OrangeArk 1.3.7: a press just OUTSIDE a shape (a few px away from its
-        // border, easy to happen when aiming at the shape) still glues the
-        // start to it, so the line really connects instead of floating free
-        _previewConn.fromShape = _shape_at_point(x, y, 8.0);
+        // OrangeArk 1.3.7/1.3.8: a press just OUTSIDE a shape (a few px away
+        // from its border, easy to happen when aiming at the shape) still glues
+        // the start to it, so the line really connects instead of floating free
+        _previewConn.fromShape = _shape_at_point(x, y, 14.0);
         _previewConn.toShape = _previewConn.fromShape;
         _previewConn.arrowEnd = (Tool::Arrow == _tool);
         _previewConn.dashed = false;

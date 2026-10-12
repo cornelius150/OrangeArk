@@ -429,6 +429,7 @@ void CtConfig::_populate_keyfile_from_data()
     _currentGroup = "misc";
     _uKeyFile->set_string(_currentGroup, "toolbar_ui_list", toolbarUiList);
     _uKeyFile->set_string(_currentGroup, "help_base_url", helpBaseUrl); // OrangeArk: self-hosted help site
+    _uKeyFile->set_string(_currentGroup, "feedback_endpoint", feedbackEndpoint); // OrangeArk: feedback relay
     _uKeyFile->set_boolean(_currentGroup, "systray", systrayOn);
     _uKeyFile->set_boolean(_currentGroup, "start_on_systray", startOnSystray);
     _uKeyFile->set_boolean(_currentGroup, "autosave_on", autosaveOn);
@@ -654,6 +655,15 @@ void CtConfig::_populate_data_from_keyfile()
     _populate_string_from_keyfile("rt_style_scheme", &rtStyleScheme);
     _populate_string_from_keyfile("pt_style_scheme", &ptStyleScheme);
     _populate_string_from_keyfile("ta_style_scheme", &taStyleScheme);
+    // OrangeArk migration: up to v1.3.9 the table scheme defaulted to
+    // "user-2", which was the light theme back then. Since v1.3.8 "user-2"
+    // is the dark theme, so legacy configs would render tables with a black
+    // background. Remap the legacy default to "follow the rich text scheme"
+    // (empty). A deliberately chosen dark table scheme can be re-picked in
+    // preferences after this one-time remap.
+    if ("user-2" == taStyleScheme) {
+        taStyleScheme.clear();
+    }
     _populate_string_from_keyfile("co_style_scheme", &coStyleScheme);
     if (_populate_bool_from_keyfile("enable_spell_check", &enableSpellCheck))
     {
@@ -806,6 +816,7 @@ void CtConfig::_populate_data_from_keyfile()
     _currentGroup = "misc";
     _populate_string_from_keyfile("toolbar_ui_list", &toolbarUiList);
     _populate_string_from_keyfile("help_base_url", &helpBaseUrl); // OrangeArk: self-hosted help site
+    _populate_string_from_keyfile("feedback_endpoint", &feedbackEndpoint); // OrangeArk: feedback relay
     // OrangeArk: upgrade configs still on a previous default toolbar
     // (chained: pre-screenshot default -> screenshot default -> font combos + format painter default)
     if (toolbarUiList == CtConst::TOOLBAR_VEC_DEFAULT_PREV2) {

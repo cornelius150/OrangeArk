@@ -871,11 +871,14 @@ Gtk::Button* CtMenu::_setup_font_family_combo()
 {
     const std::vector<Glib::ustring> ordered = CtListPicker::ordered_font_families();
     std::vector<Glib::ustring> items;
+    std::vector<Glib::ustring> displayItems;
     items.push_back(_("Font")); // prompt row (row 0)
+    displayItems.push_back(_("Font"));
     for (const auto& name : ordered) {
         items.push_back(name);
+        displayItems.push_back(CtListPicker::display_font_name(name));
     }
-    auto* pPicker = Gtk::manage(new CtListPicker::CtListPickerButton(items, 140));
+    auto* pPicker = Gtk::manage(new CtListPicker::CtListPickerButton(items, 140, Gtk::POS_BOTTOM, &displayItems));
     pPicker->signal_selected().connect([this](int idx, const Glib::ustring& text) {
         if (idx > 0) {
             _pCtMainWin->get_ct_actions()->apply_tag_font_family(text);

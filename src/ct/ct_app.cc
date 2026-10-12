@@ -34,6 +34,7 @@
 #include <windows.h>
 #include <shlobj.h>
 #include <cstring>
+#include <cctype>
 #elif GTKMM_MAJOR_VERSION >= 4 && defined(_WIN32)
 #include <windows.h>
 #include <gdk/win32/gdkwin32.h>
@@ -135,18 +136,66 @@ static bool oa_write_file_assoc(const char* pExt, const char* pProgId, const cha
     return wrote;
 }
 
+// OrangeArk: on Windows 8+ Explorer honours FileExts\<ext>\UserChoice *before*
+// the ProgID we register, and that key carries a protected Hash. If the user
+// ever picked a (now-stale) OrangeArk build through "Open With", UserChoice
+// keeps pointing at e.g. "Applications\orangeark.exe" with no DefaultIcon, so
+// .md files render with a blank/white icon. We only clear a *stale OrangeArk*
+// UserChoice; a third-party default (Notepad, VS Code, ...) is left untouched
+// so we never override the user's own choice.
+static void oa_clear_stale_userchoice(const char* pExt, const char* pOurProgId)
+{
+    const std::string ucKey = std::string("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\")
+        + pExt + "\\UserChoice";
+    char progId[256]{};
+    DWORD cb = sizeof(progId);
+    DWORD type = 0;
+    HKEY hKey{nullptr};
+    if (RegOpenKeyExA(HKEY_CURRENT_USER, ucKey.c_str(), 0, KEY_READ, &hKey) != ERROR_SUCCESS) {
+        return; // no UserChoice -> our ProgID already wins
+    }
+    const bool has = (RegQueryValueExA(hKey, "ProgId", nullptr, &type,
+                                       reinterpret_cast<LPBYTE>(progId), &cb) == ERROR_SUCCESS and
+                      type == REG_SZ and progId[0] != '\0');
+    RegCloseKey(hKey);
+    if (not has) return;
+    if (_stricmp(progId, pOurProgId) == 0) return; // already ours -> nothing to do
+    // only clear when it is a stale OrangeArk reference (incl. Applications\orangeark.exe)
+    std::string lower(progId);
+    for (char& c : lower) c = static_cast<char>(::tolower(static_cast<unsigned char>(c)));
+    if (lower.find("orangeark") == std::string::npos) return; // third-party -> respect it
+    if (RegDeleteTreeA(HKEY_CURRENT_USER, ucKey.c_str()) == ERROR_SUCCESS) {
+        spdlog::info("cleared stale UserChoice for {} (was {})", pExt, progId);
+    }
+}
+
 static void oa_ensure_file_associations()
 {
     char exePathA[MAX_PATH]{};
     if (GetModuleFileNameA(nullptr, exePathA, MAX_PATH) == 0) return;
     const std::string exePath = exePathA;
+    struct { const char* ext; const char* prog; const char* desc; } const kMap[] = {
+        {".mdz", "OrangeArkMDZ", "OrangeArk Encrypted Document"},
+        {".md",  "OrangeArkMD",  "OrangeArk Document"},
+        {".ctb", "OrangeArkB",   "OrangeArk SQLite Document"},
+        {".ctx", "OrangeArkX",   "OrangeArk SQLite Zipped"},
+        {".ctd", "OrangeArkD",   "OrangeArk XML Document"},
+        {".ctz", "OrangeArkZ",   "OrangeArk XML Zipped"},
+    };
     bool any = false;
-    any |= oa_write_file_assoc(".mdz", "OrangeArkMDZ", "OrangeArk Encrypted Document", exePath);
-    any |= oa_write_file_assoc(".md",  "OrangeArkMD",  "OrangeArk Document", exePath);
-    any |= oa_write_file_assoc(".ctb", "OrangeArkB",   "OrangeArk SQLite Document", exePath);
-    any |= oa_write_file_assoc(".ctx", "OrangeArkX",   "OrangeArk SQLite Zipped", exePath);
-    any |= oa_write_file_assoc(".ctd", "OrangeArkD",   "OrangeArk XML Document", exePath);
-    any |= oa_write_file_assoc(".ctz", "OrangeArkZ",   "OrangeArk XML Zipped", exePath);
+    for (const auto& m : kMap) {
+        if (oa_write_file_assoc(m.ext, m.prog, m.desc, exePath)) any = true;
+        oa_clear_stale_userchoice(m.ext, m.prog);
+    }
+    // belt-and-suspenders: if UserChoice still resolves to Applications\orangeark.exe
+    // on some builds, give that ProgID our icon + command so a blank icon (or a
+    // broken open path) can never reappear.
+    oa_reg_write_string(HKEY_CURRENT_USER,
+                        "Software\\Classes\\Applications\\orangeark.exe\\DefaultIcon", "",
+                        ("\"" + exePath + "\",0").c_str());
+    oa_reg_write_string(HKEY_CURRENT_USER,
+                        "Software\\Classes\\Applications\\orangeark.exe\\shell\\open\\command", "",
+                        ("\"" + exePath + "\" \"%1\"").c_str());
     if (any) {
         // let Explorer pick the new icons up without a logoff
         SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);

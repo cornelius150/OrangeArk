@@ -538,8 +538,8 @@ void CtMenu::init_actions(CtActions* pActions)
             "打开 OrangeArk 官网", sigc::mem_fun(*pActions, &CtActions::help_website)});
         _actions.push_back(CtMenuAction{help_cat, "open_source_code", "ct_github", "源代码(S)", None,
             "打开 OrangeArk 源代码仓库", sigc::mem_fun(*pActions, &CtActions::help_source_code)});
-        _actions.push_back(CtMenuAction{help_cat, "report_bug", "ct_bug", "反馈缺陷(R)", None,
-            "反馈 OrangeArk 问题或缺陷", sigc::mem_fun(*pActions, &CtActions::help_report_bug)});
+        _actions.push_back(CtMenuAction{help_cat, "report_bug", "ct_bug", "反馈缺陷和要求(R)", None,
+            "反馈 OrangeArk 的缺陷或功能需求", sigc::mem_fun(*pActions, &CtActions::help_report_bug)});
         _actions.push_back(CtMenuAction{help_cat, "donate", "ct_heart", "捐赠(D)", None,
             "捐赠支持 OrangeArk 版本更新", sigc::mem_fun(*pActions, &CtActions::help_donate)});
         _actions.push_back(CtMenuAction{help_cat, "ct_help", "ct_help", "在线手册(M)", "F1",

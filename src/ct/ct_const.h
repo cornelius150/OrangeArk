@@ -131,14 +131,18 @@ const inline static gchar* TREE_TEXT_SEL_BG       {"#5294e2"};
 const inline static gchar* DEFAULT_MONOSPACE_FG   {COLOR_24_LGRAY};
 const inline static gchar* DEFAULT_MONOSPACE_BG   {COLOR_24_DGRAY};
 const inline static unsigned NUM_USER_STYLES{2};
-const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_TEXT_FG{COLOR_24_WHITE, COLOR_24_BLACK};
-const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_TEXT_BG{COLOR_24_BLACK, COLOR_24_WHITE};
+// OrangeArk: style scheme 1 is the DEFAULT (rtStyleScheme = "user-1"). It used
+// to be a harsh black background; new installs now get a soft cream background
+// with dark text so the body is easy on the eyes. Scheme 2 keeps the high-
+// contrast dark theme for users who opt into it.
+const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_TEXT_FG{COLOR_24_BLACK, COLOR_24_WHITE};
+const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_TEXT_BG{"#f3f1ea", COLOR_24_BLACK};
 const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_SELECTION_FG{COLOR_24_WHITE, COLOR_24_WHITE};
-const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_SELECTION_BG{"#0088ff", "#43ace8"};
-const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_CURSOR{COLOR_24_WHITE, COLOR_24_BLACK};
-const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_CURRENT_LINE_BG{"#003b70", "#eef6ff"};
-const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_LINE_NUMBERS_FG{"#777777", COLOR_24_BLACK};
-const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_LINE_NUMBERS_BG{"#000d1a", "#d6d2d0"};
+const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_SELECTION_BG{"#43ace8", "#0088ff"};
+const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_CURSOR{COLOR_24_BLACK, COLOR_24_WHITE};
+const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_CURRENT_LINE_BG{"#eef6ff", "#003b70"};
+const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_LINE_NUMBERS_FG{COLOR_24_BLACK, "#777777"};
+const inline static std::array<std::string,NUM_USER_STYLES> USER_STYLE_LINE_NUMBERS_BG{"#d6d2d0", "#000d1a"};
 
 const inline static gchar* GTKSPELLCHECK_TAG_NAME  {"gtkspellchecker-misspelled"};
 const inline static gchar* TAG_WEIGHT              {"weight"};

@@ -53,7 +53,10 @@ void CtMainWin::apply_syntax_highlighting(Glib::RefPtr<Gtk::TextBuffer> pTextBuf
         }
     };
     if (CtConst::TABLE_CELL_TEXT_ID == syntax) {
-        f_applyScheme(_pCtConfig->taStyleScheme.c_str());
+        // OrangeArk: empty table scheme means "follow the rich text scheme"
+        // so tables match the page background by default
+        f_applyScheme(_pCtConfig->taStyleScheme.empty() ? _pCtConfig->rtStyleScheme.c_str()
+                                                        : _pCtConfig->taStyleScheme.c_str());
         gtk_source_buffer_set_highlight_matching_brackets(pGtkSourceBuffer, _pCtConfig->rtHighlMatchBra);
         gtk_source_buffer_set_highlight_syntax(pGtkSourceBuffer, false);
     }

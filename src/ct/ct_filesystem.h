@@ -85,6 +85,18 @@ void open_weblink(const std::string& link);
 void open_filepath(const path& filepath, bool open_folder_if_file_not_exists, CtConfig* config);
 void open_folderpath(const path& folderpath, CtConfig* config);
 
+// OrangeArk security: quote a value so that substituting it for the %s
+// placeholder of a user configured custom command cannot turn the value into
+// extra shell commands (OS command injection). The value comes from the
+// document (a clicked link / file path) and is therefore untrusted, while the
+// command template itself is trusted (it is our own config).
+std::string shell_quote_arg(const std::string& value);
+
+// OrangeArk security: substitute the %s placeholder(s) of a custom command
+// template with the given value, quoting it with shell_quote_arg() on the way.
+// Also understands the "file://%s" template variant.
+std::string build_custom_cmd(const std::string& cmd_template, const std::string& value);
+
 path prepare_export_folder(const path& dir_place, path new_folder, bool overwrite_existing);
 
 CtDocType get_doc_type_from_file_ext(const path& fileName);
@@ -118,6 +130,18 @@ path get_orangeark_config_icons_dirpath();
 path get_orangeark_config_user_style_filepath(const unsigned num);
 // Filepath is a url so not an fs::path
 std::string download_file(const std::string& filepath);
+
+// OrangeArk: HTTPS POST with a JSON body, used to submit in-app feedback.
+// Hard rules, deliberately enforced rather than left to defaults:
+//   * only https:// URLs are accepted, so a tampered config cannot downgrade
+//     the submission to cleartext http;
+//   * peer/host certificate verification is forced ON (never disabled), so the
+//     report cannot be hijacked by a spoofed endpoint;
+//   * no redirects are followed, so the body cannot be replayed to another host;
+//   * nothing about the payload is logged, only the URL and the status code.
+// Returns true when the server answered with HTTP 2xx. http_code_out receives
+// the response code, or 0 when the request never reached the server.
+bool post_json(const std::string& url, const std::string& json_body, long& http_code_out);
 
 /**
 * @class path

@@ -116,7 +116,9 @@ public:
     std::string                                 autoSynHighl{CtConst::SYN_HIGHL_SHELL};
     std::string                                 rtStyleScheme{"user-1"};
     std::string                                 ptStyleScheme{"user-1"};
-    std::string                                 taStyleScheme{"user-2"};
+    // OrangeArk: empty means "follow the rich text scheme", so tables match
+    // the page background by default; a fixed scheme can be set in preferences
+    std::string                                 taStyleScheme{""};
     std::string                                 coStyleScheme{"cobalt-darkened"};
     bool                                        enableSpellCheck{false};
     std::string                                 spellCheckLang;
@@ -258,6 +260,13 @@ public:
     // Empty = the official GitHub Pages site; when set, the Help menu's
     // manual/website/donate links point at the self-hosted help site instead.
     std::string                                 helpBaseUrl{""};
+    // OrangeArk: where in-app feedback (帮助 → 反馈缺陷和要求) is POSTed.
+    // Empty = use the compiled-in default. Set it in config.cfg [misc]
+    // feedback_endpoint to point at a self-hosted endpoint instead — see the
+    // resolution order documented in CtActions::help_report_bug().
+    // NOTE: this must never contain or encode the destination mailbox; the
+    // endpoint is an opaque address owned by the form provider / own server.
+    std::string                                 feedbackEndpoint{""};
     bool                                        bookmarksInTopMenu{true};
     bool                                        treeTooltips{true};
     bool                                        menusTooltips{true};

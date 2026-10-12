@@ -1533,15 +1533,16 @@ int CtTableHeavy::_row_separator_at(const double y) const
     const size_t numRows = get_num_rows();
     if (numRows < 2 or _tableMatrix.empty() or _tableMatrix.front().empty()) return -1;
     int orgX = 0, orgY = 0;
-    if (const_cast<Gtk::Grid&>(_grid).translate_coordinates(*const_cast<CtTableHeavy*>(this), 0, 0, orgX, orgY)) {
-        constexpr double GRAB_ZONE = 8.0;
+    const bool gotOrg = const_cast<Gtk::Grid&>(_grid).translate_coordinates(*const_cast<CtTableHeavy*>(this), 0, 0, orgX, orgY);
+    if (gotOrg) {
+        constexpr double GRAB_ZONE = 10.0;
         int bestIdx = -1;
         double bestDist = GRAB_ZONE + 1.0;
         double prevBottom = -1.0;
         for (size_t r = 0u; r < numRows; ++r) {
             const Gtk::Allocation alloc =
                 static_cast<CtTextCell*>(_tableMatrix.at(r).front())->get_text_view().mm().get_allocation();
-            if (alloc.get_height() <= 0) break;   // not laid out yet: fall through to the old logic
+            if (alloc.get_height() <= 0) break;   // not laid out yet -> let the old logic try
             const double top = orgY + alloc.get_y();
             const double bottom = top + alloc.get_height();
             if (r > 0u) {
@@ -1554,7 +1555,10 @@ int CtTableHeavy::_row_separator_at(const double y) const
             }
             prevBottom = bottom;
         }
-        if (bestIdx >= 0) return bestIdx;
+        // OrangeArk 1.3.8: trust the real rendered geometry; a click not near a
+        // row separator reports "no resize" instead of falling back to the
+        // approximate accumulated loop (which could grab a neighbouring row).
+        return bestIdx;
     }
     const int spacing = _grid.get_row_spacing();
     double nextTop = 0.0;
@@ -1578,18 +1582,20 @@ int CtTableHeavy::_row_separator_at(const double y) const
 // real right/left edges, so it is exact whatever spacing/borders GTK applied.
 int CtTableHeavy::_column_separator_at(const double x) const
 {
-    constexpr double GRAB_ZONE = 6.0;
+    constexpr double GRAB_ZONE = 10.0;
     const size_t numCols = get_num_columns();
     if (numCols < 2 or _tableMatrix.empty() or _tableMatrix.front().size() < numCols) return -1;
     int orgX = 0, orgY = 0;
-    if (const_cast<Gtk::Grid&>(_grid).translate_coordinates(*const_cast<CtTableHeavy*>(this), 0, 0, orgX, orgY)) {
+    const bool gotOrg = const_cast<Gtk::Grid&>(_grid).translate_coordinates(*const_cast<CtTableHeavy*>(this), 0, 0, orgX, orgY);
+    if (gotOrg) {
         int bestIdx = -1;
         double bestDist = GRAB_ZONE + 1.0;
         double prevRight = -1.0;
+        bool laidOut = true;
         for (size_t c = 0u; c < numCols; ++c) {
             const Gtk::Allocation alloc =
                 static_cast<CtTextCell*>(_tableMatrix.front().at(c))->get_text_view().mm().get_allocation();
-            if (alloc.get_width() <= 0) break;   // not laid out yet: fall through to the stored widths
+            if (alloc.get_width() <= 0) { laidOut = false; break; }   // not laid out yet -> common fallback
             const double left = orgX + alloc.get_x();
             const double right = left + alloc.get_width();
             if (c > 0u) {
@@ -1602,7 +1608,12 @@ int CtTableHeavy::_column_separator_at(const double x) const
             }
             prevRight = right;
         }
-        if (bestIdx >= 0) return bestIdx;
+        // OrangeArk 1.3.8: once we have the real rendered geometry we TRUST it
+        // and never fall back to the even-split stored-width logic — that one
+        // resolves a NEIGHBOURING column when the table is compressed, which is
+        // exactly the "resizes the wrong column" bug. A click not near any
+        // separator simply reports "no resize".
+        if (laidOut) return bestIdx;
     }
     return CtTableCommon::_column_separator_at(x);
 }

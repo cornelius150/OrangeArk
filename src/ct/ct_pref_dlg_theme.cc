@@ -210,10 +210,15 @@ Gtk::Widget* CtPrefDlg::build_tab_theme()
 
     auto label_style_scheme_ta = Gtk::manage(new Gtk::Label{_("Table")});
     auto combobox_style_scheme_ta = Gtk::manage(new Gtk::ComboBoxText{});
+    // OrangeArk: first entry "跟随正文" = empty scheme (tables follow the
+    // rich text scheme / page background). Chinese literal on purpose (po
+    // fallback), consistent with other OrangeArk-only strings.
+    combobox_style_scheme_ta->append("跟随正文");
     for (auto pScheme = pSSMSchemeIds; *pScheme; ++pScheme) {
         combobox_style_scheme_ta->append(*pScheme);
     }
-    combobox_style_scheme_ta->set_active_text(_pConfig->taStyleScheme);
+    combobox_style_scheme_ta->set_active_text(
+        _pConfig->taStyleScheme.empty() ? Glib::ustring{"跟随正文"} : Glib::ustring{_pConfig->taStyleScheme});
 
     auto label_style_scheme_co = Gtk::manage(new Gtk::Label{_("Code")});
     auto combobox_style_scheme_co = Gtk::manage(new Gtk::ComboBoxText{});
@@ -553,7 +558,9 @@ Gtk::Widget* CtPrefDlg::build_tab_theme()
     });
 
     combobox_style_scheme_ta->signal_changed().connect([this, combobox_style_scheme_ta](){
-        _pConfig->taStyleScheme = combobox_style_scheme_ta->get_active_text();
+        const Glib::ustring activeText = combobox_style_scheme_ta->get_active_text();
+        // "跟随正文" = empty scheme, tables follow the rich text scheme
+        _pConfig->taStyleScheme = (Glib::ustring{"跟随正文"} == activeText) ? std::string{} : activeText.raw();
         apply_for_each_window([](CtMainWin* win) { win->reapply_syntax_highlighting('t'/*Table*/); });
     });
 

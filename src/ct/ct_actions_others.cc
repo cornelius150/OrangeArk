@@ -407,7 +407,10 @@ void CtActions::link_clicked(const Glib::ustring& tag_property_value, bool from_
     if (CtLinkType::Webs == link_entry.type) { // link to webpage
         Glib::ustring clean_weblink = str::replace(link_entry.webs, "amp;", "");
         if (_pCtConfig->weblinkCustomOn) {
-            std::string cmd = fmt::sprintf(_pCtConfig->weblinkCustomAct, clean_weblink.raw());
+            // OrangeArk security: the link comes from the document, so it is
+            // untrusted — quote it before it reaches the shell, otherwise a
+            // crafted link can append extra commands (OS command injection).
+            std::string cmd = fmt::sprintf(_pCtConfig->weblinkCustomAct, fs::shell_quote_arg(clean_weblink.raw()));
             int retr = std::system(cmd.c_str());
             if (retr == -1) {
                 // Internal std::system error

@@ -595,7 +595,7 @@ public:
     void online_help();
     void help_website();      // OrangeArk: open the project website
     void help_source_code();  // OrangeArk: open the GitHub repository
-    void help_report_bug();   // OrangeArk: open the GitHub issue tracker
+    void help_report_bug();   // OrangeArk: in-app feedback dialog (bug reports and feature requests)
     void help_donate();       // OrangeArk: open the donation page
     void folder_cfg_open();
     void dialog_about();

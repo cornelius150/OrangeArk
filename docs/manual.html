@@ -98,7 +98,7 @@
 
 <div class="page-title">
   <h1>在线手册</h1>
-  <p>从零开始了解橙子笔记的各项功能（持续更新，当前对应版本 <strong>v1.3.7</strong>）。</p>
+  <p>从零开始了解橙子笔记的各项功能（持续更新，当前对应版本 <strong>v1.3.11</strong>）。</p>
 </div>
 
 <div class="wrap">
@@ -313,6 +313,10 @@
     <p>近几个版本新增与修复的功能都记在这里，方便判断该升级到哪一版（完整更新日志见 GitHub Releases）。</p>
     <table>
       <tr><th>版本</th><th>功能 / 修复说明</th></tr>
+      <tr><td><strong>v1.3.11</strong></td><td>①菜单项「反馈缺陷」更名为「<strong>反馈缺陷和要求</strong>」，点击后弹出应用内反馈对话框，<strong>只有「反馈主题」和「反馈内容」两个输入框</strong>，不显示也不需要填写邮箱；②提交时自动附加版本与平台信息便于定位问题，<strong>不包含任何笔记内容</strong>，同一台机器每小时最多提交 5 条；③安全加固：反馈只走 <strong>HTTPS</strong>（拒绝明文 http 端点、强制校验证书、不跟随重定向），收件邮箱存放在服务端而不进入客户端，因此既看不到也无法通过逆向或爆破得到；④修复 libcurl 每次请求都重复初始化/释放的隐患；提交失败时会提示是否改用 GitHub Issues 页面</td></tr>
+<tr><td><strong>v1.3.10</strong></td><td>①<strong>插入表格背景黑乎乎修复</strong>：表格配色此前默认固定为「user-2」，v1.3.8 把深色主题挪到 user-2 后表格被"顺带"刷成黑底白字；现表格配色默认改为<strong>跟随正文</strong>（正文什么背景表格就什么背景），旧配置遗留的 user-2 表格方案升级后自动迁移、无需手动操作；②偏好设置 → 主题 → 样式方案 → 表格下拉新增「<strong>跟随正文</strong>」首项，也可在其下选任意固定方案（正文换了表格配色也不变）</td></tr>
+<tr><td><strong>v1.3.9</strong></td><td><strong>安全修复版本，建议所有用户升级</strong>：修复自定义命令的 <strong>OS 命令注入</strong>——网页链接 / 文件链接 / 文件夹链接这三类「自定义动作」里，被点击的链接（来自笔记文档，属于不可信输入）会原样拼进 shell 命令且<strong>没有加引号</strong>，一个夹带 <code>&amp;</code> <code>|</code> 等符号的恶意链接就能让系统多执行一条命令。现在取值在拼进命令前统一转义（Linux / macOS 用 <code>g_shell_quote()</code>，Windows 改用双引号包裹并剔除引号与控制字符）。仅在偏好里开启过「自定义网页 / 文件 / 文件夹动作」才会走到该路径（默认关闭），但只要开启过，打开来路不明的笔记就有风险。同轮完整安全审计确认：SQL 注入、缓冲区 / 格式化字符串、XML 实体膨胀、压缩包解压穿越、HTML 导出节点名穿越<strong>均不成立</strong></td></tr>
+      <tr><td><strong>v1.3.8</strong></td><td>①<strong>.md 等文件稳定显示橙子图标</strong>：清理失效的"打开方式"旧记录（只认领属于 OrangeArk 自己的，不抢 .md），并给 Applications\orangeark.exe 补图标，彻底告别白板图标；②画图<strong>连线吸附更宽容</strong>：起笔 / 收笔落在图形边缘 ±14px 内（旧版 ±8px）自动吸附边缘中点；③表格拖线<strong>只采信真实渲染几何</strong>，不再回退到会算错的平均分配逻辑，命中范围放宽到 10px（小表格 / 压缩表格也不会调错行列）；④新建节点<strong>默认背景改为柔和米色（#f3f1ea）</strong>，深色高对比主题保留为"样式 2"可在偏好切换；⑤字体下拉<strong>显示中文名</strong>（楷体 / 宋体 / 微软雅黑…），内部仍存真实字体名</td></tr>
       <tr><td><strong>v1.3.7</strong></td><td>①<strong>上标位置提高</strong>：离屏实测发现 Pango 的实际位移=设定值×0.694，旧设定只到"中间偏上"，现按实测重新标定，上标明确落在右上角（旧文档打开自动迁移，下标同步微调）；②画图：悬停的<strong>四向箭头不再消失</strong>且整段可点，单击即克隆同款图形并连线；③画完直线 / 箭头线后<strong>可直接抓起拖动</strong>或拖端点改连接位置（不必换工具，也不会再误画新线）；④起笔 / 收笔在图形边 ±8px 内自动吸附<strong>边缘中点</strong>；⑤表格竖线 / 横线命中改用<strong>真实渲染几何</strong>（小表格也不会再调到隔壁列）</td></tr>
       <tr><td>v1.3.6</td><td>①修复画<strong>圆柱 / 椭圆时程序崩溃退出</strong>；②修复 Windows 下选中图形后<strong>边框不显示双向缩放光标</strong>；③连接点改为按<strong>真实轮廓</strong>计算（平行四边形 / 文档 / 圆柱 / 六边形 / 椭圆都不再错位）；④<strong>连线可整体移动</strong>，两端<strong>可手工拖到边框任意位置</strong>或拖离图形断开；⑤<strong>去掉图片右下角的小三角</strong>（与表格一致，缩放只用鼠标光标提示）；⑥表格拖拽<strong>锁定目标列 / 目标行</strong>：拖最外侧那道边线不再跳到隔壁列，每条竖线可单独调整，拖动手感更接近 OneNote</td></tr>
       <tr><td>v1.3.5</td><td>修复全新安装（还没有配置文件）第一次打开时工具栏<strong>没有「插入图形」按钮</strong>；捐赠页改为单个收款二维码</td></tr>
@@ -333,7 +337,7 @@
     <a href="manual.html">在线手册</a> ·
     <a href="donate.html">捐赠支持</a> ·
     <a href="https://github.com/cornelius150/OrangeArk" target="_blank" rel="noopener">源代码（GPL 开源）</a> ·
-    <a href="https://github.com/cornelius150/OrangeArk/issues" target="_blank" rel="noopener">反馈缺陷</a>
+    <a href="https://github.com/cornelius150/OrangeArk/issues" target="_blank" rel="noopener">反馈缺陷和要求</a>
   </p>
   <p>© 2026 OrangeArk 橙子笔记 · 本软件为自由软件，基于 GNU GPL v3+ 授权发布</p>
 </footer>
