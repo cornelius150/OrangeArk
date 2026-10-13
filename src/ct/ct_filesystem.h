@@ -139,9 +139,15 @@ std::string download_file(const std::string& filepath);
 //     report cannot be hijacked by a spoofed endpoint;
 //   * no redirects are followed, so the body cannot be replayed to another host;
 //   * nothing about the payload is logged, only the URL and the status code.
+// ca_bundle is an OPTIONAL path to a PEM file with extra trusted CA
+// certificates (config.cfg [misc] feedback_ca_bundle). It exists for one case
+// only: a self-hosted help site reached by bare IP, whose certificate is
+// self-signed by its owner. Passing a file here ADDS a trust anchor — it never
+// relaxes verification: peer and host checks stay ON and the hostname/SAN must
+// still match. Leave it empty (the default) to use the system CA store only.
 // Returns true when the server answered with HTTP 2xx. http_code_out receives
 // the response code, or 0 when the request never reached the server.
-bool post_json(const std::string& url, const std::string& json_body, long& http_code_out);
+bool post_json(const std::string& url, const std::string& json_body, long& http_code_out, const std::string& ca_bundle = {});
 
 /**
 * @class path

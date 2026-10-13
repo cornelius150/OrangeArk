@@ -276,7 +276,10 @@ void CtActions::help_report_bug()
         #endif
 
         long http_code{0};
-        const bool ok = fs::post_json(feedback_endpoint_of(_pCtConfig), json, http_code);
+        // OrangeArk: an optional extra CA bundle lets a self-hosted site with a
+        // self-signed certificate (bare IP) be used; verification stays on.
+        const bool ok = fs::post_json(feedback_endpoint_of(_pCtConfig), json, http_code,
+                                      _pCtConfig->feedbackCaBundle);
         if (ok) {
             statusbar.update_status("反馈已提交");
             CtDialogs::info_dialog("反馈已提交，感谢你的反馈！", *_pCtMainWin);

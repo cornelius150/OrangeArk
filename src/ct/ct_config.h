@@ -267,6 +267,13 @@ public:
     // NOTE: this must never contain or encode the destination mailbox; the
     // endpoint is an opaque address owned by the form provider / own server.
     std::string                                 feedbackEndpoint{""};
+    // OrangeArk: optional PEM file with extra CA certificates to trust when
+    // submitting feedback (config.cfg [misc] feedback_ca_bundle). Only needed
+    // for a self-hosted help site that uses a self-signed certificate (typically
+    // one reached by bare IP, where no public CA will issue a certificate).
+    // Empty = trust the system CA store only. This adds a trust anchor; it does
+    // NOT switch certificate verification off.
+    std::string                                 feedbackCaBundle{""};
     bool                                        bookmarksInTopMenu{true};
     bool                                        treeTooltips{true};
     bool                                        menusTooltips{true};

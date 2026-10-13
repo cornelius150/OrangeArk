@@ -36,7 +36,7 @@
   .page-title h1 { font-size: 36px; margin-bottom: 10px; }
   .page-title p { color: var(--muted); max-width: 620px; margin: 0 auto; font-size: 16px; }
   section { max-width: 1080px; margin: 0 auto; padding: 40px 24px; }
-  .ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 460px; margin: 0 auto; }
   .way {
     background: #fff; border: 1px solid #f0e6d8; border-radius: 12px; padding: 28px;
     text-align: center; box-shadow: 0 2px 8px rgba(120, 80, 20, 0.05);
@@ -101,11 +101,15 @@
 <section id="ways">
   <div class="ways">
     <div class="way">
-      <h3>扫码捐赠</h3>
-      <div class="qr"><!--QR:AFDIAN-->此处放置<br>收款二维码</div>
-      <p>微信 / 支付宝扫码即可支持，金额随意。</p>
+      <h3>扫码支持</h3>
+      <div class="qr"><!--QR:DONATE-->此处放置<br>收款二维码</div>
+      <p>使用微信 / 支付宝等常用支付方式扫码即可，金额随意。</p>
     </div>
   </div>
+  <p style="text-align:center;color:var(--muted);font-size:14px;margin-top:22px;">
+    本站仅展示二维码，<b>不代收任何款项、不介入支付环节</b>。二维码由本站运营者使用本人（本组织）名下
+    合法收款渠道生成，并自行遵守所在地关于收款与税务的相关法律法规。
+  </p>
 </section>
 
 <section id="usage">

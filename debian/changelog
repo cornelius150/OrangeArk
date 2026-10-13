@@ -1,3 +1,25 @@
+orangeark (1.3.13-1) focal; urgency=low
+
+  * Feedback: new config.cfg [misc] feedback_ca_bundle, an optional PEM file
+    with extra CA certificates. It exists for self-hosted help sites reached by
+    bare IP whose certificate is self-signed. It only ADDS a trust anchor:
+    peer and host verification stay on and the SAN must still match, so it is
+    never a way to switch certificate checking off
+  * Help site bundle: install.sh now accepts either a domain or a public IP as
+    the site address. With a bare IP (no public CA issues certificates for IPs)
+    it offers three explicit choices - stay on http, generate a self-signed
+    certificate, or use a certificate you already have
+  * Help site bundle: the donate page keeps exactly one replaceable payment QR
+    code. All traces of third-party donation platforms were removed and a
+    compliance note was added (the site never handles payments)
+  * Help site bundle hardening: security response headers (CSP, X-Frame-Options,
+    Referrer-Policy, ...), HSTS when https is on; login rate limiting no longer
+    trusts the spoofable X-Forwarded-For header; uploads are checked by magic
+    bytes so a script cannot be uploaded as .png; config/session/feedback files
+    are chmod 600; page backups are capped; per-connection timeout added
+
+ -- OrangeArk <orangeark@example.com>  Tue, 13 Oct 2026 12:00:00 +0800
+
 orangeark (1.3.12-1) focal; urgency=low
 
   * Feedback wording: the menu entry and the dialog title now read 反馈缺陷和

@@ -677,7 +677,7 @@ std::string download_file(const std::string& filepath)
 // OrangeArk: HTTPS POST with a JSON body, used by the in-app feedback dialog.
 // See the header for the enforced transport rules (https only, certificates
 // always verified, no redirects). The body is never logged.
-bool post_json(const std::string& url, const std::string& json_body, long& http_code_out)
+bool post_json(const std::string& url, const std::string& json_body, long& http_code_out, const std::string& ca_bundle)
 {
     http_code_out = 0;
 
@@ -734,6 +734,13 @@ bool post_json(const std::string& url, const std::string& json_body, long& http_
     // unverified host — these stay ON even if a caller ever "optimises" them.
     curl_easy_setopt(pCurlHandle, CURLOPT_SSL_VERIFYPEER, 1L);
     curl_easy_setopt(pCurlHandle, CURLOPT_SSL_VERIFYHOST, 2L);
+    // OrangeArk: an explicit CA bundle only ADDs a trust anchor for self-hosted
+    // sites with a self-signed certificate. Verification stays fully on, and
+    // the host/SAN still has to match — this is not a "skip verification" flag.
+    if (not ca_bundle.empty()) {
+        curl_easy_setopt(pCurlHandle, CURLOPT_CAINFO, ca_bundle.c_str());
+        spdlog::debug("fs::post_json: using extra CA bundle {}", ca_bundle);
+    }
     curl_easy_setopt(pCurlHandle, CURLOPT_WRITEFUNCTION, local::write_memory_callback);
     curl_easy_setopt(pCurlHandle, CURLOPT_WRITEDATA, (void*)&buffer);
     curl_easy_setopt(pCurlHandle, CURLOPT_CONNECTTIMEOUT, 8L);
