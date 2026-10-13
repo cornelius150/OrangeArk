@@ -260,7 +260,7 @@ public:
     // Empty = the official GitHub Pages site; when set, the Help menu's
     // manual/website/donate links point at the self-hosted help site instead.
     std::string                                 helpBaseUrl{""};
-    // OrangeArk: where in-app feedback (帮助 → 反馈缺陷和要求) is POSTed.
+    // OrangeArk: where in-app feedback (帮助 → 反馈缺陷和需求) is POSTed.
     // Empty = use the compiled-in default. Set it in config.cfg [misc]
     // feedback_endpoint to point at a self-hosted endpoint instead — see the
     // resolution order documented in CtActions::help_report_bug().

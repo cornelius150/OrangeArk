@@ -1,6 +1,22 @@
+orangeark (1.3.12-1) focal; urgency=low
+
+  * Feedback wording: the menu entry and the dialog title now read 反馈缺陷和
+    需求 (需求, not 要求). The v1.3.11 binary shipped with 要求 in the compiled
+    strings; this release corrects it
+  * The help site bundle (orangeark-help-site) now ships the server half of the
+    feedback channel: /api/feedback accepts the JSON submission, rate limits it
+    per IP and per day, stores every item so it can be read in the backend even
+    when the mail relay fails, and forwards it to the configured mailbox over
+    SMTP. The destination mailbox and the SMTP credentials therefore exist only
+    on the server - the client still knows nothing but an https endpoint
+  * The deployment script asks for the destination mailbox and the sending
+    account during install, proves them with a real test mail before enabling
+    the relay, and can request a Let's Encrypt certificate so the endpoint is
+    reachable over https (the client refuses plain http by design)
+
 orangeark (1.3.11-1) focal; urgency=low
 
-  * In-app feedback: the "反馈缺陷" entry becomes "反馈缺陷和要求" and now
+  * In-app feedback: the "反馈缺陷" entry becomes "反馈缺陷和需求" and now
     opens a real feedback dialog instead of jumping to GitHub. The dialog has
     exactly two inputs - 反馈主题 and 反馈内容 - and deliberately shows no
     mailbox field

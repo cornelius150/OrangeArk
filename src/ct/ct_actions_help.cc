@@ -161,7 +161,7 @@ void CtActions::help_source_code()
 // 不显示也不需要填写邮箱：既不用用户留联系方式，也不把收件邮箱暴露出来（见上方端点注释）。
 void CtActions::help_report_bug()
 {
-    Gtk::Dialog dialog{"反馈缺陷和要求", *_pCtMainWin,
+    Gtk::Dialog dialog{"反馈缺陷和需求", *_pCtMainWin,
         Gtk::DialogFlags::DIALOG_MODAL | Gtk::DialogFlags::DIALOG_DESTROY_WITH_PARENT};
     (void)CtMiscUtil::dialog_add_button(&dialog, "取消(C)", Gtk::RESPONSE_REJECT, "ct_cancel");
     (void)CtMiscUtil::dialog_add_button(&dialog, "提交(S)", Gtk::RESPONSE_ACCEPT, "ct_done", true/*isDefault*/);
