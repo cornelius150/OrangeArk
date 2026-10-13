@@ -145,6 +145,9 @@ protected:
     void _guide_update(const double xRoot, const double yRoot); // OrangeArk: move the guide lines while dragging
     void _apply_border_cursor(const int edges); // OrangeArk: set the resize cursor only when the zone changes
     virtual int _column_separator_at(const double x) const; // OrangeArk: hit test for a column separator (-1 = none)
+    // OrangeArk: x of the content area inside the widget frame (the frame
+    // inset shifts every visible separator right by this much); 0 = unknown
+    virtual double _content_origin_x() const { return 0.0; }
     virtual void _set_rows_min_height(const int height) = 0; // OrangeArk: row height control
     virtual int  _get_rows_min_height() const = 0;
     virtual int  _get_rows_min_height_raw() const = 0; // OrangeArk: 0 = not set (no fallback estimate)
@@ -279,6 +282,7 @@ protected:
     // inset and renderer padding shift the visible separators, so accumulating
     // the stored widths pointed a drag at a neighbouring column
     int  _column_separator_at(const double x) const override;
+    double _content_origin_x() const override;
 
     #if GTKMM_MAJOR_VERSION < 4 && !defined(GTKMM_DISABLE_DEPRECATED)
     void _on_treeview_event_after(GdkEvent* event);
@@ -349,6 +353,7 @@ protected:
     void _apply_row_height(const size_t rowIdx) override;
     int  _row_separator_at(const double y) const override; // OrangeArk: per-row resize hit test
     int  _column_separator_at(const double x) const override; // OrangeArk: real rendered geometry (see ct_table.cc)
+    double _content_origin_x() const override;
     double _row_top_at(const size_t rowIdx) const override;
     int  _rowsMinHeight{0};
 

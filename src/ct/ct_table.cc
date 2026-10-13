@@ -32,6 +32,10 @@
 #include <cstring>
 #include <algorithm>
 
+// OrangeArk: forward declaration — the border/edge helper is defined further
+// down the file but the cell event handlers above need it
+static int _table_border_edges(const double x, const double y, const Gtk::Allocation& allocation);
+
 CtTableCommon::CtTableCommon(CtMainWin* pCtMainWin,
                              const int colWidthDefault,
                              const int charOffset,
@@ -444,23 +448,15 @@ bool CtTableCommon::_on_cell_button_press(Gtk::Widget* pCell, GdkEventButton* ev
     if (1 != event->button or GDK_BUTTON_PRESS != event->type) return false;
     double tx = 0.0, ty = 0.0;
     if (not _cell_point_to_table(pCell, event->x, event->y, tx, ty)) return false;
-    const int colIdx = _column_separator_at(tx);
-    const int rowIdx = (colIdx < 0) ? _row_separator_at(ty) : -1;
-    if (colIdx < 0 and rowIdx < 0) return false; // plain click inside the cell: normal text handling
-    if (not _pCtMainWin->get_ct_actions()->_is_curr_node_not_read_only_or_error()) return true;
-    _pCtMainWin->get_ct_actions()->curr_table_anchor = this;
-    if (colIdx >= 0) {
-        _dragColIdx = colIdx;
-        _dragRowIdx = -1;
-        _dragEdgesMask = 2; // behaves like a right-edge (width) drag
-    }
-    else {
-        _dragColIdx = -1;
-        _dragRowIdx = rowIdx;
-        _dragEdgesMask = 8; // behaves like a bottom-edge (height) drag
-    }
-    _resize_drag_begin(event->x_root, event->y_root);
-    return true;
+    // OrangeArk fix: the cell path MUST honour the outer border zone FIRST.
+    // The cells cover the whole table interior, so a press on the last
+    // column's cell right edge IS the table's right border — the previous
+    // code went straight to the separator hit tests, and when the pointer
+    // also sat near a row boundary it armed a ROW drag instead of the
+    // last-column drag the user asked for (用户视频: "拉的是最边缘的表格边线，
+    // 调的却是另外的"). _resize_press_at checks _table_border_edges before
+    // the separator tests, so reuse it with the table-space coordinates.
+    return _resize_press_at(tx, ty, event);
 }
 
 bool CtTableCommon::_on_cell_motion(Gtk::Widget* pCell, GdkEventMotion* event)
@@ -481,7 +477,17 @@ bool CtTableCommon::_on_cell_motion(Gtk::Widget* pCell, GdkEventMotion* event)
     }
     double tx = 0.0, ty = 0.0;
     if (not _cell_point_to_table(pCell, event->x, event->y, tx, ty)) return false;
-    if (_column_separator_at(tx) >= 0) {
+    // OrangeArk fix: the outer border zone wins over the separator hover
+    // feedback — matches the fixed press path (_resize_press_at) so the
+    // cursor always predicts the drag that a press here would arm
+    const int edges = _table_border_edges(tx, ty, get_allocation());
+    if (edges & 0x3) {
+        _set_cell_cursor(pCell, static_cast<int>(Gdk::CursorType::SB_H_DOUBLE_ARROW));
+    }
+    else if (edges & 0xC) {
+        _set_cell_cursor(pCell, static_cast<int>(Gdk::CursorType::SB_V_DOUBLE_ARROW));
+    }
+    else if (_column_separator_at(tx) >= 0) {
         _set_cell_cursor(pCell, static_cast<int>(Gdk::CursorType::SB_H_DOUBLE_ARROW));
     }
     else if (_row_separator_at(ty) >= 0) {
@@ -782,14 +788,15 @@ int CtTableCommon::_column_separator_at(const double x) const
     // OrangeArk 1.3.6: the grab zone was 8px and the hit test trusted the
     // STORED column widths even while GTK had not laid the widget out yet. In
     // that window the accumulated widths describe lines at quite different
-    // places than the rendered ones (and the stored total may even be smaller
-    // than the widget), so a press near the last separator could resolve to
-    // the NEXT column's line — the drag then resized the wrong column and the
-    // guide/table snapped sideways ("<｜hy_place▁holder▁no▁813｜>最边缘的线时会跳到另一格的表格边线").
-    // Now: while the widget is realised require the stored widths to match the
-    // drawn width, otherwise walk an even split of the REAL widget width; and
-    // while it is not realised do not answer at all (the mouse-down then falls
-    // through to the cell, no wrong column can be armed).
+    // places than the rendered ones, so a press near the last separator could
+    // resolve to the NEXT column's line — the drag then resized the wrong
+    // column (用户: "拉最边缘的线时会跳到另一格的表格边线").
+    // OrangeArk fix: (1) separators live in CONTENT space — start accumulating
+    // at the content origin (the frame inset shifts every separator right);
+    // (2) when the stored widths do not match the drawn width, scale their
+    // PROPORTIONS to the drawn width instead of inventing an even split whose
+    // boundaries exist nowhere on screen; (3) with no trustworthy geometry at
+    // all, answer "no separator" rather than guessing.
     constexpr double GRAB_ZONE = 6.0;
     const Gtk::Allocation alloc = get_allocation();
     const int realW = alloc.get_width();
@@ -800,19 +807,29 @@ int CtTableCommon::_column_separator_at(const double x) const
     if (numCols < 2) return -1;
     double total = 0.0;
     for (const int w : colWidths) total += w;
-    const bool inSync = total > 0.0 and std::abs(total - realW) <= std::max(6.0, realW * 0.02);
+    const double contentX = _content_origin_x();
+    const double contentW = static_cast<double>(realW) - 2.0 * contentX;
+    const bool inSync = total > 0.0 and contentW > 0.0 and
+        std::abs(total - contentW) <= std::max(6.0, contentW * 0.02);
 
     CtTableColWidths useWidths;
     if (inSync) {
         useWidths = colWidths;
     }
+    else if (total > 0.0 and contentW > 0.0) {
+        // keep the stored proportions, scaled to the width really drawn
+        const double scale = contentW / total;
+        useWidths.assign(numCols, 0);
+        for (size_t c = 0u; c < numCols; ++c) {
+            useWidths.at(c) = std::max(1, static_cast<int>(std::lround(colWidths.at(c) * scale)));
+        }
+    }
     else {
-        // fall back to an even split of the width that is really drawn
-        useWidths.assign(numCols, realW / static_cast<int>(numCols));
+        return -1;   // nothing trustworthy: never guess
     }
     int bestIdx = -1;
     double bestDist = GRAB_ZONE + 1.0;
-    double acc = 0.0;
+    double acc = contentX;
     for (size_t c = 0u; c + 1u < numCols; ++c) { // inner separators only
         acc += useWidths.at(c);
         const double dist = std::abs(x - acc);
@@ -958,16 +975,22 @@ bool CtTableCommon::_resize_motion_at(const double x, const double y, GdkEventMo
         _apply_border_cursor(_dragColIdx >= 0 ? 0x2 : _dragEdgesMask);
         return true;
     }
-    // hover feedback: column separators behave like a right-edge width drag,
-    // row separators like a bottom-edge height drag
-    if (_column_separator_at(x) >= 0) {
+    // hover feedback: the OUTER border zone wins over the separator hit
+    // tests — near the right border the cursor must be the width arrow even
+    // if the pointer also happens to sit within a row grab band, otherwise
+    // the cursor lies about what the press will actually arm
+    const int edges = _table_border_edges(x, y, get_allocation());
+    if (edges != 0) {
+        _apply_border_cursor(edges);
+    }
+    else if (_column_separator_at(x) >= 0) {
         _apply_border_cursor(0x2);
     }
     else if (_row_separator_at(y) >= 0) {
         _apply_border_cursor(0x8);
     }
     else {
-        _apply_border_cursor(_table_border_edges(x, y, get_allocation()));
+        _apply_border_cursor(0);
     }
     return false;
 }
@@ -1616,4 +1639,16 @@ int CtTableHeavy::_column_separator_at(const double x) const
         if (laidOut) return bestIdx;
     }
     return CtTableCommon::_column_separator_at(x);
+}
+
+// OrangeArk: x of the grid inside the widget frame — the frame inset shifts
+// every visible separator right by this much (used by the common fallback
+// hit test before the grid has been laid out)
+double CtTableHeavy::_content_origin_x() const
+{
+    int orgX = 0, orgY = 0;
+    if (const_cast<Gtk::Grid&>(_grid).translate_coordinates(*const_cast<CtTableHeavy*>(this), 0, 0, orgX, orgY)) {
+        return static_cast<double>(orgX);
+    }
+    return 0.0;
 }

@@ -619,6 +619,20 @@ int CtTableLight::_column_separator_at(const double x) const
     return CtTableCommon::_column_separator_at(x);
 }
 
+// OrangeArk: x of the TreeView inside the widget frame — the frame inset
+// shifts every visible separator right by this much (used by the common
+// fallback hit test before the TreeView has been laid out)
+double CtTableLight::_content_origin_x() const
+{
+    if (_pManagedTreeView) {
+        int orgX = 0, orgY = 0;
+        if (_pManagedTreeView->translate_coordinates(*const_cast<CtTableLight*>(this), 0, 0, orgX, orgY)) {
+            return static_cast<double>(orgX);
+        }
+    }
+    return 0.0;
+}
+
 std::string CtTableLight::to_csv() const
 {
     CtCSV::CtStringTable tbl;

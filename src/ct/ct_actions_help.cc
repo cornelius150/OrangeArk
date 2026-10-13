@@ -89,6 +89,40 @@ std::string feedback_json_escape(const std::string& in)
     return out;
 }
 
+// OrangeArk: percent-encode a query parameter value (RFC 3986 unreserved set)
+std::string feedback_url_escape(const std::string& in)
+{
+    static const char* hex = "0123456789ABCDEF";
+    std::string out;
+    out.reserve(in.size() + 16u);
+    for (const unsigned char c : in) {
+        const bool unreserved = (c >= 'A' and c <= 'Z') or (c >= 'a' and c <= 'z')
+            or (c >= '0' and c <= '9') or c == '-' or c == '_' or c == '.' or c == '~';
+        if (unreserved) {
+            out += static_cast<char>(c);
+        }
+        else {
+            out += '%';
+            out += hex[c >> 4];
+            out += hex[c & 0x0Fu];
+        }
+    }
+    return out;
+}
+
+// OrangeArk zero-config fallback: when no feedback endpoint is configured the
+// filled-in feedback is handed to the public GitHub issue form with the title
+// and body prefilled — the user never sees a configuration prompt and nothing
+// is sent anywhere until they press "Submit" there. Browsers cap URL length,
+// so the prefilled body is kept well below that.
+std::string feedback_github_issues_url(const std::string& subject, const std::string& body)
+{
+    std::string trimmed = body;
+    if (trimmed.size() > 2000u) trimmed = trimmed.substr(0u, 2000u) + "\n…(已截断)";
+    return std::string{ORANGEARK_URL_ISSUES} + "/new?title=" + feedback_url_escape(subject)
+         + "&body=" + feedback_url_escape(trimmed);
+}
+
 // 端点解析顺序：显式 feedback_endpoint > 自建官网 help_base_url + /api/feedback > 内置默认
 std::string feedback_endpoint_of(const CtConfig* pCtConfig)
 {
@@ -243,15 +277,12 @@ void CtActions::help_report_bug()
         message += "平台: Linux\n";
 #endif
 
-        // 默认端点还是占位符：说明这台机器既没配 feedback_endpoint 也没配自建官网，
-        // 直接提交只能得到一个 404，不如把情况讲清楚并给出可用的替代渠道。
+        // OrangeArk zero-config policy: a machine with neither feedback_endpoint
+        // nor a self-hosted help site must NOT be interrogated about config.cfg —
+        // the feedback the user just wrote is handed straight to the public
+        // GitHub issue form with everything prefilled (see the helper above).
         if (feedback_endpoint_of(_pCtConfig).find("OA_FORM_ID") != std::string::npos) {
-            if (CtDialogs::question_dialog(
-                    "尚未配置反馈提交端点。请在 config.cfg 的 [misc] 下加一行：\n"
-                    "feedback_endpoint=https://你的提交端点\n\n"
-                    "是否先改用 GitHub Issues 页面提交？", *_pCtMainWin)) {
-                fs::open_weblink(ORANGEARK_URL_ISSUES);
-            }
+            fs::open_weblink(feedback_github_issues_url(subject.raw(), message.raw()));
             return;
         }
 
@@ -290,7 +321,7 @@ void CtActions::help_report_bug()
             if (http_code > 0) msg += "（HTTP " + std::to_string(http_code) + "）";
             msg += "。是否改用 GitHub Issues 页面提交？";
             if (CtDialogs::question_dialog(msg, *_pCtMainWin)) {
-                fs::open_weblink(ORANGEARK_URL_ISSUES);
+                fs::open_weblink(feedback_github_issues_url(subject.raw(), message.raw()));
             }
         }
         _pCtMainWin->update_selected_node_statusbar_info();
